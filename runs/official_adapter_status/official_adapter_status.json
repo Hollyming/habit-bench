@@ -1,0 +1,139 @@
+{
+  "baselines": [
+    {
+      "adapter_status": "official_api_retrieval_adapter_ran",
+      "current_status": "ready_to_wire",
+      "import_available": {
+        "mem0": true
+      },
+      "import_names": [
+        "mem0"
+      ],
+      "install_hint": "pip install mem0ai",
+      "kind": "pip_package",
+      "name": "Mem0",
+      "notes": "HABIT-Bench adapter uses official Memory.add(..., infer=False) and Memory.search with local HuggingFace embeddings and Qdrant. Full LLM fact extraction/update is not reproduced yet.",
+      "official_source": "https://github.com/mem0ai/mem0",
+      "package": "mem0ai",
+      "repo_available": {
+        "available": false,
+        "reason": "no_repo_env_var_or_default_path_defined"
+      },
+      "runnable_in_current_env": true
+    },
+    {
+      "adapter_status": "official_code_graph_storage_search_adapter_ran",
+      "current_status": "ready_to_wire",
+      "import_available": {
+        "graphiti_core": true
+      },
+      "import_names": [
+        "graphiti_core"
+      ],
+      "install_hint": "pip install graphiti-core",
+      "kind": "pip_package_plus_backend",
+      "name": "Zep/Graphiti",
+      "notes": "HABIT-Bench adapter uses official Kuzu driver, EntityNode/EntityEdge writes, and Graphiti search_ with edge cosine. Full Graphiti requires LLM episode extraction/KG resolution and a production graph backend; local Kuzu BM25 full-text index was unavailable.",
+      "official_source": "https://github.com/getzep/graphiti",
+      "package": "graphiti-core",
+      "repo_available": {
+        "available": false,
+        "reason": "no_repo_env_var_or_default_path_defined"
+      },
+      "runnable_in_current_env": true
+    },
+    {
+      "adapter_status": "official_code_retrieval_adapter_ran",
+      "current_status": "ready_to_wire",
+      "default_repo_path": "a-mem",
+      "env_repo_var": "AMEM_REPO",
+      "import_available": {
+        "a_mem": false,
+        "agentic_memory": false
+      },
+      "import_names": [
+        "a_mem",
+        "agentic_memory"
+      ],
+      "install_hint": "clone https://github.com/agiresearch/a-mem or https://github.com/WujiangXu/A-mem-sys and expose its Python path",
+      "kind": "repo_or_package",
+      "name": "A-MEM",
+      "notes": "HABIT-Bench adapter uses official AgenticMemorySystem.add_note and search_agentic. LLM-based process_memory/evolution is disabled pending a live backend.",
+      "official_source": "https://github.com/agiresearch/a-mem",
+      "package": null,
+      "repo_available": {
+        "available": true,
+        "env_var": "AMEM_REPO",
+        "path": "C:\\Users\\97150\\Documents\\benchmark\\habit-bench\\third_party\\official-baselines\\repos\\a-mem",
+        "reason": "ok",
+        "source": "default_repo_path"
+      },
+      "runnable_in_current_env": true
+    },
+    {
+      "adapter_status": "official_code_retrieval_adapter_ran",
+      "current_status": "ready_to_wire",
+      "default_repo_path": "SeCom",
+      "env_repo_var": "SECOM_REPO",
+      "import_available": {},
+      "import_names": [],
+      "install_hint": "provide official repo path through SECOM_REPO if released",
+      "kind": "paper_method",
+      "name": "SeCom",
+      "notes": "HABIT-Bench adapter uses official SeCom.retrieve_external_memory with session-level BM25. Full paper settings require LLM segmentation and compression dependencies.",
+      "official_source": "https://github.com/microsoft/SeCom",
+      "package": null,
+      "repo_available": {
+        "available": true,
+        "env_var": "SECOM_REPO",
+        "path": "C:\\Users\\97150\\Documents\\benchmark\\habit-bench\\third_party\\official-baselines\\repos\\SeCom",
+        "reason": "ok",
+        "source": "default_repo_path"
+      },
+      "runnable_in_current_env": true
+    },
+    {
+      "adapter_status": "no_public_official_code_found",
+      "current_status": "missing_dependency_or_repo",
+      "env_repo_var": "RMM_REPO",
+      "import_available": {},
+      "import_names": [],
+      "install_hint": "provide official repo path through RMM_REPO if released",
+      "kind": "paper_method",
+      "name": "RMM",
+      "notes": "No local or public official package/repository was found; current evaluator includes only a method-inspired proxy unless authors release code or RMM_REPO is provided.",
+      "official_source": "https://aclanthology.org/2025.acl-long.413/",
+      "package": null,
+      "repo_available": {
+        "available": false,
+        "env_var": "RMM_REPO",
+        "reason": "env_var_not_set"
+      },
+      "runnable_in_current_env": false
+    },
+    {
+      "adapter_status": "official_code_retrieval_adapter_ran",
+      "current_status": "ready_to_wire",
+      "default_repo_path": "O-Mem",
+      "env_repo_var": "OMEM_REPO",
+      "import_available": {},
+      "import_names": [],
+      "install_hint": "provide official repo path through OMEM_REPO if released",
+      "kind": "paper_method",
+      "name": "O-Mem",
+      "notes": "HABIT-Bench adapter uses official SimpleMemory/MemoryChain/MemoryManager.retrieve_from_memory_soft_segmentation with injected visible sessions. Full O-Mem active profiling and generation are not reproduced.",
+      "official_source": "https://github.com/OPPO-PersonalAI/O-Mem",
+      "package": null,
+      "repo_available": {
+        "available": true,
+        "env_var": "OMEM_REPO",
+        "path": "C:\\Users\\97150\\Documents\\benchmark\\habit-bench\\third_party\\official-baselines\\repos\\O-Mem",
+        "reason": "ok",
+        "source": "default_repo_path"
+      },
+      "runnable_in_current_env": true
+    }
+  ],
+  "created_at": "2026-06-15T10:38:50.821215+00:00",
+  "official_adapter_scope": "status_check_only"
+}

@@ -1,0 +1,87 @@
+{
+  "by_capability_group": {
+    "counterevidence_exception": 540,
+    "explicit_fact_preference_retrieval": 270,
+    "false_personalization_privacy": 60,
+    "habit_boundary_false_personalization": 540,
+    "habit_direct_use": 540,
+    "habit_drift": 60
+  },
+  "by_habit_family": {
+    "coding_review": 210,
+    "content_constraints": 210,
+    "drift_seasonality": 270,
+    "format_style": 210,
+    "meeting_prep": 210,
+    "planning_defaults": 210,
+    "privacy_consent": 270,
+    "risk_threshold": 210,
+    "tool_action": 210
+  },
+  "by_probe_type": {
+    "boundary": 540,
+    "direct_use": 540,
+    "drift": 60,
+    "exception": 540,
+    "explicit_retrieval": 270,
+    "privacy": 60
+  },
+  "by_stress_variant": {
+    "original_balanced": 1140,
+    "unseen_paraphrase": 870
+  },
+  "counts": {
+    "probes": 2010,
+    "review_queue_all": 2010,
+    "review_queue_sample": 201,
+    "selected_habits": 270,
+    "sessions": 9924,
+    "users": 174
+  },
+  "created_at": "2026-06-12T20:28:53.420129+00:00",
+  "input_dir": "work\\habit-bench-builder\\runs\\habit_bench_pilot_v0",
+  "selection_policy": {
+    "core_probe_types": [
+      "direct_use",
+      "boundary",
+      "exception"
+    ],
+    "drop_boundary_counterexample_sessions_from_visible_history": true,
+    "explicit_retrieval_control_per_selected_habit": true,
+    "human_audit_required": true,
+    "special_probe_types": {
+      "drift_seasonality": [
+        "drift"
+      ],
+      "privacy_consent": [
+        "privacy"
+      ]
+    },
+    "target_habits_per_family": 30,
+    "unseen_paraphrase_for_stress_probes": true
+  },
+  "source_contract": {
+    "claim_to_avoid": "each habit family is drawn from a different external dataset",
+    "controlled_components": [
+      "hidden_habit_graphs",
+      "assistant feedback",
+      "counterfactual probes",
+      "answer choices",
+      "gold labels",
+      "evidence links"
+    ],
+    "domain_assignment": "keyword-filtered WildChat task seed buckets",
+    "family_domain_contract": "nine_unique_representative_domains",
+    "release_claim": "real-prompt-seeded, domain-grounded, synthetic longitudinal habit benchmark",
+    "seed_prompts": "allenai/WildChat"
+  },
+  "status": "balanced_candidate_auto_validated_pending_human_audit",
+  "validation": {
+    "errors": [],
+    "private_keys": 2010,
+    "private_sessions": 9924,
+    "public_probes": 2010,
+    "public_sessions": 9924,
+    "status": "pass"
+  }
+}

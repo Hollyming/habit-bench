@@ -1,0 +1,20 @@
+﻿# Source this file on Lumia before running full official-method experiments.
+#
+# Example:
+#   source ./scripts/lumia/lumia_env_example.sh
+
+export HABITBENCH_PROJECT_ROOT="${HABITBENCH_PROJECT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
+export HABITBENCH_LLM_MODEL="${HABITBENCH_LLM_MODEL:-Qwen/Qwen2.5-7B-Instruct}"
+export HABITBENCH_SERVED_MODEL="${HABITBENCH_SERVED_MODEL:-habitbench-open-llm}"
+export HABITBENCH_EMBED_MODEL="${HABITBENCH_EMBED_MODEL:-sentence-transformers/all-MiniLM-L6-v2}"
+export HABITBENCH_STRUCTURED_OUTPUT_MODE="${HABITBENCH_STRUCTURED_OUTPUT_MODE:-json_schema}"
+export HABITBENCH_MAX_MODEL_LEN="${HABITBENCH_MAX_MODEL_LEN:-16384}"
+export HABITBENCH_MEMORY_LLM_MAX_TOKENS="${HABITBENCH_MEMORY_LLM_MAX_TOKENS:-256}"
+export HABITBENCH_OFFICIAL_TIMEOUT_SEC="${HABITBENCH_OFFICIAL_TIMEOUT_SEC:-21600}"
+export HABITBENCH_PROGRESS_EVERY="${HABITBENCH_PROGRESS_EVERY:-100}"
+
+export OPENAI_API_KEY="${OPENAI_API_KEY:-dummy}"
+export OPENAI_BASE_URL="${OPENAI_BASE_URL:-http://127.0.0.1:8000/v1}"
+
+export HABITBENCH_DATASET="${HABITBENCH_DATASET:-$HABITBENCH_PROJECT_ROOT/runs/habit_bench_balanced_v0_3_official_subset_90}"
+export HABITBENCH_OFFICIAL_OUT="${HABITBENCH_OFFICIAL_OUT:-$HABITBENCH_DATASET/full_official_results}"
