@@ -1,0 +1,101 @@
+{
+  "generation_mode": "gpt-5.5_xhigh_sessionwise_multihabit_full_generation",
+  "habit_templates": [
+    {
+      "template_id": "business_travel_arrival_buffer",
+      "name": "business travel prefers protected arrival buffer",
+      "condition": "business/client/onsite meeting travel planning",
+      "default_action": "Prefer an arrival window with meaningful cushion before meeting-dependent commitments over tighter cheaper schedules.",
+      "boundary_condition": "relaxed leisure or personal travel without a same-day commitment",
+      "exception_condition": "current itinerary explicitly relaxes arrival timing or moves commitments to a later day"
+    },
+    {
+      "template_id": "tight_schedule_nonstop_priority",
+      "name": "tight schedules prefer nonstop flights",
+      "condition": "travel with same-day meetings, short connection windows, or high delay sensitivity",
+      "default_action": "Prefer nonstop or lowest-transfer itineraries over slightly cheaper connecting options.",
+      "boundary_condition": "relaxed travel where transfers are acceptable and cost matters more",
+      "exception_condition": "current trip explicitly prioritizes budget or airline miles over schedule reliability"
+    },
+    {
+      "template_id": "uncertain_trip_refundable_fare",
+      "name": "uncertain trips prefer refundable fares",
+      "condition": "work trips with tentative meetings, pending approvals, or plans that may shift",
+      "default_action": "Prefer refundable or flexible fares even when a nonrefundable fare is cheaper.",
+      "boundary_condition": "fixed personal trips with confirmed dates",
+      "exception_condition": "current request explicitly says the dates are locked and lowest fare is the priority"
+    },
+    {
+      "template_id": "work_hotel_near_venue",
+      "name": "work hotels prefer venue proximity",
+      "condition": "work, conference, client, or onsite meeting hotel selection",
+      "default_action": "Prefer hotels close to the meeting venue over cheaper hotels with a longer commute.",
+      "boundary_condition": "leisure trips where neighborhood character or sightseeing access matters more",
+      "exception_condition": "current request explicitly prioritizes budget or a specific neighborhood over commute time"
+    },
+    {
+      "template_id": "quiet_hotel_for_work",
+      "name": "work hotels prefer quiet properties",
+      "condition": "business travel or trips requiring preparation, calls, or focused work",
+      "default_action": "Prefer quieter hotels with reliable workspace over nightlife-heavy or amenity-focused properties.",
+      "boundary_condition": "social or leisure trips where nightlife and amenities are the goal",
+      "exception_condition": "current request explicitly asks for lively atmosphere or group entertainment"
+    },
+    {
+      "template_id": "leisure_relaxed_pacing",
+      "name": "leisure trips prefer relaxed pacing",
+      "condition": "vacation, weekend, or low-pressure personal travel planning",
+      "default_action": "Prefer relaxed arrival times and fewer tightly packed logistics over maximizing every hour.",
+      "boundary_condition": "work trips or event travel with fixed commitments",
+      "exception_condition": "current request explicitly asks to maximize sightseeing time or fit a hard schedule"
+    },
+    {
+      "template_id": "family_trip_flexible_cancellation",
+      "name": "family trips prefer flexible cancellation",
+      "condition": "family travel, trips with children, or plans involving multiple relatives",
+      "default_action": "Prefer flexible cancellation and change policies over the absolute cheapest prepaid option.",
+      "boundary_condition": "solo fixed-date trips with low uncertainty",
+      "exception_condition": "current request explicitly says plans are locked and budget is the only priority"
+    },
+    {
+      "template_id": "short_trip_no_checked_bag",
+      "name": "short trips avoid checked baggage",
+      "condition": "one- or two-night trips, quick work visits, or short weekend travel",
+      "default_action": "Prefer carry-on-friendly itineraries and avoid options that require checked baggage.",
+      "boundary_condition": "longer trips or trips requiring bulky equipment",
+      "exception_condition": "current request explicitly includes items that require checked luggage"
+    },
+    {
+      "template_id": "international_long_layover_buffer",
+      "name": "international trips prefer longer layover buffers",
+      "condition": "international flights, customs, immigration, or airport changes",
+      "default_action": "Prefer longer connection buffers over tight layovers, even if total travel time is longer.",
+      "boundary_condition": "domestic point-to-point travel with low connection risk",
+      "exception_condition": "current request explicitly prioritizes the shortest possible total itinerary"
+    },
+    {
+      "template_id": "red_eye_avoidance",
+      "name": "avoid red-eye unless savings are large",
+      "condition": "flight planning where an overnight flight is optional",
+      "default_action": "Avoid red-eye flights unless the price or schedule advantage is substantial.",
+      "boundary_condition": "trips where overnight travel is necessary or the user asks to preserve daytime hours",
+      "exception_condition": "current request explicitly asks for red-eye timing or maximum daytime availability"
+    },
+    {
+      "template_id": "airport_transfer_reliability",
+      "name": "client trips prefer reliable airport transfers",
+      "condition": "client, meeting, or work trips requiring ground transfer from the airport",
+      "default_action": "Prefer predictable ground transfer options over the cheapest or least certain option.",
+      "boundary_condition": "casual personal trips with flexible arrival plans",
+      "exception_condition": "current request explicitly prioritizes lowest transport cost or public transit exploration"
+    },
+    {
+      "template_id": "early_morning_avoidance",
+      "name": "avoid very early departures for nonurgent trips",
+      "condition": "nonurgent personal or flexible travel where departure time is optional",
+      "default_action": "Prefer mid-morning or later departures over very early flights when tradeoffs are modest.",
+      "boundary_condition": "business or event travel where arriving early is critical",
+      "exception_condition": "current request explicitly needs the earliest possible arrival"
+    }
+  ]
+}
