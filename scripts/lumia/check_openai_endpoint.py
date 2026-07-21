@@ -33,7 +33,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", default=os.getenv("OPENAI_BASE_URL", "http://127.0.0.1:8000/v1"))
     parser.add_argument("--api-key", default=os.getenv("OPENAI_API_KEY", "dummy"))
-    parser.add_argument("--model", default=os.getenv("HABITBENCH_SERVED_MODEL", "habitbench-open-llm"))
+    parser.add_argument("--model", default=os.getenv("HABITBENCH_SERVED_MODEL", "habitbench-qwen3-8b"))
     parser.add_argument(
         "--structured-output-mode",
         choices=["json_schema", "json_object"],

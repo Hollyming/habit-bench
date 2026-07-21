@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Copy this file outside the repository, adapt paths for the target cluster,
+# and pass it to the multi-GPU launcher with --env-file.
+
+export HABITBENCH_PROJECT_ROOT="${HABITBENCH_PROJECT_ROOT:-/path/to/habit-bench}"
+export PYTHON_BIN="${PYTHON_BIN:-/path/to/venv/bin/python}"
+
+export HABITBENCH_LLM_MODEL="${HABITBENCH_LLM_MODEL:-/shared/huggingface/Qwen/Qwen3-8B}"
+export HABITBENCH_SERVED_MODEL="${HABITBENCH_SERVED_MODEL:-habitbench-qwen3-8b}"
+export HABITBENCH_EMBED_MODEL="${HABITBENCH_EMBED_MODEL:-/shared/huggingface/intfloat/e5-base-v2}"
+export HABITBENCH_EMBED_DIMS="${HABITBENCH_EMBED_DIMS:-768}"
+export HABITBENCH_SECOM_EMBED_MODEL="${HABITBENCH_SECOM_EMBED_MODEL:-$HABITBENCH_EMBED_MODEL}"
+export HABITBENCH_SECOM_COMPRESSOR="${HABITBENCH_SECOM_COMPRESSOR:-/shared/huggingface/microsoft/llmlingua-2-xlm-roberta-large-meetingbank}"
+
+export HABITBENCH_GPU_MEMORY_UTIL="${HABITBENCH_GPU_MEMORY_UTIL:-0.82}"
+export HABITBENCH_MAX_MODEL_LEN="${HABITBENCH_MAX_MODEL_LEN:-40960}"
+export HABITBENCH_MEMORY_LLM_MAX_TOKENS="${HABITBENCH_MEMORY_LLM_MAX_TOKENS:-4096}"
+export HABITBENCH_PROGRESS_EVERY="${HABITBENCH_PROGRESS_EVERY:-25}"
+export HABITBENCH_OFFICIAL_TIMEOUT_SEC="${HABITBENCH_OFFICIAL_TIMEOUT_SEC:-172800}"
+export HABITBENCH_STRUCTURED_OUTPUT_MODE="${HABITBENCH_STRUCTURED_OUTPUT_MODE:-json_schema}"
+
+export OPENAI_API_KEY="${OPENAI_API_KEY:-dummy}"

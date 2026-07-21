@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 # Start a local OpenAI-compatible vLLM server for full official-method runs.
@@ -16,13 +16,13 @@ set -euo pipefail
 #   HABITBENCH_MAX_MODEL_LEN   vLLM max model length, default 16384.
 #   HABITBENCH_VLLM_EXTRA_ARGS Optional extra args passed to vLLM.
 
-MODEL="${HABITBENCH_LLM_MODEL:-Qwen/Qwen2.5-7B-Instruct}"
-SERVED_MODEL="${HABITBENCH_SERVED_MODEL:-habitbench-open-llm}"
+MODEL="${HABITBENCH_LLM_MODEL:-/data1/public/hf/Qwen/Qwen3-8B}"
+SERVED_MODEL="${HABITBENCH_SERVED_MODEL:-habitbench-qwen3-8b}"
 HOST="${HABITBENCH_VLLM_HOST:-0.0.0.0}"
 PORT="${HABITBENCH_VLLM_PORT:-8000}"
 TP="${HABITBENCH_TENSOR_PARALLEL:-1}"
 GPU_UTIL="${HABITBENCH_GPU_MEMORY_UTIL:-0.90}"
-MAX_MODEL_LEN="${HABITBENCH_MAX_MODEL_LEN:-16384}"
+MAX_MODEL_LEN="${HABITBENCH_MAX_MODEL_LEN:-40960}"
 EXTRA_ARGS="${HABITBENCH_VLLM_EXTRA_ARGS:-}"
 PYTHON_BIN="${PYTHON_BIN:-}"
 
