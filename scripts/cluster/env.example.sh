@@ -5,6 +5,7 @@
 
 export HABITBENCH_PROJECT_ROOT="${HABITBENCH_PROJECT_ROOT:-/path/to/habit-bench}"
 export PYTHON_BIN="${PYTHON_BIN:-/path/to/venv/bin/python}"
+export HABITBENCH_MEDMEMORYBENCH_ROOT="${HABITBENCH_MEDMEMORYBENCH_ROOT:-/path/to/MedMemoryBench}"
 
 export HABITBENCH_LLM_MODEL="${HABITBENCH_LLM_MODEL:-/shared/huggingface/Qwen/Qwen3-8B}"
 export HABITBENCH_SERVED_MODEL="${HABITBENCH_SERVED_MODEL:-habitbench-qwen3-8b}"

@@ -58,10 +58,15 @@ Active adapters and pinned upstream revisions are recorded in
 | Graphiti | official `add_episode` and `search_` | official API with documented Kuzu retrieval adaptation |
 | SeCom | official segmentation, compression, retrieval modules | official code adapted to online session ingestion |
 | O-Mem | official `SimpleMemory` lifecycle | official code with documented local-backend compatibility patches |
+| MedMemoryBench seven-method suite | vendored Mem0, A-MEM, MemOS, MemRL, LightMem, Letta and MIRIX source | cross-benchmark retrieval-only adaptation |
 | no-memory / full-history | HABIT-Bench controls | not memory methods |
 
 These are controlled HABIT-Bench integrations, not claims that every original
 paper configuration has been exactly reproduced.
+
+See [`docs/medmemorybench/README.md`](docs/medmemorybench/README.md) for the
+two-repository layout, smoke commands, implementation changes and compact
+experiment record.
 
 ## Quick Start On Lumia
 
