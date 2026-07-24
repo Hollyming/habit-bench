@@ -27,6 +27,55 @@
     "adapter": "eval/official_adapters/mem0.py",
     "note": "Official Memory.add(infer=True) and Memory.search APIs without benchmark-specific extraction instructions; Qwen3 thinking is disabled through the OpenAI request body."
   },
+  "medmemorybench_amem": {
+    "implementation_kind": "benchmark_reproduction",
+    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
+    "revision": "fe44743d72b6118d96e793891630a259ddfc8b45",
+    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
+    "note": "MedMemoryBench vendored A-MEM source via add_note/find_related_memories; retrieval-only output is passed to the shared HABIT answerer."
+  },
+  "medmemorybench_letta": {
+    "implementation_kind": "benchmark_reproduction",
+    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
+    "revision": "fe44743d72b6118d96e793891630a259ddfc8b45",
+    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
+    "note": "MedMemoryBench vendored Letta source; archival passage vector search is exposed without a Letta answer turn."
+  },
+  "medmemorybench_lightmem": {
+    "implementation_kind": "benchmark_reproduction",
+    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
+    "revision": "fe44743d72b6118d96e793891630a259ddfc8b45",
+    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
+    "note": "MedMemoryBench LightMem source; native retrieve output is passed to the shared HABIT answerer."
+  },
+  "medmemorybench_mem0": {
+    "implementation_kind": "benchmark_reproduction",
+    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
+    "revision": "fe44743d72b6118d96e793891630a259ddfc8b45",
+    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
+    "note": "MedMemoryBench vendored Mem0 source via Memory.add/Memory.search; no external mem0ai package or method-specific answer call."
+  },
+  "medmemorybench_memos": {
+    "implementation_kind": "benchmark_reproduction",
+    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
+    "revision": "fe44743d72b6118d96e793891630a259ddfc8b45",
+    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
+    "note": "MedMemoryBench MemOS source; native text-memory search is exposed without reader generation."
+  },
+  "medmemorybench_memrl": {
+    "implementation_kind": "benchmark_reproduction",
+    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
+    "revision": "fe44743d72b6118d96e793891630a259ddfc8b45",
+    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
+    "note": "MedMemoryBench MemRL source; value-aware selected memories are exposed without reader generation."
+  },
+  "medmemorybench_mirix": {
+    "implementation_kind": "benchmark_reproduction",
+    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
+    "revision": "fe44743d72b6118d96e793891630a259ddfc8b45",
+    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
+    "note": "MedMemoryBench MIRIX source; multi-store retrieval is exposed without native send_message answering."
+  },
   "no_memory": {
     "implementation_kind": "control",
     "source": "HABIT-Bench",
