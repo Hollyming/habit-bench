@@ -20,9 +20,9 @@
 | MemRL | 788/1986 = 39.6777% | 688/1986 = 34.6425% |
 | LightMem | 642/1986 = 32.3263% | 620/1986 = 31.2185% |
 | Letta | 1018/1986 = 51.2588% | 930/1986 = 46.8278% |
-| MIRIX | 492/1986 = 24.7734% | 文档整理时仍等待最终 strict merge |
+| MIRIX | 492/1986 = 24.7734% | 397/1986 = 19.9899% |
 
-已完成方法均表现为 Mixed 低于 Efficient，方向与 memory saturation/noise 预期一致。由于该实验使用 Qwen3-8B adapted reader，而不是论文中的闭源模型组合，绝对分数不能称为论文 exact reproduction。
+七种方法均表现为 Mixed 低于 Efficient，方向与 memory saturation/noise 预期一致。由于该实验使用 Qwen3-8B adapted reader，而不是论文中的闭源模型组合，绝对分数不能称为论文 exact reproduction。
 
 ## HABIT-Bench 方法原生检索
 
