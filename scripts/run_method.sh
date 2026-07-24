@@ -66,7 +66,7 @@ case "$METHOD" in
     MED_ROOT="${HABITBENCH_MEDMEMORYBENCH_ROOT:-$PROJECT_ROOT/../MedMemoryBench}"
     KIND="benchmark_reproduction"
     SOURCE="https://github.com/AQ-MedAI/MedMemoryBench"
-    REVISION="fe44743d72b6118d96e793891630a259ddfc8b45"
+    REVISION="6591eb3251402f26535846ea4a95f5b4478ae35a"
     COMMAND="$PYTHON_BIN -m eval.medmemorybench_adapters.structured_memory --input {input} --output {output} --med-repo $MED_ROOT --method-config $MED_CONFIG"
     NOTE="Vendored MedMemoryBench source implementation with retrieval-only output passed to the shared HABIT answerer."
     ;;

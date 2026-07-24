@@ -15,7 +15,7 @@ workspace/
 ```
 
 Use branch `wjr` in both repositories. The HABIT method registry pins
-MedMemoryBench commit `fe44743d72b6118d96e793891630a259ddfc8b45`.
+MedMemoryBench commit `6591eb3251402f26535846ea4a95f5b4478ae35a`.
 
 Initialize MedMemoryBench submodules and apply its recorded LightMem
 compatibility patch:

@@ -7,7 +7,7 @@ credential paths.
 ## Frozen scope
 
 - MedMemoryBench upstream base: `7227bc105b84a1a9f7a75861eb9e1be3ea502882`
-- MedMemoryBench integration: `fe44743d72b6118d96e793891630a259ddfc8b45`
+- MedMemoryBench integration: `6591eb3251402f26535846ea4a95f5b4478ae35a`
 - HABIT-Bench upstream base: `41740d69b5d6030a5d2f9c75f8a0dbff732ae811`
 - Qwen3-8B revision: `b968826d9c46dd6066d109eabc6255188de91218`
 - MedMemoryBench data: 20 personas and 1,986 queries
