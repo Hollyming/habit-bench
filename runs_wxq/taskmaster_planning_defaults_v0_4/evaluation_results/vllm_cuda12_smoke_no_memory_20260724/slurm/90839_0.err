@@ -1,0 +1,47 @@
+/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+INFO 07-24 15:12:33 [__init__.py:239] Automatically detected platform cuda.
+INFO 07-24 15:12:36 [api_server.py:1043] vLLM API server version 0.8.5
+INFO 07-24 15:12:36 [api_server.py:1044] args: Namespace(host='0.0.0.0', port=8300, uvicorn_log_level='info', disable_uvicorn_access_log=False, allow_credentials=False, allowed_origins=['*'], allowed_methods=['*'], allowed_headers=['*'], api_key=None, lora_modules=None, prompt_adapters=None, chat_template=None, chat_template_content_format='auto', response_role='assistant', ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, enable_ssl_refresh=False, ssl_cert_reqs=0, root_path=None, middleware=[], return_tokens_as_token_ids=False, disable_frontend_multiprocessing=False, enable_request_id_headers=False, enable_auto_tool_choice=False, tool_call_parser=None, tool_parser_plugin='', model='/data1/public/hf/Qwen/Qwen3-8B', task='auto', tokenizer=None, hf_config_path=None, skip_tokenizer_init=False, revision=None, code_revision=None, tokenizer_revision=None, tokenizer_mode='auto', trust_remote_code=False, allowed_local_media_path=None, load_format='auto', download_dir=None, model_loader_extra_config={}, use_tqdm_on_load=True, config_format=<ConfigFormat.AUTO: 'auto'>, dtype='auto', max_model_len=40960, guided_decoding_backend='auto', reasoning_parser=None, logits_processor_pattern=None, model_impl='auto', distributed_executor_backend=None, pipeline_parallel_size=1, tensor_parallel_size=1, data_parallel_size=1, enable_expert_parallel=False, max_parallel_loading_workers=None, ray_workers_use_nsight=False, disable_custom_all_reduce=False, block_size=None, gpu_memory_utilization=0.82, swap_space=4, kv_cache_dtype='auto', num_gpu_blocks_override=None, enable_prefix_caching=None, prefix_caching_hash_algo='builtin', cpu_offload_gb=0, calculate_kv_scales=False, disable_sliding_window=False, use_v2_block_manager=True, seed=None, max_logprobs=20, disable_log_stats=False, quantization=None, rope_scaling=None, rope_theta=None, hf_token=None, hf_overrides=None, enforce_eager=False, max_seq_len_to_capture=8192, tokenizer_pool_size=0, tokenizer_pool_type='ray', tokenizer_pool_extra_config={}, limit_mm_per_prompt={}, mm_processor_kwargs=None, disable_mm_preprocessor_cache=False, enable_lora=None, enable_lora_bias=False, max_loras=1, max_lora_rank=16, lora_extra_vocab_size=256, lora_dtype='auto', long_lora_scaling_factors=None, max_cpu_loras=None, fully_sharded_loras=False, enable_prompt_adapter=None, max_prompt_adapters=1, max_prompt_adapter_token=0, device='auto', speculative_config=None, ignore_patterns=[], served_model_name=['habitbench-qwen3-8b'], qlora_adapter_name_or_path=None, show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, disable_async_output_proc=False, max_num_batched_tokens=None, max_num_seqs=None, max_num_partial_prefills=1, max_long_partial_prefills=1, long_prefill_token_threshold=0, num_lookahead_slots=0, scheduler_delay_factor=0.0, preemption_mode=None, num_scheduler_steps=1, multi_step_stream_outputs=True, scheduling_policy='fcfs', enable_chunked_prefill=None, disable_chunked_mm_input=False, scheduler_cls='vllm.core.scheduler.Scheduler', override_neuron_config=None, override_pooler_config=None, compilation_config=None, kv_transfer_config=None, worker_cls='auto', worker_extension_cls='', generation_config='auto', override_generation_config=None, enable_sleep_mode=False, additional_config=None, enable_reasoning=False, disable_cascade_attn=False, disable_log_requests=False, max_log_len=None, disable_fastapi_docs=False, enable_prompt_tokens_details=False, enable_server_load_tracking=False)
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+INFO 07-24 15:12:46 [config.py:717] This model supports multiple tasks: {'score', 'embed', 'classify', 'reward', 'generate'}. Defaulting to 'generate'.
+INFO 07-24 15:12:46 [config.py:2003] Chunked prefill is enabled with max_num_batched_tokens=2048.
+Traceback (most recent call last):
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 1130, in <module>
+    uvloop.run(run_server(args))
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/uvloop/__init__.py", line 69, in run
+    return loop.run_until_complete(wrapper())
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/uvloop/__init__.py", line 48, in wrapper
+    return await main
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 1078, in run_server
+    async with build_async_engine_client(args) as engine_client:
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/contextlib.py", line 199, in __aenter__
+    return await anext(self.gen)
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 146, in build_async_engine_client
+    async with build_async_engine_client_from_engine_args(
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/contextlib.py", line 199, in __aenter__
+    return await anext(self.gen)
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 178, in build_async_engine_client_from_engine_args
+    async_llm = AsyncLLM.from_vllm_config(
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/vllm/v1/engine/async_llm.py", line 150, in from_vllm_config
+    return cls(
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/vllm/v1/engine/async_llm.py", line 97, in __init__
+    self.tokenizer = init_tokenizer_from_configs(
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/vllm/transformers_utils/tokenizer_group.py", line 101, in init_tokenizer_from_configs
+    return TokenizerGroup(
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/vllm/transformers_utils/tokenizer_group.py", line 23, in __init__
+    self.tokenizer = get_tokenizer(self.tokenizer_id, **tokenizer_config)
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/vllm/transformers_utils/tokenizer.py", line 254, in get_tokenizer
+    tokenizer = get_cached_tokenizer(tokenizer)
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/vllm/transformers_utils/tokenizer.py", line 84, in get_cached_tokenizer
+    tokenizer.all_special_tokens_extended)
+  File "/home/xqwang/conda_envs/habit-official/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 1319, in __getattr__
+    raise AttributeError(f"{self.__class__.__name__} has no attribute {key}")
+AttributeError: Qwen2Tokenizer has no attribute all_special_tokens_extended. Did you mean: 'num_special_tokens_to_add'?
+/home/yxwang/LUMIA-server-management/gpu_monitor/node_agent.py:21: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml

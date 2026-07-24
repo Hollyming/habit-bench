@@ -154,8 +154,14 @@ def main() -> None:
     if public_ids & {x["probe_id"] for x in positive_public}: raise SystemExit("probe_id collision")
     write_jsonl(DATASET / "public" / "false_personalization_probes_v2.jsonl", public_rows)
     write_jsonl(DATASET / "private" / "false_personalization_probe_key_v2.jsonl", private_rows)
+    # Preserve the former positive-only default files under explicit names before
+    # promoting the complete benchmark to the reference-compatible entrypoints.
+    write_jsonl(DATASET / "public" / "positive_probes_v0_4.jsonl", positive_public)
+    write_jsonl(DATASET / "private" / "positive_probe_key_v0_4.jsonl", positive_private)
     write_jsonl(DATASET / "public" / "benchmark_probes_v0_4.jsonl", positive_public + public_rows)
     write_jsonl(DATASET / "private" / "benchmark_probe_key_v0_4.jsonl", positive_private + private_rows)
+    write_jsonl(DATASET / "public" / "probes.jsonl", positive_public + public_rows)
+    write_jsonl(DATASET / "private" / "probe_key.jsonl", positive_private + private_rows)
     report = {"release_gate": "pass", "sessions": len(sessions), "users": len({s["user_id"] for s in sessions}), "positive_probe_count": len(positive_public), "false_personalization_probe_count": len(public_rows), "benchmark_probe_count": len(positive_public) + len(public_rows), "false_probes_by_user": {u: sum(x["user_id"] == u for x in public_rows) for u in sorted({x["user_id"] for x in public_rows})}, "public_private_id_match": sorted(x["probe_id"] for x in public_rows) == sorted(x["probe_id"] for x in private_rows), "sessions_modified": False, "source_revisions": sorted({x["metadata"]["source_revision"] for x in public_rows})}
     write_json(DATASET / "reports" / "final_benchmark_release_qa_v0_4.json", report)
     print(json.dumps(report, ensure_ascii=False, indent=2))

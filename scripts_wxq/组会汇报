@@ -1,0 +1,169 @@
+# HABIT-Bench v0.4：面向旅行规划的超长程用户习惯记忆基准
+
+## 1. 一句话定位
+
+这是一个评测 **Agent memory 是否能从超长程、多轮、带条件和例外的旅行规划对话中归纳并正确应用用户习惯** 的多选 benchmark。
+
+它测的不是“能否复述某句显式偏好”，而是：在新的机票/酒店决策中，系统能否根据长期历史识别偏好的强度、适用条件、例外和冲突；同时不把偶发行为误记成稳定人格化偏好。
+
+## 2. 数据来源与构建方式
+
+### 2.1 Grounding source
+
+- 原始来源：`google-research-datasets/Taskmaster-2`。
+- 使用旅行相关的 flights 和 hotels 对话：4,838 条原始对话（flights 2,481；hotels 2,357）。
+- 从原始对话中整理出 4,745 张 source cards，并形成 72 个 grounded habit-evidence bundles。
+- bundle 覆盖 15 个旅行习惯 family，例如航空公司软偏好、起降时间、转机容忍度、座位、酒店评分、早餐、房间设施、位置和餐饮便利性。
+- 每个 bundle 至少来自 3 个不同 instruction / source conversation；具体城市、酒店、航司不是直接当作固定习惯值。
+
+### 2.2 End-to-end pseudo-user lifeline
+
+数据不是把模板句子拼接成长对话，也不是把 Taskmaster 的不同真人当成同一个真实用户。
+
+构建过程是：
+
+1. 从真实 Taskmaster 旅行对话中提炼可 grounding 的 habit family 与候选习惯实例；
+2. 为每个 synthetic user 组合不同的具体 habit、背景 habit、旅行节奏与生活约束，形成 user dossier；
+3. GPT-5.5 xhigh 以 dossier 和受控 habit graph 为约束，端到端生成自然的旅行事件、session 和跨时间的重复/例外证据；
+4. 生成结果经过结构、长度、证据覆盖和语义审查后冻结为公开 lifeline。
+
+因此，benchmark 的对话是 **grounded pseudo-user lifeline**：习惯来源受真实旅行对话 grounding 约束，但长程用户轨迹本身是端到端生成的，用于可控地评测 habit induction、boundary calibration、drift/exception handling 与 false personalization。
+
+## 3. 最终发布数据规模（taskmaster_planning_defaults_v0_4）
+
+### 3.1 全局规模
+
+| 指标 | 数值 |
+| --- | ---: |
+| 用户数 | 6 |
+| session 数 | 771 |
+| message 数 | 10,484（user / assistant 各 5,242） |
+| 旅行 episode 数 | 226 |
+| probe 数 | 157 |
+| 正向 habit probe | 140 |
+| false-personalization probe | 17 |
+
+### 3.2 三层“长度”口径：不要混用
+
+**(A) 单个 session 的交互长度**
+
+- 每个 session 的消息数：4–26，均值 13.60，中位数 14。
+- 每个 session 的 user turn 数：2–13，均值 6.80，中位数 7。
+- 每个 session 的原始文本长度：747–7,391 characters，均值 3,272，中位数 3,143。
+
+也就是说，单个 session 是正常的多轮旅行规划对话，而不是“几百 k token 的单 session”。
+
+**(B) 单个用户完整 lifeline 的长程长度**
+
+| 用户 | sessions | messages | episodes | 完整 lifeline token length* |
+| --- | ---: | ---: | ---: | ---: |
+| user000 | 126 | 1,778 | 30 | 93,984 |
+| user001 | 137 | 1,826 | 40 | 99,642 |
+| user002 | 112 | 1,380 | 34 | 93,173 |
+| user003 | 142 | 2,046 | 42 | 125,520 |
+| user004 | 121 | 1,676 | 37 | 93,119 |
+| user005 | 133 | 1,778 | 43 | 102,535 |
+
+`*` token length 指把该用户**所有 session 按时间顺序序列化**后，用 Qwen3 tokenizer 计算的上下文长度；范围 93,119–125,520，均值约 101,329 tokens。这是模型工程上的 context-length 测量，不是单个 session 的长度。
+
+**(C) 与评测上下文预算的关系**
+
+- 统一问答模型的输入预算固定为 40,000 tokens。
+- 每位用户完整 lifeline 是该预算的 2.27×–3.06×。
+- 因此 full history 不能原样直接放入最终问答 prompt；benchmark 的关键就是 memory 方法是否能在线写入、压缩和检索长期历史。
+
+## 4. 用户习惯结构
+
+### 4.1 每位用户不是固定绑定同一种 habit 模板
+
+- 6 个 dossier 共包含 40 个具体 habit：每位用户 6–7 个。
+- 其中 32 个被 dossier 标为具备可测试潜力；8 个 background habit 仅用于增加真实上下文干扰和习惯组合，不强制出题。
+- 最终有 31 个 habit 通过证据与 probe 质量门槛，实际贡献 140 条正向 probe。另有 1 个潜在可测试 habit 没有保留为最终 probe target，避免为凑数出弱题。
+
+正向 probe target 覆盖的主要 family：
+
+- flight：airline soft preference、departure/arrival timing、seat preference、single-short-layover policy；
+- hotel：quality threshold、included services、restaurant/accessibility、bed policy、coffee maker / mini-fridge 等 trip-context policy。
+
+### 4.2 Habit 成为正向目标的最低证据要求
+
+一个习惯写入 dossier 并不等于可以出题。正向 target 至少要求：
+
+- 跨至少 3 个不同 episode 出现；
+- 在用户历史 early / middle / late 阶段至少覆盖两个阶段；
+- 有至少两个明确支持该习惯的 episode；
+- 第一条与最后一条证据的跨度覆盖完整历史的至少三分之一；
+- 最终 probe 至少引用 3 个不同 session、来自至少 3 个 episode。
+
+每个最终正向 target 保留 3–8 条 probe，平均 4.52 条；这不是固定配额，而是由可验证证据和题目质量决定。
+
+## 5. Probe 设计
+
+### 5.1 题目总览
+
+所有题均为 4-choice multiple choice，输出一个 `choice_id ∈ {A,B,C,D}`。
+
+| probe type | 数量 | 测试能力 |
+| --- | ---: | --- |
+| direct_use | 9 | 直接但非显式地应用稳定习惯 |
+| cross_context_transfer | 28 | 将习惯迁移到新行程/新目的地 |
+| evidence_disambiguation | 31 | 在多个表面合理选项间利用长期证据消歧 |
+| boundary | 24 | 判断习惯适用边界 |
+| exception | 21 | 保留真实例外，不把偏好绝对化 |
+| conflict_resolution | 27 | 在多个偏好与当前约束冲突时取舍 |
+| false_personalization | 17 | 拒绝把混合/偶发行为存成固定偏好 |
+| **总计** | **157** |  |
+
+每个用户的 probe 数为 19 / 26 / 25 / 29 / 29 / 29；false-personalization 的用户分布为 2 / 1 / 3 / 5 / 5 / 1。负向题不按每个用户固定数量硬凑，而是只收录能通过双审核的 control。
+
+### 5.2 难度机制
+
+难点不是把选项写得晦涩，而是让题面本身不足以决定答案：
+
+- 157/157 条题的 query-only 审核均要求 `answerable_without_history=false` 且 `generic_best_exists=false`；
+- 不看用户历史时，至少两个行动方案应当合理；
+- 看完整原始 lifeline 后，gold 必须可被唯一支持；
+- 难度标注为 129 条 medium、28 条 hard；其中 false-personalization 为 10 medium + 7 hard。
+
+## 6. Gold label 如何构建与审核
+
+### 6.1 正向 habit probe
+
+1. GPT-5.5 xhigh 根据受约束的 habit、原始证据与新旅行情境生成候选题、四个行动选项、暂定 gold 和证据引用；
+2. 独立审核模型 GPT-5.6-terra xhigh 做 query-only audit：只看题目和选项，要求不能选出唯一答案；
+3. 同一独立审核模型做 full-lifeline audit：只看完整原始 session，不给 habit graph、gold、生成 rationale 或已选证据；要求其自行选出的答案等于 gold，且 `ambiguous=false`、难度为 medium/hard；
+4. 初始语义审核中发现的不可靠正向题被定向修复或删除：57 条被修复，3 条被移除，最终保留 140 条。
+
+### 6.2 False-personalization probe
+
+这部分不是“拒答题”。正确答案仍是一个具体旅行行动，但它不能把某个混合的、trip-specific 的表象记成固定偏好。
+
+每个 control 先要求在至少 4 个 session、3 个 episode 中出现表面上诱人的重复模式；独立全历史审核必须判定该维度 `stable_preference_supported=false`。随后再通过同样的 query-only / full-lifeline 双审核，最终仅保留 17 条。
+
+### 6.3 发布完整性检查
+
+- 公开题与私有 key 的 157 个 `probe_id` 一一对应；
+- 公开文件不含 gold choice、gold evidence、hidden habit graph、negative control 或审核解释；
+- 所有题固定 4 个有效选项；
+- release audit 已通过：6 users、771 sessions、157 probes，errors=0，warnings=0。
+
+## 7. 评测协议
+
+评测遵循统一的端到端 multiple-choice protocol：
+
+1. memory method 按 `session_index` 递增读取公开 session，在线更新其原生 memory；
+2. 对每道 probe，memory method 只能通过自身 retrieval 接口返回文本 `memory_context`，不得返回 choice、score 或私有标签；
+3. 固定 Qwen3-8B 读取 `memory_context + query + choices`，温度 0、关闭 thinking，输出一个 choice id；
+4. scorer 才读取私有 `gold_choice_id`，以 exact-choice Accuracy 计分。
+
+主指标为 Accuracy，并报告 Wilson 95% confidence interval 和按 probe type / habit family / split 的 breakdown。
+
+推荐对比：
+
+- `no_memory`：只给当前 query 和选项；
+- `full_history`：在 40k 输入预算内提供截断后的原始历史窗口；
+- `Mem0`、`A-MEM`、`Graphiti`、`SeCom`、`O-Mem`：各自按官方原生写入/检索接口返回 memory context。
+
+## 8. 组会可直接使用的总结
+
+> 我们构建了一个以 Taskmaster-2 旅行对话为 grounding 的超长程 Agent-User Habit Memory Benchmark。最终版本包含 6 位 synthetic users、771 个自然多轮 session、226 个旅行 episode 和 157 道四选一决策题。单 session 中位数为 14 条消息；但每位用户将全部 session 串联后的 lifeline 长度约为 93k–126k tokens，显著超过统一评测模型的 40k 输入预算。数据包含 140 条正向 habit probe 和 17 条 false-personalization probe，分别测量习惯归纳/迁移/边界/例外/冲突处理，以及避免将偶发行为过度人格化。Gold 由跨 session 证据约束生成，并经过 query-only 与 full-lifeline 的独立双审核；最终 memory 方法必须在线维护记忆、检索上下文，再由固定 Qwen3-8B 完成选择题决策。
