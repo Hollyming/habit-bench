@@ -1,7 +1,7 @@
 # Compact experiment record
 
-This is the shareable summary of the longer cross-repository working note
-`AGENTS_MedMem.md`. It intentionally omits task-by-task logs and private
+This is the shareable summary of the longer workspace-level working note
+`docs/AGENTS_MedMem.md`. It intentionally omits task-by-task logs and private
 credential paths.
 
 ## Frozen scope
