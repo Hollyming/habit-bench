@@ -1,54 +1,35 @@
-# Implementation changes
+# 修改内容概览
 
 ## MedMemoryBench
 
-The `wjr` branch adds a retrieval-only contract without replacing the original
-method implementations:
+`wjr` 分支增加了 retrieval-only 接口，同时保留各方法原有实现：
 
-- `BaseAgent` and `AgentManager` expose structured retrieval results separately
-  from native answer generation.
-- Mem0 and A-MEM import the repository's vendored source directly.
-- MemOS, MemRL, LightMem, Letta and MIRIX expose their native retrieval output
-  through the same contract.
-- state is isolated per persona, user, context and task;
-- memory-build failures propagate instead of becoming empty successful output;
-- persona sharding, checkpoints, strict merge and coverage validation are
-  available for MedMemoryBench and LoCoMo;
-- LoCoMo can be rescored through one schema-constrained common reader.
+- `BaseAgent` 和 `AgentManager` 将结构化检索结果与方法原生回答生成解耦；
+- Mem0 和 A-MEM 直接导入仓库中的 vendored 源码；
+- MemOS、MemRL、LightMem、Letta 和 MIRIX 通过统一接口暴露原生检索结果；
+- 持久状态按 persona、user、context 和 task 隔离；
+- memory build 失败会直接向上抛出，不再伪装成成功的空结果；
+- 增加 persona 分片、checkpoint、strict merge 和 coverage 校验；
+- LoCoMo 支持统一 schema-constrained common reader 重评分。
 
-Important method fixes include:
+各方法的重要修复：
 
-- Mem0: local vendored imports, task-scoped Qdrant state, atomic normalization
-  of repeated mutations and strict structured-output failure handling.
-- A-MEM: preserve the exact local embedding model path and expose native note
-  retrieval.
-- LightMem: initialize the optional compressor when pre-compression is
-  disabled and normalize clipped source IDs before timestamp/speaker lookup.
-  These two changes are carried by `patches/lightmem-medmemorybench.patch`
-  because LightMem is an external submodule.
-- MemOS, MemRL and Letta: isolate persistent state and stop hiding write or
-  retrieval failures.
-- MIRIX: SQLite cosine support, embedding-dimension handling, deterministic
-  engine reset, bounded local JSON tool schemas, canonical tool conversion,
-  stale replace-ID normalization and sufficient completion budget for bounded
-  memory updates.
+- Mem0：固定本地 vendored import、按任务隔离 Qdrant、原子归一化重复 mutation，并严格处理结构化输出失败。
+- A-MEM：保留调用方指定的本地 embedding 路径，并暴露原生 note retrieval。
+- LightMem：在关闭 pre-compression 时初始化可选 compressor；裁正越界 source ID 后再查询 timestamp 和 speaker。LightMem 是外部子模块，因此两处修改记录在 `patches/lightmem-medmemorybench.patch`。
+- MemOS、MemRL、Letta：隔离持久状态，并停止隐藏写入或检索错误。
+- MIRIX：补充 SQLite cosine、embedding 维度处理、engine reset、bounded local JSON tool schema、canonical tool conversion、stale replace-ID 归一化，以及 bounded memory update 所需的 completion budget。
 
-The q8a18, q8a19 and q8a20 runtime directories are not source branches.
-q8a20 was the cumulative validated snapshot; only its meaningful file-level
-delta was merged into the `wjr` history. Runtime logs, caches, databases,
-build directories and copied `.git` metadata are intentionally excluded.
+q8a18、q8a19 和 q8a20 是运行源码快照，不是长期源码分支。q8a20 是累计验证版本；最终只把有意义的文件级差异合并进 `wjr` 历史。运行日志、cache、数据库、build 目录和复制的 `.git` 元数据不会进入 Git。
 
 ## HABIT-Bench
 
-The integration adds:
+本次接入增加：
 
-- seven `medmemorybench_*` entries in `eval/methods.json`;
-- `eval.medmemorybench_adapters.structured_memory`, which incrementally ingests
-  sessions and returns retrieval-only memory contexts;
-- strict rejection of invalid, partial or `success=false` memory writes;
-- command-line mappings in `scripts/run_method.sh`;
-- contract tests for session markers, dry-run output and failure propagation.
+- `eval/methods.json` 中的 7 个 `medmemorybench_*` 方法；
+- `eval.medmemorybench_adapters.structured_memory` 增量写入与 retrieval-only adapter；
+- 对非法、partial 或 `success=false` memory write 的严格拒绝；
+- `scripts/run_method.sh` 中的七方法命令映射；
+- session marker、dry-run contract 和失败传播测试。
 
-This is a cross-benchmark source adaptation. Scores must not be described as
-exact paper reproduction when the backbone, answer reader, judge or evidence
-budget differs from the paper configuration.
+该结果属于跨 Benchmark 源码接入。如果 backbone、answer reader、judge 或 evidence budget 与论文不同，不应描述为论文 exact reproduction。

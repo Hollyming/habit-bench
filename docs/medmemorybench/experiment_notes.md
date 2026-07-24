@@ -1,22 +1,20 @@
-# Compact experiment record
+# 精简实验记录
 
-This is the shareable summary of the longer workspace-level working note
-`docs/AGENTS_MedMem.md`. It intentionally omits task-by-task logs and private
-credential paths.
+本文是工作区长期实验备忘 `docs/AGENTS_MedMem.md` 的对外精简版，省略逐任务流水账和私有凭据路径。
 
-## Frozen scope
+## 冻结范围
 
-- MedMemoryBench upstream base: `7227bc105b84a1a9f7a75861eb9e1be3ea502882`
-- MedMemoryBench integration: `6591eb3251402f26535846ea4a95f5b4478ae35a`
-- HABIT-Bench upstream base: `41740d69b5d6030a5d2f9c75f8a0dbff732ae811`
-- Qwen3-8B revision: `b968826d9c46dd6066d109eabc6255188de91218`
-- MedMemoryBench data: 20 personas and 1,986 queries
-- HABIT food: 30 users, 1,410 sessions and 1,260 probes
-- HABIT finance-software: 45 users, 14,400 sessions and 810 probes
+- MedMemoryBench 上游基线：`7227bc105b84a1a9f7a75861eb9e1be3ea502882`
+- MedMemoryBench 接入版本：`6591eb3251402f26535846ea4a95f5b4478ae35a`
+- HABIT-Bench 上游基线：`41740d69b5d6030a5d2f9c75f8a0dbff732ae811`
+- Qwen3-8B revision：`b968826d9c46dd6066d109eabc6255188de91218`
+- MedMemoryBench：20 personas、1,986 queries
+- HABIT food：30 users、1,410 sessions、1,260 probes
+- HABIT finance-software：45 users、14,400 sessions、810 probes
 
 ## MedMemoryBench Qwen3-8B adapted
 
-| method | Efficient | Mixed |
+| 方法 | Efficient | Mixed |
 |---|---:|---:|
 | Mem0 | 480/1986 = 24.1692% | 437/1986 = 22.0040% |
 | A-MEM | 990/1986 = 49.8489% | 883/1986 = 44.4612% |
@@ -24,16 +22,13 @@ credential paths.
 | MemRL | 788/1986 = 39.6777% | 688/1986 = 34.6425% |
 | LightMem | 642/1986 = 32.3263% | 620/1986 = 31.2185% |
 | Letta | 1018/1986 = 51.2588% | 930/1986 = 46.8278% |
-| MIRIX | 492/1986 = 24.7734% | pending final strict merge at documentation time |
+| MIRIX | 492/1986 = 24.7734% | 文档整理时仍等待最终 strict merge |
 
-The completed methods all decline from Efficient to Mixed, matching the
-expected direction of memory saturation/noise. Absolute scores are not exact
-paper reproduction because this run uses a Qwen3-8B adapted reader rather than
-the paper's closed-model stack.
+已完成方法均表现为 Mixed 低于 Efficient，方向与 memory saturation/noise 预期一致。由于该实验使用 Qwen3-8B adapted reader，而不是论文中的闭源模型组合，绝对分数不能称为论文 exact reproduction。
 
-## HABIT-Bench method-native retrieval
+## HABIT-Bench 方法原生检索
 
-| method | food | finance-software |
+| 方法 | food | finance-software |
 |---|---:|---:|
 | Mem0 | 879/1260 = 69.7619% | 371/810 = 45.8025% |
 | A-MEM | 1014/1260 = 80.4762% | 427/810 = 52.7160% |
@@ -43,14 +38,11 @@ the paper's closed-model stack.
 | Letta | 1023/1260 = 81.1905% | 442/810 = 54.5679% |
 | MIRIX | 887/1260 = 70.3968% | 384/810 = 47.4074% |
 
-All formal merges used unique probe coverage and method-native retrieval
-followed by the shared HABIT answerer. Evidence lengths differ by method, so
-this table is an end-to-end comparison rather than an equal-token retrieval
-ablation.
+正式 merge 均校验 unique probe coverage。各方法先执行原生 retrieval，再交给统一 HABIT answerer。不同方法返回的 evidence 长度并不相同，因此该表是端到端比较，不是等 token retrieval ablation。
 
 ## LoCoMo common reader
 
-| method | official mean F1 | F1>=0.5 Accuracy |
+| 方法 | official mean F1 | F1>=0.5 Accuracy |
 |---|---:|---:|
 | A-MEM | 0.353539 | 703/1986 = 35.3978% |
 | Mem0 | 0.269810 | 540/1986 = 27.1903% |
@@ -60,15 +52,11 @@ ablation.
 | Letta | 0.352849 | 703/1986 = 35.3978% |
 | MIRIX | 0.244402 | 487/1986 = 24.5217% |
 
-All common-reader artifacts cover 1,986 unique queries, with no empty answers
-or length-truncated completions. Method-native and common-reader scores must be
-reported separately.
+所有 common-reader 产物均覆盖 1,986 个 unique queries，没有空答案或因长度截断的 completion。method-native 与 common-reader 分数必须分列报告。
 
-## Interpretation rules
+## 解释原则
 
-- Do not infer implementation correctness from one close aggregate score.
-- Do not compare scores across different readers, judges or evidence budgets
-  without labeling the protocol difference.
-- A formal result requires complete coverage, per-item artifacts, hashes and a
-  zero-failure audit.
-- Old failed or stopped q8 shards are never included in a formal merge.
+- 不能因为单一总分接近论文就判定实现完全正确。
+- reader、judge 或 evidence budget 不同时，必须明确标注协议差异。
+- 正式结果必须同时具备完整 coverage、逐题产物、hash 和零失败审计。
+- failed、stopped 或旧 q8 partial 不参与正式合并。

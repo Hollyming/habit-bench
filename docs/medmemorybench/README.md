@@ -1,12 +1,10 @@
-# MedMemoryBench integration
+# MedMemoryBench 接入与复现
 
-This directory documents the source-level MedMemoryBench integration used to
-evaluate seven structured memory methods on HABIT-Bench. It does not call a
-hosted Mem0, A-MEM, or other full memory workflow API.
+本目录记录 HABIT-Bench 对 MedMemoryBench 中 7 种结构化记忆方法的源码级接入方式。该实现直接使用仓库内的 Mem0、A-MEM 等方法源码，不调用托管的完整记忆工作流 API。
 
-## Repository layout
+## 仓库布局
 
-Clone the two repositories as siblings:
+请将两个仓库克隆为同级目录：
 
 ```text
 workspace/
@@ -14,11 +12,13 @@ workspace/
 └── MedMemoryBench/
 ```
 
-Use branch `wjr` in both repositories. The HABIT method registry pins
-MedMemoryBench commit `6591eb3251402f26535846ea4a95f5b4478ae35a`.
+两个仓库均使用 `wjr` 分支。HABIT-Bench 的方法注册表固定到 MedMemoryBench commit：
 
-Initialize MedMemoryBench submodules and apply its recorded LightMem
-compatibility patch:
+```text
+6591eb3251402f26535846ea4a95f5b4478ae35a
+```
+
+初始化 MedMemoryBench 子模块，并应用已经记录的 LightMem 兼容补丁：
 
 ```bash
 cd MedMemoryBench
@@ -26,40 +26,37 @@ git submodule update --init --recursive
 bash scripts/apply_lightmem_patch.sh
 ```
 
-The patch command is idempotent. Mem0, A-MEM, MemOS, MemRL, Letta and MIRIX
-changes are committed directly in the MedMemoryBench `wjr` branch.
+补丁脚本可重复执行。Mem0、A-MEM、MemOS、MemRL、Letta 和 MIRIX 的修改均已直接提交在 MedMemoryBench 的 `wjr` 分支中；LightMem 因为是外部子模块，使用固定 revision 加显式 patch 的方式复现。
 
-## Environments
+## 环境
 
-The validated internal environments are:
+集群上已经验证过的环境如下：
 
 ```text
-core:  /plm-shared/wangjiarui/anaconda3/envs/habit_medmemorybench
-Letta: /plm-shared/wangjiarui/anaconda3/envs/habit_medmemory_letta
-MIRIX: /plm-shared/wangjiarui/anaconda3/envs/habit_medmemory_mirix
+核心环境：/plm-shared/wangjiarui/anaconda3/envs/habit_medmemorybench
+Letta：   /plm-shared/wangjiarui/anaconda3/envs/habit_medmemory_letta
+MIRIX：   /plm-shared/wangjiarui/anaconda3/envs/habit_medmemory_mirix
 ```
 
-They are cluster-specific references, not portable defaults. On another
-machine, create equivalent environments and select their Python executable
-through `PYTHON_BIN`.
+这些路径仅是当前集群的已验证配置，不是跨机器的默认值。在其他机器上应创建等价环境，并通过 `PYTHON_BIN` 指定 Python。
 
-## Lightweight verification
+## 轻量验证
 
-Run the MedMemoryBench tests:
+运行 MedMemoryBench 测试：
 
 ```bash
 cd MedMemoryBench
 python -m pytest -q tests
 ```
 
-Run the HABIT adapter tests:
+运行 HABIT adapter 测试：
 
 ```bash
 cd habit-bench
 python -m pytest -q tests/evaluation/test_medmemorybench_adapter.py
 ```
 
-List the available MedMemoryBench configurations:
+查看可用配置：
 
 ```bash
 cd MedMemoryBench
@@ -67,9 +64,9 @@ python main.py --list-methods
 python main.py --list-datasets
 ```
 
-## MedMemoryBench smoke run
+## MedMemoryBench smoke
 
-The smoke dataset uses one persona and one evaluation unit:
+smoke 数据配置只使用一个 persona 和一个 evaluation unit：
 
 ```bash
 cd MedMemoryBench
@@ -79,13 +76,11 @@ python main.py \
   --output-dir outputs/mem0-smoke
 ```
 
-Replace the method with `amem`, `memos`, `memrl`, `lightmem`, `letta`, or
-`mirix` and the matching `*_qwen3-8b_smoke` configuration.
+其他方法可替换为 `amem`、`memos`、`memrl`、`lightmem`、`letta` 或 `mirix` 对应的 `*_qwen3-8b_smoke` 配置。
 
-## HABIT-Bench smoke run
+## HABIT-Bench smoke
 
-The two repositories must remain siblings, or
-`HABITBENCH_MEDMEMORYBENCH_ROOT` must point to the MedMemoryBench checkout:
+两个仓库应保持同级；如果目录布局不同，则显式设置 `HABITBENCH_MEDMEMORYBENCH_ROOT`：
 
 ```bash
 cd habit-bench
@@ -100,7 +95,7 @@ bash scripts/run_method.sh \
   --max-probes 4
 ```
 
-Supported names are:
+支持的方法名：
 
 ```text
 medmemorybench_mem0
@@ -112,20 +107,17 @@ medmemorybench_letta
 medmemorybench_mirix
 ```
 
-The adapter incrementally writes public sessions, calls only the method's
-native retrieval path, and passes `memory_context` to the shared HABIT answerer.
-Private labels and gold habit annotations are never passed to a memory method.
+adapter 按时间顺序增量写入 public sessions，只调用方法的原生 retrieval 路径，再将 `memory_context` 交给 HABIT 的统一 answerer。private label、gold habit graph 和 gold evidence 不会传给记忆方法。
 
-## Formal-run requirements
+## 正式结果的验收要求
 
-A formal result must include:
+正式结果至少应包含：
 
-- exact repository commits and submodule revisions;
-- data, model, prompt and metric hashes;
-- complete user/persona and query/probe coverage;
-- per-item predictions and retrieved contexts;
-- strict shard-merge evidence and a failure scan;
-- a label distinguishing method-native, common-reader and adapted results.
+- 两个仓库的精确 commit 与子模块 revision；
+- 数据、模型、prompt 和 metric hash；
+- 完整的 user/persona 与 query/probe coverage；
+- 逐题 prediction 和 retrieved context；
+- strict shard merge 及失败扫描证据；
+- method-native、common-reader 与 adapted 口径的明确标签。
 
-See [changes.md](changes.md) for the implementation summary and
-[experiment_notes.md](experiment_notes.md) for the compact result record.
+实现修改见 [changes.md](changes.md)，精简实验记录见 [experiment_notes.md](experiment_notes.md)。
