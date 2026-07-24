@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "This default applies only to bed count; it does not establish a fixed mattress size, because the cited examples include both king and queen beds, and it does not set location or smoking preferences.",
+  "bundle_id": "tm_v04_bundle_70d1da2a437a",
+  "condition": "When searching for a hotel room and the stated party or sleeping needs do not require multiple beds.",
+  "confidence": 0.82,
+  "decision": "accept",
+  "default_action": "Request a room with exactly one bed, leaving the mattress size flexible unless separately specified.",
+  "exception_condition": "Override the one-bed default if the party needs separate beds, if the user explicitly asks for multiple beds, or if no one-bed room satisfies hard hotel constraints.",
+  "family": "bed_configuration",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_70d1da2a437a",
+  "induced_at": "2026-07-15T12:37:08.723305+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefer one-bed hotel rooms",
+  "preference_value": "exactly one bed in the hotel room",
+  "rationale": "Across three independent hotel-task sources, the shared reusable element is the number of beds: each request asks for a single bed. The king versus queen details vary, so the coherent synthetic habit is one bed, not a universal bed size.",
+  "seed_value": "single",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "In instruction hotel-11, the user says, \"Yeah. I want a room with single king-size bed,\" supporting a one-bed room while treating king-size as request-specific.",
+      "conversation_id": "dlg-41eeffd6-f140-45f2-aa37-b820607924ac",
+      "turn_index": 9
+    },
+    {
+      "contribution": "In instruction hotel-8, the user says, \"Yes. I'd like a single king bed,\" again grounding the one-bed configuration; the downtown location is a separate transaction constraint.",
+      "conversation_id": "dlg-1c9b7f51-1603-4eb1-bf51-8427025c35a6",
+      "turn_index": 4
+    },
+    {
+      "contribution": "In instruction hotel-9, the user says, \"Not really, I just look for single queen bed, not a smoking room,\" supporting one bed while showing that the mattress size is not consistently king.",
+      "conversation_id": "dlg-c075e5eb-9c3b-4767-8f0e-d20e66b308ab",
+      "turn_index": 5
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "single",
+      "annotation": "hotel_search. num.beds",
+      "conversation_id": "dlg-41eeffd6-f140-45f2-aa37-b820607924ac",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 9,
+      "user_utterance": "Yeah. I want a room with single king-size bed."
+    },
+    {
+      "annotated_segment": "single",
+      "annotation": "hotel_search. num.beds",
+      "conversation_id": "dlg-1c9b7f51-1603-4eb1-bf51-8427025c35a6",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 4,
+      "user_utterance": "Yes. I'd like a single king bed, and I'd like a hotel that's located either in or very near to Downtown."
+    },
+    {
+      "annotated_segment": "single",
+      "annotation": "hotel_search. num.beds",
+      "conversation_id": "dlg-c075e5eb-9c3b-4767-8f0e-d20e66b308ab",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "Not really, I just look for single queen bed, not a smoking room."
+    }
+  ]
+}

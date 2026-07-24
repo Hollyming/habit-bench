@@ -1,0 +1,92 @@
+{
+  "boundary_condition": "Apply only to flight departure-time-of-day selection; do not generalize it to destinations, dates, arrival times, hotel times, ground transportation, or other travel choices.",
+  "bundle_id": "tm_v04_bundle_0cf28f2d607b",
+  "condition": "When the synthetic user is searching for a flight and the current request leaves the departure time of day open, treat nighttime departure as the default preference for the relevant flight leg.",
+  "confidence": 0.86,
+  "decision": "accept",
+  "default_action": "Prefer or request flight options that leave at night.",
+  "exception_condition": "If the current request explicitly specifies a different departure time of day or makes a night departure unavailable or incompatible with a hard trip constraint, follow the current request instead.",
+  "family": "departure_time",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_0cf28f2d607b",
+  "induced_at": "2026-07-15T12:30:45.641359+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "prefers flights that depart at night",
+  "preference_value": "nighttime flight departures",
+  "rationale": "The supplied independent flight-search examples repeatedly specify leaving or flying at night. This supports a controlled synthetic-user default for flight departure time, without treating the Taskmaster speakers as one real longitudinal user.",
+  "seed_value": "at_night",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User says, \"Preferably at night,\" annotated as flight_search.time_of_day.",
+      "conversation_id": "dlg-e134e57c-89c9-4e18-82d6-c6c0328f6019",
+      "turn_index": 26
+    },
+    {
+      "contribution": "User says, \"Coach class and at night,\" annotated as flight_search.time_of_day.",
+      "conversation_id": "dlg-e5127f8c-d099-43e7-8d91-f6a5618c6a2a",
+      "turn_index": 5
+    },
+    {
+      "contribution": "User says, \"Okay.I look to leave at night,\" annotated as flight_search.time_of_day.",
+      "conversation_id": "dlg-dc68ec82-70d2-42dc-944c-227ed60606f1",
+      "turn_index": 13
+    },
+    {
+      "contribution": "User says, \"We'd rather leave the airport at night,\" annotated as flight_search.time_of_day.",
+      "conversation_id": "dlg-95a2ae60-9f77-4c50-9a55-b81bcce15f24",
+      "turn_index": 12
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "at night",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-e134e57c-89c9-4e18-82d6-c6c0328f6019",
+      "habitual_language": false,
+      "instruction_id": "flight-3",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 26,
+      "user_utterance": "Preferably at night."
+    },
+    {
+      "annotated_segment": "at night",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-e5127f8c-d099-43e7-8d91-f6a5618c6a2a",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 5,
+      "user_utterance": "Coach class and at night."
+    },
+    {
+      "annotated_segment": "at night",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-dc68ec82-70d2-42dc-944c-227ed60606f1",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 13,
+      "user_utterance": "Okay.I look to leave at night."
+    },
+    {
+      "annotated_segment": "at night",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-95a2ae60-9f77-4c50-9a55-b81bcce15f24",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 12,
+      "user_utterance": "We'd rather leave the airport at night."
+    }
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "cache_fingerprint": "2e8776d5e8b5a4df892e3033fa5d04b75c63be8ef698177503bd161ec3273d4f",
+  "sessions": [
+    {
+      "domain": "pre_trip_logistics_followup",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Kansas City itinerary notes were updated for the new south contractor gate, gravel lot, PPE-in-car instruction, earlier hotel departure, and rental pickup check; no booked travel components changed.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "KC packet changed one last time. They want me at the south contractor gate for a 6:45 badge handoff, parking in the gravel lot outside ops. PPE stays in the rental car. Don't reopen flights or hotel; just tighten the notes.",
+          "role": "user"
+        },
+        {
+          "content": "Got it. I’ll leave United, Hyatt Place Lenexa, and National unchanged. I’m moving Tuesday departure earlier to about 6:05-6:10 so you can park, grab PPE, and be at the south gate by 6:45. Anything else in the packet?",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the rental pickup window against the Monday arrival. I land 8:28, car was around 8:45.",
+          "role": "user"
+        },
+        {
+          "content": "That still works if the flight is on time. Keep National pickup at MCI around 8:45 p.m.; note late-arrival buffer and keep confirmation NAT50817. No change to the Wednesday return around 4:30.",
+          "role": "assistant"
+        },
+        {
+          "content": "And confirm the hotel early start still makes sense.",
+          "role": "user"
+        },
+        {
+          "content": "Updated. Hyatt Place Lenexa stays: leave 6:05-6:10 a.m. Tuesday, south contractor gate badge handoff at 6:45, gravel lot by ops, PPE in the rental car. Flight, hotel, car, seats, and Wednesday plan remain unchanged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0060",
+      "session_index": 60,
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "domain": "distributor_combined_flight_hotel_search",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Built an Orange County shortlist around Wed Aug 12-Fri Aug 14, prioritizing SNA arrivals, no two-stop routing, Irvine/Costa Mesa/Anaheim hotel trade-offs, compact rental timing, room basics, parking, and open questions on sample-board shipping and Friday overrun risk.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.95,
+            "evidence_quote": "Avoid two-stop routing.",
+            "habit_id": "tm_pd_v04_user_005_h03",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.92,
+            "evidence_quote": "I care about good feedback, parking, and quick dinner.",
+            "habit_id": "tm_pd_v04_user_005_h06",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Add room basics if you can: coffee maker and mini-fridge.",
+            "habit_id": "tm_pd_v04_user_005_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "New one: Southern California distributor wants me for a membrane-cleaning lunch-and-learn, then a validation run at a bottling plant near Anaheim the next morning. Can you build flight, hotel, and rental-car shortlist? It would be Wed Aug 12 in, Fri Aug 14 home.",
+          "role": "user"
+        },
+        {
+          "content": "Sure. Which city is the distributor office in, and do you have a training start time yet? Also, should I prioritize SNA/John Wayne and treat LAX or Long Beach as backups, and are you carrying the sample valve board or shipping it?",
+          "role": "assistant"
+        },
+        {
+          "content": "Distributor office is in Irvine. Training is Thursday, probably late morning or noon, but not final. Plant is near Anaheim Friday, likely 9. I need to arrive Wednesday evening with time to review slides. Avoid two-stop routing. SFO is easiest, but I’ll look at OAK or SJC if timing is better. Economy.",
+          "role": "user"
+        },
+        {
+          "content": "Viable outbound lanes: best schedule is SFO-SNA nonstop on Alaska, Wed about 4:05-5:35, landing close to the hotel zone with no connection. Backup if fare or availability shifts: United SFO-LAX around 3:20-4:50, then a 55-85 minute drive to Irvine. Acceptable but weaker: Southwest OAK-SNA via Las Vegas, about 2:30-6:20 with one moderate layover. I’d drop anything with two stops or a post-8 p.m. arrival.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep Orange County airport first. LAX only if it is much better. I don’t want a late drive after landing.",
+          "role": "user"
+        },
+        {
+          "content": "Then SNA is the clean target. SFO-SNA nonstop gets you to the Irvine/Costa Mesa hotel zone before dinner and leaves time for slide review. LAX is a backup only if SNA sells out or gets materially expensive; Long Beach is okay on paper but less useful if the return timing stays tight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Hotel compare Irvine, Costa Mesa, Anaheim. I care about good feedback, parking, and quick dinner. Not a resort weekend.",
+          "role": "user"
+        },
+        {
+          "content": "Shortlist: Irvine lead: Hyatt House Irvine/John Wayne area, about 4.3 guest rating, parking usually paid but easy, quick drive to the distributor, casual restaurants within 5-10 minutes. Costa Mesa middle: Avenue of the Arts or Crowne Plaza area, roughly 4.2-4.4, better dinner choices, 10-15 minutes from SNA, slightly farther from both work stops. Anaheim value: Hyatt Place or Hampton near Anaheim Resort/Convention Center, around 4.1-4.3, closer to the Friday plant, but tourist traffic and parking fees are more likely.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would staying in Anaheim save enough on Friday to make up for Thursday?",
+          "role": "user"
+        },
+        {
+          "content": "Probably not if Thursday stays late morning or noon. Irvine lets you prep and get to the distributor quickly. For a 9 a.m. Anaheim-area plant start, Irvine is usually 25-35 minutes if you leave before the main crunch. Anaheim only wins if Friday becomes very early or the validation day is expected to run late.",
+          "role": "assistant"
+        },
+        {
+          "content": "Rental from SNA if we use that flight. Compact should be fine unless I’m carrying the board.",
+          "role": "user"
+        },
+        {
+          "content": "I’d pair the SNA flight with a compact rental: pick up about 5:50-6:15 p.m. Wednesday, keep it through both sites, return Friday evening at SNA. If the board ships direct, compact is enough. If it has to travel with you, I’d price a small SUV and avoid checking it as luggage.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put the board as an open item. They might receive it directly, but I don’t have confirmation.",
+          "role": "user"
+        },
+        {
+          "content": "Open item added: confirm the distributor can receive the sample valve board, receiving contact, delivery hours, and where it should be staged for Thursday. Until that is locked, don’t choose an itinerary that assumes you can hand-carry it easily.",
+          "role": "assistant"
+        },
+        {
+          "content": "Also the Friday plant slot might run late. I don’t want to be sprinting to SNA.",
+          "role": "user"
+        },
+        {
+          "content": "For return, I’d avoid anything before 6:45 p.m. from SNA. Best working return is a SNA-SFO nonstop around 7:20-8:50 p.m.; you can leave Anaheim around 5:15 and still have cushion. If the plant warns of a late validation run, backup is an 8:30-9:00 p.m. LAX-SFO, but that trades time buffer for a worse drive.",
+          "role": "assistant"
+        },
+        {
+          "content": "So what’s the package you would lead with right now?",
+          "role": "user"
+        },
+        {
+          "content": "Lead package: SFO-SNA nonstop Wednesday late afternoon, SNA-SFO Friday after 7 p.m., compact rental at SNA, and an Irvine hotel in the John Wayne/Irvine business district. It protects the Thursday distributor stop, keeps the Friday plant drive manageable, and avoids a Wednesday-night freeway penalty. Backups: Costa Mesa hotel if the Irvine rate jumps; LAX only for a materially better fare or much later Friday return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Add room basics if you can: coffee maker and mini-fridge. Also show parking costs where known.",
+          "role": "user"
+        },
+        {
+          "content": "Added to hotel notes. The Irvine Hyatt House-style option is the better fit for room basics, with in-room fridge and coffee more likely; parking to verify, likely paid self-parking in the $15-$25 range. Costa Mesa and Anaheim options need amenity confirmation by room type, and Anaheim parking can be $20-$35 because of the resort area.",
+          "role": "assistant"
+        },
+        {
+          "content": "Don’t book yet. Give me a concise shortlist I can forward to ops, with the board and Friday timing still called out.",
+          "role": "user"
+        },
+        {
+          "content": "Forwardable version: best fit is SFO-SNA nonstop Wed Aug 12 late afternoon, arriving early evening; compact rental at SNA; Irvine/John Wayne-area hotel with strong guest feedback, parking confirmed before booking, and fridge/coffee requested; return SNA-SFO Fri Aug 14 after 7 p.m. Acceptable backups: Costa Mesa hotel if rates beat Irvine; LAX return only if the Friday plant run is expected to go late. Avoid two-stop routings and pre-6:45 p.m. Friday departures. Open items: distributor receiving contact for the sample valve board, delivery/staging instructions, and the firm Friday validation end time.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0061",
+      "session_index": 61,
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "domain": "distributor_itinerary_refinement",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Narrowed the Orange County plan to the Alaska SFO-SNA nonstop over United-LAX and OAK via LAS because the Thursday 8:30 start makes arrival reliability and airport proximity primary; chose the Irvine hotel lead over cheaper Anaheim, kept compact rental, and left booking approval pending.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Friday return ideally SNA after 7; plant may run late.",
+            "habit_id": "tm_pd_v04_user_005_h01",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Window seat if available on the flights, but don’t let that decide the carrier.",
+            "habit_id": "tm_pd_v04_user_005_h02",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "OC update: distributor can receive the board, and Thursday training moved to 8:30 a.m. That makes Wednesday arrival fixed. Need to pick between SFO-SNA nonstop on Alaska, United into LAX, or Oakland with a connection.",
+          "role": "user"
+        },
+        {
+          "content": "Good update. With an 8:30 start in Irvine, Wednesday arrival and the morning commute matter most. Can you remind me of the approximate times and fares for the three options, and do you still want to come home Friday night?",
+          "role": "assistant"
+        },
+        {
+          "content": "Alaska SFO-SNA leaves 4:10 and lands 5:42, $268. United SFO-LAX leaves 5:05 and lands 6:35, $238 but then the drive. Oakland-SNA via Vegas leaves 2:15, lands 6:45, $211. Friday return ideally SNA after 7; plant may run late.",
+          "role": "user"
+        },
+        {
+          "content": "Best fit is Alaska SFO-SNA despite not being United. It lands closest to the hotel, avoids a connection, and gives you evening prep time. United-LAX is an acceptable backup but adds a freeway drive after landing. Oakland via Vegas is the weaker backup: cheaper, but more moving parts and a later practical arrival.",
+          "role": "assistant"
+        },
+        {
+          "content": "That’s where I was leaning. Any concern about SFO to SNA reliability?",
+          "role": "user"
+        },
+        {
+          "content": "No special concern beyond normal afternoon delay risk. I’d choose the nonstop SFO-SNA over a one-stop OAK itinerary here because the 8:30 start gives you less tolerance for a missed connection. If the Alaska flight slips significantly before ticketing, use United-LAX as the backup.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now hotel. Irvine property is $249, 4.4 rating, parking $18. Anaheim is $189, 4.1, parking $25 and closer to Friday.",
+          "role": "user"
+        },
+        {
+          "content": "Irvine still fits better. It puts you close to the 8:30 training and makes Wednesday dinner and prep easier. Anaheim saves $60 on rate but loses some of that on parking and exposes Thursday morning to traffic. It only wins if Friday becomes the dominant constraint.",
+          "role": "assistant"
+        },
+        {
+          "content": "Friday plant is near the 57/91 area, and they warned validation could drift to 4:30.",
+          "role": "user"
+        },
+        {
+          "content": "That still works from Irvine. Plan to check out Friday morning, keep your bag and PPE in the rental, drive to the Anaheim area after the distributor work, and return the car at SNA around 6:00-6:15 for a 7:20-ish flight. If they push past 5:00, switch to the later LAX backup rather than rushing.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can we keep compact car or go midsize?",
+          "role": "user"
+        },
+        {
+          "content": "Compact is okay now that the valve board ships to the distributor. If you’ll have extra demo cases moving from the distributor to the plant, midsize is a modest upgrade, but it is not necessary for just you plus a bag and PPE.",
+          "role": "assistant"
+        },
+        {
+          "content": "Let’s pencil compact. Window seat if available on the flights, but don’t let that decide the carrier.",
+          "role": "user"
+        },
+        {
+          "content": "Noted: compact rental, and request window seats after ticketing if available. Seat availability won’t affect the flight choice; schedule and airport are doing the work on this one.",
+          "role": "assistant"
+        },
+        {
+          "content": "Prepare it as the booking choice, but ask me before ticketing. Include the Anaheim hotel as the cheaper backup.",
+          "role": "user"
+        },
+        {
+          "content": "Booking-ready choice, not ticketed yet: Alaska SFO-SNA nonstop Wed Aug 12, 4:10-5:42, with a Friday SNA-SFO return after 7 p.m. if the plant releases by about 5:00. Hotel lead is the $249 Irvine property, 4.4 rating, $18 parking, because it protects the 8:30 training start; Anaheim stays as the cheaper backup at $189, 4.1 rating, $25 parking, closer to Friday but weaker for Thursday morning. Compact rental from SNA, pickup after arrival and return around 6:00-6:15 Friday. Ask before booking: flight ticketing, refundable hotel rate/cancel window, room fridge/coffee confirmation, and whether to switch to late LAX if Friday firms up past 5:00.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0062",
+      "session_index": 62,
+      "user_id": "tm_pd_v04_user_005"
+    }
+  ],
+  "updated_continuity_summary": "{'ongoing_trips': ['Orange County distributor and Anaheim-area bottling plant visit is planned for Wed Aug 12-Fri Aug 14 but not yet ticketed. Recommended flight is Alaska SFO-SNA nonstop Wed 4:10-5:42 with a Friday SNA-SFO return after 7 p.m.; United SFO-LAX is the backup if the SNA option slips or if Friday requires a much later return, while OAK-SNA via Las Vegas is a weaker backup.', 'Hotel lead is the Irvine/John Wayne-area property at $249, 4.4 guest rating, $18 parking, chosen over the cheaper Anaheim option at $189, 4.1 rating, $25 parking because Thursday training moved to 8:30 a.m. Request or verify fridge and coffee maker, parking terms, refundable rate, and cancellation deadline before booking.', 'Compact rental from SNA is penciled in, pickup after Wednesday arrival and return around 6:00-6:15 p.m. Friday for a 7:20-ish SNA departure. Sample valve board will ship directly to the distributor; keep bag and PPE in the rental on Friday.'], 'resolved_plans': ['Kansas City utility pilot review Jul 20-22 is completed/resolved. Final travel remained United SFO-DEN-MCI/MCI-DEN-SFO, Hyatt Place Kansas City/Lenexa City Center, and National compact rental. Final access notes used the south contractor gate, 6:45 a.m. Tuesday badge handoff, gravel lot outside operations, and PPE kept in the rental car.', 'Palm Springs Apr 24-26 personal weekend, Louisville May 16-20 conference, Visalia/Tulare Jun 8-10 drive-to plant visit, Spokane Jun 25-27 distributor controls training, and earlier Minneapolis/Hampton Roads work trips remain resolved.'], 'unresolved_follow_ups': ['Orange County: get Jonah’s approval before ticketing or booking; confirm the final Friday validation end time and whether a late LAX return is needed if the plant pushes past 5:00.', 'Before booking the Irvine hotel, verify refundable rate, cancellation window, parking charge, and room fridge/coffee maker. If ticketed, request window seats where available and monitor the SFO-SNA schedule because Wednesday arrival protects the Thursday 8:30 training.'], 'durable_user_facts': 'Jonah remains concise and comparison-driven. For work travel, fixed site timing and clean routing can outweigh carrier or small fare differences. He favors practical hotels with solid guest feedback, manageable parking, quick dinner access, and room basics that support early starts; compact rentals are acceptable for plant-site logistics unless equipment cargo changes.'}",
+  "verification": {
+    "60": {
+      "habit_signals": [],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "No user utterance provides concrete evidence for any candidate habit; the updates are trip-specific gate, rental, PPE, and hotel-start notes."
+    },
+    "61": {
+      "habit_signals": [
+        {
+          "confidence": 0.95,
+          "evidence_quote": "Avoid two-stop routing.",
+          "habit_id": "tm_pd_v04_user_005_h03",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.92,
+          "evidence_quote": "I care about good feedback, parking, and quick dinner.",
+          "habit_id": "tm_pd_v04_user_005_h06",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Add room basics if you can: coffee maker and mini-fridge.",
+          "habit_id": "tm_pd_v04_user_005_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User explicitly supports avoiding two-stop routings, convenient dinner logistics for the hotel, and coffee-maker/mini-fridge room basics. Rating language lacks a concrete threshold."
+    },
+    "62": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Friday return ideally SNA after 7; plant may run late.",
+          "habit_id": "tm_pd_v04_user_005_h01",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Window seat if available on the flights, but don’t let that decide the carrier.",
+          "habit_id": "tm_pd_v04_user_005_h02",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User gives a current-trip evening return-time override and requests a window seat while bounding that preference below carrier choice. Mentioned hotel ratings do not establish a 4.0 threshold."
+    }
+  }
+}

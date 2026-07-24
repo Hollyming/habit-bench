@@ -1,0 +1,691 @@
+{
+  "habit_id": "tm_pd_v04_user_001_h02",
+  "rounds": [
+    {
+      "accepted_this_round": [],
+      "accepted_total": [],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold DEN-ORD-PIT with a 78-minute ORD connection, arriving 4:35 p.m. for $412."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold DEN-MSP-DTW-PIT, arriving 3:55 p.m. for $302 and staying on the portal's featured carrier."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold DEN-ATL-PIT, arriving 5:10 p.m. for $340 after a 3-hour 50-minute ATL wait."
+              },
+              {
+                "choice_id": "D",
+                "text": "Ask the manager to approve the DEN-PIT nonstop, arriving 5:45 p.m. for $585, before holding a connection."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A generic planner could reasonably prefer B because it is cheaper, earlier, and carrier-aligned, while A is simpler but costs more. The user's longitudinal routing policy breaks that tie by disfavoring the extra connection when no current exception applies.",
+            "gold_action": "Recommend the one-stop DEN-ORD-PIT itinerary with the 78-minute connection.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0003",
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0059",
+              "tm_pd_v04_user_001_s0126"
+            ],
+            "label_rationale": "The current decision is a domestic work itinerary where connecting options are being compared and there is no explicit priority that justifies extra stops or a prolonged airport sit. Choice A meets the arrival and fare constraints with a single comfortably timed connection. Choice B is tempting on price, arrival time, and carrier but adds another plane change; choice C has a prolonged wait; choice D elevates a costly approval path even though Erin did not ask for nonstop-only handling. The cited sessions show a durable pattern of accepting one suitable connection while rejecting two-stop or long-connection tradeoffs absent a stronger current constraint.",
+            "probe_type": "conflict_resolution",
+            "query": "Erin is planning a Monday evening arrival for a Tuesday morning product-review trip in Pittsburgh. The workable nonstop is outside the team's normal fare band and would require manager approval; she asked for a bookable recommendation, not an approval chase, as long as she is in town by dinner. Which flight action should lead?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Reference to a normal fare band and manager approval is a stated trip constraint, not needed as private history.",
+              "Choice B's portal/featured-carrier cue could be a loyalty/preferred-carrier signal, but it is not needed to select the practical routing."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c00",
+            "rationale": "The query explicitly rules out chasing manager approval for the expensive nonstop. Among the bookable connections, A gives a simple one-stop routing with a reasonable connection and an arrival well before dinner; B adds an unnecessary second connection and C adds a long layover."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "DEN-SLC-BOI with a 64-minute SLC connection, arriving 4:40 p.m. for $336."
+              },
+              {
+                "choice_id": "B",
+                "text": "DEN-BOI nonstop, arriving 6:55 p.m. for $372."
+              },
+              {
+                "choice_id": "C",
+                "text": "DEN-SEA-BOI with a 4-hour 20-minute SEA wait, arriving 6:15 p.m. for $309."
+              },
+              {
+                "choice_id": "D",
+                "text": "DEN-PHX-SLC-BOI, arriving 3:55 p.m. for $281."
+              }
+            ],
+            "closest_distractor_choice_id": "D",
+            "difficulty_rationale": "Choice D is meaningfully cheaper and arrives earlier, so generic price-and-time reasoning could favor it. The user's history is needed to know that the extra connection should not be selected merely for modest savings or earlier arrival under these facts.",
+            "gold_action": "Put the DEN-SLC-BOI itinerary with the 64-minute connection first.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0028",
+              "tm_pd_v04_user_001_s0053",
+              "tm_pd_v04_user_001_s0059",
+              "tm_pd_v04_user_001_s0077"
+            ],
+            "label_rationale": "This falls within the scope of comparing domestic connecting itineraries, and the query does not create a price, carrier, or schedule exception. Choice A uses a single reasonable connection and avoids both the extra handling in D and the long wait in C. Choice B is plausible as a nonstop, but the history does not require automatically choosing a later or pricier nonstop when a practical single-connection option is available.",
+            "probe_type": "boundary",
+            "query": "Erin needs Denver-to-Boise flights for a Thursday-Friday clinic visit. The evening dinner is optional, she has no checked bag, and the hotel shuttle runs until 9 p.m. She wants one option to ticket if the fares stay close. Which should you put first?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "The query says fares are close and B is the nonstop. It arrives before the 9 p.m. shuttle cutoff, dinner is optional, and there is no checked-bag issue, so the small premium is justified by the much simpler routing."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Ticket DEN-ORD-BGR with an 82-minute ORD connection, arriving 5:35 p.m. for $468."
+              },
+              {
+                "choice_id": "B",
+                "text": "Ticket DEN-ATL-JFK-BGR, arriving 6:25 p.m. for $421, with enough time at JFK for dinner between flights."
+              },
+              {
+                "choice_id": "C",
+                "text": "Ticket DEN-CLT-BGR with a 43-minute CLT connection, arriving 4:55 p.m. for $444."
+              },
+              {
+                "choice_id": "D",
+                "text": "Ticket DEN-BOS nonstop, then rent a car for the roughly five-hour drive, reaching the area around 7:30 p.m.; air-and-car total about $490."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is cheaper and offers the suggested meal break while still arriving in the evening, so it has defensible generic utility. The user's history is needed to avoid treating a third party's suggestion as a personal preference for adding a stop to break up the route.",
+            "gold_action": "Recommend the DEN-ORD-BGR itinerary with the 82-minute connection.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0003",
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0123",
+              "tm_pd_v04_user_001_s0126"
+            ],
+            "label_rationale": "The meal-break suggestion comes from a relative, not from Erin as a current request for a planned stopover. Without such an exception, her history supports choosing the straightforward single-connection itinerary in A. B adds another stop and a longer travel day, C relies on a tight transfer, and D avoids a flight connection only by substituting a long drive that was not requested.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Erin and Mark are flying from Denver to Bangor for a June family visit near Acadia. A relative suggested a route with a built-in meal break because the travel day is long, but Erin only asked you to choose the most sensible flight plan. They can arrive any time before late evening and will use carry-ons. Which action should you recommend?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The relative's meal-break suggestion could imply a preference, but the query explicitly says Erin asked for the most sensible flight plan, so that cue should be ignored."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "A is the most sensible direct-to-Bangor plan: one connection, a reasonable connection time, and an arrival before late evening. B adds an unnecessary extra connection for a meal break Erin did not request, C has a tight 43-minute connection, and D substitutes a long drive from Boston."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "DEN-ATL-CHS with a 75-minute ATL connection, arriving 4:50 p.m. for $386."
+              },
+              {
+                "choice_id": "B",
+                "text": "DEN-DFW-CHS with a 4-hour 35-minute DFW wait, arriving 5:20 p.m. for $302."
+              },
+              {
+                "choice_id": "C",
+                "text": "DEN-IAH-CLT-CHS, arriving 3:45 p.m. for $292."
+              },
+              {
+                "choice_id": "D",
+                "text": "DEN-CHS nonstop, arriving 10:05 p.m. for $489."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is close because the fare difference is material and the arrival time is still acceptable. A generic planner could choose the savings, but the user's history shows she generally will not take an extended airport sit just for a modest fare reduction.",
+            "gold_action": "Recommend DEN-ATL-CHS with the 75-minute ATL connection.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0132",
+              "tm_pd_v04_user_001_s0059",
+              "tm_pd_v04_user_001_s0123",
+              "tm_pd_v04_user_001_s0126"
+            ],
+            "label_rationale": "No hard cap or overriding schedule requirement is stated, so the ordinary routing preference applies. A provides a single comfortable connection and a reasonable arrival. B saves money but requires a prolonged airport wait, C adds another connection, and D pays more for a late nonstop even though the current request does not require nonstop-only routing.",
+            "probe_type": "conflict_resolution",
+            "query": "Erin is pricing a Denver-to-Charleston trip for a two-day certification. The organizer pays the standard fare unless there is a clear reason, the work starts the next morning, and dinner plans are flexible. Which itinerary should be the default recommendation?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The organizer-payment language is an explicit budget/approval constraint, not private user history."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "A is the default practical business itinerary: one connection, reasonable connection time, and an afternoon arrival before next-morning work. B has a very long layover, C adds a second connection, and D is a costly late-night nonstop without a stated need."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "DEN-MIA-EYW with an 88-minute MIA connection, arriving 2:40 p.m. for $548."
+              },
+              {
+                "choice_id": "B",
+                "text": "DEN-DFW-MIA-EYW, arriving 1:55 p.m. for $462 and earning more miles through the portal's featured carrier."
+              },
+              {
+                "choice_id": "C",
+                "text": "DEN-ATL-EYW with a 3-hour 30-minute ATL wait, arriving 4:05 p.m. for $505."
+              },
+              {
+                "choice_id": "D",
+                "text": "DEN-MIA nonstop, then a rental-car drive to Key West, reaching the hotel around 6:15 p.m.; air-and-car total about $520."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B has strong generic appeal because it is cheaper, earlier, and carrier-reward friendly. The user's longitudinal policy is needed to reject the extra connection despite those advantages.",
+            "gold_action": "Rank the DEN-MIA-EYW itinerary with the 88-minute connection first.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0053",
+              "tm_pd_v04_user_001_s0123",
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0059"
+            ],
+            "label_rationale": "The habit transfers from work trips to leisure and family travel when domestic connecting itineraries are being compared. A has one comfortable connection and gets them to the destination airport. B is cheaper, earlier, and mileage-friendly but adds a second connection; C has a long wait; D avoids a flight connection only by adding a substantial drive. No current instruction elevates miles, price, or a stopover above routing simplicity.",
+            "probe_type": "cross_context_transfer",
+            "query": "Erin is choosing flights for a long-weekend Key West getaway with Mark. They will have two carry-ons, dinner is flexible, and the hotel has free late check-in. She wants one itinerary rather than a full matrix. Which should you rank first?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choice B's miles/featured-carrier cue is a possible loyalty-preference signal, but the query does not state Erin values it."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c04",
+            "rationale": "A is the strongest generic recommendation because it reaches Key West with one reasonable connection and an early afternoon arrival. B is cheaper but adds a second connection and relies on miles/featured-carrier value not stated as important; C has a long layover; D requires a long rental-car drive from Miami."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Book DEN-ATL-HSV on Delta with a 79-minute ATL connection, arriving 5:30 p.m. for $414."
+              },
+              {
+                "choice_id": "B",
+                "text": "Book the preferred-airline DEN-IAH-ORD-HSV option, arriving 5:00 p.m. for $395."
+              },
+              {
+                "choice_id": "C",
+                "text": "Book the preferred-airline DEN-IAD-HSV option, arriving 7:45 p.m. for $372 after a 4-hour 10-minute IAD wait."
+              },
+              {
+                "choice_id": "D",
+                "text": "Book DEN-BNA nonstop for $358 and rent a car for the two-hour drive to Huntsville, reaching the hotel around 6:20 p.m."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is a strong near-miss because it follows part of the evidence about not overpaying and using available carrier options, but it fails the durable routing policy. Without memory, the preferred-airline and earlier-arrival advantages make B hard to rule out.",
+            "gold_action": "Book the DEN-ATL-HSV one-stop on Delta with the 79-minute connection.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0003",
+              "tm_pd_v04_user_001_s0059",
+              "tm_pd_v04_user_001_s0126"
+            ],
+            "label_rationale": "A portal nudge is not the same as Erin prioritizing carrier over routing for this trip. Her history supports the single reasonable connection in A over B's extra stop, even though B is slightly cheaper, earlier, and on the preferred airline. C keeps the preferred airline but introduces a long wait, while D trades flight simplicity for an added drive.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Erin is going to Huntsville for a lab go-live. The corporate portal is nudging her toward the account's preferred airline, but she has no meeting until the next morning and no checked bag. Which selection should you make if she asks for the practical flight?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The preferred-airline nudge is a stated portal cue and could be a loyalty/preference signal, but it is not enough to outweigh the better practical routing."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "A is the practical flight to Huntsville: one connection, reasonable layover, and a same-evening arrival. B adds a second connection for minimal savings, C has a long wait and later arrival, and D uses an alternate airport plus a two-hour drive with no clear total-cost or convenience advantage."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold DEN-SLC-GEG with a 72-minute SLC connection, arriving 4:20 p.m. for $309, and draft the fare-justification note."
+              },
+              {
+                "choice_id": "B",
+                "text": "Put DEN-PHX-SFO-GEG first at $268, with 68- and 82-minute connections and a 5:05 p.m. arrival, and flag the extra connection for Erin's approval before ticketing."
+              },
+              {
+                "choice_id": "C",
+                "text": "Use DEN-SEA-GEG at $276, arriving 9:40 p.m. after a 5-hour 25-minute SEA wait, and flag the late arrival."
+              },
+              {
+                "choice_id": "D",
+                "text": "Do not hold a fare yet; monitor for 24 hours and ask the grant administrator whether the $280 line is flexible."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is the closest distractor because it matches Erin's usual routing comfort at only a modest fare increase. The history plus the current trip-specific exception are both needed: normally A would be favored, but this request makes the fare threshold unusually important.",
+            "gold_action": "Prioritize the under-$280 same-day fare with two reasonable connections, while flagging it for Erin's approval before ticketing.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0135",
+              "tm_pd_v04_user_001_s0059",
+              "tm_pd_v04_user_001_s0003",
+              "tm_pd_v04_user_001_s0063"
+            ],
+            "label_rationale": "The current trip adds a specific price-justification constraint, so this is a one-trip exception rather than a permanent revision of Erin's routing default. B is the workable no-justification fare and avoids the very long wait in C, but it appropriately flags the extra connection before purchase. A follows her ordinary routing pattern but ignores the current instruction to avoid a justification if workable; D delays despite volatile fares and a viable under-threshold option.",
+            "probe_type": "exception",
+            "query": "Erin is attending a grant-funded Spokane workshop. For this trip, any airfare above $280 needs a written justification, and she says she would rather avoid that if there is a workable same-day arrival; she still wants compromises flagged before purchase. The fares below may change today. What should you do?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The grant threshold and compromise-flagging preference are explicitly stated in the query."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c06",
+            "rationale": "The query explicitly says she wants to avoid airfare above $280 if there is a workable same-day arrival and wants compromises flagged before purchase. B stays under $280, arrives same day at a reasonable time, and flags the extra connection for approval before ticketing."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "DEN-MSP-GRR with an 84-minute MSP connection, arriving 6:10 p.m. for $395."
+              },
+              {
+                "choice_id": "B",
+                "text": "DEN-ORD-GRR with a 34-minute ORD connection, arriving 4:45 p.m. for $350."
+              },
+              {
+                "choice_id": "C",
+                "text": "DEN-DTW-GRR with a 3-hour 20-minute DTW wait, arriving 7:00 p.m. for $340."
+              },
+              {
+                "choice_id": "D",
+                "text": "DEN-MCI-ORD-GRR, arriving 5:20 p.m. for $318."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Generic reasoning could favor B on fare and arrival time, especially with carry-ons. The user's history is needed to know that a very tight connection is not the same as the kind of acceptable single-connection itinerary she tends to approve.",
+            "gold_action": "Recommend DEN-MSP-GRR with the 84-minute MSP connection.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0011",
+              "tm_pd_v04_user_001_s0083",
+              "tm_pd_v04_user_001_s0077",
+              "tm_pd_v04_user_001_s0003"
+            ],
+            "label_rationale": "A uses one connection with a more comfortable transfer margin and still reaches the hotel well before the target time. B is a near-miss because it has only one connection and is cheaper and earlier, but the transfer is tight for a winter family trip. C introduces a prolonged wait, and D adds another stop. The cited sessions distinguish acceptable short connections from risky tight ones and from multiple-stop holiday or family routings.",
+            "probe_type": "boundary",
+            "query": "Erin and Mark are visiting Grand Rapids for a winter weekend. They need to reach the hotel by about 8 p.m.; they will be on one reservation and carrying on. Weather is possible but not severe enough to cancel plans. Which outbound should you recommend?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c07",
+            "rationale": "A best satisfies the 8 p.m. hotel target with a one-stop routing, a reasonable 84-minute connection, and a 6:10 p.m. arrival buffer. B has a tight winter ORD connection, C arrives later after a long wait, and D adds another connection."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "DEN-EWR-BTV with a 90-minute EWR connection, arriving 3:50 p.m. for $432."
+              },
+              {
+                "choice_id": "B",
+                "text": "DEN-ORD-PHL-BTV, arriving 2:35 p.m. for $376."
+              },
+              {
+                "choice_id": "C",
+                "text": "DEN-JFK-BTV with a 5-hour JFK wait, arriving 8:10 p.m. for $389."
+              },
+              {
+                "choice_id": "D",
+                "text": "DEN-BOS nonstop for $365, then a rental-car drive to Burlington, reaching the venue area around 7:30 p.m.; air-and-car total about $455."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is a close generic competitor because it saves money and arrives earlier at the intended airport. The user's long-history policy is needed to prefer A's simpler connection pattern over B's price and timing advantages.",
+            "gold_action": "Lead with the DEN-EWR-BTV itinerary with the 90-minute connection.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0063",
+              "tm_pd_v04_user_001_s0126",
+              "tm_pd_v04_user_001_s0123",
+              "tm_pd_v04_user_001_s0039"
+            ],
+            "label_rationale": "This transfers the routing policy to another domestic conference-style trip involving a regional destination. A gets Erin to the destination airport with one reasonable connection. B is cheaper and earlier but uses two connections, C has a long wait, and D avoids a flight connection only by adding a car and a long drive that the BTV option avoids. No stated priority makes price, carrier, or alternate-airport driving more important here.",
+            "probe_type": "cross_context_transfer",
+            "query": "Erin is booking Denver-to-Burlington, Vermont, for a Thursday medical-device user group. The venue is near BTV, but Boston fares are also showing. The opening reception is optional, and she does not need a rental car if she lands at BTV. Which option should lead the recommendation?"
+          },
+          "candidate_id": "c08",
+          "failure": "choice_length_giveaway"
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Send her the two viable Friday tradeoffs, FSD-MSP-DEN with a 4-hour 40-minute MSP wait for $318 and FSD-ORD-IAH-DEN arriving 75 minutes earlier for $342, and ask which compromise she will accept before ticketing."
+              },
+              {
+                "choice_id": "B",
+                "text": "Ticket FSD-MSP-DEN for $318, note the 4-hour 40-minute MSP wait in the confirmation, and keep watching for a seat improvement."
+              },
+              {
+                "choice_id": "C",
+                "text": "Ticket FSD-ORD-IAH-DEN for $342, note the earlier home arrival, and keep both connections on the same carrier record."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold the $505 Saturday-morning FSD-DEN nonstop, add one hotel night, and set a fare alert for any Friday improvement."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is plausible because it is cheapest and has only one plane change, while C is plausible because it gets her home earlier. The user's history is required to know that a long single wait is still a compromise that should be confirmed rather than silently ticketed.",
+            "gold_action": "Ask Erin before ticketing either remaining non-ideal Friday routing.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0003",
+              "tm_pd_v04_user_001_s0123",
+              "tm_pd_v04_user_001_s0126",
+              "tm_pd_v04_user_001_s0136"
+            ],
+            "label_rationale": "When no remaining Friday option fits her usual routing comfort and there is no stated price or schedule emergency, the default is not to unilaterally choose a long wait or multiple connections. A follows the ask-before-selecting rule for non-ideal routings. B chooses a prolonged wait, C chooses multiple connections, and D jumps to a costlier overnight nonstop without a current request to do so.",
+            "probe_type": "conflict_resolution",
+            "query": "Erin is trying to get home from Sioux Falls after a Friday workshop. The earlier inventory changed, and the remaining practical Friday routings are either slow or involve more handling; there is no hard work deadline that night. Which next step best fits her history?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrase \"best fits her history\" explicitly invokes private history, but the available choices include a generic ask-the-traveler action that avoids needing that history."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c09",
+            "rationale": "Even though the query mentions history, the stated situation has two viable Friday compromises: a long wait versus more handling. With no hard deadline and no stated preference between those compromises, the best non-history-based action is to present both and ask Erin before ticketing. B and C guess a preference; D is an expensive overnight detour without a stated need."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c03",
+        "c04",
+        "c06",
+        "c07",
+        "c08"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c03",
+        "c04",
+        "c06",
+        "c07",
+        "c08"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Ticket DEN-CLT-BGR with one 42-minute CLT connection; arrive in Bangor at 5:05 p.m.; fare $488."
+              },
+              {
+                "choice_id": "B",
+                "text": "Ticket DEN-ORD-BGR with one 82-minute ORD connection; arrive in Bangor at 5:40 p.m.; fare $504."
+              },
+              {
+                "choice_id": "C",
+                "text": "Ticket DEN-ATL-JFK-BGR with a dinner-length JFK stop; arrive in Bangor at 6:35 p.m.; fare $438."
+              },
+              {
+                "choice_id": "D",
+                "text": "Ticket DEN-BOS nonstop, then drive toward Acadia; reach the area about 8:05 p.m.; estimate $482 total."
+              }
+            ],
+            "closest_distractor_choice_id": "C",
+            "difficulty_rationale": "C has credible generic appeal because it is cheaper and makes the long day feel easier with a dinner stop. Erin's longitudinal pattern is needed to avoid converting that suggestion into a reason to add another connection.",
+            "gold_action": "Put DEN-ORD-BGR with the 82-minute ORD connection in the draft.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0003",
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0123",
+              "tm_pd_v04_user_001_s0126"
+            ],
+            "label_rationale": "Mark's dinner-window idea is not an explicit Erin request for a stopover to break up travel. B offers one comfortable connection to Bangor. C is cheaper and accommodates that dinner window, making it a near miss, but it adds another flight segment; A uses a tight transfer; D substitutes a long drive. History is needed to distinguish a third-party suggestion from Erin's durable preference for clean one-connection routings.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Erin and Mark are choosing Denver-to-Bangor flights for a June family visit near Acadia. Mark noticed one routing with a dinner window en route, and the arrival-day plans are loose. Which flight should go in the draft?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "'Mark noticed one routing with a dinner window en route' directly matches choice C's 'dinner-length JFK stop'.",
+              "'Arrival-day plans are loose' makes the later arrival in C acceptable."
+            ],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c02",
+            "rationale": "The query explicitly calls out Mark noticing a dinner-window routing and says arrival-day plans are loose. Choice C is the one that matches that cue and is also the lowest fare."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Recommend account-carrier DEN-IAH-ORD-HSV with two connections; arrive at 4:55 p.m.; fare $386."
+              },
+              {
+                "choice_id": "B",
+                "text": "Recommend DEN-ATL-HSV on Delta with one 79-minute ATL connection; arrive at 5:35 p.m.; fare $424."
+              },
+              {
+                "choice_id": "C",
+                "text": "Recommend account-carrier DEN-IAD-HSV with a 4-hour IAD layover; arrive at 7:20 p.m.; fare $368."
+              },
+              {
+                "choice_id": "D",
+                "text": "Recommend DEN-BNA nonstop plus a rental car to Huntsville; reach the hotel about 6:25 p.m.; estimate $402 total."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A has comparable generic utility because it follows the portal cue, costs less, and arrives earlier. Erin's memory-backed routing policy is needed to choose the non-account-carrier one-stop instead.",
+            "gold_action": "Recommend DEN-ATL-HSV on Delta with the 79-minute ATL connection.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0003",
+              "tm_pd_v04_user_001_s0059",
+              "tm_pd_v04_user_001_s0126"
+            ],
+            "label_rationale": "The portal's account-carrier nudge is not a current user priority that overrides connection comfort. B is the one-connection itinerary. A is the strongest near miss because it is cheaper, earlier, and account-carrier, but it adds a second connection; C keeps the account carrier with a long sit; D trades flight routing for an alternate-airport drive. The cited history supports not choosing an awkward two-stop route just for carrier or modest fare advantages.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Erin is booking Denver-to-Huntsville for a lab go-live. The corporate portal highlights one account carrier, while the fixed agenda starts the next morning. Which ticketing recommendation should you send?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "'Corporate portal highlights one account carrier' directly matches the account-carrier-labeled choices.",
+              "'Fixed agenda starts the next morning' makes C's later arrival less problematic."
+            ],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c05",
+            "rationale": "The query supplies a corporate account-carrier cue, and the fixed agenda starts the next morning. Among account-carrier options, C is cheaper and has fewer connections than A, while its later arrival still satisfies the stated schedule."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Ticket FSD-MSP-DEN with one connection and a 4-hour 35-minute MSP layover; arrive at 8:20 p.m.; fare $318."
+              },
+              {
+                "choice_id": "B",
+                "text": "Ticket FSD-ORD-IAH-DEN with two connections; arrive 75 minutes earlier than the MSP option; fare $342."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold Saturday's FSD-DEN nonstop, add one hotel night, and watch for Friday inventory; fare $505 before hotel."
+              },
+              {
+                "choice_id": "D",
+                "text": "Send Erin the $318 MSP-wait versus $342 extra-connection tradeoff, and get her pick before ticketing."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A generic planner could ticket A because it is cheapest and has only one connection, while B is also plausible for getting home earlier. Erin's history is needed to know that either compromise should be confirmed before ticketing.",
+            "gold_action": "Ask Erin before ticketing either Friday routing with a long layover or multiple connections.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0003",
+              "tm_pd_v04_user_001_s0123",
+              "tm_pd_v04_user_001_s0126",
+              "tm_pd_v04_user_001_s0136"
+            ],
+            "label_rationale": "Neither remaining Friday ticketing option fits the default comfort pattern: A has a prolonged layover, while B uses multiple connections. The current request does not explicitly prioritize cheapest arrival or earliest arrival over connection comfort, so D implements the ask-before-selecting rule. C jumps to a costly overnight nonstop without a current request. The cited sessions support asking before substituting a non-ideal connection pattern.",
+            "probe_type": "conflict_resolution",
+            "query": "Erin is trying to get home from Sioux Falls after a Friday workshop. The earlier return sold out while she was waiting on the agenda, and the remaining Friday choices still fit same-day travel. She asked for the next action. What should you do?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query asks for the 'next action' after the preferred earlier return sold out.",
+              "Choice D explicitly avoids guessing between the $318 long-wait option and the $342 extra-connection option."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c09",
+            "rationale": "The remaining same-day choices are a fare-versus-extra-connection tradeoff with no stated preference. The best next action is to present that tradeoff and get Erin's choice rather than ticketing one arbitrarily."
+          }
+        }
+      ],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "gold_disagreement_or_unresolved": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "boundary": 1,
+      "conflict_resolution": 2,
+      "cross_context_transfer": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_001"
+}

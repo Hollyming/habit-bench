@@ -1,0 +1,425 @@
+{
+  "cache_fingerprint": "28c38b599b969396d8d48c8f62a30b4e7aa05af5c57e7609b47b64f2d9aeabb8",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A generic planner could reasonably prefer B on fare and arrival time, while A is simpler but more expensive. Erin's longitudinal routing policy is needed to break that tradeoff in favor of the single comfortable connection.",
+      "gold_action": "Lead with holding DEN-ORD-PIT with the 78-minute ORD connection.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_001_s0003",
+        "tm_pd_v04_user_001_s0039",
+        "tm_pd_v04_user_001_s0059",
+        "tm_pd_v04_user_001_s0126"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_001_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_001_h02",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when a nonstop flight is not selected or when connecting itineraries are being compared for her domestic work, conference, family, or leisure trips.",
+        "scope_key": "domestic_connecting_itinerary_evaluation",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "The nonstop is tempting because Erin often prefers nonstops, but here it costs more and arrives much later, making the still-possible team dinner more rushed.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "A 78-minute single connection is the clean one-stop option that preserves a reasonable arrival for a possible Monday dinner. The history strongly rules out two-stop routings and long sits, while allowing one short layover when it improves the plan.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Choice A fits the domestic work-trip scope: a connection is being considered, but the current request does not say to prioritize the cheapest fare, earliest arrival, carrier, or a nonstop. It provides one comfortable layover. Choice B is a real near miss because it saves money and arrives earlier, but it adds a second connection; C saves less with a prolonged sit; D spends more for a nonstop the query did not require. The cited sessions show Erin repeatedly accepting one reasonable connection while rejecting two-stop or long-layover tradeoffs unless a current constraint overrides that pattern.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_001_h02_p00",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Tentative Monday dinner and 'bookable plan she could ticket today' are relevant cues but not sufficient to select one fare/routing tradeoff."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All options arrive the day before the Tuesday-morning review. The choices trade lower fare, fewer connections, shorter layover, earlier arrival, and nonstop convenience, and the tentative dinner does not define a hard arrival requirement.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A generic planner could choose A to reduce fare while still arriving in the evening. Erin's history is needed to treat the long layover as a compromise rather than a routine savings move.",
+      "gold_action": "Use DEN-ATL-CHS with the 76-minute ATL connection as the draft default.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_001_s0132",
+        "tm_pd_v04_user_001_s0059",
+        "tm_pd_v04_user_001_s0123",
+        "tm_pd_v04_user_001_s0126"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_001_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_001_h02",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when a nonstop flight is not selected or when connecting itineraries are being compared for her domestic work, conference, family, or leisure trips.",
+        "scope_key": "domestic_connecting_itinerary_evaluation",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "The nonstop is tempting under her preference for simple routes, but it arrives at 9:25 p.m. and costs notably more; the clean one-stop is within her accepted boundary.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "The clean 76-minute one-stop avoids both forbidden patterns: two connections and a long airport sit. It also arrives far earlier than the late nonstop, which is useful with a next-morning required session and a tentative reception.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "No current fare cap or schedule priority overrides routing comfort. C has one short, comfortable connection and an acceptable arrival. A is a close generic competitor because it saves $76 at a similar arrival time, but it imposes a long airport sit; B saves more but adds a second connection; D pays for a late nonstop without a stated need. The cited sessions support avoiding prolonged waits or extra connections just for moderate savings.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_001_h02_p01",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Tentative reception and next-morning first session are schedule cues, but they do not uniquely rank the price/routing tradeoffs."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All itineraries satisfy the next-morning required session. The tentative reception does not establish whether to prioritize fare, avoiding two connections, avoiding a long layover, or taking the late nonstop.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A could appeal generically because it saves money and gets them in earlier. Erin's prior decisions distinguish a comfortable short layover from a tight one that raises missed-connection risk.",
+      "gold_action": "Recommend DEN-MSP-GRR with the 86-minute MSP connection.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_001_s0011",
+        "tm_pd_v04_user_001_s0083",
+        "tm_pd_v04_user_001_s0077",
+        "tm_pd_v04_user_001_s0003"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_001_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_001_h02",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when a nonstop flight is not selected or when connecting itineraries are being compared for her domestic work, conference, family, or leisure trips.",
+        "scope_key": "domestic_connecting_itinerary_evaluation",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "A is cheaper and earlier with only one stop, but a 46-minute ORD connection is the kind of tight connection Erin has historically been wary of.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "With no nonstop offered, the best fit is the safer single connection. An 86-minute MSP layover is much less tight than a 46-minute ORD connection for a late-February weekend, and it avoids both the long layover and two-stop options.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "With casual Friday plans, there is no current schedule reason to choose the tight ORD transfer. B has a more comfortable single layover. A is a near miss because it is cheaper and earlier, but its short ORD connection is not the kind of comfortable transfer Erin tends to accept, especially for family or late-winter travel; C has a long wait; D adds a second connection. History is needed to weigh tight-transfer risk against price and arrival.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_001_h02_p02",
+      "probe_type": "boundary",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "'Late-February' may cue winter-weather connection risk.",
+          "'Friday plans are casual' and hotel hold reduce the importance of earliest arrival but do not identify a single best outbound."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "Late February suggests connection-risk concerns, and casual Friday plans make later arrivals acceptable, but the choices still require valuing fare, tight connection risk, long layover, and number of connections without a stated priority.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B has clear generic strengths on fare and arrival time. Erin's longitudinal policy is needed to prefer C's simpler connection pattern over a cheaper, earlier two-connection itinerary.",
+      "gold_action": "Lead with DEN-EWR-BTV with the 90-minute EWR connection.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_001_s0063",
+        "tm_pd_v04_user_001_s0126",
+        "tm_pd_v04_user_001_s0123",
+        "tm_pd_v04_user_001_s0039"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_001_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_001_h02",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when a nonstop flight is not selected or when connecting itineraries are being compared for her domestic work, conference, family, or leisure trips.",
+        "scope_key": "domestic_connecting_itinerary_evaluation",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "The Boston nonstop is tempting because she likes simple air routings, but it is not cheaper and adds a long rental-car transfer away from the venue.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "The venue is near BTV, and a clean 90-minute one-stop into BTV is available at essentially the same cost as the Boston alternative. Her history supports using the destination airport unless the connection is problematic or the alternate airport saves enough; here Boston adds a long drive without savings.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "C gets Erin to the destination airport with one comfortable connection. B is a close generic competitor because it is cheaper and arrives earlier at BTV, but it adds a second connection; D has a long JFK wait, and A swaps the flight connection issue for a long drive from Boston. The cited sessions show the routing policy carrying across work, conference, and family or leisure contexts.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_001_h02_p03",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "'Venue is near BTV, but Boston flights are on the same search page' flags the alternate-airport option as a distractor.",
+          "'Reception is informal' reduces pressure for the earliest arrival but does not resolve the B/C/D tradeoff."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The venue-near-BTV cue makes the Boston alternate weak, but among BTV arrivals there is no unique best: B is cheaper and earlier with two connections, C has a normal one-stop at higher fare, and D is cheaper than C but has a long layover and later arrival.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_001"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold DEN-ORD-PIT with one 78-minute ORD connection; arrive at 4:35 p.m.; fare $438."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold DEN-MSP-DTW-PIT with 65- and 80-minute connections; arrive at 3:55 p.m.; fare $326."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold DEN-ATL-PIT with a 3-hour 45-minute ATL layover; arrive at 5:05 p.m.; fare $348."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold DEN-PIT nonstop with no connection; arrive at 6:40 p.m.; fare $528."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "conflict_resolution",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_001_h02_p00",
+      "query": "Erin is lining up Denver-to-Pittsburgh travel for a Tuesday morning product-review. The team dinner may happen Monday, but the agenda is not final and she wants a bookable plan she could ticket today. Which flight action should lead the note?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_001",
+      "visible_history_scope": {
+        "max_session_index": 136
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "List DEN-DFW-CHS with a 4-hour 10-minute DFW layover; arrive at 5:35 p.m.; fare $316."
+        },
+        {
+          "choice_id": "B",
+          "text": "List DEN-IAH-CLT-CHS with two connections; arrive at 4:30 p.m.; fare $294."
+        },
+        {
+          "choice_id": "C",
+          "text": "List DEN-ATL-CHS with one 76-minute ATL connection; arrive at 5:05 p.m.; fare $392."
+        },
+        {
+          "choice_id": "D",
+          "text": "List DEN-CHS nonstop with no connection; arrive at 9:25 p.m.; fare $486."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "conflict_resolution",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_001_h02_p01",
+      "query": "Erin is comparing Denver-to-Charleston flights for a two-day certification. The first required session is the morning after arrival, and the Monday reception is still tentative. Which itinerary should be the default line in the draft?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_001",
+      "visible_history_scope": {
+        "max_session_index": 136
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Choose DEN-ORD-GRR with one 46-minute ORD connection; arrive at 4:50 p.m.; fare $342."
+        },
+        {
+          "choice_id": "B",
+          "text": "Choose DEN-MSP-GRR with one 86-minute MSP connection; arrive at 6:05 p.m.; fare $394."
+        },
+        {
+          "choice_id": "C",
+          "text": "Choose DEN-DTW-GRR with a 3-hour 15-minute DTW layover; arrive at 6:40 p.m.; fare $326."
+        },
+        {
+          "choice_id": "D",
+          "text": "Choose DEN-MCI-ORD-GRR with two connections; arrive at 5:30 p.m.; fare $308."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "boundary",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_001_h02_p02",
+      "query": "Erin and Mark are arranging Denver-to-Grand Rapids flights for a late-February weekend. Friday plans are casual, and the hotel will hold the room for an evening arrival. Which outbound should be recommended?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_001",
+      "visible_history_scope": {
+        "max_session_index": 136
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use DEN-BOS nonstop plus a rental car to Burlington; reach the venue area about 7:10 p.m.; estimate $452 total."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use DEN-ORD-PHL-BTV with two connections on one ticket; arrive near the venue at 3:25 p.m.; fare $392."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use DEN-EWR-BTV with one 90-minute EWR connection; arrive near the venue at 4:20 p.m.; fare $446."
+        },
+        {
+          "choice_id": "D",
+          "text": "Use DEN-JFK-BTV with a 4-hour 40-minute JFK layover; arrive near the venue at 6:55 p.m.; fare $408."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "cross_context_transfer",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_001_h02_p03",
+      "query": "Erin is booking Denver-to-Burlington, Vermont, for a Thursday medical-device user group. The venue is near BTV, but Boston flights are on the same search page; the reception is informal. Which option should lead?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_001",
+      "visible_history_scope": {
+        "max_session_index": 136
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "gold_disagreement_or_unresolved": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "boundary": 1,
+      "conflict_resolution": 2,
+      "cross_context_transfer": 1
+    }
+  }
+}

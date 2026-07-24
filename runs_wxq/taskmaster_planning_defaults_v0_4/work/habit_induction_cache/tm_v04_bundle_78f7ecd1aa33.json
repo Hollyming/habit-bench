@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Apply as a qualitative price tradeoff for hotel searches: prefer lower nightly cost and avoid unnecessarily expensive options, without imposing any specific numeric budget ceiling from prior examples.",
+  "bundle_id": "tm_v04_bundle_78f7ecd1aa33",
+  "condition": "When comparing or selecting hotels and no explicit luxury or premium-quality priority has been stated, treat price minimization as a reusable hotel-search default.",
+  "confidence": 0.91,
+  "decision": "accept",
+  "default_action": "Favor economical hotels and sort or filter toward cheaper acceptable options rather than upgrading for premium features.",
+  "exception_condition": "Do not apply if the user explicitly requests luxury, a higher star class, a specific premium property or amenity that requires higher cost, or states that price is not important for the current trip.",
+  "family": "hotel_price_tradeoff",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_78f7ecd1aa33",
+  "induced_at": "2026-07-15T12:31:16.162512+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefer lower-cost hotel options",
+  "preference_value": "budget_sensitive",
+  "rationale": "Across five independent hotel conversations, users set low-cost constraints or ask for the cheapest possible hotel. The coherent synthetic habit is budget sensitivity, not a reusable dollar amount.",
+  "seed_value": "budget_sensitive",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "instruction_id hotel-14: User sets a price limit: \"My price is no more than $300 a night.\"",
+      "conversation_id": "dlg-5aa1cf5c-121b-435d-9234-277161743eac",
+      "turn_index": 14
+    },
+    {
+      "contribution": "instruction_id hotel-13: User says, \"No more than $300 a night.\"",
+      "conversation_id": "dlg-9941de9c-1d3f-4acd-9fce-f5ebac5129d1",
+      "turn_index": 22
+    },
+    {
+      "contribution": "instruction_id hotel-6: User requests a lower-cost option: \"around some where in the neighborhood of $250 a night. No more than that.\"",
+      "conversation_id": "dlg-dc0eeb41-28d4-4f0d-ace5-991ae0a1b484",
+      "turn_index": 13
+    },
+    {
+      "contribution": "instruction_id hotel-3: User asks for the hotel to cost \"less than $300 per night.\"",
+      "conversation_id": "dlg-5e1575fb-7450-4f7c-9141-652f4810f72f",
+      "turn_index": 9
+    },
+    {
+      "contribution": "instruction_id hotel-11: User asks for \"the absolute cheapest\" hotel and says, \"It's all about price.\"",
+      "conversation_id": "dlg-d8974f43-bd61-4985-9033-3e8e14d2312a",
+      "turn_index": 4
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "no more than $300 a night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-5aa1cf5c-121b-435d-9234-277161743eac",
+      "habitual_language": false,
+      "instruction_id": "hotel-14",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 14,
+      "user_utterance": "Oh, It's okay. My price is no more than $300 a night. Let me know what you find."
+    },
+    {
+      "annotated_segment": "No more than $300 a night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-9941de9c-1d3f-4acd-9fce-f5ebac5129d1",
+      "habitual_language": false,
+      "instruction_id": "hotel-13",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 22,
+      "user_utterance": "No more than $300 a night."
+    },
+    {
+      "annotated_segment": "$250 a night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-dc0eeb41-28d4-4f0d-ace5-991ae0a1b484",
+      "habitual_language": false,
+      "instruction_id": "hotel-6",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 13,
+      "user_utterance": "And I need it to be around some where in the neighborhood of $250 a night. No more than that."
+    },
+    {
+      "annotated_segment": "less than $300 per night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-5e1575fb-7450-4f7c-9141-652f4810f72f",
+      "habitual_language": false,
+      "instruction_id": "hotel-3",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 9,
+      "user_utterance": "I would like the hotel to cost less than $300 per night."
+    },
+    {
+      "annotated_segment": "cheapest",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-d8974f43-bd61-4985-9033-3e8e14d2312a",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 4,
+      "user_utterance": "Okay. I want this hotel to be the absolute cheapest thing you could find. Okay? One star, Half star, No star, It's all about price. Can you find me like a, Just the cheapest hotels in St. Louis, Missouri?"
+    }
+  ]
+}

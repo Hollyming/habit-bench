@@ -1,0 +1,501 @@
+{
+  "habit_id": "tm_pd_v04_user_000_h03",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c06",
+        "c07"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c06",
+        "c07"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "ATL-SLC-BOI, with a 1h05 connection at SLC; arrive 12:25 p.m.; $506."
+              },
+              {
+                "choice_id": "B",
+                "text": "ATL-DFW-PHX-BOI, with connections of about 50m and 70m; arrive 12:10 p.m.; $421."
+              },
+              {
+                "choice_id": "C",
+                "text": "ATL-DEN-BOI, with a 4h15 wait at DEN; arrive 1:40 p.m.; $469."
+              },
+              {
+                "choice_id": "D",
+                "text": "Depart the prior evening ATL-SLC, overnight near the airport, then SLC-BOI in the morning; arrive 9:10 a.m.; $399 before hotel."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is cheaper and arrives a few minutes earlier, so it is a strong generic competitor. Only the user's longitudinal pattern makes the simpler one-connection option the preferred tradeoff.",
+            "gold_action": "Recommend the ATL-SLC-BOI itinerary with one short connection.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0032",
+              "tm_pd_v04_user_000_s0110",
+              "tm_pd_v04_user_000_s0122"
+            ],
+            "label_rationale": "When price and timing are both workable, Maya has repeatedly treated extra stops or long waits as not worth modest savings. A preserves the straightforward connection while still arriving comfortably before the event; B's cheaper fare and slightly earlier arrival do not overcome the added routing complexity.",
+            "probe_type": "conflict_resolution",
+            "query": "Maya is attending a product demo in Boise. The first event starts at 4 p.m.; all options below arrive before 2 p.m. She can use any carrier, and the current budget can absorb the fare spread, though cheaper options are still helpful for approval. Which line should be the recommendation?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query states the budget can absorb the fare spread.",
+              "Cheaper options are described as helpful for approval, not required.",
+              "All options arrive before 2 p.m., so the differentiator is itinerary quality."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "A is the clean same-day one-stop with a reasonable connection and a comfortable arrival before the 4 p.m. event. The budget can absorb the fare spread, so the cheaper options do not justify extra/tight connections, a long wait, or a prior-night hotel."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Recommend ATL-DTW-TVC with a 1h20 connection, $690, arrive 12:35 p.m., explaining that it is above the soft target."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold ATL-CLT-ORD-TVC with 50m and 60m connections, $485, arrive 12:20 p.m."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold ATL-ORD-TVC with a 6h10 ORD wait, $472, arrive 4:45 p.m."
+              },
+              {
+                "choice_id": "D",
+                "text": "Send a short tradeoff note asking whether to approve the $690 simpler routing or use one of the sub-$500 but less tidy routings."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A follows the usual routing simplicity, while B and C meet the stated fare target. Without the user's history about how she treats awkward routing and unclear savings, there is no unique generic winner.",
+            "gold_action": "Ask for a routing-versus-fare decision before selecting the cheaper multi-stop or long-wait options.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0122",
+              "tm_pd_v04_user_000_s0032",
+              "tm_pd_v04_user_000_s0110"
+            ],
+            "label_rationale": "Her default is not to select multiple-layover or long-layover routings when the savings question is unresolved. Because the simple option is far above the soft target, the best action is not to unilaterally pick A either; it is to present the tradeoff and ask for direction.",
+            "probe_type": "boundary",
+            "query": "Maya is trying to lock travel to Traverse City for a customer advisory meeting. The meeting starts the next afternoon, so all of these arrive in time. The travel note has a soft airfare target around $500, but the organizer has not said whether exceeding it or accepting a less tidy itinerary is preferable. Which response should you send?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query states the soft target and says the organizer has not said which tradeoff is preferable.",
+              "Choice D directly mirrors the stated ambiguity by asking for approval guidance."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c03",
+            "rationale": "The query explicitly says the organizer has not indicated whether to exceed the soft airfare target for the simpler routing or accept a less tidy sub-$500 itinerary. D is the only response that does not guess that missing preference."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "ATL-DFW-JAC, with a 1h30 connection at DFW; arrive 1:55 p.m.; $728 or 42k points per person."
+              },
+              {
+                "choice_id": "B",
+                "text": "ATL-ORD-DEN-JAC, with 55m and 65m connections; arrive 1:35 p.m.; $666 or 37k points per person."
+              },
+              {
+                "choice_id": "C",
+                "text": "ATL-SLC-JAC, with a 5h20 wait at SLC; arrive 4:20 p.m.; $690 or 39k points per person."
+              },
+              {
+                "choice_id": "D",
+                "text": "ATL-SLC in the evening, overnight near SLC, then SLC-JAC the next morning; $615 per person before hotel."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B arrives slightly earlier and saves cash or points for three travelers, making it tempting without memory. The user's broader travel history favors the simpler connection when those savings are not large enough to dominate.",
+            "gold_action": "Propose the one-connection ATL-DFW-JAC outbound.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0004",
+              "tm_pd_v04_user_000_s0107",
+              "tm_pd_v04_user_000_s0055"
+            ],
+            "label_rationale": "The evidence includes both work and family travel, so the routing pattern carries into this personal family trip. A avoids both the extra aircraft change in B and the prolonged wait in C while the savings are modest rather than decisive.",
+            "probe_type": "cross_context_transfer",
+            "query": "Maya is comparing flights for a personal family trip from ATL to Jackson Hole. The lodge shuttle can meet any arrival before 5 p.m., and seat assignments will be handled separately. Cash and points are both acceptable, so the tradeoff is mainly routing versus modest savings. Which outbound should you propose?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Savings are described as modest while the main tradeoff is routing.",
+              "Cash versus points and seat assignments are explicitly removed as tie-breakers."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c04",
+            "rationale": "A has the best routing: one reasonable connection, arrival well before the shuttle cutoff, and no overnight. The alternatives offer only modest savings while adding two connections, a long layover near the cutoff, or an overnight and hotel cost."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American ATL-DFW-OMA, with a 1h05 connection at DFW; arrive 12:40 p.m.; $402."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta ATL-MSP-OMA, with a 4h45 wait at MSP; arrive 2:55 p.m.; $386."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta ATL-DTW-MSP-OMA, with two connections; arrive 12:25 p.m.; $365."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest ATL-STL-OMA, with a 3h10 connection at STL; arrive 1:15 p.m.; $392 including one checked bag."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is on the preferred carrier and slightly cheaper, so a generic planner could reasonably pick it. The user's longitudinal policy resolves the conflict in favor of the shorter, simpler connection.",
+            "gold_action": "Lead with the non-Delta one-connection itinerary through DFW.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0000",
+              "tm_pd_v04_user_000_s0044",
+              "tm_pd_v04_user_000_s0056"
+            ],
+            "label_rationale": "Maya's history treats carrier preference as secondary when routing quality differs. A has the cleaner connection pattern; B and C preserve Delta but introduce a long wait or extra change, which she has not prioritized over sane routing.",
+            "probe_type": "conflict_resolution",
+            "query": "For an ATL-to-Omaha work trip, Maya can use any carrier. Delta would be convenient for points if the trip is otherwise comparable, but the agenda only requires arrival by midafternoon. Fares are within a normal approval range. Which itinerary should lead?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query says Delta is convenient only if the trip is otherwise comparable.",
+              "Fares are stated to be within a normal approval range, so the small savings do not outweigh routing quality."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "A is the cleanest practical itinerary: one reasonable connection, midday arrival, and a fare within approval range. The Delta preference is only conditional on comparable options, and the Delta choices are not comparable because they add a long wait or an extra connection. D has a much longer connection for only tiny savings and an unstated checked-bag benefit."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "ATL-LAX-HNL, with a 1h55 LAX connection; arrive 2:40 p.m.; $812 per person."
+              },
+              {
+                "choice_id": "B",
+                "text": "ATL-LAX-HNL, with a 7h20 LAX gap; arrive 8:05 p.m.; $768 per person."
+              },
+              {
+                "choice_id": "C",
+                "text": "ATL-DFW-PHX-HNL, with two connections; arrive 3:25 p.m.; $742 per person."
+              },
+              {
+                "choice_id": "D",
+                "text": "ATL-SEA-HNL, with a 4h35 SEA wait; arrive 5:30 p.m.; $786 per person."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is the same hub pairing and costs less, and some travelers would prefer a long break on a Hawaii itinerary. The user's history is needed to avoid misreading that idea as her preference.",
+            "gold_action": "Recommend the Honolulu itinerary with the shorter LAX connection.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0004",
+              "tm_pd_v04_user_000_s0107",
+              "tm_pd_v04_user_000_s0013",
+              "tm_pd_v04_user_000_s0122"
+            ],
+            "label_rationale": "A third party's suggestion is not the same as Maya requesting a stopover. Her own history favors keeping the routing straightforward and avoiding long waits unless she explicitly asks for them, so A beats the cheaper long-pause or multi-stop options.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Maya is comparing ATL-to-Honolulu outbound flights for a family condo stay. A friend suggested that a long West Coast pause might make the long trip feel less intense, but Maya's own note only says the flight should arrive before check-in closes and stay within a reasonable fare band. Which option should you recommend?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The long West Coast pause is explicitly attributed to a friend, not Maya.",
+              "The reasonable-fare-band wording makes cheapest fare insufficient as the tie-breaker."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "Maya's own note only requires an on-time arrival before check-in closes and a reasonable fare band. A gives the cleanest itinerary and earliest arrival with one reasonable connection. The other options save modest amounts but add a long pause or a second connection, and the long-pause idea is only a friend's suggestion."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "ATL-PHL-BTV, with a 1h25 connection at PHL; arrive 4:10 p.m.; $456."
+              },
+              {
+                "choice_id": "B",
+                "text": "ATL-BOS nonstop, arrive 2:50 p.m., then about 3.5 hours by rental car to Burlington; $438 plus car and fuel."
+              },
+              {
+                "choice_id": "C",
+                "text": "ATL-CLT-PHL-BTV, with two connections; arrive 3:40 p.m.; $398."
+              },
+              {
+                "choice_id": "D",
+                "text": "ATL-EWR-BTV, with a 5h15 EWR wait; arrive 8:05 p.m.; $426."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is nonstop and has a similar apparent cost, so generic travel planning might prefer it. The boundary in the user's history prevents overvaluing nonstop status when a normal connection to the destination airport is available.",
+            "gold_action": "Propose the one-connection itinerary into Burlington rather than the alternate-airport nonstop.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0004",
+              "tm_pd_v04_user_000_s0107",
+              "tm_pd_v04_user_000_s0023",
+              "tm_pd_v04_user_000_s0044"
+            ],
+            "label_rationale": "The user's history does not imply nonstop at any cost or by any airport strategy. When a connection is acceptable, A keeps the air routing simple and avoids the long ground transfer; C and D add the kinds of routing friction she usually avoids.",
+            "probe_type": "boundary",
+            "query": "Maya is going to Burlington, Vermont for a cousin's graduation. Friday arrival any time before 9 p.m. works. A nonstop into a different airport is possible, but it adds a long drive; flying into Burlington requires a connection. The all-in costs are close enough that neither is automatically cheapest. Which itinerary should you propose first?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query says all-in costs are close enough that neither option is automatically cheapest.",
+              "The alternate-airport nonstop is explicitly penalized by a long drive."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c09",
+            "rationale": "A flies into Burlington with one reasonable connection and a midafternoon arrival. The nonstop alternative lands at a different airport and adds a long drive with close all-in costs; C adds a second connection; D has a long wait and latest arrival. A is materially better on location and convenience."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c02",
+        "c04",
+        "c05"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c04",
+        "c05",
+        "c06",
+        "c07"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Recommend ATL-DTW-TVC, with a 5h35 DTW layover; arrive 2:55 p.m.; $492."
+              },
+              {
+                "choice_id": "B",
+                "text": "Recommend ATL-CLT-ORD-TVC, with 1h05 and 1h20 connections; arrive 1:35 p.m.; $436."
+              },
+              {
+                "choice_id": "C",
+                "text": "Recommend ATL-EWR-ORD-TVC, with 1h15 and 1h10 connections; arrive 4:20 p.m.; $408."
+              },
+              {
+                "choice_id": "D",
+                "text": "Send a tradeoff note instead of picking one: current options mean either the 5h35 one-stop wait around $492, the earlier two-connection routing around $436, or the later two-connection fare around $408; ask which to hold or whether to keep searching."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A has fewer aircraft changes, while B and C cost less and still arrive in time. Without Maya's history, a planner could reasonably choose one of those tradeoffs instead of pausing for direction.",
+            "gold_action": "Ask before selecting among the available long-layover or multi-connection Traverse City options.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0023",
+              "tm_pd_v04_user_000_s0013",
+              "tm_pd_v04_user_000_s0122"
+            ],
+            "label_rationale": "None of the listed itineraries gives Maya the usual at-most-one-short-layover pattern. Her remembered default is to ask before selecting a long layover or multiple layovers, so D is the safest response rather than unilaterally choosing A, B, or C.",
+            "probe_type": "boundary",
+            "query": "Maya is setting up ATL-to-Traverse City travel for a customer advisory meeting. She needs to be in Traverse City by early evening the day before, and these are the current workable search results. Which response should you send?"
+          },
+          "candidate_id": "c03",
+          "failure": "choice_length_giveaway"
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "ATL-LAX-HNL, with a 1h55 LAX connection; arrive 2:40 p.m.; $812 per person."
+              },
+              {
+                "choice_id": "B",
+                "text": "ATL-LAX-HNL, with a 6h50 LAX gap long enough to leave the gate area for a meal; arrive 7:35 p.m.; $766 per person."
+              },
+              {
+                "choice_id": "C",
+                "text": "ATL-DFW-PHX-HNL, with 1h10 and 1h20 connections; arrive 3:25 p.m.; $742 per person."
+              },
+              {
+                "choice_id": "D",
+                "text": "ATL-SEA-HNL, with a 4h20 SEA layover; arrive 5:30 p.m.; $784 per person."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is cheaper, uses the same connection city, and matches the meal-break idea, so it is a credible generic recommendation for a long family flight. The user's history is needed to avoid treating that floated idea as Maya's preference.",
+            "gold_action": "Recommend the Honolulu outbound with the shorter LAX connection.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0004",
+              "tm_pd_v04_user_000_s0107",
+              "tm_pd_v04_user_000_s0013",
+              "tm_pd_v04_user_000_s0122"
+            ],
+            "label_rationale": "A planning-thread idea about stretching is not an explicit request from Maya to build in a long stopover. Her remembered pattern favors a single comfortable connection and avoids long waits or multiple layovers unless she asks for that tradeoff, so A is the best fit.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Maya is comparing ATL-to-Honolulu outbounds for a family condo stay. One note in the family planning thread floats a West Coast meal-and-stretch break, and the condo desk stays open into the evening. Which option should you recommend for Maya's draft?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query embeds a family-planning-thread preference for a West Coast meal-and-stretch break.",
+              "The condo-desk-hours note makes B's later arrival acceptable."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c08",
+            "rationale": "The query explicitly highlights a West Coast meal-and-stretch break and says the condo desk remains open into the evening. B uniquely matches that cue with a long LAX gap expressly described as enough to leave the gate area for a meal, while still being one-stop and cheaper than the other one-stop options with comparable routing."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "ATL-PHL-BTV, with a 1h20 connection at PHL; arrive in Burlington at 4:10 p.m.; $486 before local transportation."
+              },
+              {
+                "choice_id": "B",
+                "text": "ATL-BOS nonstop, arrive 12:25 p.m., then pick up the car for about a 3h15 drive to Burlington; $328 before car costs, fuel, and tolls."
+              },
+              {
+                "choice_id": "C",
+                "text": "ATL-CLT-PHL-BTV, with 1h05 and 1h10 connections; arrive in Burlington at 3:40 p.m.; $398 before local transportation."
+              },
+              {
+                "choice_id": "D",
+                "text": "ATL-EWR-BTV, with a 5h10 EWR layover; arrive in Burlington at 8:05 p.m.; $426 before local transportation."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is nonstop, has a much lower flight fare, and can still reach Burlington in time, so it is a strong generic competitor. The remembered boundary prevents overvaluing nonstop status when a simple connection to the destination airport is available.",
+            "gold_action": "Propose the one-connection itinerary into Burlington rather than treating the alternate-airport nonstop as automatically better.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0004",
+              "tm_pd_v04_user_000_s0107",
+              "tm_pd_v04_user_000_s0023",
+              "tm_pd_v04_user_000_s0044"
+            ],
+            "label_rationale": "Maya's history does not imply nonstop at any cost or through a different-airport strategy. When a connection to the destination airport is workable, her preference is for one short layover; A fits that pattern while B trades the connection for a long drive, C adds a second connection, and D has a long layover.",
+            "probe_type": "boundary",
+            "query": "Maya is going to Burlington, Vermont, for a cousin's graduation. Friday arrival any time before 9 p.m. works, and she will need local transportation after landing either way. Nearby airports are being compared with Burlington fares. Which itinerary should you propose first?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The nearby-airport comparison and the note that local transportation is needed either way are wording cues that make the BOS-drive option selectable without private history."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c09",
+            "rationale": "The query explicitly puts nearby airports in scope, allows arrival any time before 9 p.m., and says local transportation is needed after landing either way. Under those stated conditions, B is the lowest airfare, uses a nonstop flight, avoids connection risk, and can still reach Burlington well before the deadline after the drive."
+          }
+        }
+      ],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "cross_context_transfer": 1,
+      "direct_use": 1,
+      "exception": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_000"
+}

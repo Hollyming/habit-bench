@@ -1,0 +1,284 @@
+{
+  "cache_fingerprint": "996feddd4a5b41056df6cdfa2412c9d404c07b45f6c90cf2d497b856c7a3cd3a",
+  "sessions": [
+    {
+      "domain": "booking_refinement",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Portland training site is Beaverton with a firm Monday 4 p.m. equipment check. Erin chose the earlier nonstop landing at 12:25 over the later arrival to protect setup time. For lodging, she accepted the closer Beaverton hotel with pool and fitness but no hot tub because commute certainty mattered more for this work trip.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Client finally answered for Portland: Beaverton, not Clackamas. Setup and equipment check are Monday at 4 p.m. I still have the flight hold landing around 1 and two hotel ideas. Can you sanity-check before I book?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. With a 4 p.m. check in Beaverton, I’d treat the arrival buffer as the first decision. A 1-ish PDX landing can work on paper, but it gets thin once you add bags, rental car pickup, and US-26/217 traffic. If there’s a nonstop landing closer to noon or 12:30, I’d take that even if it means leaving Denver earlier.",
+          "role": "assistant"
+        },
+        {
+          "content": "There is a DEN-PDX nonstop leaving 10:45 and landing 12:25, and another leaving 12:55 landing 2:35. Fares are within $40. I don’t love giving up the later morning, but I also don’t want to walk into setup stressed.",
+          "role": "user"
+        },
+        {
+          "content": "Pick the 10:45 departure landing 12:25. That gives you room for a modest delay, baggage, rental car, and still a realistic Beaverton arrival around 2:15-2:45. The 12:55 flight leaves almost no slack; one slow bag claim or one traffic issue and you’re calling the client from the car.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. Hotels: the closest one is Hilton Garden Inn in the Beaverton area, 8 minutes from the site, Google 4.2, indoor pool and fitness room, no hot tub listed. Embassy Suites Washington Square is 18-ish minutes, 4.1, suite, breakfast, pool/hot tub/fitness. Which way?",
+          "role": "user"
+        },
+        {
+          "content": "For this trip, I’d lean to the closer Beaverton hotel. Missing the hot tub is annoying, but the shorter drive matters more on a training week, especially Monday setup and the first full morning. Embassy Suites has the better recovery setup after hours, but the commute risk shows up every workday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Closest is $178 before tax. Embassy is $192. Both cancellable until the day before. Is the rating okay enough?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, 4.2 is fine for this use case, especially with the pool and fitness room covered. Before booking, verify parking cost, breakfast or nearby grab-and-go, and whether the indoor pool is actually open during your dates.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would you still hold Embassy as a backup?",
+          "role": "user"
+        },
+        {
+          "content": "Only if the close hotel has a cancellation deadline you dislike or you really need the suite space. If both are easy cancellable, I’d book the closer one and set a reminder to recheck rates a week out. Holding both probably just creates clutter.",
+          "role": "assistant"
+        },
+        {
+          "content": "Return is still Thursday nonstop after 5:30, landing Denver around 9. No issue there?",
+          "role": "user"
+        },
+        {
+          "content": "That’s the cleaner return if Thursday training ends by midafternoon. It avoids a connection and gets you home at a reasonable hour. Add a calendar note to leave Beaverton around 2:45 if you have to return a rental car.",
+          "role": "assistant"
+        },
+        {
+          "content": "So order of operations?",
+          "role": "user"
+        },
+        {
+          "content": "Book the 10:45 DEN-PDX nonstop first, then keep the Thursday nonstop return if the paired fare still looks reasonable. Select a window seat if the seat map is open. After that, book the close Beaverton hotel on a cancellable rate, confirm pool hours and parking, then reserve the rental car. Once booked, send the client your Monday arrival window and ask where to unload equipment.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_001_s0015",
+      "session_index": 15,
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "domain": "itinerary_adjustment",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Erin had booked the Portland flight and Beaverton hotel. A Thursday client dinner created a return-flight trade-off: keep the 5:40 p.m. nonstop or move to an 8:35 p.m. nonstop arriving near midnight. Recommendation was to change for a $68 fare difference only if the client can securely store equipment sample kits during dinner.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Portland tweak: I booked the flight and the Beaverton hotel. Now the client shortened Thursday to end by 2 and invited me to an optional 4:30 dinner with regional leads. My return is 5:40, so I’d have to skip it unless I move to an 8:35 PDX-DEN that lands 11:55. Worth it?",
+          "role": "user"
+        },
+        {
+          "content": "It depends whether the dinner helps decisions or is just polite. The 5:40 return means leaving Beaverton around 2:45 and skipping dinner. The 8:35 gives you the dinner window and time to return the car, but you get home close to midnight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Regional director and two clinic managers will be there. They’ve been slow approving spring dates. I don’t have anything before 10 Friday.",
+          "role": "user"
+        },
+        {
+          "content": "Then I’d consider moving it if the cost is modest. That dinner could do more for the spring schedule than another follow-up email, and no early Friday meeting makes the late arrival less painful.",
+          "role": "assistant"
+        },
+        {
+          "content": "What do I check before I click change?",
+          "role": "user"
+        },
+        {
+          "content": "Check the actual fare difference and change policy, confirm the later option is still nonstop, and confirm luggage handling after hotel checkout. If you keep the rental car until the airport, also make sure the later return time doesn’t push the rental into another billable day.",
+          "role": "assistant"
+        },
+        {
+          "content": "The app says no change fee, $68 fare difference, same nonstop. Hotel says luggage hold is fine, but I’ll have equipment sample kits with me.",
+          "role": "user"
+        },
+        {
+          "content": "For sample kits, I’d ask the client for secure storage during dinner rather than leaving them with general hotel luggage. If they can lock them in the training room or an office, the later flight is sensible.",
+          "role": "assistant"
+        },
+        {
+          "content": "So: change if the client can store the kits, otherwise keep original?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. If secure storage is confirmed, switch to the 8:35 nonstop and attend dinner; the $68 is justified. If storage is awkward or you’d be babysitting gear, keep the 5:40 return and ask for a 20-minute wrap-up with the regional director before you leave. After any change, recheck your seat and save the updated confirmation.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_001_s0016",
+      "session_index": 16,
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "domain": "hotel_search",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Erin and Mark began planning a Friday-Monday Santa Fe recovery weekend by car for March 13-16. The shortlist weighed walkability, ratings, pool/soaking or fitness amenities, parking, room comfort, and all-in cost. Hotel Santa Fe was recommended as the balanced first choice, with Drury Plaza as the central backup and El Rey Court as the savings fallback.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "A balcony would be nice but not mandatory.",
+            "habit_id": "tm_pd_v04_user_001_h06",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Switching gears: Mark and I want a recovery weekend in Santa Fe, Friday to Monday. We’ll drive from Denver. I’m seeing rates higher than expected. Can you help decide if plaza walkability is worth it?",
+          "role": "user"
+        },
+        {
+          "content": "Sure. What weekend, and should I compare mostly Plaza/Railyard hotels, or include quieter places 10-15 minutes out if the amenities and price are better?",
+          "role": "assistant"
+        },
+        {
+          "content": "March 13-16. Include both. We want restaurants without driving if possible, light hiking, a comfortable room, and some kind of pool or soaking option. I don’t want a poorly reviewed bargain.",
+          "role": "user"
+        },
+        {
+          "content": "Got it. For three nights by car, I’d compare the total weekend cost rather than just the nightly rate: room, taxes, parking or resort fees, and how often you’ll need to drive or rideshare. Do you want a firm cap?",
+          "role": "assistant"
+        },
+        {
+          "content": "I was hoping under $1,000 all in, but central places are looking closer to $1,200. If one is clearly better, we can stretch a bit.",
+          "role": "user"
+        },
+        {
+          "content": "Here’s the short list I’d start with. 1) Drury Plaza Hotel Santa Fe: best central value if the rate holds, walkable to the Plaza and Canyon Road, strong guest ratings, rooftop pool/hot tub and fitness, with breakfast and evening food offsetting some cost; parking fee is the watch item. 2) Hotel Santa Fe / Hacienda area: quieter Railyard base, still walkable or shuttleable to the Plaza, good for driving to trailheads, with pool/hot tub/fitness and more of a retreat feel. 3) Inn on the Alameda: excellent location between the Plaza and Canyon Road, strong reviews, breakfast and parking value, but verify the soaking setup because it is less of a full pool-and-gym stay.",
+          "role": "assistant"
+        },
+        {
+          "content": "What would you use as the lower-cost outside option?",
+          "role": "user"
+        },
+        {
+          "content": "El Rey Court would be my outside-core comparison. It has a fun Santa Fe motor-court feel, generally strong reviews, parking, and a pool/soaking/sauna vibe, but it’s on Cerrillos Road, so dinner usually means driving or rideshare. If it saves $300-$400 total, it’s legitimate; if the gap is only $150, I’d stay closer in.",
+          "role": "assistant"
+        },
+        {
+          "content": "I’m seeing Drury at $289/night plus parking, Hotel Santa Fe around $255, Inn on Alameda $310, and El Rey $199. We don’t need luxury, just want it to feel restful.",
+          "role": "user"
+        },
+        {
+          "content": "At those rates, my ranking is Hotel Santa Fe first for restful balance, Drury second if walkability and included food win, El Rey third as the budget-relief choice, and Inn on the Alameda fourth unless a specific room type looks great. Hotel Santa Fe should land near the edge of your target once taxes are added, and it gives you recovery amenities without being right in the busiest Plaza blocks.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does Hotel Santa Fe leave us too far from restaurants?",
+          "role": "user"
+        },
+        {
+          "content": "No, not too far. You’d have Railyard spots close by, and the Plaza is a longer walk or short shuttle/rideshare. For cold evenings or after hiking, plan on one rideshare each way. That cost is still likely less than the premium at Inn on the Alameda.",
+          "role": "assistant"
+        },
+        {
+          "content": "Any room-specific thing I should look for? A balcony would be nice but not mandatory.",
+          "role": "user"
+        },
+        {
+          "content": "For Hotel Santa Fe, price a king room against a patio/balcony room or Hacienda upgrade before committing. If the outdoor space is under about $40-$60 more per night, it may be worth it for a recovery weekend. If it pushes the total past Drury or Inn on the Alameda, skip it and spend that money on dinner or a planned soak.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you give me the final pick and backup?",
+          "role": "user"
+        },
+        {
+          "content": "Book Hotel Santa Fe on a cancellable rate if it stays near $255/night and confirms pool, hot tub, fitness, and acceptable parking terms. Backup: Drury Plaza if you decide you want to park once and walk everywhere; the included breakfast and evening food help soften the higher total. Budget fallback: El Rey Court only if saving $300-plus matters more than walking to dinner. I’d skip Inn on the Alameda for this weekend unless you choose charm and location over the recovery amenities.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_001_s0017",
+      "session_index": 17,
+      "user_id": "tm_pd_v04_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Sacramento/Rancho Cordova remains complete: United Main Cabin nonstop DEN-SMF Monday late morning, Friday afternoon SMF-DEN return, window request, Hyatt Place Sacramento/Rancho Cordova cancellable with fitness and pool but no hot tub. Nashville certification remains set for Oct 14-18: Frontier DEN-BNA Wednesday, Mark joins Friday, both return Sunday afternoon nonstop, Drury Plaza Nashville Downtown cancellable king room. Dallas/Plano rollout plan remains to extend Hilton Dallas/Plano Granite Park one night and move return to a Friday early-afternoon nonstop if approval comes through for the rate over cap and flight change. Chicago Thanksgiving is ticketed or being ticketed for two adults: Wed Nov 25 DEN-ORD nonstop around 6:35 p.m. arriving just before 10 p.m.; Sun Nov 29 ORD-DEN nonstop around 6:05 p.m.; regular economy, adjacent seats prioritized with window/aisle if available; no ORD airport hotel needed; recheck seats after the return aircraft change and compare Denver parking 1-2 weeks out. Portland rollout Jan 19-22 is now booked around the Beaverton site and Monday 4 p.m. equipment check: 10:45 a.m. DEN-PDX nonstop landing 12:25, close Beaverton hotel in the Hilton Garden Inn area on a cancellable rate with 4.2 Google rating, pool and fitness but no listed hot tub, and an original Thursday 5:40 p.m. PDX-DEN nonstop. For the new Thursday client dinner, change to the 8:35 p.m. nonstop for a $68 fare difference only if the client confirms secure storage for equipment sample kits; otherwise keep the 5:40 return and request a brief pre-departure wrap-up. Santa Fe recovery weekend with Mark is in planning for March 13-16 by car from Denver: Hotel Santa Fe is the first choice if the cancellable rate stays near $255/night and pool, hot tub, fitness, and parking terms check out; Drury Plaza is the walkable central backup; El Rey Court is the budget fallback if saving $300-plus outweighs dinner walkability; no Santa Fe booking yet.",
+  "verification": {
+    "15": {
+      "habit_signals": [],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User mentions specific flight times, nonstop flights, hotel ratings, and hotel amenities, but does not themselves establish any exact candidate habit at confidence >= 0.90."
+    },
+    "16": {
+      "habit_signals": [],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User discusses a one-trip return-flight change and confirms the later option is nonstop, but does not establish any exact candidate habit value or durable preference."
+    },
+    "17": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "A balcony would be nice but not mandatory.",
+          "habit_id": "tm_pd_v04_user_001_h06",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "The user explicitly expresses a soft balcony preference. Other hotel comments lack the exact 4.0 rating threshold or the full pool/hot tub/fitness amenity trio."
+    }
+  }
+}

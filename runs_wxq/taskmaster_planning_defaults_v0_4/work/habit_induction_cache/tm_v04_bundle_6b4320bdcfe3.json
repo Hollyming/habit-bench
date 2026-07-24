@@ -1,0 +1,103 @@
+{
+  "boundary_condition": "Apply this only to hotel quality ratings or customer-review thresholds; do not escalate it into a default requirement for five-star luxury, a specific destination, price level, or location type.",
+  "bundle_id": "tm_v04_bundle_6b4320bdcfe3",
+  "condition": "When the synthetic user is searching for hotels and has not supplied a different rating range for the current trip.",
+  "confidence": 0.76,
+  "decision": "accept",
+  "default_action": "Start by shortlisting hotels with a 4-star-or-higher hotel rating or customer-review rating above 4, rather than defaulting to lower-rated or unrated properties.",
+  "exception_condition": "If the current request explicitly allows a lower range such as 3-to-4 stars, or asks to broaden because of budget or availability, include those lower-rated options for that search.",
+  "family": "hotel_quality_threshold",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_6b4320bdcfe3",
+  "induced_at": "2026-07-15T12:38:09.209282+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Four-star-level hotel quality filter",
+  "preference_value": "four_star_level_default",
+  "rationale": "Several independent hotel dialogues request four stars or above, four stars or more, or above-four-star customer reviews. One supplied example allows 3-to-4 stars, so the coherent controlled habit is a four-star-level default that can be explicitly relaxed, not an absolute universal floor.",
+  "seed_value": "at_least_4",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "Requests a hotel star rating of four stars or more, supporting a 4-star-level quality threshold.",
+      "conversation_id": "dlg-5c0c4a0b-99d2-4a85-b950-c67216ddfd2a",
+      "turn_index": 4
+    },
+    {
+      "contribution": "Requests 4 stars or above, directly supporting the default to begin with 4+ rated hotels.",
+      "conversation_id": "dlg-df3f1f86-2ab8-4632-b015-56be13574a7f",
+      "turn_index": 8
+    },
+    {
+      "contribution": "Requires above-4-star customer reviews, supporting use of 4+ review quality as part of the hotel-quality default.",
+      "conversation_id": "dlg-f49ebd61-42f3-40ae-bce6-cdec27ea167b",
+      "turn_index": 8
+    },
+    {
+      "contribution": "Gives a 3-to-4-star range, grounding the exception that lower-than-4-star options should be included only when the current request explicitly permits them.",
+      "conversation_id": "dlg-2b4c8c9a-190c-4aa4-8348-653caf576a16",
+      "turn_index": 13
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "four stars or more",
+      "annotation": "hotel_search.star_rating",
+      "conversation_id": "dlg-5c0c4a0b-99d2-4a85-b950-c67216ddfd2a",
+      "habitual_language": false,
+      "instruction_id": "hotel-13",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 4,
+      "user_utterance": "I would like for the price to be under $600 a night. I would also like it to have a hotel star rating of four stars or more. I would also like to have a hotel star rating of 4 stars."
+    },
+    {
+      "annotated_segment": "4 stars or above",
+      "annotation": "hotel_search.star_rating",
+      "conversation_id": "dlg-df3f1f86-2ab8-4632-b015-56be13574a7f",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "I would like to be 4 stars or above."
+    },
+    {
+      "annotated_segment": "4 star customer",
+      "annotation": "hotel_search.customer_rating",
+      "conversation_id": "dlg-f49ebd61-42f3-40ae-bce6-cdec27ea167b",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "I need above 4 star customer reviews."
+    },
+    {
+      "annotated_segment": "3 to 4 stars",
+      "annotation": "hotel_search.star_rating",
+      "conversation_id": "dlg-2b4c8c9a-190c-4aa4-8348-653caf576a16",
+      "habitual_language": false,
+      "instruction_id": "hotel-4",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 13,
+      "user_utterance": "3 to 4 stars."
+    },
+    {
+      "annotated_segment": "s.",
+      "annotation": "hotel_search.customer_rating",
+      "conversation_id": "dlg-369b0987-142b-4133-b39a-13e3285d0706",
+      "habitual_language": false,
+      "instruction_id": "hotel-7",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 14,
+      "user_utterance": "4 stars."
+    }
+  ]
+}

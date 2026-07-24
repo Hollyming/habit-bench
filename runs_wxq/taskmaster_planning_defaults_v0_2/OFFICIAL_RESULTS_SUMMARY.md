@@ -1,79 +1,58 @@
-# Taskmaster Planning Defaults v0.2 Official-Code Adapter Summary
+# Taskmaster Planning Defaults v0.2 Official Results Status
 
-Date: 2026-07-13
+## Evaluation Contract
 
-This note mirrors the `runs/habit_bench_curated_v0_2` official-results ledger for
-the Taskmaster flights/hotels `planning_defaults` slice.
+Formal official results for this dataset use exactly the repository reference
+workflow in `scripts/run_official_subset_adapters.sh`. The wxq launcher changes
+only the default dataset path:
 
-Important scope note: this run uses official storage/retrieval adapter code, but
-it is not yet a full paper-reproduction run. Because HuggingFace model downloads
-were blocked/unstable in the current environment, embedding-backed adapters used
-a deterministic offline hash embedding fallback from `scripts_wxq/official_shims`.
+```bash
+bash scripts_wxq/run_taskmaster_planning_defaults_v02_official_adapters.sh
+```
 
-## Dataset
+It directly invokes:
 
-- Dataset: `runs_wxq/taskmaster_planning_defaults_v0_2`
-- Users: 30
-- Sessions: 1080
-- Probes: 120
-- Probe types: 30 direct_use, 30 boundary, 30 exception, 30 explicit_retrieval
-- Source domain: Taskmaster-2 flights + hotels
-- Habit family: planning_defaults
+- `eval/run_external_baseline.py`
+- `eval/official_adapters/official_mem0_adapter.py`
+- `eval/official_adapters/official_amem_adapter.py`
+- `eval/official_adapters/official_secom_adapter.py`
+- `eval/official_adapters/official_graphiti_adapter.py`
+- `eval/official_adapters/official_omem_adapter.py`
+- `eval/collect_official_results.py`
 
-## Official-Code Adapter Scope
+No wxq-specific answer model, prompt, scorer, embedding shim, or offline-hash
+fallback is part of the formal contract.
 
-| method | status | official code used | disabled / fallback |
-| --- | --- | --- | --- |
-| Mem0 | ran | `Memory.add(..., infer=False)` and `Memory.search` from the official OSS package; local Qdrant filtering | LLM extraction/update disabled; deterministic offline hash embedding fallback |
-| A-MEM | ran | official `AgenticMemorySystem.add_note` and `search_agentic` from `agiresearch/a-mem`; Chroma retrieval | LLM evolution/linking disabled; deterministic offline hash embedding fallback |
-| SeCom | ran | official `SeCom.retrieve_external_memory`; session-level BM25 retriever | LLM segmentation/compression disabled; token/compression shims |
-| O-Mem | ran | official `SimpleMemory`, `MemoryChain`, `MemoryManager`, and `retrieve_from_memory_soft_segmentation` with injected visible sessions | LLM message understanding / active profiling / generation disabled; deterministic offline hash embedding fallback |
-| Graphiti/Zep | not completed | official adapter attempted | blocked by missing `kuzu`; source build failed because system CMake is too old |
-| RMM | not run | none | no official implementation path configured |
+## Current Status
 
-## Accuracy By Capability
+Previously generated Qwen full-history/memory-matrix and non-reference
+offline-hash result directories were removed to prevent accidental comparison
+with reference-aligned results.
 
-| official-code adapter | overall | explicit | direct | boundary/false-pers | exception |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Mem0 infer-false Qdrant, offline hash embedding | 0.550 | 0.600 | 0.467 | 0.633 | 0.500 |
-| A-MEM search-agentic no-evolution, offline hash embedding | 0.550 | 0.600 | 0.467 | 0.633 | 0.500 |
-| SeCom BM25 session retrieval | 0.542 | 0.600 | 0.533 | 0.667 | 0.367 |
-| O-Mem injected retrieval, offline hash embedding | 0.417 | 0.533 | 0.400 | 0.433 | 0.300 |
+The `official_results/` directory should be cited only after rerunning the
+command above successfully in an environment satisfying the same reference
+adapter dependencies. Until then, the valid completed formal results are the
+unchanged lightweight reference baselines under `baseline_results/`.
 
-## Diagnostic Gap
+The current default-Python reference preflight is stored under
+`official_adapter_status_reference/`. Mem0 and Graphiti are not runnable in
+that interpreter because their official packages are missing; A-MEM, SeCom,
+and O-Mem repositories are present. The aligned launcher intentionally does
+not work around this with wxq shims or offline embeddings. Activate/install the
+same official environment intended for the reference run, then execute the
+launcher.
 
-| official-code adapter | explicit acc | habit stress acc | explicit-minus-stress gap | false-personalization control acc |
-| --- | ---: | ---: | ---: | ---: |
-| Mem0 infer-false Qdrant, offline hash embedding | 0.600 | 0.567 | 0.033 | 0.633 |
-| A-MEM search-agentic no-evolution, offline hash embedding | 0.600 | 0.567 | 0.033 | 0.633 |
-| SeCom BM25 session retrieval | 0.600 | 0.517 | 0.083 | 0.667 |
-| O-Mem injected retrieval, offline hash embedding | 0.533 | 0.367 | 0.167 | 0.433 |
+An aligned attempt using the existing `habit-official` environment passed the
+dependency preflight but stopped before predictions because the reference
+MiniLM embedding download failed with an SSL EOF from `hf-mirror.com`. The
+partial result directory was removed. See `OFFICIAL_ALIGNED_RUN_STATUS.md`.
 
-## Cost Proxy
+Dataset readiness is recorded in:
 
-| official-code adapter | avg retrieved tokens | avg stored items |
-| --- | ---: | ---: |
-| Mem0 infer-false Qdrant, offline hash embedding | 1956.4 | 36.0 |
-| A-MEM search-agentic no-evolution, offline hash embedding | 1956.4 | 36.0 |
-| SeCom BM25 session retrieval | 3761.5 | 36.0 |
-| O-Mem injected retrieval, offline hash embedding | 7911.3 | 36.0 |
+- `reports/reference_alignment_audit.json`
+- `reports/reference_alignment_audit.md`
 
-## Result Files
-
-- Per-method results: `official_results_habit_official_env_offline_hash_v2/*`
-- Collected summary: `official_results_habit_official_env_offline_hash_v2/collected/official_results_collected.md`
-- Run status: `official_results_habit_official_env_offline_hash_v2/RUN_STATUS.md`
-
-## Remaining To Match Curated v0.2 More Closely
-
-1. Replace deterministic offline hash embeddings with real local HuggingFace
-   `sentence-transformers/all-MiniLM-L6-v2` or another fixed local embedding
-   model.
-2. Install or expose a working `kuzu` backend, then rerun the Graphiti/Zep
-   adapter.
-3. If paper-level claims are needed, add a small LLM-backed official-method
-   run for methods whose full behavior depends on LLM extraction, evolution,
-   compression, or active profiling.
-
-Until those are done, the current results should be cited as full-slice
-official-code retrieval adapter validation, not final full official evaluation.
+The dataset passes structural and reference-loader compatibility checks. Its
+content gate is judged only with the unchanged reference no-memory baseline;
+see the alignment audit for the current result. Human review status and the
+limited 30-user scale should still be reported when citing the slice.

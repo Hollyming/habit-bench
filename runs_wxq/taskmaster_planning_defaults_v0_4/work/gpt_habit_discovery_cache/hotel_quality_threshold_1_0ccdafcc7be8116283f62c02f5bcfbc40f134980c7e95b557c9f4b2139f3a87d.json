@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "0ccdafcc7be8116283f62c02f5bcfbc40f134980c7e95b557c9f4b2139f3a87d",
+  "habits": [
+    {
+      "boundary_condition": "This is a soft longitudinal default, not proof of an exact 4-star-only requirement. If both hotel-class stars and customer-review ratings are available, clarify the metric or apply the 4-star floor to the metric being discussed.",
+      "bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+      "condition": "Use during hotel searches when a rating, review score, or hotel star-quality filter is available.",
+      "confidence": 0.76,
+      "decision": "accept",
+      "default_action": "Filter or prioritize hotel options that meet a 4-star minimum before presenting recommendations, and report the rating source when known.",
+      "exception_condition": "If no suitable hotel meets the 4-star floor while satisfying more important trip constraints, ask before relaxing the rating threshold.",
+      "family": "hotel_quality_threshold",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+      "induced_at": "2026-07-16T08:02:00.290296+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_four_star_quality_floor",
+      "preference_value": "Prefer hotels with a 4-star-or-better quality threshold; when using Google/customer ratings, target at least 4.0 stars.",
+      "rationale": "All three independent hotel conversations include the user setting a 4-star quality threshold. Two explicitly name Google/customer ratings, while the third gives 4 stars when asked for a star preference, supporting a reusable 4-star hotel-quality default.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Explicitly sets a Google rating floor of 4 stars for a hotel search.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "4 stars on Google.",
+          "instruction_id": "hotel-2",
+          "turn_index": 4
+        },
+        {
+          "contribution": "Explicitly states that the hotel should have at least a four-star Google rating.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "Google rating to be at least four stars",
+          "instruction_id": "hotel-3",
+          "turn_index": 10
+        },
+        {
+          "contribution": "States a 4-star hotel preference when asked about star preference.",
+          "conversation_id": "dlg-369b0987-142b-4133-b39a-13e3285d0706",
+          "exact_user_quote": "4 stars.",
+          "instruction_id": "hotel-7",
+          "turn_index": 14
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "4 stars on Google.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 4,
+          "user_utterance": "4 stars on Google."
+        },
+        {
+          "annotated_segment": "Google rating to be at least four stars",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 10,
+          "user_utterance": "Google rating to be at least four stars"
+        },
+        {
+          "annotated_segment": "4 stars.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-369b0987-142b-4133-b39a-13e3285d0706",
+          "habitual_language": false,
+          "instruction_id": "hotel-7",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 14,
+          "user_utterance": "4 stars."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+    "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+    "dlg-369b0987-142b-4133-b39a-13e3285d0706"
+  ]
+}

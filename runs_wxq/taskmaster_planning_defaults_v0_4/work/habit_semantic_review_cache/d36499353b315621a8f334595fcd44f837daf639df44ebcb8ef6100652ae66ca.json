@@ -1,0 +1,369 @@
+{
+  "cache_fingerprint": "d36499353b315621a8f334595fcd44f837daf639df44ebcb8ef6100652ae66ca",
+  "rows": [
+    {
+      "boundary_condition": "Evidence supports a general quality-floor habit, not a reusable 4.5-star ideal or a reusable budget-specific 3.5-star fallback.",
+      "bundle_id": "tm_v04_e2e_bundle_2f7cf6d5b85d",
+      "canonical_value": "hotel_rating_floor_good",
+      "condition": "When searching for hotels, especially when quality, niceness, upscale feel, resort style, or high ratings matter.",
+      "confidence": 0.68,
+      "decision": "revise",
+      "default_action": "Filter or rank toward hotels with clearly good ratings and apply the rating threshold stated for the trip; if no threshold is stated, ask or use the available rating metric conservatively rather than assuming a special 4.5-star or 3.5-star rule.",
+      "exception_condition": "If the user gives a different rating threshold, prioritizes cheapest possible regardless of quality, or the rating metric is unclear, follow or clarify the explicit trip-specific instruction.",
+      "family": "hotel_quality_threshold",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_2f7cf6d5b85d",
+      "induced_at": "2026-07-16T08:01:21.924012+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_good_rating_floor",
+      "preference_value": "Prefer hotels that meet a good explicit star or review-rating floor, rather than low-rated or unrated options.",
+      "rationale": "Across the cited hotel searches, the user repeatedly balances price with a reusable quality floor: nice/upscale stays are tied to 4-star minimums and 4.5-star preference, while a cheap-hotel case still requires high ratings with a 3.5-star floor.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.62,
+        "reason": "The examples across three instruction_ids support a recurring hotel-quality-floor preference, but not the stronger mixed rule. The 4.5-star ideal upgrade is supported by only one example, and the 3.5-star budget fallback is also supported by only one example. Narrowed to the reusable behavior: prefer hotels with a good explicit rating threshold and confirm/apply the relevant metric.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports the default 4-star quality floor for nice hotels and the 4.5-star ideal upgrade.",
+          "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+          "exact_user_quote": "we want to stay in a nice hotel, So at least four stars, but if you can find a four and a half star rated hotel, That'd be perfect.",
+          "instruction_id": "hotel-9",
+          "turn_index": 22
+        },
+        {
+          "contribution": "Supports applying a 4-star minimum to upscale or resort-style hotel searches using Google rating as the quality metric.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "I would like a upscale-feeling hotel and just like a resort-style hotel. And I want its Google rating to be at least four stars",
+          "instruction_id": "hotel-3",
+          "turn_index": 10
+        },
+        {
+          "contribution": "Supports the budget-focused fallback: cheap hotels should still meet a review/rating floor of about 3.5 stars.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "We're looking for a relatively cheap hotel, but that is still highly-rated, at least three and a half stars or Yeah, three and a half.",
+          "instruction_id": "hotel-8",
+          "turn_index": 2
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "we want to stay in a nice hotel, So at least four stars, but if you can find a four and a half star rated hotel, That'd be perfect.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+          "habitual_language": false,
+          "instruction_id": "hotel-9",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 22,
+          "user_utterance": "we want to stay in a nice hotel, So at least four stars, but if you can find a four and a half star rated hotel, That'd be perfect."
+        },
+        {
+          "annotated_segment": "I would like a upscale-feeling hotel and just like a resort-style hotel. And I want its Google rating to be at least four stars",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 10,
+          "user_utterance": "I would like a upscale-feeling hotel and just like a resort-style hotel. And I want its Google rating to be at least four stars"
+        },
+        {
+          "annotated_segment": "We're looking for a relatively cheap hotel, but that is still highly-rated, at least three and a half stars or Yeah, three and a half.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 2,
+          "user_utterance": "We're looking for a relatively cheap hotel, but that is still highly-rated, at least three and a half stars or Yeah, three and a half."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "This supports a soft rating-floor default, not an exact 4-star-only requirement or a confirmed hotel-class-star requirement.",
+      "bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+      "canonical_value": "hotel_rating_min_4",
+      "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing star rating is available.",
+      "confidence": 0.76,
+      "decision": "revise",
+      "default_action": "Filter or prioritize hotel options with ratings of 4.0 stars or higher and report the rating source when known.",
+      "exception_condition": "If the user specifies a different rating threshold, the only suitable options fall below 4.0, or the available star metric is hotel class rather than customer rating, follow or clarify the current instruction before relaxing or applying the threshold.",
+      "family": "hotel_quality_threshold",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+      "induced_at": "2026-07-16T08:02:00.290296+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_four_star_rating_floor",
+      "preference_value": "Prefer hotels with at least a 4.0-star customer-facing rating, especially Google ratings when available.",
+      "rationale": "All three independent hotel conversations include the user setting a 4-star quality threshold. Two explicitly name Google/customer ratings, while the third gives 4 stars when asked for a star preference, supporting a reusable 4-star hotel-quality default.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.88,
+        "reason": "Three distinct instruction_ids support a 4-star minimum, especially for Google or customer-facing hotel ratings. The original wording slightly overextends to hotel-class stars; narrowed to the rating/review metric evidenced by the sources.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Explicitly sets a Google rating floor of 4 stars for a hotel search.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "4 stars on Google.",
+          "instruction_id": "hotel-2",
+          "turn_index": 4
+        },
+        {
+          "contribution": "Explicitly states that the hotel should have at least a four-star Google rating.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "Google rating to be at least four stars",
+          "instruction_id": "hotel-3",
+          "turn_index": 10
+        },
+        {
+          "contribution": "States a 4-star hotel preference when asked about star preference.",
+          "conversation_id": "dlg-369b0987-142b-4133-b39a-13e3285d0706",
+          "exact_user_quote": "4 stars.",
+          "instruction_id": "hotel-7",
+          "turn_index": 14
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "4 stars on Google.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 4,
+          "user_utterance": "4 stars on Google."
+        },
+        {
+          "annotated_segment": "Google rating to be at least four stars",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 10,
+          "user_utterance": "Google rating to be at least four stars"
+        },
+        {
+          "annotated_segment": "4 stars.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-369b0987-142b-4133-b39a-13e3285d0706",
+          "habitual_language": false,
+          "instruction_id": "hotel-7",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 14,
+          "user_utterance": "4 stars."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "The exact room count and bed mix should scale with the trip context; evidence includes two rooms/bedrooms for some group trips and three rooms for a larger group trip.",
+      "bundle_id": "tm_v04_e2e_bundle_13b88a816b01",
+      "canonical_value": "none",
+      "condition": "When booking a hotel for a family or small group where several people need sleeping space.",
+      "confidence": 0.74,
+      "decision": "reject",
+      "default_action": "Search for hotels offering at least two separate rooms or bedrooms, and confirm the bed setup in each room before treating an option as suitable.",
+      "exception_condition": "Do not apply to solo, couple-only, or otherwise small-party stays unless the user again requests separate rooms or specific beds.",
+      "family": "hotel_room_bed_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_13b88a816b01",
+      "induced_at": "2026-07-16T08:06:21.799569+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "multi_room_sleeping_space_for_group_hotel_stays",
+      "preference_value": "For group or family hotel stays, the traveler tends to prefer multiple separate rooms/bedrooms with explicit bed arrangements, rather than a single standard room.",
+      "rationale": "Across three independent hotel dialogues, the user repeatedly avoids assuming a single room is enough and instead asks for multiple rooms or bedrooms plus sleeping-space/bed details.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "reject",
+        "quality_score": 0.12,
+        "reason": "The sources state current party sizes and requested room counts for specific trips. The multi-room requirement appears mechanically tied to the number and composition of travelers, and requested room count is explicitly excluded as a reusable habit unless independently established.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports the multi-bedroom default for family travel and frames it as needed sleeping space rather than a generic hotel slot.",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "exact_user_quote": "We have four children. I'm going to need a hotel that offers at least two bedrooms.",
+          "instruction_id": "hotel-11",
+          "turn_index": 5
+        },
+        {
+          "contribution": "Independently supports a preference for multiple rooms with explicit bed configuration.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "Looking for two rooms. One room needs to have two twin beds and the other room a queen-size bed.",
+          "instruction_id": "hotel-8",
+          "turn_index": 9
+        },
+        {
+          "contribution": "Independently supports not defaulting to a single room for group hotel stays; the user asks for multiple rooms.",
+          "conversation_id": "dlg-47d6c8f5-da3a-4f4f-bb14-c10f5cacb7d7",
+          "exact_user_quote": "Well, first there will be five of us and we'll need three rooms.",
+          "instruction_id": "hotel-10",
+          "turn_index": 6
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "We have four children. I'm going to need a hotel that offers at least two bedrooms.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 5,
+          "user_utterance": "We have four children. I'm going to need a hotel that offers at least two bedrooms."
+        },
+        {
+          "annotated_segment": "Looking for two rooms. One room needs to have two twin beds and the other room a queen-size bed.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 9,
+          "user_utterance": "Looking for two rooms. One room needs to have two twin beds and the other room a queen-size bed."
+        },
+        {
+          "annotated_segment": "Well, first there will be five of us and we'll need three rooms.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-47d6c8f5-da3a-4f4f-bb14-c10f5cacb7d7",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 6,
+          "user_utterance": "Well, first there will be five of us and we'll need three rooms."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Evidence supports queen-size beds as the recurring preference. A king bed may be acceptable when explicitly offered or requested, but the sources do not establish a reusable king-or-larger upgrade habit.",
+      "bundle_id": "tm_v04_e2e_bundle_90a7ff1f51d8",
+      "canonical_value": "hotel_bed_queen",
+      "condition": "When booking a standard hotel room where a single larger/shared bed is appropriate and no separate-bed setup has been requested.",
+      "confidence": 0.7,
+      "decision": "revise",
+      "default_action": "Filter or ask for a queen-size bed when bed type is selectable; confirm the bed setup if the option only lists doubles, twins, or unspecified bedding.",
+      "exception_condition": "Honor explicit requests for twin beds, multiple separate beds, multiple rooms, accessibility-related bedding, or any other trip-specific bed arrangement.",
+      "family": "hotel_room_bed_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_90a7ff1f51d8",
+      "induced_at": "2026-07-16T08:07:32.316245+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "queen_bed_for_single_bed_hotel_rooms",
+      "preference_value": "Prefer a queen-size bed for hotel rooms intended to have one larger/shared bed.",
+      "rationale": "All three independent hotel dialogues include a queen-size bed request. One dialogue broadens the acceptable option to queen or king for adult rooms, while another shows twin beds can be a room-specific exception rather than the general default.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.72,
+        "reason": "Queen beds recur across three distinct instruction_ids, but the broader queen-or-king default is too strong because king beds are supported by only one example and one source also explicitly requests twin beds for a different room. Narrowed to a queen-bed preference for rooms intended to have one larger/shared bed, while preserving explicit separate-bed exceptions.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports queen as the minimum bed size and king as an acceptable alternative for adult/couple rooms.",
+          "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+          "exact_user_quote": "at least a queen size bed. They'll all be adults, So queen or king size bed in each room.",
+          "instruction_id": "hotel-9",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Supports queen-size for a room while also showing that twin beds are an explicit room-specific exception.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "One room needs to have two twin beds and the other room a queen-size bed.",
+          "instruction_id": "hotel-8",
+          "turn_index": 9
+        },
+        {
+          "contribution": "Independently supports queen-size bed as a desired hotel room feature.",
+          "conversation_id": "dlg-5aa1cf5c-121b-435d-9234-277161743eac",
+          "exact_user_quote": "Queen-size bed.",
+          "instruction_id": "hotel-14",
+          "turn_index": 7
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "at least a queen size bed. They'll all be adults, So queen or king size bed in each room.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+          "habitual_language": false,
+          "instruction_id": "hotel-9",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "at least a queen size bed. They'll all be adults, So queen or king size bed in each room."
+        },
+        {
+          "annotated_segment": "One room needs to have two twin beds and the other room a queen-size bed.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 9,
+          "user_utterance": "One room needs to have two twin beds and the other room a queen-size bed."
+        },
+        {
+          "annotated_segment": "Queen-size bed.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-5aa1cf5c-121b-435d-9234-277161743eac",
+          "habitual_language": false,
+          "instruction_id": "hotel-14",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 7,
+          "user_utterance": "Queen-size bed."
+        }
+      ]
+    }
+  ]
+}

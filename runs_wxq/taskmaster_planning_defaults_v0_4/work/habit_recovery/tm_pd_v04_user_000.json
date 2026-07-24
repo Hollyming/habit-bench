@@ -1,0 +1,595 @@
+{
+  "cache_fingerprint": "66ad260f2948f4aa00c0a078bbf1507fff2e5bd4059cea80760ff1221efe1f6b",
+  "raw_recovery": {
+    "recovered_habits": [
+      {
+        "boundary_condition": "If inventory is at risk, only hold cancellable rooms or fare holds while waiting for the missing details.",
+        "confidence": 0.95,
+        "default_action": "Draft a non-booking plan, ask the client for the missing operational details, then route one approval-ready package with open items called out.",
+        "evidence": [
+          {
+            "quote": "Let’s not book until I get the address and Friday timing. What should I ask the client?",
+            "session_id": "tm_pd_v04_user_000_s0008"
+          },
+          {
+            "quote": "Okay. Don’t book anything yet. Just give me the skeleton I can paste into my notes.",
+            "session_id": "tm_pd_v04_user_000_s0030"
+          },
+          {
+            "quote": "I don’t want to overbuild this before the client confirms. What should I ask them?",
+            "session_id": "tm_pd_v04_user_000_s0078"
+          },
+          {
+            "quote": "Great. Give me a tentative plan I can share internally, but mark it as not ready to book.",
+            "session_id": "tm_pd_v04_user_000_s0099"
+          },
+          {
+            "quote": "For approval I need a shortlist, not final booking. Keep the hotel well-rated—around 4.0 or better from guests if possible. Breakfast is helpful but not the deciding factor.",
+            "session_id": "tm_pd_v04_user_000_s0122"
+          }
+        ],
+        "exception_condition": "Proceed to booking once manager approval is in and the unresolved items no longer affect the flight, hotel area, or transport choice.",
+        "family": "approval_process",
+        "name": "Hold work bookings until site and agenda details are firm",
+        "preference_value": "Work trips should stay provisional until the exact client or organizer site, first required onsite time, return-day end time, and local transport assumptions are known.",
+        "scope_condition": "Solo work/client/conference trips where the address, Monday requirement, Thursday wrap, or transport plan is still uncertain."
+      },
+      {
+        "boundary_condition": "A one-stop can be considered if the fare gap is large, the layover is comfortable and short, and the timing still protects the trip purpose.",
+        "confidence": 0.97,
+        "default_action": "Search nonstop options first and reject small-savings connections, long layovers, or fussy routings.",
+        "evidence": [
+          {
+            "quote": "Keep the flights simple: nonstop if it is not a silly price, otherwise one short layover.",
+            "session_id": "tm_pd_v04_user_000_s0000"
+          },
+          {
+            "quote": "I’d rather not deal with a fussy connection for such a short trip.",
+            "session_id": "tm_pd_v04_user_000_s0030"
+          },
+          {
+            "quote": "I would rather not connect for a trip this short unless the savings are huge.",
+            "session_id": "tm_pd_v04_user_000_s0063"
+          },
+          {
+            "quote": "I would rather keep it nonstop if the price difference is small. I don't need to save $70 and add a connection.",
+            "session_id": "tm_pd_v04_user_000_s0110"
+          },
+          {
+            "quote": "Use the $300 nightly cap as pre-tax. If Delta has a comparable nonstop, include it, but schedule matters more. I do not want a one-stop unless it saves a lot.",
+            "session_id": "tm_pd_v04_user_000_s0122"
+          }
+        ],
+        "exception_condition": "If nonstops are unavailable, badly timed, or at a clearly unreasonable premium, use the simplest one-stop backup.",
+        "family": "flights",
+        "name": "Prefer nonstop or very simple routings",
+        "preference_value": "Nonstop flights are the default; a one-stop is acceptable only when the nonstop is oddly priced, badly timed, or the savings are substantial.",
+        "scope_condition": "Flights from Atlanta for work and family trips, especially short trips where a connection can consume much of the travel day."
+      },
+      {
+        "boundary_condition": "Do not pay a large premium or accept a worse day just to fly Delta.",
+        "confidence": 0.94,
+        "default_action": "Include Delta in the comparison and select it when the schedule and total price are comparable.",
+        "evidence": [
+          {
+            "quote": "From ATL, Delta is nice if comparable, but I’m fine with another carrier.",
+            "session_id": "tm_pd_v04_user_000_s0000"
+          },
+          {
+            "quote": "Use Delta if the 5:40-ish outbound and Tuesday afternoon return are still close to American.",
+            "session_id": "tm_pd_v04_user_000_s0005"
+          },
+          {
+            "quote": "Can you include Delta if it’s close, but don’t force it if another nonstop is much cheaper?",
+            "session_id": "tm_pd_v04_user_000_s0008"
+          },
+          {
+            "quote": "That sounds right. Delta is fine if the schedule is sensible, but I don’t need to force it. No long layovers for this.",
+            "session_id": "tm_pd_v04_user_000_s0013"
+          },
+          {
+            "quote": "For MSP I would prefer a nonstop if the timing is decent. Delta is fine if it is not absurd.",
+            "session_id": "tm_pd_v04_user_000_s0074"
+          },
+          {
+            "quote": "For now, assume ATL to MSP, economy, Monday to Thursday. If a Delta nonstop is close on price, include it, but don't force it.",
+            "session_id": "tm_pd_v04_user_000_s0115"
+          }
+        ],
+        "exception_condition": "Choose another carrier when it is meaningfully cheaper, has better times, or better family seat availability.",
+        "family": "flights",
+        "name": "Use Delta as a tie-breaker, not a mandate",
+        "preference_value": "Delta is preferred when price and timing are close, but carrier preference should not override a materially better schedule or fare on another airline.",
+        "scope_condition": "Atlanta-origin itineraries where Delta and another nonstop carrier are both available."
+      },
+      {
+        "boundary_condition": "Avoid unnecessarily early flights when Monday is remote or optional, but still protect any afternoon kickoff or evening event.",
+        "confidence": 0.93,
+        "default_action": "Pick a Monday or day-before outbound that lands by early afternoon or dinner, rather than the cheapest late arrival.",
+        "evidence": [
+          {
+            "quote": "I’d like to land Monday with time to check in and eat before Tuesday morning meetings.",
+            "session_id": "tm_pd_v04_user_000_s0000"
+          },
+          {
+            "quote": "I’d rather arrive Monday early enough to review materials, not at 10 p.m.",
+            "session_id": "tm_pd_v04_user_000_s0008"
+          },
+          {
+            "quote": "I don’t want to land at MSP after nine and then have to be sharp Tuesday morning.",
+            "session_id": "tm_pd_v04_user_000_s0024"
+          },
+          {
+            "quote": "I agree. I don’t want to start a client week tired because of a connection.",
+            "session_id": "tm_pd_v04_user_000_s0052"
+          },
+          {
+            "quote": "Exactly. I want a prep block Monday afternoon.",
+            "session_id": "tm_pd_v04_user_000_s0100"
+          },
+          {
+            "quote": "Will the Monday morning flight still leave time for the reception if I cannot check in early?",
+            "session_id": "tm_pd_v04_user_000_s0122"
+          }
+        ],
+        "exception_condition": "Use Sunday evening or an earlier Monday flight only if Monday morning onsite attendance is required or the normal outbound would risk a fixed kickoff.",
+        "family": "flight_timing",
+        "name": "Arrive for work trips with prep, check-in, and dinner buffer",
+        "preference_value": "For work trips, avoid late arrivals before early client days; arrive with enough time to check in, eat, review materials, and handle prep.",
+        "scope_condition": "Work trips where the first onsite session is the next morning or a same-day kickoff/reception may occur."
+      },
+      {
+        "boundary_condition": "An earlier return is acceptable only when the client gives a firm early end time and the airport transfer is clearly safe.",
+        "confidence": 0.96,
+        "default_action": "Use a return time with enough buffer for meeting overrun, bag pickup, ground transfer, and security, even if it gets home later.",
+        "evidence": [
+          {
+            "quote": "I’d rather get home earlier if it’s not reckless. I just don’t want to create a change fee problem.",
+            "session_id": "tm_pd_v04_user_000_s0032"
+          },
+          {
+            "quote": "Okay, change the return to the evening nonstop. I need a quick explanation for the fare difference.",
+            "session_id": "tm_pd_v04_user_000_s0046"
+          },
+          {
+            "quote": "The Minneapolis training team just added an optional Thursday lab from 1:00 to 3:30. My return draft is still the 3:45 p.m. nonstop, which now feels too tight.",
+            "session_id": "tm_pd_v04_user_000_s0057"
+          },
+          {
+            "quote": "Thursday return should not make me bolt out of the room. I hate leaving a client session half-packed.",
+            "session_id": "tm_pd_v04_user_000_s0074"
+          },
+          {
+            "quote": "No thanks. Is there a later nonstop?",
+            "session_id": "tm_pd_v04_user_000_s0113"
+          },
+          {
+            "quote": "Can you make Friday morning a backup in the note but still recommend Thursday?",
+            "session_id": "tm_pd_v04_user_000_s0123"
+          }
+        ],
+        "exception_condition": "If the end time moves later or becomes uncertain, change only the return leg when possible rather than adding a connection or rushing the client day.",
+        "family": "flight_timing",
+        "name": "Protect client closeouts with return-flight buffer",
+        "preference_value": "Do not choose a return flight that requires sprinting out of a client session; move to a later nonstop when the closeout, lab, or debrief may run long.",
+        "scope_condition": "Work-trip return days after client closeouts, steering committees, labs, or conference closing sessions."
+      },
+      {
+        "boundary_condition": "Main Cabin does not need to be fully refundable; the key is seat selection and usable change rules.",
+        "confidence": 0.91,
+        "default_action": "Book Main Cabin/economy standard fares and do not prepay extras unless needed.",
+        "evidence": [
+          {
+            "quote": "Okay. Main Cabin, not Basic. For seats, three together if possible, but if not, one adult next to our child matters more than all three being in the same row.",
+            "session_id": "tm_pd_v04_user_000_s0018"
+          },
+          {
+            "quote": "Go ahead with those. Main Cabin, not Basic.",
+            "session_id": "tm_pd_v04_user_000_s0053"
+          },
+          {
+            "quote": "What about fare type? I don’t want to accidentally lose the seat assignments.",
+            "session_id": "tm_pd_v04_user_000_s0061"
+          },
+          {
+            "quote": "Yes: main cabin, no checked bag for now. Put me at the window and keep Leela and Ravi with me if possible.",
+            "session_id": "tm_pd_v04_user_000_s0097"
+          },
+          {
+            "quote": "Correct on main cabin and no checked bag. Take the rear window seats. I'd rather have the window than a forward aisle for this one.",
+            "session_id": "tm_pd_v04_user_000_s0101"
+          },
+          {
+            "quote": "Correct. Main Cabin, carry-on only, work card. Please get a window seat even if it’s behind the wing.",
+            "session_id": "tm_pd_v04_user_000_s0105"
+          }
+        ],
+        "exception_condition": "Basic Economy is not used in recurring examples where seating or flexibility matters; consider only if seat placement is irrelevant and savings are compelling.",
+        "family": "fares",
+        "name": "Avoid Basic Economy when seat control or flexibility matters",
+        "preference_value": "Use Main Cabin or equivalent standard economy rather than Basic Economy when advance seat selection, family seating, or work-trip change flexibility matters.",
+        "scope_condition": "Family trips and work trips where assigned seats, changes, or schedule stability are important."
+      },
+      {
+        "boundary_condition": "Avoid last-row or poor seats when possible, and do not pay preferred-seat fees just to move a few rows.",
+        "confidence": 0.98,
+        "default_action": "Select adjacent seats first; take a window within that arrangement when available; for solo flights choose a no-fee window over a forward aisle or middle.",
+        "evidence": [
+          {
+            "quote": "For seats, three together if possible, but if not, one adult next to our child matters more than all three being in the same row.",
+            "session_id": "tm_pd_v04_user_000_s0018"
+          },
+          {
+            "quote": "Seats matter more with the kid. Can you keep us together, and if there’s a window for me, use it?",
+            "session_id": "tm_pd_v04_user_000_s0035"
+          },
+          {
+            "quote": "Put Nia by the window outbound. For the return I’ll take the window unless she insists. Main thing is not splitting us up.",
+            "session_id": "tm_pd_v04_user_000_s0061"
+          },
+          {
+            "quote": "Seats next. I want our child between us or right next to both of us. If I can get the window, great, but together matters more.",
+            "session_id": "tm_pd_v04_user_000_s0072"
+          },
+          {
+            "quote": "Seat maps show a few windows toward the back. Forward seats are mostly aisle or middle. I’d rather take a window than a forward aisle, as long as it is not the last row.",
+            "session_id": "tm_pd_v04_user_000_s0080"
+          },
+          {
+            "quote": "Take the rear windows. A forward middle is not worth it. Also add a quiet-room request at the hotel if there is a field for it.",
+            "session_id": "tm_pd_v04_user_000_s0112"
+          }
+        ],
+        "exception_condition": "If a full family row is unavailable, use a child-plus-adult pair with the other adult across the aisle or nearby.",
+        "family": "seating",
+        "name": "Seat selection prioritizes togetherness, then no-fee windows",
+        "preference_value": "For family trips, keep the group together and ensure the child is next to an adult; for solo/work flights, take a no-fee window even if farther back, but do not pay or split the group just for seat location.",
+        "scope_condition": "Seat assignment on booked flights for both family and solo work travel."
+      },
+      {
+        "boundary_condition": "Anything below roughly 4.0 needs a clearly stated reason and tradeoff.",
+        "confidence": 0.98,
+        "default_action": "Filter to well-reviewed properties first, then compare location, breakfast, dinner, room setup, and cancellation terms.",
+        "evidence": [
+          {
+            "quote": "For the hotel, I’d like a solid guest rating, around 4.0 or better, breakfast if practical, and easy dinner nearby.",
+            "session_id": "tm_pd_v04_user_000_s0000"
+          },
+          {
+            "quote": "For reviews, don't include anything under about 4.0 unless there's a very good reason.",
+            "session_id": "tm_pd_v04_user_000_s0004"
+          },
+          {
+            "quote": "Keep the review quality in the mix too. I don’t want a beach motel that is only winning because it’s close.",
+            "session_id": "tm_pd_v04_user_000_s0035"
+          },
+          {
+            "quote": "Can you do a first-pass shortlist by type, keeping it around 4-star guest reviews or better but not luxury?",
+            "session_id": "tm_pd_v04_user_000_s0059"
+          },
+          {
+            "quote": "Please don't include anything with weak reviews. Four stars or better if possible.",
+            "session_id": "tm_pd_v04_user_000_s0082"
+          },
+          {
+            "quote": "And please don’t send me anything with weak reviews just because it’s cheaper.",
+            "session_id": "tm_pd_v04_user_000_s0106"
+          }
+        ],
+        "exception_condition": "If the destination has very limited options, flag the quality issue rather than hiding it in a cheap recommendation.",
+        "family": "hotels",
+        "name": "Use a strong guest-review floor for hotels",
+        "preference_value": "Hotels should generally have solid guest reviews around 4.0+; do not accept weak, sketchy, noisy, or poorly reviewed lodging just to save money.",
+        "scope_condition": "Hotel shortlists for work and family trips."
+      },
+      {
+        "boundary_condition": "Use breakfast as a tie-breaker among otherwise comparable hotels.",
+        "confidence": 0.98,
+        "default_action": "Choose the better-located or better-room hotel when breakfast is the only major drawback, and plan paid hotel breakfast, cafes, grab-and-go, or groceries instead.",
+        "evidence": [
+          {
+            "quote": "Breakfast would simplify mornings, but I wouldn’t pick a bad location just to get free waffles.",
+            "session_id": "tm_pd_v04_user_000_s0034"
+          },
+          {
+            "quote": "What about hotels? Breakfast is useful, but not if I’m signing up for a bad commute every morning.",
+            "session_id": "tm_pd_v04_user_000_s0045"
+          },
+          {
+            "quote": "Breakfast included would be nice, but I don’t want to choose a worse location just for that.",
+            "session_id": "tm_pd_v04_user_000_s0056"
+          },
+          {
+            "quote": "Breakfast included would help, but not if it means the room is a shoebox.",
+            "session_id": "tm_pd_v04_user_000_s0082"
+          },
+          {
+            "quote": "I like included breakfast, but I don't want to make both mornings harder for this trip.",
+            "session_id": "tm_pd_v04_user_000_s0100"
+          },
+          {
+            "quote": "I do not care if breakfast is paid if the mornings are easier. Is the campus property under $250 before tax and cancellable?",
+            "session_id": "tm_pd_v04_user_000_s0111"
+          }
+        ],
+        "exception_condition": "A breakfast-included hotel can lead if it also preserves commute, room quality, and reviews; otherwise it remains the backup.",
+        "family": "hotels",
+        "name": "Treat included breakfast as a plus, not the deciding factor",
+        "preference_value": "Included breakfast is useful, especially with early starts or a child, but it should not outweigh a better location, safer commute, larger room, or quieter stay.",
+        "scope_condition": "Hotel comparisons where one option includes breakfast and another has better logistics or room quality."
+      },
+      {
+        "boundary_condition": "A less convenient dinner situation is acceptable only when the location or room setup clearly wins and rideshares are easy.",
+        "confidence": 0.95,
+        "default_action": "Prefer hotels near restaurants or with an on-site restaurant/bar, even if breakfast is paid or room rate is slightly higher.",
+        "evidence": [
+          {
+            "quote": "Hotel-wise, I need good reviews, breakfast if possible, and somewhere I can get dinner without a whole production after long days.",
+            "session_id": "tm_pd_v04_user_000_s0008"
+          },
+          {
+            "quote": "Then I don’t want that as first choice. I don’t want to be hunting for dinner after 7.",
+            "session_id": "tm_pd_v04_user_000_s0010"
+          },
+          {
+            "quote": "For the hotel, I want strong guest ratings, short rideshares, breakfast if it’s practical, and somewhere to eat dinner nearby. I won’t have a car.",
+            "session_id": "tm_pd_v04_user_000_s0030"
+          },
+          {
+            "quote": "I want simple flights into Tampa or Sarasota, a Sunday return that doesn't wreck Monday, and a hotel or condo setup where beach, pool, breakfast or groceries, and casual dinners are easy with a kid.",
+            "session_id": "tm_pd_v04_user_000_s0070"
+          },
+          {
+            "quote": "I will not have a car, so dinner nearby matters if we land late or I am done late.",
+            "session_id": "tm_pd_v04_user_000_s0110"
+          },
+          {
+            "quote": "Please include breakfast and dinner access when you compare later, but I agree area is first.",
+            "session_id": "tm_pd_v04_user_000_s0115"
+          }
+        ],
+        "exception_condition": "For beach or family stays, groceries/cafes can solve breakfast, but casual dinner nearby remains important.",
+        "family": "hotels",
+        "name": "Require easy dinner access at hotels",
+        "preference_value": "Hotels should have on-site dining or easy nearby casual dinner options so evenings after work, flights, or family activities are not a production.",
+        "scope_condition": "Hotel selection for no-car work trips, family weekends, beach stays, and late-arrival days."
+      },
+      {
+        "boundary_condition": "A slightly higher refundable rate is acceptable for flexibility.",
+        "confidence": 0.96,
+        "default_action": "Book or hold cancellable rates, verify cancellation cutoff, and keep backup options only until the preferred reservation is safe.",
+        "evidence": [
+          {
+            "quote": "Denver can be cancellable. Estes is where I need answers before paying anything nonrefundable.",
+            "session_id": "tm_pd_v04_user_000_s0018"
+          },
+          {
+            "quote": "Should I book both Estes places cancellable while I ask questions?",
+            "session_id": "tm_pd_v04_user_000_s0019"
+          },
+          {
+            "quote": "Which pieces should I put on a cancellable hold tonight?",
+            "session_id": "tm_pd_v04_user_000_s0035"
+          },
+          {
+            "quote": "Hotel rates moved though. The Study is now $279 refundable, and Homewood is $206 but prepaid with several new elevator complaints. Would you still book The Study?",
+            "session_id": "tm_pd_v04_user_000_s0053"
+          },
+          {
+            "quote": "So final pick is the Thursday nonstop, Sunday midafternoon nonstop, and River Walk refundable room?",
+            "session_id": "tm_pd_v04_user_000_s0060"
+          },
+          {
+            "quote": "If the official hotel stays cancellable through that deadline, I think that is the cleanest.",
+            "session_id": "tm_pd_v04_user_000_s0123"
+          }
+        ],
+        "exception_condition": "A prepaid rate may be considered only when trip risk is low and the savings are meaningful, but recent behavior favors cancellable options even at a higher rate.",
+        "family": "hotels",
+        "name": "Prefer cancellable hotel bookings and avoid prepaid rates while plans can change",
+        "preference_value": "Hotel bookings should usually be refundable/cancellable, with cancellation deadlines tracked; prepaid or nonrefundable rates are avoided unless plans are very firm and savings justify the risk.",
+        "scope_condition": "Work and family hotel reservations, especially before schedules, PTO, client agendas, or weather-sensitive plans are fully stable."
+      },
+      {
+        "boundary_condition": "Treat these as requests, not guarantees; do not change otherwise good hotels solely because the request cannot be guaranteed.",
+        "confidence": 0.98,
+        "default_action": "Add quiet-room and away-from-elevator requests at booking, and repeat or confirm them at check-in when relevant.",
+        "evidence": [
+          {
+            "quote": "Please note no rental car and request a quiet room away from the elevator.",
+            "session_id": "tm_pd_v04_user_000_s0002"
+          },
+          {
+            "quote": "Yes, standard king. Please ask for a quiet room away from elevators and not facing the main street if that is an option.",
+            "session_id": "tm_pd_v04_user_000_s0042"
+          },
+          {
+            "quote": "Please add hotel requests: high floor, away from elevators, quiet room, king if available, and luggage hold Thursday.",
+            "session_id": "tm_pd_v04_user_000_s0053"
+          },
+          {
+            "quote": "Hotel requests: away from elevator noise, and not a low floor if possible. Should I add early check-in?",
+            "session_id": "tm_pd_v04_user_000_s0061"
+          },
+          {
+            "quote": "Can you add a quiet room request away from elevators and make sure the no-car plan is in the notes?",
+            "session_id": "tm_pd_v04_user_000_s0101"
+          },
+          {
+            "quote": "Please also add a quiet-room request for the hotel, away from elevators if possible.",
+            "session_id": "tm_pd_v04_user_000_s0124"
+          }
+        ],
+        "exception_condition": "High-floor requests can be omitted when the important part is simply avoiding elevator/noise exposure.",
+        "family": "hotels",
+        "name": "Add quiet-room hotel requests by default",
+        "preference_value": "Ask hotels for a quiet room, usually away from elevators, ice machines, and street/noise sources; high floor is often preferred when available.",
+        "scope_condition": "Hotel bookings for work and family trips where notes or special requests can be added."
+      },
+      {
+        "boundary_condition": "For suburban sites, multi-site days, road-closure/parking uncertainty, grocery needs, or inland beach lodging, compare a cancellable/pay-later rental.",
+        "confidence": 0.94,
+        "default_action": "Plan no rental car, choose hotel locations that make rideshare/transit practical, and add rideshare notes for reimbursement.",
+        "evidence": [
+          {
+            "quote": "No rental car unless the office location makes that impractical.",
+            "session_id": "tm_pd_v04_user_000_s0000"
+          },
+          {
+            "quote": "For the hotel, I want strong guest ratings, short rideshares, breakfast if it’s practical, and somewhere to eat dinner nearby. I won’t have a car.",
+            "session_id": "tm_pd_v04_user_000_s0030"
+          },
+          {
+            "quote": "I would rather not rent a car if rideshare or transit is workable.",
+            "session_id": "tm_pd_v04_user_000_s0074"
+          },
+          {
+            "quote": "Hotel ceiling is $250 before tax, and no rental car.",
+            "session_id": "tm_pd_v04_user_000_s0115"
+          },
+          {
+            "quote": "No rental car. Add simple rideshare notes for the airport, hotel, and office so reimbursement has the rationale.",
+            "session_id": "tm_pd_v04_user_000_s0117"
+          },
+          {
+            "quote": "Put A Line as preferred, rideshare if weather is bad or the train is delayed.",
+            "session_id": "tm_pd_v04_user_000_s0124"
+          }
+        ],
+        "exception_condition": "Add a rental only when the location, parking, offsite movement, or family logistics make rideshare/transit impractical.",
+        "family": "ground_transport",
+        "name": "Avoid rental cars when rideshare or transit is workable",
+        "preference_value": "Do not rent a car by default; use rideshare, walking, transit, or airport rail when a fixed urban site or walkable stay makes that workable.",
+        "scope_condition": "Solo work trips to urban campuses/downtowns and family city trips with no-car itineraries."
+      },
+      {
+        "boundary_condition": "A remote airport becomes viable when it saves several hundred dollars total and does not create a late or complicated arrival.",
+        "confidence": 0.9,
+        "default_action": "Benchmark the most convenient airport and central neighborhood first, then price remote airports only as savings checks.",
+        "evidence": [
+          {
+            "quote": "DCA seems easiest, but I'm open to IAD or BWI if the fare difference is real.",
+            "session_id": "tm_pd_v04_user_000_s0004"
+          },
+          {
+            "quote": "That's my worry with Newark. If it saves enough, fine, but I do not want the first night to become a project.",
+            "session_id": "tm_pd_v04_user_000_s0082"
+          },
+          {
+            "quote": "If DCA is only $100 or $150 more total, I don’t want to drag everyone through a longer transfer. If BWI saves $400 or more, I’d consider it.",
+            "session_id": "tm_pd_v04_user_000_s0095"
+          },
+          {
+            "quote": "Yes, I wondered about Providence. If BOS is way more, maybe, but I don't want a whole extra logistics project.",
+            "session_id": "tm_pd_v04_user_000_s0106"
+          },
+          {
+            "quote": "My spouse says simplest city access matters more than squeezing out the lowest fare, as long as the difference is not ridiculous.",
+            "session_id": "tm_pd_v04_user_000_s0119"
+          }
+        ],
+        "exception_condition": "If the convenient airport fare spikes sharply or seats/schedule are poor, recompare remote airport plus ground transfer before booking.",
+        "family": "family_travel",
+        "name": "For short family city trips, pay a reasonable premium for easier city access",
+        "preference_value": "For museum/city weekends with a child, choose the closest/practical airport and central hotel access when the fare difference is modest; remote airports are considered only for large total savings.",
+        "scope_condition": "Short family city trips from Atlanta, especially Washington, New York, and Boston where ground transfer time can dominate the first or last day."
+      },
+      {
+        "boundary_condition": "Two doubles can be tolerated for a short two-night stay if ratings, location, breakfast, and cancellation are strong.",
+        "confidence": 0.94,
+        "default_action": "Book a family-suitable room type, verify bed setup, and favor larger rooms for longer stays.",
+        "evidence": [
+          {
+            "quote": "Hotels: near Metro, room for three, not fancy, but not sketchy.",
+            "session_id": "tm_pd_v04_user_000_s0004"
+          },
+          {
+            "quote": "One room is fine, preferably two queens but a king plus sofa would work if the room is bigger.",
+            "session_id": "tm_pd_v04_user_000_s0048"
+          },
+          {
+            "quote": "Are the small rooms going to make us regret it?",
+            "session_id": "tm_pd_v04_user_000_s0084"
+          },
+          {
+            "quote": "For hotels, I care about easy museum access and casual dinner nearby. I don’t want a tiny room if we do four nights. Breakfast would be nice, but not if the room is miserable.",
+            "session_id": "tm_pd_v04_user_000_s0095"
+          },
+          {
+            "quote": "Two queens first. King plus a real sofa bed is okay. And please don’t send me anything with weak reviews just because it’s cheaper.",
+            "session_id": "tm_pd_v04_user_000_s0106"
+          }
+        ],
+        "exception_condition": "Do not accept one bed plus uncertain rollaway/sofa arrangements unless the hotel confirms the setup.",
+        "family": "family_travel",
+        "name": "Family hotel rooms must genuinely work for three",
+        "preference_value": "For family stays, room setup and breathing room matter: two queens are preferred; a king plus a real sofa bed can work; tiny or uncertain rooms are avoided even if breakfast is included.",
+        "scope_condition": "Family hotel selection for city, museum, and long-weekend trips with two adults and a child."
+      },
+      {
+        "boundary_condition": "Resort fees and paid breakfast must be visible before booking, and the family room/mini-fridge setup should be verified.",
+        "confidence": 0.87,
+        "default_action": "Choose Gulf-side or beach-block lodging with pool and nearby casual food, then solve breakfast with groceries, cafes, or selective paid breakfast.",
+        "evidence": [
+          {
+            "quote": "Two adults and one child. Beach access matters more than fancy, but I don’t want every day to depend on a car. Pool would help. Breakfast would simplify mornings, but I wouldn’t pick a bad location just to get free waffles.",
+            "session_id": "tm_pd_v04_user_000_s0034"
+          },
+          {
+            "quote": "We are not planning excursions. Maybe one dinner away from the beach, but otherwise I’d rather not manage rental counters, parking, and a booster seat.",
+            "session_id": "tm_pd_v04_user_000_s0035"
+          },
+          {
+            "quote": "For lodging, I don't want us loading the car just to touch the beach every day.",
+            "session_id": "tm_pd_v04_user_000_s0070"
+          },
+          {
+            "quote": "We talked it over. For St. Pete, Gulf-side beats the bigger inland suite. Can you help me move this from comparison to booking before that cancellable family room disappears?",
+            "session_id": "tm_pd_v04_user_000_s0072"
+          }
+        ],
+        "exception_condition": "Use an inland suite or add a pay-later rental only if the beach property fails room/fee checks, savings are large, or weather/grocery/off-beach plans make a car worthwhile.",
+        "family": "family_travel",
+        "name": "For short beach trips, favor walkable Gulf-side lodging over inland savings",
+        "preference_value": "For beach weekends with a child, walkable beach/pool/dinner convenience beats a bigger or cheaper inland suite with breakfast.",
+        "scope_condition": "Short Gulf Coast or beach-oriented family trips where beach time is the main goal."
+      },
+      {
+        "boundary_condition": "Keep the note concise when the manager asks for brevity, but still include the operational reason for higher cost.",
+        "confidence": 0.95,
+        "default_action": "Provide a pasteable recommendation with cost, schedule rationale, comparison against cheaper flights/hotels, and open items.",
+        "evidence": [
+          {
+            "quote": "Can you make the approval note include why I’m not choosing the cheaper one-stop?",
+            "session_id": "tm_pd_v04_user_000_s0001"
+          },
+          {
+            "quote": "What are the realistic alternates? I need the change cost visible for approval.",
+            "session_id": "tm_pd_v04_user_000_s0011"
+          },
+          {
+            "quote": "Add the unresolved items so procurement doesn’t think I ignored them.",
+            "session_id": "tm_pd_v04_user_000_s0031"
+          },
+          {
+            "quote": "Please write the package summary for approval. Include the tradeoffs and any missing confirmations.",
+            "session_id": "tm_pd_v04_user_000_s0092"
+          },
+          {
+            "quote": "Add the reason for not choosing the one-stop fares.",
+            "session_id": "tm_pd_v04_user_000_s0110"
+          },
+          {
+            "quote": "Good. Give me the final package I can forward. Do not book yet.",
+            "session_id": "tm_pd_v04_user_000_s0123"
+          }
+        ],
+        "exception_condition": "After final approval and booking, switch to concise checklist/receipt notes rather than re-litigating all alternatives.",
+        "family": "approval_process",
+        "name": "Approval notes should justify tradeoffs and rejected cheaper options",
+        "preference_value": "Approval or manager notes should explicitly show the recommended choice, why cheaper alternatives were rejected, any change cost, and unresolved items.",
+        "scope_condition": "Work-trip approvals, travel changes, and procurement-facing recommendations."
+      }
+    ]
+  }
+}

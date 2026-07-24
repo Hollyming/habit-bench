@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Apply only to flight seat-location selection; do not apply to cabin class, departure time, route choice, lodging, or other travel domains.",
+  "bundle_id": "tm_v04_bundle_1588d5924047",
+  "condition": "When booking a flight and seat selection is available.",
+  "confidence": 0.96,
+  "decision": "accept",
+  "default_action": "Request a window seat for the flight segment being booked.",
+  "exception_condition": "If no window seat is available, or the user gives a conflicting seat priority such as accessibility needs, companion seating, or a different explicit seat location, do not force the window-seat default.",
+  "family": "seat_location",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_1588d5924047",
+  "induced_at": "2026-07-15T12:30:08.496417+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefer window seats on flights",
+  "preference_value": "window seat",
+  "rationale": "Across independent flight task dialogues, users repeatedly ask for a window seat, often with availability language such as \"if possible\" or \"if I can get one.\" Other details such as cabin class or departure time vary, so only the reusable window-seat preference is induced.",
+  "seed_value": "window",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "The user asks for \"a window seat\" on flights if possible, directly supporting the seat-location preference.",
+      "conversation_id": "dlg-95d90c4c-7c01-4de5-874b-6aa4d1e78f27",
+      "turn_index": 19
+    },
+    {
+      "contribution": "The user says they would like \"a window seat\" if they can get one, supporting a window-seat default with availability caveat.",
+      "conversation_id": "dlg-86585618-0ea3-418c-b1d1-05513ae2f522",
+      "turn_index": 18
+    },
+    {
+      "contribution": "The user states, \"I would prefer a window seat,\" giving direct evidence for a reusable flight seat-location preference.",
+      "conversation_id": "dlg-2c008e95-12c6-40ec-9e2c-715339cfbd54",
+      "turn_index": 6
+    },
+    {
+      "contribution": "The user requests business class and says to \"make sure\" they get a window seat, supporting the concrete window-seat value independent of cabin class.",
+      "conversation_id": "dlg-49ea456e-c621-42a5-8a0a-2f038426b4c0",
+      "turn_index": 5
+    },
+    {
+      "contribution": "The user says, \"Make sure that's a window seat if that's possible,\" reinforcing the window-seat default with an availability condition.",
+      "conversation_id": "dlg-d2fd7a77-f145-40a7-92c6-b05411431aa3",
+      "turn_index": 11
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "window seat",
+      "annotation": "flight_search.seat_location",
+      "conversation_id": "dlg-95d90c4c-7c01-4de5-874b-6aa4d1e78f27",
+      "habitual_language": false,
+      "instruction_id": "flight-5",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 19,
+      "user_utterance": "Yeah. I'd like a window seat, too, if possible on both flights. That's it."
+    },
+    {
+      "annotated_segment": "window seat",
+      "annotation": "flight_search.seat_location",
+      "conversation_id": "dlg-86585618-0ea3-418c-b1d1-05513ae2f522",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 18,
+      "user_utterance": "No. But I would like a window seat, if I can get one."
+    },
+    {
+      "annotated_segment": "window",
+      "annotation": "flight_search.seat_location",
+      "conversation_id": "dlg-2c008e95-12c6-40ec-9e2c-715339cfbd54",
+      "habitual_language": false,
+      "instruction_id": "flight-3",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 6,
+      "user_utterance": "I would prefer a window seat and to leave in the morning. I would also prefer to be in coach."
+    },
+    {
+      "annotated_segment": "window",
+      "annotation": "flight_search.seat_location",
+      "conversation_id": "dlg-49ea456e-c621-42a5-8a0a-2f038426b4c0",
+      "habitual_language": false,
+      "instruction_id": "flight-13",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 5,
+      "user_utterance": "I would like to travel business class and make sure that I get a window seat."
+    },
+    {
+      "annotated_segment": "window seat",
+      "annotation": "flight_search.seat_location",
+      "conversation_id": "dlg-d2fd7a77-f145-40a7-92c6-b05411431aa3",
+      "habitual_language": false,
+      "instruction_id": "flight-14",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 11,
+      "user_utterance": "Okay. Make sure that's a window seat if that's possible."
+    }
+  ]
+}

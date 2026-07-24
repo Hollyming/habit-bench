@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Apply only to flight itinerary features involving total travel time; do not generalize it to non-flight travel, destination choice, trip date, cabin class, or price preferences.",
+  "bundle_id": "tm_v04_bundle_d366e1607884",
+  "condition": "When the synthetic user is comparing flight itineraries and the current request does not override this, treat minimizing total travel time as a default flight-selection preference.",
+  "confidence": 0.9,
+  "decision": "accept",
+  "default_action": "Rank or request flight options with the smallest total travel time first among otherwise suitable options.",
+  "exception_condition": "If the current request explicitly prioritizes another factor, such as a specific schedule, route, stop requirement, or other hard constraint that requires a longer itinerary, satisfy that current constraint instead.",
+  "family": "flight_feature",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_d366e1607884",
+  "induced_at": "2026-07-15T12:30:45.641457+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "prioritizes shortest total travel time for flights",
+  "preference_value": "shortest possible total flight travel time",
+  "rationale": "Three independent flight-search examples state that the total travel time should be as small as possible. This supports a reusable synthetic-user flight-selection default focused on minimizing total duration, without importing unrelated one-off details.",
+  "seed_value": "travel_time_to_be_as_small_as_possible",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User says, \"I prefer the total travel time to be as small as possible,\" annotated as flight_search.other_description.",
+      "conversation_id": "dlg-a6aaab7f-a666-4a97-b609-0964cfa562e1",
+      "turn_index": 6
+    },
+    {
+      "contribution": "User says, \"I'll prefer the total travel time to be as small as possible,\" annotated as flight_search.other_description.",
+      "conversation_id": "dlg-9d1a3f0d-2994-4533-af6f-a6ef7a4665ce",
+      "turn_index": 4
+    },
+    {
+      "contribution": "User says, \"I'd like the total travel time to be as small as possible,\" annotated as flight_search.other_description.",
+      "conversation_id": "dlg-25a3fc0d-bb84-4dab-b28d-47d078fe4597",
+      "turn_index": 6
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "travel time to be as small as possible",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-a6aaab7f-a666-4a97-b609-0964cfa562e1",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 6,
+      "user_utterance": "I prefer the total travel time to be as small as possible and I also prefer business class."
+    },
+    {
+      "annotated_segment": "travel time to be as small as possible",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-9d1a3f0d-2994-4533-af6f-a6ef7a4665ce",
+      "habitual_language": false,
+      "instruction_id": "flight-11",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 4,
+      "user_utterance": "I want to fly business class and I'll prefer the total travel time to be as small as possible."
+    },
+    {
+      "annotated_segment": "travel time to be as small as possible",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-25a3fc0d-bb84-4dab-b28d-47d078fe4597",
+      "habitual_language": false,
+      "instruction_id": "flight-13",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 6,
+      "user_utterance": "I'd like the total travel time to be as small as possible and I'd like to ride on Business Class."
+    }
+  ]
+}

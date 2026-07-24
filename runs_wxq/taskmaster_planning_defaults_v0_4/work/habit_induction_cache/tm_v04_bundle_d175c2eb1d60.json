@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Apply only to flight-stop selection; do not infer any reusable preference about airline, cabin, destination, date, or party size from this habit.",
+  "bundle_id": "tm_v04_bundle_d175c2eb1d60",
+  "condition": "When searching for flight itineraries for a trip, if a straight/nonstop option is available for the requested route and date.",
+  "confidence": 0.88,
+  "decision": "accept",
+  "default_action": "Search for and prefer straight/nonstop flights before considering itineraries with stops.",
+  "exception_condition": "If no straight/nonstop flight satisfies the required trip constraints, present flights with stops as fallback options and ask for confirmation rather than silently booking one.",
+  "family": "stop_tolerance",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_d175c2eb1d60",
+  "induced_at": "2026-07-15T12:30:38.181596+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Defaults to straight flights",
+  "preference_value": "straight/nonstop flight",
+  "rationale": "Across three independent Taskmaster instruction_ids, the user request repeatedly specifies or prefers a straight flight. This supports a controlled synthetic default for avoiding stops, without treating any route or date as habitual.",
+  "seed_value": "straight",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "instruction_id flight-6: The user says, \"No, I prefer a straight flight,\" directly grounding a straight/nonstop preference.",
+      "conversation_id": "dlg-6a7abd76-cc60-4199-abd1-232cb94dc28f",
+      "turn_index": 11
+    },
+    {
+      "contribution": "instruction_id flight-13: The user says, \"I want it to be a straight flight,\" supporting a default to avoid stops.",
+      "conversation_id": "dlg-1ce70eb6-e15c-4b04-9510-7951101b098b",
+      "turn_index": 5
+    },
+    {
+      "contribution": "instruction_id flight-4: The user specifies \"Economy seating, straight flight,\" grounding straight as the desired flight-stops value.",
+      "conversation_id": "dlg-465f6646-0f5b-45c4-a067-563e5492e662",
+      "turn_index": 9
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "straight",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-6a7abd76-cc60-4199-abd1-232cb94dc28f",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 11,
+      "user_utterance": "No, I prefer a straight flight."
+    },
+    {
+      "annotated_segment": "straight",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-1ce70eb6-e15c-4b04-9510-7951101b098b",
+      "habitual_language": false,
+      "instruction_id": "flight-13",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 5,
+      "user_utterance": "Yeah. I want it to be a straight flight. But the travel time is completely like important to me."
+    },
+    {
+      "annotated_segment": "straight",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-465f6646-0f5b-45c4-a067-563e5492e662",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 9,
+      "user_utterance": "Economy seating, straight flight."
+    }
+  ]
+}

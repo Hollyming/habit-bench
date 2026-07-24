@@ -1,0 +1,373 @@
+{
+  "controls": [
+    {
+      "control_id": "ctrl_false_001",
+      "correct_memory_policy": "Keep flight routing unset as a fixed default. For each trip, compare nonstop and connecting options using the current setup window, teaching start, connection length, weather/season risk, fare difference, arrival fatigue, and seat/bag constraints. Prefer a nonstop only when it materially protects the current schedule or reduces risk enough to justify the fare.",
+      "decision_dimension": "Nonstop versus connecting flight selection",
+      "evidence": [
+        {
+          "evidence_quote": "For Thursday March 6, the nonstop is the more practical choice: it gets you into RDU in the evening with enough margin to check in and still do the room preview. The cheaper connection saves about $120, but it lands after midnight if everything is on time, which is a bad setup before Friday teaching prep.",
+          "role_in_nonhabit": "Tempting positive: nonstop chosen because this trip needed a Thursday room preview.",
+          "session_id": "tm_pd_v04_user_004_s0039"
+        },
+        {
+          "evidence_quote": "Book the nonstop outbound. I don’t want the after-10 p.m. one-stop before an 8 a.m. workshop.",
+          "role_in_nonhabit": "Tempting positive: user explicitly rejects a late one-stop because of a next-morning workshop.",
+          "session_id": "tm_pd_v04_user_004_s0043"
+        },
+        {
+          "evidence_quote": "Flights booked: Sunday May 18 TPA-ATL-MKE, 2:35 p.m.-5:54 p.m.; Wednesday May 21 MKE-ATL-TPA, 1:20 p.m.-6:35 p.m. Seats are set as windows: 16A, 12F, 15A, and 18F. Main cabin fare, not basic.",
+          "role_in_nonhabit": "Counterexample: a one-stop routing was booked when it was the practical Milwaukee/Madison plan.",
+          "session_id": "tm_pd_v04_user_004_s0047"
+        },
+        {
+          "evidence_quote": "Booked: compact car at MCI, pay at counter, confirmation MCI-C4372.",
+          "role_in_nonhabit": "Context for counterexample trip: the Kansas City plan used a connecting flight plus rental-car logistics rather than requiring a nonstop.",
+          "session_id": "tm_pd_v04_user_004_s0081"
+        },
+        {
+          "evidence_quote": "Booked: confirmation Q7SLC4. Seats selected where the map allowed free windows: 16A TPA-ATL, 19A ATL-SLC, and 21A SLC-DEN.",
+          "role_in_nonhabit": "Counterexample: Salt Lake practical stack was booked with connections.",
+          "session_id": "tm_pd_v04_user_004_s0110"
+        },
+        {
+          "evidence_quote": "Flights booked. Confirmation CHI-8KQ2: Thu Sept. 18 TPA-ORD 9:20 a.m.-11:05 a.m., seat 18A; Sun Sept. 21 ORD-TPA 2:40 p.m.-6:20 p.m., seat 20F. Both are regular economy.",
+          "role_in_nonhabit": "Tempting positive in another episode: a nonstop was selected when it was the clean ORD option.",
+          "session_id": "tm_pd_v04_user_004_s0113"
+        }
+      ],
+      "family": "flight_routing_policy",
+      "opportunity_description": "A naive memory system could see many bookings where Kara chose or paid more for nonstops and infer a durable default to always book nonstop flights whenever possible.",
+      "strongest_false_inference": "Always choose nonstop flights over connections, even at a higher price.",
+      "tempting_false_inferences": [
+        "Kara dislikes connections categorically.",
+        "A nonstop is always worth paying more for before teaching trips.",
+        "Connecting itineraries should only be shown as backups."
+      ],
+      "why_no_stable_habit": "The lifeline repeatedly shows nonstops being preferred when they protect setup, sleep, or Monday recovery, but also many connections chosen when timing, cost, or recovery trade-offs are acceptable. The durable pattern is schedule-risk evaluation, not a fixed nonstop preference."
+    },
+    {
+      "control_id": "ctrl_false_002",
+      "correct_memory_policy": "Do not store a fixed outbound-time default. Ask or use the current trip’s work block, setup window, arrival buffer, time zone, and fatigue concerns. Early flights are acceptable when they protect setup or arrival; later flights are acceptable when current obligations make them necessary.",
+      "decision_dimension": "Outbound departure time from Tampa",
+      "evidence": [
+        {
+          "evidence_quote": "I can leave TPA after noon Thursday.",
+          "role_in_nonhabit": "Tempting positive: after-noon departure constraint appears on a seminar trip.",
+          "session_id": "tm_pd_v04_user_004_s0000"
+        },
+        {
+          "evidence_quote": "I can be at TPA around noon if I leave class cleanly.",
+          "role_in_nonhabit": "Tempting positive: another work trip has a noon airport constraint tied to class.",
+          "session_id": "tm_pd_v04_user_004_s0015"
+        },
+        {
+          "evidence_quote": "Proposed plan: fly Sunday May 18 TPA-MKE via Atlanta, 2:35 p.m.-5:54 p.m.; rent a standard car and drive to Madison, arriving at the hotel around 8:00.",
+          "role_in_nonhabit": "Tempting positive: later outbound selected because Sunday morning had an obligation.",
+          "session_id": "tm_pd_v04_user_004_s0047"
+        },
+        {
+          "evidence_quote": "The Tampa departure is now 7:40 a.m., the Dallas layover is longer, and Portland arrival is still 1:42 p.m. Downside is the earlier start at TPA. Upside is less connection stress before the 4:00 lab access.",
+          "role_in_nonhabit": "Counterexample: an early flight is kept because it protects the lab-access window.",
+          "session_id": "tm_pd_v04_user_004_s0084"
+        },
+        {
+          "evidence_quote": "Thursday 9:10 a.m. Tampa departure, one connection, arriving San Antonio 12:58 p.m.; Sunday 1:35 p.m. departure, arriving Tampa about 7:05 p.m.",
+          "role_in_nonhabit": "Counterexample: morning outbound was booked when it fit presenter check-in.",
+          "session_id": "tm_pd_v04_user_004_s0101"
+        },
+        {
+          "evidence_quote": "Thursday July 17, 7:12 a.m. TPA-ATL-SLC arriving 12:46 p.m.",
+          "role_in_nonhabit": "Counterexample: very early outbound accepted for Salt Lake to protect setup and arrival.",
+          "session_id": "tm_pd_v04_user_004_s0110"
+        }
+      ],
+      "family": "flight_outbound_timing_policy",
+      "opportunity_description": "Because many trips begin after a class, clinic block, webinar, or call, a naive system could infer that Kara generally prefers late-morning or afternoon departures and should avoid early flights.",
+      "strongest_false_inference": "Default to after-noon outbound flights from Tampa because Kara does not like or cannot use early departures.",
+      "tempting_false_inferences": [
+        "Do not propose early-morning departures unless the user explicitly asks.",
+        "Afternoon outbound is a personal preference rather than a schedule constraint.",
+        "A dawn or morning flight is inherently a bad fit for Kara."
+      ],
+      "why_no_stable_habit": "The repeated after-noon departures are usually driven by a current teaching block, webinar, or partner schedule. The same lifeline also contains many deliberately selected morning departures when needed for presenter check-in, badge pickup, or setup."
+    },
+    {
+      "control_id": "ctrl_false_003",
+      "correct_memory_policy": "Do not store a fixed schedule-change response. Re-evaluate the changed itinerary against the current trip’s hard commitments, connection length, arrival time, materials, ground transport, extra cost, and fatigue impact. Keep, switch, or ask only after comparing the live alternatives.",
+      "decision_dimension": "How to respond to airline schedule changes",
+      "evidence": [
+        {
+          "evidence_quote": "Keep it. Give me the quick verification list before I forget.",
+          "role_in_nonhabit": "Tempting positive for keeping: St. Louis retime was accepted because the calendar buffer remained adequate.",
+          "session_id": "tm_pd_v04_user_004_s0014"
+        },
+        {
+          "evidence_quote": "Switch to the nonstop. Take 14A if it is still open, and tell the hotel I will be late.",
+          "role_in_nonhabit": "Counterexample: Indianapolis outbound was changed when a 36-minute connection became too exposed.",
+          "session_id": "tm_pd_v04_user_004_s0031"
+        },
+        {
+          "evidence_quote": "Take 22F. No need to pay just to sit forward.",
+          "role_in_nonhabit": "Counterexample: Raleigh Sunday retime was changed to the nonstop because the late connection would hurt Monday.",
+          "session_id": "tm_pd_v04_user_004_s0041"
+        },
+        {
+          "evidence_quote": "If you are still not checking a bag, I would keep the shifted outbound. New arrival is 2:27 p.m., which still works.",
+          "role_in_nonhabit": "Tempting positive for keeping: Denver shifted outbound still fit the badge window.",
+          "session_id": "tm_pd_v04_user_004_s0075"
+        },
+        {
+          "evidence_quote": "Switch to Detroit if the rental timing still works. Do not pay for the last window.",
+          "role_in_nonhabit": "Counterexample: Milwaukee return was switched because the ATL connection became too short.",
+          "session_id": "tm_pd_v04_user_004_s0105"
+        },
+        {
+          "evidence_quote": "Then switch to DFW if that price is live. Caveats?",
+          "role_in_nonhabit": "Counterexample: Salt Lake outbound was switched to avoid a 43-minute ATL connection.",
+          "session_id": "tm_pd_v04_user_004_s0111"
+        }
+      ],
+      "family": "flight_schedule_change_response",
+      "opportunity_description": "Long lifelines contain many retimes and reissues. A naive system might overfit to either keeping changed flights or switching to safer alternatives.",
+      "strongest_false_inference": "When an airline changes a flight, Kara has a fixed preference to either keep the existing booking or always switch to the safer/more expensive option.",
+      "tempting_false_inferences": [
+        "Keep schedule changes by default to avoid reissuing.",
+        "Switch any shortened connection by default.",
+        "Accept later arrivals as long as the trip is not technically broken."
+      ],
+      "why_no_stable_habit": "The record has repeated examples of keeping retimed flights when they still fit, and repeated examples of switching when a retime undermines setup, connection reliability, Monday recovery, or safe ground timing."
+    },
+    {
+      "control_id": "ctrl_false_004",
+      "correct_memory_policy": "Keep return-day choice unset until current event end time, teardown, equipment handling, Monday/Tuesday obligations, airport distance, and available departure times are known. Add an extra night only when it materially reduces risk or fatigue; use same-day returns when they are comfortably timed.",
+      "decision_dimension": "Same-day return versus adding an extra night after teaching, labs, races, or conferences",
+      "evidence": [
+        {
+          "evidence_quote": "Thursday morning. I don’t want a near-midnight landing with that kit.",
+          "role_in_nonhabit": "Tempting positive: Milwaukee return was extended to Thursday because of a later debrief and demo kit.",
+          "session_id": "tm_pd_v04_user_004_s0004"
+        },
+        {
+          "evidence_quote": "Then do Sunday. Book the practical Thursday connection, not the pricey nonstop. Window seats if you can.",
+          "role_in_nonhabit": "Tempting positive: Indianapolis added Sunday return to avoid a brittle Saturday evening flight.",
+          "session_id": "tm_pd_v04_user_004_s0029"
+        },
+        {
+          "evidence_quote": "Book Friday then. Use the suite hotel. Window seat if you can, but do not pay extra for it.",
+          "role_in_nonhabit": "Counterexample: Atlanta was booked as a one-night trip with a Friday return when the clinic confirmed a tight wrap.",
+          "session_id": "tm_pd_v04_user_004_s0093"
+        },
+        {
+          "evidence_quote": "Sunday can stay clean: quick exhibit pass if you want it from 9 to 10, checkout by 10:45, rideshare around 11:05, airport around 11:25.",
+          "role_in_nonhabit": "Counterexample: San Antonio used a same-Sunday return because teardown finished Saturday.",
+          "session_id": "tm_pd_v04_user_004_s0101"
+        },
+        {
+          "evidence_quote": "I would not plan around it. Saturday teaching may run until 4:15, then you still have teardown, materials, airport transit, car return or rideshare, and security. The realistic Saturday flights either leave too tight or get you home very late. Sunday afternoon is much cleaner and still gets you back before the evening is shot.",
+          "role_in_nonhabit": "Tempting positive: Milwaukee used Sunday return because Saturday was too compressed.",
+          "session_id": "tm_pd_v04_user_004_s0104"
+        },
+        {
+          "evidence_quote": "Thu Oct 16 RDU 2:15 p.m. to TPA 4:05 p.m., seat 15F. Total airfare including the return seat fee is $344. Both assigned seats are windows.",
+          "role_in_nonhabit": "Counterexample: Raleigh used a same-day Thursday return when coaching was supposed to end by 12:30.",
+          "session_id": "tm_pd_v04_user_004_s0116"
+        }
+      ],
+      "family": "trip_return_day_policy",
+      "opportunity_description": "Because many trips add a final night to avoid rushed teardown or late arrivals, a naive system could infer that Kara always prefers to stay overnight after the last event.",
+      "strongest_false_inference": "Default to the next-day return after work events, labs, or active weekends.",
+      "tempting_false_inferences": [
+        "Kara would rather pay for an extra night than fly after an event.",
+        "Saturday or Sunday same-day returns should be avoided by default.",
+        "If a lab or race ends in the afternoon, automatically extend the hotel."
+      ],
+      "why_no_stable_habit": "The lifeline repeatedly adds nights when teardown, debrief, equipment, weather, or late arrivals make same-day travel brittle, but also repeatedly books same-day returns when the current schedule is clean enough."
+    },
+    {
+      "control_id": "ctrl_false_005",
+      "correct_memory_policy": "Keep ground transport unset. Decide per trip using current facts: amount of gear, early starts, parking/validation, loading entrance, rental counter risk, weather or mountain driving, local rideshare reliability, hotel parking cost, and whether materials can be stored onsite.",
+      "decision_dimension": "Rental car versus rideshare, taxi, shuttle, or car service",
+      "evidence": [
+        {
+          "evidence_quote": "Least useful: rental car. It gives control, but campus parking/vendor unloading are the unknowns, and returning it Sunday adds friction before the 4:40 flight.",
+          "role_in_nonhabit": "Counterexample to rental default: Raleigh campus plan avoided a car.",
+          "session_id": "tm_pd_v04_user_004_s0024"
+        },
+        {
+          "evidence_quote": "Rental car booked: standard car from MKE, pickup Sunday May 18 at 6:15 p.m., return Wednesday May 21 by 11:30 a.m.",
+          "role_in_nonhabit": "Tempting positive: Madison used a rental because Milwaukee airport and clinic logistics made it practical.",
+          "session_id": "tm_pd_v04_user_004_s0047"
+        },
+        {
+          "evidence_quote": "Okay. Book the nonstop and the suite, cancel the car hold, and take the window seats if they're still there.",
+          "role_in_nonhabit": "Counterexample to rental default: Columbus canceled the car hold after gear could be locked in the lab.",
+          "session_id": "tm_pd_v04_user_004_s0054"
+        },
+        {
+          "evidence_quote": "Correct. Rideshare still looks simpler and cheaper since the host will store the demo bag. I will leave the rental car off.",
+          "role_in_nonhabit": "Counterexample: Nashville used rideshare because storage solved the gear problem.",
+          "session_id": "tm_pd_v04_user_004_s0065"
+        },
+        {
+          "evidence_quote": "Compact rental is reserved with Avis, confirmation CLT-4428. Pickup at CLT around 2:30 p.m. Thursday and return Sunday by noon.",
+          "role_in_nonhabit": "Tempting positive: Charlotte used a rental because staff garage, demo bag, and setup timing made it cleaner.",
+          "session_id": "tm_pd_v04_user_004_s0070"
+        },
+        {
+          "evidence_quote": "Yes. Rideshare is simpler here. The hotel has limited parking, the clinic is only about 10 minutes away, and you do not need a car during teaching.",
+          "role_in_nonhabit": "Counterexample: Atlanta used rideshare because a rental added little value.",
+          "session_id": "tm_pd_v04_user_004_s0093"
+        }
+      ],
+      "family": "ground_transport_policy",
+      "opportunity_description": "The history includes many compact rentals for clinic logistics and many rideshare-first plans for urban trips. A naive system could incorrectly store a stable ground-transport preference.",
+      "strongest_false_inference": "Default to renting a compact car for work trips with materials, or conversely default to avoiding rentals in favor of rideshare.",
+      "tempting_false_inferences": [
+        "Kara prefers rental cars for clinic trips.",
+        "Kara avoids driving in cities and should use rideshare by default.",
+        "Compact rentals are the standard ground plan unless a host provides transport."
+      ],
+      "why_no_stable_habit": "Rental cars are chosen when they reduce material, parking, timing, or regional-driving risk. Rideshare or car service is chosen when urban parking, short stays, storage, or airport-to-venue simplicity make a rental unnecessary."
+    },
+    {
+      "control_id": "ctrl_false_006",
+      "correct_memory_policy": "Do not store a fixed hotel-format default. For each trip, compare room predictability, meeting-space proximity, material movement, daily commute, cancellation terms, and the current importance of in-room basics and recovery amenities. Use the suite when it is the cleaner operational choice; use official or connected lodging when proximity and material handling matter more.",
+      "decision_dimension": "Suite-style offsite hotel versus official block, connected venue hotel, campus-adjacent hotel, or host-rate hotel",
+      "evidence": [
+        {
+          "evidence_quote": "Book the suite. The fridge and morning routine matter more here.",
+          "role_in_nonhabit": "Tempting positive: Baltimore chose the suite over official lodging.",
+          "session_id": "tm_pd_v04_user_004_s0043"
+        },
+        {
+          "evidence_quote": "Straight recommendation: book the suite and the Delta Wednesday-to-Sunday flights. The suite loses the pool and hot tub, but it gives you the more predictable room setup for four nights.",
+          "role_in_nonhabit": "Tempting positive: Denver chose a suite for room predictability.",
+          "session_id": "tm_pd_v04_user_004_s0058"
+        },
+        {
+          "evidence_quote": "Cancel the suite anyway. Proximity matters more for this summit.",
+          "role_in_nonhabit": "Counterexample: Indianapolis chose the conference block over the suite because proximity mattered more.",
+          "session_id": "tm_pd_v04_user_004_s0090"
+        },
+        {
+          "evidence_quote": "That caveat is fine. Connected wins for this one. Please grab window seats if they’re available.",
+          "role_in_nonhabit": "Counterexample: San Antonio chose the connected official block despite fridge being only a request.",
+          "session_id": "tm_pd_v04_user_004_s0101"
+        },
+        {
+          "evidence_quote": "Book the official hotel. The connected location beats the hot tub for this one. Please don’t use basic economy.",
+          "role_in_nonhabit": "Counterexample: Chicago chose the official connected hotel.",
+          "session_id": "tm_pd_v04_user_004_s0113"
+        },
+        {
+          "evidence_quote": "Booked Crabtree Suites Raleigh, confirmation CSN-31872: Oct 14-16, queen studio, coffee maker and mini-fridge confirmed, fitness room and indoor pool confirmed, no hot tub.",
+          "role_in_nonhabit": "Tempting positive: Raleigh chose a suite when room reliability beat the adjacent hotel.",
+          "session_id": "tm_pd_v04_user_004_s0116"
+        }
+      ],
+      "family": "hotel_format_and_venue_proximity_policy",
+      "opportunity_description": "Kara often chooses suite hotels because they make the room routine predictable. A naive memory system could overgeneralize that into a durable preference for suite hotels over official or adjacent options.",
+      "strongest_false_inference": "Always choose a suite-style hotel over official conference blocks, host-rate hotels, or connected venue hotels.",
+      "tempting_false_inferences": [
+        "A suite hotel is always Kara’s preferred format.",
+        "Official or campus-adjacent hotels should be avoided unless no suite exists.",
+        "Room predictability always beats connected conference convenience."
+      ],
+      "why_no_stable_habit": "Many trips choose suites, but the complete lifeline also chooses official or connected block hotels when proximity, lab materials, or conference flow are more important than the suite advantages. The decision is context-conditioned."
+    },
+    {
+      "control_id": "ctrl_false_007",
+      "correct_memory_policy": "Keep airport choice unset. For each trip, compare airport options using current flight timing, fare gap, drive duration, rental availability, weather, after-dark driving, gear, return-day fatigue, and local schedule commitments. Do not carry an airport default across destinations or episodes.",
+      "decision_dimension": "Choosing the closest destination airport versus a farther or alternate airport with better timing, fare, or rental-car logistics",
+      "evidence": [
+        {
+          "evidence_quote": "AVL avoids it best. GSP is next; the drive is straightforward if you land by midafternoon. CLT is okay only with an early arrival and a prebooked rental.",
+          "role_in_nonhabit": "Conditioning evidence: closer Asheville is better for avoiding mountain-road concerns, while GSP is only a practical compromise.",
+          "session_id": "tm_pd_v04_user_004_s0011"
+        },
+        {
+          "evidence_quote": "Travel leaning: fly Tampa to Milwaukee Sunday afternoon/early evening, rent a car, and drive to Madison before it gets late. Madison airport is closer but has fewer choices, higher fares, and more connection risk.",
+          "role_in_nonhabit": "Tempting positive: Milwaukee chosen over Madison because of flight choices and rental practicality.",
+          "session_id": "tm_pd_v04_user_004_s0046"
+        },
+        {
+          "evidence_quote": "Greenville is now the practical choice. Current pairing: Friday TPA 1:18 p.m. to GSP 4:42 p.m. via Atlanta, 58-minute layover; Monday GSP 2:25 p.m. to TPA 5:58 p.m. via Atlanta.",
+          "role_in_nonhabit": "Tempting positive: GSP selected for Asheville when airfare/timing made it practical.",
+          "session_id": "tm_pd_v04_user_004_s0077"
+        },
+        {
+          "evidence_quote": "How much worse is Greenville-Spartanburg than Asheville airport once we have a car?",
+          "role_in_nonhabit": "Conditioning evidence: user explicitly wants the airport trade-off evaluated, not assumed.",
+          "session_id": "tm_pd_v04_user_004_s0086"
+        },
+        {
+          "evidence_quote": "Midway is only saving about $35 to $50 on the flight options I’m seeing. It adds more crosstown time to the conference hotel and leaves fewer easy fallbacks if the Sunday breakfast runs long. If the fare gap grows, it could be worth revisiting, but today ORD is the cleaner choice.",
+          "role_in_nonhabit": "Counterexample to alternate-airport default: ORD chosen over Midway despite a small savings.",
+          "session_id": "tm_pd_v04_user_004_s0112"
+        },
+        {
+          "evidence_quote": "Does downtown actually let us skip the rental car?",
+          "role_in_nonhabit": "Conditioning evidence: airport/lodging/ground decisions are evaluated together rather than by a fixed alternate-airport preference.",
+          "session_id": "tm_pd_v04_user_004_s0094"
+        }
+      ],
+      "family": "airport_selection_policy",
+      "opportunity_description": "The lifeline repeatedly compares nearby airports, and many trips pick secondary or farther airports. A naive memory system could infer a durable preference for specific alternate airports or for larger airports with rental cars.",
+      "strongest_false_inference": "Prefer the alternate/larger airport when it offers more flight choices, even if it adds a drive.",
+      "tempting_false_inferences": [
+        "For Asheville or Blue Ridge, default to GSP over AVL.",
+        "For Madison, default to Milwaukee over Madison airport.",
+        "For Chicago, default to ORD over Midway.",
+        "Kara generally accepts extra driving if airfare is better."
+      ],
+      "why_no_stable_habit": "Alternate airports win in some episodes because of schedule, fare, or rental inventory, but closer airports or primary airports remain preferred when they reduce driving, darkness, or logistics. The stable behavior is comparative airport analysis, not an airport preference."
+    },
+    {
+      "control_id": "ctrl_false_008",
+      "correct_memory_policy": "Apply the separate supported default to select or request window seats when available. Keep willingness to pay for seat fees unset: use the current trip facts, fee amount, segment importance, adjacency needs, and any explicit user instruction. Ask before paying unless the user has approved the specific fee/threshold in the current booking flow.",
+      "decision_dimension": "Willingness to pay extra for a window, forward seat, preferred seat, or adjacent pair",
+      "evidence": [
+        {
+          "evidence_quote": "Take 18C. I don’t need a $54 window on one leg.",
+          "role_in_nonhabit": "Counterexample to always-pay: Denver final leg used an aisle rather than a costly window.",
+          "session_id": "tm_pd_v04_user_004_s0007"
+        },
+        {
+          "evidence_quote": "Don’t pay extra for that short segment. Take the best non-middle and set a seat alert. Window where you can.",
+          "role_in_nonhabit": "Counterexample to always-pay: San Antonio skipped a paid preferred window.",
+          "session_id": "tm_pd_v04_user_004_s0023"
+        },
+        {
+          "evidence_quote": "Use the paid return window if it stays under $30. No checked bag.",
+          "role_in_nonhabit": "Counterexample to never-pay: Denver return window was approved when the fee was acceptable.",
+          "session_id": "tm_pd_v04_user_004_s0074"
+        },
+        {
+          "evidence_quote": "Return keep us adjacent and free. I do not care $136 worth after the resort fees.",
+          "role_in_nonhabit": "Counterexample to always-pay: Tucson kept free adjacent aisle-middle seats rather than paying for return window pairs.",
+          "session_id": "tm_pd_v04_user_004_s0095"
+        },
+        {
+          "evidence_quote": "Take 15F. That's reasonable.",
+          "role_in_nonhabit": "Counterexample to never-pay: Raleigh paid $18 for the return window.",
+          "session_id": "tm_pd_v04_user_004_s0116"
+        },
+        {
+          "evidence_quote": "Keep the return free adjacent pair. I would rather not pay $78 just for the window on the way home. On the outbound, put me in the window if that works.",
+          "role_in_nonhabit": "Mixed evidence in one trip: window chosen when included, but not purchased at a higher fee.",
+          "session_id": "tm_pd_v04_user_004_s0107"
+        }
+      ],
+      "family": "paid_seat_selection_policy",
+      "opportunity_description": "Kara has a supported window-seat preference, but the lifeline contains mixed choices about paying extra for seats. A naive memory system could either ignore the window preference when fees appear or assume she will always pay to preserve it.",
+      "strongest_false_inference": "Never pay extra for a window seat, or always pay extra to secure one.",
+      "tempting_false_inferences": [
+        "If a window costs extra, skip it by default.",
+        "If a window is available for a fee, buy it because Kara likes windows.",
+        "There is a fixed dollar threshold for seat fees."
+      ],
+      "why_no_stable_habit": "The record shows many refusals to pay for windows or forward seats, but also some paid seats approved when the amount seemed reasonable or the current trip justified it. The stable habit is window preference when available, not a fixed seat-fee policy."
+    }
+  ]
+}

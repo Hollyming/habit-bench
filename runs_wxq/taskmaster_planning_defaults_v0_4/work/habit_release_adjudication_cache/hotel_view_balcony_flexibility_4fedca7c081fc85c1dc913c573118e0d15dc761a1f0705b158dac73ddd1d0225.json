@@ -1,0 +1,21 @@
+{
+  "cache_fingerprint": "4fedca7c081fc85c1dc913c573118e0d15dc761a1f0705b158dac73ddd1d0225",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_room_balcony_preference",
+      "boundary_condition": "Do not treat balcony as mandatory unless the current request explicitly says it is required. Do not infer an ocean view or any specific view from the balcony preference alone.",
+      "canonical_value": "Prefer a hotel room with a balcony, especially when the room is above the first floor or the floor is unknown; a first-floor room can waive the balcony preference.",
+      "condition": "Use when searching for, booking, or evaluating hotel room amenities, particularly when the room is above the first floor or the floor has not been specified.",
+      "default_action": "Ask for or verify that the hotel room has a balcony as a soft default preference.",
+      "exception_condition": "If the room is on the first floor, the balcony preference may be waived.",
+      "input_ids": [
+        "tm_v04_e2e_habit_5687f4a741ee"
+      ],
+      "name": "hotel_room_balcony_preference",
+      "preference_value": "Prefers a hotel room with a balcony when booking or evaluating rooms.",
+      "rationale": "Supported by multiple hotel-room amenity requests mentioning a balcony, with one explicit flexibility condition that a first-floor room does not need one. The evidence supports a soft balcony preference rather than an always-mandatory requirement, and does not justify adding an ocean-view requirement.",
+      "representative_id": "tm_v04_e2e_habit_5687f4a741ee"
+    }
+  ]
+}

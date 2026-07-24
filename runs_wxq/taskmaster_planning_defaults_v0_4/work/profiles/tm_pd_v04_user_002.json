@@ -1,0 +1,186 @@
+{
+  "cache_fingerprint": "d7a7b61ea7eb2d29617f3ef6657096237204deb73e7591dfa3f2f08354f3226a",
+  "profile": {
+    "communication_style": {
+      "decision_format": "Likes short comparison tables with total price, timing, key hotel amenities, and notable trade-offs rather than long narrative lists.",
+      "follow_up_pattern": "Often returns to verify hotel amenities, adjust return-flight timing after an agenda changes, or ask whether a slightly less convenient option is worth the savings.",
+      "planning_voice": "Concise and specific, usually giving origin, destination, dates, meeting windows, and reimbursement constraints up front.",
+      "tone": "Polite, direct, and collaborative; she appreciates caveats when a preference is soft or when availability is uncertain."
+    },
+    "generated_by": {
+      "model": "gpt-5.5",
+      "reasoning_effort": "xhigh"
+    },
+    "generation_method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+    "habit_interactions": [
+      {
+        "description": "For work hotels, included breakfast, an in-room coffee maker plus refrigerator or mini-fridge, and on-site or nearby restaurant access combine into a practical self-sufficiency pattern for early meetings and car-light arrivals.",
+        "interaction": "hotel_practicality_bundle",
+        "related_source_habit_instance_ids": [
+          "tm_v04_e2e_habit_4159e7bcd6b1",
+          "tm_v04_e2e_habit_12de0f7be5d5",
+          "tm_v04_e2e_habit_11cb153da985"
+        ]
+      },
+      {
+        "description": "On return days, she commonly wants the return leg after lunch so she can finish a morning site visit. United is favored from Chicago when comparable, but return timing can outrank carrier preference.",
+        "interaction": "return_day_priority",
+        "related_source_habit_instance_ids": [
+          "tm_v04_e2e_habit_26cf0aa15c48",
+          "tm_v04_e2e_habit_95ce9d7fff28"
+        ]
+      },
+      {
+        "description": "The queen-bed preference appears mostly as a quiet booking-detail check for standard one-bed rooms and should not override explicit separate-bed or multi-room arrangements.",
+        "interaction": "room_type_background_check",
+        "related_source_habit_instance_ids": [
+          "tm_v04_e2e_habit_90a7ff1f51d8"
+        ]
+      }
+    ],
+    "habits": [
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_002_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies when Marisol is choosing commercial flights from Chicago for grant site visits, board meetings, conferences, or solo domestic trips where no stronger current carrier instruction overrides the choice.",
+        "scope_key": "domestic_work_and_solo_flights_from_chicago",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002"
+      },
+      {
+        "alternative_group_key": "flight_return_departure_time_preference",
+        "boundary_condition": "Treat as a soft default; if true afternoon return departures are unavailable, limited, or unattractive, consider options close to afternoon.",
+        "condition": "When booking or comparing round-trip flights and selecting the return-leg departure time.",
+        "default_action": "Search for return-flight options departing in the afternoon and present those first when available.",
+        "exception_condition": "Do not apply as a universal outbound-leg rule; one supporting dialogue separately used a morning outbound while still preferring an afternoon return.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_002_h01",
+        "name": "afternoon_return_departure_preference",
+        "preference_value": "Prefer the return flight to depart in the afternoon.",
+        "scope_condition": "Applies to round-trip itineraries when she is choosing the return-leg departure after a work site visit, board meeting, conference, or short personal stay and does not have a fixed agenda or family constraint requiring another time.",
+        "scope_key": "return_legs_after_site_visits_and_short_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_26cf0aa15c48",
+        "source_habit_instance_id": "tm_v04_e2e_habit_26cf0aa15c48",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002"
+      },
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Use this as a soft preference, not an absolute requirement, because the evidence ranges from a direct requirement to a tentative request and a later verification question.",
+        "condition": "When evaluating or booking a hotel, treat free breakfast as a recurring included-service preference.",
+        "default_action": "Prioritize or verify hotels with free breakfast when available; if breakfast is not listed, ask or check rather than assuming it is included.",
+        "exception_condition": "Do not reject an otherwise suitable hotel solely for lacking free breakfast unless the user explicitly makes it required in the current booking; do not infer a full or high-quality breakfast requirement unless stated.",
+        "family": "hotel_included_services",
+        "habit_id": "tm_pd_v04_user_002_h02",
+        "name": "prefer_included_hotel_breakfast",
+        "preference_value": "Prefer hotels that include free breakfast.",
+        "scope_condition": "Applies when she is evaluating hotels for grant-site visits, conference stays, or personal overnights with early morning plans, especially when she is trying to keep the trip simple under reimbursement or per-diem rules.",
+        "scope_key": "work_hotels_and_early_morning_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_4159e7bcd6b1",
+        "source_habit_instance_id": "tm_v04_e2e_habit_4159e7bcd6b1",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002"
+      },
+      {
+        "alternative_group_key": "trip_context_hotel_in_room_amenity_bundle",
+        "boundary_condition": "Do not generalize this to other amenities such as microwave, balcony, bar, fireplace, room size, location, dates, or price.",
+        "condition": "When selecting or comparing hotel rooms and in-room amenities are being considered.",
+        "default_action": "Use an in-room coffee maker and refrigerator or mini-fridge as soft amenity criteria, and confirm availability when relevant.",
+        "exception_condition": "If a hotel otherwise strongly matches the current trip, treat a missing coffee maker or refrigerator/mini-fridge as a point to confirm with the user rather than an automatic rejection.",
+        "family": "trip_context_hotel_policy",
+        "habit_id": "tm_pd_v04_user_002_h03",
+        "name": "hotel_room_coffee_maker_and_fridge_preference",
+        "preference_value": "Prefers a hotel room with both a coffee maker and a refrigerator or mini-fridge.",
+        "scope_condition": "Applies when she is comparing hotel rooms for multi-night work stays, conference hotels, or road-trip overnights where having practical in-room amenities would affect convenience.",
+        "scope_key": "multi_night_hotel_room_amenity_checks",
+        "source_bundle_id": "tm_v04_e2e_bundle_12de0f7be5d5",
+        "source_habit_instance_id": "tm_v04_e2e_habit_12de0f7be5d5",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002"
+      },
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Do not infer specific cuisine, star rating, bar service, kid-friendliness, downtown location, ski access, or wooded setting unless stated for the current trip.",
+        "condition": "When searching for, comparing, or summarizing hotel options.",
+        "default_action": "Mention on-site or nearby restaurant availability and use convenient dining access as a soft tie-breaker rather than a hard filter.",
+        "exception_condition": "Do not apply if the user explicitly deprioritizes dining access or if stronger current-trip constraints override it.",
+        "family": "hotel_accessibility_amenity_priority",
+        "habit_id": "tm_pd_v04_user_002_h04",
+        "name": "hotel_restaurant_access",
+        "preference_value": "Hotels with on-site or nearby restaurant access, with restaurant availability noted during comparisons.",
+        "scope_condition": "Applies when she is searching for or comparing hotels on trips where she may arrive after a workday, skip a rental car, or need an easy dinner option near the hotel.",
+        "scope_key": "car_light_work_hotels_and_late_arrival_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_11cb153da985",
+        "source_habit_instance_id": "tm_v04_e2e_habit_11cb153da985",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002"
+      },
+      {
+        "alternative_group_key": "hotel_room_bed_type_single_large_bed",
+        "boundary_condition": "Evidence supports queen-size beds as the recurring preference. A king bed may be acceptable when explicitly offered or requested, but the evidence does not establish a reusable preference to upgrade to king whenever possible.",
+        "condition": "When booking a standard hotel room where a single larger/shared bed is appropriate and no separate-bed setup has been requested.",
+        "default_action": "Filter for or request a queen-size bed when bed type is selectable; if the listing only shows double, twin, or unspecified bedding, confirm the bed setup before booking.",
+        "exception_condition": "Honor explicit requests for twin beds, multiple separate beds, multiple rooms with different bedding, accessibility-related bedding, or any other trip-specific bed arrangement.",
+        "family": "hotel_room_bed_policy",
+        "habit_id": "tm_pd_v04_user_002_h05",
+        "name": "queen_bed_for_single_bed_hotel_rooms",
+        "preference_value": "Prefer a queen-size bed for hotel rooms intended to have one larger/shared bed.",
+        "scope_condition": "Applies when she is booking a standard hotel room where one larger or shared bed is appropriate for a solo stay or a trip with her spouse, and no trip-specific separate-bed setup has been requested.",
+        "scope_key": "standard_one_bed_hotel_rooms_for_solo_or_shared_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_90a7ff1f51d8",
+        "source_habit_instance_id": "tm_v04_e2e_habit_90a7ff1f51d8",
+        "strength": "background",
+        "testable": false,
+        "user_id": "tm_pd_v04_user_002"
+      }
+    ],
+    "longitudinal_plan": {
+      "target_history_characters": 286000,
+      "target_sessions": 112,
+      "travel_tempo": "About ten to twelve travel episodes per year, heavier in spring and fall grant-review seasons, with a few conference or personal-weekend episodes filling the quieter months.",
+      "typical_episode_shape": "A normal episode spans two to four sessions: initial flight-and-hotel scan, refinement around meeting windows or reimbursement limits, hotel amenity verification, and occasional rebooking or receipt-style follow-up. Some conference trips collapse into one or two sessions because the dates and hotel block are fixed."
+    },
+    "persona": {
+      "age_range": "mid 50s",
+      "decision_posture": "Organized, reimbursement-aware, and practical. She cares more about low-friction schedules, predictable meals, and useful room amenities than luxury, and she will relax soft preferences when meeting times, hotel blocks, or budget rules are more important.",
+      "home_base": "Chicago, Illinois",
+      "name": "Marisol Greene",
+      "occupation": "program officer for a national arts-and-culture grantmaking nonprofit",
+      "travel_identity": "Steady domestic traveler who self-books short grant-site visits to museums, libraries, and community arts organizations, plus board meetings, sector conferences, and a few low-key personal weekends each year.",
+      "user_id": "tm_pd_v04_user_002"
+    },
+    "travel_contexts": [
+      {
+        "context": "grant_site_visits",
+        "description": "Solo two- to three-night trips from Chicago to visit grantee organizations, often with morning meetings, afternoon debriefs, and limited desire to rent a car unless the site requires it."
+      },
+      {
+        "context": "board_meetings_and_sector_conferences",
+        "description": "Domestic professional trips where the event hotel or a room block may constrain the hotel choice, but she still checks practical amenities before confirming."
+      },
+      {
+        "context": "personal_weekends",
+        "description": "Occasional short museum weekends or family visits with her spouse, sister, or adult daughter. Work habits soften, but her practical hotel preferences often still appear."
+      },
+      {
+        "context": "schedule_revisions",
+        "description": "Weather disruptions, shifted site-visit agendas, and conference updates sometimes force rebooking; in those cases, explicit timing and availability constraints override recurring defaults."
+      }
+    ],
+    "user_id": "tm_pd_v04_user_002"
+  }
+}

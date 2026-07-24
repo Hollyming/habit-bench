@@ -1,0 +1,294 @@
+{
+  "cache_fingerprint": "8a08fc917c91b45d7110e36603640481604f1413eea599cb76f4c904498d4962",
+  "sessions": [
+    {
+      "domain": "route_hotel_refinement",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "['User confirmed breakfast by 6:30 is useful for this trip and wants cancellable hotel options at least to Feb 20.', 'User accepted up to three hotel changes only if the schedule protection is meaningful, otherwise prefers the simpler two-hotel sequence.', 'User needs reliable late-evening food after the Tacoma reception and weighed restaurant access against morning-drive risk.']",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Please include breakfast start, parking, cancel-by, and whether I’ll have food after 8:45.",
+            "habit_id": "tm_pd_v04_user_003_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Puget Sound update: Tacoma moved registration to 3:45 before the Monday reception, Bellevue’s Tuesday transfer fair now wants exhibitors at 8:30, and the Seattle alumni dinner is definitely near South Lake Union Tuesday at 6:30. Downtown Seattle rooms are getting silly. Can you rank Tacoma vs Bellevue/Eastgate vs SLU vs a north-end hotel for the three nights and tell me the lowest-risk sequence? Please include breakfast start, parking, cancel-by, and whether I’ll have food after 8:45.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. One thing first because it changes the recommendation: are you willing to change hotels after Monday, or do you want to keep it to two hotel desks total? And is the Wednesday lunch still in Everett around midday?",
+          "role": "assistant"
+        },
+        {
+          "content": "Two hotels is easy; three is tolerable only if it really protects Wednesday. Wednesday is still Everett at 11:30 for now. Breakfast by 6:30 would be ideal. I’d like cancellable at least to Feb 20. After Monday reception I may not eat until 8:45 or 9.",
+          "role": "user"
+        },
+        {
+          "content": "Here’s the practical ranking by area. 1) Bellevue/Eastgate/Factoria for Monday and Tuesday: breakfast often 6 or 6:30, parking usually $10-$35, cancellations around Feb 20-22, late food is decent until about 10. 2) Tacoma for Sunday: breakfast around 6:30, parking often $20-$28, cancellation usually Feb 21-ish, and downtown/waterfront food is easier after arrival. I would not keep Tacoma for Monday because Tuesday’s 8:30 Bellevue check-in makes that drive the weak link. 3) North end/Lynnwood: best for Wednesday Everett, breakfast often 6, parking often free, but after the SLU dinner you’d be checking in late. 4) SLU: easiest for dinner, but convention pricing, high parking, and weaker breakfast value.",
+          "role": "assistant"
+        },
+        {
+          "content": "Specific holds I have: Tacoma Marriott $214 breakfast rate, parking $24, cancel Feb 21 at 6 p.m.; Hyatt House Eastgate $218, breakfast 6:30, parking $12, cancel Feb 22 at 4; Hyatt Place downtown Bellevue $249 plus $35 parking, breakfast 6:30, cancel Feb 20; Hampton Lynnwood $189, breakfast 6, free parking, cancel Feb 21. SLU is $309 and no breakfast.",
+          "role": "user"
+        },
+        {
+          "content": "Given those, I’d drop SLU as an overnight and skip downtown Bellevue unless the fair is directly next door. Hyatt House Eastgate is the better Bellevue choice: closer to Bellevue College, lower parking, and the breakfast timing works. Tacoma Marriott is useful for Sunday only. Hampton Lynnwood is a backup if Wednesday becomes earlier or weather looks messy.",
+          "role": "assistant"
+        },
+        {
+          "content": "Fair check-in is at Bellevue College, so Eastgate is closer than downtown anyway. The Monday Tacoma reception ends at 7:30.",
+          "role": "user"
+        },
+        {
+          "content": "Then Eastgate wins Monday night. Leave Tacoma around 7:45 and you’re likely in Eastgate about 8:35-9:10, depending on I-5. For food, the safer move is a real bite in Tacoma right after the reception if the room allows it; otherwise plan on Factoria/Eastgate takeout before 10 rather than relying on a hotel restaurant.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would you still stay in Tacoma Sunday? I could just sleep in Bellevue Sunday and drive down Monday afternoon.",
+          "role": "user"
+        },
+        {
+          "content": "I’d keep Sunday in Tacoma. Sunday arrival plus rental car plus Tacoma hotel is lower stress, and Monday now has a 3:45 registration. Starting in Tacoma avoids a Monday I-5 gamble and gives you time to check venue parking before the reception. Bellevue Sunday saves one hotel move, but it does not protect the schedule as well.",
+          "role": "assistant"
+        },
+        {
+          "content": "For Tuesday night, if Wednesday is Everett, is Lynnwood the safest even though dinner is in SLU?",
+          "role": "user"
+        },
+        {
+          "content": "Pure event-morning risk: yes. Practical trip risk: not necessarily. After an 8:30-ish SLU dinner, Lynnwood means driving north and checking in around 9:15-9:45. Staying Eastgate means a familiar room and a longer Wednesday drive, but an 11:30 Everett lunch still has enough slack if you leave around 9:30.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay, rank them in plain English and tell me what to hold tonight.",
+          "role": "user"
+        },
+        {
+          "content": "Hold Tacoma Marriott for Sunday and Hyatt House Eastgate for Monday and Tuesday. Keep Hampton Lynnwood as a backup only if the Everett lunch moves earlier than 11:00 or the weather looks bad. Ranking: 1) Eastgate/Factoria for the working nights: breakfast 6:30, $12 parking, cancel Feb 22, quick to Bellevue College, late food nearby until about 10. 2) Tacoma for Sunday: breakfast-rate room, $24 parking, cancel Feb 21, easiest Monday setup. 3) Lynnwood/north end: best for Wednesday, breakfast 6, free parking, cancel Feb 21, but awkward after SLU dinner. 4) SLU: easiest for dinner, but $309, high parking, and no breakfast. Lowest event-risk if you accept three hotels is Tacoma Sun, Eastgate Mon, Lynnwood Tue. My practical pick is Tacoma Sun, Eastgate Mon/Tue, with an early Wednesday departure.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_003_s0057",
+      "session_index": 57,
+      "user_id": "tm_pd_v04_user_003"
+    },
+    {
+      "domain": "flight_car_hotel_booking_decision",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "['User chose the higher-buffer Sunday afternoon nonstop over a cheaper Monday option because the Tacoma reception timing was tight.', 'User requested window seats when selectable.', 'User confirmed a single queen room setup is acceptable for this solo work trip and prioritized breakfast, itemized receipts, and clear cancellation deadlines.']",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Window seat if it lets me choose.",
+            "habit_id": "tm_pd_v04_user_003_h03",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.94,
+            "evidence_quote": "Hotels: Tacoma Marriott has a queen room on the breakfast rate, $214 plus $24 parking, cancel Feb 21 at 6. Eastgate Hyatt House has a queen studio, breakfast included, $218 plus $12 parking, cancel Feb 22 at 4. I don’t need two beds.",
+            "habit_id": "tm_pd_v04_user_003_h06",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Puget Sound is finally bookable. Sunday SLC-SEA nonstop: Delta 1:05-2:25 for $238, Alaska 2:15-3:34 for $206. Monday morning Alaska is $169, lands 10:28, but Tacoma registration is 3:45. Return Wednesday: Delta 3:35-6:26 for $226, Alaska 6:05-8:55 for $175. The Tacoma and Eastgate hotel holds expire tonight. What would you actually book?",
+          "role": "user"
+        },
+        {
+          "content": "Before I lock the return in, what time does the Wednesday lunch end, and are you checking a bag? The Sunday decision is straightforward, but the 3:35 return depends on how much airport buffer you can preserve.",
+          "role": "assistant"
+        },
+        {
+          "content": "Everett lunch is 11:30 to 12:45. Carry-on only. I can tell the counselor I have a hard stop. I’d rather not sit at SEA for hours for $50. Window seat if it lets me choose.",
+          "role": "user"
+        },
+        {
+          "content": "Book Sunday Delta and Wednesday Delta. Sunday Delta buys an extra hour for rental pickup, Tacoma traffic, and dinner; the $32 difference is worth it. Monday morning is false economy with registration at 3:45. Wednesday 3:35 works if you leave Everett by 12:50, fuel efficiently, and target the rental center around 1:35-1:45. Request window seats on both legs; if the seat map is limited, take any included window over paying for an upgrade you do not need.",
+          "role": "assistant"
+        },
+        {
+          "content": "Rental car: compact is $172 total, midsize is $189, pickup SEA 2:45 Sunday and return 1:45 Wednesday. Mostly I-5 and hotel parking. Is compact fine?",
+          "role": "user"
+        },
+        {
+          "content": "I’d take the midsize for $17 more. It gives a little better visibility in rain and enough trunk space to keep the roller bag out of sight. Set the contract return for 2:00 if the price stays the same, but plan to be at the rental center by 1:35-1:45. Decline prepaid fuel unless the counter rate is unusually good, and keep the fuel receipt, parking receipts, and final rental agreement.",
+          "role": "assistant"
+        },
+        {
+          "content": "Hotels: Tacoma Marriott has a queen room on the breakfast rate, $214 plus $24 parking, cancel Feb 21 at 6. Eastgate Hyatt House has a queen studio, breakfast included, $218 plus $12 parking, cancel Feb 22 at 4. I don’t need two beds.",
+          "role": "user"
+        },
+        {
+          "content": "Book those: Tacoma Marriott Sunday night only, then Hyatt House Eastgate Monday and Tuesday. The queen room and queen studio setup are fine for this trip. Add notes for late arrival Sunday, a quiet room if available, and an itemized folio showing room, tax, and parking separately. For Eastgate, verify breakfast starts at 6:30 and ask whether parking is charged per night or per stay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Should I hold Lynnwood too, just in case Wednesday feels too tight?",
+          "role": "user"
+        },
+        {
+          "content": "I would not book a third active hotel unless it is no-deposit and easy to cancel from your phone. Everett at 11:30 still works from Eastgate, and the Tuesday SLU dinner is cleaner if your things are already in Bellevue. Put a reminder for Feb 21 to reassess Lynnwood only if the lunch time changes or the weather looks bad.",
+          "role": "assistant"
+        },
+        {
+          "content": "Great. Can you give me the booking checklist and the dinner and receipt notes in one place?",
+          "role": "user"
+        },
+        {
+          "content": "Book tonight: flights: Delta SLC-SEA Sun Feb 23 1:05-2:25 and Delta SEA-SLC Wed Feb 26 3:35-6:26; request window seats and save the email receipts. Car: midsize at SEA, pickup about 2:45 Sun, contract return by 2:00 Wed if same price, personal target 1:35-1:45. Hotels: Tacoma Marriott Sun night, queen breakfast-rate room, $24 parking, cancel by Feb 21 at 6 p.m.; Hyatt House Eastgate Mon/Tue, queen studio, breakfast included at 6:30, $12 parking, cancel by Feb 22 at 4 p.m. Food plan: Sunday dinner in Tacoma after check-in; Monday eat in Tacoma right after the reception or use Factoria/Eastgate spots before 10; Tuesday rideshare to SLU dinner so you are not hunting for parking. Receipts to keep: airfare, hotel folios with parking, rental agreement, fuel, rideshares, and any event parking.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_003_s0058",
+      "session_index": 58,
+      "user_id": "tm_pd_v04_user_003"
+    },
+    {
+      "domain": "pretrip_schedule_adjustment",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "['User preferred not to switch hotels unless the schedule benefit was substantial.', 'User planned carry-on-only travel and wanted a clear luggage security plan for the counselor lunch.', 'Final plan preserved breakfast, checkout, fuel, rental return, and airport-buffer timing after the flight retime.']",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "One last Puget Sound wrinkle: Wednesday lunch moved from Everett to Lynnwood, but Delta also retimed the return to 3:05 instead of 3:35. Sunday flight, rental car, Tacoma, and Bellevue are booked. I can still cancel the Tuesday night at Hyatt House tomorrow. Do I keep Bellevue, switch to Lynnwood, or just bring luggage to lunch?",
+          "role": "user"
+        },
+        {
+          "content": "This is mostly an airport-buffer question now. What are the new lunch hours, and will you have only carry-on luggage? Also, does the Bellevue breakfast still start at 6:30?",
+          "role": "assistant"
+        },
+        {
+          "content": "Lunch is 11:15 to 12:15. Carry-on roller and laptop bag, no checked bag. Bellevue breakfast is 6:30, checkout is noon. I’d rather not switch hotels if it only saves a little.",
+          "role": "user"
+        },
+        {
+          "content": "Keep Bellevue. The lunch moving from Everett to Lynnwood gives back much of what the earlier flight took away. Switching to Lynnwood would save morning drive time, but it adds a late Tuesday check-in after the SLU dinner and another cancellation/folio to manage.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. I’m mostly worried about the luggage sitting in the car during lunch.",
+          "role": "user"
+        },
+        {
+          "content": "Load the trunk at the hotel and do not open it when you arrive at the lunch site. Keep the laptop bag, purse, and any documents with you. If the visitor parking feels exposed, bring the roller into the office and simply say you are heading straight to the airport afterward.",
+          "role": "assistant"
+        },
+        {
+          "content": "Where would you put fuel in the morning?",
+          "role": "user"
+        },
+        {
+          "content": "Top off in Lynnwood before lunch, not after. Leave Bellevue early enough to arrive around 9:50-10:00, fuel near the venue, keep the receipt, then park once for lunch. If traffic is unusually light and you reach the SeaTac/Tukwila area by about 1:10, you can do a quick second top-off, but do not spend your flight buffer chasing the perfect fuel receipt.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Give me the final clock times so I can put them in my notes.",
+          "role": "user"
+        },
+        {
+          "content": "Final plan: keep Hyatt House Eastgate Tuesday night. Tuesday after the SLU dinner, rideshare back to Bellevue, pack, and charge everything. Wednesday: breakfast at 6:30; checkout/load car by 8:45; leave Bellevue at 9:00, or 8:30 if traffic is red; reach Lynnwood about 9:50-10:05; fuel and keep receipt; park once and keep luggage hidden, with laptop/purse carried in. Lunch 11:15-12:15, with a hard stop stated at the start. Depart by 12:20. Target SEA rental return 1:15-1:30, with 1:45 as the latest comfortable point for the 3:05 flight. If you are not rolling by 12:30, skip every optional stop.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_003_s0059",
+      "session_index": 59,
+      "user_id": "tm_pd_v04_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Phoenix/Tempe conference remains complete. Boise/Nampa volleyball remains finalized around the Friday SLC drive, Meridian two-queen room with breakfast/free parking, weather checks, and packed early breakfast. Puget Sound Feb 23-26 is now booked: Delta SLC-SEA Sun Feb 23 1:05-2:25 and Delta SEA-SLC Wed Feb 26 retimed to 3:05, with window seats requested; midsize rental car from SEA; Tacoma Marriott Sunday night queen breakfast-rate room with $24 parking and Feb 21 6 p.m. cancellation; Hyatt House Eastgate Monday/Tuesday queen studio with breakfast at 6:30, $12 parking, and Feb 22 4 p.m. cancellation. Use rideshare to the Tuesday SLU alumni dinner. After Wednesday lunch moved from Everett to Lynnwood, keep Bellevue Tuesday night: breakfast 6:30, checkout/load by 8:45, leave at 9:00, fuel in Lynnwood before lunch, hard stop at 12:15, depart 12:20, target SEA rental return 1:15-1:30 with 1:45 latest. Keep laptop/purse with her at lunch, luggage hidden or brought inside if parking feels exposed, and save receipts for flights, hotels, parking, rental, fuel, rideshares, and event parking. Remaining checks: confirm final Delta times and seat assignments, verify hotel parking/breakfast on the folios, and check traffic morning-of.",
+  "verification": {
+    "57": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Please include breakfast start, parking, cancel-by, and whether I’ll have food after 8:45.",
+          "habit_id": "tm_pd_v04_user_003_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User directly asked for late food availability in the hotel-area comparison. Breakfast references were about start time or option facts, not a clear included/free-breakfast preference."
+    },
+    "58": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Window seat if it lets me choose.",
+          "habit_id": "tm_pd_v04_user_003_h03",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.94,
+          "evidence_quote": "Hotels: Tacoma Marriott has a queen room on the breakfast rate, $214 plus $24 parking, cancel Feb 21 at 6. Eastgate Hyatt House has a queen studio, breakfast included, $218 plus $12 parking, cancel Feb 22 at 4. I don’t need two beds.",
+          "habit_id": "tm_pd_v04_user_003_h06",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User explicitly requested a window seat when selectable and presented queen single-bed hotel rooms while ruling out needing two beds. Delta and breakfast were mentioned in option details, but the user did not independently state a Delta carrier preference or a reusable included-breakfast preference."
+    },
+    "59": {
+      "habit_signals": [],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User discussed the current itinerary, luggage, fuel, checkout, and breakfast timing, but did not provide strong user-originated evidence for any listed habit value."
+    }
+  }
+}

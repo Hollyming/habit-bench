@@ -1,0 +1,518 @@
+{
+  "probes": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book downtown with no rental, add a 30-minute ride buffer, and use host pickup if it appears before the supplier visit."
+        },
+        {
+          "choice_id": "B",
+          "text": "Reserve a compact car with free cancellation, choose downtown parking, and switch off the car only if pickup is door-to-door."
+        },
+        {
+          "choice_id": "C",
+          "text": "Price the downtown no-car plan first with confirmed pickup or a 45-minute rideshare buffer; if that fails, use a compact rental with parking."
+        },
+        {
+          "choice_id": "D",
+          "text": "Use the airport hotel with shuttles and rideshares, leave the rental off the itinerary, and add an evening rain buffer."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c01",
+      "difficulty_rationale": "A and D echo repeated no-car wording, while B is plausible because rain and a supplier park create real risk; the calibrated policy has to balance both forces.",
+      "gold_action": "Compare the no-car plan first, then recommend a rental if pickup or rideshare buffers fail.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0000",
+        "tm_pd_v04_user_002_s0023",
+        "tm_pd_v04_user_002_s0030",
+        "tm_pd_v04_user_002_s0078",
+        "tm_pd_v04_user_002_s0106"
+      ],
+      "label_rationale": "C treats car choice as specific to the Boise transfers: the cited sessions mix no-car requests with rental or driving fallbacks when timing becomes fragile.",
+      "query": "For a Tuesday-Wednesday Boise site visit, the user says she would prefer no rental car if the 2:00 PM supplier visit is not fragile. The hotel options are downtown near dinner, airport-adjacent, or near the supplier park; host pickup is not confirmed, rideshare waits range from 8 to 25 minutes, and rain is forecast. Which ground-transport policy should be used?",
+      "variant_id": "tm_pd_v04_user_002_c01_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use downtown with no rental if ride waits and snow still leave a 60-minute lab-to-airport buffer; otherwise hold a cancellable car."
+        },
+        {
+          "choice_id": "B",
+          "text": "Reserve a car now and choose a suburban lab hotel; cancel the car only if the lab provides a timed airport transfer."
+        },
+        {
+          "choice_id": "C",
+          "text": "Keep downtown with no rental, add a 45-minute ride buffer, and let the 8:05 PM departure absorb any snow delay."
+        },
+        {
+          "choice_id": "D",
+          "text": "Use host pickup and rideshares only, choose downtown, and drop rental pricing once the lab says rideshares are common."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c01",
+      "difficulty_rationale": "C and D are tempting because they preserve the no-rental framing, while B is defensible because suburb-to-airport timing and snow make the transfer fragile.",
+      "gold_action": "Keep the car-free plan only if the live ride and weather buffers protect the lab-to-airport transfer.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0023",
+        "tm_pd_v04_user_002_s0049",
+        "tm_pd_v04_user_002_s0065",
+        "tm_pd_v04_user_002_s0078",
+        "tm_pd_v04_user_002_s0106"
+      ],
+      "label_rationale": "A follows the cited pattern of trying no-car logistics when requested but treating rideshare reliability, weather, and timing as trip-specific gates.",
+      "query": "For a March Albany training visit, the user flies with a carry-on, has meetings at the downtown campus Tuesday, then a 4:15 PM lab tour in a suburb 30-40 minutes away, followed by an 8:05 PM departure. She says, 'I would rather skip a rental if rideshares are sane.' Light snow is possible. Which policy should the assistant apply?",
+      "variant_id": "tm_pd_v04_user_002_c01_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Choose downtown with no rental, treat parking cost as decisive, and use whichever shuttle or rideshare is available for the reception."
+        },
+        {
+          "choice_id": "B",
+          "text": "Choose downtown with no rental only if the shuttle or return rideshares are confirmed; otherwise hold a cancellable car for the reception window."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book a rental car for both days and move to a free-parking hotel because an 18-mile event makes car-free planning unsuitable."
+        },
+        {
+          "choice_id": "D",
+          "text": "Assume the host shuttle will solve the outlying event, stay downtown, and remove rental pricing from the comparison."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c01",
+      "difficulty_rationale": "A and D are attractive because most meetings are downtown and parking is expensive; C is also plausible because the reception is far enough to create a real transfer problem.",
+      "gold_action": "Use a no-rental downtown plan only after confirming the shuttle or reliable reception return; otherwise keep a car fallback.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0000",
+        "tm_pd_v04_user_002_s0023",
+        "tm_pd_v04_user_002_s0030",
+        "tm_pd_v04_user_002_s0049",
+        "tm_pd_v04_user_002_s0065",
+        "tm_pd_v04_user_002_s0078"
+      ],
+      "label_rationale": "B reflects the cited evidence that no-car choices depend on geography, host transport, and fragile transfers rather than a blanket car-free rule.",
+      "query": "For a two-night Greenville donor trip, Tuesday and Wednesday meetings are within one mile of a downtown hotel, but a Wednesday 6:00 PM mill-site reception is 18 miles out. The host may run a shuttle if enough attendees sign up; downtown parking is $34 per night. The user says no rental would be nice if it does not add risk. Which ground plan fits?",
+      "variant_id": "tm_pd_v04_user_002_c01_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold the Westin block tonight for the 7:30 binder drop; keep Hyatt Place as a cancellable fallback if that duty moves."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold Hyatt Place tonight for breakfast and savings; use a rideshare or earlier walk for the 7:30 binder drop."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold Westin for the full stay because official blocks should anchor event trips once they are offered."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book a cheaper downtown refundable room, budget two rideshares, and treat the block cutoff as secondary to rate savings."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c02",
+      "difficulty_rationale": "B has real breakfast savings and a short walk; C echoes the frequent block wins; D is plausible if the budget pressure is prioritized over the morning logistics.",
+      "gold_action": "Hold the block hotel because this summit has early in-building materials logistics, while keeping the nearby value option as fallback.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0003",
+        "tm_pd_v04_user_002_s0004",
+        "tm_pd_v04_user_002_s0027",
+        "tm_pd_v04_user_002_s0054",
+        "tm_pd_v04_user_002_s0083"
+      ],
+      "label_rationale": "A matches cited trips where the block hotel won when early sessions, presentations, or materials made same-building access valuable, while cheaper nearby options remained viable when that edge changed.",
+      "query": "For a Denver policy summit, the official Westin block is $252 refundable without breakfast. A Hyatt Place two blocks away is $193 refundable with breakfast. The user's slides and sample binders are due at a 7:30 AM room inside the Westin, and the block cutoff is tonight. Which hotel policy best fits?",
+      "variant_id": "tm_pd_v04_user_002_c02_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold Residence Inn and budget the skybridge walk; switch to the block only if early sessions or after-hours networking become central."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold the block hotel now because official locations should outrank nearby savings on conference itineraries."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold Residence Inn because breakfast-included nearby hotels should win whenever sessions start after 9:00 AM."
+        },
+        {
+          "choice_id": "D",
+          "text": "Split the block for reception night and Residence Inn otherwise, even with an extra checkout and luggage move."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c02",
+      "difficulty_rationale": "B and C are both tempting one-direction policies drawn from different past outcomes; D is operationally plausible because the reception is at the block hotel.",
+      "gold_action": "Use the nearby breakfast hotel unless current agenda changes make the block hotel materially more useful.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0003",
+        "tm_pd_v04_user_002_s0054",
+        "tm_pd_v04_user_002_s0083",
+        "tm_pd_v04_user_002_s0101",
+        "tm_pd_v04_user_002_s0107",
+        "tm_pd_v04_user_002_s0111"
+      ],
+      "label_rationale": "A reflects the cited reversals: block hotels win for on-site demands, while nearby breakfast hotels win when savings and a small commute outweigh the event-location premium.",
+      "query": "For a Portland annual meeting, the block hotel is $279 refundable with no breakfast. Residence Inn is $201 refundable with breakfast and a six-minute skybridge walk. Sessions start after 10:00 AM except an optional reception at the block hotel; no printed materials are being carried. Which policy should guide the hotel choice?",
+      "variant_id": "tm_pd_v04_user_002_c02_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold Sheraton for plenary morning and rain; keep Hampton as the fallback if timing changes before cancellation."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold Hampton because breakfast-included savings should win unless the block is the only meeting site."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold Sheraton because board-retreat blocks should be used for the entire stay whenever offered."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Hampton and schedule a morning rideshare, treating rain and the 7:15 start as normal commute costs."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c02",
+      "difficulty_rationale": "B and D lean into the strong value-hotel temptation, while C mirrors event-hotel convenience; the rain and early plenary make more than one policy arguable.",
+      "gold_action": "Choose the block for this agenda's early in-building start and weather risk, while preserving the cheaper nearby fallback.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0004",
+        "tm_pd_v04_user_002_s0027",
+        "tm_pd_v04_user_002_s0054",
+        "tm_pd_v04_user_002_s0083",
+        "tm_pd_v04_user_002_s0111"
+      ],
+      "label_rationale": "A uses the current early start and weather risk to justify the block premium, consistent with cited cases where block and off-block choices changed with agenda details.",
+      "query": "For a Columbus board retreat, the Sheraton block is $229 refundable and the Hampton four blocks away is $171 refundable with breakfast. The Thursday plenary begins at 7:15 AM inside the Sheraton, rain is likely, materials are digital, and either hotel can store luggage. Which policy should be applied?",
+      "variant_id": "tm_pd_v04_user_002_c02_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use the airport hotel both nights; plan one downtown rideshare and make Wednesday debrief and departure simple."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use downtown both nights; anchor on the downtown meeting and treat the airport debrief as an outgoing transfer."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use downtown unless airport savings exceed the downtown premium by a much larger margin."
+        },
+        {
+          "choice_id": "D",
+          "text": "Split downtown then airport, accepting the extra checkout to stay closest to each day's first stop."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c03",
+      "difficulty_rationale": "B and C are tempting central-area defaults, while D is a credible optimization by day; the late arrival and airport debrief make the airport base competitive.",
+      "gold_action": "Anchor the stay at the airport-area hotel because luggage, the final debrief, shuttle, and departure flow matter most here.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0024",
+        "tm_pd_v04_user_002_s0033",
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0110"
+      ],
+      "label_rationale": "A reflects the cited pattern that central hotels often win for early urban starts, but airport-area hotels can win when luggage and departure flow reduce friction for the actual agenda.",
+      "query": "For a two-night Tucson visit, the user lands Monday at 7:10 PM, has a Tuesday 10:30 AM meeting downtown, a Wednesday 9:00 AM debrief at an airport business park, and a 1:15 PM flight. Downtown rooms are $188; an airport Hampton is $149 with shuttle and luggage storage. No rental car is planned. Which hotel-area policy should be used?",
+      "variant_id": "tm_pd_v04_user_002_c03_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use Midtown near the lobby pickup and dinner; take a planned rideshare to the airport on Wednesday."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use the airport hotel for both nights; late arrival and shuttle access should anchor the stay."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use downtown for both nights; central neighborhoods should outrank airport or campus areas."
+        },
+        {
+          "choice_id": "D",
+          "text": "Use the cheapest airport room and ask the host to shift the 8:00 AM pickup there."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c03",
+      "difficulty_rationale": "B and D are plausible because the user arrives late and the airport hotel is much cheaper; C is a tempting central-area shortcut even though the actual pickup is Midtown.",
+      "gold_action": "Choose the meeting-adjacent Midtown base because the early lobby pickup and dinner location outweigh airport savings.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0033",
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0079",
+        "tm_pd_v04_user_002_s0096"
+      ],
+      "label_rationale": "A applies the cited cases where airport or outer hotels lost when they turned an early meeting or host pickup into a commute, while not making Midtown a universal rule.",
+      "query": "For a Nashville site review, the user arrives Monday at 9:00 PM, has an 8:00 AM Tuesday hospital-campus pickup from the hotel lobby, a dinner nearby, and a Wednesday 5:30 PM flight. The airport hotel is $112 with shuttle; Midtown hotels near pickup are $181-$196. No rental car is planned. Which hotel-area policy should be used?",
+      "variant_id": "tm_pd_v04_user_002_c03_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use the Meriden station hotel; rideshare to Tuesday's downtown meeting and simplify Wednesday luggage and train flow."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use downtown New Haven; central hotel access should outrank a station-area departure setup."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use the nearest airport-area hotel; external transfers are simpler from airport corridors."
+        },
+        {
+          "choice_id": "D",
+          "text": "Split downtown then Meriden, adding checkout to stay closest to each day's first appointment."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c03",
+      "difficulty_rationale": "B is tempting because a central hotel fits the Tuesday meeting; D is also defensible by daily proximity, while C over-extends the idea of transfer hubs.",
+      "gold_action": "Choose the station-adjacent Meriden base because the second-day plant tour, luggage, and noon rail departure drive the area choice.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0024",
+        "tm_pd_v04_user_002_s0033",
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0110"
+      ],
+      "label_rationale": "A follows the cited trip-specific area logic: downtown is useful for early central work, but departure and luggage flow can make an airport or station-adjacent base better.",
+      "query": "For a New Haven-Meriden visit, the user arrives by train at 8:30 PM, meets Tuesday afternoon in downtown New Haven, then has a Wednesday 8:30 AM plant tour in Meriden and a noon rail departure from Meriden. Downtown New Haven is $204; a Meriden station hotel is $162 with breakfast. Which hotel-area policy should be used?",
+      "variant_id": "tm_pd_v04_user_002_c03_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book Hyatt Place; it is closer than Hampton, slightly cheaper, refundable, and folio-friendly."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book Hampton; its breakfast-and-room profile should outrank similar non-Hampton options."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book the Hilton-family option; chain consistency should decide when prices are close."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Holiday Inn Express; the lowest breakfast-included rate should drive the choice despite prepay."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c04",
+      "difficulty_rationale": "B and C are tempting brand-based policies because Hampton appears often; D is plausible because Holiday Inn Express also appears and is cheaper in this context.",
+      "gold_action": "Rank by current location, room basics, rate terms, and folio needs; choose Hyatt Place over Hampton here.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0093",
+        "tm_pd_v04_user_002_s0101",
+        "tm_pd_v04_user_002_s0107",
+        "tm_pd_v04_user_002_s0075",
+        "tm_pd_v04_user_002_s0105"
+      ],
+      "label_rationale": "A fits the cited record: Hampton often wins when amenities and location fit, but other brands outrank it when the current facts are better.",
+      "query": "For a Tulsa overnight, Hampton Downtown is $169 refundable with breakfast, Hyatt Place across from the 8:15 AM venue is $161 refundable with breakfast and a refrigerator, and Holiday Inn Express is $145 prepaid. The user needs an itemized folio. Which hotel-brand policy should be applied?",
+      "variant_id": "tm_pd_v04_user_002_c04_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold Residence Inn; attached access and kitchen basics outweigh the small premium over Hampton."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold Hampton; Hampton-style hotels should lead the shortlist when they have breakfast."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold Courtyard; Marriott-family options should outrank Hampton on conference trips."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold the prepaid Courtyard; fixed-building agendas make the lower rate the deciding factor."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c04",
+      "difficulty_rationale": "B turns Hampton frequency into a chain rule, C invents a competing chain rule, and D is attractive because the agenda is fixed and the prepaid rate is lower.",
+      "gold_action": "Choose Residence Inn because its attached location and room details beat the Hampton option for this early conference start.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0101",
+        "tm_pd_v04_user_002_s0079",
+        "tm_pd_v04_user_002_s0086",
+        "tm_pd_v04_user_002_s0105"
+      ],
+      "label_rationale": "A uses current fit rather than chain repetition, matching cited examples where Hampton, Fairfield, Homewood, Drury, and other brands won on trip facts.",
+      "query": "For an Omaha conference, Hampton Old Market is $154 refundable with breakfast but a 12-minute walk; Residence Inn is $171 refundable, attached to the venue, with kitchen, breakfast, and itemized folio; Marriott Courtyard is $149 prepaid. The first session is at 7:30 AM. Which policy should guide the hotel choice?",
+      "variant_id": "tm_pd_v04_user_002_c04_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book Hampton; this specific option has the best walk, breakfast, refrigerator, coffee, and flexibility."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book Hampton; Hampton should be treated as the preferred chain when rates are reasonable."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book Hyatt House; higher-service brands should outrank Hampton even at a higher rate."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Fairfield; the lowest familiar limited-service price should beat room details."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c04",
+      "difficulty_rationale": "A and B lead to the same property but from different policies; C and D are plausible chain or price shortcuts that ignore current room details.",
+      "gold_action": "Let Hampton win on the Raleigh facts, not on chain status: location, amenities, cancellation, and total value decide.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0093",
+        "tm_pd_v04_user_002_s0101",
+        "tm_pd_v04_user_002_s0107",
+        "tm_pd_v04_user_002_s0075",
+        "tm_pd_v04_user_002_s0086"
+      ],
+      "label_rationale": "A allows a Hampton choice when it independently satisfies the trip requirements, consistent with cited Hampton wins and non-Hampton counterexamples.",
+      "query": "For a Raleigh meeting, Hampton Downtown is $158 refundable with breakfast, refrigerator, and a six-minute walk to the site; Hyatt House is $189 refundable but farther; Fairfield is $151 nonrefundable without a guaranteed refrigerator. The user needs coffee before an 8:45 AM start. Which hotel-brand policy should be used?",
+      "variant_id": "tm_pd_v04_user_002_c04_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold the refundable direct-book king; revisit prepaid if dates lock and clear savings improve."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use refundable direct-book rates for all stays, keeping flexibility ahead of every discount."
+        },
+        {
+          "choice_id": "C",
+          "text": "Take the prepaid king now; any lower rate is worth using once workshop travel is likely."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book the package now; total-trip savings should drive the choice even with delayed folio details."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c05",
+      "difficulty_rationale": "B overgeneralizes flexibility, while C and D overgeneralize savings; the current $15-$42 savings make more than one choice superficially reasonable.",
+      "gold_action": "Use the refundable direct booking now because volatility, expensing, and small savings make prepaid weak for this trip.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0006",
+        "tm_pd_v04_user_002_s0068",
+        "tm_pd_v04_user_002_s0078",
+        "tm_pd_v04_user_002_s0106"
+      ],
+      "label_rationale": "A matches the cited evidence: refundable holds are favored during uncertainty or folio needs, while prepaid can be reconsidered when savings and terms are stronger.",
+      "query": "For a Phoenix workshop, the agenda may shift by a day, the direct-book refundable king is $214, the prepaid king is $199, and a package saves $42 total but hides the hotel folio until after booking. The user will expense the room. Which booking-terms policy should be used?",
+      "variant_id": "tm_pd_v04_user_002_c05_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the named prepaid package if cancellation and room terms match; the stable weekend saves $138."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use the separate refundable hotel rate; lodging flexibility should stay ahead of package savings."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use separate bookings for every trip, even when the package names the hotel and room."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book the cheapest prepaid package, even if it changes room type or breakfast terms."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c05",
+      "difficulty_rationale": "B and C are tempting because refundable holds appear often; D is plausible on price but loses the term-check that made prepaid acceptable in the cited trips.",
+      "gold_action": "Take the clear prepaid package because the trip is stable, the savings are material, and no itemized work folio is needed.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0006",
+        "tm_pd_v04_user_002_s0068",
+        "tm_pd_v04_user_002_s0078",
+        "tm_pd_v04_user_002_s0106"
+      ],
+      "label_rationale": "A reflects the cited openness to prepaid or package deals when savings are real and terms are clear, rather than applying refundable terms to every situation.",
+      "query": "For a personal Asheville weekend six weeks out, dates are fixed by concert tickets, weather is normal, separate refundable flight-plus-hotel booking totals $812, and a named hotel package with the same flights, king room, and breakfast is $674 prepaid. No work folio is needed. Which policy should be applied?",
+      "variant_id": "tm_pd_v04_user_002_c05_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the direct refundable king; folio, room certainty, and unsettled lab timing outweigh $86."
+        },
+        {
+          "choice_id": "B",
+          "text": "Take the prepaid rate; savings near $80 should clear the package threshold on its own."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use refundable rates for all reimbursed trips, even after the lab time is fixed."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book the cheapest package or prepaid rate and handle folio details after checkout."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c05",
+      "difficulty_rationale": "B is tempting because the savings approach a stated package range, C overextends refundable behavior, and D overweights price despite the current folio and room-type constraints.",
+      "gold_action": "Use the direct refundable rate for this reimbursed, unsettled agenda because folio and room certainty matter here.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0006",
+        "tm_pd_v04_user_002_s0078",
+        "tm_pd_v04_user_002_s0083",
+        "tm_pd_v04_user_002_s0106"
+      ],
+      "label_rationale": "A follows the cited distinction between refundable holds during uncertain or reimbursed trips and prepaid/package acceptance only when the exact terms justify it.",
+      "query": "For a reimbursed Seattle training, the hotel is named, but the travel-site prepaid rate is $86 less and says 'room assigned at check-in'; the direct refundable king is $229 with itemized folio and cancellation until 48 hours before. The agenda is still awaiting the final Tuesday lab time. Which policy should be used?",
+      "variant_id": "tm_pd_v04_user_002_c05_v03"
+    }
+  ]
+}

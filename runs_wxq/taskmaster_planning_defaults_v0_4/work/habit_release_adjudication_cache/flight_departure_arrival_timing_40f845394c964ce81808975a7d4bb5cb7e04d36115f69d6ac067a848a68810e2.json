@@ -1,0 +1,21 @@
+{
+  "cache_fingerprint": "40f845394c964ce81808975a7d4bb5cb7e04d36115f69d6ac067a848a68810e2",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_return_departure_time_preference",
+      "boundary_condition": "Treat as a soft default; if true afternoon return departures are unavailable, limited, or unattractive, consider options close to afternoon.",
+      "canonical_value": "Prefer afternoon return-flight departures, with nearby times acceptable when true afternoon options are limited.",
+      "condition": "When booking or comparing round-trip flights and selecting the return-leg departure time.",
+      "default_action": "Search for return-flight options departing in the afternoon and present those first when available.",
+      "exception_condition": "Do not apply as a universal outbound-leg rule; one supporting dialogue separately used a morning outbound while still preferring an afternoon return.",
+      "input_ids": [
+        "tm_v04_e2e_habit_26cf0aa15c48"
+      ],
+      "name": "afternoon_return_departure_preference",
+      "preference_value": "Prefer the return flight to depart in the afternoon.",
+      "rationale": "Multiple supporting utterances indicate a soft preference for afternoon timing on the return leg, sometimes alongside outbound timing. Keep as a return-departure timing default without generalizing it to all outbound flights.",
+      "representative_id": "tm_v04_e2e_habit_26cf0aa15c48"
+    }
+  ]
+}

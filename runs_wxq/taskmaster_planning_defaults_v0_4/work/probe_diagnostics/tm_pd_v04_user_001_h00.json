@@ -1,0 +1,923 @@
+{
+  "habit_id": "tm_pd_v04_user_001_h00",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c02",
+        "c05"
+      ],
+      "accepted_total": [
+        "c02",
+        "c05"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United nonstop DEN-BOS 12:45 pm-6:28 pm; return 3:55 pm-6:39 pm; regular economy with window seats open; $392."
+              },
+              {
+                "choice_id": "B",
+                "text": "JetBlue nonstop DEN-BOS 12:30 pm-6:18 pm; return 4:10 pm-6:55 pm; standard fare with seat selection; $374."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest one-stop via Chicago Midway 11:20 am-7:05 pm; return 2:45 pm-6:35 pm; no checked-bag fee; $329."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via Chicago O'Hare 10:50 am-5:52 pm; return 1:25 pm-6:20 pm; regular economy; $342."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A planner without history could reasonably choose the slightly cheaper JetBlue nonstop. The user's history is needed to resolve the otherwise close nonstop-vs-nonstop tie toward United without treating it as mandatory.",
+            "gold_action": "Hold the United nonstop Boston itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0005",
+              "tm_pd_v04_user_001_s0042",
+              "tm_pd_v04_user_001_s0099"
+            ],
+            "label_rationale": "This is a self-booked commercial flight from Denver with no stronger carrier instruction. Choices A and B are similarly clean nonstops with only a small price and timing difference, so Erin's long-run soft airline weighting favors A. Choices C and D are plausible savings plays but add connections that the history treats as secondary unless the savings or schedule advantage is stronger.",
+            "probe_type": "direct_use",
+            "query": "I'm booking DEN-BOS for a three-day ultrasound workshop in Cambridge. I can leave Denver around lunch Sunday, need to be at the hotel before 8 pm, and want a Thursday return after the last session ends at noon. All of these are within policy and regular economy; which flight pair should I hold first?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "United/window-seat cue in A and no-checked-bag cue in C are unstated preferences; carrier, seat, or bag history should not be used."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c00",
+            "rationale": "B is the cheapest well-timed nonstop, leaves around lunch, gives a comfortable arrival buffer for getting to Cambridge before 8 pm, and returns well after the noon finish. A is more expensive for a near-identical schedule, while C and D add connections and tighter timing."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United nonstop DEN-AUS 1:05 pm-4:20 pm; return 3:05 pm-4:25 pm; regular economy with seat selection; $318."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest nonstop DEN-AUS 12:40 pm-3:55 pm; return 3:20 pm-4:45 pm; comparable fare class; $286."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta one-stop via Salt Lake City 10:25 am-4:15 pm; return 2:45 pm-6:30 pm; main cabin; $262."
+              },
+              {
+                "choice_id": "D",
+                "text": "United nonstop DEN-AUS 6:20 am-9:35 am; return 7:10 pm-8:35 pm; regular economy; $279."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Generic travel reasoning sees a small fare advantage and similar times for Southwest, so there is no unique best choice from the query alone. The memory distinguishes a modest-price conflict from a material itinerary disadvantage.",
+            "gold_action": "Book the afternoon United nonstop Austin itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0005",
+              "tm_pd_v04_user_001_s0042",
+              "tm_pd_v04_user_001_s0099",
+              "tm_pd_v04_user_001_s0129"
+            ],
+            "label_rationale": "The current constraints leave A and B close: both are nonstops, both protect the reception and return timing, and the Southwest savings are modest. The longitudinal pattern supports using United as the tiebreaker when the itinerary is otherwise comparable, while D shows that United should not win when its timing is less comfortable and C adds a connection mainly for price.",
+            "probe_type": "conflict_resolution",
+            "query": "For a two-night analytics conference in Austin, I need to get from DEN to the convention hotel Tuesday in time for a 6:30 pm reception and return Thursday after a 1 pm panel. I won't check a bag, and the fare cap covers all four choices. Which should I book?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Carrier loyalty cues are present; Southwest checked-bag value is irrelevant because the query says no checked bag."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "B is the best-timed reasonably priced nonstop: it arrives in time for the reception, returns after the panel with adequate buffer, and is cheaper than the comparable United nonstop. C is cheaper but adds a connection and a tighter return; D has unnecessarily extreme early/late timing."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Ask them to hold the United nonstop into IAD and the best-timed non-United nonstop into DCA, then compare total door-to-door timing before ticketing."
+              },
+              {
+                "choice_id": "B",
+                "text": "Ask them to hold the Delta nonstop into DCA and the American nonstop into IAD, and leave United out unless it is the cheapest."
+              },
+              {
+                "choice_id": "C",
+                "text": "Ask them to hold the United nonstop only, since a second comparable routing would just complicate the approval."
+              },
+              {
+                "choice_id": "D",
+                "text": "Ask them to hold the cheapest one-stop into either airport and the earliest outbound, even if both add a connection."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A and B are both reasonable two-hold strategies with workable airports, so a generic planner cannot break the tie. The memory is needed to know that United should be represented in the initial comparable set, but not as the only option.",
+            "gold_action": "Tell the desk to hold a United nonstop plus a comparable non-United nonstop for comparison.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0020",
+              "tm_pd_v04_user_001_s0023",
+              "tm_pd_v04_user_001_s0099",
+              "tm_pd_v04_user_001_s0129"
+            ],
+            "label_rationale": "The relevant history says to include United among strong candidates when it is suitable, while still keeping other acceptable carriers in play. Choice A captures that non-exclusive pattern and preserves airport/timing comparison. B omits United despite comparability, C overstates the airline signal as exclusive, and D overweights fare or departure time at the expense of route quality.",
+            "probe_type": "evidence_disambiguation",
+            "query": "The travel desk can place two 24-hour holds for my Denver-to-Washington symposium next month. I need to arrive Tuesday by 6 pm, leave Friday after 1 pm, and stay near Metro Center, so DCA and IAD are both workable if the times are sane. What instruction should I send?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "United-specific wording could cue loyalty, but A is justified by route and airport comparison rather than private carrier preference."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "A uses both available holds to compare sane nonstop options into both workable Washington airports and then decide by total door-to-door timing. The other choices impose unjustified carrier exclusions, waste a hold, or add unnecessary connections."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United nonstop DEN-EWR 8:35 am-2:18 pm; return 1:05 pm-3:42 pm; regular economy; $356 per person."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop DEN-LGA 8:25 am-2:12 pm; return 12:55 pm-3:35 pm; main cabin; $348 per person."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest one-stop via St. Louis 7:20 am-2:55 pm; return 1:20 pm-5:05 pm; comparable fare; $302 per person."
+              },
+              {
+                "choice_id": "D",
+                "text": "United nonstop DEN-EWR 6:00 am-11:42 am; return 6:30 am-9:05 am; regular economy; $318 per person."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "From the query alone, Delta to LGA is at least as defensible because it is slightly cheaper and similarly timed. The user's history is required both to transfer the pattern to a personal trip and to avoid over-selecting the less convenient United option D.",
+            "gold_action": "Book the United nonstop Newark itinerary for the wedding weekend.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0042",
+              "tm_pd_v04_user_001_s0023",
+              "tm_pd_v04_user_001_s0099",
+              "tm_pd_v04_user_001_s0129"
+            ],
+            "label_rationale": "The habit transfers to personal commercial travel from and back to Denver, not only work trips. A and B are closely matched nonstops with workable airports and very similar timing; the small Delta fare advantage is not enough to outweigh the soft United weighting. C saves more but adds a stop, and D uses United but has much less pleasant times.",
+            "probe_type": "cross_context_transfer",
+            "query": "For a long weekend wedding trip from Denver to lower Manhattan, we need to land Friday by 3:15 pm, come home Monday around lunch, and carry on only. EWR and LGA are both fine from the hotel. Which flight pair should I take?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Carrier and airport preference cues are present, but the query states EWR and LGA are both fine and gives no carrier preference."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "B is the best comparable nonstop: it meets the Friday arrival deadline, returns around lunch Monday, is slightly cheaper than A, and avoids C's tight one-stop arrival risk. D is disfavored because its return is early morning, not around lunch."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Southwest nonstop 1:20 pm-4:55 pm; return 2:30 pm-4:25 pm; comparable fare; $368."
+              },
+              {
+                "choice_id": "B",
+                "text": "United one-stop via Houston 11:05 am-4:50 pm; return 2:15 pm-7:35 pm via Houston; regular economy; $322."
+              },
+              {
+                "choice_id": "C",
+                "text": "United nonstop 6:05 am-9:40 am; return 6:10 am-8:05 am; regular economy; $345."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta one-stop via Atlanta 9:20 am-4:40 pm; return 3:00 pm-8:15 pm; main cabin; $310."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is a credible near miss because it is United, cheaper, and arrives at nearly the same time outbound. The history is needed to recognize that Erin repeatedly rejects worse connections or awkward timing when they are only serving the airline signal.",
+            "gold_action": "Choose the Southwest nonstop New Orleans itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0003",
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0108",
+              "tm_pd_v04_user_001_s0129"
+            ],
+            "label_rationale": "The Southwest option best satisfies the primary timing and routing constraints with a sane outbound and return. The United alternatives either add a long return connection or require unpleasant early flights, so this is an exception where the better itinerary should beat the soft carrier weighting.",
+            "probe_type": "exception",
+            "query": "I'm booking DEN-MSY for a training session in New Orleans. I can leave after a late-morning appointment, need to arrive before 6 pm Monday, and would rather not make the return home a drawn-out connection after the Thursday noon finish. Which option should I choose?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Carrier labels could cue loyalty, but the answer follows the stated timing and return-connection avoidance."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "A matches the late-morning departure constraint, arrives before 6 pm, and has a straightforward nonstop return after the Thursday noon finish. B and D make the return a drawn-out connection, and C is incompatible with the stated timing."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United nonstop SAT-DEN 1:15 pm-2:35 pm; regular economy with a window available; $246."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest nonstop SAT-DEN 1:05 pm-2:30 pm; comparable fare; $232."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via Dallas 11:50 am-3:35 pm; main cabin; $205."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via Houston 12:20 pm-4:05 pm; regular economy; $218."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Without memory, the cheaper Southwest nonstop is a natural answer. The user history is necessary to know both that the Denver-return leg is still in scope and that a prior no-carrier trip should not be generalized.",
+            "gold_action": "Pick the United nonstop return to Denver.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0042",
+              "tm_pd_v04_user_001_s0023",
+              "tm_pd_v04_user_001_s0099",
+              "tm_pd_v04_user_001_s0034"
+            ],
+            "label_rationale": "The scope includes flights back to Denver, even when only the return leg is being booked and the trip is personal. A and B are nearly identical nonstops, with Southwest slightly cheaper; the long-history tiebreaker supports A. The holiday-trip evidence about not caring about carrier is a one-trip exception, not a permanent revision of the default.",
+            "probe_type": "boundary",
+            "query": "After visiting family in San Antonio, I only need to book the Sunday flight home to Denver. I want to leave after lunch, be home before dinner, and I am carrying on. Which return should I pick?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "United/window-seat cue in A and carrier cues are unstated; carrying on removes checked-bag considerations."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c07",
+            "rationale": "B is the cheapest nonstop that leaves after lunch and gets home well before dinner. A is more expensive for nearly the same nonstop timing, while C and D add connections and depart before or too close to lunch."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta nonstop DEN-CVG 10:15 am-3:05 pm; return 4:10 pm-5:20 pm; main cabin; $398."
+              },
+              {
+                "choice_id": "B",
+                "text": "United one-stop via Chicago 8:20 am-3:20 pm; return 3:45 pm-7:40 pm via Chicago; regular economy with a 55-minute outbound connection; $318."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest one-stop via Midway 9:25 am-2:55 pm; return 4:00 pm-7:20 pm; comparable fare; $334."
+              },
+              {
+                "choice_id": "D",
+                "text": "American one-stop via Dallas 7:40 am-2:50 pm; return 3:30 pm-7:30 pm; main cabin; $309."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "The price gap makes the United connection a plausible generic choice, and all options meet the stated times. The memory is needed to resolve the tradeoff toward schedule and route protection rather than airline weighting.",
+            "gold_action": "Ticket the Delta nonstop Cincinnati itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0000",
+              "tm_pd_v04_user_001_s0021",
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0116"
+            ],
+            "label_rationale": "The Cincinnati constraints put extra value on avoiding connection risk. Although B is United and cheaper, it is materially less attractive because it adds a relatively tight connection and a longer return. The user's history supports choosing the cleaner non-United nonstop when operational reliability is the primary constraint.",
+            "probe_type": "exception",
+            "query": "For a Cincinnati lab install, I need to arrive Monday by 4 pm for site access and return Friday after a 1 pm debrief. The demo kit makes missed connections inconvenient, but the fare cap can absorb any of these. Which itinerary should I ticket?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Carrier labels could cue loyalty; fare cap and demo-kit connection risk, not history, drive the choice."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "A is the nonstop that arrives before site access and returns after the debrief, and the fare cap absorbs the premium. Because the demo kit makes missed connections inconvenient, the one-stop options are materially worse despite lower fares."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Use the nonstop filter and keep United visible alongside other nonstop choices, then rank the actual flights by time and total cost."
+              },
+              {
+                "choice_id": "B",
+                "text": "Use no carrier filter and sort strictly by lowest fare first, including one-stop itineraries that arrive Sunday evening."
+              },
+              {
+                "choice_id": "C",
+                "text": "Start with a United-only filter, then broaden only if those times are unusable or sold out."
+              },
+              {
+                "choice_id": "D",
+                "text": "Start with non-United nonstops first, then add United only if the other carriers are clearly worse."
+              }
+            ],
+            "closest_distractor_choice_id": "C",
+            "difficulty_rationale": "A, C, and D are all plausible search-filter strategies if the planner only sees this query. The user's longitudinal evidence is required to choose the middle policy: include United, but do not make the search United-only or exclude it because of prior exception trips.",
+            "gold_action": "Set up the St. Louis search to compare United nonstops with other sane nonstop options.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0034",
+              "tm_pd_v04_user_001_s0079",
+              "tm_pd_v04_user_001_s0099",
+              "tm_pd_v04_user_001_s0129",
+              "tm_pd_v04_user_001_s0020"
+            ],
+            "label_rationale": "The history distinguishes one-trip carrier-indifferent or non-United exceptions from a permanent change. The correct setup gives United positive visibility when it is suitable, keeps other good nonstops in the comparison, and lets timing and cost decide if they are not comparable. C overstates the pattern as exclusive, while D overgeneralizes past exceptions against United.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Before pricing DEN-STL for a September certification course, the booking tool asks whether I want a carrier filter, a nonstop filter, or no filter for this search. I need to arrive Sunday afternoon, return Wednesday after 2 pm, and regular economy is fine. What should I set before comparing fares?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "United-only and non-United filters are explicit carrier-preference cues; no loyalty preference is stated."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c09",
+            "rationale": "A applies the relevant nonstop filter while avoiding an unstated carrier preference, then compares actual flights by timing and total cost. B allows one-stops that may arrive Sunday evening, while C and D impose unjustified carrier filters."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c00",
+        "c04"
+      ],
+      "accepted_total": [
+        "c00",
+        "c02",
+        "c04",
+        "c05"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United nonstop DEN-AUS 1:05 pm-4:20 pm; return 3:25 pm-4:45 pm; regular economy; $312."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest nonstop DEN-AUS 12:40 pm-3:55 pm; return 2:35 pm-4:00 pm; comparable fare class; $302."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta one-stop via Salt Lake City DEN-AUS 10:55 am-4:05 pm; return 3:05 pm-6:35 pm; main cabin; $268."
+              },
+              {
+                "choice_id": "D",
+                "text": "American one-stop via Dallas-Fort Worth DEN-AUS 11:35 am-4:30 pm; return 3:45 pm-6:15 pm; main cabin; $282."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A planner using only the query could reasonably choose Southwest for the slightly lower fare and earlier Tuesday arrival, or United for the easier Thursday timing. The longitudinal policy is what resolves the modest price/timing conflict toward United.",
+            "gold_action": "Book the afternoon United nonstop Austin itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0005",
+              "tm_pd_v04_user_001_s0023",
+              "tm_pd_v04_user_001_s0099",
+              "tm_pd_v04_user_001_s0129"
+            ],
+            "label_rationale": "A and B both meet the reception and post-panel timing with nonstop routing. B has a modest fare and outbound-arrival edge, while A gives a more comfortable post-panel airport buffer and remains very comparable. Erin's history supports using United as the secondary tie-breaker in that kind of close case, while C and D save more only by adding connections.",
+            "probe_type": "conflict_resolution",
+            "query": "For a two-night analytics conference in Austin, I need to get from DEN to the convention hotel Tuesday in time for a 6:30 pm reception and return Thursday after a 1 pm panel. All fares below are within the cap and comparable economy; which should I book?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "B is the strongest generic choice: it is a nonstop, is cheaper than the other nonstop, arrives earlier for the reception, and gets back earlier than the one-stop alternatives. The one-stops save a modest amount but add connection risk and much longer elapsed return travel despite all fares being within the cap."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold United DEN-IAD nonstop (arrives Tuesday 4:20 pm, Friday departure 3:35 pm; about $315) and Delta DEN-DCA nonstop (arrives Tuesday 4:55 pm, Friday departure 3:05 pm; about $322), then compare total door-to-door time before ticketing."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold Delta DEN-DCA nonstop (arrives Tuesday 4:55 pm, Friday departure 3:05 pm; about $322) and American DEN-DCA nonstop (arrives Tuesday 4:30 pm, Friday departure 2:45 pm; about $318), then compare the closer-airport options first."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold United DEN-IAD nonstop (arrives Tuesday 4:20 pm, Friday departure 3:35 pm; about $315) and a United one-stop into DCA (arrives Tuesday 4:40 pm, Friday departure 2:40 pm; about $296), keeping both holds on United."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold American one-stop into DCA (arrives Tuesday 4:10 pm, Friday departure 2:35 pm; about $284) and Delta one-stop into IAD (arrives Tuesday 4:45 pm, Friday departure 3:15 pm; about $278), prioritizing lowest fares."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "From the query alone, B is defensible because DCA is convenient for Metro Center and the times are similar. The memory is needed to know that a comparable United option should stay in the initial hold set, without making United the only hold.",
+            "gold_action": "Tell the desk to hold one suitable United nonstop plus a comparable non-United nonstop for comparison.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0020",
+              "tm_pd_v04_user_001_s0023",
+              "tm_pd_v04_user_001_s0099",
+              "tm_pd_v04_user_001_s0129"
+            ],
+            "label_rationale": "The history shows United should be represented among comparable commercial-flight options, but not treated as exclusive. A preserves that middle policy by holding a suitable United nonstop and a strong non-United nonstop while still comparing door-to-door practicality. B omits United despite comparable availability, C overstates the preference as United-only, and D overweights fare while accepting connections.",
+            "probe_type": "evidence_disambiguation",
+            "query": "The travel desk can place two 24-hour holds for my Denver-to-Washington symposium next month. I need to arrive Tuesday by 6 pm, leave Friday after 1 pm, and stay near Metro Center; DCA and IAD are both workable from the hotel. The desk says the viable nonstops are in the same fare band. What instruction should I send?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choices emphasizing United or keeping both holds on United suggest possible unstated airline-loyalty cues, but the explicit DCA-versus-IAD location advantage is sufficient to choose B."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c03",
+            "rationale": "For a hotel near Metro Center, DCA is the closer and more convenient airport. Since viable nonstops are in the same fare band and two holds are available, holding the two DCA nonstops is the best generic instruction. The one-stop and IAD-focused options are less attractive without a stated reason."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Southwest nonstop DEN-MSY 1:35 pm-5:10 pm; return 2:20 pm-4:15 pm; comparable fare class; $368."
+              },
+              {
+                "choice_id": "B",
+                "text": "United one-stop via Houston DEN-MSY 11:55 am-5:05 pm; return 1:50 pm-5:55 pm via Houston; regular economy; $322."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta one-stop via Atlanta DEN-MSY 12:20 pm-5:45 pm; return 2:40 pm-7:05 pm via Atlanta; main cabin; $318."
+              },
+              {
+                "choice_id": "D",
+                "text": "American one-stop via Dallas-Fort Worth DEN-MSY 12:35 pm-5:50 pm; return 3:05 pm-6:40 pm via Dallas-Fort Worth; main cabin; $326."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "The query alone leaves a genuine fare-versus-routing tradeoff: a planner could accept B for the savings and early arrival or A for the nonstop and earlier return home. The memory is needed to recognize this as an exception to the soft United weighting rather than a reason to force United.",
+            "gold_action": "Choose the Southwest nonstop New Orleans itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0003",
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0108",
+              "tm_pd_v04_user_001_s0129",
+              "tm_pd_v04_user_001_s0116"
+            ],
+            "label_rationale": "B is United, cheaper, and arrives a few minutes earlier Monday, so it is a real near miss. But it adds connections both ways and a longer Thursday return. Erin's history repeatedly treats United as secondary to clean routing and sane timing, so the better nonstop alternative should win when the United option is meaningfully less clean.",
+            "probe_type": "exception",
+            "query": "I'm booking DEN-MSY for a training session in New Orleans. I cannot leave Denver before late morning Monday, need to be checked in at the hotel by 6:30 pm, and the Thursday session ends at noon. All four are reimbursable economy options. Which option should I choose?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "A is the only nonstop, leaves after late morning, arrives with enough hotel check-in buffer, and gets back to Denver much earlier than the connecting options. The fare premium is modest and all options are reimbursable economy, so common-sense travel planning favors the nonstop."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United nonstop SAT-DEN 1:35 pm-2:55 pm; regular economy; $244."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest nonstop SAT-DEN 12:25 pm-1:50 pm; comparable fare class; $242."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via Dallas-Fort Worth SAT-DEN 12:55 pm-4:05 pm; main cabin; $216."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via Houston SAT-DEN 2:05 pm-5:45 pm; regular economy; $224."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Without history, the Southwest nonstop is just as defensible because it is marginally cheaper and arrives earlier. The memory is needed to know that Denver-return personal travel remains in scope for the soft United tiebreaker.",
+            "gold_action": "Pick the United nonstop return to Denver.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0042",
+              "tm_pd_v04_user_001_s0023",
+              "tm_pd_v04_user_001_s0099",
+              "tm_pd_v04_user_001_s0034",
+              "tm_pd_v04_user_001_s0129"
+            ],
+            "label_rationale": "A return leg back to Denver is within scope even though only one direction is being booked and the trip is personal. A and B are nearly tied nonstops: Southwest is a couple dollars cheaper and a little earlier, while United is an early-afternoon nonstop that still gets her home well before evening. The long-run soft United preference tips the tie; the Milwaukee holiday no-carrier statement was a trip-specific exception, not a permanent reset.",
+            "probe_type": "boundary",
+            "query": "After visiting family in San Antonio, I only need to book the Sunday flight home to Denver. I can leave around lunch or early afternoon and want to be back well before evening plans. Which return should I pick?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c07",
+            "rationale": "B is a nonstop, is the lowest-priced nonstop, leaves around lunch, and arrives earliest, giving the most buffer before evening plans. The cheaper one-stops add connection risk and arrive substantially later; A is essentially the same fare but arrives over an hour later."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta nonstop DEN-CVG 10:25 am-3:05 pm; return 3:45 pm-4:55 pm; main cabin; $386."
+              },
+              {
+                "choice_id": "B",
+                "text": "United one-stop via Chicago DEN-CVG 8:50 am-2:40 pm; return 2:55 pm-6:45 pm via Chicago; regular economy; $338."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest one-stop via Chicago Midway DEN-CVG 9:35 am-3:00 pm; return 4:05 pm-7:35 pm via Midway; comparable fare; $342."
+              },
+              {
+                "choice_id": "D",
+                "text": "American one-stop via Dallas-Fort Worth DEN-CVG 7:55 am-2:45 pm; return 3:10 pm-7:25 pm via Dallas-Fort Worth; main cabin; $318."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Query-only reasoning can go either way: B has price and Monday-arrival advantages, while A has route simplicity and a much earlier home arrival. The hidden longitudinal boundary is needed to treat the United connection as materially less attractive rather than letting the airline preference decide.",
+            "gold_action": "Ticket the Delta nonstop Cincinnati itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0000",
+              "tm_pd_v04_user_001_s0021",
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0108",
+              "tm_pd_v04_user_001_s0116"
+            ],
+            "label_rationale": "The United option is a credible distractor because it is cheaper and arrives slightly earlier Monday. Still, it is a one-stop itinerary both directions with a substantially longer Friday return, while A is the clean nonstop that satisfies the site-access and debrief windows. Erin's history says not to force United when it is worse on routing or operational simplicity.",
+            "probe_type": "exception",
+            "query": "For a Cincinnati lab install, I need to arrive Monday by 4:30 pm for site access and return Friday after a 1 pm debrief. The fare cap covers all four economy options. Which itinerary should I ticket?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "A is the only nonstop, meets the site-access and post-debrief timing requirements, leaves Denver later than most alternatives, and returns to Denver much earlier. Because the fare cap covers all options, the nonstop convenience and reduced travel time make it the generic best choice."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Use a nonstop/routing filter with carriers left open, and make sure a workable United nonstop stays on the shortlist alongside similarly timed non-United nonstops."
+              },
+              {
+                "choice_id": "B",
+                "text": "Use a nonstop/routing filter with carriers left open, then sort only by elapsed time and fare without reserving a spot for any carrier."
+              },
+              {
+                "choice_id": "C",
+                "text": "Start with a United-only nonstop filter, and broaden only if the United times are unusable or sold out."
+              },
+              {
+                "choice_id": "D",
+                "text": "Use no route or carrier filter at first, sort by lowest fare, and include one-stop itineraries that still meet the Sunday and Wednesday windows."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "From the query alone, B is a reasonable neutral-filter setup because no carrier preference is stated. The hidden history is needed to add United to the comparable shortlist without imposing an exclusive carrier filter.",
+            "gold_action": "Set up the St. Louis search to compare United nonstops with other sane nonstop options.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0020",
+              "tm_pd_v04_user_001_s0034",
+              "tm_pd_v04_user_001_s0079",
+              "tm_pd_v04_user_001_s0099",
+              "tm_pd_v04_user_001_s0129"
+            ],
+            "label_rationale": "The longitudinal policy is a middle position: keep United visible and give it positive weight when comparable, but do not make the search United-only and do not generalize one-trip carrier-indifferent exceptions into excluding United. A captures that by using the practical nonstop filter while shortlisting United alongside other suitable carriers. B ignores the soft carrier signal, C makes it too strong, and D lets fare sorting surface connections too early.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Before pricing DEN-STL for a September certification course, the booking tool asks for first-pass filters. I need a Sunday-afternoon arrival, a Wednesday return after 2 pm, and regular economy or equivalent. The tool shows several viable nonstop and one-stop options in roughly the same fare range. What should I set before comparing exact fares?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choices A and C explicitly privilege United without support from the query; this is a suspicious private-preference cue, but it is sufficient to reject those choices rather than require history."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c09",
+            "rationale": "The stated first-pass filters support nonstops with carriers left open, then comparing by elapsed time and fare. Reserving a slot for United or using a United-only filter would rely on an unstated carrier preference, while including one-stops is less sensible when viable nonstops are in the same fare range."
+          }
+        }
+      ],
+      "round": 1
+    },
+    {
+      "accepted_this_round": [
+        "c03",
+        "c07",
+        "c09"
+      ],
+      "accepted_total": [
+        "c00",
+        "c02",
+        "c03",
+        "c04",
+        "c05",
+        "c07",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United nonstop DEN-AUS 1:05 pm-4:20 pm; return 3:25 pm-4:45 pm; regular economy; $312."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest nonstop DEN-AUS 12:35 pm-3:55 pm; return 2:40 pm-4:05 pm; comparable fare class; $312."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta one-stop via Salt Lake City DEN-AUS 12:05 pm-4:35 pm; return 3:05 pm-6:35 pm; main cabin; $286."
+              },
+              {
+                "choice_id": "D",
+                "text": "American one-stop via Dallas-Fort Worth DEN-AUS 12:20 pm-4:50 pm; return 3:45 pm-6:15 pm; main cabin; $282."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Using only the query, a planner could reasonably favor B for earlier arrivals or A for the later outbound and safer Thursday buffer. The hidden soft United preference is needed to break that close tradeoff toward A.",
+            "gold_action": "Book the afternoon United nonstop Austin itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0005",
+              "tm_pd_v04_user_001_s0023",
+              "tm_pd_v04_user_001_s0099",
+              "tm_pd_v04_user_001_s0129"
+            ],
+            "label_rationale": "A and B are the close pair: both are nonstop, same-price economy options that satisfy the reception and post-panel windows. B arrives in Austin and Denver a bit earlier, while A leaves Denver later after the morning commitment and gives a more comfortable post-panel departure buffer. Erin's longitudinal pattern gives United positive tie-breaking weight when otherwise comparable, without making it exclusive. C and D save modestly only by adding connections.",
+            "probe_type": "conflict_resolution",
+            "query": "For a two-night analytics conference in Austin, I have a late-morning commitment in Denver, need to get to the convention hotel Tuesday for a 6:30 pm reception, and return Thursday after a 1 pm panel. All fares below are within the cap and comparable economy; which should I book?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "United-versus-Southwest carrier choice could be a hidden preference cue, but the timing and nonstop-routing advantages are sufficient to select A without history.",
+              "The query downplays fare-class and cap differences, making small savings on connecting options less decisive."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c01",
+            "rationale": "A is the same-price nonstop that best protects the stated schedule: it leaves Denver later after the late-morning commitment and leaves Austin later after the 1 pm panel, while still arriving early enough for the 6:30 pm reception. B is tighter around both commitments, and C/D add connections for only modest savings under the fare cap."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Southwest nonstop DEN-MSY 12:45 pm-4:25 pm; return 2:15 pm-4:10 pm; comparable fare class; $362."
+              },
+              {
+                "choice_id": "B",
+                "text": "United nonstop DEN-MSY 1:25 pm-5:00 pm; return 1:20 pm-3:15 pm; regular economy; $338."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta one-stop via Atlanta DEN-MSY 11:55 am-4:45 pm; return 2:50 pm-6:40 pm; main cabin; $322."
+              },
+              {
+                "choice_id": "D",
+                "text": "American one-stop via Dallas-Fort Worth DEN-MSY 12:15 pm-5:10 pm; return 2:35 pm-6:05 pm; main cabin; $326."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Without the hidden history, a planner could choose B for fare and earlier home arrival or A for timing buffers. The memory is needed to treat this as an exception to the soft United weighting rather than a reason to choose United.",
+            "gold_action": "Choose the Southwest nonstop New Orleans itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0003",
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0108",
+              "tm_pd_v04_user_001_s0116",
+              "tm_pd_v04_user_001_s0129"
+            ],
+            "label_rationale": "A and B are both nonstop and feasible, making B a real near miss: it is United, cheaper, leaves Denver later, and gets back to Denver earlier. A, however, gives better margin for the Monday hotel check-in and a less compressed Thursday airport transfer after the noon session. Erin's history says not to force United when timing or practical routing is worse, so the cleaner-buffered Southwest nonstop wins. C and D lower the fare only by adding connections and longer returns.",
+            "probe_type": "exception",
+            "query": "I'm booking DEN-MSY for a training session in New Orleans. I cannot leave Denver before late morning Monday, need to be checked in at the hotel by 6:30 pm, and the Thursday session ends at noon. All four are reimbursable economy options. Which option should I choose?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The Southwest-versus-United nonstop comparison could invite an airline-preference guess, but A's timing buffers and nonstop routing provide a generic basis.",
+              "The query says all options are reimbursable economy, reducing the importance of small fare differences."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "A is the nonstop with practical schedule buffers: it leaves after late morning, arrives early enough to make a 6:30 pm hotel check-in comfortably, and returns at 2:15 pm after a noon session. B is cheaper but its 1:20 pm return is tight after a noon session, while C/D add connections and much longer return travel for modest savings."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta nonstop DEN-CVG 10:15 am-2:55 pm; return 3:40 pm-4:50 pm; main cabin; $382."
+              },
+              {
+                "choice_id": "B",
+                "text": "United nonstop DEN-CVG 10:55 am-3:35 pm; return 2:10 pm-3:20 pm; regular economy; $354."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest one-stop via Chicago Midway DEN-CVG 9:50 am-3:15 pm; return 3:55 pm-7:25 pm; comparable fare class; $336."
+              },
+              {
+                "choice_id": "D",
+                "text": "American one-stop via Dallas-Fort Worth DEN-CVG 8:55 am-2:35 pm; return 2:50 pm-6:45 pm; main cabin; $328."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "From the query alone, B's fare and earlier home arrival can compete with A's better operational buffers. The hidden policy is needed to recognize that United loses when it is worse on the primary timing constraints.",
+            "gold_action": "Ticket the Delta nonstop Cincinnati itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_001_s0000",
+              "tm_pd_v04_user_001_s0021",
+              "tm_pd_v04_user_001_s0039",
+              "tm_pd_v04_user_001_s0108",
+              "tm_pd_v04_user_001_s0116"
+            ],
+            "label_rationale": "A and B are the close comparison because both are nonstop and both meet the broad work windows. B is a cheaper United option, leaves Denver later, and gets home earlier Friday, but A gives more margin before the Monday site-access window and a more comfortable departure after the Friday debrief. Erin's history treats United as secondary to schedule protection, so the tighter United timing should not be forced here. C and D are lower-fare options but add connections and longer returns.",
+            "probe_type": "exception",
+            "query": "For a Cincinnati lab install, I need to be in town Monday afternoon for a site-access window that starts at 4:30 pm and return Friday after a 1 pm debrief. The fare cap covers all four economy options. Which itinerary should I ticket?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Delta-versus-United could be an airline-preference cue, but the site-access and debrief timing make A objectively preferable.",
+              "The fare cap covers all options, so lower connecting fares are not enough to outweigh schedule reliability."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "A is the nonstop with the safest buffers for the fixed lab-install schedule: arrival at 2:55 pm leaves meaningful time before the 4:30 pm site-access window, and the 3:40 pm return leaves room after the 1 pm debrief. B is cheaper but tight on both Monday arrival and Friday departure, while C/D add connection risk and longer returns despite lower fares."
+          }
+        }
+      ],
+      "round": 2
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "boundary": 1,
+      "conflict_resolution": 1,
+      "cross_context_transfer": 1,
+      "direct_use": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_001"
+}

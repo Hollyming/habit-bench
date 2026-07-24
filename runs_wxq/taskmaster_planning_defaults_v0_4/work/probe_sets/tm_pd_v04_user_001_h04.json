@@ -1,0 +1,421 @@
+{
+  "cache_fingerprint": "92a0b93be6b2b0c015f9cd6db948f065014741566d2a9926e170e335ec162ca2",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "From the query alone, A and B are both defensible: B wins on price, proximity, downtown dining, and hotel-category label, while A wins mainly on the customer-review signal. The longitudinal memory is needed to know that Erin's durable standard is about public guest ratings, not hotel-class stars.",
+      "gold_action": "Place the first hold at Staybridge Suites West and note its Google guest rating.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_001_s0000",
+        "tm_pd_v04_user_001_s0020",
+        "tm_pd_v04_user_001_s0075"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_001_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_001_h04",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies when Erin is searching for or comparing hotels outside of a mandatory event room block or host-selected lodging.",
+        "scope_key": "self_selected_overnight_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "Comfort Inn Middleton is cheaper and still at the 4.0 threshold, but it has a slightly longer drive and an older-rooms caveat while A is still within budget and better reviewed.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Erin repeatedly prefers hotels with guest ratings around 4.0+ and does not want to go below that when workable options exist. Staybridge West is within budget, has a 4.1 Google guest rating, a short west-side drive, gym, and included parking, so it is the best first hold.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Erin's history supports favoring customer-facing hotel ratings around 4.0 or better for self-selected lodging when workable. A clears that familiar review floor from a known Google source while staying within the trip constraints. B is the near miss because it is cheaper, closer, downtown, and labeled as a four-star-category hotel, but that category label is not the customer-facing review signal Erin has repeatedly used, and its visible Google score is below her usual comfort range.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_001_h04_p00",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Portal hotel category versus Google guest rating is a suspicious rating-source cue.",
+          "A's included parking is relevant to the rental-car cue, but not enough by itself to eliminate B."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "A is a strong all-around fit because it is within budget, has a known 4.1 Google rating, gym, pool, and included parking for the rental car. B is also defensible from the stated facts because it is cheaper, has a shorter listed drive, has a gym, and is described as a four-star portal category despite the lower Google rating. The query does not state how to trade guest rating/parking against price/shorter commute.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A generic planner could reasonably prefer B for lower cost and a shorter venue drive, while A is only modestly better reviewed. Erin's longitudinal review-rating pattern is what breaks the tie toward A.",
+      "gold_action": "Rank Blue Ridge Lodge & Spa first and include its Google guest rating in the shortlist.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_001_s0067",
+        "tm_pd_v04_user_001_s0123",
+        "tm_pd_v04_user_001_s0129"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_001_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_001_h04",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies when Erin is searching for or comparing hotels outside of a mandatory event room block or host-selected lodging.",
+        "scope_key": "self_selected_overnight_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "Biltmore Village Suites has a strong 8.8/10 guest score and is within budget, but it is farther from the west-side venue and is less directly aligned with the celebration/venue logistics than A.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "For both work and family lodging, Erin asks for guest ratings around 4.0 or better. Blue Ridge Lodge & Spa clears that threshold at 4.1, stays under the rough $300 budget, is close to the west-side venue, and has family-weekend amenities like a pool and hot tub.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "This is self-selected overnight lodging with a clear customer-facing rating shown, so Erin's recurring preference for hotels around 4.0 or better applies. A stays within budget, keeps the venue drive reasonable, and clears that review comfort level. B is the closest distractor because it is cheaper, closer, newer, and has the same pool/hot tub amenities, but it falls just below the rating floor Erin has repeatedly treated as her normal default when workable options exist.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_001_h04_p01",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Family-celebration and mountain-view/spa wording may tempt an unstated leisure-style preference.",
+          "Mixed rating sources and amenity cues require subjective weighting."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The options trade off venue proximity, price, rating source, weekend amenities, dining convenience, and setting. A has the best celebration-style amenities and good proximity; B is closer and cheaper; C has a strong Booking score plus breakfast and walkable dinners; D is cheapest with the highest Google rating but farther away. The query does not state which of those priorities should control.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "Without memory, B's higher rating and central location could look like the better value, while A has the smoother workshop commute. The needed memory is that Erin treats ratings above about 4.0 as incremental, not as a mandatory 4.5-plus target.",
+      "gold_action": "Recommend Hilton Garden Inn North as the first hold and note the Google guest rating.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_001_s0014",
+        "tm_pd_v04_user_001_s0048",
+        "tm_pd_v04_user_001_s0129"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_001_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_001_h04",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies when Erin is searching for or comparing hotels outside of a mandatory event room block or host-selected lodging.",
+        "scope_key": "self_selected_overnight_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Graduate Ann Arbor is tempting because its 4.6 rating is higher and it has a better dinner area, but A already satisfies Erin's rating preference and has the better workshop commute.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Erin wants well-reviewed hotels, roughly 4.0+ when possible, without needing to chase the fanciest option. Hilton Garden Inn North is above the threshold at 4.2, within budget, closer to the north-campus meetings, and has the useful gym/pool setup.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Erin's long-run hotel pattern is a soft customer-review floor, not a rule to chase the highest possible rating. A's Google rating is comfortably above her usual 4.0-ish standard, so its easier north-side logistics can outweigh B's higher 4.6 score. B is the near miss because it is similarly priced after parking, livelier for evenings, and more highly rated, but the extra rating is a bonus rather than an overriding requirement.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_001_h04_p02",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Parking-reimbursed plus evening-open wording favors the downtown Graduate option, but not decisively.",
+          "Portal hotel category versus lower Google rating on D is a suspicious cue, but D is not competitive on the stated factors."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rationale": "A is a balanced north-side workshop choice with a good Google rating and shorter drive. B has the highest Google rating and a central dinner area, with parking reimbursement reducing its paid-parking downside. C is the closest and cheapest with gym, pool, and breakfast, though lower rated. The query does not state whether commute, evening location, rating, or price should dominate.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B trade off in a way the query alone does not settle: B is cheaper and closer, while A is better reviewed and still practical. Erin's longitudinal rating preference is needed to rank A first.",
+      "gold_action": "Place the first hold at Hyatt House West Loop and note its Google guest rating.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_001_s0014",
+        "tm_pd_v04_user_001_s0020",
+        "tm_pd_v04_user_001_s0067"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_001_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_001_h04",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies when Erin is searching for or comparing hotels outside of a mandatory event room block or host-selected lodging.",
+        "scope_key": "self_selected_overnight_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Hilton Garden Inn McCormick is very tempting for the 8-minute walk and lower price, but its 3.9 rating falls below Erin's usual floor while A is a workable 4.0+ alternative.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Erin's pattern is to keep hotels around 4.0+ in guest reviews when workable. Hyatt House West Loop is refundable, within budget, rated 4.2, has a gym/pool, and gives a manageable 15-minute rideshare to the meeting center.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "For self-selected hotel searches with public ratings available, Erin's durable pattern is to favor options around 4.0 or better when workable. A satisfies that pattern while remaining within the cap and giving a manageable ride to the meeting center. B is the closest distractor because it is cheaper and walkable, but its visible public rating falls just below Erin's usual comfort level.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_001_h04_p03",
+      "probe_type": "direct_use",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The 8-minute-walk cue favors B, while the lively-evening-area cue favors C.",
+          "The O'Hare easy-airport-return cue is not tied to a stated priority."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rationale": "B is cheapest among the plausible city options and has by far the best meeting-center access, but its guest rating is lower. A has a higher Google rating, gym, pool, refundable rate, and a short rideshare. C has a lively evening area and gym but a longer transit ride. The query does not state how to weigh trade-show proximity against hotel rating or evening neighborhood.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_001"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Staybridge Suites West: Google guest rating 4.1, $213, 15-minute drive, gym, small pool, parking included."
+        },
+        {
+          "choice_id": "B",
+          "text": "The Madison Club Hotel: portal four-star hotel category and Google guest rating 3.8, $184, 10-minute drive from downtown, gym, restaurant nearby."
+        },
+        {
+          "choice_id": "C",
+          "text": "Airport Residence Inn: Expedia guest rating 4.5, $216, 25-minute drive, gym and pool, straightforward airport-side parking."
+        },
+        {
+          "choice_id": "D",
+          "text": "Comfort Inn Middleton: TripAdvisor traveler rating 4.0, $192, 18-minute drive, gym, breakfast included, older rooms."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_001_h04_p00",
+      "query": "Erin needs a cancellable hotel for a two-night Madison product-training visit. The client site is on the west side, she will have a rental car, the budget is about $220 before tax, and a basic gym would be useful. Downtown is workable if the morning drive stays manageable. Which hold should the assistant place first?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_001",
+      "visible_history_scope": {
+        "max_session_index": 136
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Blue Ridge Lodge & Spa: Google guest rating 4.1, $292, 16 minutes from the venue, pool and hot tub, refundable mountain-view king."
+        },
+        {
+          "choice_id": "B",
+          "text": "Lakeview Resort: Google guest rating 3.9, $264, 12 minutes from the venue, pool and hot tub, refundable newer rooms."
+        },
+        {
+          "choice_id": "C",
+          "text": "Biltmore Village Suites: Booking.com guest score 8.8/10, $286, 24 minutes from the venue, gym, breakfast, walkable dinners."
+        },
+        {
+          "choice_id": "D",
+          "text": "Airport-area Hyatt Place: Google guest rating 4.2, $249, 32 minutes from the venue, pool and gym, easy parking."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "cross_context_transfer",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_001_h04_p01",
+      "query": "Erin is building a self-booked hotel shortlist for a long weekend near Asheville for a family celebration. There is no lodging block, the budget is roughly $300 before tax, the venue is west of town, and the family will have a car. Which property should be ranked first?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_001",
+      "visible_history_scope": {
+        "max_session_index": 136
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hilton Garden Inn North: Google guest rating 4.2, $226, 13-minute drive, gym and indoor pool, quiet work area."
+        },
+        {
+          "choice_id": "B",
+          "text": "Graduate Ann Arbor: Google guest rating 4.6, $208 plus $22 parking, 21-minute campus-route drive, gym, central dinner area."
+        },
+        {
+          "choice_id": "C",
+          "text": "Comfort Suites Research Park: Google guest rating 3.9, $191, 9-minute drive, gym and indoor pool, breakfast included."
+        },
+        {
+          "choice_id": "D",
+          "text": "Weber's Boutique Hotel: portal four-star hotel category and Google guest rating 3.8, $218, 11-minute drive, gym, strong restaurant."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_001_h04_p02",
+      "query": "Erin is choosing a two-night hotel for an Ann Arbor workshop. Meetings are near the north side of campus, evenings are open, parking is reimbursed, the budget is about $235 before tax, and she would use a gym if available. Which recommendation should be first?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_001",
+      "visible_history_scope": {
+        "max_session_index": 136
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hyatt House West Loop: Google guest rating 4.2, $222, 15-minute rideshare, gym and pool, refundable."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hilton Garden Inn McCormick: Google guest rating 3.9, $199, 8-minute walk, gym, refundable, lobby restaurant."
+        },
+        {
+          "choice_id": "C",
+          "text": "Aloft River North: TripAdvisor traveler rating 4.1, $224, 23-minute transit ride, gym, lively evening area."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hyatt Place O'Hare: Google guest rating 4.2, $178, 43-minute train or ride, gym and pool, easy airport return."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "direct_use",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_001_h04_p03",
+      "query": "Erin has a self-selected hotel choice for a Chicago trade-show trip. There is no official block, the meeting center is reachable by rideshare or transit, evenings are unscheduled, the budget is $225 before tax, and she can use a gym if available. Which hotel should be the first hold?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_001",
+      "visible_history_scope": {
+        "max_session_index": 136
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 1,
+      "gold_disagreement_or_unresolved": 1
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "cross_context_transfer": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 2
+    }
+  }
+}

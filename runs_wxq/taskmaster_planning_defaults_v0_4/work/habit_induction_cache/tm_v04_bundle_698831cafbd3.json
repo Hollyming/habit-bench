@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Do not apply this default to destination, date, route, nonstop status, or price decisions, and do not force an airline filter when the user has not made carrier choice relevant.",
+  "bundle_id": "tm_v04_bundle_698831cafbd3",
+  "condition": "When the synthetic user is choosing among flight options and an airline filter or carrier confirmation is relevant after route and timing constraints are set.",
+  "confidence": 0.64,
+  "decision": "accept",
+  "default_action": "Prefer or specifically check for American Airlines flights; if applying a carrier filter, include American Airlines as an acceptable carrier.",
+  "exception_condition": "If no American Airlines option satisfies the active hard constraints, or if the user explicitly names other acceptable carriers in the current request, present those qualifying non-American options rather than blocking the search.",
+  "family": "airline_choice",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_698831cafbd3",
+  "induced_at": "2026-07-15T12:32:41.355097+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prioritize American Airlines when selecting flights",
+  "preference_value": "American Airlines",
+  "rationale": "The independent Taskmaster examples do not establish a real user's longitudinal history, but they consistently make American Airlines a relevant or desired carrier: one directly requests it, one includes it in a carrier filter, and one checks whether an otherwise suitable flight is on it. The scoped default is limited to prioritizing or checking for American Airlines when carrier choice is in play.",
+  "seed_value": "american_airlines",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "Asked for nonstop flights that were also on one of several named carriers including American Airlines, grounding American Airlines as an acceptable carrier within a carrier filter.",
+      "conversation_id": "dlg-1b56b360-6ff6-4a77-9517-fb04a34b60cb",
+      "turn_index": 9
+    },
+    {
+      "contribution": "Stated, \"Yes, I want to go in American Airlines,\" grounding a direct American Airlines carrier preference.",
+      "conversation_id": "dlg-76ff7e6f-db78-43da-9958-358656225500",
+      "turn_index": 6
+    },
+    {
+      "contribution": "After accepting a flight as suitable, asked, \"Is that on American Airlines?\", grounding American Airlines as a carrier to verify for a chosen flight.",
+      "conversation_id": "dlg-84d55066-cef1-42f5-b6b2-b43abc7de70e",
+      "turn_index": 10
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "American Airlines",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-1b56b360-6ff6-4a77-9517-fb04a34b60cb",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 9,
+      "user_utterance": "Okay. Are there any nonstop flights that are also either on United, Jet Blue, or American Airlines?"
+    },
+    {
+      "annotated_segment": "American Airlines",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-76ff7e6f-db78-43da-9958-358656225500",
+      "habitual_language": false,
+      "instruction_id": "flight-3",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 6,
+      "user_utterance": "Yes, I want to go in American Airlines."
+    },
+    {
+      "annotated_segment": "American Airlines",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-84d55066-cef1-42f5-b6b2-b43abc7de70e",
+      "habitual_language": false,
+      "instruction_id": "flight-11",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 10,
+      "user_utterance": "Well, that's perfect. What flight is that on? Is that on American Airlines?"
+    }
+  ]
+}

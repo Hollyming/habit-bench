@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "This default applies to hotel room price tradeoffs only; it does not create a reusable numeric nightly ceiling or apply automatically to flights, dining, or activities.",
+  "bundle_id": "tm_v04_bundle_2ccc555d5ba6",
+  "condition": "When comparing or booking hotel rooms and the user has not stated a higher-priority reason to pay more.",
+  "confidence": 0.88,
+  "decision": "accept",
+  "default_action": "Sort or filter toward the lowest available acceptable nightly rate, and enforce any stated low-price constraint instead of upselling to costlier rooms.",
+  "exception_condition": "Do not choose purely by lowest price if the user explicitly requires a costlier room type, property feature, or location, or states that they are flexible on price for another constraint.",
+  "family": "hotel_price_tradeoff",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_2ccc555d5ba6",
+  "induced_at": "2026-07-15T12:35:12.721597+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefer the cheapest acceptable hotel room",
+  "preference_value": "budget_sensitive_lowest_acceptable_rate",
+  "rationale": "The supplied independent conversations repeatedly show price-minimizing hotel behavior: asking for rates under a stated limit or asking for the cheapest available room. The reusable synthetic habit is qualitative budget sensitivity, not a fixed dollar cap.",
+  "seed_value": "budget_sensitive",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "instruction hotel-4: user said they wanted the hotel to be \"under $150 a night,\" supporting a low-price constraint without making that amount a universal ceiling.",
+      "conversation_id": "dlg-bcdb335b-74f9-49ca-a6d3-e08e7c41718f",
+      "turn_index": 11
+    },
+    {
+      "contribution": "instruction hotel-16: user requested one room and said it needed to be \"under $150 a night,\" again showing budget sensitivity.",
+      "conversation_id": "dlg-0c04e870-8755-4a22-b3df-56471f9d26bc",
+      "turn_index": 3
+    },
+    {
+      "contribution": "instruction hotel-1: user asked, \"What is the cheapest room price?\"",
+      "conversation_id": "dlg-87dd1cb6-bd51-462a-9394-5daf76fa30ac",
+      "turn_index": 24
+    },
+    {
+      "contribution": "instruction hotel-1b: user asked if any rooms were available for the \"cheapest price.\"",
+      "conversation_id": "dlg-c8f292c8-864c-4310-ae4f-985c0e848c0c",
+      "turn_index": 20
+    },
+    {
+      "contribution": "instruction hotel-5: user requested \"The cheapest available.\"",
+      "conversation_id": "dlg-e99cc73f-540d-4392-b1fe-df8f37c2c516",
+      "turn_index": 17
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "under $150 a night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-bcdb335b-74f9-49ca-a6d3-e08e7c41718f",
+      "habitual_language": false,
+      "instruction_id": "hotel-4",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 11,
+      "user_utterance": "I would like it to be under $150 a night."
+    },
+    {
+      "annotated_segment": "under $150 a night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-0c04e870-8755-4a22-b3df-56471f9d26bc",
+      "habitual_language": false,
+      "instruction_id": "hotel-16",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 3,
+      "user_utterance": "Well, there'll be two of us, but one room is fine. One king and one sofa bed. And then I need it to be under $150 a night."
+    },
+    {
+      "annotated_segment": "the cheapest",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-87dd1cb6-bd51-462a-9394-5daf76fa30ac",
+      "habitual_language": false,
+      "instruction_id": "hotel-1",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 24,
+      "user_utterance": "What is the cheapest room price?"
+    },
+    {
+      "annotated_segment": "cheapest price",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-c8f292c8-864c-4310-ae4f-985c0e848c0c",
+      "habitual_language": false,
+      "instruction_id": "hotel-1b",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 20,
+      "user_utterance": "Is there any rooms available for cheapest price?"
+    },
+    {
+      "annotated_segment": "The cheapest",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-e99cc73f-540d-4392-b1fe-df8f37c2c516",
+      "habitual_language": false,
+      "instruction_id": "hotel-5",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 17,
+      "user_utterance": "The cheapest available."
+    }
+  ]
+}

@@ -1,0 +1,1145 @@
+{
+  "habit_id": "tm_pd_v04_user_000_h00",
+  "rounds": [
+    {
+      "accepted_this_round": [],
+      "accepted_total": [],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "JetBlue nonstop ATL-BOS Monday 10:10 a.m. to 12:45 p.m.; BOS-ATL Thursday 2:15 p.m. to 5:05 p.m.; Blue fare, $414."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop ATL-BOS Monday 10:35 a.m. to 1:05 p.m.; BOS-ATL Thursday 2:35 p.m. to 5:20 p.m.; Main Cabin, $446."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via CLT Monday 9:45 a.m. to 1:55 p.m.; BOS-ATL Thursday 1:40 p.m. to 5:55 p.m.; Main Cabin, $389."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest nonstop ATL-BOS Monday 12:20 p.m. to 3:00 p.m.; BOS-ATL Thursday 4:15 p.m. to 7:05 p.m.; Wanna Get Away+, $421."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A generic planner could reasonably pick the slightly cheaper JetBlue nonstop because the query alone gives no carrier tie-breaker. The history is needed to know that, when a Delta option is otherwise comparable on an ATL trip, Maya tends to put it ahead of an equally suitable alternative.",
+            "gold_action": "Put forward the Delta nonstop ATL-BOS/BOS-ATL itinerary as the first option.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0000",
+              "tm_pd_v04_user_000_s0005",
+              "tm_pd_v04_user_000_s0008",
+              "tm_pd_v04_user_000_s0013"
+            ],
+            "label_rationale": "This is a new ATL-origin work air trip, so the recurring carrier tendency applies. The Delta itinerary fits the stated arrival, return, nonstop, and policy constraints, and its fare and timing are close to the JetBlue nonstop rather than materially worse. The cheaper one-stop does not justify giving up the simpler routing.",
+            "probe_type": "cross_context_transfer",
+            "query": "Maya is routing an upcoming ATL-BOS work conference. She can leave after school drop-off, must arrive by 3:30 p.m. for hotel check-in and prep, and needs a Thursday return after 1 p.m.; carry-on only. All options are within policy and have similar standard-seat availability. Which flight option should be put forward first?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c00",
+            "rationale": "A meets the stated timing constraints, is nonstop, has ample arrival buffer before 3:30 p.m., and is the cheapest viable nonstop. C is only modestly cheaper but adds a connection; B and D cost more or provide worse timing."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta nonstop ATL-JFK Friday 5:35 p.m. to 7:50 p.m.; JFK-ATL Monday 11:10 a.m. to 1:45 p.m.; $1,060 total; two adjacent seats plus one same-row aisle across the aisle."
+              },
+              {
+                "choice_id": "B",
+                "text": "JetBlue nonstop ATL-JFK Friday 5:20 p.m. to 7:42 p.m.; JFK-ATL Monday 11:25 a.m. to 1:55 p.m.; $1,092 total; three adjacent standard seats are open."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta nonstop ATL-LGA Friday 6:45 p.m. to 9:05 p.m.; LGA-ATL Monday 1:20 p.m. to 3:45 p.m.; $1,004 total; only separate middle seats in nearby rows are open."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via IAD to LGA Friday 4:55 p.m. to 8:55 p.m.; LGA-ATL Monday 10:45 a.m. to 2:35 p.m.; $996 total; three adjacent standard seats are open."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Choice A is cheaper, nonstop, and on the recurring favored carrier, while choice B costs slightly more but gives the cleaner family seating arrangement. Without the history, either tradeoff is defensible; the longitudinal evidence resolves that the seating issue can override the soft carrier lean.",
+            "gold_action": "Book the JetBlue nonstop with three adjacent standard seats for the family.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0006",
+              "tm_pd_v04_user_000_s0072",
+              "tm_pd_v04_user_000_s0016",
+              "tm_pd_v04_user_000_s0063"
+            ],
+            "label_rationale": "The Delta option is close on timing and price, but this family trip has a seat-map constraint that the JetBlue option handles better. Maya's history shows the carrier tendency is soft and can yield to keeping the family seated together. This is a trip-specific boundary case, not a permanent revision of the ATL carrier default.",
+            "probe_type": "boundary",
+            "query": "Maya is booking ATL-New York flights for a long-weekend family wedding in Queens with her spouse and child. JFK or LGA works. They need a Friday after-school outbound and a Monday late-morning return; quotes include standard seat fees, and she is not trying to buy premium seats. Which should be booked?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "For a family of three with a child, B is the best standard-seat option because it has three adjacent seats, keeps the nonstop JFK schedule, and meets the after-school and late-morning timing needs. A is close but splits one traveler across the aisle; C separates everyone; D adds a connection."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Alaska nonstop ATL-SEA Sunday 9:40 a.m. to 12:05 p.m.; SEA-ATL Wednesday 1:30 p.m. to 9:15 p.m.; $612."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop ATL-SEA Sunday 10:05 a.m. to 12:30 p.m.; SEA-ATL Wednesday 1:55 p.m. to 9:38 p.m.; $648."
+              },
+              {
+                "choice_id": "C",
+                "text": "United one-stop via DEN Sunday 8:20 a.m. to 1:10 p.m.; SEA-ATL Wednesday 12:45 p.m. to 10:35 p.m.; $522."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta nonstop ATL-SEA Sunday 2:40 p.m. to 5:05 p.m.; SEA-ATL Wednesday 7:25 a.m. to 3:10 p.m.; $566."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Alaska is a clean nonstop and slightly cheaper, so a planner seeing only the query has no decisive reason to prefer B over A. The user's travel history supplies the tie-breaker: Delta should be favored when it remains schedule-sensible and not materially worse.",
+            "gold_action": "Recommend the Delta nonstop that preserves the Sunday arrival and Wednesday-after-noon return.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0008",
+              "tm_pd_v04_user_000_s0017",
+              "tm_pd_v04_user_000_s0039",
+              "tm_pd_v04_user_000_s0052"
+            ],
+            "label_rationale": "The selected Delta itinerary is within the user's usual ATL-trip scope and is close enough to the Alaska nonstop on price and timing. The cheaper United connection adds hassle, and the cheaper Delta option cuts against the stated Wednesday schedule. The right resolution is to favor the comparable, sensible Delta nonstop rather than chase the lowest fare or any Delta flight regardless of timing.",
+            "probe_type": "conflict_resolution",
+            "query": "Maya is choosing ATL-SEA flights for a solo product summit. She needs to be in Seattle before a 6 p.m. Sunday welcome dinner, return Wednesday after the last noon session, avoid connections unless they save enough to justify the hassle, and stay under $700. Which itinerary should be recommended?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "A is the lowest-priced nonstop that stays under $700, arrives well before the Sunday dinner, and returns after the Wednesday noon session. C saves some money but adds a connection without compelling savings; D returns before the last session; B is a costlier comparable nonstop."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta nonstop ATL-AUS Monday 4:10 p.m. to 5:40 p.m.; AUS-ATL Tuesday 4:20 p.m. to 7:35 p.m.; Main Cabin, $526."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest nonstop ATL-AUS Monday 5:10 p.m. to 6:40 p.m.; AUS-ATL Tuesday 3:45 p.m. to 7:00 p.m.; Wanna Get Away+, $397."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via DFW Monday 3:55 p.m. to 7:25 p.m.; AUS-ATL Tuesday 4:30 p.m. to 9:15 p.m.; Main Cabin, $348."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via IAH Monday 4:25 p.m. to 8:10 p.m.; AUS-ATL Tuesday 3:35 p.m. to 8:20 p.m.; Economy, $371."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Choice A offers more arrival cushion and the recurring carrier, while choice B preserves nonstop routing with a much lower fare. The query alone does not define Maya's tolerance for that premium; the history is needed to know the Delta lean should not override a large cost gap.",
+            "gold_action": "Propose the Southwest nonstop because it meets the timing and routing needs at a much lower fare.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0000",
+              "tm_pd_v04_user_000_s0008",
+              "tm_pd_v04_user_000_s0063",
+              "tm_pd_v04_user_000_s0115"
+            ],
+            "label_rationale": "Delta is available and has a modest timing advantage, but the premium over an otherwise workable nonstop is large for a one-night trip. Maya's history supports including or favoring Delta only when it is comparable, not forcing it over a materially cheaper suitable carrier. This exception is limited to this fare tradeoff, not a permanent carrier switch.",
+            "probe_type": "boundary",
+            "query": "Maya has a one-night ATL-AUS partner workshop. The client dinner starts Monday at 8 p.m., the Tuesday debrief ends at 2:30 p.m., and her manager will see the fare comparison but has not set a hard cap. She wants a nonstop if the fare gap is defensible. Which should be proposed?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c03",
+            "rationale": "B is the defensible nonstop: it meets the dinner and post-debrief timing and costs only modestly more than the cheapest one-stop. A is a much more expensive nonstop; C and D add connections, with D also arriving after the dinner starts."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta nonstop ATL-LGA Tuesday 3:05 p.m. to 5:20 p.m.; LGA-ATL Wednesday 5:00 p.m. to 7:35 p.m.; $326."
+              },
+              {
+                "choice_id": "B",
+                "text": "American nonstop ATL-LGA Tuesday 3:20 p.m. to 5:38 p.m.; LGA-ATL Wednesday 4:40 p.m. to 7:15 p.m.; $302."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta nonstop ATL-LGA Tuesday 6:40 p.m. to 8:55 p.m.; LGA-ATL Wednesday 8:55 p.m. to 11:35 p.m.; $286."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via IAD Tuesday 2:15 p.m. to 6:30 p.m.; LGA-ATL Wednesday 3:55 p.m. to 8:50 p.m.; $274."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A and B are both nonstop, normal-workday options with a small price difference, and the query alone gives no unique carrier answer. The history is needed both to prefer comparable Delta over American and to disambiguate that preference from the worse-timed cheaper Delta alternative.",
+            "gold_action": "Place the normal-timing Delta nonstop pairing on the approval request.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0013",
+              "tm_pd_v04_user_000_s0039",
+              "tm_pd_v04_user_000_s0086",
+              "tm_pd_v04_user_000_s0105"
+            ],
+            "label_rationale": "The relevant pattern is not to choose any Delta flight regardless of the day it creates. Here the normal-timing Delta itinerary is close to the American nonstop, so the soft carrier preference can break that tie. The cheaper late Delta option is a near miss because it satisfies the carrier cue but not the schedule quality Maya repeatedly protects.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Maya is setting up ATL-LGA flights for a solo Wednesday client review in Midtown. She will fly up Tuesday afternoon, the meeting ends Wednesday at 2 p.m., and she would rather not make it a late night if a normal return is available. Carry-on only. Which pairing should be placed on the approval request?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "B is a nonstop with normal outbound and return times, avoids a late night, and is cheaper than the very similar Delta option. C is late-night and D adds a connection for only small savings."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Air Canada nonstop ATL-YYZ Monday 9:50 a.m. to 12:05 p.m.; YYZ-ATL Thursday 3:35 p.m. to 5:55 p.m.; Standard fare, $565."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta one-stop via LGA Monday 8:35 a.m. to 1:50 p.m.; YYZ-ATL Thursday 2:25 p.m. to 8:15 p.m.; Main Cabin, $492."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via CLT Monday 9:15 a.m. to 1:40 p.m.; YYZ-ATL Thursday 3:15 p.m. to 8:40 p.m.; Main Cabin, $515."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via EWR Monday 10:15 a.m. to 3:45 p.m.; YYZ-ATL Thursday 1:50 p.m. to 7:35 p.m.; Economy, $468."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "The Air Canada nonstop costs more, while the Delta one-stop is cheaper and still technically fits the day. A generic planner could go either way depending on price sensitivity; Maya's prior pattern resolves that Delta should not be forced when the route is materially less simple.",
+            "gold_action": "Send the Air Canada nonstop as the recommended Toronto routing.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0044",
+              "tm_pd_v04_user_000_s0063",
+              "tm_pd_v04_user_000_s0086",
+              "tm_pd_v04_user_000_s0123"
+            ],
+            "label_rationale": "The Delta option is cheaper but adds a connection and gives less international-arrival cushion. Maya's history treats the carrier tendency as subordinate to sane routing and timing, especially when the alternative is a clean nonstop. This is a current-route exception, not a permanent abandonment of Delta on comparable ATL trips.",
+            "probe_type": "boundary",
+            "query": "Maya needs ATL-YYZ flights for a Monday-Thursday user group in Toronto. She must be at the hotel by midafternoon Monday for registration, can leave after Thursday lunch, and would prefer not to add a connection for an international trip unless the savings are compelling. Which option should be sent to her manager?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "A is the nonstop international option, arrives early enough for midafternoon hotel registration, and returns after Thursday lunch. The one-stop savings are not compelling enough under the stated preference, and D arrives too late Monday."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American nonstop ATL-LAX Saturday 10:50 a.m. to 12:35 p.m.; LAX-ATL Thursday 2:05 p.m. to 9:25 p.m.; $1,528 total; seats are two adjacent plus one across the aisle in the same row."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop ATL-LAX Saturday 11:10 a.m. to 12:55 p.m.; LAX-ATL Thursday 2:20 p.m. to 9:40 p.m.; $1,572 total; three adjacent standard seats are open."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta nonstop ATL-LAX Saturday 7:00 a.m. to 8:45 a.m.; LAX-ATL Thursday 6:40 a.m. to 2:00 p.m.; $1,430 total; only scattered standard seats are open."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest nonstop ATL-LAX Saturday 12:30 p.m. to 2:10 p.m.; LAX-ATL Thursday 1:25 p.m. to 8:50 p.m.; $1,476 total; seating is unassigned with family boarding."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Choice A is cheaper and still keeps the child next to one parent, while choice B costs slightly more but gives all three together and aligns with the recurring ATL carrier pattern. The query alone leaves that tradeoff subjective; the history identifies the better personal-policy resolution.",
+            "gold_action": "Hold the Delta nonstop with three adjacent standard seats.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0006",
+              "tm_pd_v04_user_000_s0017",
+              "tm_pd_v04_user_000_s0072",
+              "tm_pd_v04_user_000_s0105"
+            ],
+            "label_rationale": "The Delta itinerary is close to the American nonstop on price and timing, and it better supports the family seating pattern. Maya's history shows Delta is favored when comparable, but family seating remains an important constraint; here the Delta option satisfies both. The cheaper Delta with scattered seats and harsh times should not be chosen merely for carrier or fare.",
+            "probe_type": "conflict_resolution",
+            "query": "Maya is comparing ATL-LAX flights for a school-break visit with her spouse and child. They want nonstops, a Thursday afternoon return, and a seat plan that keeps the child directly next to at least one parent; quotes include standard seat selection but not premium upgrades. Which should be held while she confirms lodging?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "A meets the nonstop and Thursday-afternoon return requirements and provides an assigned seating plan with the child directly next to one parent, while costing less than B. C has scattered seats and a morning return; D is cheaper but unassigned seating is less reliable for the stated seat-plan requirement."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Southwest nonstop ATL-SLC Friday 7:05 a.m. to 9:20 a.m.; SLC-ATL Monday 2:10 p.m. to 7:45 p.m.; $438 per person."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop ATL-SLC Friday 7:35 a.m. to 9:50 a.m.; SLC-ATL Monday 2:00 p.m. to 7:30 p.m.; $464 per person."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via DFW Friday 6:55 a.m. to 11:25 a.m.; SLC-ATL Monday 1:30 p.m. to 8:55 p.m.; $402 per person."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via DEN Friday 8:15 a.m. to 12:10 p.m.; SLC-ATL Monday 3:05 p.m. to 9:25 p.m.; $416 per person."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Southwest is slightly cheaper and arrives a bit earlier, while Delta has a slightly better return and the relevant carrier history. A planner without Maya's history could not uniquely rank the two nonstops; the longitudinal preference supplies the tie-breaker.",
+            "gold_action": "Shortlist the Delta nonstop first for the ATL-SLC ski weekend.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0017",
+              "tm_pd_v04_user_000_s0072",
+              "tm_pd_v04_user_000_s0105",
+              "tm_pd_v04_user_000_s0115"
+            ],
+            "label_rationale": "This transfers the established pattern to a new personal ATL round trip. Delta's nonstop is within a small price and timing band of the Southwest nonstop and satisfies the arrival and return constraints, so it should be favored. The cheaper one-stop options do not provide enough benefit to displace the simple comparable Delta routing.",
+            "probe_type": "cross_context_transfer",
+            "query": "Maya and her spouse are flying ATL-SLC for a long ski weekend, with no child on this trip. They need to land Friday before 11 a.m. for a rental car pickup and return Monday after 1 p.m.; totals below include expected bag and seat fees and all are within the trip budget. Which itinerary should be first on the shortlist?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c07",
+            "rationale": "A meets the before-11 a.m. arrival and after-1 p.m. return requirements, is nonstop, and is cheaper than the comparable Delta nonstop. C and D miss the required Friday arrival time."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta nonstop ATL-PDX Sunday 7:05 a.m. to 9:30 a.m.; PDX-ATL Wednesday 6:55 p.m. to 2:20 a.m. the next day; $486."
+              },
+              {
+                "choice_id": "B",
+                "text": "Alaska nonstop ATL-PDX Sunday 10:30 a.m. to 12:55 p.m.; PDX-ATL Wednesday 1:55 p.m. to 9:35 p.m.; $522."
+              },
+              {
+                "choice_id": "C",
+                "text": "United one-stop via DEN Sunday 8:40 a.m. to 1:45 p.m.; PDX-ATL Wednesday 2:15 p.m. to 11:55 p.m.; $448."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta one-stop via SLC Sunday 12:15 p.m. to 6:35 p.m.; PDX-ATL Wednesday 1:20 p.m. to 10:40 p.m.; $462."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Choice A is cheaper, nonstop, and on Delta, while choice B costs a little more but avoids the red-eye. The query alone leaves that comfort-versus-price tradeoff open; the history is required to know that she should not choose Delta when the timing is materially worse.",
+            "gold_action": "Recommend the Alaska nonstop because it avoids the red-eye while preserving a simple schedule.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0039",
+              "tm_pd_v04_user_000_s0044",
+              "tm_pd_v04_user_000_s0086",
+              "tm_pd_v04_user_000_s0123"
+            ],
+            "label_rationale": "Although Delta appears in the option set, the available Delta nonstop creates an overnight return, and the other Delta option compromises the Sunday reception. Maya's history says the carrier tendency should give way when Delta creates a weird day or inferior timing. This is a one-trip schedule exception, not a global carrier preference change.",
+            "probe_type": "boundary",
+            "query": "Maya needs ATL-PDX for a design conference. She can fly Sunday, the 5:30 p.m. reception is useful but not mandatory, and the last panel ends Wednesday at 12:15 p.m. She would like to avoid a red-eye if there is a reasonable same-day option. Which itinerary should be recommended?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c08",
+            "rationale": "B avoids the red-eye, returns the same day after the panel, is nonstop, and arrives early enough for the useful reception. A is a red-eye; C is cheaper but adds a connection and much later return; D adds a connection and misses the reception."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American nonstop ATL-MIA Friday 6:20 p.m. to 8:15 p.m.; MIA-ATL Sunday 1:50 p.m. to 3:45 p.m.; $238."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop ATL-MIA Friday 6:05 p.m. to 8:00 p.m.; MIA-ATL Sunday 2:05 p.m. to 4:00 p.m.; $262."
+              },
+              {
+                "choice_id": "C",
+                "text": "Frontier nonstop ATL-MIA Friday 8:35 p.m. to 10:30 p.m.; MIA-ATL Sunday 6:10 p.m. to 8:05 p.m.; basic fare, $196."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest one-stop ATL-MIA Friday 5:40 p.m. to 9:45 p.m.; MIA-ATL Sunday 12:45 p.m. to 5:15 p.m.; $224."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "American is a very similar nonstop and costs modestly less, so the query alone does not make B uniquely best. The user's history is needed to apply the recurring Delta tie-breaker on an otherwise comparable ATL trip.",
+            "gold_action": "Send the comparable Delta nonstop for booking.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0000",
+              "tm_pd_v04_user_000_s0005",
+              "tm_pd_v04_user_000_s0014",
+              "tm_pd_v04_user_000_s0105"
+            ],
+            "label_rationale": "This is an ATL-origin personal flight, and Delta's schedule, route, and fare are comparable to the American nonstop while fitting the stated budget. The softer preference supports choosing Delta here; it does not require considering the later bare-bones fare or the one-stop routing as better merely because they are cheaper.",
+            "probe_type": "direct_use",
+            "query": "Maya is selecting ATL-MIA flights for a solo weekend family visit. She wants to leave after 5 p.m. Friday, return Sunday early afternoon, travel carry-on only, and keep the fare roughly under $300. Which option should be sent to her for booking?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c09",
+            "rationale": "A is a nonstop under the rough $300 cap, leaves after 5 p.m., and has an early-afternoon Sunday return at a lower price than the similar Delta nonstop. C returns too late and is a basic fare; D is a much longer one-stop for minimal savings."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c08"
+      ],
+      "accepted_total": [
+        "c08"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "JetBlue nonstop ATL-BOS Monday 9:55 a.m. to 12:30 p.m.; BOS-ATL Thursday 2:55 p.m. to 5:45 p.m.; Blue fare, $431."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop ATL-BOS Monday 10:35 a.m. to 1:07 p.m.; BOS-ATL Thursday 2:20 p.m. to 5:05 p.m.; Main Cabin, $438."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via CLT Monday 9:40 a.m. to 1:45 p.m.; BOS-ATL Thursday 1:50 p.m. to 6:05 p.m.; Main Cabin, $407."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest nonstop ATL-BOS Monday 12:05 p.m. to 2:40 p.m.; BOS-ATL Thursday 3:45 p.m. to 6:35 p.m.; Wanna Get Away+, $419."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A planner using only the query could reasonably choose either nonstop: A saves a few dollars and adds prep time, while B improves the departure and return cadence. Maya's prior ATL-trip carrier pattern is the tie-breaker.",
+            "gold_action": "Put forward the comparable Delta nonstop ATL-BOS/BOS-ATL itinerary first.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0000",
+              "tm_pd_v04_user_000_s0005",
+              "tm_pd_v04_user_000_s0008",
+              "tm_pd_v04_user_000_s0013"
+            ],
+            "label_rationale": "The JetBlue and Delta nonstops both satisfy the hard timing and policy constraints, with JetBlue slightly cheaper and earlier into Boston while Delta has a less-rushed departure and earlier return home. Maya's longitudinal pattern favors Delta among otherwise comparable ATL-origin flight options, so the Delta nonstop should lead the shortlist.",
+            "probe_type": "cross_context_transfer",
+            "query": "Maya is routing an upcoming ATL-BOS work conference. Her earliest practical ATL departure is about 9:30 a.m. Monday, she needs to be at the hotel by 3:30 p.m. for check-in and prep, and the Thursday program ends at noon; carry-on only. All listed fares are within policy and have similar standard-seat availability. Which flight option should be put forward first?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Close airline-branded alternatives could invite loyalty inference, but explicit timing, routing, and fare comparisons are sufficient."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c00",
+            "rationale": "A is a nonstop that leaves after the stated 9:30 a.m. practical departure, arrives with a comfortable hotel buffer, returns after the noon program with a better buffer than B or C, and is cheaper than B. C is a one-stop for only modest savings, and D leaves too little arrival-to-hotel margin."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta nonstop ATL-LGA Friday 5:50 p.m. to 8:05 p.m.; LGA-ATL Monday 11:10 a.m. to 1:45 p.m.; $1,018 total; two adjacent seats plus one same-row aisle directly across the aisle."
+              },
+              {
+                "choice_id": "B",
+                "text": "JetBlue nonstop ATL-JFK Friday 5:35 p.m. to 7:58 p.m.; JFK-ATL Monday 11:25 a.m. to 1:55 p.m.; $1,064 total; three adjacent standard seats can be held."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta nonstop ATL-JFK Friday 6:50 p.m. to 9:12 p.m.; JFK-ATL Monday 12:45 p.m. to 3:20 p.m.; $996 total; only separate standard seats in nearby rows are open."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via IAD to LGA Friday 5:05 p.m. to 8:55 p.m.; LGA-ATL Monday 10:45 a.m. to 2:35 p.m.; $1,006 total; three adjacent standard seats are open."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Without the longitudinal record, A and B involve a subjective cost-and-airport versus seating tradeoff. The history resolves that keeping the family together can override the otherwise comparable Delta option.",
+            "gold_action": "Book the JetBlue nonstop with three adjacent standard seats for the family.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0006",
+              "tm_pd_v04_user_000_s0016",
+              "tm_pd_v04_user_000_s0072",
+              "tm_pd_v04_user_000_s0005"
+            ],
+            "label_rationale": "The Delta nonstop is a credible near miss because it is cheaper, uses a workable New York airport, and keeps the family in the same row. Maya's history shows the Delta lean is soft and can yield on family trips when another reasonable nonstop provides the cleaner adjacent-seat arrangement.",
+            "probe_type": "boundary",
+            "query": "Maya is booking ATL-New York flights for a long-weekend family wedding in Queens with her spouse and child. JFK or LGA works for the pickup plan. They have a Friday after-school departure window and a Monday late-morning return window; the fare quotes include the listed standard-seat holds. Which option should be booked?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The family-with-child and seat-hold details are explicit wording cues sufficient to select an answer; no private seating preference is needed."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "For a spouse-and-child trip, the stated seat holds matter. B is the only nonstop option with three adjacent standard seats, while A splits one traveler across the aisle, C has separated seats, and D adds a connection. JFK and LGA are both acceptable, so B is the generic best despite a small premium."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Alaska nonstop ATL-SEA Sunday 9:45 a.m. to 12:10 p.m.; SEA-ATL Wednesday 3:05 p.m. to 10:50 p.m.; Main Cabin, $632."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop ATL-SEA Sunday 10:30 a.m. to 12:55 p.m.; SEA-ATL Wednesday 1:45 p.m. to 9:30 p.m.; Main Cabin, $646."
+              },
+              {
+                "choice_id": "C",
+                "text": "United one-stop via DEN Sunday 8:15 a.m. to 1:05 p.m.; SEA-ATL Wednesday 2:10 p.m. to 11:40 p.m.; Economy, $594."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest one-stop via LAS Sunday 11:15 a.m. to 3:20 p.m.; SEA-ATL Wednesday 12:50 p.m. to 10:20 p.m.; Wanna Get Away+, $608."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "The query alone leaves a real tradeoff between earlier arrival/lower fare and earlier return home. The longitudinal Delta preference breaks that otherwise subjective tie.",
+            "gold_action": "Recommend the Delta nonstop that preserves the Sunday dinner and Wednesday-after-noon return.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0008",
+              "tm_pd_v04_user_000_s0017",
+              "tm_pd_v04_user_000_s0039",
+              "tm_pd_v04_user_000_s0052"
+            ],
+            "label_rationale": "The Alaska nonstop is slightly cheaper and gives more Sunday arrival cushion, while the Delta nonstop gets Maya home earlier Wednesday and is still close on fare and timing. Her recurring ATL-origin pattern supports favoring Delta when it remains schedule-sensible and comparable to the other nonstop.",
+            "probe_type": "conflict_resolution",
+            "query": "Maya is choosing ATL-SEA flights for a solo product summit. The Sunday welcome dinner starts at 6 p.m., the last Wednesday session ends at noon, and all listed economy fares are within policy; carry-on only. Which itinerary should be recommended?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Airline-brand differences could suggest loyalty history, but A is selected on stated schedule, routing, and price."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "A is nonstop, arrives well before the 6 p.m. welcome dinner, provides a safer post-noon-session return buffer than B or D, and is cheaper than the comparable nonstop B. The one-stop options save little or create longer/tighter travel."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta nonstop ATL-AUS Monday 4:00 p.m. to 5:30 p.m.; AUS-ATL Tuesday 4:50 p.m. to 8:05 p.m.; Main Cabin, $498."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest nonstop ATL-AUS Monday 5:05 p.m. to 6:35 p.m.; AUS-ATL Tuesday 4:05 p.m. to 7:20 p.m.; Wanna Get Away+, $437."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via DFW Monday 3:45 p.m. to 7:05 p.m.; AUS-ATL Tuesday 4:35 p.m. to 9:15 p.m.; Main Cabin, $402."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via IAH Monday 4:20 p.m. to 7:40 p.m.; AUS-ATL Tuesday 3:55 p.m. to 8:35 p.m.; Economy, $416."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A query-only planner could value A's extra schedule cushion or B's lower fare, and neither nonstop invalidates the trip. The personal boundary on Maya's soft Delta preference determines that the cheaper suitable nonstop should win here.",
+            "gold_action": "Propose the Southwest nonstop because it meets the workshop timing at a materially lower fare than Delta.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0000",
+              "tm_pd_v04_user_000_s0008",
+              "tm_pd_v04_user_000_s0063",
+              "tm_pd_v04_user_000_s0115"
+            ],
+            "label_rationale": "Delta has better cushion around the dinner and debrief, but the Southwest nonstop still fits the stated timing and is meaningfully cheaper for a one-night trip. Maya's history says Delta should be included or favored only when it is comparable, not forced over a materially cheaper suitable nonstop.",
+            "probe_type": "boundary",
+            "query": "Maya has a one-night ATL-AUS partner workshop. The client dinner starts Monday at 8 p.m., the Tuesday debrief is scheduled to end at 2:30 p.m., and all listed fares are approvable economy options. Which should be proposed?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The Delta-versus-Southwest tradeoff could invite loyalty inference, but event-buffer feasibility identifies A without private history."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "A is the nonstop with the most comfortable margins for both the Monday 8 p.m. client dinner and the Tuesday post-2:30 p.m. debrief return. B is cheaper but leaves a tight return and shorter pre-dinner margin; C and D add connection risk and tighter event timing."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta nonstop ATL-LGA Tuesday 3:15 p.m. to 5:29 p.m.; LGA-ATL Wednesday 4:55 p.m. to 7:33 p.m.; Main Cabin, $318."
+              },
+              {
+                "choice_id": "B",
+                "text": "American nonstop ATL-LGA Tuesday 2:45 p.m. to 5:05 p.m.; LGA-ATL Wednesday 5:25 p.m. to 8:05 p.m.; Main Cabin, $307."
+              },
+              {
+                "choice_id": "C",
+                "text": "JetBlue nonstop ATL-LGA Tuesday 5:40 p.m. to 7:58 p.m.; LGA-ATL Wednesday 6:35 p.m. to 9:12 p.m.; Blue fare, $296."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via IAD Tuesday 2:30 p.m. to 6:35 p.m.; LGA-ATL Wednesday 4:05 p.m. to 8:55 p.m.; Economy, $284."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "From the query alone, A and B are both normal nonstop work-trip routings with offsetting timing and fare advantages. The history is needed to prefer comparable Delta rather than defaulting to the slightly cheaper carrier.",
+            "gold_action": "Place the normal-timing Delta nonstop pairing on the approval request.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0013",
+              "tm_pd_v04_user_000_s0014",
+              "tm_pd_v04_user_000_s0039",
+              "tm_pd_v04_user_000_s0105"
+            ],
+            "label_rationale": "The American nonstop is a plausible comparator because it costs a little less and arrives in New York earlier. The Delta nonstop is still comparable overall, with a later post-call departure and earlier arrival home, so Maya's recurring soft preference favors the Delta pairing.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Maya is setting up ATL-LGA flights for a solo Wednesday client review in Midtown. She has a Tuesday noon internal call before heading to the airport, the client meeting is expected to end Wednesday at 2 p.m., and she is traveling carry-on only. Which pairing should be placed on the approval request?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Carrier preference could otherwise be a hidden-history cue, but B is justified by stated timing, nonstop routing, and price."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "B is the lowest-priced nonstop with reasonable timing after the Tuesday noon call and a comfortable post-2 p.m. Midtown-to-LGA return buffer. A costs more with less return buffer, C saves only a little while arriving and returning much later, and D is a one-stop with a tight return."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Air Canada nonstop ATL-YYZ Monday 10:00 a.m. to 12:15 p.m.; YYZ-ATL Thursday 3:10 p.m. to 5:30 p.m.; Standard fare, $568."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta one-stop via DTW Monday 8:45 a.m. to 12:50 p.m.; YYZ-ATL Thursday 2:40 p.m. to 7:05 p.m.; Main Cabin, $499."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via CLT Monday 9:15 a.m. to 1:35 p.m.; YYZ-ATL Thursday 3:25 p.m. to 8:20 p.m.; Main Cabin, $486."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via EWR Monday 10:20 a.m. to 2:05 p.m.; YYZ-ATL Thursday 2:15 p.m. to 7:20 p.m.; Economy, $512."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A query-only planner could reasonably pick the cheaper Delta connection or the more expensive nonstop. The personal boundary condition on Maya's Delta preference resolves the tradeoff in favor of the simpler Air Canada routing.",
+            "gold_action": "Send the Air Canada nonstop as the recommended Toronto routing.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0044",
+              "tm_pd_v04_user_000_s0063",
+              "tm_pd_v04_user_000_s0086",
+              "tm_pd_v04_user_000_s0123"
+            ],
+            "label_rationale": "The Delta itinerary is cheaper and still arrives in time, but it adds a connection and a longer return day. Maya's history repeatedly treats the carrier tendency as subordinate to sane timing and simple routing, so Delta should not be forced over the clean nonstop here.",
+            "probe_type": "boundary",
+            "query": "Maya needs ATL-YYZ flights for a Monday-Thursday user group in Toronto. Hotel registration opens Monday afternoon, the Thursday lunch block ends at 12:30 p.m., and all listed fares are eligible for reimbursement; carry-on only. Which option should be sent to her manager?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Airline-brand choice could imply loyalty, but nonstop routing and cross-border schedule convenience are sufficient."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "A is the only nonstop, arrives earliest for Monday afternoon registration, has a reasonable post-lunch Thursday departure, and gets home much earlier than the one-stop alternatives. The savings on the connecting options are not enough to outweigh the routing and time penalties on an eligible business fare."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American nonstop ATL-LAX Saturday 10:45 a.m. to 12:35 p.m.; LAX-ATL Thursday 2:05 p.m. to 9:25 p.m.; $1,498 total; two adjacent seats plus one same-row aisle across the aisle."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop ATL-LAX Saturday 11:10 a.m. to 12:55 p.m.; LAX-ATL Thursday 2:20 p.m. to 9:40 p.m.; $1,556 total; three adjacent standard seats are open."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta nonstop ATL-LAX Saturday 7:20 a.m. to 9:10 a.m.; LAX-ATL Thursday 11:45 a.m. to 7:05 p.m.; $1,472 total; only scattered standard seats in nearby rows are open."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest nonstop ATL-LAX Saturday 12:35 p.m. to 2:25 p.m.; LAX-ATL Thursday 1:30 p.m. to 8:50 p.m.; $1,510 total; seating is unassigned with family boarding."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "The query alone leaves A and B both defensible: A saves money with an acceptable same-row arrangement, while B costs more but has all three adjacent. Maya's longitudinal carrier and family-seating patterns resolve the conflict.",
+            "gold_action": "Hold the Delta nonstop with three adjacent standard seats.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0006",
+              "tm_pd_v04_user_000_s0017",
+              "tm_pd_v04_user_000_s0072",
+              "tm_pd_v04_user_000_s0105"
+            ],
+            "label_rationale": "The American nonstop is cheaper and has slightly earlier times, but the Delta nonstop is close on schedule and fare while also giving the cleanest family seating. Maya's history supports favoring comparable Delta, and her family-trip evidence reinforces choosing the option that keeps the family together when the tradeoff is modest.",
+            "probe_type": "conflict_resolution",
+            "query": "Maya is comparing ATL-LAX flights for a school-break visit with her spouse and child. The trip runs Saturday to Thursday, lodging is still being confirmed, and the listed totals include standard seat selection where the carrier permits it. Which should be held while she confirms lodging?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Family/child seating is an explicit cue in the query and choices, not an unstated personal-history preference."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c06",
+            "rationale": "For a spouse-and-child school-break trip, B is the nonstop option with guaranteed three-adjacent standard seats. A splits one traveler across the aisle, C has scattered seats, and D is unassigned despite family boarding; the timing differences are minor."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Southwest nonstop ATL-SLC Friday 7:05 a.m. to 9:20 a.m.; SLC-ATL Monday 2:10 p.m. to 7:45 p.m.; $452 per person."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop ATL-SLC Friday 7:40 a.m. to 9:55 a.m.; SLC-ATL Monday 1:50 p.m. to 7:20 p.m.; $466 per person."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via DFW Friday 6:50 a.m. to 11:05 a.m.; SLC-ATL Monday 1:30 p.m. to 8:50 p.m.; $418 per person."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via DEN Friday 8:00 a.m. to 12:05 p.m.; SLC-ATL Monday 3:00 p.m. to 9:15 p.m.; $426 per person."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Without memory, the two nonstops are a close call with small, offsetting benefits. The longitudinal preference for Delta among comparable ATL flights supplies the ranking.",
+            "gold_action": "Shortlist the Delta nonstop first for the ATL-SLC ski weekend.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0017",
+              "tm_pd_v04_user_000_s0072",
+              "tm_pd_v04_user_000_s0105",
+              "tm_pd_v04_user_000_s0115"
+            ],
+            "label_rationale": "The Southwest nonstop is slightly cheaper and lands a bit earlier for the car pickup, while the Delta nonstop has a later ATL departure and earlier arrival home Monday. Because the Delta option remains comparable on price, schedule, and routing, Maya's ATL-origin carrier pattern transfers to this personal trip.",
+            "probe_type": "cross_context_transfer",
+            "query": "Maya and her spouse are flying ATL-SLC for a long ski weekend, with no child on this trip. The rental car pickup is late Friday morning, the return can be after Monday lunch, and the totals below include expected bag and standard-seat charges. Which itinerary should be first on the shortlist?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The no-child and bag/seat-charge details are explicit; no airline or family-seating history is needed."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c07",
+            "rationale": "A is the cheapest nonstop, arrives before the late-Friday-morning rental pickup, and departs after Monday lunch with a better trip-length fit than B. C and D save only a small amount but add connections and longer travel for a ski weekend."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American nonstop ATL-MIA Friday 6:20 p.m. to 8:15 p.m.; MIA-ATL Sunday 1:50 p.m. to 3:45 p.m.; Main Cabin, $253."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop ATL-MIA Friday 6:05 p.m. to 8:00 p.m.; MIA-ATL Sunday 2:05 p.m. to 4:00 p.m.; Main Cabin, $262."
+              },
+              {
+                "choice_id": "C",
+                "text": "Frontier nonstop ATL-MIA Friday 8:35 p.m. to 10:30 p.m.; MIA-ATL Sunday 4:50 p.m. to 6:45 p.m.; fare with carry-on bundle, $226."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest one-stop via Tampa Friday 5:40 p.m. to 9:45 p.m.; MIA-ATL Sunday 12:45 p.m. to 5:15 p.m.; Wanna Get Away+, $238."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A and B are near-equivalent nonstops, and the query provides no explicit carrier rule. The user's longitudinal Delta tendency is required to choose B over the slightly cheaper American itinerary.",
+            "gold_action": "Send the comparable Delta nonstop for booking.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0000",
+              "tm_pd_v04_user_000_s0005",
+              "tm_pd_v04_user_000_s0014",
+              "tm_pd_v04_user_000_s0105"
+            ],
+            "label_rationale": "The American nonstop is slightly cheaper and very similar, while the Delta nonstop has marginally better Friday arrival timing and a similarly workable Sunday return. Because Delta is comparable on this ATL-origin personal trip, Maya's recurring carrier preference supports sending the Delta option.",
+            "probe_type": "direct_use",
+            "query": "Maya is selecting ATL-MIA flights for a solo weekend family visit. She can leave after work Friday, plans to head to the airport after a Sunday family lunch, and is traveling carry-on only. Which option should be sent to her for booking?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Frontier/ULCC aversion would be an unstated personal preference; with carry-on included, C wins on the stated timing and price."
+            ],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c09",
+            "rationale": "C is nonstop, lowest-priced with the carry-on bundle included, clearly departs after work, and its Sunday 4:50 p.m. return best matches heading to the airport after a family lunch. A and B are tighter around the Sunday lunch plan, and D is one-stop with an even earlier Sunday departure."
+          }
+        }
+      ],
+      "round": 1
+    },
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c02",
+        "c04",
+        "c06",
+        "c07"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c04",
+        "c06",
+        "c07",
+        "c08"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta nonstop ATL-AUS Monday 4:00 p.m. to 5:30 p.m.; AUS-ATL Tuesday 5:20 p.m. to 8:35 p.m.; Main Cabin, $536."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest nonstop ATL-AUS Monday 4:55 p.m. to 6:25 p.m.; AUS-ATL Tuesday 4:40 p.m. to 7:55 p.m.; Wanna Get Away+, $463."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via DFW Monday 3:45 p.m. to 6:55 p.m.; AUS-ATL Tuesday 5:05 p.m. to 9:25 p.m.; Main Cabin, $428."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via IAH Monday 4:25 p.m. to 7:35 p.m.; AUS-ATL Tuesday 4:55 p.m. to 9:05 p.m.; Economy, $416."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Without memory, A's extra buffer and B's lower fare are both reasonable ways to value the itinerary. The personal boundary on Maya's soft Delta preference is what makes B the correct recommendation.",
+            "gold_action": "Propose the Southwest nonstop because it fits the workshop timing at a materially lower fare than Delta.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0000",
+              "tm_pd_v04_user_000_s0008",
+              "tm_pd_v04_user_000_s0063",
+              "tm_pd_v04_user_000_s0115"
+            ],
+            "label_rationale": "The Delta nonstop gives more cushion around both the dinner and debrief, so it is a plausible alternative. The Southwest nonstop still satisfies the stated timing, gets her home a bit earlier, and is notably cheaper for a one-night trip. Maya's history says Delta should not be forced when another suitable nonstop is materially better on cost.",
+            "probe_type": "boundary",
+            "query": "Maya has a one-night ATL-AUS partner workshop. The client dinner starts Monday at 8 p.m., the Tuesday debrief is scheduled to end at 2:30 p.m., and the listed economy fares are approvable. She is carry-on only. Which option should be proposed?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Carrier preference such as Delta versus Southwest is not stated and is not needed; B is selected on public price, routing, and schedule facts."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c03",
+            "rationale": "B is a nonstop, is materially cheaper than the other nonstop, still arrives with about 1.5 hours before the 8 p.m. dinner, and returns earlier than A after a feasible post-debrief airport window. The one-stop options add connection risk and arrive later before the dinner for only modest additional savings."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Air Canada nonstop ATL-YYZ Monday 10:05 a.m. to 12:18 p.m.; YYZ-ATL Thursday 2:55 p.m. to 5:17 p.m.; Standard fare, $584."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta one-stop via DTW Monday 10:45 a.m. to 2:05 p.m.; YYZ-ATL Thursday 3:20 p.m. to 7:15 p.m.; Main Cabin, $516."
+              },
+              {
+                "choice_id": "C",
+                "text": "American one-stop via CLT Monday 9:15 a.m. to 1:40 p.m.; YYZ-ATL Thursday 3:05 p.m. to 8:05 p.m.; Main Cabin, $506."
+              },
+              {
+                "choice_id": "D",
+                "text": "United one-stop via EWR Monday 11:10 a.m. to 2:35 p.m.; YYZ-ATL Thursday 2:40 p.m. to 7:25 p.m.; Economy, $522."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A query-only planner could reasonably weigh the lower Delta fare against the cleaner Air Canada routing. The longitudinal boundary that Delta should not be forced over a simpler suitable itinerary is needed to select A.",
+            "gold_action": "Send the Air Canada nonstop as the recommended Toronto routing.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0044",
+              "tm_pd_v04_user_000_s0063",
+              "tm_pd_v04_user_000_s0086",
+              "tm_pd_v04_user_000_s0123"
+            ],
+            "label_rationale": "The Delta option is cheaper and gives a little more post-lunch departure buffer, making it a credible near miss. The Air Canada option is the clean nonstop and gets Maya home much earlier. Her history shows the Delta lean is subordinate to simple routing and sane timing when Delta adds a connection, so the nonstop should be recommended.",
+            "probe_type": "boundary",
+            "query": "Maya needs ATL-YYZ flights for a Monday-Thursday user group in Toronto. Hotel registration opens Monday afternoon, the Thursday lunch block ends at 12:30 p.m., and all listed fares are eligible for reimbursement. She is carry-on only. Which option should be sent to her manager?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "No private-history signal is needed; the nonstop materially dominates on routing and convenience under the stated constraints."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "A is the only nonstop, arrives earliest for Monday afternoon registration, and gets home much earlier Thursday. The one-stop alternatives save some money but add substantial travel time and connection risk, and all fares are reimbursable."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American nonstop ATL-MIA Friday 6:25 p.m. to 8:20 p.m.; MIA-ATL Sunday 3:15 p.m. to 5:10 p.m.; Main Cabin, $256."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta nonstop ATL-MIA Friday 6:05 p.m. to 7:58 p.m.; MIA-ATL Sunday 2:55 p.m. to 4:50 p.m.; Main Cabin, $264."
+              },
+              {
+                "choice_id": "C",
+                "text": "Frontier nonstop ATL-MIA Friday 8:50 p.m. to 10:45 p.m.; MIA-ATL Sunday 4:35 p.m. to 6:30 p.m.; fare with carry-on bundle, $248."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest one-stop via Tampa Friday 5:45 p.m. to 9:55 p.m.; MIA-ATL Sunday 2:20 p.m. to 6:25 p.m.; Wanna Get Away+, $239."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Without history, A and B are near-equivalent nonstops with different minor timing and fare advantages. The user's longitudinal Delta tendency is required to prefer B over the slightly cheaper American itinerary.",
+            "gold_action": "Send the comparable Delta nonstop for booking.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_000_s0000",
+              "tm_pd_v04_user_000_s0005",
+              "tm_pd_v04_user_000_s0014",
+              "tm_pd_v04_user_000_s0105"
+            ],
+            "label_rationale": "The American nonstop is slightly cheaper and gives a bit more Sunday lunch cushion, while the Delta nonstop arrives earlier Friday and gets her home earlier Sunday. Both are suitable nonstops with only a small fare difference. Maya's recurring pattern favors Delta among comparable ATL-origin personal and work trips, so B should be sent first.",
+            "probe_type": "direct_use",
+            "query": "Maya is selecting ATL-MIA flights for a solo weekend family visit. She can leave after work Friday, expects to head to the airport after a Sunday family lunch, and is traveling carry-on only. Which option should be sent to her for booking?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Carrier loyalty is not stated; A is selected based on public timing, routing, fare, and fare-quality facts."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c09",
+            "rationale": "A is the best public fit: it is a nonstop main-cabin fare, cheaper than the comparable Delta nonstop, leaves later after work, and departs later after Sunday lunch. Frontier is only $8 cheaper but arrives much later Friday, and Southwest is a one-stop with worse travel time."
+          }
+        }
+      ],
+      "round": 2
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "boundary": 2,
+      "conflict_resolution": 1,
+      "evidence_disambiguation": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_000"
+}

@@ -1,0 +1,580 @@
+{
+  "cache_fingerprint": "0d26fb442da6897b81f5821db9cb613a909ce5ea599f431672618baf472d4c85",
+  "rows": [
+    {
+      "boundary_condition": "Applies only to hotel location selection; do not infer a destination, route, or unstated anchor, and ask for the desired area if no anchor is provided.",
+      "bundle_id": "tm_v04_bundle_2120479236b9",
+      "canonical_value": "hotel_near_explicit_anchor",
+      "condition": "When selecting hotels and the trip request explicitly names a local area, venue, transportation hub, or natural feature to stay near.",
+      "confidence": 0.76,
+      "decision": "revise",
+      "default_action": "Give priority to hotel options close to the named local anchor.",
+      "exception_condition": "Override this default when the user explicitly prioritizes another constraint such as price, amenities, property type, or willingness to stay farther away.",
+      "family": "hotel_location_priority",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_2120479236b9",
+      "induced_at": "2026-07-15T13:06:13.977570+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Prefer hotels near an explicitly stated local anchor",
+      "preference_value": "near_explicit_anchor",
+      "rationale": "The cited Taskmaster conversations are independent examples, not one real longitudinal user. Across distinct instruction_ids, the reusable pattern is not one fixed place like a beach or airport, but a synthetic default to keep the hotel close to whatever trip-specific anchor is driving the stay.",
+      "seed_value": "near_target_venue",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.78,
+        "reason": "Supported across five distinct instruction_id values as a hotel-location proximity preference, but the original wording over-infers a generic 'main venue or activity anchor.' The sources support only prioritizing proximity to an explicitly named local hotel anchor such as a beach, ocean, airport, convention center, or ski area; they do not support inventing an anchor when none is stated.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "instruction hotel-8: user requested a hotel location \"near the ocean\" / \"around the ocean.\"",
+          "conversation_id": "dlg-d4836329-3c61-4889-b216-4a77c5bf9420",
+          "turn_index": 18
+        },
+        {
+          "contribution": "instruction hotel-13: user said they did not want to be far from the beach and wanted to be \"really close to the beach.\"",
+          "conversation_id": "dlg-9941de9c-1d3f-4acd-9fce-f5ebac5129d1",
+          "turn_index": 38
+        },
+        {
+          "contribution": "instruction hotel-11: user requested the hotel location be \"close to the airport.\"",
+          "conversation_id": "dlg-74ac97bb-f798-4dcc-87c1-7d9dd913297a",
+          "turn_index": 12
+        },
+        {
+          "contribution": "instruction hotel-4: user wanted the hotel to be \"close to the convention center.\"",
+          "conversation_id": "dlg-bcdb335b-74f9-49ca-a6d3-e08e7c41718f",
+          "turn_index": 7
+        },
+        {
+          "contribution": "instruction hotel-5: user wanted the location to have \"a ski area nearby.\"",
+          "conversation_id": "dlg-5d5d79de-c652-4b4b-93eb-860da11dffce",
+          "turn_index": 12
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "near the ocean",
+          "annotation": "hotel_search.sub_location.hotel",
+          "conversation_id": "dlg-d4836329-3c61-4889-b216-4a77c5bf9420",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 18,
+          "user_utterance": "I also need a location near the ocean. Or, excuse me, around the ocean."
+        },
+        {
+          "annotated_segment": "close to the beach",
+          "annotation": "hotel_search.sub_location.hotel",
+          "conversation_id": "dlg-9941de9c-1d3f-4acd-9fce-f5ebac5129d1",
+          "habitual_language": false,
+          "instruction_id": "hotel-13",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 38,
+          "user_utterance": "Yeah, I don't want to be too far from the beach. I want to be like really close to the beach, cuz I'm really going there to relax."
+        },
+        {
+          "annotated_segment": "close to the airport",
+          "annotation": "hotel_search.sub_location.hotel",
+          "conversation_id": "dlg-74ac97bb-f798-4dcc-87c1-7d9dd913297a",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 12,
+          "user_utterance": "I would like the location to be close to the airport. I'd like to have a king-size bed."
+        },
+        {
+          "annotated_segment": "close to the convention center",
+          "annotation": "hotel_search.sub_location.hotel",
+          "conversation_id": "dlg-bcdb335b-74f9-49ca-a6d3-e08e7c41718f",
+          "habitual_language": false,
+          "instruction_id": "hotel-4",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 7,
+          "user_utterance": "I would like the hotel to have a pool, a bar and a restaurant and that it be close to the convention center."
+        },
+        {
+          "annotated_segment": "a ski area nearby",
+          "annotation": "hotel_search.sub_location.hotel",
+          "conversation_id": "dlg-5d5d79de-c652-4b4b-93eb-860da11dffce",
+          "habitual_language": false,
+          "instruction_id": "hotel-5",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 12,
+          "user_utterance": "I want the location to have a ski area nearby."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "This default applies to hotel room price tradeoffs only; it does not create a reusable numeric nightly ceiling or apply automatically to flights, dining, or activities.",
+      "bundle_id": "tm_v04_bundle_2ccc555d5ba6",
+      "canonical_value": "lowest_acceptable_hotel_rate",
+      "condition": "When comparing or booking hotel rooms and the user has not stated a higher-priority reason to pay more.",
+      "confidence": 0.88,
+      "decision": "keep",
+      "default_action": "Sort or filter toward the lowest available acceptable nightly rate, and enforce any stated low-price constraint instead of upselling to costlier rooms.",
+      "exception_condition": "Do not choose purely by lowest price if the user explicitly requires a costlier room type, property feature, or location, or states that they are flexible on price for another constraint.",
+      "family": "hotel_price_tradeoff",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_2ccc555d5ba6",
+      "induced_at": "2026-07-15T13:06:13.987005+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Prefer the cheapest acceptable hotel room",
+      "preference_value": "budget_sensitive_lowest_acceptable_rate",
+      "rationale": "The supplied independent conversations repeatedly show price-minimizing hotel behavior: asking for rates under a stated limit or asking for the cheapest available room. The reusable synthetic habit is qualitative budget sensitivity, not a fixed dollar cap.",
+      "seed_value": "budget_sensitive",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.84,
+        "reason": "A qualitative lowest-price hotel preference is supported by at least three distinct instruction_id values using cheapest/cheapest available language. The one-off numeric caps are not retained as reusable values, and the candidate already avoids creating a fixed nightly ceiling.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "instruction hotel-4: user said they wanted the hotel to be \"under $150 a night,\" supporting a low-price constraint without making that amount a universal ceiling.",
+          "conversation_id": "dlg-bcdb335b-74f9-49ca-a6d3-e08e7c41718f",
+          "turn_index": 11
+        },
+        {
+          "contribution": "instruction hotel-16: user requested one room and said it needed to be \"under $150 a night,\" again showing budget sensitivity.",
+          "conversation_id": "dlg-0c04e870-8755-4a22-b3df-56471f9d26bc",
+          "turn_index": 3
+        },
+        {
+          "contribution": "instruction hotel-1: user asked, \"What is the cheapest room price?\"",
+          "conversation_id": "dlg-87dd1cb6-bd51-462a-9394-5daf76fa30ac",
+          "turn_index": 24
+        },
+        {
+          "contribution": "instruction hotel-1b: user asked if any rooms were available for the \"cheapest price.\"",
+          "conversation_id": "dlg-c8f292c8-864c-4310-ae4f-985c0e848c0c",
+          "turn_index": 20
+        },
+        {
+          "contribution": "instruction hotel-5: user requested \"The cheapest available.\"",
+          "conversation_id": "dlg-e99cc73f-540d-4392-b1fe-df8f37c2c516",
+          "turn_index": 17
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "under $150 a night",
+          "annotation": "hotel_search.price_range",
+          "conversation_id": "dlg-bcdb335b-74f9-49ca-a6d3-e08e7c41718f",
+          "habitual_language": false,
+          "instruction_id": "hotel-4",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 11,
+          "user_utterance": "I would like it to be under $150 a night."
+        },
+        {
+          "annotated_segment": "under $150 a night",
+          "annotation": "hotel_search.price_range",
+          "conversation_id": "dlg-0c04e870-8755-4a22-b3df-56471f9d26bc",
+          "habitual_language": false,
+          "instruction_id": "hotel-16",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 3,
+          "user_utterance": "Well, there'll be two of us, but one room is fine. One king and one sofa bed. And then I need it to be under $150 a night."
+        },
+        {
+          "annotated_segment": "the cheapest",
+          "annotation": "hotel_search.price_range",
+          "conversation_id": "dlg-87dd1cb6-bd51-462a-9394-5daf76fa30ac",
+          "habitual_language": false,
+          "instruction_id": "hotel-1",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 24,
+          "user_utterance": "What is the cheapest room price?"
+        },
+        {
+          "annotated_segment": "cheapest price",
+          "annotation": "hotel_search.price_range",
+          "conversation_id": "dlg-c8f292c8-864c-4310-ae4f-985c0e848c0c",
+          "habitual_language": false,
+          "instruction_id": "hotel-1b",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 20,
+          "user_utterance": "Is there any rooms available for cheapest price?"
+        },
+        {
+          "annotated_segment": "The cheapest",
+          "annotation": "hotel_search.price_range",
+          "conversation_id": "dlg-e99cc73f-540d-4392-b1fe-df8f37c2c516",
+          "habitual_language": false,
+          "instruction_id": "hotel-5",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "The cheapest available."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Applies only to hotel/lodging quality-rating filters, not to destination, dates, amenities, price, flights, restaurants, or activities.",
+      "bundle_id": "tm_v04_bundle_29f19c7f4467",
+      "canonical_value": "hotel_min_rating_3_5",
+      "condition": "When searching for hotels and a star or customer-rating filter is available, with no explicit trip-specific request for a different quality level.",
+      "confidence": 0.91,
+      "decision": "keep",
+      "default_action": "Filter hotel options to ratings of 3.5 stars or better; if a range is required, use 3.5 to 5 stars.",
+      "exception_condition": "If the user explicitly asks for a stricter rating, accepts a lower or unrated property for availability/price/location, or names a specific property, follow that explicit instruction instead.",
+      "family": "hotel_quality_threshold",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_29f19c7f4467",
+      "induced_at": "2026-07-15T13:06:13.986789+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Minimum 3.5-star hotel rating",
+      "preference_value": "at_least_3_5_star_rating",
+      "rationale": "Across independent Taskmaster hotel dialogues, the repeated reusable pattern is a hotel quality floor around 3.5 stars. The synthetic default is scoped to rating filters and does not treat any one destination, amenity, or trip as habitual.",
+      "seed_value": "at_least_3_5",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.9,
+        "reason": "The 3.5-or-better hotel rating threshold is consistently supported across five distinct instruction_id values with no conflicting polarity. This is a reusable hotel quality filter rather than a banned date, route, destination, room count, party size, or price cap.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "User requested a hotel “between 3.5 stars to 5 stars,” supporting a 3.5-star lower bound.",
+          "conversation_id": "dlg-4763849b-6383-44d9-91f1-955e394bea6c",
+          "turn_index": 5
+        },
+        {
+          "contribution": "User stated “At least a 3.5 star rating,” directly supporting the minimum threshold.",
+          "conversation_id": "dlg-98961d7d-ca70-4cea-ad1d-4cc15730e142",
+          "turn_index": 10
+        },
+        {
+          "contribution": "User specified “Customer rating 3.5 stars or better,” reinforcing the same floor.",
+          "conversation_id": "dlg-8bc0c77a-e51a-4a1c-b137-fa351811cfff",
+          "turn_index": 5
+        },
+        {
+          "contribution": "User asked for “a customer rating of 3.5 stars or better,” again supporting the default.",
+          "conversation_id": "dlg-ca757d5e-3aa8-4730-ab9c-287320a82353",
+          "turn_index": 8
+        },
+        {
+          "contribution": "User requested “something with 3.5 stars,” consistent with using 3.5 as the rating target.",
+          "conversation_id": "dlg-ac0bf78c-1e11-4d7d-b5b7-f22d02966aef",
+          "turn_index": 14
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "between 3.5 stars to 5 stars",
+          "annotation": "hotel_search.star_rating",
+          "conversation_id": "dlg-4763849b-6383-44d9-91f1-955e394bea6c",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 5,
+          "user_utterance": "I think I look for a hotel between 3.5 stars to 5 stars and actually I'm looking for a hotel that has two beds in the room and balcony."
+        },
+        {
+          "annotated_segment": "3.5 star rating",
+          "annotation": "hotel_search.customer_rating",
+          "conversation_id": "dlg-98961d7d-ca70-4cea-ad1d-4cc15730e142",
+          "habitual_language": false,
+          "instruction_id": "hotel-9",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 10,
+          "user_utterance": "At least a 3.5 star rating."
+        },
+        {
+          "annotated_segment": "3.5 stars or better",
+          "annotation": "hotel_search.customer_rating",
+          "conversation_id": "dlg-8bc0c77a-e51a-4a1c-b137-fa351811cfff",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": false,
+          "source_domain": "hotels",
+          "turn_index": 5,
+          "user_utterance": "Customer rating 3.5 stars or better."
+        },
+        {
+          "annotated_segment": "3.5 stars",
+          "annotation": "hotel_search.customer_rating",
+          "conversation_id": "dlg-ca757d5e-3aa8-4730-ab9c-287320a82353",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": false,
+          "source_domain": "hotels",
+          "turn_index": 8,
+          "user_utterance": "I'd like a customer rating of 3.5 stars or better."
+        },
+        {
+          "annotated_segment": "3.5 stars",
+          "annotation": "hotel_search.customer_rating",
+          "conversation_id": "dlg-ac0bf78c-1e11-4d7d-b5b7-f22d02966aef",
+          "habitual_language": false,
+          "instruction_id": "hotel-4",
+          "preference_language": false,
+          "source_domain": "hotels",
+          "turn_index": 14,
+          "user_utterance": "I'd like something with 3.5 stars."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Applies only to hotel rooming/sleeping-capacity choices; it does not set the destination, exact party size, travel dates, property, or nightly budget.",
+      "bundle_id": "tm_v04_bundle_d27c31810e20",
+      "canonical_value": "none",
+      "condition": "When booking hotel lodging for multiple travelers or when room/bed setup is being specified, with no explicit contrary configuration given.",
+      "confidence": 0.68,
+      "decision": "reject",
+      "default_action": "Look first for a two-unit sleeping arrangement: a two-bedroom room or suite, two adjacent rooms, or, when constrained by price or availability, a room with two queen beds.",
+      "exception_condition": "If the user explicitly specifies a different number of rooms, bedrooms, or beds, or says they are traveling solo and do not need extra sleeping capacity, use that stated configuration instead.",
+      "family": "room_configuration",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_d27c31810e20",
+      "induced_at": "2026-07-15T13:06:13.977990+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Two-unit sleeping setup for multi-person hotel stays",
+      "preference_value": "two_sleeping_units",
+      "rationale": "The independent examples vary in the exact hotel layout, but they consistently ground a reusable synthetic default around needing two sleeping-capacity units rather than a single standard bed setup. The habit is scoped to hotel room configuration, not to the one-off party sizes or budgets mentioned in individual tasks.",
+      "seed_value": "two",
+      "semantic_review": {
+        "decision": "reject",
+        "quality_score": 0.08,
+        "reason": "The examples merely share the number two across different and conflicting rooming concepts: two bedrooms, two adjacent rooms, and two queen beds. Several are mechanically tied to current traveler count, children, budget, or availability, and requested room count is explicitly disallowed. The sources do not establish a genuine reusable room or bed-configuration preference.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "User said they would need a hotel offering “at least two bedrooms,” supporting a two-unit rooming setup.",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "turn_index": 5
+        },
+        {
+          "contribution": "User requested “a room that has two bedrooms,” supporting a two-bedroom configuration.",
+          "conversation_id": "dlg-3466864c-eeb6-409e-92bf-9b6d8959aa08",
+          "turn_index": 2
+        },
+        {
+          "contribution": "User asked for a “two-bedroom suite,” supporting the two-unit hotel setup.",
+          "conversation_id": "dlg-fce5d1b8-a7fb-41a6-907c-92c42ef10c68",
+          "turn_index": 18
+        },
+        {
+          "contribution": "User stated they would need “two adjacent rooms,” supporting two rooming units for a hotel stay.",
+          "conversation_id": "dlg-0958939d-418b-4784-89ac-2776747a9268",
+          "turn_index": 2
+        },
+        {
+          "contribution": "User considered “a bedroom that has two queens” under a price constraint, supporting two sleeping units as a fallback configuration.",
+          "conversation_id": "dlg-0127439b-f3e8-4bd2-84ab-9c45847e3cd0",
+          "turn_index": 5
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "two",
+          "annotation": "hotel_search.num.rooms",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 5,
+          "user_utterance": "Well, I would like to find the one that's within a mile of Forest Park. I want a kid-friendly one. We have four children. I'm going to need a hotel that offers at least two bedrooms."
+        },
+        {
+          "annotated_segment": "two",
+          "annotation": "hotel_search.num.rooms",
+          "conversation_id": "dlg-3466864c-eeb6-409e-92bf-9b6d8959aa08",
+          "habitual_language": false,
+          "instruction_id": "hotel-5",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 2,
+          "user_utterance": "I need a room that has two bedrooms for two people, a full kitchen, a mini fridge and a coffee maker and a microwave."
+        },
+        {
+          "annotated_segment": "two",
+          "annotation": "hotel_search.num.rooms",
+          "conversation_id": "dlg-fce5d1b8-a7fb-41a6-907c-92c42ef10c68",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 18,
+          "user_utterance": "Great. Do you have a two-bedroom suite? Awesome. Great with balcony. What else and you had him sweet what to buy?"
+        },
+        {
+          "annotated_segment": "two",
+          "annotation": "hotel_search.num.rooms",
+          "conversation_id": "dlg-0958939d-418b-4784-89ac-2776747a9268",
+          "habitual_language": false,
+          "instruction_id": "hotel-9",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 2,
+          "user_utterance": "I'm looking to stay from March 23rd to March 28th. There will be five people, and we'll need two adjacent rooms."
+        },
+        {
+          "annotated_segment": "two",
+          "annotation": "hotel_search.num.rooms",
+          "conversation_id": "dlg-0127439b-f3e8-4bd2-84ab-9c45847e3cd0",
+          "habitual_language": false,
+          "instruction_id": "hotel-16",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 5,
+          "user_utterance": "Well, I need it under $300 per night, so maybe we could just go with a bedroom that has two queens."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Apply only to flight seat-location selection; do not infer preferences about cabin class, airline, route, destination, or travel dates from this habit.",
+      "bundle_id": "tm_v04_bundle_9e50e9430107",
+      "canonical_value": "aisle_seat",
+      "condition": "When selecting seats for a flight and an aisle option is available for the traveler or party.",
+      "confidence": 0.98,
+      "decision": "keep",
+      "default_action": "Choose aisle seats by default rather than window or middle seats.",
+      "exception_condition": "If no aisle seat is available, or the user explicitly requests a different seat type for a specific trip, do not force the aisle-seat default.",
+      "family": "seat_location",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_9e50e9430107",
+      "induced_at": "2026-07-15T13:06:13.976687+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Flight aisle-seat default",
+      "preference_value": "aisle seat",
+      "rationale": "Across independent flight-booking dialogues, users repeatedly ask for aisle seats, often with availability-scoped wording such as 'if one's available' or 'if that's possible.' This supports a controlled synthetic-user default for aisle seats when flight seats are being chosen, without treating any one route or booking as longitudinal evidence from a real person.",
+      "seed_value": "aisle",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.96,
+        "reason": "Aisle-seat preference is consistently supported across five distinct flight instruction_id values with the same polarity and no conflicting seat-location preference. It is a reusable, well-scoped flight seat-selection default.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "User says, 'I would just like an aisle seat, please,' directly supporting an aisle-seat preference.",
+          "conversation_id": "dlg-7b522e99-4ca2-4cb2-ba11-9ac453dd5b59",
+          "turn_index": 28
+        },
+        {
+          "contribution": "User says, 'I'd prefer an aisle seat if one's available,' supporting aisle as the preferred seat type with an availability boundary.",
+          "conversation_id": "dlg-9ccb2bad-dec2-4910-a53c-34d8f4b54608",
+          "turn_index": 13
+        },
+        {
+          "contribution": "User says, 'I would like Aisle seats, if that's possible,' supporting aisle seats as the default when possible.",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "turn_index": 13
+        },
+        {
+          "contribution": "User says, 'I would like aisle seats, please,' adding another independent support for aisle-seat selection.",
+          "conversation_id": "dlg-58b9a1af-bd51-4092-90f7-2b7d98174bc4",
+          "turn_index": 17
+        },
+        {
+          "contribution": "User says, 'I want to all my seats to be an aisle seat,' supporting aisle seats for all seats in the party when applicable.",
+          "conversation_id": "dlg-d5c34433-9e86-4eb3-83a3-cef7367d0ee5",
+          "turn_index": 12
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "aisle seat",
+          "annotation": "flight_search.seat_location",
+          "conversation_id": "dlg-7b522e99-4ca2-4cb2-ba11-9ac453dd5b59",
+          "habitual_language": false,
+          "instruction_id": "flight-7",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 28,
+          "user_utterance": "Okay, then I would just like an aisle seat, please."
+        },
+        {
+          "annotated_segment": "aisle seat",
+          "annotation": "flight_search.seat_location",
+          "conversation_id": "dlg-9ccb2bad-dec2-4910-a53c-34d8f4b54608",
+          "habitual_language": false,
+          "instruction_id": "flight-5",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 13,
+          "user_utterance": "I'd prefer an aisle seat if one's available."
+        },
+        {
+          "annotated_segment": "Aisle",
+          "annotation": "flight_search.seat_location",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "habitual_language": false,
+          "instruction_id": "flight-3",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 13,
+          "user_utterance": "Let's go with economy seating. Do you have something that? And, I would like Aisle seats, if that's possible."
+        },
+        {
+          "annotated_segment": "aisle seats",
+          "annotation": "flight_search.seat_location",
+          "conversation_id": "dlg-58b9a1af-bd51-4092-90f7-2b7d98174bc4",
+          "habitual_language": false,
+          "instruction_id": "flight-6",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 17,
+          "user_utterance": "Okay, Let's go with that. And, I would like aisle seats, please."
+        },
+        {
+          "annotated_segment": "aisle seat",
+          "annotation": "flight_search.seat_location",
+          "conversation_id": "dlg-d5c34433-9e86-4eb3-83a3-cef7367d0ee5",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 12,
+          "user_utterance": "Also, I want to all my seats to be an aisle seat."
+        }
+      ]
+    }
+  ]
+}

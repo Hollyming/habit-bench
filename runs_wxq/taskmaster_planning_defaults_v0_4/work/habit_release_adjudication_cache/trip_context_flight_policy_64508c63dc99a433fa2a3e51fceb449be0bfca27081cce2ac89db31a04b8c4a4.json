@@ -1,0 +1,21 @@
+{
+  "cache_fingerprint": "64508c63dc99a433fa2a3e51fceb449be0bfca27081cce2ac89db31a04b8c4a4",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_connection_layover_preference",
+      "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+      "canonical_value": "When a flight itinerary includes or may need a connection, prefer at most one short layover.",
+      "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+      "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+      "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+      "input_ids": [
+        "tm_v04_e2e_habit_a7725793148c"
+      ],
+      "name": "flight_single_short_layover_preference",
+      "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+      "rationale": "Supported as a soft connecting-flight policy: the evidence consistently favors limiting connections to no more than one and avoiding long layovers when a layover is acceptable or needed. It does not require merging contrasting alternatives, and the boundary preserves that this is not a universal nonstop-only or price-driven rule.",
+      "representative_id": "tm_v04_e2e_habit_a7725793148c"
+    }
+  ]
+}

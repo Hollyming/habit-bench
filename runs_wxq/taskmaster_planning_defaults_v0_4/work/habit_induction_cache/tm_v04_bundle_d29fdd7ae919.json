@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "This is a qualitative airfare-shopping habit only; do not reuse any one quoted dollar amount as a standing budget ceiling, and do not apply it to destinations, dates, hotels, or other travel categories unless separately stated.",
+  "bundle_id": "tm_v04_bundle_d29fdd7ae919",
+  "condition": "When searching for flights and multiple options satisfy the trip-specific requirements, treat lower price or staying within the stated trip budget as an important selection factor.",
+  "confidence": 0.86,
+  "decision": "accept",
+  "default_action": "Prefer cheaper or in-budget flight options before more expensive alternatives, and consider cost-saving tradeoffs such as economy cabin or an added stop when the user has not made those features non-negotiable.",
+  "exception_condition": "If the cheapest fare violates a hard trip constraint the user states for the current request, do not select it solely because it is cheaper; instead surface the price-versus-constraint tradeoff and ask whether to relax the constraint.",
+  "family": "flight_price_tradeoff",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_d29fdd7ae919",
+  "induced_at": "2026-07-15T12:28:38.674905+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Keeps flight costs low when possible",
+  "preference_value": "budget_sensitive",
+  "rationale": "The cited conversations vary in their one-off amounts and constraints, but they consistently show cost sensitivity: some users give a maximum spend, others ask for cheap flights, and one is willing to add a stop for a cheaper fare. This supports a reusable qualitative default of budget-sensitive flight selection, not a reusable numeric cap.",
+  "seed_value": "stated_price_band",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "The user says, “I don't want to spend anymore than $350,” supporting attention to a trip-specific budget limit.",
+      "conversation_id": "dlg-7ff58a42-8e83-41a6-b0cc-9d6eb35c7a07",
+      "turn_index": 12
+    },
+    {
+      "contribution": "The user asks for “The cheap is possible” and accepts economy, supporting a low-cost flight preference.",
+      "conversation_id": "dlg-c0ebb119-5c87-481a-ae20-5b0797064157",
+      "turn_index": 5
+    },
+    {
+      "contribution": "The user says they are “looking to spend up to $3,500,” showing another trip-specific price cap rather than a reusable numeric ceiling.",
+      "conversation_id": "dlg-443ce519-9c93-4960-880b-cb1c18261dd3",
+      "turn_index": 6
+    },
+    {
+      "contribution": "The user requests “a non-stop and a cheap flight,” grounding cheapness as an airfare selection criterion.",
+      "conversation_id": "dlg-fe9eb520-4664-4a74-8b1d-8505c9a51cf7",
+      "turn_index": 19
+    },
+    {
+      "contribution": "The user is willing to make one stop “if it would get me a cheaper flight,” supporting price-sensitive tradeoffs.",
+      "conversation_id": "dlg-5b1fae5b-4fe3-4028-ae2c-c5cc16022f76",
+      "turn_index": 13
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "anymore than $350",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-7ff58a42-8e83-41a6-b0cc-9d6eb35c7a07",
+      "habitual_language": false,
+      "instruction_id": "flight-3",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 12,
+      "user_utterance": "I don't want to spend anymore than $350."
+    },
+    {
+      "annotated_segment": "The cheap",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-c0ebb119-5c87-481a-ae20-5b0797064157",
+      "habitual_language": false,
+      "instruction_id": "flight-13",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 5,
+      "user_utterance": "The cheap is possible, the economy is cool and gives me Wi-Fi."
+    },
+    {
+      "annotated_segment": "$3,500",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-443ce519-9c93-4960-880b-cb1c18261dd3",
+      "habitual_language": false,
+      "instruction_id": "flight-11",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 6,
+      "user_utterance": "Yes. I'd like a nonstop flight and that's pretty much it. And I'm looking to spend up well. I'm looking to spend up to $3,500."
+    },
+    {
+      "annotated_segment": "cheap",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-fe9eb520-4664-4a74-8b1d-8505c9a51cf7",
+      "habitual_language": false,
+      "instruction_id": "flight-10",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 19,
+      "user_utterance": "Just a non-stop and a cheap flight."
+    },
+    {
+      "annotated_segment": "cheaper",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-5b1fae5b-4fe3-4028-ae2c-c5cc16022f76",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 13,
+      "user_utterance": "I would prefer a non-stop flight, but I'm willing to compromise and make one stop if it would get me a cheaper flight."
+    }
+  ]
+}

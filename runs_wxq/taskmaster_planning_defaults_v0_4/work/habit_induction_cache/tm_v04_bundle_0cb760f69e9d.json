@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Apply only to hotel/lodging searches where room-level amenities are relevant; do not apply this default to flights, car rentals, destinations, dates, party size, or other non-hotel constraints.",
+  "bundle_id": "tm_v04_bundle_0cb760f69e9d",
+  "condition": "When the synthetic user is searching for hotel lodging and room amenities are being filtered or compared, treat an in-room fireplace as a preferred comfort amenity.",
+  "confidence": 0.84,
+  "decision": "accept",
+  "default_action": "Prioritize or recommend otherwise suitable hotel rooms that explicitly list a fireplace.",
+  "exception_condition": "If no otherwise suitable hotel room with a fireplace is available, or if the user explicitly prioritizes different required constraints that conflict with it, surface the tradeoff and ask whether to relax the fireplace preference.",
+  "family": "hotel_amenity_priority",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_0cb760f69e9d",
+  "induced_at": "2026-07-15T12:32:37.214395+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefer hotel rooms that include a fireplace",
+  "preference_value": "hotel room with a fireplace",
+  "rationale": "Three independent scripted hotel-search sources request a fireplace as a desired room amenity. The shared support is for a reusable hotel-room amenity preference, not for the one-off dates, party sizes, ski-area setting, balcony, or other amenities mentioned in individual requests.",
+  "seed_value": "fireplace",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "The user asks whether the room has several amenities, including \"a fireplace.\"",
+      "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+      "turn_index": 12
+    },
+    {
+      "contribution": "The user says they are looking for a room with \"a great balcony\" and \"nice fireplace,\" supporting fireplace as a desired hotel-room feature.",
+      "conversation_id": "dlg-f0d2e68a-6e23-427e-914a-c78a99f9b93e",
+      "turn_index": 15
+    },
+    {
+      "contribution": "The user requests a place where \"the room has a fireplace,\" grounding the same amenity preference in a separate instruction source.",
+      "conversation_id": "dlg-59ba2086-347f-48db-84ae-2c6cb0f67f64",
+      "turn_index": 4
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "fireplace",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+      "habitual_language": false,
+      "instruction_id": "hotel-1b",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 12,
+      "user_utterance": "Great they have a sport bar. Any special activity center duties and does the room have a balcony, cable TV, a mini-fridge, coffee and honor bar and a fireplace."
+    },
+    {
+      "annotated_segment": "fireplace",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-f0d2e68a-6e23-427e-914a-c78a99f9b93e",
+      "habitual_language": false,
+      "instruction_id": "hotel-1c",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 15,
+      "user_utterance": "Great. I'm looking for a room that has a great balcony to stay and cable TV and nice fireplace."
+    },
+    {
+      "annotated_segment": "fireplace",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-59ba2086-347f-48db-84ae-2c6cb0f67f64",
+      "habitual_language": false,
+      "instruction_id": "hotel-5",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 4,
+      "user_utterance": "I would like to have it from 12/24 to 12/27, I want a place with an atmosphere that has a lodge-style and relaxed area, it has to be a place that can house four people and the room needs a microwave. Try to find a place with a room that has a fireplace and In-door pool. And it should be close to the ski area."
+    }
+  ]
+}

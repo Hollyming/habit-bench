@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Apply only to flight seat-location selection; do not infer preferences about cabin class, airline, route, destination, or travel dates from this habit.",
+  "bundle_id": "tm_v04_bundle_9e50e9430107",
+  "condition": "When selecting seats for a flight and an aisle option is available for the traveler or party.",
+  "confidence": 0.98,
+  "decision": "accept",
+  "default_action": "Choose aisle seats by default rather than window or middle seats.",
+  "exception_condition": "If no aisle seat is available, or the user explicitly requests a different seat type for a specific trip, do not force the aisle-seat default.",
+  "family": "seat_location",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_9e50e9430107",
+  "induced_at": "2026-07-15T12:35:41.917960+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Flight aisle-seat default",
+  "preference_value": "aisle seat",
+  "rationale": "Across independent flight-booking dialogues, users repeatedly ask for aisle seats, often with availability-scoped wording such as 'if one's available' or 'if that's possible.' This supports a controlled synthetic-user default for aisle seats when flight seats are being chosen, without treating any one route or booking as longitudinal evidence from a real person.",
+  "seed_value": "aisle",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User says, 'I would just like an aisle seat, please,' directly supporting an aisle-seat preference.",
+      "conversation_id": "dlg-7b522e99-4ca2-4cb2-ba11-9ac453dd5b59",
+      "turn_index": 28
+    },
+    {
+      "contribution": "User says, 'I'd prefer an aisle seat if one's available,' supporting aisle as the preferred seat type with an availability boundary.",
+      "conversation_id": "dlg-9ccb2bad-dec2-4910-a53c-34d8f4b54608",
+      "turn_index": 13
+    },
+    {
+      "contribution": "User says, 'I would like Aisle seats, if that's possible,' supporting aisle seats as the default when possible.",
+      "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+      "turn_index": 13
+    },
+    {
+      "contribution": "User says, 'I would like aisle seats, please,' adding another independent support for aisle-seat selection.",
+      "conversation_id": "dlg-58b9a1af-bd51-4092-90f7-2b7d98174bc4",
+      "turn_index": 17
+    },
+    {
+      "contribution": "User says, 'I want to all my seats to be an aisle seat,' supporting aisle seats for all seats in the party when applicable.",
+      "conversation_id": "dlg-d5c34433-9e86-4eb3-83a3-cef7367d0ee5",
+      "turn_index": 12
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "aisle seat",
+      "annotation": "flight_search.seat_location",
+      "conversation_id": "dlg-7b522e99-4ca2-4cb2-ba11-9ac453dd5b59",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 28,
+      "user_utterance": "Okay, then I would just like an aisle seat, please."
+    },
+    {
+      "annotated_segment": "aisle seat",
+      "annotation": "flight_search.seat_location",
+      "conversation_id": "dlg-9ccb2bad-dec2-4910-a53c-34d8f4b54608",
+      "habitual_language": false,
+      "instruction_id": "flight-5",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 13,
+      "user_utterance": "I'd prefer an aisle seat if one's available."
+    },
+    {
+      "annotated_segment": "Aisle",
+      "annotation": "flight_search.seat_location",
+      "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+      "habitual_language": false,
+      "instruction_id": "flight-3",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 13,
+      "user_utterance": "Let's go with economy seating. Do you have something that? And, I would like Aisle seats, if that's possible."
+    },
+    {
+      "annotated_segment": "aisle seats",
+      "annotation": "flight_search.seat_location",
+      "conversation_id": "dlg-58b9a1af-bd51-4092-90f7-2b7d98174bc4",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 17,
+      "user_utterance": "Okay, Let's go with that. And, I would like aisle seats, please."
+    },
+    {
+      "annotated_segment": "aisle seat",
+      "annotation": "flight_search.seat_location",
+      "conversation_id": "dlg-d5c34433-9e86-4eb3-83a3-cef7367d0ee5",
+      "habitual_language": false,
+      "instruction_id": "flight-11",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 12,
+      "user_utterance": "Also, I want to all my seats to be an aisle seat."
+    }
+  ]
+}

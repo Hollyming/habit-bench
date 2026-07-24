@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Applies only to hotel room-type configuration; it does not set the destination, travel dates, number of rooms, or party size.",
+  "bundle_id": "tm_v04_bundle_a03b74087dca",
+  "condition": "When booking a hotel stay and a room type or room configuration must be selected, with no explicit conflicting room-type requirement provided.",
+  "confidence": 0.86,
+  "decision": "accept",
+  "default_action": "Request or select a double room.",
+  "exception_condition": "If the traveler explicitly requests a different room type or the party needs a configuration a double room cannot satisfy, use that specified configuration instead.",
+  "family": "room_configuration",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_a03b74087dca",
+  "induced_at": "2026-07-15T12:37:35.818590+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Defaults to a double room for hotel room type",
+  "preference_value": "double_room",
+  "rationale": "The three independent hotel conversations all specify a double room as the requested room type. This supports a controlled synthetic-user default for hotel room configuration without treating the speakers as one real longitudinal user.",
+  "seed_value": "double_room",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "The user says, \"I want like the double room,\" grounding double room as the hotel room-type preference.",
+      "conversation_id": "dlg-0280c9a0-babe-4b2a-b2f4-79164c576582",
+      "turn_index": 31
+    },
+    {
+      "contribution": "The user says, \"I'd like to have a double room,\" again supporting double room as the selected room configuration.",
+      "conversation_id": "dlg-2994c73d-9803-42b5-a30f-371c9aac133e",
+      "turn_index": 5
+    },
+    {
+      "contribution": "The user answers, \"Double room,\" directly specifying the hotel room type.",
+      "conversation_id": "dlg-9168e2c8-4662-42cf-a557-a9d05ae67835",
+      "turn_index": 8
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "double room",
+      "annotation": "hotel_search.type.room",
+      "conversation_id": "dlg-0280c9a0-babe-4b2a-b2f4-79164c576582",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 31,
+      "user_utterance": "No, just all just one adult, but I want like the double room."
+    },
+    {
+      "annotated_segment": "double room",
+      "annotation": "hotel_search.type.room",
+      "conversation_id": "dlg-2994c73d-9803-42b5-a30f-371c9aac133e",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "And, I'd like to have a double room."
+    },
+    {
+      "annotated_segment": "Double room",
+      "annotation": "hotel_search.type.room",
+      "conversation_id": "dlg-9168e2c8-4662-42cf-a557-a9d05ae67835",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "Double room."
+    }
+  ]
+}

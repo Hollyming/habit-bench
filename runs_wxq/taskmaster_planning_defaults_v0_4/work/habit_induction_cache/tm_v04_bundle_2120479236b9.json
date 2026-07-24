@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Do not apply this default when the trip has no stated activity, venue, transportation hub, or natural-feature anchor; in that case, ask for the desired area or use other stated hotel criteria.",
+  "bundle_id": "tm_v04_bundle_2120479236b9",
+  "condition": "When searching for a hotel for a trip organized around an explicit local anchor such as a beach/ocean, airport, convention center, or ski area.",
+  "confidence": 0.76,
+  "decision": "accept",
+  "default_action": "Prioritize hotel options that are close to the stated trip anchor, rather than treating location as generic or interchangeable.",
+  "exception_condition": "Override this default if the user explicitly prioritizes another constraint over proximity, such as a required amenity, a lower price, or willingness to stay farther away.",
+  "family": "hotel_location_priority",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_2120479236b9",
+  "induced_at": "2026-07-15T12:35:12.721448+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefer hotels close to the trip's main venue or activity anchor",
+  "preference_value": "near_trip_anchor",
+  "rationale": "The cited Taskmaster conversations are independent examples, not one real longitudinal user. Across distinct instruction_ids, the reusable pattern is not one fixed place like a beach or airport, but a synthetic default to keep the hotel close to whatever trip-specific anchor is driving the stay.",
+  "seed_value": "near_target_venue",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "instruction hotel-8: user requested a hotel location \"near the ocean\" / \"around the ocean.\"",
+      "conversation_id": "dlg-d4836329-3c61-4889-b216-4a77c5bf9420",
+      "turn_index": 18
+    },
+    {
+      "contribution": "instruction hotel-13: user said they did not want to be far from the beach and wanted to be \"really close to the beach.\"",
+      "conversation_id": "dlg-9941de9c-1d3f-4acd-9fce-f5ebac5129d1",
+      "turn_index": 38
+    },
+    {
+      "contribution": "instruction hotel-11: user requested the hotel location be \"close to the airport.\"",
+      "conversation_id": "dlg-74ac97bb-f798-4dcc-87c1-7d9dd913297a",
+      "turn_index": 12
+    },
+    {
+      "contribution": "instruction hotel-4: user wanted the hotel to be \"close to the convention center.\"",
+      "conversation_id": "dlg-bcdb335b-74f9-49ca-a6d3-e08e7c41718f",
+      "turn_index": 7
+    },
+    {
+      "contribution": "instruction hotel-5: user wanted the location to have \"a ski area nearby.\"",
+      "conversation_id": "dlg-5d5d79de-c652-4b4b-93eb-860da11dffce",
+      "turn_index": 12
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "near the ocean",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-d4836329-3c61-4889-b216-4a77c5bf9420",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 18,
+      "user_utterance": "I also need a location near the ocean. Or, excuse me, around the ocean."
+    },
+    {
+      "annotated_segment": "close to the beach",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-9941de9c-1d3f-4acd-9fce-f5ebac5129d1",
+      "habitual_language": false,
+      "instruction_id": "hotel-13",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 38,
+      "user_utterance": "Yeah, I don't want to be too far from the beach. I want to be like really close to the beach, cuz I'm really going there to relax."
+    },
+    {
+      "annotated_segment": "close to the airport",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-74ac97bb-f798-4dcc-87c1-7d9dd913297a",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 12,
+      "user_utterance": "I would like the location to be close to the airport. I'd like to have a king-size bed."
+    },
+    {
+      "annotated_segment": "close to the convention center",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-bcdb335b-74f9-49ca-a6d3-e08e7c41718f",
+      "habitual_language": false,
+      "instruction_id": "hotel-4",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 7,
+      "user_utterance": "I would like the hotel to have a pool, a bar and a restaurant and that it be close to the convention center."
+    },
+    {
+      "annotated_segment": "a ski area nearby",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-5d5d79de-c652-4b4b-93eb-860da11dffce",
+      "habitual_language": false,
+      "instruction_id": "hotel-5",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 12,
+      "user_utterance": "I want the location to have a ski area nearby."
+    }
+  ]
+}

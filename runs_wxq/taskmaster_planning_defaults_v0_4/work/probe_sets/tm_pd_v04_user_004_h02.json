@@ -1,0 +1,425 @@
+{
+  "cache_fingerprint": "fa9764f33c80e19b28ad46ee4f3f4870ffcf2feb960b7a22bf92487c33690c68",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "From the current trip details alone, Granville and Fairview are both defensible: Granville is the simpler walk and lower price, while Fairview mainly wins on the customer-facing review score. The longitudinal hotel-quality pattern is needed to break that tradeoff toward Fairview rather than defaulting to the closer campus backup.",
+      "gold_action": "Name Fairview University Suites first and report its Google guest rating of 4.2/5 from 870 reviews as the known customer-facing rating source.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0000",
+        "tm_pd_v04_user_004_s0067",
+        "tm_pd_v04_user_004_s0083",
+        "tm_pd_v04_user_004_s0115"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_004_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_004_h02",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Hotel searches for teaching trips, conferences, clinic visits, and personal stays where customer-facing ratings are available.",
+        "scope_key": "rated_multi_night_hotel_searches",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "Granville is closer and slightly cheaper, but the 3.9 public rating sits just below the user's preferred 4-ish floor, and the history says ratings under 4 are a real concern.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Fairview University Suites is the strongest backup: cancellable, confirms the usual room basics, has a short campus commute, and has a clear public guest rating above 4.0 from many reviews.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Kara's prior lodging decisions show a recurring preference for clear customer-facing guest ratings at roughly the four-star level or better when ratings are available. In Raleigh she asked for reliably rated 4.0+ guest-reviewed hotels, in Savannah she wanted options with real reviews around four stars, in Portland she treated a sub-4 rating as a concern, and in the later Raleigh clinic planning she again became uneasy about an adjacent option below the four-ish range. Fairview is not the closest or cheapest backup, but it keeps the room basics and has a clear Google guest rating above that usual comfort floor. Granville is the near miss because it is cheaper, closer, and has a fitness room, but its public guest rating sits just below the level that has repeatedly mattered to her. Harbour's higher score is a bonus rather than worth the extra distance and price for this backup, and Campus Residence uses an internal score instead of a public guest-review rating.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_004_h02_p00",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Private-history-flavored phrase: \"usual room basics\". The choices mostly disclose the room basics, so this alone does not resolve the ranking.",
+          "Choice details about public Google ratings versus an internal host score, quiet-room requests, pool, and fitness room may be bait for unstated preferences, but the query does not state those preferences."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All options are cancellable and workable for reaching the campus clinic, and the query does not state a firm budget, review threshold, or how to trade proximity against public ratings. A is closest and reasonably priced with confirmed basics; C has a better public rating while still being walkable or shuttle-accessible; D is cheapest and close but lacks a public rating; B is farther and pricier but has the strongest public rating. More than one remains defensible without knowing Kara's unstated preferences.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_004"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "North Loop and Downtown Medical are close: North Loop wins on walkability and slightly lower price, while Downtown wins on public guest rating and gym quality with a manageable ride. A planner without Kara's history could reasonably choose the adjacent property; the durable rating floor points to Downtown Medical.",
+      "gold_action": "Recommend Downtown Medical Suites first and include its Google guest rating in the note.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0000",
+        "tm_pd_v04_user_004_s0067",
+        "tm_pd_v04_user_004_s0083",
+        "tm_pd_v04_user_004_s0115"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_004_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_004_h02",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Hotel searches for teaching trips, conferences, clinic visits, and personal stays where customer-facing ratings are available.",
+        "scope_key": "rated_multi_night_hotel_searches",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "North Loop Workshop Lodge is tempting for its two-minute walk, confirmed basics, gym, and lower price, but a 3.7 public guest rating is below the user's repeated 4-ish reliability boundary.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Downtown Medical Suites should lead because it is under the cap, has the queen/coffee/fridge basics, includes a full gym, has a public 4.0 guest rating, and still keeps the early-start commute short.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Across the cited trips, Kara consistently favored hotels with clear public guest ratings at or above her usual good-review floor and flagged sub-4-ish options as concerns, even when close or cheap. Downtown Medical Suites is just as viable on price as the adjacent lodge, has the basics and gym, and clears the customer-rating criterion. The airport hotel overcorrects toward rating at the expense of early-start practicality, while the conference hotel confuses property prestige with a known guest rating and adds an overage.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_004_h02_p01",
+      "probe_type": "direct_use",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Early starts and gym is helpful are explicit but competing cues.",
+          "Named traveler may imply an unstated preference for review threshold or walking versus rideshare."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "C"
+        ],
+        "rationale": "A and C both meet the room basics and are within the reimbursement cap. A is cheaper and a two-minute walk, which is best for early starts; C is still a short commute and has better reviews plus a full gym. The query does not weight shortest walking access versus review quality and gym strength enough to select one.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_004"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A generic planner could reasonably protect the closest refundable option before the evening deadline, while another could prefer the clearly rated fallback. Kara's longitudinal pattern is what makes the ambiguous sponsor score worth checking before Midtown is treated as the lead.",
+      "gold_action": "Ask the travel office to identify Midtown's actual customer-facing guest-rating source before treating it as the lead, while keeping Emory Garden Hotel as the provisional fallback and reporting its Google guest rating of 4.1/5 from 840 reviews.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0000",
+        "tm_pd_v04_user_004_s0067",
+        "tm_pd_v04_user_004_s0083",
+        "tm_pd_v04_user_004_s0115"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_004_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_004_h02",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Hotel searches for teaching trips, conferences, clinic visits, and personal stays where customer-facing ratings are available.",
+        "scope_key": "rated_multi_night_hotel_searches",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "Midtown Medical Suites is tempting because it is closest and has a 4.2 portal badge, but the badge lacks a public review source or count, which does not satisfy the user's preference for reliable real guest reviews.",
+        "difficulty": "hard",
+        "model": "gpt-5.5",
+        "rationale": "The best recommendation is to keep the very close Midtown option pending while verifying the source of its portal badge, and to use Emory Garden as the provisional fallback because it has confirmed basics plus a real public 4.1 guest rating. This follows the user's pattern of verifying uncertain claims before relying on them.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Kara's history indicates that the relevant quality signal is a public customer-facing guest or traveler rating, not just any numeric portal badge. She asked for 4.0+ guest-reviewed lodging in Raleigh, emphasized real reviews around four stars in Savannah, objected to a sub-4 guesthouse rating in Portland, and was wary of a below-four-ish adjacent option during the later Raleigh clinic visit. Because Midtown's sponsor badge is not clearly a guest-review rating, the best next step is to verify the source rather than assume the badge satisfies her usual lodging-quality preference. Emory Garden remains the sensible fallback because it has confirmed basics and a clear Google guest rating above her usual comfort floor. Midtown is the near miss because it is closest and refundable, but its rating signal is ambiguous.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_004_h02_p02",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Private-history-flavored phrase: \"usual room basics\".",
+          "The sponsor-portal badge with no public review source or count, plus the option to ask for the underlying customer guest-rating source, suggests a possible hidden preference for public review provenance. That preference is not stated in the query, so it should not be assumed."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The stated constraints require a refundable lodging option with workable commute and room basics, but they do not specify whether to prioritize the closest hold, the cheapest option, the most transparent public guest rating, or the highest rating. A is strong on price and location if the sponsor-portal badge is accepted; B is defensible as a cautious public-rating fallback; C is cheapest and closest but lower-rated and less explicit on basics; D has the highest public rating but is pricier and farther. No single choice is materially dominant on the stated objective alone.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_004"
+    },
+    {
+      "generator_closest_distractor_choice_id": "C",
+      "generator_difficulty_rationale": "Plateau and Campus Corner are difficult to separate generically: Campus Corner is cheaper and closer, while Plateau has the stronger public guest score and gym. The user's long-history hotel-rating policy, plus the fact that higher-than-needed ratings are only a bonus, makes Plateau the best lead.",
+      "gold_action": "Rank Plateau Residence Suites first and cite its Google guest rating.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0000",
+        "tm_pd_v04_user_004_s0067",
+        "tm_pd_v04_user_004_s0083",
+        "tm_pd_v04_user_004_s0115"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_004_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_004_h02",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Hotel searches for teaching trips, conferences, clinic visits, and personal stays where customer-facing ratings are available.",
+        "scope_key": "rated_multi_night_hotel_searches",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "Campus Corner Inn is tempting because it is cheaper and only a three-minute walk with confirmed basics, but its 3.9 rating falls below the user's preferred 4-ish guest-review floor, while Plateau still has an easy walk and clears that threshold.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Plateau Residence Suites should rank first because it stays near the panel site, remains under the informal cap, confirms the room basics, offers a gym, and has a reliable public 4.1 guest rating. The farther resort upgrade does not clearly pay off for her stated priorities.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The history shows Kara normally wants a clearly good public guest rating for teaching and conference hotel searches, but she does not require a 4.5-plus standout when a more practical hotel already clears her usual quality comfort point. Plateau Residence balances the rating source, room basics, walking distance, gym, and cap. Campus Corner is the closest practical rival but falls just below the review comfort pattern; Old Port overweights the bonus of a higher rating and spa; Station Budget technically meets the review cue but is weaker on room basics and morning convenience.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_004_h02_p03",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The outside resort and above-cap cue eliminates B but does not resolve A versus C.",
+          "Named traveler may imply an unstated threshold for ratings or gym value."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "C"
+        ],
+        "rationale": "A and C both meet the core stated objectives: under the informal cap, confirmed room basics, and easy walking access for mornings. A has the better review score and a gym but is farther and more expensive; C is closest and cheaper but lower-rated and lacks a gym. The query does not state whether the modest quality upgrade outweighs the shorter walk and lower price.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_004"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Name Granville Academic Hotel: $228 cancellable, six-minute walk to the clinic building, queen/coffee/mini-fridge confirmed, Google guest rating 3.9/5 from 1,180 reviews, compact fitness room, cancellation until five days before arrival."
+        },
+        {
+          "choice_id": "B",
+          "text": "Name Harbour Park Suites: $264 cancellable, 15-minute rideshare or 30-minute transit ride, queen/coffee/mini-fridge confirmed, Google guest rating 4.5/5 from 1,940 reviews, indoor pool, cancellation until one week before arrival."
+        },
+        {
+          "choice_id": "C",
+          "text": "Name Fairview University Suites: $239 cancellable, twelve-minute walk or short campus-shuttle ride to the clinic building, queen/coffee/mini-fridge confirmed, Google guest rating 4.2/5 from 870 reviews, quiet-room requests available, no pool."
+        },
+        {
+          "choice_id": "D",
+          "text": "Name Campus Residence Plus: $221 cancellable, nine-minute walk to the clinic building, queen room with kitchenette and coffee setup, internal host satisfaction score 9/10 with no public guest-review rating shown, desk staffed until 10 p.m."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_004_h02_p00",
+      "query": "Kara is arranging a two-night Vancouver university clinic visit and wants a cancellable backup in case the campus rooms do not come through. The south-campus meeting site can be reached by a short walk, campus shuttle, or brief rideshare from the options below, and she would like the usual room basics if available. Which backup should you name first?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_004",
+      "visible_history_scope": {
+        "max_session_index": 120
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Recommend North Loop Workshop Lodge: $181, two-minute walk to the venue, queen/coffee/fridge confirmed, small gym, Google guest rating 3.7/5 from 530 reviews."
+        },
+        {
+          "choice_id": "B",
+          "text": "Recommend Mall-Airport Connector Hotel: $149, 35-minute light-rail ride, queen/coffee/fridge confirmed, pool and gym, Google guest rating 4.3/5 from 1300 reviews."
+        },
+        {
+          "choice_id": "C",
+          "text": "Recommend Downtown Medical Suites: $188, nine-minute rideshare, queen/coffee/fridge confirmed, full gym, Google guest rating 4.0/5 from 910 reviews."
+        },
+        {
+          "choice_id": "D",
+          "text": "Recommend Conference Grand: $226 with small overage, connected to the venue, four-diamond property, queen and coffee, mini-fridge unclear, no public guest rating visible in the portal."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "direct_use",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_004_h02_p01",
+      "query": "For a Minneapolis continuing-ed workshop, Kara needs a two-night cancellable hotel. She will have early starts, but the host's reimbursement cap covers any of these except a small overage on the conference hotel. Room basics matter, and a gym is helpful. Which recommendation should go in the first line of the note?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_004",
+      "visible_history_scope": {
+        "max_session_index": 120
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Put Midtown Medical Suites first for a refundable hold: $205, four-minute walk to the clinic entrance, queen/coffee/mini-fridge confirmed, sponsor portal shows a 4.2/5 location-and-comfort badge with no public review source or review count, cancellation allowed until next week."
+        },
+        {
+          "choice_id": "B",
+          "text": "Keep Midtown Medical Suites pending while asking the travel office for the underlying customer guest-rating source, and use Emory Garden Hotel as the provisional rated fallback: $212, twelve-minute rideshare, queen/coffee/mini-fridge confirmed, Google guest rating 4.1/5 from 840 reviews, cancellation allowed until next week."
+        },
+        {
+          "choice_id": "C",
+          "text": "Put Campus Lodge first for a refundable hold: $191, three-minute walk to the clinic entrance, kitchenette and coffee setup confirmed, Google guest rating 3.8/5 from 480 reviews, gym access across campus, cancellation allowed until next week."
+        },
+        {
+          "choice_id": "D",
+          "text": "Put Piedmont Health Hotel first for a refundable hold: $224, sixteen-minute rideshare to the clinic entrance, queen/coffee/mini-fridge confirmed, Google guest rating 4.4/5 from 1,260 reviews, small indoor pool, cancellation allowed until next week."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_004_h02_p02",
+      "query": "Kara is building a lodging shortlist for a two-night Atlanta clinic observation through a sponsor portal. The refundable-hold deadline is this evening, the commute differences below are workable, and she needs the usual room basics for a clinic trip. What should you choose as the next lodging recommendation?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_004",
+      "visible_history_scope": {
+        "max_session_index": 120
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Rank Plateau Residence Suites first: $238, ten-minute walk to the panel site, queen/coffee/fridge confirmed, gym, Google guest rating 4.1/5 from 680 reviews."
+        },
+        {
+          "choice_id": "B",
+          "text": "Rank Old Port Spa Hotel first: $308, 25-minute rideshare in morning traffic, hot tub/spa, queen/coffee/fridge confirmed, Google guest rating 4.6/5 from 1900 reviews, above the informal cap."
+        },
+        {
+          "choice_id": "C",
+          "text": "Rank Campus Corner Inn first: $219, three-minute walk, queen/coffee/fridge confirmed, no gym, Booking.com guest score equivalent 3.9/5 from 740 reviews."
+        },
+        {
+          "choice_id": "D",
+          "text": "Rank Station Budget Hotel first: $172, 18-minute metro ride, queen and coffee, mini-fridge unclear, Google guest rating 4.0/5 from 310 reviews."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "cross_context_transfer",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_004_h02_p03",
+      "query": "Kara is planning a three-night faculty panel in Montreal. The organizer's sheet marks one resort-style hotel as especially well reviewed, but it is outside the neighborhood. Kara cares about easy mornings, room basics, and staying under the informal cap unless the upgrade clearly pays off. Which hotel should be ranked first?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_004",
+      "visible_history_scope": {
+        "max_session_index": 120
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "cross_context_transfer": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 2
+    }
+  }
+}

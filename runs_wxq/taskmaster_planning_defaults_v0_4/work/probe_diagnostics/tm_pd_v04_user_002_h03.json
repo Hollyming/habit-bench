@@ -1,0 +1,194 @@
+{
+  "habit_id": "tm_pd_v04_user_002_h03",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c03",
+        "c04",
+        "c05",
+        "c06",
+        "c09"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c03",
+        "c04",
+        "c05",
+        "c06",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold the official hotel now, send a concise room-detail request, and keep the Residence Inn as the fallback until the hotel replies."
+              },
+              {
+                "choice_id": "B",
+                "text": "Switch the hold to Residence Inn now because its listed room setup avoids relying on a request at the block hotel."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold the official hotel without contacting anyone, since the meeting location is the main reason to stay there."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold both hotels through their cancellation windows and decide only at the last possible deadline."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Residence Inn is cheaper, includes breakfast, has a better cancellation window, and clearly lists the relevant room setup. Without the user's history, that is a very plausible choice; the history indicates that the block hotel's meeting convenience plus a confirmation step is the better fit.",
+            "gold_action": "Hold the official conference hotel while confirming the refrigerator request and keeping the Residence Inn as a backup.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0021",
+              "tm_pd_v04_user_002_s0027",
+              "tm_pd_v04_user_002_s0038"
+            ],
+            "label_rationale": "The official hotel strongly fits the current conference logistics, so a request-only refrigerator should be treated as an availability confirmation and fallback issue rather than an automatic rejection. The cited Baltimore, Minneapolis, and Phoenix sessions support both the soft amenity criterion and the exception: when the event hotel otherwise reduces friction, she confirms the room detail instead of permanently relaxing the criterion or immediately switching away.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Marisol is deciding whether to place a hotel hold for a new three-day Portland nonprofit data conference. The official hotel is where the 7:45 a.m. registration and Thursday reception occur; it is $232 before tax, reimbursable as the block, and cancels four days out. Its page confirms an in-room coffeemaker but says compact refrigerators are by request. A Residence Inn nine minutes away is $209, includes breakfast, lists a fridge and coffeemaker, and cancels two days out. No car is planned. What is the best next lodging move?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The refrigerator/coffeemaker detail may cue an unstated amenity preference, but the official-hotel location, reimbursement, and schedule facts are sufficient to choose A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "The official hotel hosts early registration and the reception, is reimbursable as the block, and avoids no-car logistics. Holding it before relying on the off-site option is the common-sense move, and a concise clarification request handles the highlighted room-detail ambiguity while preserving a fallback."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Place the Hilton block hold before the deadline, send a same-day clarification about the ambiguous room amenities, and use Homewood if the answer is poor."
+              },
+              {
+                "choice_id": "B",
+                "text": "Book Homewood now because its listed in-room setup and breakfast are clearer, and its cancellation window is more forgiving."
+              },
+              {
+                "choice_id": "C",
+                "text": "Place the Hilton block hold and skip the follow-up, since meeting access outweighs room details here."
+              },
+              {
+                "choice_id": "D",
+                "text": "Let the block deadline pass and wait for a clearer Hilton room description before holding either property."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Homewood is cheaper, clearer on room setup, includes breakfast, and cancels later, making it a strong generic alternative. The user's history is needed to choose the block hold plus targeted clarification before the deadline.",
+            "gold_action": "Hold the Hilton block while confirming whether the assigned room can have in-room coffee and a refrigerator, with Homewood as the fallback.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0038",
+              "tm_pd_v04_user_002_s0044",
+              "tm_pd_v04_user_002_s0110"
+            ],
+            "label_rationale": "This tests disambiguation rather than a simple preference: the block hotel is logistically strong, but the room-page language is not enough to assume the desired in-room basics. The Phoenix, Minneapolis, and Baltimore evidence supports confirming request-only or lobby-only language instead of either ignoring it or automatically abandoning an otherwise strong hotel. This is a one-trip verification and fallback plan, not a permanent change to the criterion.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Marisol has a new two-night Hartford advisory meeting, with the first session inside the Capitol Center Hilton at 8:00 a.m. The Hilton block is $221, reimbursable, cancels five days out, and the hotel page says lobby cafe coffee plus compact refrigerators available on request, without saying what is in the assigned room. Homewood five blocks away is $214, includes breakfast, lists a kitchenette, and cancels two days out. The block deadline is tonight. Which lodging action is best?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The coffee/refrigerator ambiguity may cue an unstated room-amenity preference, but the onsite meeting, reimbursement, and block-deadline facts are sufficient to choose A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c07",
+            "rationale": "The first session is inside the Hilton at 8:00 a.m., the block is reimbursable, and the block deadline is tonight. Holding the block preserves the best-location option, and same-day clarification handles the ambiguous room details while keeping Homewood as a fallback."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Use Campus Marriott as the working plan, ask the hotel to verify refrigerator availability, and keep Downtown Hampton as the backup until the reply."
+              },
+              {
+                "choice_id": "B",
+                "text": "Use Downtown Hampton as the working plan because the room details and breakfast are clearer and it saves a little money."
+              },
+              {
+                "choice_id": "C",
+                "text": "Choose Downtown Hampton for the hotel but pair it with the earlier flight, even if that makes the all-in total about $70 higher."
+              },
+              {
+                "choice_id": "D",
+                "text": "Choose an airport hotel with a shuttle and defer the downtown-versus-campus decision until the host reconfirms the meeting room."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Downtown Hampton is cheaper, includes breakfast, and clearly lists the practical room amenities, so it is a strong near-miss. The history is needed to avoid treating the missing refrigerator line at a better-located hotel as an automatic rejection.",
+            "gold_action": "Use Campus Marriott as the working plan because it better protects the meeting logistics, while treating the missing refrigerator line as a confirmation item and keeping Hampton as fallback.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0026",
+              "tm_pd_v04_user_002_s0062",
+              "tm_pd_v04_user_002_s0071"
+            ],
+            "label_rationale": "The Downtown Hampton follows the room-amenity pattern, but the Campus Marriott otherwise fits this trip more strongly through arrival timing and meeting proximity. The cited conference and convening sessions show that she can accept an event or meeting hotel when logistics matter, while still checking the room basics. The gold is a trip-specific exception-handling step, not a permanent downgrade of the in-room amenity criterion.",
+            "probe_type": "conflict_resolution",
+            "query": "Marisol is comparing two whole-trip pairings for a new two-night Syracuse site visit. Both fit the budget and the Friday return after lunch. Downtown Hampton is $24 cheaper all-in, includes breakfast, and its room page lists a coffeemaker and mini-fridge, but the flight arrives after 9:30 p.m. and the morning meeting is a 15-minute rideshare. Campus Marriott gets in before dinner and is next door to the 8:15 a.m. host meeting; its page lists a coffeemaker but says nothing about a refrigerator. No rental car is planned. What should the planner recommend?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The refrigerator-verification detail may cue an unstated amenity preference, but the arrival time and next-door meeting location are sufficient to choose A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "Campus Marriott gives an earlier arrival and is next door to the 8:15 a.m. host meeting, which materially improves no-car logistics for only a small all-in cost difference. Asking about refrigerator availability is a low-cost way to address the one weaker room-detail point while keeping the cheaper Hampton as backup."
+          }
+        }
+      ],
+      "round": 0
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "boundary": 2,
+      "conflict_resolution": 1,
+      "cross_context_transfer": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_002"
+}

@@ -1,0 +1,519 @@
+{
+  "cache_fingerprint": "3c8dc79e01f4218a8ad5c0e2f60f00230e9bc18ff33f8a7d08b3708d71ee5f23",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A is closer, slightly cheaper, and favored by the portal, so it is a plausible generic lead. Jonah's hidden history is needed to know that the available customer-facing rating source matters more than a hotel-class star field.",
+      "gold_action": "Use Hampton Inn Downtown as the defensible provisional lead because it has a clear Google 4.1 customer-facing score, and ask for Grand Plaza's public guest-review score before treating its hotel-class label as equivalent.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0003",
+        "tm_pd_v04_user_005_s0051",
+        "tm_pd_v04_user_005_s0091",
+        "tm_pd_v04_user_005_s0114"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_005_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_005_h04",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies to Jonah's self-booked business and conference hotels when customer-facing hotel ratings are available.",
+        "scope_key": "four_point_zero_customer_rating_floor_for_work_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "Downtown Grand Plaza is tempting because it is closer, cheaper, and has a high portal match, but the portal lacks a public guest-review score, so it does not clearly satisfy Jonah's 4.0+ guest-rating preference.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "The Hampton is the safest provisional lead because it has an actual public guest rating above 4.0, a refundable rate, desk/fridge, and an acceptable downtown transit/walk. Portal class, preferred-fit, or unsourced quality fields should not substitute for Jonah's repeated guest-rating screen.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The stored habit concerns customer-facing hotel ratings such as Google or guest-review scores. It does not treat hotel-class stars or opaque portal quality numbers as substitutes, so the clear Google 4.1 option should be favored over a closer property with only a class label shown.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h04_p00",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Mixed/incomplete quality fields in the portal are a suspicious cue.",
+          "No stated rule says to prefer portal scores, hotel class, or public Google reviews."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "A leads on portal preferred fit, price, and proximity, but lacks a public guest-review score. B has a transparent Google rating, breakfast, and still-workable access, at a small price premium. The query does not specify whether to trust portal fit/class fields over public guest reviews, so both remain defensible.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B is closer, more polished, and much higher-rated, so it is a tempting generic choice for a leadership retreat. The hidden boundary is needed to know that a 4.1 Google-rated practical hotel is already sufficient for Jonah.",
+      "gold_action": "Lead with Hyatt Place and cite its Google 4.1 source; treat Miramonte's 4.6 resort profile as a nice upgrade rather than something Jonah's work-hotel pattern requires.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0051",
+        "tm_pd_v04_user_005_s0076",
+        "tm_pd_v04_user_005_s0103",
+        "tm_pd_v04_user_005_s0114"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_005_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_005_h04",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies to Jonah's self-booked business and conference hotels when customer-facing hotel ratings are available.",
+        "scope_key": "four_point_zero_customer_rating_floor_for_work_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "Embassy Suites is tempting for the suite, breakfast, free parking, lower rate, and 4.3 rating, but it is farther from the Rancho Mirage sessions and client dinner; Jonah tends not to let small savings outweigh better trip fit.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Hyatt Place Rancho Mirage clears the 4.0+ rating bar, is close to the retreat and dinner area, has the work basics, and avoids resort-fee/parking bloat. It is the practical fit rather than chasing the highest rating.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Jonah's long-running work-hotel habit supports a clearly good customer-facing rating around 4.0 or better, but it does not create a reusable 4.5-plus or resort-style requirement. A meets the durable quality floor while keeping the stay practical for a business retreat.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h04_p01",
+      "probe_type": "boundary",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "'Leadership retreat' and 'comfortable for work email' could cue different unstated style preferences; the query does not resolve them."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "D"
+        ],
+        "rationale": "A is the practical close business-hotel pick with included parking, B is closer and more polished/higher-rated but materially more expensive with fees, and D offers suite workspace, breakfast, free parking, and a good rating but a longer drive. The query does not state whether retreat polish, closest access, or suite/value should lead.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B is cheaper, official, and closer to training, so it is a strong generic contender. The hidden history is needed both to map the Booking.com score into Jonah's rating habit and to keep the 3.9 Google block from leading on proximity alone.",
+      "gold_action": "Lead with Novotel Centre and report its Booking.com 8.2/10 review score as the customer-facing source, balancing that clearer quality signal against the block hotel's closer walk and lower rate.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0003",
+        "tm_pd_v04_user_005_s0091",
+        "tm_pd_v04_user_005_s0103",
+        "tm_pd_v04_user_005_s0114"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_005_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_005_h04",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies to Jonah's self-booked business and conference hotels when customer-facing hotel ratings are available.",
+        "scope_key": "four_point_zero_customer_rating_floor_for_work_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "The official block hotel is tempting because it is cheaper and a five-minute walk, but its Google 3.9 rating is below Jonah's repeated cutoff and the block convenience is not strong enough to justify leading with it.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Novotel Centre should lead: Booking.com 8.2/10 is a public guest-review score consistent with being above Jonah's 4.0-ish floor, and the hotel has a refundable rate, desk/fridge, and a short streetcar or walk to training. The 3.9 official block is not materially better enough to override the rating issue.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The durable preference applies to customer-facing hotel ratings generally, not only Google star displays. A clear Booking.com 8.2/10 downtown score is consistent with Jonah's usual work-hotel quality floor, while the official block's Google 3.9 is a near miss without enough logistics advantage to justify bending the default.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h04_p02",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Mixed rating sources and official-block wording are suspicious cues, but not sufficient to choose one lead without an unstated comparison rule."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "B is the cheapest central option and closest to training, with official-block convenience and the needed desk/fridge. A has a somewhat stronger public rating signal, breakfast availability, and still-workable downtown access. The query does not state how to compare Booking.com and Google scores or whether official-block proximity should outweigh the rating/amenity tradeoff.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A is cheaper, closer, and has the highest portal match score, making it a plausible generic lead. The longitudinal memory is required to know which quality metric Jonah personally treats as meaningful.",
+      "gold_action": "Lead with Hampton Inn Downtown and cite its Google 4.1 rating source, treating the portal preferred-match score as secondary to the customer-facing hotel rating for Jonah's work stay.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0051",
+        "tm_pd_v04_user_005_s0076",
+        "tm_pd_v04_user_005_s0091",
+        "tm_pd_v04_user_005_s0103"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_005_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_005_h04",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies to Jonah's self-booked business and conference hotels when customer-facing hotel ratings are available.",
+        "scope_key": "four_point_zero_customer_rating_floor_for_work_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "The portal's top match is tempting because it is cheaper and closest, but Google 3.8 is below Jonah's usual floor and it lacks a listed fridge, so the preferred-match score is not enough.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Hampton Inn Downtown is the right lead because it has an actual Google 4.1 guest rating, a refundable rate, desk/fridge, breakfast, and an acceptable short rideshare or walk. The portal's preferred-match score should not override Jonah's public guest-rating preference.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Jonah's hotel-quality habit is anchored to guest-visible sources such as Google or similar customer-review scores, not opaque corporate match numbers. Since a short rideshare is acceptable and the Hampton remains refundable and practical, the clearer 4.1 Google-rated work-hotel option should outrank the closer but lower-reviewed portal favorite.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h04_p03",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Portal preferred-match score versus Google rating is a suspicious unresolved cue.",
+          "No query-stated preference says to trust the portal score over public ratings or vice versa."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "A is the portal's top match, cheaper, and much more walkable, but has a lower Google rating and no fridge listed. B has the stronger public rating, fridge, and breakfast while still allowing a short rideshare. The query does not state whether portal preferred-match should dominate public review quality and amenities.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B is tempting if one overgeneralizes the history into a 4.5+ preference, while A is cheaper and more convenient but only exactly at the usual customer-rating level. The boundary between acceptable floor and bonus rating is what makes the item difficult.",
+      "gold_action": "Lead with Downtown Suites and report the Google 4.0 rating; do not reject it merely because another option has a 4.5 score or a hotel-class label appears elsewhere.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0051",
+        "tm_pd_v04_user_005_s0076",
+        "tm_pd_v04_user_005_s0091",
+        "tm_pd_v04_user_005_s0103"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v04_user_005_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_005_h04",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies to Jonah's self-booked business and conference hotels when customer-facing hotel ratings are available.",
+        "scope_key": "four_point_zero_customer_rating_floor_for_work_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Riverside is tempting for the 4.5 rating, larger desk, and quieter rooms, but it costs more and makes dinner a rideshare rather than an easy walk; Jonah generally treats 4.0+ as sufficient when the practical fit is better.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Downtown Suites best matches the pattern: it meets the 4.0 guest-rating threshold, has desk/fridge for late work, is refundable, and gives easy walkable dinner options without paying extra just to chase a higher rating.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The history supports a customer-facing rating floor around 4.0 for Jonah's work hotels, with higher ratings as a bonus rather than a required upgrade. It also distinguishes guest ratings from hotel-class stars, making the 4.0 Google-rated, logistically convenient option acceptable.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h04_p04",
+      "probe_type": "boundary",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The phrase 'most consistent with his past travel pattern' explicitly invokes unavailable private user history.",
+          "The remaining tradeoff is preference-sensitive: walkable dinner/value versus higher-quality quieter room and larger desk."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "Without Jonah's private past travel pattern, A and B remain reasonably defensible: A better satisfies low-planning dinner access with a desk and lower rate, while B better satisfies the late-work-session desk/quiet/quality angle but makes dinner less convenient. The query asks for consistency with a private pattern that is not provided.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Lead with Downtown Grand Plaza: portal hotel class 4 stars, portal preferred fit 94, $224/night refundable, six-minute walk to the seminar, desk/fridge; no public guest-review score is shown in the portal."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use Hampton Inn Downtown as the provisional lead: Google 4.1, portal preferred fit 82, $231/night refundable, 11-minute light-rail ride or 17-minute walk to the seminar, desk/fridge and breakfast."
+        },
+        {
+          "choice_id": "C",
+          "text": "Lead with Le Meridien: portal hotel class 4.5 stars, $299/night refundable, seven-minute walk to the seminar, on-site restaurant, compact desk; no public guest-review score is shown in the portal."
+        },
+        {
+          "choice_id": "D",
+          "text": "Lead with Airport Hyatt House: portal quality index 91, $187/night refundable, 23-minute drive to the seminar, suite desk/fridge and breakfast; the portal does not show the index source."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h04_p00",
+      "query": "Jonah is preparing an unbooked Salt Lake City controls-seminar hotel note from the corporate portal. The portal shows different quality fields for different properties, and the seminar is downtown. He needs a refundable workable room, and either a close walk or a short transit/rideshare leg would be acceptable. Which action fits best?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Lead with Hyatt Place Palm Springs/Rancho Mirage: Google 4.1, $259/night refundable, eight-minute drive to the retreat site, desk/fridge, self-parking included, casual lobby and nearby dinner options."
+        },
+        {
+          "choice_id": "B",
+          "text": "Lead with Miramonte Resort: Google 4.6, $286/night refundable plus a $24 resort fee, six-minute drive to the retreat site, polished grounds and lounge, desk/fridge, paid self-parking."
+        },
+        {
+          "choice_id": "C",
+          "text": "Lead with a Palm Desert boutique inn: Tripadvisor 3.9, $232/night refundable, seven-minute drive to the retreat site, quieter courtyard, smaller work desk, limited on-site parking."
+        },
+        {
+          "choice_id": "D",
+          "text": "Lead with Embassy Suites La Quinta: Google 4.3, $247/night refundable, 18-minute drive to the retreat site, suite desk/fridge, breakfast included, free self-parking."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "boundary",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h04_p01",
+      "query": "Jonah is choosing his own hotel for a two-night Palm Springs utility leadership retreat. The sessions and a client dinner are in Rancho Mirage, he will have a rental car, and he wants a place that is comfortable for work email between events. All of the options are cancellable and within a reasonable drive. Which should be the lead?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Lead with Novotel Centre: Booking.com 8.2/10, CAD 236/night refundable, nine-minute streetcar or 18-minute walk to training, desk/fridge, breakfast available."
+        },
+        {
+          "choice_id": "B",
+          "text": "Lead with the official block hotel: Google 3.9/5, CAD 221/night refundable, five-minute walk to training, desk/fridge, block cancellation terms, breakfast not included."
+        },
+        {
+          "choice_id": "C",
+          "text": "Lead with the airport Residence Inn: Booking.com 8.8/10, CAD 189/night refundable, 35-minute train plus short walk to training, suite kitchenette, breakfast included."
+        },
+        {
+          "choice_id": "D",
+          "text": "Lead with the downtown boutique hotel: Google 4.6/5, CAD 315/night refundable, 10-minute walk to training, quieter lobby, smaller desk, fridge on request."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "cross_context_transfer",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h04_p02",
+      "query": "Jonah is arranging his own hotel for a Toronto vendor training. The booking page mixes ratings from Google and Booking.com, and the training is downtown. He needs a refundable room where he can review slides; a short walk or short transit ride would both work. Which lead should you send?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Lead with the portal's top match: preferred match 96, Google 3.8, $184/night refundable, six-minute walk to the hearing room, desk, standard king, no fridge listed."
+        },
+        {
+          "choice_id": "B",
+          "text": "Lead with Hampton Inn Downtown: preferred match 83, Google 4.1, $197/night refundable, nine-minute rideshare or 18-minute walk to the hearing room, desk/fridge, breakfast included."
+        },
+        {
+          "choice_id": "C",
+          "text": "Lead with Renaissance Albany: preferred match 78, Google 4.4, $269/night refundable, five-minute walk to the hearing room, larger room, valet parking, restaurant on site."
+        },
+        {
+          "choice_id": "D",
+          "text": "Lead with Airport Fairfield: preferred match 92, Google 4.0, $164/night refundable, 24-minute drive to the hearing room, desk/fridge, free parking."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h04_p03",
+      "query": "Jonah is preparing a self-booked Albany hotel shortlist for a regulatory hearing. The corporate portal displays a preferred-match score alongside public Google ratings, and the hearing room is downtown. He needs a refundable room with a desk, and either a short walk or a short rideshare is workable. Which lead should you choose?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Lead with Downtown Suites: Google 4.0, $229/night refundable, five-minute walk to dinner, desk/fridge, older rooms, paid parking."
+        },
+        {
+          "choice_id": "B",
+          "text": "Lead with Riverside Hotel: Google 4.5, $269/night refundable, larger desk and quieter rooms, 12-minute rideshare to dinner."
+        },
+        {
+          "choice_id": "C",
+          "text": "Lead with the conference-style block hotel: 4-star hotel class, Google 3.8, $205/night refundable, three-minute walk to dinner."
+        },
+        {
+          "choice_id": "D",
+          "text": "Lead with Eastside Hyatt Place: Google 4.2, $196/night refundable, free parking, 22-minute rideshare to dinner."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "boundary",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h04_p04",
+      "query": "Jonah is comparing hotels for a self-booked Portland membrane-lab visit with two late work sessions. He wants a dependable desk, dinner options he can reach without much planning, and a cancellable rate. The lab is reachable by rideshare from either downtown or the inner east side. Which lead is most consistent with his past travel pattern?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 5,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2,
+      "gold_disagreement_or_unresolved": 2
+    },
+    "query_only_unresolved_count": 9,
+    "selected_count": 5,
+    "selected_difficulty_counts": {
+      "medium": 5
+    },
+    "selected_type_counts": {
+      "boundary": 2,
+      "cross_context_transfer": 1,
+      "evidence_disambiguation": 2
+    }
+  }
+}

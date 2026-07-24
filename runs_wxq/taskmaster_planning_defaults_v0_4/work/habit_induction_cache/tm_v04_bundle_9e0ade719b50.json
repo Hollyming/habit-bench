@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Apply only to hotel room bed-configuration choices; do not infer preferences about hotel location, price, dates, party size, or non-bed amenities.",
+  "bundle_id": "tm_v04_bundle_9e0ade719b50",
+  "condition": "When searching for a hotel room or specifying room amenities and no separate-bed requirement is stated.",
+  "confidence": 0.92,
+  "decision": "accept",
+  "default_action": "Filter for or request a room with a king-sized bed as the preferred bed configuration.",
+  "exception_condition": "If a king-sized bed is unavailable or a stated need requires separate beds, continue with another suitable bed configuration rather than blocking the booking solely on the king-bed preference.",
+  "family": "bed_configuration",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_9e0ade719b50",
+  "induced_at": "2026-07-15T12:37:24.037453+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Requests a king-sized bed for hotel rooms",
+  "preference_value": "king-sized bed",
+  "rationale": "Across independent hotel dialogues, the room amenity requests consistently include a king-sized bed. This supports a scoped synthetic default for hotel room bed configuration, without extending it to unrelated room amenities or trip details.",
+  "seed_value": "a_king_sized_bed",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User includes \"a king-sized bed\" among requested room amenities.",
+      "conversation_id": "dlg-157a6da0-88f7-4a2d-98ef-6c1549918bbe",
+      "turn_index": 26
+    },
+    {
+      "contribution": "User says, \"I need ... a king-sized bed,\" making the bed configuration explicit.",
+      "conversation_id": "dlg-0ee82b47-d16f-4b64-9647-0550832a9a2b",
+      "turn_index": 14
+    },
+    {
+      "contribution": "User says they are looking for \"a king-sized bed\" as part of the hotel room request.",
+      "conversation_id": "dlg-67cd551d-f41f-4fdf-9c41-933816a7a00f",
+      "turn_index": 5
+    },
+    {
+      "contribution": "User says, \"I need a king-sized bed,\" directly supporting the default.",
+      "conversation_id": "dlg-253bb201-1193-4a62-82e3-0000f00869cd",
+      "turn_index": 13
+    },
+    {
+      "contribution": "User lists \"a king-sized bed\" among room features that the room needs to have.",
+      "conversation_id": "dlg-90c9799a-27b5-41e3-bc19-8c1e6635eeee",
+      "turn_index": 8
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "a king-sized bed",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-157a6da0-88f7-4a2d-98ef-6c1549918bbe",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 26,
+      "user_utterance": "In room amenities, balcony view, if possible and a king-sized bed, free-breakfast."
+    },
+    {
+      "annotated_segment": "a king-sized bed",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-0ee82b47-d16f-4b64-9647-0550832a9a2b",
+      "habitual_language": false,
+      "instruction_id": "hotel-12",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 14,
+      "user_utterance": "On top of that, I need a flat-screen TV and a king-sized bed."
+    },
+    {
+      "annotated_segment": "a king-sized bed",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-67cd551d-f41f-4fdf-9c41-933816a7a00f",
+      "habitual_language": false,
+      "instruction_id": "hotel-3",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "I would like a fitness center, a pool, and a hot tub. I'm also looking for an ocean view, a balcony, a king-sized bed."
+    },
+    {
+      "annotated_segment": "a king-sized bed",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-253bb201-1193-4a62-82e3-0000f00869cd",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 13,
+      "user_utterance": "I need a king-sized bed with a balcony."
+    },
+    {
+      "annotated_segment": "a king-sized bed",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-90c9799a-27b5-41e3-bc19-8c1e6635eeee",
+      "habitual_language": false,
+      "instruction_id": "hotel-2",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "The room needs to be ocean view, it needs to have a balcony, a mini-refrigerator, a king-sized bed, in-room coffee and a flat screen TV."
+    }
+  ]
+}

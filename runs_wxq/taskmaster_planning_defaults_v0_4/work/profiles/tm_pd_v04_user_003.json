@@ -1,0 +1,223 @@
+{
+  "cache_fingerprint": "d152f343e46e2aee1490a1f29bad5d7671a735aea7a66721b1024b61302e4aea",
+  "profile": {
+    "communication_style": {
+      "clarification_preference": "Ask when a trade-off affects arrival reliability, connection comfort, or meal logistics; otherwise make a practical shortlist.",
+      "planning_behavior": [
+        "Provides dates, city pairs, event times, and hotel-area constraints early.",
+        "Likes short comparison tables with trade-offs called out plainly.",
+        "Appreciates notes about uncertainty, especially for flight connections, hotel food access, and room details.",
+        "Will ask for one focused revision rather than exploring many speculative options."
+      ],
+      "tone": "Warm, concise, and task-forward."
+    },
+    "generated_by": {
+      "model": "gpt-5.5",
+      "reasoning_effort": "xhigh"
+    },
+    "generation_method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+    "habit_interactions": [
+      {
+        "affected_habits": [
+          "tm_v04_e2e_habit_ff9a7f3c433c"
+        ],
+        "interaction": "Her morning campus or school commitments make afternoon departures show up often, but fixed event times can override that timing pattern."
+      },
+      {
+        "affected_habits": [
+          "tm_v04_e2e_habit_9f7064c606c7",
+          "tm_v04_e2e_habit_a7725793148c"
+        ],
+        "interaction": "The soft Delta preference is most useful from Salt Lake City, but it should not crowd out connection quality when secondary-market routes require a transfer."
+      },
+      {
+        "affected_habits": [
+          "tm_v04_e2e_habit_4159e7bcd6b1",
+          "tm_v04_e2e_habit_11cb153da985"
+        ],
+        "interaction": "Hotel breakfast and restaurant access reflect the same recurring need for easy meals around early school visits, evening fairs, and late arrivals."
+      },
+      {
+        "affected_habits": [
+          "tm_v04_e2e_habit_8295755bcd5d",
+          "tm_v04_e2e_habit_90a7ff1f51d8"
+        ],
+        "interaction": "Window seats and queen-bed room setups are comfort defaults that appear in booking details but rarely determine the overall destination or schedule."
+      }
+    ],
+    "habits": [
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "This is a soft preference: Delta is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When choosing among flight carriers and Delta is available while also satisfying the trip's schedule, route, price, and stop constraints.",
+        "default_action": "Search for or present Delta options as part of the preferred carrier set, and favor Delta when it is otherwise comparable to alternatives.",
+        "exception_condition": "Use another acceptable carrier when Delta is unavailable, materially worse, or does not meet the current trip constraints.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_003_h00",
+        "name": "soft_delta_preferred_carrier",
+        "preference_value": "Delta is a preferred airline to include in the flight shortlist, but not an exclusive carrier requirement.",
+        "scope_condition": "Applies to her self-booked U.S. flights from Salt Lake City for recruitment loops, conferences, and occasional family trips.",
+        "scope_key": "delta_soft_preference_self_booked_domestic_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_9f7064c606c7",
+        "source_habit_instance_id": "tm_v04_e2e_habit_9f7064c606c7",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003"
+      },
+      {
+        "alternative_group_key": "flight_departure_time_of_day_preference",
+        "boundary_condition": "Applies only to flight departure time-of-day. Do not infer it for arrival times, dates, routes, every leg automatically, or earliest-afternoon departures as a recurring rule.",
+        "condition": "When selecting or comparing flight departure times.",
+        "default_action": "Look first for departure options in the afternoon; follow any current explicit request for another time window or exact time.",
+        "exception_condition": "If acceptable afternoon departures are unavailable or conflict with other stated constraints, ask before broadening to nearby time windows.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_003_h01",
+        "name": "prefers_afternoon_departures",
+        "preference_value": "Prefers flight departures in the afternoon when no different departure-time constraint is specified.",
+        "scope_condition": "Applies when choosing flight departure times for trips without a fixed competing time constraint, especially after morning school visits, campus meetings, or office handoffs.",
+        "scope_key": "afternoon_departures_after_morning_work_blocks",
+        "source_bundle_id": "tm_v04_e2e_bundle_ff9a7f3c433c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ff9a7f3c433c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003"
+      },
+      {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_003_h02",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies to domestic itineraries where a connection is being considered, especially routes from Salt Lake City to smaller recruitment or conference markets.",
+        "scope_key": "single_short_layover_secondary_market_routes",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003"
+      },
+      {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v04_user_003_h03",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Applies to seat selection on flights she books for herself, including solo work trips and occasional family travel.",
+        "scope_key": "window_seat_self_booked_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "background",
+        "testable": false,
+        "user_id": "tm_pd_v04_user_003"
+      },
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Use this as a soft preference, not an absolute requirement, because the evidence ranges from a direct requirement to a tentative request and a later verification question.",
+        "condition": "When evaluating or booking a hotel, treat free breakfast as a recurring included-service preference.",
+        "default_action": "Prioritize or verify hotels with free breakfast when available; if breakfast is not listed, ask or check rather than assuming it is included.",
+        "exception_condition": "Do not reject an otherwise suitable hotel solely for lacking free breakfast unless the user explicitly makes it required in the current booking; do not infer a full or high-quality breakfast requirement unless stated.",
+        "family": "hotel_included_services",
+        "habit_id": "tm_pd_v04_user_003_h04",
+        "name": "prefer_included_hotel_breakfast",
+        "preference_value": "Prefer hotels that include free breakfast.",
+        "scope_condition": "Applies to hotels for early-start recruitment, conference, and short family stays where breakfast logistics are part of the comparison.",
+        "scope_key": "included_breakfast_recruitment_and_conference_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_4159e7bcd6b1",
+        "source_habit_instance_id": "tm_v04_e2e_habit_4159e7bcd6b1",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003"
+      },
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Do not infer specific cuisine, star rating, bar service, kid-friendliness, downtown location, ski access, or wooded setting unless stated for the current trip.",
+        "condition": "When searching for, comparing, or summarizing hotel options.",
+        "default_action": "Mention on-site or nearby restaurant availability and use convenient dining access as a soft tie-breaker rather than a hard filter.",
+        "exception_condition": "Do not apply if the user explicitly deprioritizes dining access or if stronger current-trip constraints override it.",
+        "family": "hotel_accessibility_amenity_priority",
+        "habit_id": "tm_pd_v04_user_003_h05",
+        "name": "hotel_restaurant_access",
+        "preference_value": "Hotels with on-site or nearby restaurant access, with restaurant availability noted during comparisons.",
+        "scope_condition": "Applies to hotels after evening fairs, receptions, late arrivals, or suburban venue stays where convenient dinner access matters.",
+        "scope_key": "restaurant_access_evening_event_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_11cb153da985",
+        "source_habit_instance_id": "tm_v04_e2e_habit_11cb153da985",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003"
+      },
+      {
+        "alternative_group_key": "hotel_room_bed_type_single_large_bed",
+        "boundary_condition": "Evidence supports queen-size beds as the recurring preference. A king bed may be acceptable when explicitly offered or requested, but the evidence does not establish a reusable preference to upgrade to king whenever possible.",
+        "condition": "When booking a standard hotel room where a single larger/shared bed is appropriate and no separate-bed setup has been requested.",
+        "default_action": "Filter for or request a queen-size bed when bed type is selectable; if the listing only shows double, twin, or unspecified bedding, confirm the bed setup before booking.",
+        "exception_condition": "Honor explicit requests for twin beds, multiple separate beds, multiple rooms with different bedding, accessibility-related bedding, or any other trip-specific bed arrangement.",
+        "family": "hotel_room_bed_policy",
+        "habit_id": "tm_pd_v04_user_003_h06",
+        "name": "queen_bed_for_single_bed_hotel_rooms",
+        "preference_value": "Prefer a queen-size bed for hotel rooms intended to have one larger/shared bed.",
+        "scope_condition": "Applies to standard hotel rooms for solo work travel or spouse/family weekend stays when a single larger-bed room is the appropriate setup.",
+        "scope_key": "queen_bed_standard_single_bed_rooms",
+        "source_bundle_id": "tm_v04_e2e_bundle_90a7ff1f51d8",
+        "source_habit_instance_id": "tm_v04_e2e_habit_90a7ff1f51d8",
+        "strength": "background",
+        "testable": false,
+        "user_id": "tm_pd_v04_user_003"
+      }
+    ],
+    "longitudinal_plan": {
+      "target_history_characters": 356000,
+      "target_sessions": 142,
+      "travel_tempo": "Roughly two academic-year cycles, with dense fall recruitment periods, a smaller spring event wave, a few summer conferences, and scattered personal weekends. Expect about 24 to 30 distinct trip-planning episodes spread across the sessions.",
+      "typical_episode_shape": {
+        "conference_trip": "Block hotel comparison, flight timing check, and one follow-up to reconcile reimbursement or agenda constraints.",
+        "personal_weekend": "Shorter planning thread with flights and a practical hotel, usually reusing comfort defaults without extensive optimization.",
+        "work_trip": "Initial route and hotel search, refinement around event times, final shortlist or booking summary, and occasional change handling when fair schedules move."
+      }
+    },
+    "persona": {
+      "age_range": "early 40s",
+      "decision_posture": "Organized, schedule-aware, and practical. She values predictable flights and easy food logistics more than luxury, and treats most preferences as soft when fair times, campus events, availability, or reimbursement rules dominate.",
+      "home_base": "Salt Lake City, Utah",
+      "name": "Tessa Alvarez",
+      "occupation": "regional admissions recruiter for a private university",
+      "travel_identity": "Seasonal self-booking traveler who plans recruitment loops, admitted-student receptions, higher-ed conferences, and occasional family weekends.",
+      "user_id": "tm_pd_v04_user_003"
+    },
+    "travel_contexts": [
+      {
+        "context_key": "fall_recruitment_loops",
+        "description": "August through November trips to high-school visits, college fairs, and counselor breakfasts across the Mountain West, Pacific Northwest, Texas, and upper Midwest.",
+        "planning_notes": "Often multi-city, with morning school appointments and evening fair commitments.",
+        "typical_duration": "3 to 5 nights"
+      },
+      {
+        "context_key": "spring_yield_and_transfer_events",
+        "description": "February through April travel for admitted-student receptions, transfer fairs, alumni-hosted meetups, and counselor follow-ups.",
+        "planning_notes": "More date-constrained than fall travel, with hotels often near suburban event venues.",
+        "typical_duration": "1 to 3 nights"
+      },
+      {
+        "context_key": "professional_conferences",
+        "description": "A few annual higher-education and admissions conferences, sometimes involving conference hotel blocks and tighter flight windows.",
+        "planning_notes": "She compares official blocks against nearby practical alternatives.",
+        "typical_duration": "2 to 5 nights"
+      },
+      {
+        "context_key": "family_and_personal_weekends",
+        "description": "Occasional trips with her spouse or one of her teenagers to visit relatives, attend tournaments, or add a short leisure weekend after work travel.",
+        "planning_notes": "These are less frequent but reuse many of her comfort defaults.",
+        "typical_duration": "2 to 4 nights"
+      }
+    ],
+    "user_id": "tm_pd_v04_user_003"
+  }
+}

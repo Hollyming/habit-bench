@@ -1,0 +1,136 @@
+{
+  "cache_fingerprint": "4cf968fe49c96f86d011ea41f8c9a13ad8125601d4eb7af7ef16e5ee91056f84",
+  "raw_match": {
+    "hidden_matches": [
+      {
+        "boundary_match": "partial",
+        "confidence": 0.86,
+        "core_match": "full",
+        "exception_match": "full",
+        "habit_id": "tm_pd_v04_user_004_h00",
+        "reason": "Recovered h03 captures the solo-flight window-seat default and correctly treats adjacent seats on partner trips as overriding the window preference. It also captures fallback behavior when no free window is available. Boundary is only partial because the hidden habit is limited to seat location, while the recovered habit adds fare-class, random-seat, and fee-control policies not present in the hidden habit.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_004_recovered_h03"
+        ],
+        "scope_match": "full"
+      },
+      {
+        "boundary_match": "not_observable",
+        "confidence": 0.99,
+        "core_match": "none",
+        "exception_match": "not_observable",
+        "habit_id": "tm_pd_v04_user_004_h01",
+        "reason": "No recovered habit states the concrete default of preferring afternoon return-flight departures for round trips returning to Tampa. General practicality or fatigue-management language is not a semantic match to this specific return-leg timing rule.",
+        "recovered_habit_ids": [],
+        "scope_match": "none"
+      },
+      {
+        "boundary_match": "partial",
+        "confidence": 0.68,
+        "core_match": "partial",
+        "exception_match": "partial",
+        "habit_id": "tm_pd_v04_user_004_h02",
+        "reason": "Recovered h01 captures a preference for reliable, well-reviewed lodging and cites 4-ish/4.0+ review language, but its recovered value does not clearly preserve the hidden habit's normal at-least-4.0 customer-facing rating threshold, rating-source reporting, or soft-threshold framing. Its scope is also bundled with room-basics and breakfast-readiness contexts rather than the broader hotel-search scope in the hidden habit.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_004_recovered_h01"
+        ],
+        "scope_match": "partial"
+      },
+      {
+        "boundary_match": "full",
+        "confidence": 0.91,
+        "core_match": "full",
+        "exception_match": "full",
+        "habit_id": "tm_pd_v04_user_004_h03",
+        "reason": "Recovered h02 matches the reusable preference for pool, hot tub, and fitness access, treats them as soft but valuable recovery amenities, and says to state missing amenities plainly. Its work/recovery and active-leisure scope aligns with the hidden habit. The added emphasis on fees and room/logistics tradeoffs is extra detail but does not contradict the hidden soft-preference boundary.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_004_recovered_h02"
+        ],
+        "scope_match": "full"
+      },
+      {
+        "boundary_match": "full",
+        "confidence": 0.76,
+        "core_match": "partial",
+        "exception_match": "not_observable",
+        "habit_id": "tm_pd_v04_user_004_h04",
+        "reason": "Recovered h01 captures that a queen bed is sufficient and that doubles or unclear bedding should be avoided, and it correctly says king is not required. Core and scope are partial because the hidden habit is specifically a queen-bed default for standard one-bed rooms, while the recovered habit phrases the acceptable setup as queen/king or queen studio and bundles it into a broader lodging-basics policy.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_004_recovered_h01"
+        ],
+        "scope_match": "partial"
+      },
+      {
+        "boundary_match": "partial",
+        "confidence": 0.82,
+        "core_match": "full",
+        "exception_match": "partial",
+        "habit_id": "tm_pd_v04_user_004_h05",
+        "reason": "Recovered h01 directly captures the in-room coffee maker plus refrigerator/mini-fridge preference and the need to confirm those amenities. Scope is partial because it extends the policy to recovery weekends as well as work/conference contexts, whereas the hidden habit is scoped to seminar, clinic-training, and conference stays. Boundary and exception are partial because the recovered habit hardens confirmation language and preference strength more than the hidden habit's soft-criteria and confirm-with-user framing.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_004_recovered_h01"
+        ],
+        "scope_match": "partial"
+      }
+    ],
+    "improper_splits": [],
+    "recovered_adjudications": [
+      {
+        "matched_habit_ids": [],
+        "reason": "No hidden habit encodes a broad cross-domain rule that practical fit outranks price for flights, hotels, driving, or packages. This does not match the concrete hidden flight-seat, return-timing, hotel-rating, amenity, bed, or in-room coffee/fridge policies.",
+        "recovered_habit_id": "tm_pd_v04_user_004_recovered_h00",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [
+          "tm_pd_v04_user_004_h02",
+          "tm_pd_v04_user_004_h04",
+          "tm_pd_v04_user_004_h05"
+        ],
+        "reason": "This recovered habit bundles three hidden hotel policies: good customer-facing ratings, queen/predictable bed setup, and in-room coffee maker plus refrigerator/mini-fridge. It is a valid match only for those components; the broader 'hotel basics must be confirmed' framing, suite preference, and cost/location tradeoff language are not independently grounded hidden habits.",
+        "recovered_habit_id": "tm_pd_v04_user_004_recovered_h01",
+        "status": "matched_hidden"
+      },
+      {
+        "matched_habit_ids": [
+          "tm_pd_v04_user_004_h03"
+        ],
+        "reason": "This matches the hidden preference for hotels with pool, hot tub, and fitness/exercise access, including the soft nature of the preference and the need to call out missing amenities. Fee and logistics hierarchy details are extra but not a separate hidden match.",
+        "recovered_habit_id": "tm_pd_v04_user_004_recovered_h02",
+        "status": "matched_hidden"
+      },
+      {
+        "matched_habit_ids": [
+          "tm_pd_v04_user_004_h00"
+        ],
+        "reason": "This matches the hidden solo-flight window-seat preference and the adjacent-seat exception for partner travel. The recovered fare-class/random-seat-control rule and specific fee thresholds are unsupported extras relative to the hidden graph and should not be treated as part of the matched hidden habit.",
+        "recovered_habit_id": "tm_pd_v04_user_004_recovered_h03",
+        "status": "matched_hidden"
+      },
+      {
+        "matched_habit_ids": [],
+        "reason": "No hidden habit covers holding refundable lodging, delaying flight purchases, or gating booking on unresolved program or host details.",
+        "recovered_habit_id": "tm_pd_v04_user_004_recovered_h04",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [],
+        "reason": "No hidden habit covers a ground-transport policy for rentals, rideshare, SUVs, compact cars, parking, gear, or prepaid fuel.",
+        "recovered_habit_id": "tm_pd_v04_user_004_recovered_h05",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [],
+        "reason": "No hidden habit covers requiring host logistics answers about access, storage, equipment, parking, entrances, teardown, or contacts before work-trip booking.",
+        "recovered_habit_id": "tm_pd_v04_user_004_recovered_h06",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [],
+        "reason": "No hidden habit covers food, grocery, snack, delivery, or arrival-meal planning. Mentioning a room fridge in this routine does not recover the hidden coffee-maker plus refrigerator hotel-room amenity policy.",
+        "recovered_habit_id": "tm_pd_v04_user_004_recovered_h07",
+        "status": "unsupported_extra"
+      }
+    ]
+  }
+}

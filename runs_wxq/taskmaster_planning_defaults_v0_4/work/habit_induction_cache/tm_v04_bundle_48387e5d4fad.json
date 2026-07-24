@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Do not carry any cited dollar amount across trips as a fixed ceiling; this habit is a qualitative budget-conscious default for hotel nightly rates, balanced against any stated quality requirements.",
+  "bundle_id": "tm_v04_bundle_48387e5d4fad",
+  "condition": "When the synthetic user is searching for hotels and comparing otherwise acceptable lodging options for a trip.",
+  "confidence": 0.9,
+  "decision": "accept",
+  "default_action": "Keep hotel candidates within the current trip's stated nightly budget or price cap, and favor in-budget/value-priced options over hotels that exceed the cap.",
+  "exception_condition": "If the user explicitly authorizes exceeding the current trip's budget for a specific property, quality level, amenity, or availability issue, present the over-budget option with the price overage clearly called out.",
+  "family": "hotel_price_tradeoff",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_48387e5d4fad",
+  "induced_at": "2026-07-15T12:38:09.209184+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Budget-conscious hotel nightly rate",
+  "preference_value": "budget_sensitive",
+  "rationale": "Across independent hotel-search dialogues, the speakers repeatedly impose per-night caps or say the hotel should not exceed the current budget. The exact dollar amounts vary, so the reusable synthetic habit is budget sensitivity rather than a numeric maximum.",
+  "seed_value": "budget_sensitive",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "Sets a hotel cap of under $500 per night while also wanting a nice, at-least-four-star hotel, supporting price awareness alongside quality needs.",
+      "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+      "turn_index": 22
+    },
+    {
+      "contribution": "States the hotel price should be definitely under $300, supporting a tendency to set and respect a nightly budget cap.",
+      "conversation_id": "dlg-dcdfae1f-379a-413f-9d34-d8da4f4563e7",
+      "turn_index": 33
+    },
+    {
+      "contribution": "Raises the price limit but still keeps it under $250, supporting budget-sensitive adjustment rather than price indifference.",
+      "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+      "turn_index": 29
+    },
+    {
+      "contribution": "Requests no more than $350 per night, with a lower bound and five-star requirement, showing the habit is about staying within a budget range rather than simply choosing the cheapest hotel.",
+      "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+      "turn_index": 5
+    },
+    {
+      "contribution": "Says the hotel should not go over the current $300-per-night budget, directly supporting the in-budget default.",
+      "conversation_id": "dlg-0ee82b47-d16f-4b64-9647-0550832a9a2b",
+      "turn_index": 7
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "Under $500 a night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 22,
+      "user_utterance": "Under $500 a night, You know, That should be a pretty big spread there. So, But we want to stay in a nice hotel, So at least four stars, but if you can find a four and a half star rated hotel, That'd be perfect."
+    },
+    {
+      "annotated_segment": "under $300",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-dcdfae1f-379a-413f-9d34-d8da4f4563e7",
+      "habitual_language": false,
+      "instruction_id": "hotel-2",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 33,
+      "user_utterance": "I want to talk about price. I want it to be definitely under $300."
+    },
+    {
+      "annotated_segment": "under $250",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 29,
+      "user_utterance": "Oh, I don't want to do a hotel. Okay, bump up the price limit to under $250."
+    },
+    {
+      "annotated_segment": "no more than $350 a night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "Yes, of course. I would also like it to be no more than $350 a night, but I don't want it to be under $200 a night either. I want it to be a five-star hotel."
+    },
+    {
+      "annotated_segment": "$300 per night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-0ee82b47-d16f-4b64-9647-0550832a9a2b",
+      "habitual_language": false,
+      "instruction_id": "hotel-12",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 7,
+      "user_utterance": "Yeah, I'm looking for a hotel that doesn't go over my budget, and my current budget is $300 per night."
+    }
+  ]
+}

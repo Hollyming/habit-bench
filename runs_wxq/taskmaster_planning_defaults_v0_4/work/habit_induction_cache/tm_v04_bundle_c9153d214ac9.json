@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Apply only to air-travel feature selection; it does not set destination, dates, route, airline, seat class, hotel, or ground-transport preferences.",
+  "bundle_id": "tm_v04_bundle_c9153d214ac9",
+  "condition": "When comparing or finalizing flight options and onboard amenities can be checked.",
+  "confidence": 0.91,
+  "decision": "accept",
+  "default_action": "Prefer and verify flights that offer onboard Wi-Fi before booking.",
+  "exception_condition": "If no Wi-Fi-equipped flight satisfies hard current-trip constraints such as required schedule, route, or price, allow a non-Wi-Fi option but flag that it lacks the preferred Wi-Fi feature before confirmation.",
+  "family": "flight_feature",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_c9153d214ac9",
+  "induced_at": "2026-07-15T12:35:37.622453+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefers Wi-Fi-equipped flights",
+  "preference_value": "in-flight Wi-Fi availability",
+  "rationale": "Across independent flight-task examples, Wi-Fi is repeatedly requested or checked as a flight amenity, including a must-have statement, direct availability checks, and a combined request for cheap flights with Wi-Fi. This supports a scoped synthetic default to prefer onboard Wi-Fi, not a broader travel preference.",
+  "seed_value": "wi_fi",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "Asked whether the flight option offers Wi-Fi: 'Do they offer Wi-Fi, do you know?'",
+      "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+      "turn_index": 21
+    },
+    {
+      "contribution": "Required Wi-Fi as an onboard feature: 'the planes must have Wi-Fi and a full bar, please.'",
+      "conversation_id": "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+      "turn_index": 9
+    },
+    {
+      "contribution": "Checked whether the trip includes Wi-Fi: 'Does this trip have Wi-Fi?'",
+      "conversation_id": "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+      "turn_index": 23
+    },
+    {
+      "contribution": "Before accepting the option, asked whether it has Wi-Fi: 'does it have WI-FI?'",
+      "conversation_id": "dlg-f4e38bd5-0883-4a99-bcec-31e8d55a4e52",
+      "turn_index": 15
+    },
+    {
+      "contribution": "Combined low price with the Wi-Fi feature request: 'Cheapest and Wi-Fi.'",
+      "conversation_id": "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a",
+      "turn_index": 14
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "Wi-Fi",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 21,
+      "user_utterance": "Do they offer Wi-Fi, do you know?"
+    },
+    {
+      "annotated_segment": "Wi-Fi",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 9,
+      "user_utterance": "And the planes must have Wi-Fi and a full bar, please."
+    },
+    {
+      "annotated_segment": "Wi-Fi",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+      "habitual_language": false,
+      "instruction_id": "flight-8",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 23,
+      "user_utterance": "Does this trip have Wi-Fi?"
+    },
+    {
+      "annotated_segment": "WI-FI",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-f4e38bd5-0883-4a99-bcec-31e8d55a4e52",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 15,
+      "user_utterance": "Okay, that will work and does it have WI-FI?"
+    },
+    {
+      "annotated_segment": "Wi-Fi",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a",
+      "habitual_language": false,
+      "instruction_id": "flight-11",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 14,
+      "user_utterance": "Cheapest and Wi-Fi."
+    }
+  ]
+}

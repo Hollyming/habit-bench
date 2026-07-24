@@ -1,0 +1,103 @@
+{
+  "boundary_condition": "Apply only to hotel lodging searches where a multi-room stay is relevant; do not apply to solo/couple stays or to non-hotel travel tasks.",
+  "bundle_id": "tm_v04_bundle_4a0659dd53f9",
+  "condition": "When making a hotel booking for a group/family or other stay needing multiple sleeping spaces, and no different room count is specified.",
+  "confidence": 0.84,
+  "decision": "accept",
+  "default_action": "Request two hotel rooms.",
+  "exception_condition": "If the user explicitly specifies a different room count, or a bed/occupancy setup that requires more or fewer than two rooms, follow that explicit requirement instead of defaulting to two rooms.",
+  "family": "room_configuration",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_4a0659dd53f9",
+  "induced_at": "2026-07-15T12:30:08.496322+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Default to two rooms for group hotel stays",
+  "preference_value": "two hotel rooms",
+  "rationale": "Several independent hotel task dialogues explicitly request two rooms, while the accompanying bed and party details vary and are therefore treated as transaction-specific rather than part of the habit. This supports a controlled synthetic default of asking for two rooms only within multi-room hotel-booking contexts.",
+  "seed_value": "two_rooms",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "The user states, \"I want two rooms,\" directly supporting a two-room hotel-room-count preference.",
+      "conversation_id": "dlg-9c02c76a-dcd3-49d8-a5a7-abad604ea38b",
+      "turn_index": 18
+    },
+    {
+      "contribution": "The user says they will need \"two rooms next to each other\" for a hotel stay, supporting a two-room default in group lodging contexts.",
+      "conversation_id": "dlg-6436464d-f345-47f7-9335-0859e6613431",
+      "turn_index": 5
+    },
+    {
+      "contribution": "The user plainly says, \"I need two rooms,\" giving direct evidence for requesting two hotel rooms.",
+      "conversation_id": "dlg-5d5d79de-c652-4b4b-93eb-860da11dffce",
+      "turn_index": 8
+    },
+    {
+      "contribution": "The user says, \"We want two rooms,\" with bed details for each room, supporting the reusable room-count value while leaving bed setup as request-specific.",
+      "conversation_id": "dlg-fc949fd8-e98f-4a76-a124-96c7b205b536",
+      "turn_index": 10
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "two rooms",
+      "annotation": "hotel_search.num.rooms",
+      "conversation_id": "dlg-47d6c8f5-da3a-4f4f-bb14-c10f5cacb7d7",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "Amenities, yes. They have to all have coffee makers and refrigerators, which they probably will, but two rooms need to have king-size beds and the other one needs to have a queen and a twin or two queens."
+    },
+    {
+      "annotated_segment": "two rooms",
+      "annotation": "hotel_search.num.rooms",
+      "conversation_id": "dlg-9c02c76a-dcd3-49d8-a5a7-abad604ea38b",
+      "habitual_language": false,
+      "instruction_id": "hotel-1b",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 18,
+      "user_utterance": "Yeah, I want two rooms with four-person and three kids."
+    },
+    {
+      "annotated_segment": "two rooms",
+      "annotation": "hotel_search.num.rooms",
+      "conversation_id": "dlg-6436464d-f345-47f7-9335-0859e6613431",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "Well, First off, There will be four of us, So we'll need two rooms next to each other."
+    },
+    {
+      "annotated_segment": "two rooms",
+      "annotation": "hotel_search.num.rooms",
+      "conversation_id": "dlg-5d5d79de-c652-4b4b-93eb-860da11dffce",
+      "habitual_language": false,
+      "instruction_id": "hotel-5",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "I need two rooms."
+    },
+    {
+      "annotated_segment": "two rooms",
+      "annotation": "hotel_search.num.rooms",
+      "conversation_id": "dlg-fc949fd8-e98f-4a76-a124-96c7b205b536",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 10,
+      "user_utterance": "We want two rooms. One room has a queen and the other has two twins."
+    }
+  ]
+}

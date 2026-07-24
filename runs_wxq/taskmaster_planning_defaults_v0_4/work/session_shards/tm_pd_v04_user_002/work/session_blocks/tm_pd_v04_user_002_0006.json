@@ -1,0 +1,404 @@
+{
+  "cache_fingerprint": "17791832d9ace1786f48d8350a6a26961fb541e11cfda1f7cfe9573f8f89cc45",
+  "sessions": [
+    {
+      "domain": "flights_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marisol compared a Minneapolis flight-hotel package against separate booking after the family dinner moved to Saturday evening in northeast Minneapolis. She treated a small package savings as insufficient because breakfast and in-room amenities were unclear, and the package return was later. The working recommendation became separate flights plus the Hampton Downtown hold in a one-bed room.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "The package hotel page says breakfast available, not included. Room amenities are vague: coffee in common area, refrigerator may be requested. That makes me hesitate for two nights.",
+            "habit_id": "tm_pd_v04_user_002_h02",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.94,
+            "evidence_quote": "Room amenities are vague: coffee in common area, refrigerator may be requested. That makes me hesitate for two nights.",
+            "habit_id": "tm_pd_v04_user_002_h03",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I have the Minneapolis dinner address now: it's in northeast, near 13th Ave NE, and it moved to Saturday evening. I also found a package quote that looks better than what we had. Can you re-check whether the package is actually worth it versus booking the flights and hotel separately?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Send me the package hotel, flight times, room type, and total for two. I’ll compare it against the separate United plus Hampton plan and include the likely rideshare and dinner trade-offs, since the Saturday timing changed.",
+          "role": "assistant"
+        },
+        {
+          "content": "Package is $846 total for two through the airline site: Friday ORD 6:40 p.m. to MSP 8:10 p.m., Sunday MSP 5:55 p.m. to ORD 7:28 p.m. Hotel is Cambria Downtown Minneapolis, one queen room. Separate still shows about $476 for the two flights and $407 for Hampton Downtown, so $883 before rideshares.",
+          "role": "user"
+        },
+        {
+          "content": "Here’s the quick comparison:\n\n| Option | Est. base total for 2 | Schedule | Location fit | Hotel practicalities | Trade-off |\n|---|---:|---|---|---|---|\n| Package: Cambria downtown | $846 | Fri 6:40 p.m. out; Sun 5:55 p.m. back | Fine for NE dinner; a bit less ideal for a museum-first Saturday | Queen listed; breakfast not showing as included; in-room fridge/coffee not clearly guaranteed | Saves $37, but weaker hotel certainty and later Sunday return |\n| Separate: United + Hampton Downtown | $883 | Fri 6:15 p.m. out; Sun 3:30 p.m. back | Easy Friday arrival, simple rideshares to museum and NE dinner | Breakfast included on the rate we saw; coffee/fridge listed; one-bed room selectable | Costs more up front, but cleaner and more flexible |\n\nThe package only wins if its final checkout price stays lower and the hotel details are acceptable.",
+          "role": "assistant"
+        },
+        {
+          "content": "The package hotel page says breakfast available, not included. Room amenities are vague: coffee in common area, refrigerator may be requested. That makes me hesitate for two nights.",
+          "role": "user"
+        },
+        {
+          "content": "I would hesitate too. A $37 headline savings can disappear with two breakfasts or one rideshare mistake, and package bookings are often less forgiving if you need to change only the hotel. With the Sunday return at 5:55, you also lose the nicer midafternoon return we had on the separate itinerary.",
+          "role": "assistant"
+        },
+        {
+          "content": "There’s a version of the package with the same United flights as before, but it reprices to $905 with the Cambria. Any reason to consider that?",
+          "role": "user"
+        },
+        {
+          "content": "No. That removes the flight-timing disadvantage but makes the package more expensive than booking separately while keeping the less certain hotel. I’d drop that version.",
+          "role": "assistant"
+        },
+        {
+          "content": "What if we keep separate flights but move closer to the museum? Saturday morning museum, Saturday evening northeast dinner, no car.",
+          "role": "user"
+        },
+        {
+          "content": "If you book flights separately, the hotel choice looks like this:\n\n| Hotel path | Room total | Ride/meal impact | Net read |\n|---|---:|---|---|\n| Hampton Downtown held | $407 | Breakfast included; short rideshare to museum; NE dinner still straightforward | Best low-friction option |\n| Cambria separate rate | about $389 | Breakfast extra; room fridge/coffee still unclear | Slightly cheaper but not enough better |\n| Uptown/museum-side budget option | about $370-$380 | Closer to museum, farther from NE dinner and arrival dinner; more amenity uncertainty | Savings likely gets eaten up |\n\nDowntown is not perfect geographically, but it balances all three touchpoints better.",
+          "role": "assistant"
+        },
+        {
+          "content": "That helps. I don’t want to chase a $20 or $30 difference and end up buying breakfast both mornings or calling the desk for a fridge.",
+          "role": "user"
+        },
+        {
+          "content": "Then I’d use the separate booking path: buy the flights on the schedule you like, and hold the Hampton on a refundable one-bed room. It is a cleaner trip even though the package briefly looks cheaper.",
+          "role": "assistant"
+        },
+        {
+          "content": "So your threshold would be what, at least $80 cheaper for the package before it is worth the compromises?",
+          "role": "user"
+        },
+        {
+          "content": "Roughly, yes. For this weekend I’d want the package to be about $80-$100 less than separate booking, with breakfast and room amenities clearly confirmed, before I’d give up the easier hotel choice and the 3:30 p.m. Sunday return. Current recommendation: book flights separately and keep the Hampton as the hotel to beat.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0006",
+      "session_index": 6,
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "After booking the Minneapolis flights separately, Marisol compared the held Hampton Downtown reservation with a cheaper Moxy Uptown option. She confirmed that the Hampton one-bed setup works for two adults and chose to keep it because the Moxy savings were likely offset by breakfast, rideshare, and amenity uncertainty.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.92,
+            "evidence_quote": "The Moxy page says coffee and tea in common areas. Does that mean no in-room coffee? And I can’t tell about a mini-fridge.",
+            "habit_id": "tm_pd_v04_user_002_h03",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.92,
+            "evidence_quote": "I held the standard one king, but I’d take a queen too.",
+            "habit_id": "tm_pd_v04_user_002_h05",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Flights are booked separately. I’m down to the Hampton Downtown I held and a new museum-side rate that appeared. Can you sanity-check the hotel before I cancel anything?",
+          "role": "user"
+        },
+        {
+          "content": "Sure. What are the two hotel rates and cancellation dates?",
+          "role": "assistant"
+        },
+        {
+          "content": "Hampton Downtown is $407 for two nights before tax, free cancel until April 22. New option is Moxy Uptown at $358 before tax, free cancel until April 23. It is closer to the museum, but dinner is still in northeast and we’ll rideshare everywhere.",
+          "role": "user"
+        },
+        {
+          "content": "Here’s the practical read:\n\n| Hotel | Room + likely extras | Movement around town | Food/amenities | Cancellation |\n|---|---:|---|---|---|\n| Hampton Downtown | $407 + moderate rideshares | Easy airport arrival; short ride to museum; manageable NE dinner ride | Breakfast included; one-bed room selectable; room coffee/fridge listed | Cancel by Apr. 22 |\n| Moxy Uptown | $358 + breakfast costs + slightly more rideshare spread | Better for museum, worse for NE dinner and Friday arrival | Breakfast not included; room coffee/fridge not clearly listed | Cancel by Apr. 23 |\n\nThe $49 room savings is probably not real once breakfast and rideshares are included.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Moxy page says coffee and tea in common areas. Does that mean no in-room coffee? And I can’t tell about a mini-fridge.",
+          "role": "user"
+        },
+        {
+          "content": "I would treat both as unconfirmed. Common-area coffee usually does not guarantee a room coffee maker, and the page I’d trust should explicitly say mini-fridge or refrigerator in room. Hampton is clearer on both.",
+          "role": "assistant"
+        },
+        {
+          "content": "Bed setup for Hampton is okay for two adults, right? I held the standard one king, but I’d take a queen too.",
+          "role": "user"
+        },
+        {
+          "content": "Yes, a standard one king is fine for two adults, and a one-queen room would also fit. Just avoid switching into a run-of-house or two-double listing if the rate changes.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then is the recommendation just keep Hampton and ignore the Moxy savings?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Keep the Hampton Downtown hold. It is a little less museum-adjacent, but the included breakfast, clearer in-room setup, easier Friday arrival dinner, and less scattered rideshare pattern outweigh the Moxy savings. Put Apr. 22 on the calendar as the cancellation deadline.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0007",
+      "session_index": 7,
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "domain": "flights_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For the new Durham grant-site visit, Marisol specified a no-rental-car plan if rideshares work, a roughly $195 before-tax hotel target, downtown or morning-venue location, and a Friday return after lunch. She leaned toward an early ORD departure over a cheaper or later option to protect the 3 p.m. Wednesday call. The preliminary finance recommendation is early ORD-RDU flights plus SpringHill Suites Durham City View, with Tuesday evening arrival as a higher-cost backup.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "I need a Friday return after lunch.",
+            "habit_id": "tm_pd_v04_user_002_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Does SpringHill definitely show in-room coffee and a mini-fridge?",
+            "habit_id": "tm_pd_v04_user_002_h03",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.95,
+            "evidence_quote": "And breakfast is included, not just available?",
+            "habit_id": "tm_pd_v04_user_002_h02",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.95,
+            "evidence_quote": "Do they have an on-site restaurant? Wednesday arrival could be a long day.",
+            "habit_id": "tm_pd_v04_user_002_h04",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "New trip: Durham May 14–16 for a grant site visit. I have an advisory call Wednesday afternoon, site visit Thursday split between a community arts center in the morning and the main library after lunch, and a Friday debrief that should end before noon. Can you look at flights from Chicago plus hotels near downtown or the morning venue? I’d rather not rent a car if rideshares look reliable, hotel target is about $195 before tax, and I need a Friday return after lunch.",
+          "role": "user"
+        },
+        {
+          "content": "I can. Two quick details before I price the bundle: what time is the Wednesday call, and are you aiming for ORD only or is MDW acceptable if the fare is meaningfully lower? Also, do you want to compare Tuesday evening arrival against Wednesday morning arrival?",
+          "role": "assistant"
+        },
+        {
+          "content": "Call is 3 p.m. Eastern and remote. ORD is easier; MDW is okay only if it saves enough to justify the airport swap. Yes, compare Tuesday evening versus an early Wednesday flight. Thursday starts at the arts center around 9, library at 1:30, Friday debrief downtown 10:30 to 11:45.",
+          "role": "user"
+        },
+        {
+          "content": "Good. I’m assuming RDU to central Durham is about 25–35 minutes by rideshare outside heavy traffic, with local Durham rides mostly in the $10–$18 range. Same-day Wednesday works if the flight lands by about 10:30 or 11 and you can check bags at the hotel before the 3 p.m. call; Tuesday evening mainly buys delay protection.",
+          "role": "assistant"
+        },
+        {
+          "content": "That sounds right. Can you start with the flight choices and then tie them to hotels?",
+          "role": "user"
+        },
+        {
+          "content": "Flight options I’d compare first:\n\n| Flight plan | Est. airfare | Wednesday arrival / Friday return | Pros | Watch-outs |\n|---|---:|---|---|---|\n| ORD nonstop, early Wed / Fri 2:35 p.m. return | $326 | Arrive RDU about 10:05 a.m.; depart RDU 2:35 p.m. | Best buffer for 3 p.m. call; return is after debrief | Early ORD morning |\n| ORD nonstop, later Wed / Fri 4:10 p.m. return | $298 | Arrive about 11:05 a.m.; depart 4:10 p.m. | Cheaper and more relaxed Friday | Less buffer if Wednesday slips |\n| MDW nonstop, Wed / Fri midafternoon | $284 | Arrive about 11:15 a.m.; return around 3:20 p.m. | Lowest fare | Airport swap and later arrival |\n| ORD Tuesday evening / Fri 2:35 p.m. return | $342 airfare, plus extra hotel night | Arrive Tuesday about 9 p.m. | Safest for Wednesday call | Adds about one hotel night plus dinner |\n\nFor the schedule you gave, the early ORD nonstop is the cleanest unless the fare jumps.",
+          "role": "assistant"
+        },
+        {
+          "content": "I’m leaning early ORD. I don’t want to take the advisory call from baggage claim or a noisy lobby if there’s a delay.",
+          "role": "user"
+        },
+        {
+          "content": "Then I’d pair that flight with a hotel that can store luggage and has a quiet lobby or business corner in case your room is not ready. I’d also ask for early check-in, but not rely on it.",
+          "role": "assistant"
+        },
+        {
+          "content": "Hotel-wise, keep me near downtown Durham or the Thursday morning venue. Under $195 before tax if possible, and I’d like to avoid needing a car.",
+          "role": "user"
+        },
+        {
+          "content": "Here are the hotel candidates tied to the early ORD flight:\n\n| Hotel | Rate before tax | Est. trip total with flight + rideshares | Thursday commute | Breakfast / room setup | Dinner access | Trade-off |\n|---|---:|---:|---|---|---|---|\n| SpringHill Suites Durham City View | $184/night | about $840-$860 | 8–12 min to arts center; 8–10 min to library | Breakfast included; in-room coffee; mini-fridge listed | Downtown/East Main options close by | No full-service restaurant in the building |\n| Residence Inn Durham McPherson/Duke area | $189/night | about $855-$875 | 10–15 min depending on traffic | Breakfast included; coffee; full fridge/kitchenette | Brightleaf/downtown restaurants nearby | Slightly farther west |\n| Hampton Inn & Suites Durham North I-85 | $164/night | about $815-$835 | 15–20 min to downtown venues | Breakfast included; coffee; mini-fridge listed | Fewer easy walkable dinners | Cheapest, but more rideshare dependence |\n| Downtown boutique/21c-type option | $205+/night | about $890+ | Very good downtown access | Breakfast extra; room amenities vary | Strong restaurant access | Over the hotel cap |\n\nThe SpringHill looks like the best balance if the rate is still available.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much more is the Tuesday evening arrival with SpringHill?",
+          "role": "user"
+        },
+        {
+          "content": "Using SpringHill, Tuesday evening adds roughly one hotel night plus tax and a simple dinner: about $210-$230 more all-in. It takes the trip from about $850 to roughly $1,060-$1,090. That buys peace of mind for the Wednesday call, not much else.",
+          "role": "assistant"
+        },
+        {
+          "content": "If the call is at 3, same-day Wednesday should be okay, right?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, with the early ORD flight. You should be in Durham around 11 a.m. if the flight is on time, which leaves a few hours for lunch, bag drop, and getting set up. I would not choose the later Wednesday arrival unless the fare difference becomes much larger.",
+          "role": "assistant"
+        },
+        {
+          "content": "Which hotel is safest for Thursday morning? The community arts center is first, then the library after lunch. I don’t need tourist convenience.",
+          "role": "user"
+        },
+        {
+          "content": "SpringHill City View is the safest of those because it keeps both Thursday stops in short rideshare range without pushing you out toward the highway. Residence Inn is nearly as practical but a little farther west. Hampton North saves money, but the savings could get diluted by extra rides and fewer dinner options.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does SpringHill definitely show in-room coffee and a mini-fridge? And breakfast is included, not just available?",
+          "role": "user"
+        },
+        {
+          "content": "The rate details I’d rely on list complimentary breakfast, in-room coffee/tea maker, microwave, and mini-fridge for the standard suite. Before booking, I’d still click into the exact room type and make sure those appear on the room-details page, not only the hotel overview.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do they have an on-site restaurant? Wednesday arrival could be a long day.",
+          "role": "user"
+        },
+        {
+          "content": "Not a real full-service restaurant from what I’m seeing. The trade is that breakfast is included and dinner is nearby by short walk or rideshare. If you want an on-site restaurant, Hilton Garden Inn near the university/medical center is around $179, with in-room coffee/fridge and a restaurant/bar, but breakfast is usually extra and the Thursday rides are a bit less tidy.",
+          "role": "assistant"
+        },
+        {
+          "content": "I’ll take nearby dinner over paying breakfast separately. Friday, if the debrief ends at 11:45, is a 2:35 RDU departure safe?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, but keep lunch simple. If you leave downtown Durham around 12:10-12:15, you should reach RDU around 12:45, which is reasonable for a 2:35 p.m. departure with a carry-on. If you need a sit-down lunch or checked bag cushion, the 4:10 p.m. return is safer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you give me the booking recommendation in one compact table? I’m not ready to book until finance signs off.",
+          "role": "user"
+        },
+        {
+          "content": "Recommended plan to send to finance:\n\n| Piece | Recommendation | Estimate | Why |\n|---|---|---:|---|\n| Flights | ORD-RDU early Wed May 14, arriving about 10:05 a.m.; return Fri May 16 around 2:35 p.m. | about $326 | Enough buffer for the 3 p.m. call and after-lunch return |\n| Hotel | SpringHill Suites Durham City View, 2 nights | about $184/night before tax; about $420 with tax | Under the $195 target; breakfast included; coffee and mini-fridge listed |\n| Local transport | Rideshares, no rental car | about $90-$110 | RDU transfers plus short Durham rides should be workable |\n| Estimated total | Flight + hotel + rideshares | about $840-$860 | Best balance of schedule, venue access, and reimbursement fit |\n\nBackup: Tuesday evening arrival with the same hotel if finance approves about $210-$230 more for delay protection. Before booking, verify the live fare, hotel cancellation deadline, exact room amenities, luggage storage or early check-in for Wednesday, and the final venue addresses.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0008",
+      "session_index": 8,
+      "user_id": "tm_pd_v04_user_002"
+    }
+  ],
+  "updated_continuity_summary": "{'durable_user_facts': ['Marisol Greene is a Chicago-based program officer who self-books practical domestic work trips and occasional personal weekends from Chicago.', 'She responds well to concise comparisons that combine total cost, timing, commute friction, hotel amenities, and trade-offs.', 'When lodging logistics matter, she weighs breakfast, room self-sufficiency, easy meals, cancellation terms, and whether rideshares can replace a rental car.', 'Return flights are often planned around completing a morning meeting or site visit before leaving for the airport.'], 'current_trips': [{'episode_id': 'ep_2025_04_minneapolis_museum_weekend', 'destination': 'Minneapolis', 'dates': 'Apr. 25-27, 2025', 'purpose': 'personal museum weekend with spouse and family dinner', 'status': 'Flights booked separately; hotel decision made unless plans change before cancellation deadline.', 'resolved_plan': ['Rejected the flight-hotel package because the savings were too small after breakfast, room amenities, return timing, and package flexibility were considered.', 'Flights are booked separately on the Friday-after-work outbound and Sunday afternoon return path.', 'Keep the Hampton Downtown hold for a one-bed room; use rideshares for the museum visit and Saturday evening dinner in northeast Minneapolis.', 'The cheaper Moxy Uptown option was not worth switching to because breakfast, in-room coffee, mini-fridge, and overall rideshare pattern were less favorable.'], 'unresolved_followups': ['Track the Hampton cancellation deadline of Apr. 22.', 'Before the deadline, make sure the final Hampton confirmation still shows the one-bed room and included breakfast in the selected rate.']}, {'episode_id': 'ep_2025_05_durham_site_visit', 'destination': 'Durham', 'dates': 'May 14-16, 2025', 'purpose': 'grant site visit', 'status': 'Recommendation prepared for finance; not booked.', 'resolved_plan': ['Use rideshares rather than a rental car if the final venue addresses remain in central Durham.', 'Recommended flights: ORD-RDU early Wednesday May 14, arriving about 10:05 a.m.; return Friday May 16 around 2:35 p.m. after the debrief; estimated airfare about $326.', 'Recommended hotel: SpringHill Suites Durham City View for two nights at about $184 per night before tax, with breakfast included and in-room coffee and mini-fridge listed.', 'Estimated total with flight, hotel tax, and rideshares is about $840-$860. Tuesday evening arrival with the same hotel is the buffer option for about $210-$230 more.'], 'unresolved_followups': ['Get finance approval before booking.', 'Reconfirm live airfare, hotel rate, taxes, and cancellation deadline.', 'Verify exact room amenities, luggage storage or early check-in for the Wednesday call, and final venue addresses.', 'Consider the later 4:10 p.m. Friday return if lunch, checked baggage, or debrief timing needs more cushion.']}], 'prior_planning_notes': [{'episode_id': 'ep_2025_02_cleveland_site_visit', 'status': 'No new action in this block; earlier recommendation remained Residence Inn Cleveland University Circle/Medical Center with United flights and rideshares if still relevant.'}, {'episode_id': 'ep_2025_03_baltimore_board_meeting', 'status': 'No new action in this block; earlier plan favored the Baltimore Marriott Waterfront block and BWI flights pending amenity/cancellation confirmation and ticketing if not already completed.'}]}",
+  "verification": {
+    "6": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "The package hotel page says breakfast available, not included. Room amenities are vague: coffee in common area, refrigerator may be requested. That makes me hesitate for two nights.",
+          "habit_id": "tm_pd_v04_user_002_h02",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.94,
+          "evidence_quote": "Room amenities are vague: coffee in common area, refrigerator may be requested. That makes me hesitate for two nights.",
+          "habit_id": "tm_pd_v04_user_002_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User-originated evidence supports included breakfast and in-room coffee/fridge concerns. United, afternoon return timing, restaurant access, and queen bed were not user-endorsed here."
+    },
+    "7": {
+      "habit_signals": [
+        {
+          "confidence": 0.92,
+          "evidence_quote": "The Moxy page says coffee and tea in common areas. Does that mean no in-room coffee? And I can’t tell about a mini-fridge.",
+          "habit_id": "tm_pd_v04_user_002_h03",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.92,
+          "evidence_quote": "I held the standard one king, but I’d take a queen too.",
+          "habit_id": "tm_pd_v04_user_002_h05",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User requested confirmation of in-room coffee and mini-fridge. The bed quote establishes this trip's one-king room is acceptable while a queen is also acceptable; it does not establish a durable king preference."
+    },
+    "8": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "I need a Friday return after lunch.",
+          "habit_id": "tm_pd_v04_user_002_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Does SpringHill definitely show in-room coffee and a mini-fridge?",
+          "habit_id": "tm_pd_v04_user_002_h03",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.95,
+          "evidence_quote": "And breakfast is included, not just available?",
+          "habit_id": "tm_pd_v04_user_002_h02",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.95,
+          "evidence_quote": "Do they have an on-site restaurant? Wednesday arrival could be a long day.",
+          "habit_id": "tm_pd_v04_user_002_h04",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User directly required an after-lunch Friday return and requested verification of included breakfast, in-room coffee/mini-fridge, and restaurant availability. No United-carrier or queen-bed default signal was user-established here."
+    }
+  }
+}

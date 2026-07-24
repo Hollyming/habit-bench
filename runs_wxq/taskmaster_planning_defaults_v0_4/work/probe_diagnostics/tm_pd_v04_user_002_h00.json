@@ -1,0 +1,683 @@
+{
+  "habit_id": "tm_pd_v04_user_002_h00",
+  "rounds": [
+    {
+      "accepted_this_round": [],
+      "accepted_total": [],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American ORD-CMH nonstop, 9:55 a.m.-12:10 p.m. outbound and 2:35-3:05 p.m. return, main cabin, $314."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest MDW-CMH nonstop, 11:20 a.m.-1:35 p.m. outbound and 3:20-3:45 p.m. return, Wanna Get Away Plus, $296."
+              },
+              {
+                "choice_id": "C",
+                "text": "United ORD-CMH nonstop, 10:10 a.m.-12:25 p.m. outbound and 2:50-3:15 p.m. return, main cabin, $326."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta via DTW, 8:30 a.m.-1:15 p.m. outbound and 4:55-7:40 p.m. return, main cabin, $287."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A query-only planner could reasonably choose American because it is $12 cheaper and minutes earlier, or United because the differences are tiny. The user's long-history carrier weighting is needed to break that close generic tie.",
+            "gold_action": "Put forward the United ORD-CMH nonstop main-cabin option.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0034",
+              "tm_pd_v04_user_002_s0051",
+              "tm_pd_v04_user_002_s0090"
+            ],
+            "label_rationale": "This is a commercial work flight from Chicago with no stronger carrier instruction and no material schedule or fare disadvantage for United. The history supports giving United positive weight when it is otherwise comparable, while still considering the other airlines. Choice C is therefore preferred over the slightly cheaper but very similar American option.",
+            "probe_type": "direct_use",
+            "query": "Marisol is planning a two-night Columbus grant-site visit from Chicago in spring 2028. She will fly economy with only a carry-on, the first meeting is at 3:30 p.m. on arrival day, and the final debrief should end around noon with a quick lunch before the airport. The hotel and ground costs are unchanged across flight choices, and all fares are reimbursable. Which flight option should the planner put forward?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c00",
+            "rationale": "B is the lowest-priced nonstop that still arrives about two hours before the 3:30 p.m. meeting and gives more room for the noon debrief plus quick lunch than the earlier returns. A and C cost more without a necessary timing benefit, and D's small fare savings over B does not justify a connection and much later return."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United ORD-BNA nonstop, 11:50 a.m.-1:20 p.m. outbound and 1:35-3:10 p.m. return, standard economy, $356."
+              },
+              {
+                "choice_id": "B",
+                "text": "American ORD-BNA nonstop, 10:35 a.m.-12:05 p.m. outbound and 3:10-4:45 p.m. return, standard economy, $392."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest MDW-BNA nonstop, 9:15-10:45 a.m. outbound and 6:40-8:20 p.m. return, Wanna Get Away Plus, $336."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta via ATL, 8:30 a.m.-12:30 p.m. outbound and 3:45-7:50 p.m. return, standard economy, $318."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "United is cheaper and otherwise clean, while American costs modestly more but protects the lunch window. Generic travel reasoning alone cannot determine how much to value that margin; the user's history shows timing can outweigh the soft United weight.",
+            "gold_action": "Recommend the American ORD-BNA nonstop with the midafternoon return.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0025",
+              "tm_pd_v04_user_002_s0039",
+              "tm_pd_v04_user_002_s0045"
+            ],
+            "label_rationale": "United should not be forced when it compromises a primary timing objective. Here, the United return is cheaper but makes the post-close lunch and airport margin tight; the American nonstop preserves the after-lunch return without pushing Chicago arrival late. This is a trip-specific boundary application, not a permanent carrier revision.",
+            "probe_type": "boundary",
+            "query": "Marisol needs a Chicago-Nashville ticket for a Tuesday-Thursday arts convening. She has carry-on only, standard economy is sufficient, the Tuesday welcome starts at 4:30 p.m., and Thursday has a listed 11:30-noon close plus a host lunch that may run to 12:45. She would like to keep the lunch possible if the itinerary still looks defensible, while avoiding an unnecessarily late Chicago return. Which ticketing recommendation is best?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "B preserves the host lunch after a possible 12:45 p.m. finish and still avoids an unnecessarily late Chicago return. A is too tight for lunch, C returns much later, and D adds a connection with a later arrival back in Chicago."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American ORD-CLT nonstop, 8:55-11:50 a.m. outbound and 2:30-3:45 p.m. return, main cabin, $327."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta via ATL, 10:05 a.m.-2:05 p.m. outbound and 4:15-7:05 p.m. return, main cabin, $304."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest MDW-CLT nonstop, 7:00-10:00 a.m. outbound and 6:05-7:20 p.m. return, Wanna Get Away Plus, $279."
+              },
+              {
+                "choice_id": "D",
+                "text": "United ORD-CLT nonstop, 9:40 a.m.-12:35 p.m. outbound and 2:45-3:58 p.m. return, main cabin, $349."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "American is a strong near-miss: same airport, same nonstop quality, $22 less, and a slightly earlier arrival. Only the user's longitudinal, non-exclusive carrier weighting resolves the otherwise balanced choice in favor of United.",
+            "gold_action": "Enter the United ORD-CLT nonstop as the working airfare plan.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0034",
+              "tm_pd_v04_user_002_s0063",
+              "tm_pd_v04_user_002_s0102"
+            ],
+            "label_rationale": "The American and United options are both clean ORD nonstops, within cap, and compatible with the board schedule. Because the United fare and timing are close rather than materially worse, the long-running soft carrier preference gives United the edge despite American's small price and time advantages.",
+            "probe_type": "conflict_resolution",
+            "query": "For a Charlotte board retreat, Marisol has a hotel hold downtown and no rental car. She will depart Chicago Tuesday, return Friday after the noon close, travel standard economy with a carry-on, and the airfare cap is $500. The board office has no carrier contract. Which airfare should be entered as the working plan?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "A is a well-timed nonstop under the cap with a return soon after the noon close. B saves only a small amount but adds a connection and later return, C is cheaper but creates an unnecessarily early outbound and much later return, and D is more expensive than A for no material benefit."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United ORD-MSY nonstop, 10:55 a.m.-1:23 p.m. outbound and 5:15-7:54 p.m. return, regular economy, $438."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest MDW-MSY nonstop, 7:50-10:15 a.m. outbound and 6:10-8:35 p.m. return, Wanna Get Away Plus, $421."
+              },
+              {
+                "choice_id": "C",
+                "text": "American ORD-MSY nonstop, 9:35 a.m.-12:05 p.m. outbound and 2:55-5:28 p.m. return, regular economy, $476."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta via ATL, 8:20 a.m.-1:05 p.m. outbound and 3:40-7:05 p.m. return, regular economy, $392."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "United is cheaper and nonstop, so it is a tempting near-miss. The tradeoff is not generically decisive because American costs $38 more; the user's history is needed to know that cleaner timing can override the United weight.",
+            "gold_action": "Recommend the American ORD-MSY nonstop with the stronger arrival and return timing.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0025",
+              "tm_pd_v04_user_002_s0092",
+              "tm_pd_v04_user_002_s0108"
+            ],
+            "label_rationale": "The United option is not comparable enough on the trip's primary timing constraints: it gives less arrival buffer and a much later Chicago return. The American fare is still within cap and keeps regular-economy, nonstop, post-session timing cleaner. The history supports using the better non-United itinerary in such one-trip exceptions.",
+            "probe_type": "exception",
+            "query": "Marisol is choosing flights for a New Orleans philanthropy conference. She will travel from Chicago with only a carry-on, stay near the meeting hotel, needs a realistic buffer before a 3:30 p.m. arrival-day panel, and the last session may spill to 12:30 p.m. before she heads to the airport. Regular economy is preferred for clean reimbursement, and the cap is $500. What should the planner recommend?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c03",
+            "rationale": "C best matches the stated need for regular economy, a realistic buffer before the 3:30 p.m. panel, and a feasible post-12:30 return without an unnecessary connection. A has a tighter arrival buffer and later return, B is not the preferred regular-economy product and returns late, and D adds connection risk before an arrival-day panel."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta ORD-DTW nonstop, Friday 4:55-7:05 p.m. and Monday 12:30-12:50 p.m., main cabin, $214."
+              },
+              {
+                "choice_id": "B",
+                "text": "United ORD-DTW nonstop, Friday 5:10-7:20 p.m. and Monday 12:40-12:55 p.m., economy, $218."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest MDW-DTW nonstop, Friday 5:45-7:55 p.m. and Monday 1:20-1:35 p.m., Wanna Get Away Plus, $196."
+              },
+              {
+                "choice_id": "D",
+                "text": "American ORD-DTW nonstop, Friday 7:30-9:40 p.m. and Monday 10:15-10:35 a.m., main cabin, $205."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Delta and United have almost identical times and only a $4 fare difference, so a planner without memory has no unique basis for choosing. The difficulty is recognizing that the same soft carrier weighting extends to this solo domestic context.",
+            "gold_action": "Buy the United ORD-DTW nonstop for the solo Detroit trip.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0055",
+              "tm_pd_v04_user_002_s0066",
+              "tm_pd_v04_user_002_s0102"
+            ],
+            "label_rationale": "The applicable policy is not limited to board or grant travel; it also transfers to Marisol's own solo domestic commercial flights from Chicago when no stronger current-trip instruction overrides it. Delta is virtually identical and slightly cheaper, but United remains close enough to receive the positive ranking weight.",
+            "probe_type": "cross_context_transfer",
+            "query": "Marisol is booking a solo long-weekend museum trip from Chicago to Detroit, paying personally. She is not checking a bag, can use ORD or MDW, and the listed times all work with her plans. Which flight is the best default pick?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c04",
+            "rationale": "All listed times and both airports work, she is paying personally, and she is not checking a bag, so the cheapest nonstop option is the best default. C has the lowest fare."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Use American ORD-AUS nonstop, 8:35-11:20 a.m. outbound and 2:35-5:20 p.m. return, standard economy, $361; note that the $11 fare edge decided this close case."
+              },
+              {
+                "choice_id": "B",
+                "text": "Use Southwest MDW-AUS nonstop, 9:05-11:55 a.m. outbound and 3:10-5:55 p.m. return, Wanna Get Away Plus, $344; carry forward the recent different-carrier result because it is cheapest here."
+              },
+              {
+                "choice_id": "C",
+                "text": "Use Delta via ATL, 7:45 a.m.-12:45 p.m. outbound and 4:05-8:40 p.m. return, standard economy, $319; accept the connection for the lowest standard fare."
+              },
+              {
+                "choice_id": "D",
+                "text": "Use United ORD-AUS nonstop, 8:50-11:35 a.m. outbound and 2:40-5:25 p.m. return, standard economy, $372; note that the earlier different-carrier purchase was route-specific context."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "American is $11 cheaper and minutes earlier, making it a strong generic choice. The hard part is disambiguating a route-specific prior exception from a persistent carrier habit; without history, the worksheet note is underdetermined.",
+            "gold_action": "Use the United ORD-AUS nonstop and treat the earlier different-carrier purchase as trip-specific.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0025",
+              "tm_pd_v04_user_002_s0094",
+              "tm_pd_v04_user_002_s0102",
+              "tm_pd_v04_user_002_s0108"
+            ],
+            "label_rationale": "Past non-United purchases were supported exceptions driven by timing, routing, airport logistics, or cost; they did not permanently revise the standing soft United weighting. In this Austin case, the United nonstop is standard economy and very close to American on timing and fare, so the durable preference applies again.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Marisol is finalizing airfare for an Austin grant-data workshop. She has a downtown hotel, no rental car, carry-on only, and wants standard economy. A recent purchase used a different carrier for route and airport-transfer reasons, but Austin has straightforward Chicago options. Which ticketing note should go in the worksheet?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The reference to a recent different-carrier purchase is history-like; selecting a carrier solely by inferring Marisol's usual carrier would require unstated private history."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "Among the straightforward nonstop standard-economy options, A is slightly cheaper than the similar United option and has comparable timing. The cheaper Delta fare requires an unnecessary connection, and Southwest does not match the stated standard-economy preference. No unstated usual-carrier preference is needed."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United ORD-OMA nonstop, 6:10-7:45 a.m. outbound and 6:30-8:05 p.m. return, standard economy, $296."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest MDW-OMA nonstop, 10:15-11:55 a.m. outbound and 5:10-6:45 p.m. return, Wanna Get Away Plus, $319."
+              },
+              {
+                "choice_id": "C",
+                "text": "American ORD-OMA nonstop, 9:40-11:15 a.m. outbound and 2:55-4:30 p.m. return, standard economy, $354."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta via MSP, 8:00-11:20 a.m. outbound and 3:35-7:05 p.m. return, standard economy, $281."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "United is nonstop and $58 cheaper, so generic cost-conscious reasoning can defend it. The user's history is needed to know that she often pays a modest premium to avoid timing friction and does not choose United at the expense of schedule quality.",
+            "gold_action": "Select the American ORD-OMA nonstop with the later outbound and midafternoon return.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0025",
+              "tm_pd_v04_user_002_s0045",
+              "tm_pd_v04_user_002_s0051",
+              "tm_pd_v04_user_002_s0066"
+            ],
+            "label_rationale": "The United fare is attractive, but its very early outbound and evening return make it materially less aligned with Marisol's demonstrated timing priorities. The American nonstop costs more but better matches the no-rush arrival and after-lunch return pattern. This is a specific exception to the soft United weighting, not a general rejection of United.",
+            "probe_type": "exception",
+            "query": "Marisol needs flights for an Omaha library partnership visit. She will have only a carry-on, Tuesday host check-in is at 4:00 p.m., and Friday's debrief is scheduled for noon with lunch likely to 1:00. Any of these fares can be reimbursed, but she wants the itinerary to be easy to defend. Which should be selected?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c06",
+            "rationale": "C is the cleanest defensible itinerary: standard economy, nonstop, reasonable outbound timing for a 4:00 p.m. check-in, and a return that allows the likely 1:00 p.m. lunch end without being unnecessarily late. A is very early and very late, B returns later and uses Southwest's fare product, and D adds a connection."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United ORD-TPA nonstop, 9:05 a.m.-12:45 p.m. outbound and 2:55-4:45 p.m. return, standard economy, $386."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest MDW-TPA nonstop, 9:30 a.m.-1:10 p.m. outbound and 3:15-5:05 p.m. return, Wanna Get Away Plus, $354."
+              },
+              {
+                "choice_id": "C",
+                "text": "American ORD-TPA nonstop, 8:50 a.m.-12:35 p.m. outbound and 2:40-4:30 p.m. return, main cabin, $365."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta via ATL, 8:00 a.m.-1:00 p.m. outbound and 4:10-7:45 p.m. return, main cabin, $318."
+              }
+            ],
+            "closest_distractor_choice_id": "C",
+            "difficulty_rationale": "American is the strongest near-miss because it uses the same airport, is $21 cheaper, and is slightly earlier both ways. Without memory, American or United would both be defensible; the carrier habit supplies the final ranking weight.",
+            "gold_action": "Hold the United ORD-TPA nonstop itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0059",
+              "tm_pd_v04_user_002_s0090",
+              "tm_pd_v04_user_002_s0102"
+            ],
+            "label_rationale": "United is a suitable ORD nonstop, stays within the practical timing window, and is only modestly more expensive than the closest ORD alternative. The Southwest savings are not paired with a stronger timing advantage, and the American option is merely a small fare-and-minutes improvement. The user's long-history soft weighting breaks the tie toward United.",
+            "probe_type": "conflict_resolution",
+            "query": "Marisol is comparing flights for a Tampa nonprofit finance institute. She has a no-car hotel plan, a 5:00 p.m. opening reception, a Friday noon wrap with a short lunch, carry-on only, and no carrier contract. ORD is simpler from home, but MDW is possible if the savings and timing justify it. Which flight should be held?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The ORD-from-home convenience is personal-location information, but it is explicitly stated in the query and therefore usable without private history."
+            ],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c07",
+            "rationale": "C uses the explicitly simpler ORD airport, is nonstop, meets the reception and Friday lunch timing, and is cheaper than the similar United ORD nonstop. The MDW savings in B are small and do not justify the less convenient airport, while D adds a connection and a much later return."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United ORD-SLC nonstop, 7:05-9:35 a.m. outbound and 6:20-10:35 p.m. return, standard economy, $398."
+              },
+              {
+                "choice_id": "B",
+                "text": "American via DFW, 8:00 a.m.-1:30 p.m. outbound and 3:30-9:10 p.m. return, main cabin, $356."
+              },
+              {
+                "choice_id": "C",
+                "text": "United via DEN, 9:20 a.m.-1:15 p.m. outbound and 2:30-7:45 p.m. return, standard economy, $361."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta ORD-SLC nonstop, 8:45-11:15 a.m. outbound and 2:45-6:55 p.m. return, main cabin, $436."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "The closest distractor is a cheaper United nonstop, so it satisfies part of the user's pattern while failing the stronger timing preference. A query-only planner might pick cost, nonstop status, or earlier return differently; history identifies the user's tradeoff.",
+            "gold_action": "Choose the Delta ORD-SLC nonstop with the midafternoon return.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0070",
+              "tm_pd_v04_user_002_s0082",
+              "tm_pd_v04_user_002_s0094",
+              "tm_pd_v04_user_002_s0025"
+            ],
+            "label_rationale": "This is a boundary case where another carrier is materially cleaner for the trip's timing. The Delta nonstop is within cap and preserves the after-lunch return without a late-night Chicago arrival; the United nonstop is cheaper but returns much later, and the United connection gives up nonstop simplicity. The soft United preference should not be treated as exclusive.",
+            "probe_type": "boundary",
+            "query": "Marisol is picking a Salt Lake City retreat itinerary from Chicago. She will travel standard economy with a carry-on, the hotel is downtown, the Thursday session ends at 12:15 with a quick lunch, and the airfare cap is $475. Which itinerary should she choose?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c08",
+            "rationale": "D is a nonstop under the cap with reasonable outbound timing and a return that fits a 12:15 p.m. end plus quick lunch without the very late return in A. B and C are connecting itineraries and do not beat D enough on fare to overcome worse routing and travel time."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American via Dallas, ORD-DFW-BOI 8:05 a.m.-12:25 p.m. and BOI-DFW-ORD 1:40-7:10 p.m., 65- to 80-minute connections, $448."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta via Salt Lake City, ORD-SLC-BOI 7:00-11:35 a.m. and BOI-SLC-ORD 12:20-6:55 p.m., 60- to 70-minute connections, $417."
+              },
+              {
+                "choice_id": "C",
+                "text": "United via Denver, ORD-DEN-BOI 8:20 a.m.-12:35 p.m. and BOI-DEN-ORD 1:55-7:05 p.m., 70- to 75-minute connections, $462."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest via Denver from MDW, 9:15 a.m.-2:10 p.m. outbound and 3:35-9:50 p.m. return, Wanna Get Away Plus, $402."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "American and United have nearly identical arrival and return times, similar connection buffers, and only a $14 fare gap. A planner without the user's history could not uniquely choose between them; the long-history carrier policy resolves the tie.",
+            "gold_action": "Ticket the United via Denver itinerary to Boise.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0064",
+              "tm_pd_v04_user_002_s0088",
+              "tm_pd_v04_user_002_s0110"
+            ],
+            "label_rationale": "The preference transfers beyond easy nonstop markets: when all viable choices require a connection and the United itinerary is otherwise comparable on timing, connection length, class, and reimbursement, it should receive positive ranking weight. American is slightly cheaper and very similar, but not enough better to override the soft United weighting.",
+            "probe_type": "cross_context_transfer",
+            "query": "Marisol needs a Chicago-Boise ticket for a cultural-coalition site visit. No usable nonstop is available, one connection is acceptable, and she needs to arrive Tuesday by early afternoon for a 4:00 p.m. prep meeting. Thursday's debrief ends at noon; standard economy, carry-on only, and all options are under the reimbursement ceiling. Which itinerary should be ticketed?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c09",
+            "rationale": "C is a standard-economy one-connection itinerary with an early-afternoon arrival, sensible connection routing, and a more realistic post-noon return buffer than B or A. B's 12:20 p.m. return is not feasible after a noon debrief, and D arrives later outbound and returns much later while using a nonstandard fare product."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c02",
+        "c03",
+        "c04",
+        "c05",
+        "c06",
+        "c08",
+        "c09"
+      ],
+      "accepted_total": [
+        "c02",
+        "c03",
+        "c04",
+        "c05",
+        "c06",
+        "c08",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American ORD-CMH nonstop, 9:55 a.m.-12:10 p.m. outbound and 2:35-3:00 p.m. return, main cabin, $318."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest MDW-CMH nonstop, 10:20 a.m.-12:35 p.m. outbound and 3:20-3:45 p.m. return, Wanna Get Away Plus, $334."
+              },
+              {
+                "choice_id": "C",
+                "text": "United ORD-CMH nonstop, 10:10 a.m.-12:25 p.m. outbound and 3:05-3:30 p.m. return, standard economy, $326."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta via DTW, 8:40 a.m.-12:40 p.m. outbound and 3:35-6:30 p.m. return, main cabin, $302."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A query-only planner could reasonably pick American for the small fare and outbound-buffer edge, or United for the slightly easier return margin. The user's soft, non-exclusive United weighting is needed to break the close ORD-nonstop tie.",
+            "gold_action": "Put forward the United ORD-CMH nonstop standard-economy option.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0034",
+              "tm_pd_v04_user_002_s0051",
+              "tm_pd_v04_user_002_s0090",
+              "tm_pd_v04_user_002_s0102"
+            ],
+            "label_rationale": "This is a commercial work flight from Chicago with no current-trip carrier override. The American and United ORD nonstops are close on fare, class, and schedule; American is a little cheaper with a bit more arrival-day buffer, while United gives slightly more return margin. Marisol's longitudinal pattern gives United positive weight when it is otherwise comparable, so United is the valid hidden-history choice.",
+            "probe_type": "direct_use",
+            "query": "Marisol is planning a two-night Columbus grant-site visit from Chicago in spring 2028. She will fly economy with only a carry-on. The first meeting is at 3:30 p.m. on arrival day, and the final debrief is scheduled to end around noon with a brief host goodbye possible before she heads to CMH. Hotel and ground arrangements do not vary by flight. Which flight option should the planner put forward?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Named traveler plus carrier and ORD-vs-MDW alternatives could invite loyalty or airport preference, but the fare/routing/timing comparison is sufficient without history."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c00",
+            "rationale": "A is the lowest-priced nonstop that satisfies the 3:30 p.m. arrival meeting and leaves adequate time after the noon debrief for a brief goodbye before a 2:35 p.m. CMH departure. B and C cost more for only minor timing differences, and D saves only $16 while adding a connection and a much longer return."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United ORD-BNA nonstop, 11:40 a.m.-1:10 p.m. outbound and 2:15-3:50 p.m. return, standard economy, $356."
+              },
+              {
+                "choice_id": "B",
+                "text": "American ORD-BNA nonstop, 10:55 a.m.-12:25 p.m. outbound and 3:05-4:40 p.m. return, main cabin, $389."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest MDW-BNA nonstop, 9:25-10:55 a.m. outbound and 5:35-7:10 p.m. return, Wanna Get Away Plus, $371."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta via ATL, 8:35 a.m.-12:35 p.m. outbound and 4:05-7:45 p.m. return, main cabin, $334."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "United is the lower-fare ORD nonstop and remains feasible if lunch is brief, while American buys more schedule margin. Without Marisol's history showing that timing can outweigh the United weight, either recommendation is defensible.",
+            "gold_action": "Recommend the American ORD-BNA nonstop with the midafternoon return.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0025",
+              "tm_pd_v04_user_002_s0039",
+              "tm_pd_v04_user_002_s0045",
+              "tm_pd_v04_user_002_s0082"
+            ],
+            "label_rationale": "The standing United preference is soft and should not be forced when a different carrier better protects the trip's primary timing. United is cheaper and otherwise clean, but its 2:15 p.m. return leaves the post-close lunch and airport transfer tighter. The American nonstop costs more but preserves the after-lunch margin without pushing the Chicago return late, matching Marisol's repeated boundary behavior.",
+            "probe_type": "boundary",
+            "query": "Marisol needs a Chicago-Nashville ticket for a Tuesday-Thursday arts convening. She has carry-on only, an economy-level fare is fine, the Tuesday welcome starts at 4:30 p.m., and Thursday's formal close is listed for noon with a short host lunch likely to follow. The hotel and local transport plan are the same either way. Which ticketing recommendation is best?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Carrier and ORD/MDW preferences are unstated, but the stated lunch-and-return-buffer cue is sufficient to select a generic recommendation."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "The stated likely host lunch after a noon close makes A's 2:15 p.m. return too tight for a normal buffer. B is a nonstop that leaves lunch room while avoiding the very late returns or connections in C and D; C and D save fare but materially worsen the return day."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United ORD-TPA nonstop, 9:10 a.m.-12:50 p.m. outbound and 3:05-4:55 p.m. return, standard economy, $386."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest MDW-TPA nonstop, 10:05 a.m.-1:45 p.m. outbound and 3:45-5:35 p.m. return, Wanna Get Away Plus, $362."
+              },
+              {
+                "choice_id": "C",
+                "text": "American ORD-TPA nonstop, 8:55 a.m.-12:35 p.m. outbound and 3:20-5:10 p.m. return, main cabin, $374."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta via ATL, 8:20 a.m.-1:05 p.m. outbound and 4:10-7:45 p.m. return, main cabin, $329."
+              }
+            ],
+            "closest_distractor_choice_id": "C",
+            "difficulty_rationale": "American has a legitimate generic case on fare and arrival buffer, and United has a legitimate case on return timing. The current-trip facts alone leave the ORD nonstops balanced; the hidden United preference supplies the final ranking weight.",
+            "gold_action": "Hold the United ORD-TPA nonstop itinerary.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_002_s0059",
+              "tm_pd_v04_user_002_s0090",
+              "tm_pd_v04_user_002_s0102"
+            ],
+            "label_rationale": "The United and American ORD nonstops are very close: American is modestly cheaper and arrives a little earlier outbound, while United gets back a little earlier after the Friday lunch window. Because United is otherwise suitable and not materially worse, Marisol's soft preferred-carrier weighting breaks the close conflict in favor of United.",
+            "probe_type": "conflict_resolution",
+            "query": "Marisol is comparing flights for a Tampa nonprofit finance institute. She has a no-car hotel plan, a 5:00 p.m. opening reception, a Friday noon wrap with a short lunch, and carry-on-only travel. There is no carrier contract. Which flight should be held?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "ORD-vs-MDW and carrier loyalty are unstated, but B wins on generic fare/routing/timing without relying on those preferences."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c07",
+            "rationale": "B is the lowest-priced nonstop that still leaves adequate buffer before the 5:00 p.m. reception and after the noon wrap plus short lunch. C costs more for small timing/airport advantages not required by the query, A is worse than C on price without a clear benefit, and D's savings require a connection and a much later return."
+          }
+        }
+      ],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 5,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 1,
+      "gold_disagreement_or_unresolved": 1
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 5,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "boundary": 1,
+      "conflict_resolution": 1,
+      "cross_context_transfer": 2,
+      "exception": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_002"
+}

@@ -1,0 +1,109 @@
+{
+  "probes": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book SFO-DLH and sleep in Duluth Monday."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book SFO-MSP nonstop and drive to Duluth Monday."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book OAK-MSP nonstop and drive to Duluth Monday."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book SFO-RST and drive to Duluth Monday."
+        }
+      ],
+      "control_id": "ctrl_false_personalization_002",
+      "difficulty_rationale": "The query gives no fares, exact flight times, connection details, drive times, or airline reliability. DLH and MSP both look plausible, while the two MSP choices tempt a fixed larger-airport preference and the DLH choice tempts a fixed nearest-airport preference.",
+      "gold_action": "Book SFO-DLH and sleep in Duluth Monday.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0000",
+        "tm_pd_v04_user_005_s0011",
+        "tm_pd_v04_user_005_s0046",
+        "tm_pd_v04_user_005_s0042",
+        "tm_pd_v04_user_005_s0106",
+        "tm_pd_v04_user_005_s0121"
+      ],
+      "label_rationale": "The 7:00 a.m. badge-in makes the arrival-night ground leg the key exposure, so the Duluth airport plan fits best. Prior trips chose Boise and Albuquerque only when the bigger-airport drive improved schedule recovery, while Palm Springs, ORF, MDT, and Pasco won when the added drive threatened time, fatigue, or next-morning margin.",
+      "query": "I need to badge in at a Duluth-area plant at 7:00 a.m. Tuesday and will leave the Bay Area Monday. Pick my airport plan.",
+      "variant_id": "ctrl_false_personalization_002_repl_1"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book SFO-SLC nonstop and drive to Moab Wednesday."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book into CNY via Denver and sleep in Moab Wednesday."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book into GJT via Denver and drive to Moab Wednesday."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book SFO-DEN nonstop and drive to Moab Wednesday."
+        }
+      ],
+      "control_id": "ctrl_false_personalization_002",
+      "difficulty_rationale": "The query omits fares, mileages, arrival times, rental timing, and connection reliability. CNY, GJT, and SLC can all sound reasonable; CNY encodes a nearest-airport default, while DEN encodes an oversized-hub default.",
+      "gold_action": "Book SFO-SLC nonstop and drive to Moab Wednesday.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0000",
+        "tm_pd_v04_user_005_s0011",
+        "tm_pd_v04_user_005_s0046",
+        "tm_pd_v04_user_005_s0042",
+        "tm_pd_v04_user_005_s0106",
+        "tm_pd_v04_user_005_s0121"
+      ],
+      "label_rationale": "A planned SLC arrival and same-day drive fits the Thursday-afternoon buffer, matching the Boise and Albuquerque cases where a larger airport plus drive reduced operational risk. The Palm Springs, ORF, MDT, and Pasco counterexamples prevent turning that into a rule to pick the biggest hub or the nearest field every time.",
+      "query": "I need a Wednesday outbound plan from the Bay Area for a Thursday afternoon site visit in Moab. Pick the airport plan.",
+      "variant_id": "ctrl_false_personalization_002_repl_2"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book SFO-AVL and stay in Asheville Friday."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book SFO-CLT nonstop and drive to Asheville Friday."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book SFO-ATL nonstop and drive to Asheville Friday."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book SFO-GSP and drive to Asheville Friday."
+        }
+      ],
+      "control_id": "ctrl_false_personalization_002",
+      "difficulty_rationale": "The query gives no prices, travel times, connection counts, landing times, or car-pickup details. AVL and CLT are both credible plans, while CLT and ATL tempt the larger-airport drive default and GSP tempts a closer-alternate shortcut.",
+      "gold_action": "Book SFO-AVL and stay in Asheville Friday.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0000",
+        "tm_pd_v04_user_005_s0011",
+        "tm_pd_v04_user_005_s0046",
+        "tm_pd_v04_user_005_s0042",
+        "tm_pd_v04_user_005_s0106",
+        "tm_pd_v04_user_005_s0121"
+      ],
+      "label_rationale": "For a Friday-to-Sunday weekend, preserving destination time beats adding a gateway drive, as in the Palm Springs-over-Ontario case. Boise and Albuquerque show that larger airports can win for schedule recovery, but ORF, MDT, and Pasco show that the extra drive loses when it erodes timing or rest.",
+      "query": "I am leaving the Bay Area Friday for a quick Asheville weekend and coming back Sunday. Pick the airport plan.",
+      "variant_id": "ctrl_false_personalization_002_repl_3"
+    }
+  ]
+}

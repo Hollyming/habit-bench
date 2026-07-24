@@ -1,0 +1,388 @@
+{
+  "cache_fingerprint": "445478c0064ebf775a78bca5f99c56fdba731a59edaaecb8812c7ce9b8658843",
+  "sessions": [
+    {
+      "domain": "flights_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "['Marisol set the Cincinnati trip constraints: Chicago-CVG flights, Tuesday arrival buffer for a 5:00 p.m. host check-in, Thursday after-lunch return preference, downtown or OTR hotel, no rental car if hosts can cover local hops, and lodging near the nonprofit guideline.', 'She explicitly asked hotel comparisons to include breakfast, in-room coffee/fridge, dinner access, transfer assumptions, cancellation terms, and a standard one-bed room with queen preferred if selectable.', 'A refundable Hampton Cincinnati-Downtown hold was placed, while airfare remained un-ticketed pending host confirmation.']",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "United is nice if the schedule and fare are close, but timing and reimbursement matter more.",
+            "habit_id": "tm_pd_v04_user_002_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.94,
+            "evidence_quote": "with estimated totals and the practical stuff: CVG transfer, breakfast, room coffee/fridge, nearby dinner, cancellation?",
+            "habit_id": "tm_pd_v04_user_002_h03",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.93,
+            "evidence_quote": "with estimated totals and the practical stuff: CVG transfer, breakfast, room coffee/fridge, nearby dinner, cancellation?",
+            "habit_id": "tm_pd_v04_user_002_h04",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "standard one-bed room, queen if selectable.",
+            "habit_id": "tm_pd_v04_user_002_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Providence is basically wrapped, so I need to start Cincinnati. Dates are Oct. 19-21, flying from Chicago. I have a 5:00 p.m. host check-in on Tuesday near Over-the-Rhine if I can make it without rushing. Wednesday is the mural organization plus the public library makerspace partner, and Thursday is a downtown funder debrief around lunch. I would like to avoid renting a car if hosts can cover the cross-neighborhood hops. Can you scan flights and downtown or OTR hotels, with estimated totals and the practical stuff: CVG transfer, breakfast, room coffee/fridge, nearby dinner, cancellation?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. A couple of quick filters before I compare: economy cabin and carry-on only? And is either ORD or MDW acceptable, or should I keep it to one Chicago airport?",
+          "role": "assistant"
+        },
+        {
+          "content": "Economy is fine, carry-on only. ORD or MDW is okay. United is nice if the schedule and fare are close, but timing and reimbursement matter more. For lodging, try to keep the nightly rate near $190 before tax. Refundable hotel only for now, standard one-bed room, queen if selectable.",
+          "role": "user"
+        },
+        {
+          "content": "Got it. I will assume no rental car, rideshare from CVG, and local rides only if the hosts cannot cover a meeting leg. I will also separate the hotel total from extra local rideshares so the cheaper areas do not look artificially cheaper.",
+          "role": "assistant"
+        },
+        {
+          "content": "Perfect. The Tuesday check-in is useful but not mandatory; I would just rather not land so late that it becomes silly.",
+          "role": "user"
+        },
+        {
+          "content": "Here are the flight candidates I would keep in play for now; fares are economy and can move.\n\n| Option | Routing | Tue arrival buffer | Thu return | Fare | Trade-off |\n|---|---:|---|---|---:|---|\n| United | ORD-CVG nonstop, about 1:10-3:28 p.m. | Hotel around 4:10 if CVG rideshare is normal | CVG-ORD about 3:15-3:39 p.m. | $318 | Best timing; not cheapest |\n| American | ORD-CVG nonstop, late morning to about 2:05 p.m. | Plenty of buffer | CVG-ORD about 1:50-2:12 p.m. | $281 | Return is tight after a 12:15 debrief |\n| Southwest | MDW-CVG via BNA, arriving about 3:55 p.m. | Thin but workable | Returns about 4:55-8:05 p.m. via BNA | $246 | Cheapest; one stop both ways and late evening |",
+          "role": "assistant"
+        },
+        {
+          "content": "The 1:50 return feels too tight if the debrief really ends at 12:15. Keep it visible but not preferred. What are the hotel options?",
+          "role": "user"
+        },
+        {
+          "content": "Using the United nonstop and two CVG rideshares for comparison, here is the hotel side. Local meeting or dinner rides are noted separately.\n\n| Base | Hotel est. total | Practical notes | Access and dinner | Cancel terms | Trip est. |\n|---|---:|---|---|---|---:|\n| Hampton Inn & Suites Cincinnati-Downtown | $421 | Breakfast included; queen room bookable; coffee + mini-fridge listed | Easy downtown debrief; OTR by streetcar or 10-15 min walk; restaurants on Vine/Fountain Square nearby | Free cancel listed to Oct. 18, 6 p.m. | $807 |\n| Homewood Suites Cincinnati-Downtown | $454 | Breakfast included; larger studio with kitchenette, coffee, full fridge | Similar downtown access; more room than needed | Free cancel listed to Oct. 18 | $840 |\n| Aloft Newport on the Levee | $350 | No free breakfast; coffee + mini-fridge listed | Good riverfront dinner options; adds cross-river rides to OTR and downtown | Free cancel listed to Oct. 17 | $736 before extra local rides |\n| Graduate Cincinnati near UC | $334 | Paid cafe breakfast; coffee + fridge listed | Cheaper but farther from OTR and downtown; rideshare-dependent | Free cancel listed to Oct. 17 | $720 before extra local rides |",
+          "role": "assistant"
+        },
+        {
+          "content": "How much would the cheaper riverfront or uptown stays probably add in rideshares if hosts cover the Walnut Hills hop?",
+          "role": "user"
+        },
+        {
+          "content": "If the hosts cover the Walnut Hills afternoon leg, Newport probably adds about $20-$35 total versus downtown for OTR morning access and Thursday debrief/bag logistics. Uptown is more like $45-$65 because almost every work movement becomes a rideshare. The airport transfer is similar for downtown and Newport, but uptown is usually a little longer from CVG.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the CVG transfer is not the reason to avoid Newport?",
+          "role": "user"
+        },
+        {
+          "content": "Right. CVG to downtown Cincinnati or Newport is usually around 20-25 minutes and roughly $32-$38 before tip. The reason to avoid Newport would be Wednesday morning and Thursday luggage/debrief friction, not the airport ride. Uptown is the one that is more clearly less convenient for both airport and meetings.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you check Hampton versus Homewood more closely? Breakfast time, coffee, fridge, and whether I am accidentally booking a king or two doubles.",
+          "role": "user"
+        },
+        {
+          "content": "Hampton is the cleaner fit: refundable 1 queen non-smoking is available, breakfast is listed as included, and the room amenities show in-room coffee maker and mini-fridge. Homewood has stronger room amenities because it is a suite with a kitchen setup, but the rate is above the guideline and the extra space does not seem necessary for two nights. Neither has a destination restaurant in the hotel, but both have easy dinner options within a few blocks.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is Hampton close enough to OTR for an 8:45 Wednesday start, assuming that meeting lands near Washington Park?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. From Hampton downtown to the Washington Park side of OTR, plan about 10-15 minutes walking, a short streetcar hop, or a 5-8 minute rideshare. For an 8:45 start, I would aim to leave the hotel around 8:10 if walking or using the streetcar, 8:20 if rideshare.",
+          "role": "assistant"
+        },
+        {
+          "content": "Which combo would you hold now?",
+          "role": "user"
+        },
+        {
+          "content": "I would hold Hampton downtown and keep the United nonstop pair as the flight to beat. That combination is not the absolute cheapest, but it keeps Wednesday morning low-friction, includes breakfast, avoids a rental car, and keeps Thursday return timing after lunch without pushing you into a late evening. If airfare jumps, Southwest is the savings fallback; if the hotel map changes, Newport is the lodging fallback.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please place the refundable Hampton hold, but do not ticket airfare yet. Add queen and quiet room if you can.",
+          "role": "user"
+        },
+        {
+          "content": "Hampton Inn & Suites Cincinnati-Downtown is held as the working hotel for Oct. 19-21: refundable 1 queen non-smoking room, quiet-room request added, estimated hotel total $421 with taxes. Notes saved: breakfast included, in-room coffee and mini-fridge listed, no rental car planned, CVG rideshare estimated around $32-$38 each way, and downtown/OTR dinner options nearby. The saved rate needs to be confirmed before the hold expires; once confirmed, the listed cancellation cutoff is Oct. 18 at 6:00 p.m. Airfare is not ticketed yet.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0096",
+      "session_index": 96,
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "['The host map made Wednesday morning in OTR and Thursday downtown luggage logistics central to the hotel decision.', 'Marisol favored included breakfast and a clearly usable mini-fridge over the boutique hotel with stronger restaurant atmosphere but no breakfast.', 'The Hampton hold was converted to the kept refundable Cincinnati hotel reservation with queen, quiet-room, no-car, and luggage-storage notes.']",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "I mainly want Wednesday morning to be simple and I do not want to buy breakfast somewhere at 7:30 if I can avoid it.",
+            "habit_id": "tm_pd_v04_user_002_h02",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.97,
+            "evidence_quote": "Please note queen, quiet room, no car, and luggage storage Thursday.",
+            "habit_id": "tm_pd_v04_user_002_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Cincinnati update: the host confirmed Wednesday starts at 8:45 in OTR, the afternoon Walnut Hills visit will be with a staff ride, and the informal dinner moved to Covington. The Hampton hold is close to expiring tonight. Can you compare it against the arts-district boutique option one more time before I keep anything?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I will compare the Hampton downtown hold against 21c Museum Hotel, since that is the central arts-district option with easier restaurant access but no included breakfast. Are you likely to rideshare back from Covington after dinner, or are you trying to walk or use transit?",
+          "role": "assistant"
+        },
+        {
+          "content": "Rideshare back is fine. I mainly want Wednesday morning to be simple and I do not want to buy breakfast somewhere at 7:30 if I can avoid it.",
+          "role": "user"
+        },
+        {
+          "content": "Here is the final lodging comparison.\n\n| Hotel | Total for 2 nights | Wed morning | Breakfast | Room amenities | Luggage Thu | Dinner access | Cancel |\n|---|---:|---|---|---|---|---|---|\n| Hampton Inn & Suites Cincinnati-Downtown | $421 | 10-15 min walk/streetcar to OTR; easiest low-friction start | Included; weekday start listed early enough for an 8:45 meeting | 1 queen available; coffee maker + mini-fridge listed | Front desk storage available | Downtown restaurants nearby; Covington rideshare about 8-12 min | Oct. 18, 6 p.m. |\n| 21c Museum Hotel Cincinnati | $462 | Similar walk, slightly more central for arts/dining | Not included; paid restaurant/cafe option | 1 queen available; coffee listed; usable empty fridge is by request, not as clear | Bell storage available | Best on-site/nearby restaurant scene; Covington ride still about 8-10 min | Oct. 17 or 18 depending rate |",
+          "role": "assistant"
+        },
+        {
+          "content": "If I buy breakfast at 21c, what is the real price difference?",
+          "role": "user"
+        },
+        {
+          "content": "Assuming a modest breakfast is $14-$20 each morning, 21c becomes roughly $490-$502 all-in for lodging plus breakfast. That makes it about $70-$80 more than Hampton, not counting the uncertainty around getting a usable mini-fridge. If you only grab coffee and a pastry once, the gap is smaller, but Hampton still wins for the early start.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about Thursday luggage? The debrief is downtown and I will need to leave the bag somewhere.",
+          "role": "user"
+        },
+        {
+          "content": "Both can handle it. 21c has the more polished bell-desk setup and is a touch closer to some downtown meeting rooms. Hampton still works: leave the bag at the front desk after breakfast, go to the debrief, then walk or rideshare back before heading to CVG. The difference is a few minutes, not enough to outweigh breakfast and the clearer fridge setup.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you be specific on the mini-fridge? I do not want a minibar that I cannot use.",
+          "role": "user"
+        },
+        {
+          "content": "Hampton lists a guest mini-fridge as a standard room amenity for the queen room. 21c appears to have minibar or refrigerator-by-request language depending on room type, so I would treat the empty fridge as unconfirmed unless we call the hotel. For this two-night work stay, Hampton is the safer practical choice.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then keep Hampton. Is Covington dinner annoying from there?",
+          "role": "user"
+        },
+        {
+          "content": "Not really. From Hampton to central Covington, plan an 8-12 minute rideshare, likely around $10-$14 each way outside a surge. It is not as atmospheric as staying right by a restaurant, but it is straightforward and avoids making Wednesday morning harder.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay, convert Hampton to the refundable reservation and release the boutique quote if it was just a quote. Please note queen, quiet room, no car, and luggage storage Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "Done. Hampton Inn & Suites Cincinnati-Downtown is now the kept refundable reservation for Oct. 19-21, estimated total $421 with taxes. Room notes: 1 queen non-smoking, quiet-room request, in-room coffee maker and mini-fridge listed. Trip notes: breakfast included before the 8:45 OTR start, no rental car, staff ride expected for Walnut Hills, Covington dinner by rideshare, and Thursday luggage storage at the front desk before the downtown debrief. Cancellation cutoff remains Oct. 18 at 6:00 p.m. The 21c quote is released.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0097",
+      "session_index": 97,
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "['Marisol prioritized a Thursday return after the 12:15 debrief that did not stretch the evening too late.', 'She accepted the higher United nonstop fare over the cheaper later American and one-stop Southwest options because the timing was materially better.', 'United economy airfare was ticketed and tied to the already confirmed Hampton Cincinnati-Downtown stay.']",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "United if close, but not if it is a silly premium.",
+            "habit_id": "tm_pd_v04_user_002_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "return should be after lunch and I do not want to get back to O'Hare too late.",
+            "habit_id": "tm_pd_v04_user_002_h01",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Let us finish the Cincinnati flights now that Hampton is set. Thursday debrief is expected to end at 12:15. Please compare the remaining round trips by fare and timing. Tuesday 5:00 check-in is useful but not mandatory; return should be after lunch and I do not want to get back to O'Hare too late. United if close, but not if it is a silly premium.",
+          "role": "user"
+        },
+        {
+          "content": "Current economy options, carry-on only:\n\n| Option | Tue outbound | Thu return | Fare | Tuesday buffer | Thursday margin | Trade-off |\n|---|---|---|---:|---|---|---|\n| United nonstop | ORD 1:10 p.m. - CVG 3:28 p.m. | CVG 3:15 p.m. - ORD 3:39 p.m. | $319 | Hotel about 4:10 | Leave Hampton around 1:05; about 1 hr 45 min at CVG | Best overall timing |\n| American nonstop | ORD 1:55 p.m. - CVG 4:14 p.m. | CVG 5:35 p.m. - ORD 5:58 p.m. | $247 | Hotel close to 5:00 | Plenty of margin | Saves $72; much longer Thursday evening |\n| Southwest via BNA | MDW 10:40 a.m. - CVG 3:55 p.m. | CVG 4:50 p.m. - MDW 8:05 p.m. | $238 | Workable | Plenty of margin | Cheapest; one stop both ways |",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the United timing worth $72 over American?",
+          "role": "user"
+        },
+        {
+          "content": "I think yes if reimbursement will cover it. The United pair protects the Tuesday check-in, gives a comfortable post-debrief airport window, and gets you back to Chicago more than two hours earlier in practical evening time. American is acceptable if the budget pressure is real, but the savings are not large enough to justify the later day unless you want to preserve every dollar.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the working trip total with United and Hampton?",
+          "role": "user"
+        },
+        {
+          "content": "About $808 before local dinner/meeting rides: $319 airfare + $421 Hampton + roughly $68 for two CVG rideshares. Add about $20-$28 if you rideshare to and from Covington dinner. Still no rental car.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay, ticket the United economy itinerary. Aisle if seat selection is included, and no checked bag.",
+          "role": "user"
+        },
+        {
+          "content": "I can do that. Please confirm: Marisol Greene, ORD-CVG round trip, Oct. 19-21, United economy, outbound arriving CVG 3:28 p.m., return departing CVG 3:15 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Confirmed.",
+          "role": "user"
+        },
+        {
+          "content": "Ticketed United Economy, total airfare $319. Outbound: Tue Oct. 19, ORD 1:10 p.m. to CVG 3:28 p.m. Return: Thu Oct. 21, CVG 3:15 p.m. to ORD 3:39 p.m. Aisle seat request added where available, no checked bag added, carry-on only. Hampton Cincinnati-Downtown remains the hotel base, and the no-rental-car plan is unchanged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0098",
+      "session_index": 98,
+      "user_id": "tm_pd_v04_user_002"
+    }
+  ],
+  "updated_continuity_summary": "{'durable_user_facts': ['Marisol Greene is a Chicago-based program officer who self-books practical domestic work trips and occasional low-key personal weekends.', 'She prefers concise comparisons that combine total cost, timing, transportation assumptions, practical amenities, and trade-offs.', 'For work hotels, she often verifies included breakfast, in-room coffee, a refrigerator or mini-fridge, nearby dining, refundable terms, luggage handling, and a suitable one-bed room when relevant.', 'For flights, meeting timing and return-day margin can outweigh small fare differences; United is acceptable from Chicago when schedule and value are competitive, but other carriers remain viable.'], 'ongoing_trips': [{'episode_id': 'ep_2027_10_cincinnati_mural_library_site_visit', 'destination': 'Cincinnati', 'dates': 'Oct. 19-21, 2027', 'status': 'Main travel booked.', 'resolved_plans': ['Hotel kept: Hampton Inn & Suites Cincinnati-Downtown, Oct. 19-21, refundable 1 queen non-smoking room, quiet-room request, estimated total $421 with taxes.', 'Hotel notes: breakfast included before the Wednesday 8:45 OTR start; in-room coffee maker and mini-fridge listed; Thursday luggage storage at the front desk; nearby downtown and OTR dining; Covington dinner by rideshare.', 'Hotel cancellation cutoff: Oct. 18 at 6:00 p.m.', 'Flights ticketed: United Economy, ORD-CVG Tue Oct. 19, 1:10 p.m.-3:28 p.m.; CVG-ORD Thu Oct. 21, 3:15 p.m.-3:39 p.m.; airfare $319; aisle request added where available; carry-on only and no checked bag.', 'Transportation plan: no rental car; CVG rideshares estimated around $32-$38 each way; host staff ride expected for the Walnut Hills afternoon visit; local rideshare planned for Covington dinner.', 'Thursday working plan: debrief expected to end at 12:15 downtown; retrieve bag at Hampton and leave for CVG around 1:05 for the 3:15 p.m. return.'], 'unresolved_followups': ['Monitor the Thursday debrief timing; if it shifts substantially later than 12:15, reassess airport margin.', 'Check in for United and verify final seat assignment before departure.']}], 'recently_completed_or_inactive_trips': [{'episode_id': 'ep_2027_09_providence_library_arts_site_visit', 'destination': 'Providence', 'dates': 'Sept. 28-30, 2027', 'status': 'Completed/closed after flight timing and Hampton cancellation checks.'}, {'episode_id': 'ep_2027_08_denver_arts_data_convening', 'destination': 'Denver', 'dates': 'Aug. 24-26, 2027', 'status': 'Completed/closed.'}, {'episode_id': 'ep_2027_06_milwaukee_museum_weekend', 'destination': 'Milwaukee', 'dates': 'June 25-27, 2027', 'status': 'Completed/closed; Homewood Suites Milwaukee Downtown was kept and the lakefront backup was cancelled.'}, {'episode_id': 'ep_2027_05_minneapolis_grantmakers_board_meeting', 'destination': 'Minneapolis', 'dates': 'May 19-21, 2027', 'status': 'Completed/closed.'}]}",
+  "verification": {
+    "96": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "United is nice if the schedule and fare are close, but timing and reimbursement matter more.",
+          "habit_id": "tm_pd_v04_user_002_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.94,
+          "evidence_quote": "with estimated totals and the practical stuff: CVG transfer, breakfast, room coffee/fridge, nearby dinner, cancellation?",
+          "habit_id": "tm_pd_v04_user_002_h03",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.93,
+          "evidence_quote": "with estimated totals and the practical stuff: CVG transfer, breakfast, room coffee/fridge, nearby dinner, cancellation?",
+          "habit_id": "tm_pd_v04_user_002_h04",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "standard one-bed room, queen if selectable.",
+          "habit_id": "tm_pd_v04_user_002_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User explicitly made United a soft preference, requested room coffee/fridge and nearby dinner to be checked, and requested a queen if selectable. Breakfast was mentioned but not as included/free, so the included-breakfast habit is not counted."
+    },
+    "97": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "I mainly want Wednesday morning to be simple and I do not want to buy breakfast somewhere at 7:30 if I can avoid it.",
+          "habit_id": "tm_pd_v04_user_002_h02",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.97,
+          "evidence_quote": "Please note queen, quiet room, no car, and luggage storage Thursday.",
+          "habit_id": "tm_pd_v04_user_002_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User reaffirmed avoiding paid/outside breakfast and requested queen bedding. The mini-fridge question supports a fridge concern but not the full coffee-maker-and-fridge bundle by itself."
+    },
+    "98": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "United if close, but not if it is a silly premium.",
+          "habit_id": "tm_pd_v04_user_002_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "return should be after lunch and I do not want to get back to O'Hare too late.",
+          "habit_id": "tm_pd_v04_user_002_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User directly requested a soft United preference and an after-lunch return window. No hotel amenity or bedding habit is newly evidenced in this flight-focused session."
+    }
+  }
+}

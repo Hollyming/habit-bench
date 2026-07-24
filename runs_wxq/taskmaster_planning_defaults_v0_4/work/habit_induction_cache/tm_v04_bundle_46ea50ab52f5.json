@@ -1,0 +1,92 @@
+{
+  "boundary_condition": "Apply this only to hotel or room amenity selection; it should not affect flight, rental car, restaurant, destination, or nearby-cafe choices.",
+  "bundle_id": "tm_v04_bundle_46ea50ab52f5",
+  "condition": "When the synthetic user is comparing or vetting hotel rooms and amenity details are part of the decision.",
+  "confidence": 0.82,
+  "decision": "accept",
+  "default_action": "Prefer hotel room options that list coffee availability, and ask whether coffee or a coffee maker is available when the amenity details are unclear.",
+  "exception_condition": "If coffee availability is not confirmed but the room otherwise satisfies harder stated constraints, flag or ask about the missing coffee information instead of treating the room as automatically acceptable or automatically rejecting all options.",
+  "family": "hotel_amenity_priority",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_46ea50ab52f5",
+  "induced_at": "2026-07-15T12:35:00.150592+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Check for coffee as a hotel room amenity",
+  "preference_value": "coffee availability",
+  "rationale": "Across independent hotel task dialogues, users repeatedly included coffee among desired hotel or room amenities, including one explicit in-room coffee-maker check. This supports a scoped synthetic default to check for coffee availability when hotel amenities matter, without making coffee a universal travel preference or a hard rejection rule.",
+  "seed_value": "coffee",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User asked whether the room has amenities including \"coffee\".",
+      "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+      "turn_index": 12
+    },
+    {
+      "contribution": "User said they were looking for amenities and asked whether \"coffee\" would be available.",
+      "conversation_id": "dlg-9ab0cd0d-eaf0-412f-9ea4-c7cadf7efddc",
+      "turn_index": 8
+    },
+    {
+      "contribution": "User listed desired amenities including \"coffee\".",
+      "conversation_id": "dlg-29716cea-cae3-467e-84eb-8f7ff102f980",
+      "turn_index": 9
+    },
+    {
+      "contribution": "User asked, \"If I want some coffee, is there a maker in the room?\"",
+      "conversation_id": "dlg-1726ea27-e7e3-41ee-b093-e97942ca7449",
+      "turn_index": 34
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "coffee",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+      "habitual_language": false,
+      "instruction_id": "hotel-1b",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 12,
+      "user_utterance": "Great they have a sport bar. Any special activity center duties and does the room have a balcony, cable TV, a mini-fridge, coffee and honor bar and a fireplace."
+    },
+    {
+      "annotated_segment": "coffee",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-9ab0cd0d-eaf0-412f-9ea4-c7cadf7efddc",
+      "habitual_language": false,
+      "instruction_id": "hotel-3",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "Some of the amenities I'm looking for would be a good view, the ocean, a balcony. Oh, I'm looking for a room that is probably about $300 a night or less and if it's an upscale. I'm also looking for the bed size which is king. I'm wondering if a mini refrigerator is available for use? I'm wondering if coffee and a flat screen TV would be available for me, along with some cable."
+    },
+    {
+      "annotated_segment": "coffee",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-29716cea-cae3-467e-84eb-8f7ff102f980",
+      "habitual_language": false,
+      "instruction_id": "hotel-2",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 9,
+      "user_utterance": "I would like it to be four star rated hotel. The amenities I'm looking for are an ocean view, a balcony, a good size refrigerator, a king bed, coffee, and a flat screen TV. Will that be possible?"
+    },
+    {
+      "annotated_segment": "coffee",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-1726ea27-e7e3-41ee-b093-e97942ca7449",
+      "habitual_language": false,
+      "instruction_id": "hotel-1c",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 34,
+      "user_utterance": "If I want some coffee, is there a maker in the room?"
+    }
+  ]
+}

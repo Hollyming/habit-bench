@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Apply only to hotel/lodging quality filters; if the request explicitly states a stricter rating threshold such as 4 or 4.5 stars, use that stricter threshold for that search.",
+  "bundle_id": "tm_v04_bundle_4367bb98a771",
+  "condition": "When searching for hotels or lodging and no trip-specific rating target has been stated.",
+  "confidence": 0.72,
+  "decision": "accept",
+  "default_action": "Exclude hotels below 3 stars; among eligible hotels, show 4-star-or-higher and strong-review properties first.",
+  "exception_condition": "If no 3-star-or-better hotel satisfies required dates, location, or required amenities, ask before relaxing the rating floor and showing lower-rated options.",
+  "family": "hotel_quality_threshold",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_4367bb98a771",
+  "induced_at": "2026-07-15T12:32:00.827807+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefers midscale-or-better, highly rated hotels",
+  "preference_value": "minimum 3-star-or-better hotels, with 4-star or highly reviewed options preferred",
+  "rationale": "Across independent hotel-search dialogues, speakers repeatedly use ratings as a quality gate: some ask for at least 4 stars or 4.5 stars, one asks generally for high star ratings and good reviews, and one gives a lower floor of at least 3 stars. A coherent synthetic default supported by all examples is to avoid low-rated hotels by default while prioritizing higher-rated options when available, rather than treating any single trip's 4-star or 4.5-star threshold as universal.",
+  "seed_value": "quality_threshold",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "Requested a hotel with at least a four-star rating, supporting a preference for higher-rated hotels.",
+      "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+      "turn_index": 3
+    },
+    {
+      "contribution": "Requested at least a 4.5-star rating, supporting prioritization of highly rated hotels.",
+      "conversation_id": "dlg-0ee82b47-d16f-4b64-9647-0550832a9a2b",
+      "turn_index": 11
+    },
+    {
+      "contribution": "Opened the search by asking for a four-star rated hotel, supporting rating-based hotel quality filtering.",
+      "conversation_id": "dlg-e5fdf0b4-dc66-478d-97f7-bf945e6a8d2c",
+      "turn_index": 2
+    },
+    {
+      "contribution": "Asked for high star ratings and really good customer reviews, supporting preference for strong ratings/reviews.",
+      "conversation_id": "dlg-649aca08-8cbe-409e-ae0a-69feb8fc0fc7",
+      "turn_index": 10
+    },
+    {
+      "contribution": "Specified at least three stars, supporting a reusable lower bound against low-rated hotels.",
+      "conversation_id": "dlg-0c04e870-8755-4a22-b3df-56471f9d26bc",
+      "turn_index": 5
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "at least a four-star",
+      "annotation": "hotel_search.customer_rating",
+      "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 3,
+      "user_utterance": "Yes, I'd like it to have at least a four-star rating."
+    },
+    {
+      "annotated_segment": "at least a 4.5-star rating",
+      "annotation": "hotel_search.customer_rating",
+      "conversation_id": "dlg-0ee82b47-d16f-4b64-9647-0550832a9a2b",
+      "habitual_language": false,
+      "instruction_id": "hotel-12",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 11,
+      "user_utterance": "I want the hotel to have at least a 4.5-star rating."
+    },
+    {
+      "annotated_segment": "four-star",
+      "annotation": "hotel_search.star_rating",
+      "conversation_id": "dlg-e5fdf0b4-dc66-478d-97f7-bf945e6a8d2c",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 2,
+      "user_utterance": "Hi, I need help today finding a hotel. I'm looking for a four-star rated hotel."
+    },
+    {
+      "annotated_segment": "high star ratings",
+      "annotation": "hotel_search.customer_rating",
+      "conversation_id": "dlg-649aca08-8cbe-409e-ae0a-69feb8fc0fc7",
+      "habitual_language": false,
+      "instruction_id": "hotel-14",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 10,
+      "user_utterance": "I want high star ratings and really good customer reviews, and I'd also like it to have a hot tub for sure and somewhere near the beach would be great."
+    },
+    {
+      "annotated_segment": "At least three",
+      "annotation": "hotel_search.star_rating",
+      "conversation_id": "dlg-0c04e870-8755-4a22-b3df-56471f9d26bc",
+      "habitual_language": false,
+      "instruction_id": "hotel-16",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "At least three."
+    }
+  ]
+}

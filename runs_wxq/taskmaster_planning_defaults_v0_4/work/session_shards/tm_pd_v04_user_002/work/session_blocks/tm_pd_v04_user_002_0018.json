@@ -1,0 +1,338 @@
+{
+  "cache_fingerprint": "67e121c5c1edf2adffd4550e68f29544dd2ff19a2307bebe7b9bc947c6a6c767",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marisol confirmed the Pittsburgh weekend constraints: one two-bed room, no rental car, Saturday 10:30 museum entry, 1:15 Shadyside lunch, moderate pricing, and a preference for practical hotel details before booking. The conversation selected Drury Plaza Downtown as the best hotel balance, with Oakland lodging retained only as a backup if walkability or weather becomes more important.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.95,
+            "evidence_quote": "whether the room lists breakfast, coffee, and a fridge",
+            "habit_id": "tm_pd_v04_user_002_h03",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.91,
+            "evidence_quote": "If we arrive at the hotel around 8:45 I do not want to discover everything is closed.",
+            "habit_id": "tm_pd_v04_user_002_h04",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I need separate beds.",
+            "habit_id": "tm_pd_v04_user_002_h05",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Lena got the Carnegie exhibition entry for Saturday at 10:30, and cousin moved lunch to Shadyside at 1:15. Can we narrow the Pittsburgh hotel list now? Still Aug. 22-24, one room with two beds, no rental car. I want the real total after taxes and fees and whether the room lists breakfast, coffee, and a fridge.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Are you still leaning downtown unless Oakland is clearly worth the premium, or should I treat walking to the museum as the main thing?",
+          "role": "assistant"
+        },
+        {
+          "content": "Downtown first. Lena likes the walking idea, but we are not doing a whole Oakland weekend. I just do not want to save $150 and then spend the weekend in rideshares.",
+          "role": "user"
+        },
+        {
+          "content": "Here is the tighter shortlist based on the Saturday plan. Prices are estimates to recheck before booking.\n\n| Hotel | Two-bed total, Aug. 22-24 | Breakfast / room details | Dining access | Saturday timing | Trade-off |\n|---|---:|---|---|---|---|\n| Drury Plaza Downtown | About $558 all-in, 2 queens refundable | Breakfast included; listing shows coffee maker, refrigerator, microwave | On-site food plus Market Square/Cultural District nearby | 12-16 min rideshare to Carnegie; 8-10 min Carnegie to Shadyside | Not walk-to-museum |\n| Hampton Inn & Suites Downtown / Strip | About $604 all-in, 2 queens | Breakfast included; fridge and coffee listed | Good Strip District access; a bit less late-night downtown convenience | Similar ride to museum; easy Sunday Strip stop | Costs more than Drury unless rate drops |\n| Hilton Garden Inn University Place / Oakland | About $666 all-in, 2 queens | Coffee/fridge listed; breakfast may be paid unless special rate | On-site restaurant and casual Oakland options | 8-10 min walk to Carnegie; 6-8 min ride to Shadyside | Pays about $100 more for the museum walk |\n| The Oaklander | About $825 all-in, 2 queens | No free breakfast on base rate; mini-fridge/coffee listed | Strong on-site restaurant | 3-5 min walk to museum; quick ride to lunch | Boutique premium, not moderate |\n\nMy read: Drury is still the best balance unless the museum walk becomes the deciding factor.",
+          "role": "assistant"
+        },
+        {
+          "content": "That helps. Is the Hilton Garden walk actually pleasant, or is this one of those technically walkable but annoying routes?",
+          "role": "user"
+        },
+        {
+          "content": "It is a real walk, not just technically possible: roughly half a mile, sidewalks through the campus/Oakland area, around 10 minutes. The Oaklander is the only one that feels truly museum-adjacent, though. If it rains or you are dressed for lunch, you would still probably rideshare.",
+          "role": "assistant"
+        },
+        {
+          "content": "For Friday night, downtown still seems safer, right? If we arrive at the hotel around 8:45 I do not want to discover everything is closed.",
+          "role": "user"
+        },
+        {
+          "content": "Yes, downtown is safer for that. Drury gives you an on-site fallback and easy short walks or rides to Market Square, the Cultural District, and the Strip. Oakland has places, but after 9 it gets thinner and more student-casual.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do you see the Drury room as two queens, not a king with sofa? I need separate beds.",
+          "role": "user"
+        },
+        {
+          "content": "The refundable room I would pick is explicitly 2 Queen Beds Deluxe. Its room details list a refrigerator, microwave, and coffee maker. I would screenshot that room-detail page before booking so the bed setup and amenities are documented.",
+          "role": "assistant"
+        },
+        {
+          "content": "What if Hampton drops by $40? It has breakfast too.",
+          "role": "user"
+        },
+        {
+          "content": "If Hampton is at least $40 cheaper all-in than Drury, it becomes a toss-up. It has the same practical breakfast/fridge/coffee setup and is good for the Strip. If it is the same price or higher, Drury wins for Friday dinner and overall downtown convenience.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay, rank them with the rideshare assumption.",
+          "role": "user"
+        },
+        {
+          "content": "| Rank | Pick | Estimated weekend lodging + rideshares | Why |\n|---|---|---:|---|\n| 1 | Drury Plaza Downtown, 2 queens | About $558 hotel + $60-$80 rideshares | Best balance: breakfast, room amenities, Friday dinner ease, moderate total |\n| 2 | Hampton Downtown / Strip | Book only if it drops at least $40 below Drury | Good breakfast and room setup; better for Strip, not better for the museum |\n| 3 | Hilton Garden Inn Oakland | About $666 hotel + fewer Saturday rides | Worth it only if Lena strongly wants the museum walk or weather looks bad |\n| 4 | The Oaklander | About $825 hotel | Too much premium for this itinerary |\n\nI would book Drury refundable, keep Oakland in mind only as a weather or walkability backup, and budget roughly $70 for rideshares across the weekend.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0018",
+      "session_index": 18,
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "domain": "flights_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marisol finalized the Pittsburgh weekend around the held Drury two-queen room. The session weighed the increased nonstop fare against a cheaper connection and a later nonstop, preserving the Sunday afternoon return and choosing the cleaner 5:45 p.m. Friday nonstop because it avoids a late dinner arrival.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Quick update on Pittsburgh: I put Drury on hold, 2 Queen Deluxe, Aug. 22-24, $552.76 all-in. The Friday nonstop we liked is now higher, but Lena can leave work earlier and be at ORD by 4:15. Can you reprice the realistic flight choices with the hotel?",
+          "role": "user"
+        },
+        {
+          "content": "Here are the viable choices using the held hotel total. Fares can move, but this is the useful comparison.\n\n| Flight plan for two | Timing | Air total | Weekend total with Drury | Dinner risk |\n|---|---|---:|---:|---|\n| United nonstop | Fri ORD 5:45 p.m. CT to PIT 8:05 p.m. ET; Sun PIT 2:10 p.m. ET to ORD 2:45 p.m. CT | About $612 | About $1,164.76 | Low |\n| Earlier one-stop | Fri ORD about 4:40 p.m. CT, connect, PIT about 8:50-9:05 p.m. ET; similar Sunday afternoon return | About $486 | About $1,038.76 | Medium: connection and later hotel arrival |\n| Later nonstop | Fri ORD about 7:40 p.m. CT to PIT about 10:05 p.m. ET; Sunday afternoon return | About $536 | About $1,088.76 | High for dinner |\n\nThe one-stop saves about $126 total versus the clean nonstop.",
+          "role": "assistant"
+        },
+        {
+          "content": "The connection savings is about $126 total. Is that enough to deal with it?",
+          "role": "user"
+        },
+        {
+          "content": "For a two-night weekend, I do not think so. It leaves earlier but adds a connection and still gets you to the hotel later than the nonstop if everything goes well. The nonstop protects Friday dinner and sleep.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the Drury cancellation deadline? The hold email says free cancellation until Aug. 21 but not the time zone.",
+          "role": "user"
+        },
+        {
+          "content": "Assume Pittsburgh/Eastern time unless the confirmation says otherwise. Put a safe reminder for Wednesday, Aug. 20 at midday, and a second reminder for Thursday morning, Aug. 21. I would not wait until Thursday evening to cancel or modify.",
+          "role": "assistant"
+        },
+        {
+          "content": "There's also that later nonstop for less than the 5:45. Bad idea?",
+          "role": "user"
+        },
+        {
+          "content": "I would pass. It likely puts you at Drury around 10:45 or later after landing, rideshare, and check-in. That makes dinner the awkward part of the trip.",
+          "role": "assistant"
+        },
+        {
+          "content": "So book the 5:45 despite the fare bump?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Book the 5:45 p.m. ORD-PIT nonstop with the Sunday 2:10 p.m. PIT-ORD return, keep the Drury hold, and skip the connection unless the nonstop jumps another $150 or so for the pair.\n\n| Final path | Estimated total |\n|---|---:|\n| Flights for two | About $612 |\n| Drury 2 Queen Deluxe hold | $552.76 |\n| Weekend before rideshares/meals | About $1,164.76 |\n\nBook the flights direct with the airline, screenshot the Drury room details and cancellation terms, and calendar the Aug. 20 safe-cancel reminder.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0019",
+      "session_index": 19,
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "domain": "flights_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marisol opened the Baltimore board-meeting trip with constraints around BWI, late-afternoon Thursday arrival, a Saturday return after breakfast, the Hotel Revival room block, reimbursement cap, refrigerator check, and breakfast comparison. The session recommended the Revival block plus an ORD-BWI flight arriving midafternoon Thursday and returning Saturday at 2:20 p.m., with Home2 Suites held as a backup if Revival cannot confirm the room amenities.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "a nearby hotel that includes breakfast and has a refrigerator",
+            "habit_id": "tm_pd_v04_user_002_h02",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Can we start Baltimore? Board meeting Sept. 18-20. I need Chicago to Baltimore, Thursday arrival by late afternoon, Saturday return after trustee breakfast. The welcome dinner is at the room-block hotel, but I want to compare that with a nearby hotel that includes breakfast and has a refrigerator. BWI unless another airport is clearly easier.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. What hotel is the block, and what are the key Friday/Saturday times? Also, is ORD preferred over Midway, and is there a nightly cap I should keep in mind?",
+          "role": "assistant"
+        },
+        {
+          "content": "Block is Hotel Revival in Mount Vernon. Thursday dinner 6:30 p.m. there. Friday retreat is at the Baltimore Museum of Art, 9 to 4:30, with a shuttle they may run from the hotel. Saturday trustee breakfast is 8:30 to 10 at Revival. ORD is easier, MDW okay if it saves enough. Reimbursement cap is $250 pre-tax; the block rate is $229.",
+          "role": "user"
+        },
+        {
+          "content": "Good. I would keep these flight candidates in play first:\n\n| Option | Route | Timing | Est. fare | Note |\n|---|---|---|---:|---|\n| A | United ORD-BWI | Thu 11:45 a.m.-2:30 p.m.; Sat 2:20 p.m.-3:35 p.m. | $286 | Best balance of arrival buffer and post-breakfast return |\n| B | Southwest MDW-BWI | Thu 12:50 p.m.-3:35 p.m.; Sat 3:05 p.m.-4:10 p.m. | $258 | Cheaper, but Midway and slightly later Thursday arrival |\n| C | United ORD-BWI | Thu 2:10 p.m.-4:55 p.m.; Sat 2:20 p.m.-3:35 p.m. | $264 | Arrives too close to a 6:30 dinner if there is any delay |\n| D | American ORD-DCA | Thu 12:35 p.m.-3:25 p.m.; Sat 2:45 p.m.-4:00 p.m. | $302 | DCA transfer to Baltimore is not easier |\n\nBWI looks like the right airport unless DCA drops dramatically.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you pair the first two with hotels? I need total estimated cost, not just rate, and include breakfast/fridge/dinner notes.",
+          "role": "user"
+        },
+        {
+          "content": "Assuming one traveler, two hotel nights, and about $80 total for BWI rideshares:\n\n| Pairing | Est. total | Meeting convenience | Breakfast / room amenities | Dinner access | Trade-off |\n|---|---:|---|---|---|---|\n| United ORD-BWI + Hotel Revival block | About $902 | Dinner and trustee breakfast in the same building; likely shuttle pickup if offered | Block rate may not include breakfast beyond meeting meals; fridge is not clearly guaranteed; coffee appears listed | Topside on-site plus Mount Vernon restaurants | Highest hotel cost, best logistics |\n| Southwest MDW-BWI + Hotel Revival block | About $874 | Same hotel convenience | Same Revival amenity caveat | Same | Saves about $28 but uses Midway and lands later |\n| United ORD-BWI + Home2 Suites Baltimore Downtown | About $800-$815 | 10-12 min walk or short rideshare to Revival; easy to reach BMA directly | Breakfast included; kitchenette/full fridge and coffee maker listed | Casual nearby options, but not same-building dinner | Saves roughly $90-$110 after extra local rides |\n| United ORD-BWI + Hampton Inn Inner Harbor | About $840-$855 | More rides to Revival/BMA | Breakfast included; mini-fridge and coffee maker listed | Many Inner Harbor restaurants | Practical room, but less convenient for board events |\n\nIf Revival can confirm the fridge, the block is probably worth the premium for this agenda.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do any of those fail the refrigerator check?",
+          "role": "user"
+        },
+        {
+          "content": "Home2 does not fail it; that is the strongest room setup, with a larger fridge/kitchenette. Hampton lists mini-fridges in standard rooms. Revival is the uncertain one: some room descriptions mention a minibar or fridge on request, but I would call the block reservation line before treating it as guaranteed.",
+          "role": "assistant"
+        },
+        {
+          "content": "If I stay at Home2, how annoying is it after the Thursday dinner?",
+          "role": "user"
+        },
+        {
+          "content": "It is about half a mile, roughly a 10-12 minute walk. In daylight, fine. After a board dinner with a laptop bag, I would plan on an $8-$12 rideshare. Same issue Saturday morning if you want to arrive at the trustee breakfast polished and on time.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is BMA close enough from Revival that the hotel choice matters Friday morning?",
+          "role": "user"
+        },
+        {
+          "content": "Revival to the Baltimore Museum of Art is about 15-20 minutes by shuttle or rideshare. Home2 adds maybe 5 minutes if you go straight to BMA, or 10-12 minutes if you first go to Revival for a shuttle. The bigger convenience difference is Thursday dinner and Saturday breakfast, not the museum commute.",
+          "role": "assistant"
+        },
+        {
+          "content": "Tell me about airport transfers. I do not want to rent a car.",
+          "role": "user"
+        },
+        {
+          "content": "BWI to Mount Vernon by rideshare is usually 25-35 minutes and about $35-$45 each way. Light Rail is much cheaper, but more like 45-55 minutes to the Centre Street area plus a short walk, so I would only use it if you land early and have light luggage. DCA is usually 70-90 minutes by car to Baltimore in traffic, or a multi-step train connection, so it is not easier.",
+          "role": "assistant"
+        },
+        {
+          "content": "I see a noon-ish BWI-ORD return that's $35 less. Is that too tight after the trustee breakfast?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, too tight for this agenda. If breakfast ends at 10, you would need to leave almost immediately, reach BWI around 10:40-10:50, and hope security is smooth. The 2:20 p.m. return gives you real margin and still gets you home before dinner.",
+          "role": "assistant"
+        },
+        {
+          "content": "Given the block is under the cap, would you book Revival or the breakfast hotel?",
+          "role": "user"
+        },
+        {
+          "content": "If the Revival rate is refundable, I would book the block. The dollar gap to Home2 is roughly $100-$120 after adding extra local rides, and Revival removes the awkward parts of the schedule. Home2 is the better breakfast-and-room-amenity value, but the same-building dinner and breakfast are worth it for a two-night board meeting.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. Can you give me the exact booking path and the questions to ask Revival before I finalize?",
+          "role": "user"
+        },
+        {
+          "content": "Booking path:\n\n| Step | Action |\n|---|---|\n| 1 | Hold Hotel Revival in the board block at $229 pre-tax for Sept. 18-20, refundable if available. |\n| 2 | Ticket the United ORD-BWI option around 11:45 a.m. Thursday and the 2:20 p.m. Saturday return if the fare is still near $286. |\n| 3 | Use rideshare between BWI and Mount Vernon; skip DCA unless the fare gap becomes very large. |\n| 4 | Keep Home2 as the backup only if Revival cannot confirm the room basics or if the block rate loses free cancellation. |\n\nQuestions for Revival before booking:\n1. Is a mini-fridge guaranteed in the room, or only on request?\n2. Is there an in-room coffee maker?\n3. What exactly is included with the board block rate besides the meeting meals?\n4. Is the Friday BMA shuttle confirmed, and what time does it leave?\n5. What is the cancellation deadline and time zone?\n6. How late is the on-site restaurant open Thursday in case the flight is delayed?\n\nExpected total with the recommended flight and block hotel is about $900 before meals not covered by the meeting.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0020",
+      "session_index": 20,
+      "user_id": "tm_pd_v04_user_002"
+    }
+  ],
+  "updated_continuity_summary": "{'durable_user_facts': ['Marisol Greene is a Chicago-based program officer who self-books practical domestic work trips and occasional personal weekends.', 'She prefers compact comparisons that combine total cost, timing, transit friction, hotel amenities, and trade-offs.', 'She is reimbursement-aware and will pay a modest premium when it reduces schedule risk or simplifies meals and meeting logistics.', 'For hotels, she often checks practical room details such as breakfast, refrigerator, and coffee setup before treating an option as final.', 'Return flights are commonly chosen with enough margin after final meetings, breakfasts, or site visits rather than taking the cheapest tight departure.'], 'current_trips': [{'episode_id': 'ep_2025_08_pittsburgh_family_museum_weekend', 'destination': 'Pittsburgh', 'dates': 'Aug. 22-24, 2025', 'purpose': 'personal museum weekend with adult daughter and family lunch', 'status': 'Hotel held and final booking path selected.', 'resolved_plans': ['Hotel: Drury Plaza Downtown, 2 Queen Deluxe, held at $552.76 all-in for Aug. 22-24.', 'Drury was chosen over Oakland lodging because it keeps Friday dinner easier, includes breakfast, lists practical room amenities, and avoids boutique pricing while leaving only short rideshares to Carnegie Museum and Shadyside.', 'Flights: recommended booking is the 5:45 p.m. ORD-PIT nonstop on Friday and the 2:10 p.m. PIT-ORD return on Sunday, estimated at about $612 for two travelers.', 'Estimated weekend total before rideshares and meals is about $1,164.76.', 'Rideshares are expected to be the simplest local transportation plan, with an estimated $60-$80 budget.'], 'unresolved_followups': ['Ticket the selected nonstop flights if the fare remains close to the quoted level.', 'Screenshot Drury room details and cancellation terms.', 'Calendar a safe cancellation reminder for Aug. 20 midday, with Aug. 21 local hotel time treated as the latest cancellation window unless the confirmation says otherwise.']}, {'episode_id': 'ep_2025_09_baltimore_board_meeting', 'destination': 'Baltimore', 'dates': 'Sept. 18-20, 2025', 'purpose': 'board meeting, welcome dinner, museum-hosted retreat, and trustee breakfast', 'status': 'Initial flight and hotel plan recommended; bookings not yet confirmed.', 'resolved_plans': ['Preferred airport remains BWI; DCA is not easier unless fares shift substantially.', 'Recommended flight: United ORD-BWI around 11:45 a.m. Thursday with 2:30 p.m. arrival, returning BWI-ORD around 2:20 p.m. Saturday after trustee breakfast, estimated around $286.', 'Recommended hotel: hold Hotel Revival room block at $229 pre-tax if refundable, because dinner and Saturday breakfast are in the same building and the Friday shuttle may depart from there.', 'Estimated total for the recommended Baltimore plan is about $900 before meals not covered by the meeting.', 'Home2 Suites Baltimore Downtown is the main backup if Revival cannot confirm the refrigerator or if the block terms become unfavorable; it saves roughly $100-$120 after accounting for extra local rides.'], 'unresolved_followups': ['Call Hotel Revival to confirm mini-fridge availability, in-room coffee maker, what the block rate includes, Friday BMA shuttle timing, restaurant hours, and the cancellation deadline.', 'Book the recommended ORD-BWI itinerary if the fare remains close to the quoted level.', 'Hold Home2 only if it is refundable and Revival cannot verify the room basics.']}], 'prior_planning_notes': [{'episode_id': 'ep_2025_07_omaha_site_visit', 'status': 'No new action in this block; prior plan kept Hampton Inn Omaha Midtown-Aksarben and favored the safer midafternoon nonstop return.'}, {'episode_id': 'ep_2025_06_denver_sector_conference', 'status': 'No new action in this block; prior plan kept the Sheraton Denver Downtown event block with Hampton Downtown-Convention Center as backup.'}, {'episode_id': 'ep_2025_05_durham_site_visit', 'status': 'No new action in this block; prior plan kept SpringHill Suites Durham City View and the better-timed Friday nonstop return.'}]}",
+  "verification": {
+    "18": {
+      "habit_signals": [
+        {
+          "confidence": 0.95,
+          "evidence_quote": "whether the room lists breakfast, coffee, and a fridge",
+          "habit_id": "tm_pd_v04_user_002_h03",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.91,
+          "evidence_quote": "If we arrive at the hotel around 8:45 I do not want to discover everything is closed.",
+          "habit_id": "tm_pd_v04_user_002_h04",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I need separate beds.",
+          "habit_id": "tm_pd_v04_user_002_h05",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User directly requested coffee/fridge amenity verification, late-arrival open dining access, and a separate-bed setup for this trip. Breakfast mentions did not specify included/free breakfast, so the included-breakfast habit was not labeled."
+    },
+    "19": {
+      "habit_signals": [],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "No user utterance independently established a candidate habit at the required specificity. Flight questions did not themselves state or endorse United as a carrier preference or an afternoon return preference."
+    },
+    "20": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "a nearby hotel that includes breakfast and has a refrigerator",
+          "habit_id": "tm_pd_v04_user_002_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User explicitly requested comparison with a hotel that includes breakfast. Refrigerator-only language was not labeled as the coffee-maker-and-fridge bundle, and the return timing did not explicitly establish an afternoon-return preference."
+    }
+  }
+}

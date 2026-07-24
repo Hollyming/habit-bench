@@ -1,0 +1,376 @@
+{
+  "cache_fingerprint": "05c577568b316c71a267b9a905c7c5267a1f61ec3eabe5cf71b690d326d35fc6",
+  "sessions": [
+    {
+      "domain": "flights_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For the Baltimore board trip, the user established economy/carry-on travel, ORD as easiest with MDW acceptable for meaningful savings, a Friday afternoon return after an 11 a.m. optional session, no rental car, and interest in comparing the event block against breakfast-included nearby hotels with room basics and dinner access. The assistant recommended BWI over DCA unless savings are much larger and suggested holding a cancellable Marriott block while agenda details firm up.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I'd like to come back Friday afternoon",
+            "habit_id": "tm_pd_v04_user_002_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.97,
+            "evidence_quote": "nearby breakfast-included option",
+            "habit_id": "tm_pd_v04_user_002_h02",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "whether the room has coffee/fridge",
+            "habit_id": "tm_pd_v04_user_002_h03",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "an easy dinner option",
+            "habit_id": "tm_pd_v04_user_002_h04",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Another trip just landed: Baltimore board meeting, March 12-14. Wednesday evening reception, all-day Thursday at the Inner Harbor conference hotel, optional Friday session ending around 11. Please compare flights from Chicago plus the event hotel block against a nearby breakfast-included option. I'd like to come back Friday afternoon, and please flag whether BWI is the practical airport or if a cheaper pairing is worth it.",
+          "role": "user"
+        },
+        {
+          "content": "Sure. Quick details so I price the right window: which Chicago airport is easiest, how early can you leave Wednesday, what is the event hotel/block rate, and is this economy with carry-on only?",
+          "role": "assistant"
+        },
+        {
+          "content": "Economy, carry-on. ORD is easiest; MDW is acceptable if the timing or price is clearly better. I can leave after a noon call, so arriving at the hotel by 5:00 is the goal. Event hotel is the Baltimore Marriott Waterfront, block is $224/night before tax for two nights.",
+          "role": "user"
+        },
+        {
+          "content": "First pass on flights:\n| Option | Schedule | Est. fare | Airport/transfer | Trade-off |\n| United ORD-BWI | Wed 1:05p-3:52p; Fri 2:10p-3:25p | $286 | BWI, 25-35 min to Inner Harbor | Cleanest ORD plan |\n| Southwest MDW-BWI | Wed 1:25p-4:10p; Fri 2:45p-3:50p | $252 | BWI, similar transfer | Saves about $34, but MDW |\n| American ORD-DCA | Wed 12:15p-3:05p; Fri 3:20p-4:35p | $226 | DCA, 60-80+ min to Baltimore | Fare is lower, but transfer time/cost erodes it |\nPreliminarily, BWI makes more sense unless a DC-area airport is saving well over $100.",
+          "role": "assistant"
+        },
+        {
+          "content": "For the hotel, assume I won't rent a car. Can you include estimated taxes and whether the room has coffee/fridge and an easy dinner option?",
+          "role": "user"
+        },
+        {
+          "content": "Hotel comparison, assuming roughly 15.5% tax:\n| Hotel | 2-night est. | Meeting convenience | Breakfast / room basics | Dinner access |\n| Baltimore Marriott Waterfront block | $517 | In the meeting hotel | Breakfast not listed; coffee maker and mini-fridge appear listed, verify | On-site restaurant/bar plus Harbor East nearby |\n| Homewood Suites Inner Harbor area | $443 | 9-12 min walk or short rideshare | Breakfast included; kitchenette/fridge/coffee | Little Italy/Harbor East options nearby |\n| Hampton Inn & Suites Inner Harbor | $436 | 12-15 min walk | Breakfast included; coffee/fridge listed | Several casual places within a few blocks |\nThe nearby hotels save about $74-$81 after tax before considering any extra rides or morning inconvenience.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you put the rough all-in numbers together? And I assume DCA's cheaper fare is not really cheaper once I move myself to Baltimore.",
+          "role": "user"
+        },
+        {
+          "content": "| Plan | Air | Hotel | Local airport transfers | Rough total |\n| United ORD-BWI + Marriott | $286 | $517 | $65-$80 | $868-$883 |\n| Southwest MDW-BWI + Homewood | $252 | $443 | $65-$80 | $760-$775 |\n| American ORD-DCA + Homewood | $226 | $443 | $120-$160 | $789-$829 |\nYes, DCA only looks cheaper on the airfare line. For this meeting location, BWI is the cleaner choice.",
+          "role": "assistant"
+        },
+        {
+          "content": "The reception starts at 6, and Thursday starts at 8:30. Friday could end right at 11. Is the 2:10 Friday from BWI too tight?",
+          "role": "user"
+        },
+        {
+          "content": "It is reasonable if 11 is a real end time and you have carry-on only. Leave the hotel around 11:15, reach BWI around noon, and a 2:10 departure has good cushion. If Friday tends to run long, look closer to 3:30 or 4:00.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would you lean event hotel now or the Homewood/Hampton type option?",
+          "role": "user"
+        },
+        {
+          "content": "For now I would hold the Marriott block only if it is cancellable; otherwise hold a refundable Homewood or Hampton. The block costs more, but it removes meeting-day friction. Ask the coordinator whether any breakfast or board prep is being added, whether Friday is definitely at the Marriott, and whether the block room includes a mini-fridge/coffee maker or can note that request. If the agenda stays 8:30 with no hosted breakfast, Homewood/Hampton is a fair savings. If anything moves earlier, the Marriott becomes worth the difference.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0003",
+      "session_index": 3,
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The Baltimore agenda changed to include a 7:30 a.m. briefing and Friday optional session at the Marriott. The user focused the hotel decision on whether the $32/night premium outweighed missing general free breakfast and wanted mini-fridge verification. The assistant recommended the event hotel and drafted a concise verification note.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.94,
+            "evidence_quote": "I may attend if I can still make the afternoon flight.",
+            "habit_id": "tm_pd_v04_user_002_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I do not care about a microwave.",
+            "habit_id": "tm_pd_v04_user_002_h03",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Update on Baltimore: the coordinator added a 7:30 a.m. breakfast briefing at the Marriott on Thursday, and the block deadline got extended. Marriott is still $224, Homewood is about $192. Marriott doesn't list free breakfast outside the briefing. Is convenience worth the extra?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, with a 7:30 briefing at the meeting hotel, I would take the Marriott. The added hotel cost is about $64 pre-tax, roughly $74 after tax for the stay. That buys you no early transfer, no weather risk, and no figuring out coffee/bags before a board breakfast.",
+          "role": "assistant"
+        },
+        {
+          "content": "Friday optional is 9 to 11 and also at the Marriott. I may attend if I can still make the afternoon flight.",
+          "role": "user"
+        },
+        {
+          "content": "That strengthens the Marriott choice. You can check out, leave your bag with the bell desk, attend 9-11, then head to BWI around 11:15. Staying elsewhere means checking out and moving over before the session.",
+          "role": "assistant"
+        },
+        {
+          "content": "My only hesitation is the room amenities. Can we verify mini-fridge? I do not care about a microwave.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Verify that the block room type has a mini-fridge and in-room coffee maker, or that the hotel can note a mini-fridge request if it varies by room. Also confirm the cancellation deadline, Wi-Fi under the block, and Friday luggage storage.",
+          "role": "assistant"
+        },
+        {
+          "content": "If they say no fridge, does that change your recommendation?",
+          "role": "user"
+        },
+        {
+          "content": "Not by itself, unless you need it for medication or food. For this agenda, the same-hotel logistics are worth more than the $32/night savings.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you draft the quick note to the hotel or coordinator?",
+          "role": "user"
+        },
+        {
+          "content": "Subject: Marriott board block room details\n\nHello, I am planning to book within the board meeting room block for March 12-14. Before I confirm, could you please verify whether the block room type includes a mini-fridge and in-room coffee maker? I would also appreciate confirmation of the cancellation deadline, whether Wi-Fi is included with the block rate, and whether luggage storage is available after checkout on Friday while the 9-11 a.m. session is underway. Thank you.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0004",
+      "session_index": 4,
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "domain": "flights_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For the Minneapolis personal weekend, the user established travel with spouse, ORD easier but MDW acceptable for notable savings, carry-on only, Friday after-work outbound, Sunday afternoon return, one-bed room, downtown dining access, and avoidance of a noisy hotel. Package savings were too small to drive the decision. The provisional plan is United ORD-MSP plus Hampton Inn & Suites Downtown, pending the dinner address and rate details.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Sunday afternoon return.",
+            "habit_id": "tm_pd_v04_user_002_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Closer to downtown restaurants is probably better",
+            "habit_id": "tm_pd_v04_user_002_h04",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.93,
+            "evidence_quote": "One room with one bed, queen or king.",
+            "habit_id": "tm_pd_v04_user_002_h05",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Switching to a personal one: Daniel and I want to go to Minneapolis April 25-27 for the Walker exhibition and dinner with my sister. Friday departure after work, Sunday afternoon return. Can you compare flights plus hotels, and also note whether a package saves enough to bother with?",
+          "role": "user"
+        },
+        {
+          "content": "Absolutely. Two quick checks: are you both flying from Chicago, is ORD preferred over MDW, and do you want to be closer to the Walker or downtown/North Loop restaurants?",
+          "role": "assistant"
+        },
+        {
+          "content": "Both from Chicago, carry-on only. ORD is easier, MDW okay if notably cheaper. Closer to downtown restaurants is probably better; Walker can be a rideshare. One room with one bed, queen or king.",
+          "role": "user"
+        },
+        {
+          "content": "For MSP flights, after-work Friday plus Sunday afternoon returns look like this for two economy tickets:\n| Option | Schedule | Airfare for 2 | Fit | Trade-off |\n| United ORD | Fri 6:15p-7:45p; Sun 3:30p-5:05p | $476 | Safest ORD timing | About $40 more than MDW |\n| Delta ORD | Fri 5:35p-7:05p; Sun 2:20p-3:55p | $458 | Nice Sunday time | Friday may be tight |\n| Southwest MDW | Fri 6:40p-8:05p; Sun 4:15p-5:40p | $436 | Cheapest and late enough | Uses MDW, gets back later |",
+          "role": "assistant"
+        },
+        {
+          "content": "The Delta outbound is probably too tight. Keep United and Southwest alive. What hotels make sense without needing a car?",
+          "role": "user"
+        },
+        {
+          "content": "Good no-car hotel choices for two nights, with estimated taxes:\n| Hotel | Est. total | Breakfast / room | Location and dinner access | Trade-off |\n| Hampton Inn & Suites Downtown | $407 | Breakfast included; coffee maker; mini-fridge; one-bed rooms | Easy for Hennepin/North Loop; 8-10 min rideshare to Walker | Practical, not boutique |\n| Hyatt Place Downtown | $372 | Breakfast depends on rate; coffee/fridge | Rideshares easy; downtown/skyway area | Quieter blocks on weekend nights |\n| Aloft Mill District | $386 | No free breakfast; coffee/fridge | Good for riverfront/Mill District dinners | Breakfast extra |\n| Moxy Uptown | $349 | No free breakfast; compact room | Closer to Walker/Uptown food | More nightlife/noise risk |",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you price the combinations separately versus package? I don't mind prepaid for this if the savings are real, but I don't want a noisy hotel.",
+          "role": "user"
+        },
+        {
+          "content": "Package savings look modest:\n| Combo | Separate booking | Package quote | Difference | Comment |\n| United + Hampton | $883 | $862 | Saves $21 | Not enough to lose hotel flexibility |\n| United + Hyatt Place | $848 | $819 | Saves $29 | Fine only if breakfast terms are clear |\n| Southwest + Hampton | $843 | $826 | Saves $17 | Cheapest practical breakfast option |\n| Southwest + Moxy | $785 | $759 | Saves $26 | Cheapest, but the noise concern remains |\nNone is a clear package bargain unless the exact room type and cancellation terms match.",
+          "role": "assistant"
+        },
+        {
+          "content": "Let's drop Moxy then. I would rather spend a little more than gamble on noise. Is Hampton more convenient for dinner in Northeast than Hyatt?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, slightly. From the Hampton Downtown/Target Center area, Northeast is an easy rideshare and you still have more fallback dinner options nearby. Hyatt Place is workable, but the immediate blocks are quieter on weekend evenings.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much more is the United plus Hampton plan than Southwest plus Hampton?",
+          "role": "user"
+        },
+        {
+          "content": "About $40 total for the two of you: roughly $883 for United + Hampton versus $843 for Southwest + Hampton. United buys ORD convenience and a slightly earlier Sunday arrival. Southwest saves money but means MDW and a later return.",
+          "role": "assistant"
+        },
+        {
+          "content": "That $40 doesn't feel worth switching airports. Any concern with the 3:30 Sunday return if we do brunch before MSP?",
+          "role": "user"
+        },
+        {
+          "content": "No major concern. If brunch is downtown or North Loop, leave around 12:45-1:00 and you should reach MSP with comfortable cushion. If brunch ends up in Northeast, aim closer to 12:30.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Please make the provisional recommendation, but hold off booking until I confirm my sister's dinner address.",
+          "role": "user"
+        },
+        {
+          "content": "Provisional Minneapolis plan: United ORD-MSP after work Friday and the 3:30 p.m. Sunday return, paired with Hampton Inn & Suites Downtown in a one-bed king or queen room. Estimated total for two: about $883 before local rideshares. It is not the cheapest possible plan, but it keeps ORD, includes breakfast, has practical room amenities, and leaves dinner options easy. Before booking, confirm the dinner address, the Hampton cancellation window, and that the selected rate explicitly includes breakfast and the one-bed room type.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_002_s0005",
+      "session_index": 5,
+      "user_id": "tm_pd_v04_user_002"
+    }
+  ],
+  "updated_continuity_summary": "{'durable_user_facts': ['Marisol Greene is a Chicago-based program officer who self-books practical domestic work and occasional personal travel.', 'She responds well to concise comparisons that show total cost, timing, commute friction, useful hotel amenities, and trade-offs.', 'When hotel logistics matter, she checks included breakfast, in-room coffee/fridge, and easy dinner access rather than luxury features.', 'Return timing is often planned around completing a morning meeting or visit before heading to the airport.'], 'current_trips': [{'episode_id': 'ep_2025_02_cleveland_site_visit', 'destination': 'Cleveland', 'dates': 'Feb. 18-20, 2025', 'purpose': 'grant site visit', 'status': 'Hotel choice made and airfare recommendation ready, but no new action in this block.', 'resolved_plan': ['No rental car; use rideshares.', 'Hotel selected: Residence Inn Cleveland University Circle/Medical Center, flexible studio queen, about $184/night before tax, breakfast included, in-room coffee, full refrigerator/kitchenette, and cancellation flexibility.', 'Recommended flights: Tuesday United nonstop from ORD to CLE around 1:05 p.m. CT and Thursday United nonstop from CLE around 2:35 p.m. ET after the noon debrief.'], 'unresolved_followups': ['Ticket airfare and reconfirm live fare/seat availability.', 'Confirm final hotel rate and cancellation terms at booking.']}, {'episode_id': 'ep_2025_03_baltimore_board_meeting', 'destination': 'Baltimore', 'dates': 'Mar. 12-14, 2025', 'purpose': 'board meeting', 'status': 'Event-hotel recommendation set; flights and hotel not yet booked.', 'resolved_plan': ['Use BWI rather than DCA unless a DC-area fare saves well over the added transfer cost and time.', 'Recommended hotel: Baltimore Marriott Waterfront room block at about $224/night before tax because the agenda now includes a 7:30 a.m. Thursday breakfast briefing and Friday optional session at the Marriott.', 'Estimated Marriott stay total is about $517 after tax; the Homewood/Hampton alternatives save roughly $74-$81 after tax but add meeting-day friction.', 'Likely flight targets are United ORD-BWI around Wed 1:05 p.m. outbound/Fri 2:10 p.m. return, or Southwest MDW-BWI if the airport switch is worth the smaller savings.'], 'unresolved_followups': ['Send verification note asking about mini-fridge, in-room coffee maker, cancellation deadline, Wi-Fi, and Friday luggage storage.', 'Book or hold the Marriott block before the extended deadline if amenity and cancellation details are acceptable.', 'Ticket BWI flights after confirming current fare and Friday session timing.']}, {'episode_id': 'ep_2025_04_minneapolis_museum_weekend', 'destination': 'Minneapolis', 'dates': 'Apr. 25-27, 2025', 'purpose': 'personal museum weekend with spouse and family dinner', 'status': 'Provisional plan chosen; not booked pending dinner address.', 'resolved_plan': ['Avoid Moxy Uptown because noise risk is not worth the small savings.', 'Provisional flights: United ORD-MSP Friday 6:15 p.m. outbound and Sunday 3:30 p.m. return, about $476 for two economy tickets.', 'Provisional hotel: Hampton Inn & Suites Downtown in a one-bed king or queen room, about $407 for two nights with breakfast included.', 'Estimated total for two before local rideshares is about $883; package savings were only about $21 and not compelling.'], 'unresolved_followups': [\"Confirm sister's dinner address before booking.\", 'Verify Hampton rate includes breakfast, the one-bed room type, and an acceptable cancellation window.', 'Recheck live airfare and hotel rates before purchase.']}]}",
+  "verification": {
+    "3": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I'd like to come back Friday afternoon",
+          "habit_id": "tm_pd_v04_user_002_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.97,
+          "evidence_quote": "nearby breakfast-included option",
+          "habit_id": "tm_pd_v04_user_002_h02",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "whether the room has coffee/fridge",
+          "habit_id": "tm_pd_v04_user_002_h03",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "an easy dinner option",
+          "habit_id": "tm_pd_v04_user_002_h04",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "No leakage detected. The breakfast-included hotel comparison was user-originated before assistant use."
+    },
+    "4": {
+      "habit_signals": [
+        {
+          "confidence": 0.94,
+          "evidence_quote": "I may attend if I can still make the afternoon flight.",
+          "habit_id": "tm_pd_v04_user_002_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I do not care about a microwave.",
+          "habit_id": "tm_pd_v04_user_002_h03",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "No leakage detected. The free-breakfast mention was a current-trip fact/question, not a clear user endorsement or override."
+    },
+    "5": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Sunday afternoon return.",
+          "habit_id": "tm_pd_v04_user_002_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Closer to downtown restaurants is probably better",
+          "habit_id": "tm_pd_v04_user_002_h04",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.93,
+          "evidence_quote": "One room with one bed, queen or king.",
+          "habit_id": "tm_pd_v04_user_002_h05",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "No leakage detected. United was mentioned only in a personal two-person trip context, so it was not counted as evidence for the scoped work/solo United preference; the bed quote establishes only a current-trip queen-or-king boundary."
+    }
+  }
+}

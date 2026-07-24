@@ -1,0 +1,103 @@
+{
+  "boundary_condition": "Use JetBlue as a tie-breaker among viable flight options; do not override explicit timing, route, cabin, or current-search carrier constraints.",
+  "bundle_id": "tm_v04_bundle_0b70e091b8ab",
+  "condition": "When searching for flights and choosing among airline options for a specific trip.",
+  "confidence": 0.76,
+  "decision": "accept",
+  "default_action": "Look for JetBlue options first and select or recommend JetBlue when it otherwise satisfies the trip constraints.",
+  "exception_condition": "If JetBlue is unavailable or materially worse on required trip constraints, offer other acceptable airlines instead of insisting on JetBlue.",
+  "family": "airline_choice",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_0b70e091b8ab",
+  "induced_at": "2026-07-15T12:30:38.181687+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefers JetBlue flights when available",
+  "preference_value": "JetBlue as a preferred, non-exclusive airline",
+  "rationale": "The cited examples repeatedly identify JetBlue as preferred or selected, while one example lists JetBlue among several acceptable preferred airlines. This supports a reusable synthetic default to favor JetBlue, but not an exclusive-carrier rule.",
+  "seed_value": "jetblue",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "instruction_id flight-7: The user says, \"I'd prefer JetBlue,\" explicitly grounding JetBlue as the preferred airline.",
+      "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+      "turn_index": 8
+    },
+    {
+      "contribution": "instruction_id flight-3: The user says, \"I prefer Jetblue,\" directly supporting a JetBlue preference.",
+      "conversation_id": "dlg-8b06f722-4c02-4dba-8fbe-f251cbe44631",
+      "turn_index": 31
+    },
+    {
+      "contribution": "instruction_id flight-8: The user says they \"would prefer to either take Southwest, JetBlue, United, or Delta,\" supporting JetBlue as a preferred but non-exclusive carrier.",
+      "conversation_id": "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c",
+      "turn_index": 10
+    },
+    {
+      "contribution": "instruction_id flight-6: The user answers \"JetBlue,\" grounding JetBlue as the selected airline value in that flight search.",
+      "conversation_id": "dlg-a489d384-81bd-411e-ab38-c48228527776",
+      "turn_index": 11
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "JetBlue",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 8,
+      "user_utterance": "I'm looking for the flight airline to be either well I'd prefer JetBlue, and I want to leave in the morning and come back in at night after 6:00 p.m."
+    },
+    {
+      "annotated_segment": "JetBlue",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c",
+      "habitual_language": false,
+      "instruction_id": "flight-8",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 10,
+      "user_utterance": "I also would prefer to either take Southwest, JetBlue, United, or Delta."
+    },
+    {
+      "annotated_segment": "Jetblue",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-8b06f722-4c02-4dba-8fbe-f251cbe44631",
+      "habitual_language": false,
+      "instruction_id": "flight-3",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 31,
+      "user_utterance": "I prefer Jetblue."
+    },
+    {
+      "annotated_segment": "JetBlue",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-0a0459c6-e1de-4d4d-b349-4812531a95ed",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 7,
+      "user_utterance": "Okay. Is that on JetBlue or American or United?"
+    },
+    {
+      "annotated_segment": "JetBlue",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-a489d384-81bd-411e-ab38-c48228527776",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 11,
+      "user_utterance": "JetBlue."
+    }
+  ]
+}

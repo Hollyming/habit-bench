@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Apply this only to hotel lodging price selection and ranking; do not infer a reusable dollar ceiling, destination, trip date, route, party size, or budget for flights or activities.",
+  "bundle_id": "tm_v04_bundle_753c3c57acf0",
+  "condition": "When choosing hotel lodging for a trip after the trip-specific destination, dates, party size, and required amenities or quality constraints are known.",
+  "confidence": 0.86,
+  "decision": "accept",
+  "default_action": "Prefer budget-friendly hotels: ask for or apply an affordable nightly price range, and rank lower-priced hotels ahead of pricier options when they still satisfy the required location, rating, and amenity constraints.",
+  "exception_condition": "If the cheaper hotel fails an explicitly requested constraint such as beach or walking-distance location, free Wi-Fi, minimum star/rating level, or upscale/resort style, do not choose it solely for being cheap; keep the required constraint and return the least expensive qualifying option or ask whether to relax price.",
+  "family": "hotel_price_tradeoff",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_753c3c57acf0",
+  "induced_at": "2026-07-15T12:30:21.967947+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Budget-conscious hotel selection",
+  "preference_value": "budget_sensitive",
+  "rationale": "Across independent hotel-task examples, the speakers repeatedly constrain hotel searches by affordability or a nightly price cap while also preserving quality/location/amenity requirements. This supports a controlled synthetic default of budget-sensitive hotel selection, not a fixed numeric price ceiling and not a claim about one real longitudinal user.",
+  "seed_value": "stated_price_band",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "instruction_id hotel-2: User says, \"I want it to be $300 or less per night,\" while also requiring beach/walking-distance location and 4 Google stars, supporting price sensitivity among qualifying hotels.",
+      "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+      "turn_index": 4
+    },
+    {
+      "contribution": "instruction_id hotel-11: User says, \"We can go up to $300 a night,\" while also asking for a downtown tour and free Wi-Fi, supporting use of an affordability limit rather than unrestricted luxury.",
+      "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+      "turn_index": 13
+    },
+    {
+      "contribution": "instruction_id hotel-3: User says, \"I need it to be $250 per night,\" alongside upscale/resort style and minimum four ratings, showing budget constraints coexisting with quality requirements.",
+      "conversation_id": "dlg-da8c2d19-185a-4cf5-9ee2-05933ca2eb97",
+      "turn_index": 7
+    },
+    {
+      "contribution": "instruction_id hotel-9: User references \"$161 per night\" for a selected hotel description, adding another grounded example of price being salient in hotel choice.",
+      "conversation_id": "dlg-52828110-b73b-4b90-858a-5af956c4729c",
+      "turn_index": 54
+    },
+    {
+      "contribution": "instruction_id hotel-8: User asks for a \"relatively cheap hotel\" that is still highly rated, directly supporting the qualitative reusable tradeoff of budget-sensitive but not quality-blind hotel selection.",
+      "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+      "turn_index": 2
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "$300 or less per night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+      "habitual_language": false,
+      "instruction_id": "hotel-2",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 4,
+      "user_utterance": "And we want to be on the beach or close to, within walking distance. I want it to be $300 or less per night. 4 stars on Google."
+    },
+    {
+      "annotated_segment": "up to $300 a night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 13,
+      "user_utterance": "No. We can go up to $300 a night. But I would like the one that has offers a tour of downtown St. Louis. I need the one that has free Wi-Fi."
+    },
+    {
+      "annotated_segment": "$250 per night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-da8c2d19-185a-4cf5-9ee2-05933ca2eb97",
+      "habitual_language": false,
+      "instruction_id": "hotel-3",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 7,
+      "user_utterance": "Yeah, I would like the hotel to feel a little bit upscale and something like a resort style. I need it to be $250 per night and I need minimum four ratings."
+    },
+    {
+      "annotated_segment": "$161 per night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-52828110-b73b-4b90-858a-5af956c4729c",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 54,
+      "user_utterance": "$161 per night polished restored Victorian home with stately rooms and Suites plus free breakfast."
+    },
+    {
+      "annotated_segment": "cheap",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 2,
+      "user_utterance": "There will be four of us traveling, and we're looking to go from May 5th to May 15th. We're looking for a relatively cheap hotel, but that is still highly-rated, at least three and a half stars or Yeah, three and a half."
+    }
+  ]
+}

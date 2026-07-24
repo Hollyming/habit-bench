@@ -1,0 +1,424 @@
+{
+  "habit_id": "tm_pd_v04_user_004_h04",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c02",
+        "c06",
+        "c07",
+        "c08"
+      ],
+      "accepted_total": [
+        "c00",
+        "c02",
+        "c06",
+        "c07",
+        "c08"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Save the standard courtyard room with listed queen bedding and the later cancellation deadline."
+              },
+              {
+                "choice_id": "B",
+                "text": "Take the discounted deluxe king because it is the same price and adds the better view."
+              },
+              {
+                "choice_id": "C",
+                "text": "Book the nearby inn with two doubles to save a little and stay closer to restaurants."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold the casita and ask the host to put a single-bed note on the reservation."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is attractive on ordinary travel grounds because it is the same price and has a nicer view. The probe is hard because the judge must distinguish a durable queen-room pattern from isolated evidence that king rooms were tolerated or useful as fallbacks.",
+            "gold_action": "Save the standard courtyard queen room rather than treating the king room as an automatic upgrade.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0005",
+              "tm_pd_v04_user_004_s0011",
+              "tm_pd_v04_user_004_s0052",
+              "tm_pd_v04_user_004_s0089"
+            ],
+            "label_rationale": "This is a one-shared-room partner stay with no trip-specific request for a king or separate beds. The record supports selecting the queen option when it is clearly available; it also shows that a king can be acceptable in particular circumstances, not that Kara wants every possible king upgrade.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Kara and Mark are choosing a Santa Fe long-weekend hotel after an evening drive. They need one shared room; neither has asked for an upgrade or separate beds. At a 4.4 property, the standard courtyard room is $268/night, cancellable until 48 hours before arrival, with listed queen bedding and in-room coffee/fridge. A discounted deluxe room at the same property is also $268/night and has a king plus a better view, but becomes nonrefundable tonight. A nearby inn has only two doubles at $249, and a casita will not identify the bed type until check-in. Which action is the best fit?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrases about no upgrade or separate-bed request cue avoiding the deluxe king and two-doubles options.",
+              "The listed queen/coffee/fridge details may reflect a lodging preference, but the cancellation advantage is sufficient to select A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c01",
+            "rationale": "A and B are the same price at the same property, but A preserves cancellation while B becomes nonrefundable tonight. The better view/king in B is an unstated upgrade preference; C and D have less suitable or uncertain bedding."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Book the lakeside resort standard king and add a note to switch only if a confirmed queen opens."
+              },
+              {
+                "choice_id": "B",
+                "text": "Book the cottage cluster with the queen request and accept whatever bedding is assigned on arrival."
+              },
+              {
+                "choice_id": "C",
+                "text": "Book the trailhead motel with two doubles because it is closest to the activities."
+              },
+              {
+                "choice_id": "D",
+                "text": "Pay for the luxury lodge king suite because a larger-bed upgrade is available."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B looks attractive because it pursues a queen and saves money, but it fails the confirmation step. The hard distinction is between a confirmed acceptable single-bed setup and a request-only queen that may become unsuitable at check-in.",
+            "gold_action": "Book the confirmed standard king as an acceptable fallback while monitoring for a confirmed queen.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0013",
+              "tm_pd_v04_user_004_s0052",
+              "tm_pd_v04_user_004_s0089",
+              "tm_pd_v04_user_004_s0118"
+            ],
+            "label_rationale": "The queen pattern is not a hard prohibition on confirmed king rooms. In partner contexts, Kara has accepted king-or-queen setups and preferred those over two doubles or uncertain bedding. The gold also avoids converting that boundary into an unnecessary paid king-suite upgrade.",
+            "probe_type": "boundary",
+            "query": "Kara and Dan are finalizing a Lake Placid recovery weekend. They want one shared room and are trying to keep the arrival low-friction. The lakeside resort can guarantee a refundable standard king with coffee/fridge and a quiet wing; its queen category is sold out. A cottage cluster near the trailhead is $30 less and will add a queen request but assigns bedding on arrival. A motel across from the trailhead has only two doubles. A luxury lodge has a prepaid king suite upgrade with the same commute as the resort. Which should the planner book?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The sold-out queen category and the note to switch only if a confirmed queen opens suggest an unstated queen preference.",
+              "The guaranteed/refundable and low-friction cues are sufficient to select A without relying on that preference."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "The explicit goal is a low-friction arrival. A guarantees a refundable room with the stated amenities and quiet wing; B assigns bedding on arrival, C has only two doubles, and D is a prepaid upgrade with no stated need."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Book the connected block hotel with the confirmed queen room and note the mini-fridge waitlist."
+              },
+              {
+                "choice_id": "B",
+                "text": "Book the off-site suite for the confirmed coffee/fridge and accept bedding assignment at check-in."
+              },
+              {
+                "choice_id": "C",
+                "text": "Book the prepaid boutique king to keep a short walk and avoid the block-hotel fridge waitlist."
+              },
+              {
+                "choice_id": "D",
+                "text": "Book the airport queen room for the lower rate and accept the longer morning ride."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is a strong generic choice because it is cheaper and has coffee/fridge confirmed. The memory-dependent step is recognizing that bedding assigned at check-in, especially with two doubles in the allocation pool, is not equivalent to a confirmed room setup for Kara.",
+            "gold_action": "Book the connected block hotel with confirmed queen bedding, while treating the fridge as a caveat for this trip.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0022",
+              "tm_pd_v04_user_004_s0029",
+              "tm_pd_v04_user_004_s0100",
+              "tm_pd_v04_user_004_s0059"
+            ],
+            "label_rationale": "For a solo conference room, confirmed queen bedding carries recurring weight. Here the explicit trip facts make the fridge useful but not essential, so the off-site suite's unassigned bedding is the bigger mismatch. The connected hotel also avoids an early commute penalty.",
+            "probe_type": "conflict_resolution",
+            "query": "Kara has to book a two-night Montreal conference hotel tonight; presenter check-in starts at 7:30 a.m., she will be alone, and she can manage without storing groceries. The connected block hotel is $242/night, cancellable, and can confirm a queen room with in-room coffee, but mini-fridges are waitlisted. A suite hotel nine minutes away is $229/night with coffee/fridge confirmed, but bedding is assigned at check-in among queen, king, or two doubles. A boutique six minutes away has a prepaid king room for $258, and an airport hotel has a confirmed queen for $189 with a 30-minute morning ride. What action best matches her pattern?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrase 'matches her pattern' explicitly invokes private history.",
+              "Confirmed queen, coffee/fridge, and bedding-assignment details cue possible hidden accommodation preferences.",
+              "The explicit early check-in and no-grocery-storage caveat are sufficient to identify A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c04",
+            "rationale": "For a 7:30 a.m. presenter check-in, the connected cancellable hotel with confirmed bedding is the lowest-friction option. The mini-fridge waitlist is acceptable because the query says she can manage without storing groceries; the other options add bedding uncertainty, prepayment, or a long morning ride."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Reserve the standard queen room with the later cancellation deadline."
+              },
+              {
+                "choice_id": "B",
+                "text": "Reserve the deluxe king room for the same price and the nicer view."
+              },
+              {
+                "choice_id": "C",
+                "text": "Reserve the two-queen room as a flexible backup layout."
+              },
+              {
+                "choice_id": "D",
+                "text": "Reserve the smaller double room and add a request for a larger bed."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is tempting because it is the same price and has a view benefit. A judge must use the longitudinal distinction between selectable queen as the usual fit and king as an occasional acceptable alternative.",
+            "gold_action": "Reserve the standard queen room rather than upgrading to the king room by default.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0005",
+              "tm_pd_v04_user_004_s0011",
+              "tm_pd_v04_user_004_s0057",
+              "tm_pd_v04_user_004_s0090"
+            ],
+            "label_rationale": "The room is for Kara alone and no special layout has been requested, so the repeated queen-selection pattern applies. The king evidence in the history supports acceptability in some circumstances, not an automatic preference for a larger listed bed whenever one appears.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Kara is selecting a Palm Springs continuing-ed hotel for a solo Friday-Monday stay. The same 4.3 hotel has two similar rates: a standard queen room at $211/night with cancellation until three days before arrival, or a deluxe king at $211/night with a nicer view but a prepaid deadline tonight. The hotel also has a two-queen room at $217 and a smaller double room at $196. No separate-bed or accessibility setup has been requested. Which room should be chosen?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The queen-versus-king/view contrast and the no separate-bed/accessibility note cue possible hidden room-type preferences.",
+              "The cancellation-deadline contrast is sufficient to select A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "A costs the same as B while keeping a later cancellation deadline. B's nicer view and king bed are unstated upgrade preferences; C costs more for an unnecessary layout, and D is smaller with only a request for a larger bed."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold the downtown standard king, ask to switch only if a confirmed queen opens, and keep the coffee/fridge notes."
+              },
+              {
+                "choice_id": "B",
+                "text": "Book the airport confirmed queen and accept the longer early ride to avoid the standard king."
+              },
+              {
+                "choice_id": "C",
+                "text": "Use the hospital guesthouse with two doubles because it is closest for teaching."
+              },
+              {
+                "choice_id": "D",
+                "text": "Book the inn with the queen waitlist and accept whatever is assigned at check-in."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B follows the queen pattern but over-applies it by imposing a significantly less practical early commute. The probe requires distinguishing the durable default from the supported boundary that a confirmed king can be acceptable in specific circumstances.",
+            "gold_action": "Hold the practical confirmed standard king as an acceptable fallback and monitor for a confirmed queen.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0013",
+              "tm_pd_v04_user_004_s0052",
+              "tm_pd_v04_user_004_s0089",
+              "tm_pd_v04_user_004_s0118"
+            ],
+            "label_rationale": "The history supports queen as the usual target, but not as an absolute rule that overrides every practical hotel decision. A confirmed standard king near the teaching site is acceptable when queen inventory is unavailable; two doubles and waitlisted bedding remain weaker fits.",
+            "probe_type": "boundary",
+            "query": "Kara is booking a short Boise teaching visit for herself and needs a 7:45 a.m. hospital arrival. The downtown suite hotel 6 minutes from the hospital can guarantee only a cancellable standard king with coffee/fridge; its queen inventory is gone. The hospital guesthouse 3 minutes away has only two doubles. Another inn can waitlist a queen, but final bedding is assigned at check-in. The airport hotel has a confirmed queen at a similar rate, but it adds a 24-minute morning ride. Which action should the planner take?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The gone queen inventory and switch-if-confirmed-queen-opens note suggest a hidden queen preference.",
+              "The close, guaranteed, cancellable room with amenities is sufficient to select A without relying on that preference."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c09",
+            "rationale": "A is close to the hospital for the early arrival, cancellable, guaranteed, and has coffee/fridge. B adds a much longer morning ride just to get a queen, C offers only two doubles, and D leaves bedding uncertain at check-in."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c01",
+        "c04",
+        "c05"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c04",
+        "c05",
+        "c06",
+        "c07",
+        "c08"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold the lakeside resort standard room: one king bed is confirmed, on-site hot tub and fitness access are included, and the main trailhead drive is about eight minutes."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold the trailhead cottage cluster: a queen can be requested and is usually honored, final bedding is assigned on arrival, breakfast is included, and the trailhead drive is about five minutes."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold the village inn classic room: two double beds are confirmed, an indoor pool is available, the trailhead drive is about seven minutes, and dinner is walkable."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold the aparthotel studio: bed setup is listed only after booking, kitchenette coffee and fridge are included, the trailhead drive is about six minutes, and the block is quieter."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is a real near miss because it is closer to the trailhead and offers a queen request. The memory-dependent distinction is that Kara's record favors confirmed room setup over chasing an unconfirmed queen, while still not converting king availability into a general upgrade preference.",
+            "gold_action": "Hold the confirmed standard king as an acceptable single-bed fallback instead of relying on a request-only queen assignment.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0011",
+              "tm_pd_v04_user_004_s0013",
+              "tm_pd_v04_user_004_s0052",
+              "tm_pd_v04_user_004_s0089",
+              "tm_pd_v04_user_004_s0118"
+            ],
+            "label_rationale": "The history establishes queen as Kara's usual target, but it also shows that a confirmed king or king-or-queen setup can be acceptable, especially compared with doubles or uncertain bedding. Here B is attractive on location and breakfast, but the queen is only a request with final assignment on arrival. A best respects the boundary: do not over-apply the queen default when a confirmed standard king is the reliable single-bed setup.",
+            "probe_type": "boundary",
+            "query": "Kara and Dan are choosing a Lake Placid base for a hiking and recovery weekend and will use one room. The options below are similarly reviewed, have matching cancellation windows, in-room coffee and mini-fridge, and total costs within about $20 per night; none changes the planned trail schedule. Which action should the planner take?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrase \"hiking and recovery weekend\" directly points to the option with a hot tub.",
+              "The note that trail-drive differences do not affect the schedule neutralizes B's shorter drive.",
+              "Confirmed bedding in A is an additional non-private tie-breaker against bedding assigned on arrival/after booking."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "The stated trip purpose is hiking and recovery, and A uniquely provides on-site hot tub access while also confirming one king bed. The small trailhead-drive differences are explicitly downweighted because none changes the planned trail schedule, and B/D have bedding uncertainty while C has two doubles. A is the generic best on the stated recovery objective."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold the downtown suite hotel: one standard king bed is confirmed, covered parking is included, and the morning ride to the teaching entrance is usually 8-10 minutes."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold the hospital guesthouse: a queen can be requested and most requests clear, bedding is assigned on arrival among queen or two doubles, breakfast is included, and the entrance is an indoor walk."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold the airport hotel: one queen bed is confirmed, breakfast and an airport shuttle are included, and the morning ride to the teaching entrance is usually about 20 minutes."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold the arts-district inn: bed type is assigned after booking, kitchenette coffee and fridge are included, dinner is easiest from the inn, and the morning ride is usually about 12 minutes."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B has strong generic utility for an early hospital arrival, so the answer cannot rest on ordinary convenience alone. The memory-dependent move is knowing that Kara would rather keep a confirmed acceptable single-bed setup than rely on a request-only queen that may turn into doubles.",
+            "gold_action": "Hold the practical confirmed standard king rather than choosing a request-only queen assignment with possible doubles.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0013",
+              "tm_pd_v04_user_004_s0052",
+              "tm_pd_v04_user_004_s0089",
+              "tm_pd_v04_user_004_s0118"
+            ],
+            "label_rationale": "Kara's history supports a queen as the recurring default, but not as an absolute rule that beats every confirmed standard king. It also shows that doubles or unresolved bedding are weaker fits. B is attractive because of the indoor hospital access, but its queen is not confirmed and could become two doubles. A follows the boundary condition by accepting a confirmed king when the queen alternative is not reliable.",
+            "probe_type": "boundary",
+            "query": "Kara is booking a two-night Boise teaching visit for herself. She needs to reach the hospital campus by 7:45 a.m.; the shortlisted properties have similar guest scores, matching cancellation terms, in-room coffee and mini-fridge, and totals within about $20. Which action should the planner take?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The fixed early hospital arrival time makes routing reliability the controlling criterion.",
+              "The phrase \"entrance is an indoor walk\" is a decisive convenience cue.",
+              "Solo travel makes the bedding-assignment drawback much less important."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c09",
+            "rationale": "The explicit requirement is reaching the hospital campus by 7:45 a.m. B is the only option with an indoor walk to the teaching entrance, eliminating morning traffic, rideshare, and parking uncertainty. Because Kara is traveling alone, bedding assigned among queen or two doubles is not a material feasibility problem, and B also includes breakfast. B is the generic best on routing and schedule reliability."
+          }
+        }
+      ],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 4
+    },
+    "query_only_unresolved_count": 8,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "boundary": 1,
+      "conflict_resolution": 1,
+      "evidence_disambiguation": 2
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_004"
+}

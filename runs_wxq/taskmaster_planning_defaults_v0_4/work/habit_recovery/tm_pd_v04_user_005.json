@@ -1,0 +1,507 @@
+{
+  "cache_fingerprint": "3ee1b77fe676669b9b82648c7f8bb0ac81ed89ce9623b737da7c8b193ae8add9",
+  "raw_recovery": {
+    "recovered_habits": [
+      {
+        "boundary_condition": "OAK can become the chosen airport when it offers a nonstop or substantially better timing, or when same-day local logistics make OAK easier.",
+        "confidence": 0.99,
+        "default_action": "Search and rank SFO first; compare OAK only when it plausibly improves schedule or cost; skip SJC unless clearly superior.",
+        "evidence": [
+          {
+            "quote": "SFO is easiest; Oakland is acceptable.",
+            "session_id": "tm_pd_v04_user_005_s0000"
+          },
+          {
+            "quote": "SFO is easiest. Oakland is fine only if it is materially better.",
+            "session_id": "tm_pd_v04_user_005_s0003"
+          },
+          {
+            "quote": "SFO and OAK first; SJC only if it’s a real improvement.",
+            "session_id": "tm_pd_v04_user_005_s0021"
+          },
+          {
+            "quote": "SFO is easiest. OAK is acceptable only if it is clearly better. I do not want SJC for this one.",
+            "session_id": "tm_pd_v04_user_005_s0054"
+          },
+          {
+            "quote": "Start with SFO. OAK or SJC only if they clearly beat it.",
+            "session_id": "tm_pd_v04_user_005_s0120"
+          }
+        ],
+        "exception_condition": "If the user’s car or ground plan is tied to one airport, avoid returning to a different Bay Area airport unless explicitly approved.",
+        "family": "airport_selection",
+        "name": "Start Bay Area searches with SFO, with OAK/SJC only as clear-value fallbacks",
+        "preference_value": "SFO is the default Bay Area airport. Oakland is acceptable only when it is materially cleaner, cheaper, or operationally better. San Jose is usually excluded unless it is an obvious win.",
+        "scope_condition": "Any itinerary originating in the Bay Area, especially work trips where timing and ground logistics matter."
+      },
+      {
+        "boundary_condition": "A one-stop itinerary is acceptable when the connection is comfortable and the schedule is better than a nonstop-plus-drive alternative.",
+        "confidence": 0.99,
+        "default_action": "Rank clean nonstops first; allow one reasonable connection with enough transfer cushion; reject two-stop, silly-layover, or fragile-connection options.",
+        "evidence": [
+          {
+            "quote": "One connection is fine if it is not the kind that fails if one door closes late.",
+            "session_id": "tm_pd_v04_user_005_s0000"
+          },
+          {
+            "quote": "Schedule wins. United is fine if it’s clean, but I don’t want a worse connection just to stay on United. One connection max.",
+            "session_id": "tm_pd_v04_user_005_s0021"
+          },
+          {
+            "quote": "SFO first, Oakland acceptable. No two-stop itineraries and no silly layovers.",
+            "session_id": "tm_pd_v04_user_005_s0030"
+          },
+          {
+            "quote": "No two-stop routing.",
+            "session_id": "tm_pd_v04_user_005_s0038"
+          },
+          {
+            "quote": "One reasonable connection is fine. I don't want a two-stop slog.",
+            "session_id": "tm_pd_v04_user_005_s0082"
+          },
+          {
+            "quote": "For Tucson, do not use a connection under an hour. One short comfortable layover is fine.",
+            "session_id": "tm_pd_v04_user_005_s0115"
+          }
+        ],
+        "exception_condition": "Use a less convenient carrier or airport only when it materially improves schedule reliability or cost without creating a fragile connection.",
+        "family": "flight_routing",
+        "name": "Keep flight routing simple and schedule-led, not loyalty-led",
+        "preference_value": "Prefer nonstops or one comfortable connection. Avoid two-stop itineraries, long layovers, tight transfers, and carrier loyalty choices that worsen the schedule. Reliability and timing beat small fare savings or staying on United.",
+        "scope_condition": "All work and leisure flight planning, especially trips with site access, booth setup, or next-morning commitments."
+      },
+      {
+        "boundary_condition": "A later departure is acceptable only if it still leaves a useful evening and does not threaten the next morning’s commitment.",
+        "confidence": 0.98,
+        "default_action": "Arrive the prior day early enough for dinner, hotel check-in, and slide/material review; choose later returns or extra nights when end times are uncertain.",
+        "evidence": [
+          {
+            "quote": "Priority is not doing a late-night drive right after landing.",
+            "session_id": "tm_pd_v04_user_005_s0001"
+          },
+          {
+            "quote": "I need Tuesday night at the hotel to review materials, not just to fall into bed.",
+            "session_id": "tm_pd_v04_user_005_s0006"
+          },
+          {
+            "quote": "I would rather not burn the whole day, so later departure is better if it still gives me time to review slides Thursday evening.",
+            "session_id": "tm_pd_v04_user_005_s0054"
+          },
+          {
+            "quote": "Also the Friday plant slot might run late. I don’t want to be sprinting to SNA.",
+            "session_id": "tm_pd_v04_user_005_s0062"
+          },
+          {
+            "quote": "Does that leave any real time Monday night? I need at least half an hour after check-in to clean up slides before the 6:15 start.",
+            "session_id": "tm_pd_v04_user_005_s0099"
+          },
+          {
+            "quote": "For the return, assume the review ends around 11:30 but could run to noon. I do not want to sprint from the plant.",
+            "session_id": "tm_pd_v04_user_005_s0115"
+          }
+        ],
+        "exception_condition": "If a meeting end time is firmly capped and airport math is comfortable, same-day return is acceptable; otherwise hold the return or choose the later flight.",
+        "family": "schedule_buffering",
+        "name": "Protect fixed work commitments with arrival and return buffer",
+        "preference_value": "For work trips with early starts, setup windows, plant access, freight checks, or debriefs, choose travel that leaves real prep/recovery time and avoids sprints to or from airports.",
+        "scope_condition": "Client-site, plant, distributor, and conference trips with fixed security, setup, training, teardown, or debrief times."
+      },
+      {
+        "boundary_condition": "Once the user says to book/proceed and the blocking items are settled, complete the booking using the chosen plan.",
+        "confidence": 0.99,
+        "default_action": "Prepare ranked recommendations and keep open items visible; ask before booking flights, hotels, cars, or extra nights.",
+        "evidence": [
+          {
+            "quote": "Do not book until I get the yes.",
+            "session_id": "tm_pd_v04_user_005_s0001"
+          },
+          {
+            "quote": "No booking until I get distributor signoff.",
+            "session_id": "tm_pd_v04_user_005_s0030"
+          },
+          {
+            "quote": "Don’t book until the decorator answers.",
+            "session_id": "tm_pd_v04_user_005_s0049"
+          },
+          {
+            "quote": "Don’t book until receiving confirms the media.",
+            "session_id": "tm_pd_v04_user_005_s0070"
+          },
+          {
+            "quote": "Correct. Don’t book until Greg confirms breakfast by 3, but prepare that set.",
+            "session_id": "tm_pd_v04_user_005_s0110"
+          },
+          {
+            "quote": "Agreed. Do not book yet. Save ABQ as lead unless the Santa Fe airport option drops to within about 150 all-in for both of us. Inn on the Alameda first hotel.",
+            "session_id": "tm_pd_v04_user_005_s0123"
+          }
+        ],
+        "exception_condition": "Urgent trips can be booked quickly, but still only after the user confirms the final package and constraints.",
+        "family": "booking_control",
+        "name": "Do not book until explicit approval and operational unknowns are resolved",
+        "preference_value": "The default is planning and shortlisting, not purchasing. Book only after explicit approval and after key uncertainties such as freight, setup, debriefs, visitor access, or spouse PTO are resolved enough to choose correctly.",
+        "scope_condition": "Any trip that includes pending client approval, freight/gear delivery, site timing, meeting uncertainty, hotel deadline, or personal schedule uncertainty."
+      },
+      {
+        "boundary_condition": "A lower-rated hotel is only considered if there is a specific operational reason and no decent alternative.",
+        "confidence": 0.99,
+        "default_action": "Screen out mediocre properties; rank hotels with strong guest feedback and practical fit over the cheapest or closest option.",
+        "evidence": [
+          {
+            "quote": "No tight budget, but don't put me somewhere marginal.",
+            "session_id": "tm_pd_v04_user_005_s0000"
+          },
+          {
+            "quote": "For the hotel, I want a real desk and I would rather not bother with anything under a 4.0 guest rating unless there is a very specific reason.",
+            "session_id": "tm_pd_v04_user_005_s0003"
+          },
+          {
+            "quote": "Don’t chase cheapest if it drops below good reviews. I’d rather keep it at 4.0 or better.",
+            "session_id": "tm_pd_v04_user_005_s0021"
+          },
+          {
+            "quote": "Hotel needs decent guest feedback; do not put me in a bare-bones motel just because it is closer.",
+            "session_id": "tm_pd_v04_user_005_s0054"
+          },
+          {
+            "quote": "Keep the guest rating around 4.0 or better. I’m not interested in a tired block hotel just because it’s official. Easy dinner matters.",
+            "session_id": "tm_pd_v04_user_005_s0103"
+          },
+          {
+            "quote": "Hotel target maybe 250 to 350 a night before tax. Not luxury, just well reviewed and not noisy.",
+            "session_id": "tm_pd_v04_user_005_s0123"
+          }
+        ],
+        "exception_condition": "For purely functional one-night stays, the hotel can be simple, but still should not feel marginal or poorly reviewed.",
+        "family": "hotel_quality",
+        "name": "Use a hotel quality floor; do not chase cheap or close if reviews are weak",
+        "preference_value": "Hotels should be solidly reviewed, generally 4.0+ when practical, and not marginal, tired, or bare-bones just because they are cheap, close, or official.",
+        "scope_condition": "Work hotels, conference hotels, and leisure hotels where there are viable alternatives."
+      },
+      {
+        "boundary_condition": "A nonflexible option is only worth considering if the trip is firm and the savings are large enough to justify the loss of flexibility.",
+        "confidence": 0.99,
+        "default_action": "Book refundable/cancellable rates and structure uncertain extra nights so they can be shortened or canceled.",
+        "evidence": [
+          {
+            "quote": "Flexible. Client change history speaks for itself.",
+            "session_id": "tm_pd_v04_user_005_s0010"
+          },
+          {
+            "quote": "Okay, hold Fairfield as best fit. If the second night gets confirmed, book two nights. If not, Monday only. Nothing nonrefundable.",
+            "session_id": "tm_pd_v04_user_005_s0051"
+          },
+          {
+            "quote": "Yes. Flexible/cancellable only. I’m driving my own car, so no flights or rental.",
+            "session_id": "tm_pd_v04_user_005_s0052"
+          },
+          {
+            "quote": "Window if available, aisle backup. No prepaid hotel rate.",
+            "session_id": "tm_pd_v04_user_005_s0062"
+          },
+          {
+            "quote": "Compact is fine. No need for the SUV on this one. Keep the hotel refundable if the rate difference is small.",
+            "session_id": "tm_pd_v04_user_005_s0107"
+          },
+          {
+            "quote": "Yes. Refundable hotel unless it is a huge spread. Economy is fine. Windows if available.",
+            "session_id": "tm_pd_v04_user_005_s0122"
+          }
+        ],
+        "exception_condition": "If the refundable spread is small or moderate, take the refundable rate; if it is a huge spread, ask before deciding.",
+        "family": "hotel_rate_rules",
+        "name": "Favor refundable or cancellable hotel rates; avoid prepaid/nonrefundable rooms",
+        "preference_value": "Choose flexible, cancellable, non-prepaid hotel rates by default, especially when client schedules, extra nights, or return dates may change.",
+        "scope_condition": "Hotel bookings for work trips with client-change risk and leisure trips with uncertain PTO or schedule."
+      },
+      {
+        "boundary_condition": "Downtown or airport hotels are acceptable only if they clearly improve the overall trip, support multiple commitments, or the site-side options are weak.",
+        "confidence": 0.97,
+        "default_action": "Choose the hotel zone that reduces morning risk while still providing practical dinner options and simple parking.",
+        "evidence": [
+          {
+            "quote": "Hotel-wise, narrow it to places that can handle an early lobby departure and straightforward parking. No valet or garage puzzle.",
+            "session_id": "tm_pd_v04_user_005_s0001"
+          },
+          {
+            "quote": "I do not want a downtown hotel if the training is by the industrial park.",
+            "session_id": "tm_pd_v04_user_005_s0005"
+          },
+          {
+            "quote": "Hotel should be on the right side for the plant, not downtown Norfolk unless it is clearly better. I need parking and some place to eat nearby.",
+            "session_id": "tm_pd_v04_user_005_s0041"
+          },
+          {
+            "quote": "Gate target is 5:45 a.m. Plant is south of Visalia, off Avenue 280 near Road 80. Keep it 4.0+ on Google if practical, easy self-parking, quick dinner nearby.",
+            "session_id": "tm_pd_v04_user_005_s0051"
+          },
+          {
+            "quote": "Hotel compare Irvine, Costa Mesa, Anaheim. I care about good feedback, parking, and quick dinner. Not a resort weekend.",
+            "session_id": "tm_pd_v04_user_005_s0061"
+          },
+          {
+            "quote": "Hotel should be near either Smyrna plant or La Vergne branch, not downtown.",
+            "session_id": "tm_pd_v04_user_005_s0125"
+          }
+        ],
+        "exception_condition": "If an evening distributor dinner or Thursday meeting shifts the center of gravity, re-evaluate the hotel zone, but do not sacrifice a critical early plant start casually.",
+        "family": "work_hotel_location",
+        "name": "For worksite hotels, prioritize site-side logistics, straightforward parking, and easy dinner",
+        "preference_value": "For plant, distributor, and utility trips, stay near the relevant worksite or best commute triangle, with easy self-parking and nearby or on-site dinner. Avoid downtown or airport hotels when they worsen an early plant start.",
+        "scope_condition": "Work trips involving rental/own car, early site access, industrial parks, plant gates, or multiple local work locations."
+      },
+      {
+        "boundary_condition": "Do not overpay solely for coffee/fridge if a better overall hotel is available; for leisure weekends, room basics may be less important than walkability or vibe.",
+        "confidence": 0.98,
+        "default_action": "Check room details for in-room coffee maker, mini-fridge, and desk/workspace; add notes requesting/confirming them, plus quiet-room notes when relevant.",
+        "evidence": [
+          {
+            "quote": "Hotel should be within about 20 minutes, strong guest ratings, reliable early morning departure, in-room coffee and a mini-fridge if available.",
+            "session_id": "tm_pd_v04_user_005_s0000"
+          },
+          {
+            "quote": "For the room, desk matters, and coffee plus a fridge would be helpful.",
+            "session_id": "tm_pd_v04_user_005_s0005"
+          },
+          {
+            "quote": "I need an actual desk. Coffee and a fridge would be useful, but do not overpay just for that.",
+            "session_id": "tm_pd_v04_user_005_s0004"
+          },
+          {
+            "quote": "Can you note late arrival and confirm the coffee/fridge are actually in the room, not just lobby access?",
+            "session_id": "tm_pd_v04_user_005_s0100"
+          },
+          {
+            "quote": "Verify coffee and fridge, not just breakfast coffee downstairs.",
+            "session_id": "tm_pd_v04_user_005_s0107"
+          },
+          {
+            "quote": "Can you confirm the king room still has the coffee maker and mini-fridge? I don’t want to chase that after getting in late.",
+            "session_id": "tm_pd_v04_user_005_s0132"
+          }
+        ],
+        "exception_condition": "If amenities are request-only, flag them for check-in and keep an acceptable backup if the amenity is mission-critical for samples or early departures.",
+        "family": "hotel_room_amenities",
+        "name": "Verify practical in-room work amenities, especially coffee and mini-fridge",
+        "preference_value": "For work stays, the room should be functional: in-room coffee and mini-fridge are repeatedly requested, with desk/workspace important when slide review is expected. These should be confirmed or added as reservation notes, not assumed from lobby amenities.",
+        "scope_condition": "Business hotels, early-start plant trips, conference hotels, and stays involving samples, slides, or long workdays."
+      },
+      {
+        "boundary_condition": "If no free window is available, choose an aisle or leave the seat for later rather than paying solely for a window.",
+        "confidence": 0.99,
+        "default_action": "Select no-fee window seats for solo trips; avoid paid seat upgrades and exit-row assumptions unless asked; for two-person trips, select adjacent seats first.",
+        "evidence": [
+          {
+            "quote": "If seat selection is available, take a window.",
+            "session_id": "tm_pd_v04_user_005_s0002"
+          },
+          {
+            "quote": "Grab a window if there is no fee, but not exit row.",
+            "session_id": "tm_pd_v04_user_005_s0004"
+          },
+          {
+            "quote": "No checked bags. Put us together even if that means no window.",
+            "session_id": "tm_pd_v04_user_005_s0013"
+          },
+          {
+            "quote": "Yes, together matters more than a solo window this time.",
+            "session_id": "tm_pd_v04_user_005_s0029"
+          },
+          {
+            "quote": "Skip paid seats. Free window where available, otherwise leave it assigned later.",
+            "session_id": "tm_pd_v04_user_005_s0032"
+          },
+          {
+            "quote": "Seats together first; window only if it doesn't split us.",
+            "session_id": "tm_pd_v04_user_005_s0113"
+          }
+        ],
+        "exception_condition": "Open-seating carriers require check-in reminders or EarlyBird only when explicitly approved; do not add paid early boarding by default.",
+        "family": "seat_selection",
+        "name": "Seat policy: free window when solo; adjacent seats when traveling with wife",
+        "preference_value": "When traveling solo, choose a free window seat when available, with no paid seat upgrades. When traveling with his wife, sitting together is more important than window/aisle preference.",
+        "scope_condition": "Flight bookings with selectable seats, including business and personal travel."
+      },
+      {
+        "boundary_condition": "Do not use off-airport rental agencies when terminal pickup protects timing; do not rent a car for downtown convention trips unless a site visit is added.",
+        "confidence": 0.97,
+        "default_action": "Reserve an on-airport compact or compact SUV; keep compact when luggage is minimal; upgrade to compact SUV for cases, plant roads, rain, or uncertain access.",
+        "evidence": [
+          {
+            "quote": "Rental car should be compact from MCI. I do not want to depend on rideshare at the plant gate.",
+            "session_id": "tm_pd_v04_user_005_s0058"
+          },
+          {
+            "quote": "Rental from SNA if we use that flight. Compact should be fine unless I’m carrying the board.",
+            "session_id": "tm_pd_v04_user_005_s0061"
+          },
+          {
+            "quote": "No rental unless someone adds a site visit. Rideshare is fine.",
+            "session_id": "tm_pd_v04_user_005_s0067"
+          },
+          {
+            "quote": "Rental car should be at BOI, not off-airport. Anything odd about the drive to the utility?",
+            "session_id": "tm_pd_v04_user_005_s0070"
+          },
+          {
+            "quote": "For the car, compact SUV is safer if the lot or access roads are muddy.",
+            "session_id": "tm_pd_v04_user_005_s0099"
+          },
+          {
+            "quote": "I will have a Pelican case and maybe a small tote, so compact SUV is probably safer than a sedan.",
+            "session_id": "tm_pd_v04_user_005_s0120"
+          }
+        ],
+        "exception_condition": "For personal city/weekend trips, skip the rental when the hotel and dinners are walkable, unless a hike/day trip requires one.",
+        "family": "ground_transportation",
+        "name": "Use rental cars for plant access; size up to compact SUV when gear, roads, or weather justify it",
+        "preference_value": "For site and plant trips, rent at the airport and avoid relying on rideshare at plant gates. Compact is fine for simple trips, but compact SUV is preferred when carrying gear, using muddy/gravel roads, or dealing with weather. For urban conferences, no rental unless there is an offsite visit.",
+        "scope_condition": "Trips involving plants, utilities, distributor offices, industrial sites, or gear movement; urban convention trips without site visits."
+      },
+      {
+        "boundary_condition": "A short walk is acceptable when guest feedback, quiet-room odds, breakfast, or dinner access improve enough; avoid hotel switches mid-event unless necessary.",
+        "confidence": 0.9,
+        "default_action": "Compare official block versus nearby well-reviewed hotels; choose the block for heavy booth logistics or if it is clearly best, otherwise choose the nearby better-rated practical hotel.",
+        "evidence": [
+          {
+            "quote": "Official block is preferred if it’s not worse. I want good guest feedback, breakfast or coffee easy, dinner nearby, and the room basics visible.",
+            "session_id": "tm_pd_v04_user_005_s0067"
+          },
+          {
+            "quote": "I care about guest feedback more than being one block closer, but I still need the Wednesday morning to be easy.",
+            "session_id": "tm_pd_v04_user_005_s0117"
+          },
+          {
+            "quote": "For hotels, compare the official block against a nearby downtown option. Keep the guest rating around 4.0 or better. I’m not interested in a tired block hotel just because it’s official. Easy dinner matters.",
+            "session_id": "tm_pd_v04_user_005_s0103"
+          },
+          {
+            "quote": "Wednesday dinner may land downtown, not sure where. I want easy restaurants but not a boutique-hotel tax just for fun.",
+            "session_id": "tm_pd_v04_user_005_s0085"
+          },
+          {
+            "quote": "I thought about switching hotels midweek, but no. Compare Hilton block against Element only.",
+            "session_id": "tm_pd_v04_user_005_s0034"
+          },
+          {
+            "quote": "Reception is at the convention center, not the Hyatt. Breakfast before the Tuesday panel matters more than being in the block. Is Slate quick enough?",
+            "session_id": "tm_pd_v04_user_005_s0068"
+          }
+        ],
+        "exception_condition": "If booth materials, package receiving, weather, or repeated booth-room runs make proximity critical, choose the closer official/block hotel despite weaker vibe.",
+        "family": "conference_lodging",
+        "name": "For conferences, official block is not automatic; compare nearby higher-rated hotels",
+        "preference_value": "For conferences and expos, the official block is preferred only if it is not worse. A nearby better-rated hotel with easier sleep, breakfast, dinner, or room control can beat a closer block hotel, as long as booth/panel logistics remain easy.",
+        "scope_condition": "Convention-center trips with booth setup, panels, receptions, teardown, or official hotel blocks."
+      },
+      {
+        "boundary_condition": "A rental car is acceptable for airport transfer or a specific hike/day trip, but not just to reach dinner. A convenience premium is acceptable when it keeps a two- or three-night trip easy.",
+        "confidence": 0.94,
+        "default_action": "Choose central/walkable neighborhoods, avoid car-dependent dinner logistics, keep refundable/cancellable lodging, and favor flights that do not create late-night arrivals or early/dawn returns.",
+        "evidence": [
+          {
+            "quote": "For this weekend, room basics don't matter much. Walkability and a place to sit after dinner matter more.",
+            "session_id": "tm_pd_v04_user_005_s0012"
+          },
+          {
+            "quote": "No car. Keep it to Pearl District, Northwest, or central Portland. Good guest feedback, walkable restaurants, and a cancellable rate matter more than room amenities for this one.",
+            "session_id": "tm_pd_v04_user_005_s0027"
+          },
+          {
+            "quote": "Best overall, but walkable dinners matter. I don't want to rent a car just to get dinner.",
+            "session_id": "tm_pd_v04_user_005_s0045"
+          },
+          {
+            "quote": "she wants to be home by Sunday evening. So no dawn flight and no late return.",
+            "session_id": "tm_pd_v04_user_005_s0046"
+          },
+          {
+            "quote": "Hotel should be well-reviewed, downtown or Uptown, walkable to dinner, quieter room, and a good pool. This is not a work-hotel exercise.",
+            "session_id": "tm_pd_v04_user_005_s0112"
+          },
+          {
+            "quote": "Two adults. SFO first. OAK or SJC only if it is an obvious win. Hotel target maybe 250 to 350 a night before tax. Not luxury, just well reviewed and not noisy.",
+            "session_id": "tm_pd_v04_user_005_s0123"
+          }
+        ],
+        "exception_condition": "If PTO is uncertain, hold Sunday and Monday return versions until the schedule is clear.",
+        "family": "personal_leisure",
+        "name": "Leisure weekends with wife should be low-effort, walkable, quiet, and not car-dependent",
+        "preference_value": "For personal trips with his wife, prioritize a well-reviewed, quiet, centrally located hotel with walkable dinners and a low-effort itinerary. Room amenities are less important than walkability, comfort, pool/vibe when relevant, and sane flight times.",
+        "scope_condition": "Personal long weekends or short leisure trips with his wife."
+      },
+      {
+        "boundary_condition": "Small packages can go to a hotel if confirmed, but heavy/critical cases should go to the distributor/plant/decorator when possible.",
+        "confidence": 0.93,
+        "default_action": "Keep gear status as an open item, confirm who signs and where it is staged, and align flights/hotel/car with any required inspection window.",
+        "evidence": [
+          {
+            "quote": "I will ask the distributor for a receiving contact and dock hours. If they say yes, the hotel should not be involved.",
+            "session_id": "tm_pd_v04_user_005_s0039"
+          },
+          {
+            "quote": "Proceed. Carry-on only, no checked demo case, and no hotel package note.",
+            "session_id": "tm_pd_v04_user_005_s0040"
+          },
+          {
+            "quote": "They can receive the Pelican case at the office, so no hotel package handling.",
+            "session_id": "tm_pd_v04_user_005_s0055"
+          },
+          {
+            "quote": "Put the board as an open item. They might receive it directly, but I don’t have confirmation.",
+            "session_id": "tm_pd_v04_user_005_s0061"
+          },
+          {
+            "quote": "I need a compact SUV, and I need to stop at the contractor trailer to verify the sampling kit before they lock up around 6:30 if possible. Don't book until the carbon media delivery is confirmed.",
+            "session_id": "tm_pd_v04_user_005_s0114"
+          },
+          {
+            "quote": "The demo case is supposed to hit their dock Monday afternoon, so I need enough time to rent a car, check the freight, and get to the hotel.",
+            "session_id": "tm_pd_v04_user_005_s0125"
+          }
+        ],
+        "exception_condition": "If gear misses delivery or receiving is not confirmed, delay booking, convert to remote, adjust arrival, or re-evaluate the trip value.",
+        "family": "equipment_logistics",
+        "name": "Treat demo cases, crates, media, and kits as planning blockers; prefer direct receiving over carrying or hotel handling",
+        "preference_value": "For work trips involving demo/sample gear, confirm shipping, receiving contact, dock hours, and inspection timing before booking or finalizing. Prefer direct shipment to the plant, distributor, contractor trailer, or show decorator; hotel receiving or checked baggage is a fallback, not the lead plan.",
+        "scope_condition": "Trips with demo cases, Pelican cases, sample coolers, media, calibration kits, crates, or show freight."
+      },
+      {
+        "boundary_condition": "Use a fuller comparison during planning, then compress once the decision is made.",
+        "confidence": 0.96,
+        "default_action": "Provide a short, structured summary rather than a long packet; include the recommended option, backups if relevant, open items, confirmations, and key timing sequence.",
+        "evidence": [
+          {
+            "quote": "Give me the shortlist as if I am sending it to my manager. Put the uncertain item plainly.",
+            "session_id": "tm_pd_v04_user_005_s0000"
+          },
+          {
+            "quote": "Good. I need a clean summary I can forward internally and a short note for the client coordinator with my arrival time and hotel address.",
+            "session_id": "tm_pd_v04_user_005_s0002"
+          },
+          {
+            "quote": "Send me the concise calendar text, no long packet.",
+            "session_id": "tm_pd_v04_user_005_s0043"
+          },
+          {
+            "quote": "Put the no-booking recommendation together. Primary should assume Wednesday return; show the Thursday version if the lunch happens.",
+            "session_id": "tm_pd_v04_user_005_s0058"
+          },
+          {
+            "quote": "Give me the concise agenda for my calendar.",
+            "session_id": "tm_pd_v04_user_005_s0089"
+          },
+          {
+            "quote": "Send the final summary with the Monday-through-Thursday sequence so I can paste it into the branch email.",
+            "session_id": "tm_pd_v04_user_005_s0127"
+          }
+        ],
+        "exception_condition": "If the user asks for a detailed comparison, include trade-offs; otherwise keep final summaries brief and operational.",
+        "family": "travel_communication",
+        "name": "Prefer concise, forwardable travel outputs with open items plainly called out",
+        "preference_value": "After comparison or booking, the user wants concise manager/client/calendar/ops summaries that are easy to paste or forward, with uncertain items, timing buffers, confirmations, and next actions stated plainly.",
+        "scope_condition": "Trip shortlists, approval requests, internal summaries, client/distributor notes, and final itineraries."
+      }
+    ]
+  }
+}

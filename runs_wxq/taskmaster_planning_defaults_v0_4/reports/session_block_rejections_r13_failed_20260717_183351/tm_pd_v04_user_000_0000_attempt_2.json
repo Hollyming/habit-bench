@@ -1,0 +1,196 @@
+{
+  "reason": "unnatural_habit_leakage_session_0:User established a price-bounded Delta endorsement, simple connections with nonstop or one short layover, and nearby dinner access. User did not establish a concrete 4.0 hotel-rating threshold, included/free breakfast, or a true afternoon-return preference. Leakage: the assistant introduced the unestablished 4.0+ hotel-rating threshold.",
+  "sessions": [
+    {
+      "domain": "flights_and_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya established this trip’s key constraints: solo ATL-MSP travel Feb 10-13, Eden Prairie client area, simple routing, Monday arrival with time to settle, Thursday afternoon return if feasible, no rental car, business hotel with strong guest ratings, breakfast if practical, and nearby dinner options.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to sketch out a Minneapolis work trip. It would be ATL to MSP, Feb 10 to Feb 13, just me. The client site is somewhere in Eden Prairie but I do not have the exact address yet.",
+          "role": "user"
+        },
+        {
+          "content": "Got it. For now I’ll treat Eden Prairie as the target area and flag anything that depends on the exact office address. What times do you need to be there, and do you have any airline, connection, or hotel constraints?",
+          "role": "assistant"
+        },
+        {
+          "content": "I need to arrive Monday early enough to get settled before Tuesday morning meetings. Return Thursday if the wrap-up ends by noon, ideally not late at night. I’m fine with Delta if it’s reasonable, but I don’t want to pay a silly premium. Please keep connections simple, preferably nonstop or one short layover.",
+          "role": "user"
+        },
+        {
+          "content": "Thanks. I’ll compare a smoother nonstop against a cheaper one-stop rather than assuming one wins. For the hotel, do you want to stay right in Eden Prairie, closer to the airport, or does that depend on the client address?",
+          "role": "assistant"
+        },
+        {
+          "content": "Depends on the address. I won’t have a rental car, so I’d rather be a short rideshare from the office. A business hotel with good guest ratings, breakfast if practical, and dinner options nearby would be ideal.",
+          "role": "user"
+        },
+        {
+          "content": "Here’s a first-pass plan, with the two missing pieces called out: exact client address and Tuesday start time.\n\nFlight shortlist:\n1. Delta nonstop ATL-MSP: Mon departs about 10:20 a.m., arrives about noon. Thu return around 2:15 p.m., arrives ATL about 5:45 p.m. Best schedule and lowest disruption, but likely higher fare.\n2. American one-stop via Chicago: Mon late morning departure, arrives MSP mid-afternoon. Thu return around 1:20 p.m., arrives ATL early evening. Usually cheaper, but the connection adds winter risk and less buffer.\n3. Later nonstop option: Mon early afternoon departure, arrives mid-afternoon. Works if Tuesday start is not too early, but gives you less settling time.\n\nHotel areas:\n- Eden Prairie near Highway 212 / Prairie Center: likely best if the client office is nearby; easiest for rideshare.\n- Bloomington / MSP west side: more hotel inventory and restaurants, but longer morning ride.\n- Downtown Minneapolis: I would not lead with this unless the office turns out to be closer than expected.",
+          "role": "assistant"
+        },
+        {
+          "content": "That makes sense. Assume the Tuesday meeting starts around 9 unless I hear otherwise. I also need this to be something I can route through our company travel tool, not anything prepaid or quirky.",
+          "role": "user"
+        },
+        {
+          "content": "Then I’d keep the Monday arrival no later than mid-afternoon. A 9 a.m. Tuesday start plus no car makes Eden Prairie the safer hotel zone, but I would not lock the hotel until the address is confirmed.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you give me a concise recommendation I can use while I wait for the address?",
+          "role": "user"
+        },
+        {
+          "content": "Recommended holding pattern: route the Delta nonstop if the fare difference is modest, because it gets you in around midday Monday and gives the cleanest Thursday afternoon return. Keep the American one-stop as the budget backup if the fare gap is more than your manager will tolerate.\n\nFor hotels, shortlist Eden Prairie first: Hampton Inn/SpringHill/Hyatt Place-type properties with guest ratings around 4.0+ and breakfast or easy nearby food. Use Bloomington only if rates in Eden Prairie jump or the final office address is closer to the airport side.",
+          "role": "assistant"
+        },
+        {
+          "content": "What do you need from me to firm it up?",
+          "role": "user"
+        },
+        {
+          "content": "Three items: the exact client address, the confirmed Tuesday start time, and any nightly hotel cap from your travel policy. Once you have those, I can narrow this to one flight recommendation plus two or three hotel choices with the commute and dinner situation spelled out.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0000",
+      "session_index": 0,
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The confirmed office location and 9 a.m. start made the nonstop preferable despite a higher fare. Maya chose the Delta nonstop for approval and asked to request a window seat if available.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I have the Minneapolis details now. The office is in Eden Prairie near Technology Drive, and Tuesday starts at 9. I need to book by Friday. Can we decide between the Delta nonstop and the cheaper American option?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. With a 9 a.m. Tuesday start and no late arrival Monday, these are the cleanest tradeoffs:\n\nDelta nonstop: ATL 10:25 a.m. to MSP 12:05 p.m.; return Thu MSP 2:15 p.m. to ATL 5:45 p.m. About $462.\n\nAmerican one-stop: ATL 11:05 a.m. through Chicago, MSP 3:45 p.m.; return Thu 1:20 p.m. through Chicago, ATL 6:55 p.m. About $316.\n\nDelta costs about $146 more but saves time and avoids the connection risk.",
+          "role": "assistant"
+        },
+        {
+          "content": "Monday after school drop-off is the issue. I can leave Decatur around 8:15. Is that enough for the Delta flight?",
+          "role": "user"
+        },
+        {
+          "content": "It is workable but not generous. Leaving Decatur at 8:15 for a 10:25 departure gives you roughly two hours at ATL before takeoff, less if traffic or security is rough. The American 11:05 gives more airport buffer, but then you arrive in Minneapolis much later.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there a later American return that is still reasonable?",
+          "role": "user"
+        },
+        {
+          "content": "There is a mid-afternoon American routing, but it connects through Charlotte and gets you back to Atlanta around 9 p.m. I would not call that a good match unless the price is the deciding factor. The earlier American return is cheaper, but it still has the Chicago connection.",
+          "role": "assistant"
+        },
+        {
+          "content": "I think the nonstop is defensible if it keeps Thursday cleaner. Would you recommend that one for approval?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I’d route the Delta nonstop for approval: it fits the Monday arrival, supports the Thursday afternoon return, and removes connection risk in February. The fare premium is meaningful but not extreme given the schedule.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please include a window seat request if the tool lets me. If not, I’ll handle it after ticketing.",
+          "role": "user"
+        },
+        {
+          "content": "Approval note: Delta nonstop ATL-MSP, Feb 10-13. Outbound Mon 10:25 a.m.-12:05 p.m.; return Thu 2:15 p.m.-5:45 p.m.; estimated fare $462. Business reason for higher fare: avoids a winter connection, arrives with time to prepare for a 9 a.m. client start, and preserves an afternoon return after the noon wrap-up. Add window seat request where available; if the seat map is locked until ticketing, handle it after the reservation is issued.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0001",
+      "session_index": 1,
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya selected Hampton Inn Eden Prairie as the hotel booking candidate, with Hilton Garden Inn Eden Prairie as backup. The Bloomington option was deprioritized because the lower rate did not offset the added commute risk.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "The Minneapolis flights are moving through approval, so I need the hotel now. Three nights, Feb 10 to 13, near the Eden Prairie office on Technology Drive. No rental car.",
+          "role": "user"
+        },
+        {
+          "content": "Great. I’ll focus on a short rideshare to Technology Drive rather than airport hotels unless there is a strong price reason. Do you have a nightly cap, and is breakfast required or just helpful?",
+          "role": "assistant"
+        },
+        {
+          "content": "Under about $210 before tax would be ideal. Breakfast is helpful but not mandatory. I do want a solid guest rating, quiet enough to work in the evening, and some dinner options without a long rideshare after I get in Monday.",
+          "role": "user"
+        },
+        {
+          "content": "Here are four practical choices:\n\n1. Hampton Inn Eden Prairie: about $165/night, guest rating around 4.3, free breakfast, roughly 8-10 minutes to the office by rideshare. Several casual dinner options nearby. Best all-around fit.\n\n2. Hyatt Place Eden Prairie: about $178/night, rating around 4.2, larger room setup and generally good work space. Breakfast may depend on booking channel or membership, so I’d verify in the company tool.\n\n3. Hilton Garden Inn Eden Prairie: about $189/night, rating around 4.1, quieter business feel and on-site dining. Breakfast usually costs extra.\n\n4. Bloomington west-side option: about $128/night, rating around 4.0, free breakfast, but 20-25 minutes to the office in morning traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "The cheaper Bloomington one is tempting. Is the commute enough of a downside to skip it?",
+          "role": "user"
+        },
+        {
+          "content": "For this trip, probably yes unless the Eden Prairie rates jump. The Bloomington savings might be $35-$60 per night, but you’d add rideshare time and more variability both Tuesday morning and after dinner. Since you have a 9 a.m. first meeting, I’d keep the hotel closer to the office.",
+          "role": "assistant"
+        },
+        {
+          "content": "Between Hampton and Hilton Garden Inn, which would you pick?",
+          "role": "user"
+        },
+        {
+          "content": "I’d pick Hampton if the rate and cancellation terms are normal. It checks the most boxes at once: close to the office, good guest rating, included breakfast, and nearby casual restaurants. Hilton Garden Inn is the backup if Hampton is sold out or reviews mention noise on the specific room type available.",
+          "role": "assistant"
+        },
+        {
+          "content": "Any reason to pay more for Hyatt Place?",
+          "role": "user"
+        },
+        {
+          "content": "Only if the room layout matters or Hampton’s refundable rate disappears. Hyatt Place may give you a better desk/sitting area, but the breakfast uncertainty makes it less clean for this stay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay, make Hampton the booking candidate and Hilton Garden Inn the backup. Please give me the exact notes to put in the request.",
+          "role": "user"
+        },
+        {
+          "content": "Use this:\n\nPrimary hotel: Hampton Inn Eden Prairie, Feb 10-13, refundable business rate if available, target around $165/night before tax. Rationale: short rideshare to Technology Drive client office, guest rating around 4.3, free breakfast, and nearby dinner options for Monday arrival without a rental car.\n\nBackup: Hilton Garden Inn Eden Prairie, target around $189/night before tax. Rationale: comparable commute and business-friendly setting with on-site dining; breakfast may be extra.\n\nAvoid the cheaper Bloomington option unless Eden Prairie rates change materially, because the commute adds risk for the 9 a.m. Tuesday start.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0002",
+      "session_index": 2,
+      "user_id": "tm_pd_v04_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya is planning a solo Minneapolis client implementation trip from ATL to MSP for Feb 10-13. The client office is in Eden Prairie near Technology Drive, with a 9 a.m. Tuesday start and likely Thursday noon wrap-up. She routed the Delta nonstop for approval: Mon 10:25 a.m.-12:05 p.m. and Thu 2:15 p.m.-5:45 p.m., estimated fare $462, with a window seat request if available after ticketing. For lodging, she chose Hampton Inn Eden Prairie as the primary three-night hotel candidate because it is close to the office, around $165/night before tax, well rated, includes breakfast, and has nearby dinner options; Hilton Garden Inn Eden Prairie is the backup. Remaining follow-ups: confirm final flight ticketing, seat assignment availability, and live hotel rate/cancellation terms in the company travel tool."
+}

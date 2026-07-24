@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "This applies only to flight onboard connectivity amenities, not to destination choice, airline loyalty, cabin class, schedule, lodging, or ground transportation.",
+  "bundle_id": "tm_v04_bundle_ff00dc6c7b4d",
+  "condition": "When comparing or booking flight options and onboard amenities are available as filters or descriptors, use free onboard Wi-Fi as a preferred amenity.",
+  "confidence": 0.94,
+  "decision": "accept",
+  "default_action": "Prefer flight options that include free Wi-Fi; if free Wi-Fi is not clearly available, look for flights with Wi-Fi availability and flag whether it is free.",
+  "exception_condition": "If no otherwise acceptable flight offers free Wi-Fi, do not fail the booking automatically; present the best matching non-free-Wi-Fi or Wi-Fi-available options and call out the tradeoff.",
+  "family": "flight_feature",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_ff00dc6c7b4d",
+  "induced_at": "2026-07-15T12:28:38.674274+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prioritizes flights with free Wi-Fi",
+  "preference_value": "free_wi_fi_available",
+  "rationale": "Across independent scripted flight-search conversations, users repeatedly ask for free Wi-Fi as a desired flight amenity. Some utterances make it a need, while others phrase it as preferred or conditional on availability, so the controlled synthetic default should prioritize but not make it an absolute universal requirement.",
+  "seed_value": "free_wi_fi",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "The user states, “I also need free Wi-Fi,” supporting free onboard Wi-Fi as a valued flight feature.",
+      "conversation_id": "dlg-31e22a5d-8008-4d08-a498-2fe95f7139a3",
+      "turn_index": 14
+    },
+    {
+      "contribution": "The user says they “need something with free Wi-Fi,” grounding the amenity preference in a flight search.",
+      "conversation_id": "dlg-e60b1ea3-9946-4d0c-985c-b94ce0e331c5",
+      "turn_index": 6
+    },
+    {
+      "contribution": "The user asks for “free Wi-Fi, or Wi-Fi available,” supporting a default that prioritizes free Wi-Fi but can fall back to Wi-Fi availability.",
+      "conversation_id": "dlg-af30c44a-b4fa-4227-8dfe-4147d003871f",
+      "turn_index": 7
+    },
+    {
+      "contribution": "The user wants “a non-stop flight with free Wi-Fi if that's available,” supporting a preferred amenity with an availability caveat.",
+      "conversation_id": "dlg-919c3820-4333-41fa-a59d-be03fa38b63c",
+      "turn_index": 4
+    },
+    {
+      "contribution": "The user says “there should be free Wi-Fi in the flights” because they have work to do, reinforcing the reusable flight-feature preference.",
+      "conversation_id": "dlg-7372d8fc-b362-4f04-845b-78046b14b3bd",
+      "turn_index": 7
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "free Wi-Fi",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-31e22a5d-8008-4d08-a498-2fe95f7139a3",
+      "habitual_language": false,
+      "instruction_id": "flight-5",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 14,
+      "user_utterance": "I also need free Wi-Fi."
+    },
+    {
+      "annotated_segment": "free Wi-Fi",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-e60b1ea3-9946-4d0c-985c-b94ce0e331c5",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 6,
+      "user_utterance": "I would like to pay up to $1,500, I need something with free Wi-Fi, I prefer business but the economy is also okay with me."
+    },
+    {
+      "annotated_segment": "free Wi-Fi",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-af30c44a-b4fa-4227-8dfe-4147d003871f",
+      "habitual_language": false,
+      "instruction_id": "flight-13",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 7,
+      "user_utterance": "I would prefer business class and also a flight that has like free Wi-Fi, or Wi-Fi available."
+    },
+    {
+      "annotated_segment": "free Wi-Fi",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-919c3820-4333-41fa-a59d-be03fa38b63c",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 4,
+      "user_utterance": "The particular airlines don't matter to me. I hope for a non-coach class is okay. I want a non-stop flight with free Wi-Fi if that's available."
+    },
+    {
+      "annotated_segment": "free Wi-Fi",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-7372d8fc-b362-4f04-845b-78046b14b3bd",
+      "habitual_language": false,
+      "instruction_id": "flight-14",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 7,
+      "user_utterance": "All right. Well, when you're searching, just know that I'm okay with layovers. And, there should be free Wi-Fi in the flights. I have a lot of work to do."
+    }
+  ]
+}

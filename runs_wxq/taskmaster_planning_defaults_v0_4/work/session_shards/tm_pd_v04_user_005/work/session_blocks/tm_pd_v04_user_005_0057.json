@@ -1,0 +1,334 @@
+{
+  "cache_fingerprint": "b0fac8095a7f8b0c6d449af8d5ac1c4f07d610fce64acb69416719766c59b4ce",
+  "sessions": [
+    {
+      "domain": "pre_trip_logistics_followup",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Updated the booked Spokane itinerary with revised access, badge, and service-door instructions; verified earlier hotel departure timing and outbound window-seat status without changing flights or hotel.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Casey sent a revised packet for Spokane. Please do not reopen the flights or hotel. Update notes: north training entrance off Riverside, badge pickup 8:00-8:20, and the demo case goes through the service door, not the lobby. Also check hotel-to-office timing and outbound seat.",
+          "role": "user"
+        },
+        {
+          "content": "Updated. I changed the site notes to north training entrance/Riverside, badge window 8:00-8:20, and demo case via service door. With that badge window, leave the Davenport around 7:20 a.m.; the old 7:35 rideshare was aimed at the 8:30 start and is tight now. Alaska still shows window seats on both outbound legs. No flight or hotel details changed.",
+          "role": "assistant"
+        },
+        {
+          "content": "Add Mara Ortiz at receiving as the person meeting me at the service door. Otherwise good.",
+          "role": "user"
+        },
+        {
+          "content": "Added Mara Ortiz as the service-door contact and kept Casey as the distributor lead. Spokane itinerary now shows 7:20 a.m. hotel departure, badge pickup first, then demo case through the service door. No other changes.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0057",
+      "session_index": 57,
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "domain": "client_site_combined_flight_hotel_search",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Created a no-booking Kansas City shortlist. Jonah established the Monday-Wednesday base plan, SFO afternoon/simple-routing preference for this trip, arrival cutoff, compact rental need, and hotel tradeoffs around commute, parking, guest feedback, dinner, and room basics.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "SFO in the afternoon if it works",
+            "habit_id": "tm_pd_v04_user_005_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.95,
+            "evidence_quote": "Parking and a coffee/fridge setup matter more than the lobby.",
+            "habit_id": "tm_pd_v04_user_005_h05",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.93,
+            "evidence_quote": "I need decent dinner, not a big night out.",
+            "habit_id": "tm_pd_v04_user_005_h06",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I need an initial pass on Kansas City. Utility is west of town near Bonner Springs. They want me there Tuesday July 21 for a pilot-media review and Wednesday morning for ops. There may be a distributor lunch Thursday, not confirmed. Look at Monday Bay Area flights into MCI; keep the routing simple and don't land stupid late. Also compare west-suburb versus downtown hotels with guest feedback and parking in view, plus a rental car. No booking yet.",
+          "role": "user"
+        },
+        {
+          "content": "Got it. Should I build the base plan as Monday July 20 to Wednesday July 22, with a Thursday return version only if the lunch appears? And do you want me to start with SFO or compare OAK/SJC too?",
+          "role": "assistant"
+        },
+        {
+          "content": "Base it Monday to Wednesday. Show a Thursday return as an add-on. SFO in the afternoon if it works; compare another Bay Area airport only if it clearly improves the schedule.",
+          "role": "user"
+        },
+        {
+          "content": "What are the site times you need to protect Tuesday and Wednesday, at least as they stand today?",
+          "role": "assistant"
+        },
+        {
+          "content": "Tuesday visitor check-in is 8:30 right now. Wednesday operations meeting is 9 to noon.",
+          "role": "user"
+        },
+        {
+          "content": "Flight pass: 1) Best fit: United SFO-DEN-MCI Mon Jul 20, 1:15 p.m.-8:28 p.m., 1 hr 12 min in Denver. Return Wed MCI-DEN-SFO 5:45 p.m.-10:18 p.m.; Thursday add-on return 3:50 p.m.-8:21 p.m. Clean timing, seat selection, one connection. 2) Acceptable backup: Southwest OAK-DEN-MCI 12:40 p.m.-7:55 p.m., similar connection and earlier arrival, but it means Oakland and no assigned seats. Wed return about 6:15 p.m.-10:55 p.m. 3) Backup only: Delta SFO-SLC-MCI 2:05 p.m.-9:34 p.m.; connection is fine, arrival is later. I would skip the two-stop and post-10 p.m. arrivals.",
+          "role": "assistant"
+        },
+        {
+          "content": "Cut anything landing after 9:30. And don't push Oakland unless it really wins by more than half an hour.",
+          "role": "user"
+        },
+        {
+          "content": "That removes the Delta option. United SFO via Denver arrives 8:28 and keeps the airport simple. Southwest OAK arrives about 33 minutes earlier, so it does not clear your threshold once you factor in getting to Oakland and open seating. I would rank United first, Southwest only if fare or baggage flexibility becomes important.",
+          "role": "assistant"
+        },
+        {
+          "content": "Hotel side: how bad is downtown for Tuesday morning? I need decent dinner, not a big night out. Parking and a coffee/fridge setup matter more than the lobby.",
+          "role": "user"
+        },
+        {
+          "content": "Hotel comparison: Hyatt Place Kansas City/Lenexa City Center: about 22-28 minutes to the Bonner Springs area in the morning, 4.4-ish guest feedback, free self-parking, breakfast, in-room coffee maker and mini-fridge listed, and easy dinner around Lenexa Public Market. Holiday Inn Express Shawnee/KC West: a little closer to the site, 18-22 minutes, free parking, solid but plainer feedback around 4.2, room fridge/coffee maker listed, fewer dinner choices nearby. Loews Kansas City downtown: stronger full-service stay and dining, roughly 4.6 feedback, but paid parking and a 35-50 minute Tuesday drive depending on traffic. Crossroads Hotel: great dinner area and high feedback, but paid parking and I would confirm mini-fridge availability by room type. Downtown is doable, but it adds the risk to the morning.",
+          "role": "assistant"
+        },
+        {
+          "content": "Which suburban one is closest without feeling like too much of a compromise?",
+          "role": "user"
+        },
+        {
+          "content": "Hyatt Place Lenexa is the better balance. It is not the absolute closest, but it keeps the morning drive short, has better food options nearby, free parking, and the room basics look more reliable. Holiday Inn Express Shawnee is the acceptable backup if you decide every morning minute matters more than the nicer surrounding area.",
+          "role": "assistant"
+        },
+        {
+          "content": "Rental car should be compact from MCI. I do not want to depend on rideshare at the plant gate.",
+          "role": "user"
+        },
+        {
+          "content": "Agreed. Compact rental shortlist at MCI: National, about $52/day, pickup after the 8:28 p.m. arrival and return Wed around 4:15-4:30 p.m.; Enterprise, about $49/day, similar terms; Hertz, about $57/day. All keep you in the compact class rather than economy. Adding Thursday would just extend the return to Thursday afternoon and add roughly one rental day.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put the no-booking recommendation together. Primary should assume Wednesday return; show the Thursday version if the lunch happens.",
+          "role": "user"
+        },
+        {
+          "content": "No booking made. Recommended package: United SFO-DEN-MCI Monday 1:15-8:28, return Wednesday 5:45-10:18; gives you a reasonable Monday arrival and enough buffer after the Wednesday noon meeting. Hotel: Hyatt Place Lenexa City Center, Monday-Wednesday, refundable king if available, free parking, short drive to Bonner Springs, and dinner nearby without going downtown. Car: compact from National or Enterprise at MCI, pickup Monday evening, return Wednesday around 4:30 before the 5:45 flight. Thursday add-on: keep the same outbound/hotel/car, extend hotel one night, return Thursday around 3:50-8:21 after the lunch.",
+          "role": "assistant"
+        },
+        {
+          "content": "Add cancellation and parking notes to that.",
+          "role": "user"
+        },
+        {
+          "content": "Added. Hyatt Place Lenexa is the hotel lead only if the refundable rate is available; likely cancel-by point is Sunday evening, July 19, but I would verify at booking. It has free self-parking. Downtown backups have better dining but paid parking and a longer Tuesday commute. Ask before booking: Thursday lunch decision, refundable hotel rate, and whether to ticket the United SFO option over the Southwest Oakland backup.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0058",
+      "session_index": 58,
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "domain": "client_site_booking_confirmation",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Finalized the Kansas City utility visit after the Thursday add-on was removed and the Tuesday access time moved earlier. Booked United via Denver, Hyatt Place Lenexa, and a compact MCI rental, with window seats, room requests, parking, and site timing documented.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Go ahead and book the SFO Monday afternoon United via Denver",
+            "habit_id": "tm_pd_v04_user_005_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "SFO Monday afternoon",
+            "habit_id": "tm_pd_v04_user_005_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Take window seats if available.",
+            "habit_id": "tm_pd_v04_user_005_h02",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Add quiet room, coffee maker, and mini-fridge to the hotel request.",
+            "habit_id": "tm_pd_v04_user_005_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "KC is set: no Thursday lunch. Tuesday visitor check-in moved up to 7:00 a.m. Go ahead and book the SFO Monday afternoon United via Denver, Wednesday evening return, compact car from MCI, and Hyatt Place Lenexa if the refundable rate is still there.",
+          "role": "user"
+        },
+        {
+          "content": "I can do that. Booking set I have: United SFO-DEN-MCI Mon Jul 20, 1:15 p.m.-8:28 p.m.; return MCI-DEN-SFO Wed Jul 22, 5:45 p.m.-10:18 p.m. Hyatt Place Kansas City/Lenexa City Center, Jul 20-22, refundable king. Compact rental at MCI, pickup after arrival and return about 4:30 p.m. Wednesday. Earlier check-in means leaving the hotel about 6:20 a.m. Confirm?",
+          "role": "assistant"
+        },
+        {
+          "content": "Confirmed. Take window seats if available. Add quiet room, coffee maker, and mini-fridge to the hotel request.",
+          "role": "user"
+        },
+        {
+          "content": "Flight fare is still available, hotel refundable rate is available, and the compact car rate is still open. The airline ticket will be changeable for credit but not cash-refundable. Hotel cancel deadline shows Sunday Jul 19 at 6 p.m. local. Proceed?",
+          "role": "assistant"
+        },
+        {
+          "content": "Proceed.",
+          "role": "user"
+        },
+        {
+          "content": "Flight booked: United confirmation U7K4QC. Seats assigned: 12A SFO-DEN, 18A DEN-MCI, 21A MCI-DEN, and 16A DEN-SFO, all windows. The Wednesday return gives you about five hours after the scheduled noon finish before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Hotel done too?",
+          "role": "user"
+        },
+        {
+          "content": "Hotel booked: Hyatt Place Kansas City/Lenexa City Center, confirmation HPK5428, king room, Jul 20-22. Refundable; cancel by Jul 19 at 6 p.m. local time. Notes added: quiet room if available, early Tuesday departure, coffee maker and mini-fridge requested. Free self-parking is included, and dinner options nearby include Lenexa Public Market and a few casual places on 87th.",
+          "role": "assistant"
+        },
+        {
+          "content": "Reserve the car and keep it compact, not economy.",
+          "role": "user"
+        },
+        {
+          "content": "Car reserved: National at MCI, compact class, confirmation NAT50817. Pickup Mon Jul 20 around 8:45 p.m.; return Wed Jul 22 at 4:30 p.m. Fuel policy is full-to-full. I kept it at compact and did not downgrade to economy.",
+          "role": "assistant"
+        },
+        {
+          "content": "Add the site timing: 7:00 badge Tuesday, pilot review after that, Wednesday ops 9 to noon.",
+          "role": "user"
+        },
+        {
+          "content": "Added to the itinerary. Tuesday: leave Hyatt Place Lenexa about 6:20 a.m., target plant arrival 6:45-6:50, visitor badge at 7:00, then pilot-media review. Wednesday: check out before the site visit, operations meeting 9:00-noon, keep the bag in the trunk, then aim for MCI by 4:15-4:30 for the 5:45 flight. No Thursday lunch or extra hotel night is included.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0059",
+      "session_index": 59,
+      "user_id": "tm_pd_v04_user_005"
+    }
+  ],
+  "updated_continuity_summary": "{'ongoing_trips': ['Kansas City utility pilot review Jul 20-22 is booked: United SFO-DEN-MCI Mon Jul 20 1:15 p.m.-8:28 p.m. and MCI-DEN-SFO Wed Jul 22 5:45 p.m.-10:18 p.m., confirmation U7K4QC, window seats assigned on all legs. Hotel is Hyatt Place Kansas City/Lenexa City Center Jul 20-22, king room, confirmation HPK5428, refundable/cancel by Jul 19 at 6 p.m. local time, free self-parking, quiet room plus coffee maker and mini-fridge requested. Compact rental car is National at MCI, confirmation NAT50817, pickup Mon around 8:45 p.m. and return Wed around 4:30 p.m. Tuesday visitor badge is 7:00 a.m.; leave hotel about 6:20 a.m. Wednesday operations meeting is 9:00-noon. No Thursday distributor lunch or extra hotel night.'], 'resolved_plans': ['Palm Springs Apr 24-26 personal weekend, Louisville May 16-20 conference, and Visalia/Tulare Jun 8-10 drive-to plant visit are completed/resolved.', 'Spokane Jun 25-27 distributor controls training is completed/resolved. Final packet notes before travel used the north Riverside training entrance, 8:00-8:20 badge window, Mara Ortiz at the service door for the demo case, and no rental car.', 'Earlier Minneapolis, Hampton Roads, and other previously listed trips remain resolved.'], 'unresolved_follow_ups': ['Kansas City: monitor United schedule and seat changes, keep the Jul 19 hotel cancellation deadline visible, watch for any further utility badge or plant-access changes, and verify coffee maker/mini-fridge at check-in if critical.', 'If the Kansas City flight schedule slips later, revisit the plan because the Tuesday 7:00 a.m. visitor check-in is now the key protected constraint.'], 'durable_user_facts': 'Jonah remains schedule-reliability focused and comparison-oriented. For work trips, protected meeting timing and clean one-connection routings can outweigh carrier or fare differences. He likes concise best-fit versus backup framing, compact rental cars for plant sites where rideshare is unreliable, and hotels with solid guest feedback, practical parking, room basics for early starts, and nearby dinner.'}",
+  "verification": {
+    "57": {
+      "habit_signals": [],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "No user utterance states a concrete candidate-habit value. Asking to check the outbound seat does not itself establish a window-seat preference."
+    },
+    "58": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "SFO in the afternoon if it works",
+          "habit_id": "tm_pd_v04_user_005_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.95,
+          "evidence_quote": "Parking and a coffee/fridge setup matter more than the lobby.",
+          "habit_id": "tm_pd_v04_user_005_h05",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.93,
+          "evidence_quote": "I need decent dinner, not a big night out.",
+          "habit_id": "tm_pd_v04_user_005_h06",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "The user explicitly requested an afternoon SFO departure if workable, prioritized coffee/fridge hotel setup, and asked for decent dinner access. Mentions of guest feedback lack a concrete rating threshold, and 'keep the routing simple' is not a concrete one-short-layover value."
+    },
+    "59": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Go ahead and book the SFO Monday afternoon United via Denver",
+          "habit_id": "tm_pd_v04_user_005_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "SFO Monday afternoon",
+          "habit_id": "tm_pd_v04_user_005_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Take window seats if available.",
+          "habit_id": "tm_pd_v04_user_005_h02",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Add quiet room, coffee maker, and mini-fridge to the hotel request.",
+          "habit_id": "tm_pd_v04_user_005_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "The user directly selected United, Monday afternoon departure, window seats if available, and a coffee-maker/mini-fridge hotel request. No user utterance provides a concrete customer-rating threshold or restaurant-access preference in this session."
+    }
+  }
+}

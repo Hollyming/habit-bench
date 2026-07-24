@@ -1,0 +1,290 @@
+{
+  "cache_fingerprint": "1a2dcbb6a83a5c40b23dae6a1212c3f9d817434ab8cbe6480e5731aa374503b1",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya confirmed the Cary office timing and chose the Delta nonstop ATL-RDU/RDU-ATL itinerary over a cheaper one-stop because the savings did not justify connection risk. She rejected the earlier Friday return as too tight unless the client ends by noon, and asked to note a window seat only if available without forcing the issue.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.94,
+            "evidence_quote": "choose the Delta nonstop with the later Friday return",
+            "habit_id": "tm_pd_v04_user_000_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.95,
+            "evidence_quote": "otherwise I can deal with it after ticketing",
+            "habit_id": "tm_pd_v04_user_000_h01",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The client confirmed the Cary office address and the first meeting is 8:30 Tuesday. Can you compare the Delta nonstop against the cheaper connection one more time? I need to route the flight approval by Friday.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. For ATL-RDU May 5 and RDU-ATL May 9, I would compare it this way: 1) Delta nonstop, ATL 6:25 p.m. to RDU 7:50 p.m.; return RDU 5:55 p.m. to ATL 7:25 p.m.; about $384. Best schedule, no connection, but Friday return seats are limited. 2) Cheaper one-stop via Charlotte; Monday arrival about 9:40 p.m.; return around midafternoon; about $291. Saves about $90, but adds a transfer and a late arrival before an 8:30 start. 3) Delta nonstop with 2:35 p.m. return; about $368, but risky if Friday wrap-up slips.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the cheaper connection actually bad, or just annoying?",
+          "role": "user"
+        },
+        {
+          "content": "Mostly risk without much payoff. On a short ATL-RDU trip, the connection adds about two hours, creates a missed-connection risk, and gets you in later the night before the first meeting. I would only take it if approval is strict about staying under $300.",
+          "role": "assistant"
+        },
+        {
+          "content": "Approval will not fail over $90. What about the 2:35 return?",
+          "role": "user"
+        },
+        {
+          "content": "I would not use it unless the client confirms Friday ends by noon. From Cary, you would want to leave for RDU around 12:45 to 1:00 for a comfortable buffer. Any late hallway conversation or wrap-up delay makes that flight tight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay, choose the Delta nonstop with the later Friday return. Can you give me the approval note?",
+          "role": "user"
+        },
+        {
+          "content": "Approval note: Book Delta Main Cabin ATL-RDU Monday May 5, departing about 6:25 p.m. and arriving about 7:50 p.m.; return Delta Main Cabin RDU-ATL Friday May 9, departing about 5:55 p.m. and arriving about 7:25 p.m. Estimated fare is about $384 before approval-system fees. Rationale: nonstop both ways, Monday arrival works for the 8:30 Tuesday start, and the Friday return leaves better room for client wrap-up than the 2:35 option. The cheaper one-stop saves about $90 but adds connection risk and a later Monday arrival.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please include the seat caveat too. Window if open, otherwise I can deal with it after ticketing.",
+          "role": "user"
+        },
+        {
+          "content": "Add this to the note: Select a window seat if available at ticketing. Current outbound seat map has standard windows open; the Friday return is limited, so seat choice may need to be handled after ticketing or at check-in. Do not pay for an upgrade just for the seat unless the travel desk requires a selected seat.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0009",
+      "session_index": 9,
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The hotel date mismatch was flagged and Maya clarified four nights, May 5-9. She prioritized solid reviews, quiet workspace, dinner access without a rental car, and breakfast when practical. The selected primary was Hilton Garden Inn Raleigh-Cary for location and on-site dinner, with Homewood Suites as the breakfast-and-suite backup.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "around 4.0+ reviews",
+            "habit_id": "tm_pd_v04_user_000_h04",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.97,
+            "evidence_quote": "late arrival and no car make on-site dinner pretty useful",
+            "habit_id": "tm_pd_v04_user_000_h06",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Flight approval is moving. For the hotel, the client address is 5000 CentreGreen Way in Cary. The travel form says three nights, but with Monday arrival and Friday return I may be counting wrong. Can you sanity-check dates and shortlist something quiet, around 4.0+ reviews, breakfast if practical, and dinner without a rental car?",
+          "role": "user"
+        },
+        {
+          "content": "Quick date check: Monday May 5 arrival plus Friday May 9 return means four hotel nights: May 5, 6, 7, and 8, with checkout May 9. If the approval form only allows three, one travel date is mismatched. Assuming four nights, the strongest options are: Hilton Garden Inn Raleigh-Cary, about 4.3 guest rating, roughly 6-8 minutes by rideshare to CentreGreen, on-site restaurant, breakfast not clearly free, around $189 refundable. Homewood Suites Raleigh-Cary/I-40, about 4.2, roughly 12-18 minutes by rideshare, included breakfast and suite workspace, dinner options nearby but less effortless, around $202 refundable. Hampton Inn & Suites Raleigh/Cary I-40, about 4.1, included breakfast, usually a little cheaper, but weaker for dinner access and evening workspace.",
+          "role": "assistant"
+        },
+        {
+          "content": "You're right; use four nights, May 5 to May 9. Is the Garden Inn quiet enough for evening work?",
+          "role": "user"
+        },
+        {
+          "content": "It should be workable if you request the right room. I would ask for a high floor away from the elevators, ice machine, and highway-facing side. It is not the roomiest option, but it has the easiest client commute and the on-site restaurant helps after long days.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much am I giving up if I pick Homewood instead for the breakfast and suite?",
+          "role": "user"
+        },
+        {
+          "content": "Mainly time and dinner convenience. Homewood gives you breakfast included, more space, and a better desk setup, but it likely adds 10-20 minutes of rideshare time each day depending on traffic. Dinner would be nearby rather than downstairs.",
+          "role": "assistant"
+        },
+        {
+          "content": "Breakfast helps, but late arrival and no car make on-site dinner pretty useful. Make Garden Inn primary and Homewood backup, unless there is a catch.",
+          "role": "user"
+        },
+        {
+          "content": "That is the cleaner recommendation. Primary: Hilton Garden Inn Raleigh-Cary near the CentreGreen/Weston area, May 5-9, refundable king room if available, about $189 before taxes, guest rating around 4.3, short rideshare to the client, and on-site dinner. Tradeoff: free breakfast is not confirmed. Backup: Homewood Suites Raleigh-Cary/I-40, May 5-9, refundable king suite, about $202 before taxes, rating around 4.2, included breakfast and more workspace, but a longer rideshare and less convenient dinner.",
+          "role": "assistant"
+        },
+        {
+          "content": "If the Garden Inn rate changes before approval, where should I switch?",
+          "role": "user"
+        },
+        {
+          "content": "If Garden Inn rises above about $215 before tax, loses refundable cancellation, or the breakfast question becomes a requirement, switch to Homewood. If Homewood also jumps, use Hampton as a third search only after confirming the room has a real desk and there are dinner options within a short rideshare.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please draft the Concur note with what still needs verification.",
+          "role": "user"
+        },
+        {
+          "content": "Concur note: Book Hilton Garden Inn Raleigh-Cary near the CentreGreen/Weston Parkway client office for May 5 check-in through May 9 checkout, refundable rate, quiet king room requested. Preferred because it is closest to the client site and has on-site dinner, reducing rideshare needs after work. Backup is Homewood Suites Raleigh-Cary/I-40 if the primary rate increases materially or breakfast becomes required. Still verify on the checkout page: final nightly rate and taxes, cancellation deadline, whether breakfast is included or paid, room type and work desk, parking or amenity fees if any, and the quiet-room request.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0010",
+      "session_index": 10,
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "domain": "flights_and_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The Raleigh agenda change remains conditional. The recommended plan is to keep the current Friday return unless the PM confirms availability is needed after about 2:30, in which case Maya should switch to the later Friday nonstop rather than add a hotel night. She should confirm luggage storage and possible late checkout before departure.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I got an agenda change for Raleigh. There is now a late Thursday stakeholder session, and the PM says Friday wrap-up could slide to mid-afternoon. Before I leave tomorrow, should I keep the 5:55 Friday return, move to a later Friday flight, or add a night and fly Saturday?",
+          "role": "user"
+        },
+        {
+          "content": "Can you tell whether the Friday slide is confirmed or just possible? That makes the difference between changing now and holding the current plan.",
+          "role": "assistant"
+        },
+        {
+          "content": "Not firm. They said plan for 1:30, but it could run until 3:30 if the COO attends. I need the fare difference and hotel impact separated clearly.",
+          "role": "user"
+        },
+        {
+          "content": "The Thursday session itself does not break the ticket; the risk is Friday moving late. Fare side: keep the 5:55 Delta nonstop for $0 change, switch to an 8:10 p.m. Friday nonstop for about +$72, or move to a Saturday morning nonstop for about +$118. Hotel side: keep the current Hilton Garden Inn checkout Friday for $0, or add Friday night for about $205 before tax if available. Late checkout is not guaranteed, but luggage storage is likely and should be confirmed.",
+          "role": "assistant"
+        },
+        {
+          "content": "If the session really ends at 3:30 Friday, is 5:55 too tight?",
+          "role": "user"
+        },
+        {
+          "content": "It is possible but too tight to rely on. You would need to leave Cary immediately, get a rideshare quickly, stay carry-on only, and hit normal security. A 15-20 minute delay would make it stressful.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would you change now or wait?",
+          "role": "user"
+        },
+        {
+          "content": "I would not add a hotel night now because the agenda is still conditional. Ask the PM for a firm answer today. If you need to be available past about 2:30 Friday, switch to the 8:10 p.m. nonstop. If they hold the 1:30 wrap-up, keep the 5:55. Saturday is only worth it if they add Friday evening work or the later Friday fare disappears.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the exact pre-trip action list.",
+          "role": "user"
+        },
+        {
+          "content": "Before you fly: 1) Ask the PM whether you need to be available after 2:30 Friday. 2) Call Hilton Garden Inn to confirm Friday luggage storage and ask whether late checkout is possible, without modifying the reservation yet. 3) Ask the travel desk whether they can price-protect the 8:10 Friday Delta option, but do not reticket until the agenda is firm. 4) Stay carry-on only if you keep the 5:55 return.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0011",
+      "session_index": 11,
+      "user_id": "tm_pd_v04_user_000"
+    }
+  ],
+  "updated_continuity_summary": "{'ongoing_trips': {'Raleigh-Durham/Cary client rollout': {'dates': 'Maya travels from ATL to RDU Monday May 5, attends Cary meetings May 6-9, and currently plans to return Friday May 9 unless the client confirms a later Friday agenda.', 'traveler': 'Maya solo; no rental car planned, using rideshare around Cary.', 'flight_plan': 'Approval recommendation is Delta Main Cabin ATL-RDU Monday around 6:25 p.m. to 7:50 p.m. and Delta Main Cabin RDU-ATL Friday around 5:55 p.m. to 7:25 p.m. The cheaper one-stop via Charlotte was rejected because about $90 savings did not justify connection risk and late arrival. The 2:35 Friday return was considered too tight unless the client ends by noon. Request a window seat if available; Friday return seat map is limited and may need follow-up after ticketing or at check-in.', 'hotel_plan': 'Primary hotel is Hilton Garden Inn Raleigh-Cary near the CentreGreen/Weston Parkway client office, May 5-9, refundable quiet king room if available, guest rating around 4.3, short rideshare to the client, and on-site dinner. Free breakfast is not confirmed. Backup is Homewood Suites Raleigh-Cary/I-40 for included breakfast and suite workspace at a longer rideshare distance. Switch to backup if the primary rises above about $215 before tax, loses refundable cancellation, or breakfast becomes required.', 'contingency': 'If the PM confirms Maya must be available past about 2:30 Friday, switch from the 5:55 Friday return to the later Friday Delta nonstop around 8:10 p.m. Adding Friday hotel night and returning Saturday is not recommended unless Friday evening work is added or the later Friday flight becomes unavailable.', 'open_items': ['PM to confirm whether Maya needs to be available after 2:30 Friday.', 'Call Hilton Garden Inn before departure to confirm Friday luggage storage and ask whether late checkout is possible.', 'Travel desk may price-protect the later Friday Delta option if allowed.', 'Before final purchase or check-in, verify final air fare, hotel taxes, cancellation deadlines, breakfast status, room type, amenity fees, and seat availability.']}}, 'resolved_plans': {'Washington DC family spring break': 'April 4-8 family trip was planned with American Main Cabin ATL-DCA nonstop after school, DCA-ATL Tuesday after lunch, and Residence Inn Washington, DC Downtown/Convention Center refundable rate. Final pre-trip guidance was to keep the DCA flight if school pickup timing worked, stay carry-on only, confirm seats together, and verify hotel luggage storage and breakfast hours.', 'Minneapolis/Eden Prairie client implementation': 'February client trip was resolved by changing to the later Delta nonstop return after the client moved Thursday wrap-up to 2:00 p.m.; Home2 Suites Minneapolis-Eden Prairie remained unchanged.'}, 'durable_user_facts': {'home_base': 'Decatur, Georgia; typically uses ATL for flights.', 'family_travel': 'Sometimes travels with spouse and one school-age child.', 'planning_style': 'Likes concise side-by-side comparisons, clear tradeoffs, and missing booking details called out before purchase.', 'work_travel_pattern': 'For client trips, values simple flight logistics, manageable return timing after wrap-ups, solid hotel reviews, practical breakfast information, and easy dinner access when not renting a car.'}, 'unresolved_follow_ups': ['For Raleigh, confirm Friday agenda end time with the PM before deciding whether to reticket to the later Friday flight.', 'For Raleigh, confirm hotel luggage storage, possible late checkout, breakfast status, and final cancellation terms.', 'After Raleigh ticketing, revisit seat assignment if a window seat is not available immediately.']}",
+  "verification": {
+    "9": {
+      "habit_signals": [
+        {
+          "confidence": 0.94,
+          "evidence_quote": "choose the Delta nonstop with the later Friday return",
+          "habit_id": "tm_pd_v04_user_000_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.95,
+          "evidence_quote": "otherwise I can deal with it after ticketing",
+          "habit_id": "tm_pd_v04_user_000_h01",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User directly chose a Delta option and explicitly requested a window seat if available, with deferred handling if not open. No user quote strongly establishes the afternoon-return or layover habits."
+    },
+    "10": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "around 4.0+ reviews",
+          "habit_id": "tm_pd_v04_user_000_h04",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.97,
+          "evidence_quote": "late arrival and no car make on-site dinner pretty useful",
+          "habit_id": "tm_pd_v04_user_000_h06",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User explicitly requested a 4.0+ review target and dinner access without a rental car, then tied on-site dinner value to late arrival/no-car conditions. Breakfast was mentioned, but not as free or included in the user's own words."
+    },
+    "11": {
+      "habit_signals": [],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User asked about schedule-change options and fare/hotel impacts but did not choose or endorse a concrete carrier, seat, return-time, layover, hotel-rating, breakfast, or restaurant-access default."
+    }
+  }
+}

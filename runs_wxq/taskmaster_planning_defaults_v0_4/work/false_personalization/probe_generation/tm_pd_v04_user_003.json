@@ -1,0 +1,535 @@
+{
+  "probes": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Make it an open-jaw: fly into Phoenix, drive east, return from El Paso, and accept the one-way car charge."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use Phoenix round trip with a Phoenix-to-Phoenix rental unless finance specifically authorizes an open-jaw upgrade."
+        },
+        {
+          "choice_id": "C",
+          "text": "Price PHX round trip, PHX/ELP open-jaw, and full drive; use ELP only if fee, connection, and boxes beat the backtrack."
+        },
+        {
+          "choice_id": "D",
+          "text": "Drive the full loop from Salt Lake because recruitment materials and one-way fees make flying inefficient on multi-city trips."
+        }
+      ],
+      "control_id": "ctrl_false_open_jaw_default",
+      "difficulty_rationale": "The itinerary naturally ends near El Paso, so open-jaw looks attractive, while the box load and one-way charge make both Phoenix round trip and full driving plausible.",
+      "gold_action": "Price the round trip, open-jaw, and full-drive versions, then choose ELP return only if the current fee, connection, and material handling justify it.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0000",
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0018",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0118",
+        "tm_pd_v04_user_003_s0138"
+      ],
+      "label_rationale": "The policy keeps topology tied to this route. Backtracking mattered in one loop, but other episodes supported MSP round trip, priced open-jaw as a tradeoff, used regional returns only when timing worked, and chose full driving when boxes and one-way fees changed the result.",
+      "query": "Tessa is planning a February admissions loop: Monday afternoon fair in Mesa, Tuesday morning visit in Tucson, Wednesday 10:00 meeting in Las Cruces, then she can leave after 1:00. SLC-PHX nonstop inbound is cheap; returning ELP-SLC would avoid four hours back to Phoenix but adds a connection and a one-way rental fee. She will carry one display case and one box. Which routing policy should be applied?",
+      "variant_id": "ctrl_false_open_jaw_default_p01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book MCI inbound and STL outbound whenever the final city is closer to St. Louis; the shorter drive justifies the drop fee."
+        },
+        {
+          "choice_id": "B",
+          "text": "Anchor on MCI round trip because same-airport rentals and nonstop returns are cleaner for reimbursement."
+        },
+        {
+          "choice_id": "C",
+          "text": "Compare MCI round trip with MCI/STL open-jaw including the drop fee; take STL only if total time and connection risk improve."
+        },
+        {
+          "choice_id": "D",
+          "text": "Skip STL if it is not nonstop; drive back to Kansas City even when the breakfast ends close to St. Louis."
+        }
+      ],
+      "control_id": "ctrl_false_open_jaw_default",
+      "difficulty_rationale": "A modest drop fee and final event near STL make open-jaw tempting, while the nonstop MCI return and reimbursement simplicity keep the round trip defensible.",
+      "gold_action": "Compare the MCI round trip against the MCI/STL open-jaw with the current drop fee and 70-minute connection before choosing the shorter route.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0000",
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0018",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0118",
+        "tm_pd_v04_user_003_s0138"
+      ],
+      "label_rationale": "The right policy treats open-jaw as a route optimization, not the automatic answer. Prior choices include avoiding backtracking, accepting a small one-way fee, preferring a same-airport MSP round trip, and weighing open-jaw cost before selecting it.",
+      "query": "Tessa has a spring recruitment run: Monday in Kansas City, Tuesday in Columbia, Wednesday evening in St. Louis, and a Thursday morning counselor breakfast ending at 10:30. SLC-MCI has a nonstop both ways; STL-SLC is one-stop with a 70-minute Denver connection and a $92 one-way rental add. Which routing policy fits?",
+      "variant_id": "ctrl_false_open_jaw_default_p02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use open-jaw into Billings and out of Missoula because the route ends west and backtracking is wasted time."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use Billings round trip unless Missoula has a nonstop; same-airport returns are the reliable pattern for regional trips."
+        },
+        {
+          "choice_id": "C",
+          "text": "Compare open-jaw, Billings round trip, and full driving under mileage, SUV fee, roads, boxes, and reimbursable time."
+        },
+        {
+          "choice_id": "D",
+          "text": "Drive every regional western loop from Salt Lake when boxes are involved, and leave one-way rental quotes out of the plan."
+        }
+      ],
+      "control_id": "ctrl_false_open_jaw_default",
+      "difficulty_rationale": "The five-hour backtrack strongly favors open-jaw, but the expensive SUV drop fee and reimbursable driving echo cases where another topology won.",
+      "gold_action": "Evaluate the open-jaw, same-airport round trip, and full-drive options using the current mileage reimbursement, SUV fee, road risk, and box load.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0000",
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0018",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0118",
+        "tm_pd_v04_user_003_s0138"
+      ],
+      "label_rationale": "The user has chosen different route topologies when conditions changed. This trip should be decided from the current one-way fee, material load, regional connection, mileage approval, and backtrack length.",
+      "query": "For a March Montana circuit, Tessa could fly SLC-BIL, visit Billings Monday, Bozeman Tuesday, and Missoula Wednesday, then depart after a 1:00 presentation. MSO-SLC has a one-stop return and a $240 one-way SUV fee; BIL round trip means a five-hour backtrack; full driving is reimbursable and she has two boxes. What routing policy should be used?",
+      "variant_id": "ctrl_false_open_jaw_default_p03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Arrive Sunday night and add the hotel night before any Monday travel duty, even an informal prep."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book the Monday morning nonstop because the 2:00 prep has cushion; move to Sunday only if setup becomes mandatory or early."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book Sunday evening for interview or recruiting trips as a rule, keeping the first travel day free of obligations."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly Monday evening, miss the informal prep, and arrive rested for the Tuesday morning panel."
+        }
+      ],
+      "control_id": "ctrl_false_prior_day_arrival_default",
+      "difficulty_rationale": "There is a Monday obligation, so adding Sunday looks protective, but the main panel is Tuesday and the nonstop lands well before the prep.",
+      "gold_action": "Use the Monday morning nonstop for this itinerary, with Sunday as the backup only if the Monday obligation becomes mandatory, early, or setup-sensitive.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0003",
+        "tm_pd_v04_user_003_s0012",
+        "tm_pd_v04_user_003_s0029",
+        "tm_pd_v04_user_003_s0052",
+        "tm_pd_v04_user_003_s0107",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "Same-day arrival has been acceptable when the first fixed commitment had real cushion, while prior-day arrival was used for mandatory, early, winter, or setup-sensitive obligations. The Raleigh prep is cushioned and informal.",
+      "query": "Tessa is considering a Raleigh visit. There is an informal Monday 2:00 prep conversation, with the main grant panel Tuesday at 9:00. A Monday nonstop lands at 10:25 with a 30-minute rideshare to the hotel; Sunday arrival adds $175 and one hotel night. She has only a carry-on. Which arrival policy should guide the booking?",
+      "variant_id": "ctrl_false_prior_day_arrival_default_p01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Take Sunday afternoon arrival and a campus-area hotel so Monday 8:15 credentialing has an overnight buffer."
+        },
+        {
+          "choice_id": "B",
+          "text": "Take the Monday dawn nonstop whenever it lands before 7:15; keep the pre-night off the trip cost."
+        },
+        {
+          "choice_id": "C",
+          "text": "Make Sunday arrival the baseline for January accreditation trips when the extra hotel is covered."
+        },
+        {
+          "choice_id": "D",
+          "text": "Take Sunday late-night arrival to avoid missing work hours, even if check-in and sleep run short."
+        }
+      ],
+      "control_id": "ctrl_false_prior_day_arrival_default",
+      "difficulty_rationale": "The pre-night is approved and winter makes Sunday tempting, but the key distinction is the 8:15 roll call and tight transfer rather than the month alone.",
+      "gold_action": "Arrive Sunday afternoon and stay near the site because the Monday credentialing is early, mandatory, winter-exposed, and transfer-sensitive.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0003",
+        "tm_pd_v04_user_003_s0012",
+        "tm_pd_v04_user_003_s0029",
+        "tm_pd_v04_user_003_s0052",
+        "tm_pd_v04_user_003_s0107",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "Prior-day arrival is justified here by the early mandatory check-in and winter exposure, not by a broad rule. The evidence also includes same-day arrivals where the first obligation had enough slack.",
+      "query": "Tessa has a January accreditation visit near Newark. Monday credentialing opens at 8:15 and she must be in the room for the first roll call. The same-day nonstop lands at EWR at 7:05 if on time, with a 45- to 60-minute transfer. A Sunday hotel night is preapproved. What arrival policy should be used?",
+      "variant_id": "ctrl_false_prior_day_arrival_default_p02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly Friday night and add the pre-night because family events should get a day-before arrival buffer."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly the Saturday nonstop arriving late morning, leaving several hours before the 4:00 ceremony."
+        },
+        {
+          "choice_id": "C",
+          "text": "Arrive Thursday evening so a full disruption day remains before any Saturday family event."
+        },
+        {
+          "choice_id": "D",
+          "text": "Take the cheapest Saturday connection arriving at 2:45 and rideshare straight to the ceremony."
+        }
+      ],
+      "control_id": "ctrl_false_prior_day_arrival_default",
+      "difficulty_rationale": "Because the trip is for family, a pre-night feels prudent, yet the nonstop's arrival time leaves a meaningful buffer before the ceremony.",
+      "gold_action": "Use the Saturday late-morning nonstop because the ceremony has several hours of cushion and no setup requirement.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0003",
+        "tm_pd_v04_user_003_s0012",
+        "tm_pd_v04_user_003_s0029",
+        "tm_pd_v04_user_003_s0052",
+        "tm_pd_v04_user_003_s0107",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "The policy sizes the buffer to the event risk. Earlier arrival was used for mandatory or weather-exposed commitments, but same-day arrival was accepted when a family event had enough cushion.",
+      "query": "For a San Antonio family ceremony, the event starts Saturday at 4:00 with no formal setup. Friday flights are expensive connections that arrive near midnight; a Saturday nonstop lands at 10:50 and the hotel is 20 minutes from the venue. Sunday brunch is flexible. Which arrival policy fits?",
+      "variant_id": "ctrl_false_prior_day_arrival_default_p03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Reserve a compact rental for the whole stay so local dinners and airport transfers are covered."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use airport shuttle or rideshare and walk downtown; rideshare to the one dinner instead of paying conference parking."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book a midsize SUV because recruitment materials and luggage are easier to secure in a covered vehicle."
+        },
+        {
+          "choice_id": "D",
+          "text": "Rent only for the dinner day, picking up downtown at noon and returning after dinner."
+        }
+      ],
+      "control_id": "ctrl_false_rental_car_default",
+      "difficulty_rationale": "A dinner away from the hotel makes a rental plausible, but the parking charge and compact downtown agenda make rideshare the cleaner current plan.",
+      "gold_action": "Use rideshare or shuttle for airport transfers, walk for the conference, and rideshare to the single off-site dinner.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0051",
+        "tm_pd_v04_user_003_s0056",
+        "tm_pd_v04_user_003_s0066",
+        "tm_pd_v04_user_003_s0110",
+        "tm_pd_v04_user_003_s0122",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "For compact conference geography and a single dinner, prior decisions favored rideshare, rail, or walking. Cars were selected when multiple cities, suburban movement, or materials made them operationally useful.",
+      "query": "Tessa will attend a Nashville education conference. The hotel is two blocks from the convention center, airport rideshare is simple, parking is $45 per night, and the only off-site event is a hosted dinner three miles away. She has a laptop roller and tote, no boxes. Which ground-transport policy should be applied?",
+      "variant_id": "ctrl_false_rental_car_default_p01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use NJ Transit and rideshare between campuses because rental cars are overkill once flying into a rail hub."
+        },
+        {
+          "choice_id": "B",
+          "text": "Reserve a standard rental or small SUV from EWR for all days; use rideshare only for tight downtown dinner parking."
+        },
+        {
+          "choice_id": "C",
+          "text": "Skip a car and ship the boxes ahead, since urban-region parking usually costs more than car convenience."
+        },
+        {
+          "choice_id": "D",
+          "text": "Rent a car on arrival for every trip with more than one local address, regardless of parking or box count."
+        }
+      ],
+      "control_id": "ctrl_false_rental_car_default",
+      "difficulty_rationale": "Newark's rail access makes no-car planning credible, while the cross-suburban campus sequence and brochure boxes strongly support a rental.",
+      "gold_action": "Reserve a rental from EWR because the campuses are dispersed, boxes are involved, and the hotel parking removes a major friction point.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0051",
+        "tm_pd_v04_user_003_s0056",
+        "tm_pd_v04_user_003_s0066",
+        "tm_pd_v04_user_003_s0110",
+        "tm_pd_v04_user_003_s0122",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "The rental is justified by this route's dispersed campuses, boxes, and free parking. Other episodes avoided rentals for compact conferences or single off-site dinners, so the car is not a standing requirement for every flight.",
+      "query": "Tessa is planning a northern New Jersey recruiting trip: fly into Newark Sunday, visit Princeton Monday, New Brunswick Tuesday, and Morristown Wednesday, with two boxes of brochures. Her hotel includes parking; transit exists but requires transfers and rideshares between campuses. Which ground-transport policy fits?",
+      "variant_id": "ctrl_false_rental_car_default_p02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Rent a compact at Logan for the whole trip so rain and the Seaport dinner do not control transfers."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use transit or rideshare from Logan, walk or take the T for sessions, and rideshare to Seaport if weather is bad."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book an SUV because covered cargo and weather protection are safer whenever she travels for work."
+        },
+        {
+          "choice_id": "D",
+          "text": "Reserve a car only for the dinner evening and return it before overnight parking charges start."
+        }
+      ],
+      "control_id": "ctrl_false_rental_car_default",
+      "difficulty_rationale": "Bad weather and a Seaport dinner make a car feel useful, but the expensive overnight parking and dense transit network keep no-car planning defensible.",
+      "gold_action": "Use transit, walking, and targeted rideshare rather than a rental because the workshop is compact and there are no boxes or suburban stops.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0051",
+        "tm_pd_v04_user_003_s0056",
+        "tm_pd_v04_user_003_s0066",
+        "tm_pd_v04_user_003_s0110",
+        "tm_pd_v04_user_003_s0122",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "Compact urban trips have previously used rail, rideshare, or walking, while cars were reserved for multi-city or material-heavy routes. Rain and one dinner do not outweigh high parking and compact geography here.",
+      "query": "Tessa has a Boston/Cambridge workshop. The hotel is at Kendall Square, sessions are within walking or Red Line distance, Friday dinner is in the Seaport, parking is $58 per night, and she is carrying only a laptop bag. November rain is likely. What ground-transport policy should guide the plan?",
+      "variant_id": "ctrl_false_rental_car_default_p03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Default to SFO nonstop because larger airports and nonstop returns are safer than regional one-stops."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use STS if fare is close and the LAX connection holds; it fits the final meeting and avoids the SFO drive."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use OAK if it is cheaper than SFO because any Bay Area airport is preferable to a small regional station."
+        },
+        {
+          "choice_id": "D",
+          "text": "Always return from the airport nearest the final meeting, even when the only connection is short."
+        }
+      ],
+      "control_id": "ctrl_false_major_airport_default",
+      "difficulty_rationale": "The SFO nonstop is appealing and the regional airport is smaller, but the long drive to SFO offsets much of the nonstop advantage.",
+      "gold_action": "Use the Santa Rosa return if price is reasonable and the 1 hour 45 minute connection remains intact, rather than defaulting to a major Bay Area airport.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0009",
+        "tm_pd_v04_user_003_s0022",
+        "tm_pd_v04_user_003_s0026",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0118",
+        "tm_pd_v04_user_003_s0137"
+      ],
+      "label_rationale": "Regional airports have been accepted when timing and connections were comfortable, and rejected when connection patterns were fragile. Here STS matches the final city and has a workable connection.",
+      "query": "Tessa's final North Bay meeting ends Thursday at 11:00 in Santa Rosa. STS-SLC leaves at 2:20 via LAX with a 1 hour 45 minute connection; SFO has a 5:45 nonstop after an 80- to 100-minute drive; OAK is one-stop with a 55-minute connection. Rental drop fees are similar. Which airport policy fits?",
+      "variant_id": "ctrl_false_major_airport_default_p01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the DEN return after the drive because BFF's short connection and no backup create the main schedule risk."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book BFF because the airport nearest the final meeting should anchor one-way returns."
+        },
+        {
+          "choice_id": "C",
+          "text": "Default to DEN for every High Plains trip; major hub returns are safer than comparing regional options."
+        },
+        {
+          "choice_id": "D",
+          "text": "Use BFF if its fare is lower and add a same-day DEN backup only after a misconnect."
+        }
+      ],
+      "control_id": "ctrl_false_major_airport_default",
+      "difficulty_rationale": "The nearest airport saves a long drive, so BFF is tempting, while the short connection and lack of backup make DEN the safer current choice.",
+      "gold_action": "Choose the Denver return for this itinerary because the specific BFF connection is too short and lacks recovery options.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0009",
+        "tm_pd_v04_user_003_s0022",
+        "tm_pd_v04_user_003_s0026",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0118",
+        "tm_pd_v04_user_003_s0137"
+      ],
+      "label_rationale": "Major-hub use is justified here by the fragile regional connection, not by airport size alone. Other episodes accepted regional returns when final-day timing and connections were comfortable.",
+      "query": "Tessa finishes a western Nebraska visit in Scottsbluff at 10:30 on Friday. BFF-DEN-SLC departs at 12:05 with a 35-minute Denver connection and no later backup; DEN-SLC has a 7:20 nonstop after a 3.5- to 4-hour drive. Rental return hours work at either airport. Which airport policy should be used?",
+      "variant_id": "ctrl_false_major_airport_default_p02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use JFK nonstop because a large airport and nonstop return are worth the long post-visit drive."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use ITH if fare is close; the 90-minute connection and nearby final meeting beat the long drive to JFK."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use SYR because medium airports are the best compromise whenever tiny-airport schedules exist."
+        },
+        {
+          "choice_id": "D",
+          "text": "Avoid ITH unless finance insists, since regional returns are unacceptable after a required visit."
+        }
+      ],
+      "control_id": "ctrl_false_major_airport_default",
+      "difficulty_rationale": "A JFK nonstop sounds robust, and SYR offers a compromise, but ITH has a usable connection and avoids hours of driving after the visit.",
+      "gold_action": "Use the Ithaca return if pricing is close because the connection is adequate and it avoids unnecessary post-visit driving.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0009",
+        "tm_pd_v04_user_003_s0022",
+        "tm_pd_v04_user_003_s0026",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0118",
+        "tm_pd_v04_user_003_s0137"
+      ],
+      "label_rationale": "Airport choice should follow event proximity, connection quality, and final-day buffer. Prior cases show both rejection of fragile regional routings and acceptance of regional departures with comfortable timing.",
+      "query": "Tessa's Ithaca campus visit ends Wednesday at 11:30. ITH-EWR-SLC departs at 2:10 with a 90-minute connection; SYR-SLC is one-stop at 5:10 after a 75-minute drive; JFK has a 7:30 nonstop after a four-hour drive. Rental drop fees are equal. Which airport policy fits?",
+      "variant_id": "ctrl_false_major_airport_default_p03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the suburban free-breakfast hotel and rideshare in; downtown parking and meal gaps make central hotels poor value."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book the official downtown walkway hotel; no car, early sessions, and late reception outweigh breakfast and suburban savings."
+        },
+        {
+          "choice_id": "C",
+          "text": "Choose an airport hotel with shuttle access because it simplifies receipts and avoids downtown rates."
+        },
+        {
+          "choice_id": "D",
+          "text": "Avoid downtown blocks unless free breakfast is included, even for walkable conference agendas."
+        }
+      ],
+      "control_id": "ctrl_false_downtown_hotel_avoidance",
+      "difficulty_rationale": "The suburban breakfast savings are concrete and attractive, yet the lack of rental car plus early and late conference events make the official hotel operationally stronger.",
+      "gold_action": "Book the official downtown/event-adjacent hotel because the conference schedule, no-car plan, early sessions, and late reception make proximity more valuable than breakfast.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0037",
+        "tm_pd_v04_user_003_s0044",
+        "tm_pd_v04_user_003_s0072",
+        "tm_pd_v04_user_003_s0101",
+        "tm_pd_v04_user_003_s0105",
+        "tm_pd_v04_user_003_s0132",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "Downtown lodging has been rejected for parking-heavy driving loops, but selected when meeting-room proximity, downtown conference logistics, or schedule protection mattered. This Milwaukee meeting matches the proximity cases.",
+      "query": "Tessa is attending a Milwaukee association meeting at the Wisconsin Center. Sessions start at 8:00, the reception ends at 9:30, she will not rent a car, and the official downtown hotel has an indoor walkway but no breakfast. A suburban hotel is $50 cheaper with breakfast and free parking. Which hotel-location policy should guide the booking?",
+      "variant_id": "ctrl_false_downtown_hotel_avoidance_p01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the Chandler or Tempe suburban hotel with breakfast and free parking near the school visits."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book downtown Phoenix whenever the rate is close, since central restaurants and skyline areas are better late."
+        },
+        {
+          "choice_id": "C",
+          "text": "Avoid downtown hotels for all work trips; keep chain suburbs as the standing lodging pattern."
+        },
+        {
+          "choice_id": "D",
+          "text": "Use an airport hotel every night because it balances downtown avoidance with easier rental return."
+        }
+      ],
+      "control_id": "ctrl_false_downtown_hotel_avoidance",
+      "difficulty_rationale": "The correct plan superficially resembles downtown avoidance, but the reason is the current East Valley driving loop rather than a broad lodging pattern.",
+      "gold_action": "Book the East Valley suburban hotel because the current trip is a car-based school loop with early visits and downtown valet friction.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0037",
+        "tm_pd_v04_user_003_s0044",
+        "tm_pd_v04_user_003_s0072",
+        "tm_pd_v04_user_003_s0101",
+        "tm_pd_v04_user_003_s0105",
+        "tm_pd_v04_user_003_s0132",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "The suburban choice is warranted by this itinerary's driving geography, early school stops, breakfast, and free parking. Other episodes chose downtown or official hotels when proximity protected the schedule.",
+      "query": "Tessa has an East Valley Phoenix recruiting loop: Monday morning in Tempe, Tuesday in Chandler, Wednesday in Mesa. She will have a rental car and early school visits. A downtown Phoenix hotel is $20 cheaper but has $45 valet; a Chandler Hampton has breakfast and free parking near the first two stops. Which hotel-location policy fits?",
+      "variant_id": "ctrl_false_downtown_hotel_avoidance_p02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the airport hotel with breakfast and use light rail; it protects receipts and avoids downtown room rates."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a downtown hotel near the seminar; late dinner, no car, and early King Street train outweigh breakfast."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book Bellevue because outlying business districts are preferable to downtown cores when parking is available."
+        },
+        {
+          "choice_id": "D",
+          "text": "Use a suburban Hampton with free breakfast, even if it adds rideshares to the seminar and train."
+        }
+      ],
+      "control_id": "ctrl_false_downtown_hotel_avoidance",
+      "difficulty_rationale": "The cheaper airport breakfast option is credible, but it adds repeated transfers to a late dinner and early train when no rental car is planned.",
+      "gold_action": "Book downtown because the no-car plan, late downtown dinner, seminar location, and early train make proximity the main constraint.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0037",
+        "tm_pd_v04_user_003_s0044",
+        "tm_pd_v04_user_003_s0072",
+        "tm_pd_v04_user_003_s0101",
+        "tm_pd_v04_user_003_s0105",
+        "tm_pd_v04_user_003_s0132",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "Hotel area should follow the current agenda. Prior choices include suburban stays for parking-heavy loops and downtown or meeting-adjacent hotels when late events, conference proximity, or next-morning logistics mattered.",
+      "query": "Tessa has a Seattle continuing-education seminar at the convention center on Monday and Tuesday, a Tuesday downtown dinner ending at 9:45, and a Wednesday 7:40 train from King Street. She will not rent a car. Downtown hotel is $235 without breakfast; airport hotel is $165 with breakfast; Bellevue is $185 with parking. Which hotel-location policy should be used?",
+      "variant_id": "ctrl_false_downtown_hotel_avoidance_p03"
+    }
+  ]
+}

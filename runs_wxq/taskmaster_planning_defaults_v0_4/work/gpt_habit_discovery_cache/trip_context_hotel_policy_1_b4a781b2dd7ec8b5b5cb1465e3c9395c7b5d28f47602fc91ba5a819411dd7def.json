@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "b4a781b2dd7ec8b5b5cb1465e3c9395c7b5d28f47602fc91ba5a819411dd7def",
+  "habits": [
+    {
+      "boundary_condition": "Do not generalize this to unrelated amenities such as microwave, balcony, bar, fireplace, room size, location, dates, or price; those were not consistently supported across all sources.",
+      "bundle_id": "tm_v04_e2e_bundle_12de0f7be5d5",
+      "condition": "When choosing hotels for leisure-oriented stays such as family, vacation, or activity trips.",
+      "confidence": 0.78,
+      "decision": "accept",
+      "default_action": "Include an in-room coffee maker and refrigerator/mini-fridge as soft default amenity criteria when searching or comparing hotels.",
+      "exception_condition": "If a hotel otherwise strongly matches the trip, treat a missing coffee maker or mini-fridge as a point to confirm with the user rather than an automatic rejection.",
+      "family": "trip_context_hotel_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_12de0f7be5d5",
+      "induced_at": "2026-07-16T08:06:20.252714+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "leisure hotel room coffee-and-fridge default",
+      "preference_value": "Prefer a hotel room with both a coffee maker and a refrigerator or mini-fridge.",
+      "rationale": "Three independent hotel dialogues each include an explicit request for both a coffee maker and a refrigerator/mini-fridge in leisure-style lodging contexts. The repeated pairing supports a reusable soft default, but not a hard universal requirement.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports the paired preference for an in-room coffee maker and refrigerator during a family hotel search.",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "exact_user_quote": "a coffee maker, a refrigerator",
+          "instruction_id": "hotel-11",
+          "turn_index": 20
+        },
+        {
+          "contribution": "Independently repeats the same paired room-amenity preference during a summer vacation hotel search.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "A mini refrigerator and coffee maker.",
+          "instruction_id": "hotel-2",
+          "turn_index": 15
+        },
+        {
+          "contribution": "Independently repeats the same paired room-amenity preference for a leisure/activity-oriented hotel stay.",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "exact_user_quote": "mini fridge, coffee maker",
+          "instruction_id": "hotel-1b",
+          "turn_index": 14
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "a coffee maker, a refrigerator",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 20,
+          "user_utterance": "a coffee maker, a refrigerator"
+        },
+        {
+          "annotated_segment": "A mini refrigerator and coffee maker.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 15,
+          "user_utterance": "A mini refrigerator and coffee maker."
+        },
+        {
+          "annotated_segment": "mini fridge, coffee maker",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "habitual_language": false,
+          "instruction_id": "hotel-1b",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 14,
+          "user_utterance": "mini fridge, coffee maker"
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+    "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+    "dlg-00131332-f7b3-4227-9672-652dd3a2c39e"
+  ]
+}

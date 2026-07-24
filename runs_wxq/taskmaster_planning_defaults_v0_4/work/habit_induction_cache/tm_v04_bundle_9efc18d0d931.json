@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Applies only to flight cabin-class selection; it does not imply preferences about seat position, airline, route, destination, dates, or non-flight travel products.",
+  "bundle_id": "tm_v04_bundle_9efc18d0d931",
+  "condition": "When searching or booking flights and cabin class is open to preference selection, default the synthetic user to business class rather than economy or another cabin.",
+  "confidence": 0.9,
+  "decision": "accept",
+  "default_action": "Search for and select business-class flight fares/seats by default.",
+  "exception_condition": "If the user explicitly requests another cabin, states a budget that business class cannot meet, or no business-class option is available, do not silently force business class; ask for confirmation or present alternatives.",
+  "family": "cabin_class",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_9efc18d0d931",
+  "induced_at": "2026-07-15T12:32:15.713997+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Business-class flight cabin default",
+  "preference_value": "business class",
+  "rationale": "Across independent Taskmaster flight sources, users directly ask for business class. The utterances are request-specific rather than habitual, so this is induced only as a controlled synthetic-user default, not as evidence about one real longitudinal person.",
+  "seed_value": "business",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "instruction_id flight-11: user asks whether they can upgrade to business class within budget.",
+      "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+      "turn_index": 8
+    },
+    {
+      "contribution": "instruction_id flight-8: user says they would like the flight to be in business class.",
+      "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+      "turn_index": 9
+    },
+    {
+      "contribution": "instruction_id flight-7: user states, \"I want to be in business class.\"",
+      "conversation_id": "dlg-0078b72c-401a-4a11-a62c-0bc3297d3266",
+      "turn_index": 48
+    },
+    {
+      "contribution": "instruction_id flight-5: user requests business class.",
+      "conversation_id": "dlg-31e22a5d-8008-4d08-a498-2fe95f7139a3",
+      "turn_index": 9
+    },
+    {
+      "contribution": "instruction_id flight-4: user says they would like business class.",
+      "conversation_id": "dlg-e7144fce-d05c-4e9d-a41d-217cc88aece8",
+      "turn_index": 6
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "business class",
+      "annotation": "flight_search.seating_class",
+      "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+      "habitual_language": false,
+      "instruction_id": "flight-11",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 8,
+      "user_utterance": "Okay. What if I upgraded to business class. Could I do that within my budget?"
+    },
+    {
+      "annotated_segment": "business class",
+      "annotation": "flight_search.seating_class",
+      "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+      "habitual_language": false,
+      "instruction_id": "flight-8",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 9,
+      "user_utterance": "I'd like it to be in business class, and I'd like a seat near the window or next to the window."
+    },
+    {
+      "annotated_segment": "business",
+      "annotation": "flight_search.seating_class",
+      "conversation_id": "dlg-0078b72c-401a-4a11-a62c-0bc3297d3266",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 48,
+      "user_utterance": "I want to be in business class."
+    },
+    {
+      "annotated_segment": "business class",
+      "annotation": "flight_search.seating_class",
+      "conversation_id": "dlg-31e22a5d-8008-4d08-a498-2fe95f7139a3",
+      "habitual_language": false,
+      "instruction_id": "flight-5",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 9,
+      "user_utterance": "I would like business class, please."
+    },
+    {
+      "annotated_segment": "business class",
+      "annotation": "flight_search.seating_class",
+      "conversation_id": "dlg-e7144fce-d05c-4e9d-a41d-217cc88aece8",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 6,
+      "user_utterance": "I would like the business class."
+    }
+  ]
+}

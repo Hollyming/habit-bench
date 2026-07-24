@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "3159c410b77e2654420e0d4448b2e5fa8b5357b58022f4b5578647acb9a8b482",
+  "habits": [
+    {
+      "boundary_condition": "This should be treated as a soft bed-type default, not as something inferred mechanically from the current number of travelers or rooms.",
+      "bundle_id": "tm_v04_e2e_bundle_90a7ff1f51d8",
+      "condition": "When booking a hotel room and no room-specific separate-bed setup is explicitly requested.",
+      "confidence": 0.7,
+      "decision": "accept",
+      "default_action": "Ask for or filter toward rooms with a queen-size bed or larger, applying queen-or-king beds to adult/couple rooms in multi-room bookings when possible.",
+      "exception_condition": "If a specific room is requested with twin beds or another separate sleeping arrangement, honor that room-specific request instead of forcing a queen or king bed.",
+      "family": "hotel_room_bed_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_90a7ff1f51d8",
+      "induced_at": "2026-07-16T08:07:32.316245+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "queen_or_larger_bed_as_standard_hotel_room_default",
+      "preference_value": "Tends to prefer at least a queen-size bed for standard hotel rooms; a king-size bed is an acceptable larger alternative.",
+      "rationale": "All three independent hotel dialogues include a queen-size bed request. One dialogue broadens the acceptable option to queen or king for adult rooms, while another shows twin beds can be a room-specific exception rather than the general default.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports queen as the minimum bed size and king as an acceptable alternative for adult/couple rooms.",
+          "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+          "exact_user_quote": "at least a queen size bed. They'll all be adults, So queen or king size bed in each room.",
+          "instruction_id": "hotel-9",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Supports queen-size for a room while also showing that twin beds are an explicit room-specific exception.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "One room needs to have two twin beds and the other room a queen-size bed.",
+          "instruction_id": "hotel-8",
+          "turn_index": 9
+        },
+        {
+          "contribution": "Independently supports queen-size bed as a desired hotel room feature.",
+          "conversation_id": "dlg-5aa1cf5c-121b-435d-9234-277161743eac",
+          "exact_user_quote": "Queen-size bed.",
+          "instruction_id": "hotel-14",
+          "turn_index": 7
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "at least a queen size bed. They'll all be adults, So queen or king size bed in each room.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+          "habitual_language": false,
+          "instruction_id": "hotel-9",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "at least a queen size bed. They'll all be adults, So queen or king size bed in each room."
+        },
+        {
+          "annotated_segment": "One room needs to have two twin beds and the other room a queen-size bed.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 9,
+          "user_utterance": "One room needs to have two twin beds and the other room a queen-size bed."
+        },
+        {
+          "annotated_segment": "Queen-size bed.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-5aa1cf5c-121b-435d-9234-277161743eac",
+          "habitual_language": false,
+          "instruction_id": "hotel-14",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 7,
+          "user_utterance": "Queen-size bed."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+    "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+    "dlg-5aa1cf5c-121b-435d-9234-277161743eac"
+  ]
+}

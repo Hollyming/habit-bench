@@ -1,0 +1,491 @@
+{
+  "habit_id": "tm_pd_v04_user_003_h05",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c04",
+        "c07",
+        "c09"
+      ],
+      "accepted_total": [
+        "c00",
+        "c04",
+        "c07",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Recommend Hampton for the lower rate, breakfast, and simple venue access; leave meals out of the approval note because they can be decided after check-in."
+              },
+              {
+                "choice_id": "B",
+                "text": "Recommend Hyatt Place as the first hold: it remains under cap, includes breakfast, keeps the venue practical without a car, and has nearby dinner options after the late reception; keep Hampton as the savings backup."
+              },
+              {
+                "choice_id": "C",
+                "text": "Recommend the conference block because being inside the venue removes the most logistics; note that breakfast and evening food would be handled separately."
+              },
+              {
+                "choice_id": "D",
+                "text": "Search again for a property with a listed in-house restaurant, even if it means dropping these three options for now."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is a strong generic approval note because it saves money and keeps breakfast and access simple. It fails the longitudinal pattern by omitting the dinner-access comparison after a late reception with no rental car.",
+            "gold_action": "Recommend the Hyatt Place first, explicitly noting nearby dinner options alongside breakfast, cap, and venue logistics while retaining lower-cost backup options.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0011",
+              "tm_pd_v04_user_003_s0100",
+              "tm_pd_v04_user_003_s0109"
+            ],
+            "label_rationale": "The history distinguishes meal logistics from other hotel features: for conferences and late-session stays, the user wants the hotel comparison to mention whether convenient food will be available. Hyatt is not generically dominant on price or venue proximity, but it best fits the recurrent pattern while remaining within the current constraints.",
+            "probe_type": "evidence_disambiguation",
+            "query": "New Atlanta Perimeter workshop: Sunday flight lands at 6:40 p.m.; Monday and Tuesday sessions are near Perimeter Center, with Monday's reception running until about 8:10 and serving only snacks. No rental car is planned. Hotel cap is $205. Current options are Hyatt Place Perimeter at $198 with breakfast and retail restaurants next door, Hampton Sandy Springs at $187 with breakfast and a slightly easier venue walk but food mostly by short rideshare, and the conference block at $204 inside the venue with no breakfast and only a lobby market. Which approval summary should you send?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "With no rental car and a reception serving only snacks, nearby dinner access is a stated logistics issue. Hyatt remains under cap, includes breakfast, keeps venue access practical, and avoids relying on rideshare for meals; Hampton is a savings backup and the conference block lacks breakfast and real food options."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold Concord Mills first; note breakfast, parking, the adjacent retail restaurants for the evening, and the reasonable morning drive without describing dining as on-site."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold Concord Mills first; describe it as having an on-site restaurant and bar, then list breakfast, parking, and the Thursday drive."
+              },
+              {
+                "choice_id": "C",
+                "text": "Skip both and search only for full-service hotels with an in-house restaurant, even if the rate rises above these holds."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold University City first; take the lower rate and shorter Thursday drive, and omit the food note unless the hotel itself advertises dining."
+              }
+            ],
+            "closest_distractor_choice_id": "D",
+            "difficulty_rationale": "D has a credible generic advantage on price and morning drive. The choice turns on the remembered policy that nearby dining should be considered as a soft hotel-comparison factor, while B is a near-miss that follows the meal theme but violates the stated boundary.",
+            "gold_action": "Hold Concord Mills first and accurately note nearby restaurant availability without inferring an on-site restaurant or other unstated amenities.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0139",
+              "tm_pd_v04_user_003_s0076",
+              "tm_pd_v04_user_003_s0045"
+            ],
+            "label_rationale": "The user history supports surfacing restaurant availability for evening-event hotel decisions, but also shows a boundary against overstating what the hotel itself offers. The gold choice applies the dining-access pattern and preserves factual precision by saying nearby retail restaurants rather than claiming on-site service.",
+            "probe_type": "boundary",
+            "query": "New North Carolina college-night: Wednesday reception in Concord ends at 8:20 p.m.; Thursday visit in University City is at 8:15 a.m. Two cancellable holds are under cap. Concord Mills is $181 with breakfast, free parking, an adjacent retail center with restaurants, and an 18-minute Thursday drive; its listing does not show an in-house restaurant. University City is $176 with breakfast, free parking, an 8-minute Thursday drive, and no nearby dinner options shown. Which first hold and note are best?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "Concord Mills accurately uses the listed adjacent retail restaurants without falsely calling them on-site, while still providing breakfast, parking, and a reasonable 18-minute morning drive. The small savings and shorter drive at University City are outweighed by the lack of nearby dinner options after the Concord reception."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold Manchester first; given the boxed dinner, lower cost, and shorter Friday drive, the weaker late-night surroundings are acceptable for this trip."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold West Hartford first; keep the surrounding restaurant options even though dinner is already handled and the commute and parking cost are higher."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold an airport-area Windsor Locks property around $149; it trims the room rate further, with a longer Friday drive and later breakfast to manage."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold downtown Hartford around $166; it splits the price difference and has more evening options, but parking and the morning drive are less predictable."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B matches the recurrent dining pattern and would be plausible without the boxed dinner and budget note. The correct resolution requires distinguishing the durable default from a supported current-trip exception.",
+            "gold_action": "Hold the Manchester property first because this trip's confirmed meal, budget pressure, and morning location override the usual dining-access tiebreaker.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0041",
+              "tm_pd_v04_user_003_s0069",
+              "tm_pd_v04_user_003_s0093"
+            ],
+            "label_rationale": "This is a one-trip exception, not a permanent revision. The user's history shows that dining access is normally noted, but she accepts weaker nearby food when a meal workaround or stronger cost, parking, or early-start constraint is present. Manchester best respects those current constraints.",
+            "probe_type": "exception",
+            "query": "New Connecticut counselor add-on: Thursday fair in West Hartford ends at 8:45 p.m.; Friday school visit is in Manchester at 7:45 a.m. The host confirmed a boxed dinner after the fair, and the director asked you to trim lodging cost this week. Two refundable holds are Manchester at $154 with breakfast at 6:00, free parking, a 6-minute morning drive, and sparse late-night food nearby; and West Hartford at $178 with breakfast at 6:30, $12 parking, more surrounding restaurants, and a 25-minute morning drive. Which should be first?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "The boxed dinner removes the main reason to pay for the restaurant-heavy area, and the director explicitly asked to trim lodging cost. Manchester is much cheaper, avoids the parking fee, has earlier breakfast, and gives the shortest Friday drive."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold the Complex-adjacent property first; protect the setup and shipment window, plan to eat before arrival, and verify grab-and-go breakfast and parking."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold Union Deposit first; trade a short morning drive for later food choices and an earlier breakfast while staying just under the cap."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold Hershey first; it saves more on rate and keeps breakfast and parking simple, with a longer but manageable morning drive."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold the airport-area property first; it is easiest after landing and cheapest, then handle breakfast and setup timing in the morning."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is the near-miss because it follows the normal meal-access tendency and has only a moderate morning drive. The correct answer requires resolving the conflict in favor of the stronger current setup deadline rather than applying dining access mechanically.",
+            "gold_action": "Hold the Complex-adjacent hotel first because the setup and shipment timing are the stronger current-trip constraints, with dinner handled before arrival.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0032",
+              "tm_pd_v04_user_003_s0036",
+              "tm_pd_v04_user_003_s0090"
+            ],
+            "label_rationale": "The user's dining-access pattern is soft, not a hard filter. Prior exceptions show that when an early start, venue proximity, or operational deadline is more important, she accepts weaker nearby food and uses a meal workaround. The adjacent property best fits that hierarchy for this trip.",
+            "probe_type": "conflict_resolution",
+            "query": "New Pennsylvania expo: flight lands at MDT at 9:05 p.m. Monday; Tuesday setup at the Farm Show Complex starts at 7:10, and the shipment desk closes at 7:30. You can eat during the connection if needed. Cap is $185, with a rental car. Holds are Complex-adjacent at $182, 4 minutes to setup, breakfast grab-and-go at 6:15, free parking, and limited food after 9; Union Deposit at $179, 12-15 minutes to setup, breakfast at 6:00, and several restaurants open later; Hershey at $171, breakfast and free parking, 22 minutes to setup; and airport-area at $160, easiest after landing, about 20 minutes to setup. Which first hold fits this trip best?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "The 7:10 setup and 7:30 shipment-desk cutoff make morning proximity the controlling constraint. The complex-adjacent option is under cap, has free parking, and is only 4 minutes away; the query also says food can be handled during the connection, reducing the late-food concern."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Rank I-240 East first for savings, then Germantown; verify breakfast and parking now and leave the evening meal plan until later."
+              },
+              {
+                "choice_id": "B",
+                "text": "Rank Germantown first and Collierville second; note the workable dinner options for both and keep I-240 East only as a savings backup pending a food check."
+              },
+              {
+                "choice_id": "C",
+                "text": "Rank downtown first because it likely has the broadest evening area, despite the no-breakfast and paid-parking tradeoffs."
+              },
+              {
+                "choice_id": "D",
+                "text": "Rank Collierville first only if the next-door restaurant is confirmed open late; otherwise require a downtown or full-service alternative."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is hard to reject on generic grounds because it is cheaper and has balanced drive times. The user's history is needed to know that unclear post-reception food should not be left out when similarly workable options exist.",
+            "gold_action": "Send a shortlist with Germantown first, Collierville second, and dining availability noted, while leaving the cheaper I-240 option as a backup to verify.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0007",
+              "tm_pd_v04_user_003_s0016",
+              "tm_pd_v04_user_003_s0082"
+            ],
+            "label_rationale": "This is a straightforward new instance of the user's established hotel-comparison pattern after late events: breakfast, parking, and cancellation matter, and nearby food should be visible in the shortlist. The gold choice uses restaurant availability as a tie-breaker without requiring a full-service hotel or ignoring price.",
+            "probe_type": "direct_use",
+            "query": "New Memphis-area counselor reception: Monday event in Collierville ends at 8:50 p.m.; Tuesday visit in Germantown is at 8:30 a.m. You need a cancellable queen room under $175, parking, and breakfast if available. Search results are Germantown suites at $169 with breakfast and parking, 14 minutes from the reception, 8 minutes to Tuesday, and a restaurant cluster across the arterial; Collierville business hotel at $172 with breakfast and parking, 4 minutes from the reception, 16 minutes to Tuesday, and one restaurant next door; I-240 East at $149 with breakfast and parking, about 15 minutes to both, and food options unclear; downtown at $174 with no breakfast and paid parking. Which shortlist should you send?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c06",
+            "rationale": "Germantown stays under cap with breakfast and parking, is slightly cheaper than Collierville, has the best Tuesday drive, and has clearer dinner options than I-240. Collierville is a reasonable second; I-240 is only a savings backup pending food verification, and downtown conflicts with breakfast and parking needs."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Check breakfast start, parking and folio details, cancellation cutoff, drive time to Akron, and practical food options after the Tuesday fair; use the food item as a comparison note rather than an automatic reject."
+              },
+              {
+                "choice_id": "B",
+                "text": "Check breakfast start, parking and folio details, cancellation cutoff, and drive time to Akron; plan the evening meal separately after the fair."
+              },
+              {
+                "choice_id": "C",
+                "text": "Check breakfast, parking, cancellation, and whether each property has an on-site restaurant; release any hold without hotel dining."
+              },
+              {
+                "choice_id": "D",
+                "text": "Check cancellation, total cost, room type, and whether a quiet room can be requested; defer external amenity checks until after flights are final."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is a competent generic hotel checklist and includes the major reimbursable items. Only the user's longitudinal pattern makes the missing post-fair food check a meaningful omission.",
+            "gold_action": "Send a verification checklist that includes food availability after the fair alongside breakfast, parking, folio, cancellation, and drive-time checks, while treating it as a soft comparison point.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0045",
+              "tm_pd_v04_user_003_s0057",
+              "tm_pd_v04_user_003_s0084"
+            ],
+            "label_rationale": "The evidence shows the user repeatedly asks for hotel verification lists that include breakfast, parking, cancellation, receipts, and late-food or dinner backups. The gold choice disambiguates restaurant access from a hard on-site-restaurant requirement and from unrelated hotel-quality details.",
+            "probe_type": "evidence_disambiguation",
+            "query": "New Ohio recruitment overnight: Tuesday fair in Beachwood ends at 8:40 p.m.; Wednesday 8:00 a.m. visit is in Akron. You are holding one Beachwood option and one Streetsboro option, both under cap and cancellable. The coordinator asks what to verify before you release one hold. Which checklist should you send for this decision?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "Before releasing one of two under-cap cancellable holds, the relevant public checks are breakfast timing, parking/folio, cancellation cutoff, drive time to Akron, and practical post-fair food. Treating food as a comparison factor rather than requiring on-site dining is the balanced checklist."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c01",
+        "c02",
+        "c06"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c04",
+        "c06",
+        "c07",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold Manchester first; use the agenda meal as the evening plan if needed, and favor the earlier breakfast, free parking, and short Friday drive despite the weaker late-night surroundings."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold West Hartford first; minimize the post-fair drive and keep more surrounding restaurant choices, accepting the later breakfast, parking charge, and longer Friday morning drive."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold a Windsor or airport-area backup around $156; it reduces the room rate and is highway-friendly, but breakfast timing and the Friday Manchester drive would need extra buffer."
+              },
+              {
+                "choice_id": "D",
+                "text": "Keep both West Hartford and Manchester holds without ranking until Thursday afternoon, then decide based on traffic, whether the boxed meal is useful, and any updated breakfast details."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is a credible near-miss because it follows the normal evening-dining pattern and avoids a late drive after the fair. The correct choice requires recognizing the one-trip exception created by the provided meal option and the early Manchester visit.",
+            "gold_action": "Hold Manchester first because the boxed meal and Friday morning timing make weaker late-night dining acceptable for this trip, while still noting the tradeoff.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0041",
+              "tm_pd_v04_user_003_s0069",
+              "tm_pd_v04_user_003_s0093"
+            ],
+            "label_rationale": "The user's default pattern would normally make West Hartford's surrounding restaurants attractive, but prior exceptions show she accepts weaker dining access when a meal workaround or stronger morning, parking, or operational constraint is present. Here the Manchester hold better protects the early school visit without requiring a permanent change to the dining-access habit.",
+            "probe_type": "exception",
+            "query": "New Connecticut counselor add-on: Thursday's fair in West Hartford ends at 8:45 p.m.; Friday's school visit in Manchester is at 7:45 a.m. The host agenda includes a boxed meal at the fair pickup table. Two refundable holds are available: Manchester at $164 with breakfast starting at 6:00, free parking, a 6-minute Friday drive, and limited late-night surroundings; West Hartford at $162 with breakfast at 6:30, $10 parking, a 5-minute post-fair drive, more surrounding restaurants, and about a 24-minute Friday drive. Which should be first?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Restaurant surroundings are mentioned, but the explicit boxed meal and early Friday visit make the decision answerable without assuming a private dining preference."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "Manchester is materially better for the stated Friday morning constraint: breakfast starts earlier, parking is free, and the Friday drive is only 6 minutes for a 7:45 a.m. visit. West Hartford's nominally lower rate is erased by the parking charge, and it has a later breakfast plus a much longer morning drive. The boxed meal also reduces the importance of late-night restaurant surroundings."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold the Complex-adjacent property first; protect the early setup and materials pickup, verify grab-and-go breakfast and parking, and add a simple late-arrival food backup."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold Union Deposit first; keep the earlier breakfast and later restaurant choices while accepting a modest morning drive to the complex and materials pickup."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold Hershey first; save more on rate while keeping breakfast and parking simple, then leave extra early to absorb the longer setup drive."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold the airport-area property first; make the late landing easiest and save the most on rate, then manage breakfast and the setup drive with an early departure."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B closely matches the user's usual meal-aware hotel pattern and remains operationally feasible. The hidden-history resolution is that restaurant access should not displace a stronger setup/materials constraint for this trip.",
+            "gold_action": "Hold the Complex-adjacent hotel first because the early setup and materials timing are the stronger current-trip constraints, while adding a practical late-arrival food backup instead of making restaurant access decisive.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0032",
+              "tm_pd_v04_user_003_s0036",
+              "tm_pd_v04_user_003_s0090"
+            ],
+            "label_rationale": "The user's dining-access habit is a soft tie-breaker, not a hard filter. Union Deposit is plausible because it has later restaurants and earlier breakfast, but prior exceptions show that early starts, venue proximity, and operational deadlines can override weaker dining surroundings when a workaround is noted.",
+            "probe_type": "conflict_resolution",
+            "query": "New Pennsylvania expo: Monday flight lands at MDT at 9:05 p.m. Tuesday exhibitor setup at the Farm Show Complex opens at 7:10, and materials pickup is requested before 7:35. Rental car is approved and these holds are within lodging policy: Complex-adjacent at $183, 4 minutes to setup, grab-and-go breakfast at 6:15, free parking, and limited nearby food after 9; Union Deposit at $179, 12-15 minutes to setup, breakfast at 6:00, free parking, and several later restaurants; Hershey at $171, 22 minutes to setup, breakfast and free parking; airport area at $160, easiest after landing, about 20 minutes to setup, breakfast at 6:30. Which first hold fits this trip best?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Late-arrival food is a stated logistics issue, but the decisive factor is the explicit early setup/materials-pickup constraint, not a private food preference."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "The complex-adjacent hold best protects the early exhibitor setup and requested materials pickup before 7:35 after a late arrival the night before. Its small rate premium is outweighed by the 4-minute setup drive, free parking, and workable early grab-and-go breakfast if verified. The farther options add morning timing risk or breakfast complications."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "For each hold, confirm breakfast start, parking and folio details, cancellation cutoff, realistic Akron drive, and nearby restaurant or open-late options for Tuesday evening; treat dining as a comparison note, not an automatic release rule."
+              },
+              {
+                "choice_id": "B",
+                "text": "For each hold, confirm breakfast start, parking and folio details, cancellation cutoff, realistic Akron drive, and total taxes and fees; decide any meal stop separately once the fair agenda is final."
+              },
+              {
+                "choice_id": "C",
+                "text": "For each hold, confirm whether the hotel has an on-site restaurant, breakfast, parking, and a cancellable rate; release either property that does not list hotel dining."
+              },
+              {
+                "choice_id": "D",
+                "text": "For each hold, confirm total rate, room type, quiet-room request, loyalty details, and cancellation cutoff; drive time and surrounding businesses can wait until after flights are final."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is a competent generic reimbursement and logistics checklist. Only the user's longitudinal pattern makes the missing nearby-food verification a significant omission for an evening-fair hotel decision.",
+            "gold_action": "Send a verification checklist that includes nearby food availability for the evening fair alongside breakfast, parking, folio, cancellation, and drive-time checks, while treating dining as a soft comparison point rather than an on-site requirement.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0045",
+              "tm_pd_v04_user_003_s0057",
+              "tm_pd_v04_user_003_s0084"
+            ],
+            "label_rationale": "The user's prior hotel verification lists repeatedly include breakfast, parking, cancellation, receipts or folio details, and late-food or dinner backups. The gold choice disambiguates the remembered dining-access habit from both a hard on-site-restaurant requirement and a generic checklist that omits the evening meal context.",
+            "probe_type": "evidence_disambiguation",
+            "query": "New Ohio recruitment overnight: Tuesday schedule ends with an evening fair in Beachwood; Wednesday has an 8:00 a.m. Akron visit. You are temporarily holding one Beachwood property and one Streetsboro property, both cancellable and within lodging policy. The coordinator asks what to verify before choosing which hold to keep. Which checklist best fits this decision?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Open-late dining is a possible preference cue, but here it is tied to the stated evening fair and used only as a verification/comparison item, so no private history is needed."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "A is the best checklist for choosing between the two holds because it verifies the schedule-critical items: breakfast start, parking and folio details, cancellation cutoff, realistic Akron drive, and Tuesday evening food/open-late options. It also treats dining as a comparison note rather than an automatic release rule. B omits the evening-location dining check despite the stated evening fair; C overrequires on-site dining; D wrongly defers drive-time and surrounding-area checks."
+          }
+        }
+      ],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 5,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 5,
+    "selected_difficulty_counts": {
+      "medium": 5
+    },
+    "selected_type_counts": {
+      "boundary": 1,
+      "conflict_resolution": 1,
+      "cross_context_transfer": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_003"
+}

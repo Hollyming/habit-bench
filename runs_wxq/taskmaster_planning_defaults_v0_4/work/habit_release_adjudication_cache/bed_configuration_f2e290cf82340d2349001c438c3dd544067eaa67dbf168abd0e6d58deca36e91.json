@@ -1,0 +1,54 @@
+{
+  "cache_fingerprint": "f2e290cf82340d2349001c438c3dd544067eaa67dbf168abd0e6d58deca36e91",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_room_main_bed_size_policy",
+      "boundary_condition": "Do not apply to rooms requested with separate beds for occupants or to multi-room requests where a particular room has a separate-bed setup.",
+      "canonical_value": "queen-size or better main hotel bed",
+      "condition": "When selecting a hotel room bed type and a single main bed is appropriate.",
+      "default_action": "Request a queen-size or larger main bed; accept a king-size bed as satisfying or upgrading this preference.",
+      "exception_condition": "If the current request specifies an explicit layout, such as a queen bed plus a pull-out couch or two twins, preserve that layout instead of converting it to a queen-or-better single-bed room.",
+      "input_ids": [
+        "tm_v04_habit_4b0cd8b7ba76"
+      ],
+      "name": "Queen-or-better hotel bed default",
+      "preference_value": "queen-size or better main bed",
+      "rationale": "Repeated examples state a queen-size-or-better or queen/king main-bed requirement. This is a distinct bed-size threshold, not an alias for a king-first preference, and its layout and separate-bed exceptions prevent overgeneralizing.",
+      "representative_id": "tm_v04_habit_4b0cd8b7ba76"
+    },
+    {
+      "action": "merge",
+      "alternative_group_key": "hotel_room_main_bed_size_policy",
+      "boundary_condition": "Applies only to hotel room bed type. Do not infer room count, destination, dates, view, balcony, price, party size, or other amenities from this preference.",
+      "canonical_value": "king-size hotel bed preferred, with queen or other suitable beds acceptable when needed",
+      "condition": "When searching for a hotel room or specifying room amenities and no separate-bed arrangement is required.",
+      "default_action": "Look first for, or request, a room with a king-size bed when it fits the current hotel constraints.",
+      "exception_condition": "If the current request asks for a different bed arrangement, if occupants need separate beds, or if no king-bed option satisfies the required constraints, follow the current request or present suitable non-king alternatives such as a queen bed instead of blocking the booking.",
+      "input_ids": [
+        "tm_v04_habit_3efc195b7db3",
+        "tm_v04_habit_9e0ade719b50"
+      ],
+      "name": "Prefer king-size hotel bed when available",
+      "preference_value": "king-size bed preferred; queen-size or another suitable bed acceptable as a fallback",
+      "rationale": "Both candidates encode the same hotel bed-size default: prefer or request a king-size bed when bed type is selectable. The merged policy keeps it as a soft default because the evidence includes queen-or-king formulations and availability/current-request exceptions.",
+      "representative_id": "tm_v04_habit_3efc195b7db3"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_room_bed_count_policy",
+      "boundary_condition": "This applies only to bed count; it does not establish a fixed mattress size, location preference, smoking preference, or other hotel amenity requirement.",
+      "canonical_value": "one-bed hotel room when multiple beds are not needed",
+      "condition": "When searching for a hotel room and the stated party or sleeping needs do not require multiple beds.",
+      "default_action": "Request a room with exactly one bed, leaving the mattress size flexible unless separately specified.",
+      "exception_condition": "Override the one-bed default if the party needs separate beds, if the user explicitly asks for multiple beds, or if no one-bed room satisfies the hard hotel constraints.",
+      "input_ids": [
+        "tm_v04_habit_70d1da2a437a"
+      ],
+      "name": "Prefer one-bed hotel rooms",
+      "preference_value": "exactly one bed in the hotel room",
+      "rationale": "The supporting examples consistently specify a single king or single queen bed. This is a bed-count preference independent of mattress size, so it should remain separate from the bed-size policies.",
+      "representative_id": "tm_v04_habit_70d1da2a437a"
+    }
+  ]
+}

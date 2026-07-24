@@ -1,0 +1,334 @@
+{
+  "cache_fingerprint": "a1b8258b53137c9fb75689839046e767e1f9a45e67058c3b588c4eb3b50debfa",
+  "sessions": [
+    {
+      "domain": "booking_refinement",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Erin chose schedule reliability and connection simplicity over a cheaper one-stop or later departure, selected the late-morning nonstop outbound, chose the independent convention-area suite hotel because policy allows it and it offers better value/amenities, and decided to delay the return pending Mark’s weekend availability while requesting a window seat if available.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "I don’t love giving up the afternoon flight, but for this one I’d rather not gamble on a connection or land rushed.",
+            "habit_id": "tm_pd_v04_user_001_h01",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.95,
+            "evidence_quote": "for this one I’d rather not gamble on a connection or land rushed",
+            "habit_id": "tm_pd_v04_user_001_h02",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.92,
+            "evidence_quote": "Carrier doesn’t matter if the itinerary is cleaner.",
+            "habit_id": "tm_pd_v04_user_001_h00",
+            "signal_type": "boundary"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "if the seat map is open, I’ll take a window.",
+            "habit_id": "tm_pd_v04_user_001_h03",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Organizer finally answered. I need to be checked in by 1:00 p.m. Tuesday for the workshop prep, and the hotel block expires in two days. Can you help me pick the flight and hotel strategy before I start booking?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. For the outbound, I’d treat the Tuesday timing as schedule-sensitive. The late-morning nonstop is the only one I’d rank as safe. The afternoon nonstop reaches Orlando too late to make the 1:00 prep comfortably, and the cheaper one-stop gets in after dinner, which leaves no recovery room if the connection hiccups.",
+          "role": "assistant"
+        },
+        {
+          "content": "That’s what I was afraid of. I don’t love giving up the afternoon flight, but for this one I’d rather not gamble on a connection or land rushed. Is the late-morning nonstop still coach and not wildly more expensive?",
+          "role": "user"
+        },
+        {
+          "content": "It’s coach, and the premium is modest: roughly $70-$100 more than the one-stop and only a little more than the afternoon nonstop. The value is mostly in fewer failure points. I’d book the late-morning nonstop and not let the cheaper connection drive this decision.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. Carrier doesn’t matter if the itinerary is cleaner. Now hotel: the main convention hotel is obnoxious with the resort fee. The second block hotel has a shuttle but basically no hot tub. The independent suite hotel looks better, but it’s outside the block. Am I being unreasonable going outside it?",
+          "role": "user"
+        },
+        {
+          "content": "Not if your company policy allows it and the commute is manageable. My ranking would be: first, the independent suite hotel if its rate is real and cancellable, because it has the stronger guest rating, pool, hot tub, and fitness access. Second, the shuttle block hotel if you want the simplest expo logistics and can live without much recovery-amenity value. Third, the main convention hotel, because the resort fee makes it hard to justify unless walkability is worth the premium.",
+          "role": "assistant"
+        },
+        {
+          "content": "Policy doesn’t require the block. Independent is $238 before tax. Main is $259 plus resort fee, and the shuttle block is $219. I just need a clean receipt.",
+          "role": "user"
+        },
+        {
+          "content": "Then I’d choose the independent suite hotel Tuesday-Friday on a cancellable business rate. It should come in below the main hotel after fees, gives you better amenities, and stays defensible because the block is not mandatory. Just save a note that the choice was lower total cost than the main hotel and had a reliable convention-area commute.",
+          "role": "assistant"
+        },
+        {
+          "content": "Should I book the Friday return tonight or wait for Mark? He’s supposed to tell me next week if he can join.",
+          "role": "user"
+        },
+        {
+          "content": "Split the decision. Book the outbound now and lock the hotel before the block deadline pressure creates noise. Delay the return only if your booking tool allows a one-way business outbound without penalty, or if the Friday return is changeable enough that you won’t be stuck.",
+          "role": "assistant"
+        },
+        {
+          "content": "One-way is allowed if there’s a reason, and the fare isn’t much worse. I’d rather keep the weekend option open.",
+          "role": "user"
+        },
+        {
+          "content": "Good. Book the one-way outbound and put a fare check on the calendar for five days from now. If Mark can join, compare Saturday and Sunday returns. If he can’t, book the Friday evening return. If fares start jumping by more than about $150, then decide whether to grab the Friday return and change later.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the actual booking order so I don’t create a mess. And if the seat map is open, I’ll take a window.",
+          "role": "user"
+        },
+        {
+          "content": "Book in this order: 1) late-morning nonstop DEN-MCO Tuesday in coach, then select a window seat if one is open. 2) Independent suite hotel Tuesday-Friday on the cancellable corporate rate; request a quiet room and verify pool, hot tub, and fitness hours. 3) Save the hotel rationale with the receipt: block not required, main hotel higher after fees, independent option well-rated and convention-area. 4) Do not book a rental car yet; use rideshare or conference transport unless the weekend add-on happens. 5) Wait on the return until Mark answers, with a fare-check reminder. 6) Once the return is set, handle seat selection, conference check-in, and local transport.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_001_s0045",
+      "session_index": 45,
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "domain": "itinerary_adjustment",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Mark became available for the weekend, and Erin chose the Cocoa Beach add-on over the conference-only return or an Orlando stay. The plan became a Sunday return, Mark’s Friday-night arrival, a cancellable beachfront private-balcony room with pool/hot tub priority, a Friday-to-Sunday rental car, and a clean business-versus-personal cost split.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I want a real balcony, not a hallway outside the room.",
+            "habit_id": "tm_pd_v04_user_001_h06",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Update: Mark got cleared to join late Friday. I ended up holding a flexible Friday evening return when fares started moving. Can we compare just going home after the conference versus turning this into Cocoa Beach for two nights?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Three paths: keep the Friday return, which is cleanest and keeps everything business-only; stay in Orlando for the weekend, which avoids a car but probably won’t feel like much of a getaway; or do Cocoa Beach Friday and Saturday, which adds a rental car and a Sunday return but gives you the actual coastal break.",
+          "role": "assistant"
+        },
+        {
+          "content": "Cocoa Beach sounds more fun. How ugly are the extra costs?",
+          "role": "user"
+        },
+        {
+          "content": "Rough personal add-on estimate: Erin return change to Sunday, about $180-$250 fare difference if you keep the same cabin; Mark’s DEN-MCO Friday and MCO-DEN Sunday, about $425-$550; Cocoa Beach beachfront or near-beach hotel, about $300-$375 per night before taxes/fees; rental car Friday afternoon to Sunday airport drop, about $160-$230 plus tolls and parking. All-in, I’d expect roughly $1,400-$1,900 personal depending on the hotel.",
+          "role": "assistant"
+        },
+        {
+          "content": "Not cheap, but staying in Orlando doesn’t really sound like a weekend. What are the beach hotel trade-offs?",
+          "role": "user"
+        },
+        {
+          "content": "The best fit is the beachfront balcony room around the low-$300s: good guest rating, real beach access, pool, hot tub, and fitness room, but it has parking and resort-style fees. The newer oceanfront option rates a bit higher and has nicer rooms, but the balcony category is pricier and the hot tub situation is weaker. The cheaper place saves money but the balcony is not guaranteed and it reads more like a motel refresh.",
+          "role": "assistant"
+        },
+        {
+          "content": "I want a real balcony, not a hallway outside the room. Hot tub if we can get it. I’m okay paying a bit more for the two nights.",
+          "role": "user"
+        },
+        {
+          "content": "Then book the beachfront balcony room on a cancellable rate and call afterward to confirm it is a private balcony, not an exterior corridor or shared walkway. Also confirm parking cost, resort fee, pool and hot tub hours, and whether a late Friday arrival is fine.",
+          "role": "assistant"
+        },
+        {
+          "content": "Rental car timing: I do not want to pay for one starting Tuesday. The conference hotel is fine without it.",
+          "role": "user"
+        },
+        {
+          "content": "Agreed. Reserve the car for Friday after the final session, ideally from a convention-area or nearby hotel pickup if pricing is sane. Return it Sunday at MCO before your flight. That keeps the rental entirely personal and avoids muddying the business portion.",
+          "role": "assistant"
+        },
+        {
+          "content": "Mark’s likely flight lands around 8:15 Friday night. Would I pick him up and then drive to Cocoa?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, that works. Check out of the business hotel Friday morning, have them store your bag, finish the conference, pick up the rental car, then get Mark at MCO around 8:15 and drive to Cocoa Beach. It’s late but manageable. If his arrival slips past about 10:00, grab food near the airport first or consider whether you still want the beach drive that night.",
+          "role": "assistant"
+        },
+        {
+          "content": "How should I split this so accounting doesn’t get weird?",
+          "role": "user"
+        },
+        {
+          "content": "Keep the business and personal pieces separate: company covers your original outbound, the Tuesday-Friday convention hotel, and normal conference ground transport. Personal covers the Sunday-return fare difference beyond the reasonable Friday return, Mark’s full airfare, Cocoa Beach hotel Friday/Saturday, rental car from Friday onward, tolls, parking, weekend meals, and beach incidentals. Get the convention hotel folio closed Friday morning before any personal charges start.",
+          "role": "assistant"
+        },
+        {
+          "content": "So what do I book tonight?",
+          "role": "user"
+        },
+        {
+          "content": "Book these now: 1) change your return to Sunday if the fare difference is still under about $250; 2) book Mark’s Friday-to-Sunday flights before the late-Friday nonstop fills; 3) reserve the cancellable Cocoa Beach private-balcony room; 4) reserve the Friday-to-Sunday rental car with free cancellation. After each booking, save receipts in two folders: Orlando conference business and Cocoa Beach personal add-on.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_001_s0046",
+      "session_index": 46,
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "domain": "pre_trip_follow_up",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Erin kept the shifted late-morning nonstop rather than changing the itinerary, committed to carry-on-only to protect the prep-meeting buffer, and finalized the pre-trip checklist for seats, hotel folios, rental car timing, Mark’s arrival, and weather monitoring.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "One week out. The outbound moved 25 minutes later. It still lands before the Tuesday prep meeting if baggage is smooth. I don’t want to reopen the whole trip—keep it or change it?",
+          "role": "user"
+        },
+        {
+          "content": "Keep it. The shift trims the cushion, but the nonstop is still the least risky option. I’d reduce baggage risk instead of changing flights: carry-on plus backpack, check in right at 24 hours, and have the organizer’s number handy in case the inbound aircraft starts running late.",
+          "role": "assistant"
+        },
+        {
+          "content": "Carry-on plus backpack is fine. Give me the compact final pass: seats, bags, conference check-in, hotels, rental car, Mark.",
+          "role": "user"
+        },
+        {
+          "content": "Flight: confirm your seat when check-in opens and keep the window if it’s still assigned; if it disappeared, avoid a middle seat first, then watch the map. No checked bag unless something changes. Download the boarding pass and save the hotel address for rideshare.",
+          "role": "assistant"
+        },
+        {
+          "content": "Hotel folios are where I’m most likely to mess something up. Independent hotel Tuesday to Friday, Cocoa Beach Friday and Saturday.",
+          "role": "user"
+        },
+        {
+          "content": "At the convention hotel, put room and tax on the corporate card only through Friday checkout and ask for the folio by email before you leave. At the Cocoa Beach hotel, use the personal card, confirm private balcony, parking/resort fees, late Friday arrival, and pool/hot tub hours.",
+          "role": "assistant"
+        },
+        {
+          "content": "Rental car pickup is Friday after the conference near the hotel. Mark lands at 8:15 at MCO.",
+          "role": "user"
+        },
+        {
+          "content": "Keep that timing. Pick up the car after the final session, photograph the car at pickup, choose the toll option only if the rate is reasonable, then get Mark at MCO. Have him check in at 24 hours too, confirm his seat, and send you the flight number and terminal.",
+          "role": "assistant"
+        },
+        {
+          "content": "Anything weather-related?",
+          "role": "user"
+        },
+        {
+          "content": "Start monitoring Orlando storms and Cocoa Beach wind/rip-current notes 72 hours out. Pack a light rain layer, conference flats, beach sandals, and an extra charger. Final order: check flight seats, complete online conference check-in, call both hotels to reconfirm notes, recheck Mark’s arrival Friday morning, and keep the outbound as booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_001_s0047",
+      "session_index": 47,
+      "user_id": "tm_pd_v04_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Orlando veterinary expo plan is effectively finalized. Erin has a late-morning nonstop DEN-MCO outbound that shifted 25 minutes later but should be kept, with carry-on-only to preserve the meeting buffer. She is staying Tuesday-Friday at the independent convention-area suite hotel outside the block because policy allows it, the total value is better than the main hotel after fees, and it has stronger amenities; the corporate folio should close at Friday checkout. Mark can join Friday night, so Erin added the Cocoa Beach weekend and Sunday return. Personal add-on pieces: Mark flies into MCO around 8:15 Friday, Erin picks up a rental car after the conference, they stay Friday/Saturday at a Cocoa Beach hotel with a private balcony request, and the car returns Sunday at MCO. Business costs remain separate from the personal fare difference, Mark’s airfare, beach hotel, rental car, tolls, parking, meals, and incidentals. Final follow-ups: check in for flights and seats at 24 hours, complete online conference check-in, confirm both hotel notes/folios, verify Mark’s seat and arrival details, and monitor Orlando storms plus Cocoa Beach wind and rip-current conditions starting 72 hours out.",
+  "verification": {
+    "45": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "I don’t love giving up the afternoon flight, but for this one I’d rather not gamble on a connection or land rushed.",
+          "habit_id": "tm_pd_v04_user_001_h01",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.95,
+          "evidence_quote": "for this one I’d rather not gamble on a connection or land rushed",
+          "habit_id": "tm_pd_v04_user_001_h02",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.92,
+          "evidence_quote": "Carrier doesn’t matter if the itinerary is cleaner.",
+          "habit_id": "tm_pd_v04_user_001_h00",
+          "signal_type": "boundary"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "if the seat map is open, I’ll take a window.",
+          "habit_id": "tm_pd_v04_user_001_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User utterances directly evidence the afternoon-flight preference plus a current-trip timing exception, a current-trip connection-avoidance exception, a carrier-vs-itinerary tradeoff boundary, and window-seat selection. No user quote establishes a 4.0 hotel-rating threshold or the full pool/hot-tub/fitness amenity set."
+    },
+    "46": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I want a real balcony, not a hallway outside the room.",
+          "habit_id": "tm_pd_v04_user_001_h06",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "The balcony preference is directly stated by the user. The separate hot-tub mention does not establish the full pool, hot tub, and fitness-access hotel-amenity habit."
+    },
+    "47": {
+      "habit_signals": [],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "No final user utterance provides a concrete candidate habit value or explicit candidate-habit exception; assistant summaries are not counted as user evidence."
+    }
+  }
+}

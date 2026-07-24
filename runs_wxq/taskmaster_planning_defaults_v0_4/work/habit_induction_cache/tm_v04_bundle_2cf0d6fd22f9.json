@@ -1,0 +1,87 @@
+{
+  "boundary_condition": "Apply only within hotel searches when customer-review information is available; do not convert one-off star ratings, waterfront requests, or nightly budgets from the examples into persistent defaults.",
+  "bundle_id": "tm_v04_bundle_2cf0d6fd22f9",
+  "condition": "When the synthetic user is selecting or ranking hotels, treat good customer reviews as a reusable quality signal to prefer among otherwise viable options.",
+  "confidence": 0.9,
+  "decision": "accept",
+  "default_action": "Filter for or rank higher hotels described as having good customer reviews before presenting recommendations.",
+  "exception_condition": "If hotels with good customer reviews do not meet the user’s explicit hard constraints, such as the current dates, location type, room needs, or stated price limit, present the conflict and ask whether to relax the review preference or another constraint.",
+  "family": "hotel_feature",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_2cf0d6fd22f9",
+  "induced_at": "2026-07-15T12:32:37.214498+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefer hotels with good customer reviews",
+  "preference_value": "hotels with good customer reviews",
+  "rationale": "At least three independent hotel-search instruction sources explicitly ask for good customer reviews. This supports a coherent synthetic default to prefer well-reviewed hotels, while keeping request-specific details such as star level, water proximity, and budget out of the habit.",
+  "seed_value": "good_customer_reviews",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "The user asks for a hotel with \"good customer reviews\" along with other one-off search constraints.",
+      "conversation_id": "dlg-5848c621-1a58-4589-b500-d445b612f64d",
+      "turn_index": 3
+    },
+    {
+      "contribution": "The user states \"Good customer reviews\" as a hotel-selection requirement, supporting reviews as a desired quality feature.",
+      "conversation_id": "dlg-11b17307-0cca-4b65-ba94-3834bc20b21c",
+      "turn_index": 15
+    },
+    {
+      "contribution": "The user requests something with \"good customer reviews,\" independently grounding the reusable preference for well-reviewed hotels.",
+      "conversation_id": "dlg-43dc383e-1f82-4660-9ba9-6b66fa0b4511",
+      "turn_index": 4
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "good customer reviews",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-5848c621-1a58-4589-b500-d445b612f64d",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 3,
+      "user_utterance": "I'm looking for something near the water, at least four stars, good customer reviews."
+    },
+    {
+      "annotated_segment": "Good customer reviews",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-11b17307-0cca-4b65-ba94-3834bc20b21c",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 15,
+      "user_utterance": "Good customer reviews, and I need the one that has four star rating."
+    },
+    {
+      "annotated_segment": "good customer reviews",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-43dc383e-1f82-4660-9ba9-6b66fa0b4511",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 4,
+      "user_utterance": "I'm looking for something $150 per night or less, at least three stars and good customer reviews."
+    },
+    {
+      "annotated_segment": "good customer reviews",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-73dd8390-5de8-4248-918c-97c4af8b6104",
+      "habitual_language": false,
+      "instruction_id": "hotel-12",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 3,
+      "user_utterance": "Yes. I'd like a hotel that has good customer reviews."
+    }
+  ]
+}

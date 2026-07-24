@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "f630b288e5a74b90ec8f33588fe411535360568908a4d8dbd1c7a5f1ce0a855c",
+  "habits": [
+    {
+      "boundary_condition": "Treat this as a soft default: options close to afternoon may be acceptable when true afternoon return departures are limited or otherwise unattractive.",
+      "bundle_id": "tm_v04_e2e_bundle_26cf0aa15c48",
+      "condition": "When booking or comparing round-trip flights, especially when specifying the return leg departure time.",
+      "confidence": 0.8,
+      "decision": "accept",
+      "default_action": "Search for return-flight options that leave in the afternoon; if multiple afternoon options are available, present those first and let the user choose a specific time.",
+      "exception_condition": "Do not apply to outbound legs as a universal rule, because one supporting dialogue explicitly used a morning outbound departure while still preferring an afternoon return.",
+      "family": "flight_departure_arrival_timing",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_26cf0aa15c48",
+      "induced_at": "2026-07-16T07:53:32.034717+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "afternoon_return_departure_preference",
+      "preference_value": "Prefer the return flight to depart in the afternoon.",
+      "rationale": "Across three independent flight-booking dialogues, the user repeatedly asks for the return leg to leave in the afternoon. One dialogue frames afternoon as preferred but flexible, so the habit should be soft rather than mandatory.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Explicitly includes the return leg in an afternoon-departure preference and states that close alternatives are acceptable.",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "exact_user_quote": "Can you find me flights both going to and returning but leaving afternoon, or as close to it as possible?",
+          "instruction_id": "flight-11",
+          "turn_index": 22
+        },
+        {
+          "contribution": "In the round-trip context, this specifies the return departure should be in the afternoon, while the outbound leg is separately morning.",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "exact_user_quote": "I'd like to leave Orlando in the afternoon.",
+          "instruction_id": "flight-3",
+          "turn_index": 21
+        },
+        {
+          "contribution": "Directly states that the return flight should leave in the afternoon, matching the same return-leg timing policy.",
+          "conversation_id": "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f",
+          "exact_user_quote": "I would like to leave in the afternoon for both departure and return.",
+          "instruction_id": "flight-12",
+          "turn_index": 10
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Can you find me flights both going to and returning but leaving afternoon, or as close to it as possible?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 22,
+          "user_utterance": "Can you find me flights both going to and returning but leaving afternoon, or as close to it as possible?"
+        },
+        {
+          "annotated_segment": "I'd like to leave Orlando in the afternoon.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "habitual_language": false,
+          "instruction_id": "flight-3",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 21,
+          "user_utterance": "I'd like to leave Orlando in the afternoon."
+        },
+        {
+          "annotated_segment": "I would like to leave in the afternoon for both departure and return.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f",
+          "habitual_language": false,
+          "instruction_id": "flight-12",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 10,
+          "user_utterance": "I would like to leave in the afternoon for both departure and return."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+    "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+    "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+  ]
+}

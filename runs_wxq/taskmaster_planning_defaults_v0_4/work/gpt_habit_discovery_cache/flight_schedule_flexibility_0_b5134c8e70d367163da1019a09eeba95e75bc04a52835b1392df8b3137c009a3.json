@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "b5134c8e70d367163da1019a09eeba95e75bc04a52835b1392df8b3137c009a3",
+  "habits": [
+    {
+      "boundary_condition": "Do not infer one universal time window for all flight legs; the preferred window can vary by leg or trip, so honor any explicitly stated morning, afternoon, evening, or nighttime preference.",
+      "bundle_id": "tm_v04_e2e_bundle_ff9a7f3c433c",
+      "condition": "When searching or narrowing flight departure times.",
+      "confidence": 0.74,
+      "decision": "accept",
+      "default_action": "Search within the user’s requested time-of-day window first and present candidate times inside that window; if needed, ask about nearby windows instead of treating the initial timing as a fixed exact-time requirement.",
+      "exception_condition": "If the requested window has poor availability or conflicts with other stated flight constraints, confirm before broadening or switching to another window.",
+      "family": "flight_schedule_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_ff9a7f3c433c",
+      "induced_at": "2026-07-16T07:58:35.651225+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Flexible departure-time windows",
+      "preference_value": "The traveler tends to work with broad time-of-day departure windows rather than fixed exact clock times; afternoon is often acceptable, but should not be assumed for every leg.",
+      "rationale": "Across three independent flight dialogues, the user frames departure timing as dayparts and requests or accepts options within or near those windows rather than requiring a single exact departure time.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows an afternoon departure window with tolerance for nearby times rather than a fixed exact clock time.",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "exact_user_quote": "Yes. Could you find me flights that leave in the afternoon or as close to it as possible?",
+          "instruction_id": "flight-11",
+          "turn_index": 24
+        },
+        {
+          "contribution": "Requests multiple available departure times within the afternoon window, supporting flexibility among times in that period.",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "exact_user_quote": "Can you give tell me what the times are for departing in the afternoon?",
+          "instruction_id": "flight-3",
+          "turn_index": 33
+        },
+        {
+          "contribution": "Accepts an afternoon window and narrows by the earliest available option within that window after another preferred window is unavailable.",
+          "conversation_id": "dlg-f3189470-c660-4764-97e7-a1b6daa4d541",
+          "exact_user_quote": "Afternoon then, the earliest in the afternoon.",
+          "instruction_id": "flight-4",
+          "turn_index": 61
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Yes. Could you find me flights that leave in the afternoon or as close to it as possible?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 24,
+          "user_utterance": "Yes. Could you find me flights that leave in the afternoon or as close to it as possible?"
+        },
+        {
+          "annotated_segment": "Can you give tell me what the times are for departing in the afternoon?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "habitual_language": false,
+          "instruction_id": "flight-3",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 33,
+          "user_utterance": "Can you give tell me what the times are for departing in the afternoon?"
+        },
+        {
+          "annotated_segment": "Afternoon then, the earliest in the afternoon.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f3189470-c660-4764-97e7-a1b6daa4d541",
+          "habitual_language": false,
+          "instruction_id": "flight-4",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 61,
+          "user_utterance": "Afternoon then, the earliest in the afternoon."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+    "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+    "dlg-f3189470-c660-4764-97e7-a1b6daa4d541"
+  ]
+}

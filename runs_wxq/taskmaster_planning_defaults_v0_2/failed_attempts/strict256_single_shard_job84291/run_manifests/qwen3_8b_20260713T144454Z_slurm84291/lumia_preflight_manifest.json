@@ -1,0 +1,122 @@
+{
+  "artifacts": {
+    "bundle_manifest": {
+      "artifact": {
+        "bytes": 15660,
+        "exists": true,
+        "path": "dist/lumia_bundle/habit-bench-lumia-full-official.tar.gz.manifest.json",
+        "sha256": "45005dd14530d3572eaad5fe5ea9a4c6319aba586873e76c0fb31ebbcfde0e37"
+      },
+      "file_count": 60,
+      "tarball": {
+        "bytes": 259993,
+        "path": "dist\\lumia_bundle\\habit-bench-lumia-full-official.tar.gz",
+        "sha256": "4e47ba480bd144496fc146c851aa108b8843e4c6c1d0da6f4831d447b0cc81bb"
+      }
+    },
+    "bundle_verify": {
+      "artifact": {
+        "bytes": 1515,
+        "exists": true,
+        "path": "runs/lumia_bundle_verify/lumia_bundle_verify.json",
+        "sha256": "16d060125511817f8ea94a3a034ae147c3369477df83d24b0084900bee1d561b"
+      },
+      "command_count": 1,
+      "status": "pass"
+    },
+    "model_download": {
+      "artifact": {
+        "bytes": 1042,
+        "exists": true,
+        "path": "runs/lumia_manifests/model_download_manifest.json",
+        "sha256": "f8eb50bc90b7fd2c0d49fafd7d1a4fa5042c35557a236acd16b949e1873c1928"
+      },
+      "dry_run": false,
+      "model_count": 2,
+      "status": "pass"
+    },
+    "model_preflight": {
+      "artifact": {
+        "bytes": 2866,
+        "exists": true,
+        "path": "runs/lumia_manifests/model_preflight_manifest_local.json",
+        "sha256": "3aa1f9126535c18567505d5aedab84e4d4ffc4c2dfec7a90b88cb2b31cd6d324"
+      },
+      "models": [
+        "Qwen/Qwen2.5-7B-Instruct",
+        "sentence-transformers/all-MiniLM-L6-v2"
+      ],
+      "status": "pass"
+    }
+  },
+  "command": "sbatch scripts_wxq/submit_taskmaster_planning_defaults_v02_qwen3_full_official.sbatch",
+  "created_at": "2026-07-13T14:44:55.026280+00:00",
+  "dataset": {
+    "counts": {
+      "private_keys": 120,
+      "public_probes": 120,
+      "public_sessions": 1080
+    },
+    "dataset_dir": "/home/xqwang/project/habit-bench/runs_wxq/taskmaster_planning_defaults_v0_2",
+    "domain_provenance": null,
+    "exists": true,
+    "manifest": null,
+    "sha256": {
+      "private_key": "13a0e0bd1d3e7d2fc7f85db30fa1b369bfbc37b5b920d73cd29c5f2587e00c91",
+      "public_probes": "f12abfff78dc1e5d6cbcff24bc7dbdc5ccde6909556f8a909a53e66e4c503745",
+      "public_sessions": "e47e1cbe02cb1d2cbcef9dcf2bac95a2047574b52764a89e39b2fb6432015d48"
+    },
+    "source_domain_contract_audit": {
+      "artifact": {
+        "bytes": 0,
+        "exists": false,
+        "path": "/home/xqwang/project/habit-bench/runs_wxq/taskmaster_planning_defaults_v0_2/reports/source_domain_contract_audit.json"
+      },
+      "expected_source": null,
+      "families": null,
+      "status": null
+    }
+  },
+  "env": {
+    "CUDA_VISIBLE_DEVICES": "0",
+    "HABITBENCH_BUNDLE_BYTES": null,
+    "HABITBENCH_BUNDLE_FILE_COUNT": null,
+    "HABITBENCH_BUNDLE_MANIFEST": null,
+    "HABITBENCH_BUNDLE_SHA256": null,
+    "HABITBENCH_BUNDLE_VERIFY_REPORT": null,
+    "HABITBENCH_BUNDLE_VERIFY_STATUS": null,
+    "HABITBENCH_DATASET": "/home/xqwang/project/habit-bench/runs_wxq/taskmaster_planning_defaults_v0_2",
+    "HABITBENCH_EMBED_MODEL": "/home/xqwang/project/habit-bench/runs_wxq/taskmaster_planning_defaults_v0_2/official_deps/models/all-MiniLM-L6-v2",
+    "HABITBENCH_GPU_MEMORY_UTIL": "0.90",
+    "HABITBENCH_LLM_MODEL": "/data1/public/hf/Qwen/Qwen3-8B",
+    "HABITBENCH_MODEL_DOWNLOAD_MANIFEST": null,
+    "HABITBENCH_MODEL_PREFLIGHT_MANIFEST": null,
+    "HABITBENCH_MODEL_PREFLIGHT_STATUS": null,
+    "HABITBENCH_OFFICIAL_OUT": "/home/xqwang/project/habit-bench/runs_wxq/taskmaster_planning_defaults_v0_2/full_official_results",
+    "HABITBENCH_SERVED_MODEL": "habitbench-open-llm",
+    "HABITBENCH_SOURCE_DOMAIN_AUDIT_STATUS": null,
+    "HABITBENCH_STRUCTURED_OUTPUT_MODE": "json_schema",
+    "HABITBENCH_TENSOR_PARALLEL": null,
+    "HABITBENCH_VLLM_HOST": null,
+    "HABITBENCH_VLLM_PORT": null,
+    "OPENAI_BASE_URL": "http://127.0.0.1:8000/v1"
+  },
+  "extra": {
+    "run_id": "qwen3_8b_20260713T144454Z_slurm84291",
+    "status": "pass"
+  },
+  "host": {
+    "hostname": "gpu-a100",
+    "platform": "Linux-5.15.0-164-generic-x86_64-with-glibc2.35",
+    "python": "3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]",
+    "python_executable": "/home/xqwang/conda_envs/habit-official/bin/python"
+  },
+  "note": "Local model and dependency preflight completed in the Slurm allocation.",
+  "results_dir": "/home/xqwang/project/habit-bench/runs_wxq/taskmaster_planning_defaults_v0_2/full_official_results",
+  "stage": "lumia_preflight",
+  "versions": {
+    "git_head": "a2d8624da29d9a1e8c894f88de1b5f11b0578429",
+    "nvidia_smi": "NVIDIA A100-SXM4-40GB, 40960 MiB, 570.195.03",
+    "pip_freeze": "absl-py==2.3.1\naiofiles==24.1.0\naiohappyeyeballs==2.7.1\naiohttp==3.14.1\naiosignal==1.4.0\nannotated-doc==0.0.4\nannotated-types==0.7.0\nantlr4-python3-runtime==4.9.3\nanyio==4.12.0\nasgiref==3.11.1\nasttokens==3.0.1\nasync-timeout==4.0.3\nattrs==26.1.0\nbackoff==2.2.1\nbcrypt==5.0.0\nbuild==1.5.1\ncachetools==6.2.4\ncertifi==2026.6.17\ncharset-normalizer==3.4.9\nchroma-hnswlib==0.7.6\nchromadb==0.5.23\nclick==8.4.2\ncoloredlogs==15.0.1\ndataclasses-json==0.6.7\ndecorator==5.3.1\ndistro==1.9.0\ndurationpy==0.10\neinops==0.8.1\nexceptiongroup==1.3.1\nexecuting==2.2.1\nfastapi==0.139.0\nfilelock==3.20.1\nflatbuffers==25.12.19\nfrozenlist==1.8.0\nfsspec==2026.6.0\ngoogleapis-common-protos==1.75.0\ngraphiti-core==0.29.2\ngreenlet==3.5.3\ngrpcio==1.82.1\nh11==0.16.0\nh2==4.3.0\nhf-xet==1.5.1\nhjson==3.1.0\nhpack==4.2.0\nhttpcore==1.0.9\nhttptools==0.8.0\nhttpx==0.28.1\nhuggingface_hub==0.36.2\nhumanfriendly==10.0\nhyperframe==6.1.0\nidna==3.18\nimportlib_resources==7.1.0\nipdb==0.13.13\nipython==8.37.0\njedi==0.19.2\nJinja2==3.1.6\njiter==0.16.0\njoblib==1.5.3\njsonpatch==1.33\njsonpointer==3.1.1\nkubernetes==36.0.2\nkuzu==0.11.3\nlangchain==0.2.17\nlangchain-community==0.2.19\nlangchain-core==0.2.43\nlangchain-text-splitters==0.2.4\nlangsmith==0.1.147\nlightning-utilities==0.15.2\nMarkdown==3.10.2\nmarkdown-it-py==4.2.0\nMarkupSafe==3.0.3\nmarshmallow==3.26.2\nmatplotlib-inline==0.2.1\nmdurl==0.1.2\nmem0ai==2.0.11\nmmh3==5.2.1\nmpmath==1.3.0\nmultidict==6.7.1\nmypy_extensions==1.1.0\nneo4j==6.2.0\nnetworkx==3.4.2\nninja==1.13.0\nnltk==3.9.1\nnumpy==1.26.4\nnvidia-ml-py==13.590.44\noauthlib==3.3.1\nomegaconf==2.3.0\nonnxruntime==1.23.2\nopenai==1.109.1\nopentelemetry-api==1.43.0\nopentelemetry-exporter-otlp-proto-common==1.43.0\nopentelemetry-exporter-otlp-proto-grpc==1.43.0\nopentelemetry-instrumentation==0.64b0\nopentelemetry-instrumentation-asgi==0.64b0\nopentelemetry-instrumentation-fastapi==0.64b0\nopentelemetry-proto==1.43.0\nopentelemetry-sdk==1.43.0\nopentelemetry-semantic-conventions==0.64b0\nopentelemetry-util-http==0.64b0\norjson==3.11.9\noverrides==7.7.0\npackaging==24.2\nparso==0.8.5\npexpect==4.9.0\npillow==12.3.0\nportalocker==3.2.0\nposthog==7.22.1\nprompt_toolkit==3.0.52\npropcache==0.5.2\nprotobuf==6.33.6\nptyprocess==0.7.0\npure_eval==0.2.3\npy-cpuinfo==9.0.0\npydantic==2.13.4\npydantic_core==2.46.4\nPygments==2.20.0\npynvml==13.0.1\nPyPika==0.51.1\npyproject_hooks==1.2.0\npython-dateutil==2.9.0.post0\npython-dotenv==1.2.2\npytorch-lightning==2.2.2\npytz==2026.2\nPyYAML==6.0.3\nqdrant-client==1.18.0\nrank-bm25==0.2.2\nregex==2025.11.3\nrequests==2.34.2\nrequests-oauthlib==2.0.0\nrequests-toolbelt==1.0.0\nrich==15.0.0\nsafetensors==0.7.0\nscikit-learn==1.5.2\nscipy==1.15.3\nsentence-transformers==2.7.0\nsentencepiece==0.2.1\nshellingham==1.5.4\nsix==1.17.0\nsniffio==1.3.1\nSQLAlchemy==2.0.51\nstack-data==0.6.3\nstarlette==1.3.1\nsympy==1.14.0\ntenacity==9.1.4\ntensorboard==2.20.0\ntensorboard-data-server==0.7.2\nthreadpoolctl==3.6.0\ntokenizers==0.19.1\ntomli==2.3.0\ntorch==2.2.2+cpu\ntorchmetrics==1.8.2\ntqdm==4.68.4\ntraitlets==5.14.3\ntransformers==4.41.2\ntyper==0.26.8\ntyper-slim==0.20.1\ntyping-inspect==0.9.0\ntyping-inspection==0.4.2\ntyping_extensions==4.15.0\nurllib3==2.7.0\nuvicorn==0.51.0\nuvloop==0.22.1\nwatchfiles==1.2.0\nwcwidth==0.2.14\nwebsocket-client==1.9.0\nwebsockets==16.1\nWerkzeug==3.1.8\nwrapt==2.2.2\nyarl==1.24.2"
+  }
+}

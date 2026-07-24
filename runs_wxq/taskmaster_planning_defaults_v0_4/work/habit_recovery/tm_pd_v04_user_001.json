@@ -1,0 +1,487 @@
+{
+  "cache_fingerprint": "c3112c229511ab1363fa7f04c2f6fd3008d662c62bfcb579ff9e95ed85ebf24c",
+  "raw_recovery": {
+    "recovered_habits": [
+      {
+        "boundary_condition": "If the obligation is optional, remote, explicitly flexible, or the current itinerary still has a real cushion, the user will consider the leaner or cheaper option.",
+        "confidence": 0.96,
+        "default_action": "Choose the earlier nonstop, previous-day arrival, later return, or extra hotel night when needed to avoid sprinting or risking the first/last obligation.",
+        "evidence": [
+          {
+            "quote": "The Tuesday start is 10:00 a.m., so I don’t want to cut it close.",
+            "session_id": "tm_pd_v04_user_001_s0000"
+          },
+          {
+            "quote": "I do not love leaving before lunch, but missing a 3:00 setup would be worse.",
+            "session_id": "tm_pd_v04_user_001_s0009"
+          },
+          {
+            "quote": "I don’t love giving up the afternoon flight, but for this one I’d rather not gamble on a connection or land rushed.",
+            "session_id": "tm_pd_v04_user_001_s0045"
+          },
+          {
+            "quote": "Let’s do the calmer version: Sunday in, Friday home.",
+            "session_id": "tm_pd_v04_user_001_s0076"
+          },
+          {
+            "quote": "Let’s not do the Thursday sprint. Book the Friday morning return.",
+            "session_id": "tm_pd_v04_user_001_s0109"
+          }
+        ],
+        "exception_condition": "The user may accept a tighter plan only after consciously accepting the risk and keeping baggage/ground logistics lean; comfort alone is not enough to add nights.",
+        "family": "flight_timing_risk_management",
+        "name": "Protect fixed-event buffers over convenience and small savings",
+        "preference_value": "For schedule-sensitive trainings, certifications, client setup windows, equipment handoffs, and debriefs, the user prefers itinerary buffer over a cheaper fare, a later departure, or avoiding an extra hotel night.",
+        "scope_condition": "Work or certification travel with fixed start times, setup/calibration/handoff windows, checked equipment, or uncertain end times."
+      },
+      {
+        "boundary_condition": "A one-stop itinerary is acceptable when nonstop fares are unreasonable, no nonstop exists, or the fare difference is meaningfully large.",
+        "confidence": 0.95,
+        "default_action": "Start with nonstop options; if connecting, use one comfortable layover and avoid tight or long connections, especially with holidays, weather, or equipment.",
+        "evidence": [
+          {
+            "quote": "United is fine when it’s basically tied, but I care more about a simple route and not sitting through some long connection. One short layover is okay; two is not worth it.",
+            "session_id": "tm_pd_v04_user_001_s0003"
+          },
+          {
+            "quote": "I’d rather take a nonstop from Denver if it’s reasonable; one short layover is okay if the fare difference is big. No two-stop stuff.",
+            "session_id": "tm_pd_v04_user_001_s0059"
+          },
+          {
+            "quote": "I’m okay with a connection, just not a two-stop mess or a layover that eats half the day.",
+            "session_id": "tm_pd_v04_user_001_s0123"
+          },
+          {
+            "quote": "I’m fine with one connection, but I don’t want two stops or some long sit. United is fine if it works, but schedule matters more.",
+            "session_id": "tm_pd_v04_user_001_s0126"
+          },
+          {
+            "quote": "I don’t want a two-hour airport sit just to save $90.",
+            "session_id": "tm_pd_v04_user_001_s0132"
+          }
+        ],
+        "exception_condition": "Do not pick a worse connection merely for a preferred airline or small savings.",
+        "family": "flight_routing",
+        "name": "Prefer nonstops and simple routing over carrier loyalty",
+        "preference_value": "The user prefers nonstop flights or simple one-stop itineraries, with schedule reliability more important than airline loyalty. One reasonable layover is acceptable when needed or when savings are large; two stops, long sits, and brittle connections are disfavored.",
+        "scope_condition": "Flights from Denver for work, family, and leisure trips."
+      },
+      {
+        "boundary_condition": "The user does not require premium cabins; price sensitivity remains within regular economy.",
+        "confidence": 0.94,
+        "default_action": "Book regular economy/main cabin rather than basic economy, then select seats during or soon after booking.",
+        "evidence": [
+          {
+            "quote": "Avoid basic economy, and keep the hotel cancellable if possible.",
+            "session_id": "tm_pd_v04_user_001_s0001"
+          },
+          {
+            "quote": "Main cabin, not basic. I’ll carry on.",
+            "session_id": "tm_pd_v04_user_001_s0004"
+          },
+          {
+            "quote": "Economy but not basic.",
+            "session_id": "tm_pd_v04_user_001_s0012"
+          },
+          {
+            "quote": "United or Southwest would both be okay. I just don’t want basic economy because I need normal seat selection and a carry-on.",
+            "session_id": "tm_pd_v04_user_001_s0023"
+          },
+          {
+            "quote": "Economy with seat selection. Not basic. And if there are decent window seats, grab those.",
+            "session_id": "tm_pd_v04_user_001_s0127"
+          }
+        ],
+        "exception_condition": "On low-cost carriers, the user may buy carry-on and seat selection à la carte if the total remains worthwhile.",
+        "family": "flight_fare_class",
+        "name": "Book regular economy/main cabin, not basic economy",
+        "preference_value": "Coach/economy is fine, but the user wants normal seat selection, carry-on rights, and standard flexibility; basic economy is normally avoided.",
+        "scope_condition": "Air ticketing for solo work travel and couple/family trips where seat choice and carry-on access matter."
+      },
+      {
+        "boundary_condition": "Do not split companions merely to get a better window; modest seat fees are acceptable, but silly fees are not.",
+        "confidence": 0.96,
+        "default_action": "Select/request a window for the user when available; for companion trips, choose adjacent seats with at least one window if practical.",
+        "evidence": [
+          {
+            "quote": "Window seat if there’s a decent one, not an exit row.",
+            "session_id": "tm_pd_v04_user_001_s0001"
+          },
+          {
+            "quote": "If you can request a window, do it, just not an exit row.",
+            "session_id": "tm_pd_v04_user_001_s0004"
+          },
+          {
+            "quote": "For Frontier I’m just doing backpack plus carry-on. If a window seat is under about $25, grab it. If it’s silly, I’ll risk check-in.",
+            "session_id": "tm_pd_v04_user_001_s0006"
+          },
+          {
+            "quote": "And if there’s a window with the two of us together, great, but don’t split us up for it.",
+            "session_id": "tm_pd_v04_user_001_s0012"
+          },
+          {
+            "quote": "Let’s do around 2:30, same flight for both of us. Window for me if there’s a decent pair together; Mark does not care.",
+            "session_id": "tm_pd_v04_user_001_s0073"
+          },
+          {
+            "quote": "For seats, same as Indy: window if it is not the last row, aisle over a last-row window, and no middle.",
+            "session_id": "tm_pd_v04_user_001_s0136"
+          }
+        ],
+        "exception_condition": "If the only window is poor, take an aisle over a last-row window or middle seat; avoid exit rows unless explicitly acceptable.",
+        "family": "seat_selection",
+        "name": "Window-seat preference with practical limits",
+        "preference_value": "The user prefers a decent window seat, but avoids exit rows, last-row/no-recline compromises, and middle seats. When traveling with a spouse/companion, sitting together outranks getting the perfect window.",
+        "scope_condition": "Flight seat selection for both solo and companion travel."
+      },
+      {
+        "boundary_condition": "A hotel can be practical/basic if reviews are acceptable and logistics are strong; luxury is not required.",
+        "confidence": 0.97,
+        "default_action": "Screen out poorly reviewed hotels and choose a solid, comfortable property rather than the lowest-rate option.",
+        "evidence": [
+          {
+            "quote": "I’d rather not use a poorly reviewed hotel, so think 4.0-plus if possible.",
+            "session_id": "tm_pd_v04_user_001_s0000"
+          },
+          {
+            "quote": "But I don’t want a sketchy low-rated place. Around 4 stars or better, and I need a gym.",
+            "session_id": "tm_pd_v04_user_001_s0014"
+          },
+          {
+            "quote": "For hotels, I don’t need fancy, but keep it well reviewed, four-ish or better if possible.",
+            "session_id": "tm_pd_v04_user_001_s0048"
+          },
+          {
+            "quote": "For hotels, keep it to 4.0-plus reviews if possible.",
+            "session_id": "tm_pd_v04_user_001_s0067"
+          },
+          {
+            "quote": "I’m fine losing the hot tub if the rest is cleaner. I do not want a sketchy 3.6-rated place just because it has parking.",
+            "session_id": "tm_pd_v04_user_001_s0108"
+          }
+        ],
+        "exception_condition": "Do not choose a low-rated property just because it has parking, a hot tub, or a lower price.",
+        "family": "hotel_quality",
+        "name": "Use a hotel quality floor around 4.0+ reviews",
+        "preference_value": "The user wants well-reviewed hotels, usually around 4.0+ guest rating or better, and avoids sketchy or depressing bargain properties even when not seeking luxury.",
+        "scope_condition": "Hotel selection for work trips, family trips, and leisure weekends."
+      },
+      {
+        "boundary_condition": "Commute, parking, review quality, and schedule reliability can override the hot tub or pool.",
+        "confidence": 0.94,
+        "default_action": "Prefer hotels that have fitness access and, when feasible, pool/hot tub amenities; confirm amenity hours when they matter.",
+        "evidence": [
+          {
+            "quote": "Gym matters, pool or hot tub would be nice.",
+            "session_id": "tm_pd_v04_user_001_s0000"
+          },
+          {
+            "quote": "For hotels I care about good reviews and a real gym; pool or hot tub would be a plus for the weekend.",
+            "session_id": "tm_pd_v04_user_001_s0003"
+          },
+          {
+            "quote": "For hotels, I’d like 4.0 or better if possible, and pool/hot tub/gym would be useful after training days.",
+            "session_id": "tm_pd_v04_user_001_s0020"
+          },
+          {
+            "quote": "Pool or fitness would be nice; hot tub is a bonus, not the whole trip.",
+            "session_id": "tm_pd_v04_user_001_s0027"
+          },
+          {
+            "quote": "I use a gym or pool if it is there, and a hot tub is nice, but not worth a silly commute.",
+            "session_id": "tm_pd_v04_user_001_s0031"
+          }
+        ],
+        "exception_condition": "For leisure recovery weekends, hot tub/pool/balcony amenities may carry more weight, but still not enough to justify a bad commute or nonrefundable overpay by default.",
+        "family": "hotel_amenities",
+        "name": "Hotel amenities hierarchy: gym first, pool useful, hot tub/soaking optional",
+        "preference_value": "A usable fitness room or real gym is a recurring priority; pool access is useful, and a hot tub/soaking option is valued for recovery but is normally a bonus rather than the deciding factor.",
+        "scope_condition": "Hotel selection across work trips and leisure stays, especially after standing-heavy training days or hiking weekends."
+      },
+      {
+        "boundary_condition": "A farther hotel can win only if the work commute remains reasonable or if a confirmed spouse/weekend extension changes the purpose of the stay.",
+        "confidence": 0.96,
+        "default_action": "Choose the suburban/near-site hotel that shortens workday drives and simplifies parking/loading, even if it lacks a hot tub or downtown feel.",
+        "evidence": [
+          {
+            "quote": "Let’s not add a half hour of driving for a hot tub.",
+            "session_id": "tm_pd_v04_user_001_s0001"
+          },
+          {
+            "quote": "For this one I care more about rating and not being stranded for dinner than the hot tub. Pool and fitness are enough if the commute is short.",
+            "session_id": "tm_pd_v04_user_001_s0008"
+          },
+          {
+            "quote": "For hotels, shortest commute wins once we know the site.",
+            "session_id": "tm_pd_v04_user_001_s0014"
+          },
+          {
+            "quote": "I don’t want to commute from the wrong side of town for three mornings.",
+            "session_id": "tm_pd_v04_user_001_s0020"
+          },
+          {
+            "quote": "I’ll have the demo analyzer and a couple workbook boxes, so I care a lot more about simple parking than restaurants.",
+            "session_id": "tm_pd_v04_user_001_s0102"
+          }
+        ],
+        "exception_condition": "After the work portion, the user may switch to a more leisure-oriented hotel if the upside is real and expenses stay separated.",
+        "family": "work_hotel_location",
+        "name": "For work hotels, prioritize commute, parking, and gear handling over downtown or hot tub appeal",
+        "preference_value": "On work trips, the user prefers a hotel close to the actual site or central to the clinic loop, with easy parking/unloading, over a downtown location, better restaurant scene, or hot tub.",
+        "scope_condition": "Client training, rollout, calibration, and multi-site work trips, especially with demo cases or workbooks."
+      },
+      {
+        "boundary_condition": "Multiple holds are acceptable only if cancellation deadlines are clear and the user will not forget to release extras.",
+        "confidence": 0.95,
+        "default_action": "Hold cancellable rooms, track deadlines, and avoid prepaid rates; use duplicate holds only when necessary and manageable.",
+        "evidence": [
+          {
+            "quote": "Avoid basic economy, and keep the hotel cancellable if possible.",
+            "session_id": "tm_pd_v04_user_001_s0001"
+          },
+          {
+            "quote": "Good. Don’t book anything prepaid.",
+            "session_id": "tm_pd_v04_user_001_s0003"
+          },
+          {
+            "quote": "Can I hold two cancellable hotels without making a mess?",
+            "session_id": "tm_pd_v04_user_001_s0014"
+          },
+          {
+            "quote": "I also don’t want to float three reservations and then forget to cancel something.",
+            "session_id": "tm_pd_v04_user_001_s0024"
+          },
+          {
+            "quote": "Yes, lock the cancellable Sedona room. Don’t pay for a guaranteed view if it makes the rate nonrefundable.",
+            "session_id": "tm_pd_v04_user_001_s0130"
+          }
+        ],
+        "exception_condition": "Do not pay for a guaranteed view/balcony if it makes the rate nonrefundable unless explicitly reapproved.",
+        "family": "booking_flexibility",
+        "name": "Prefer cancellable/refundable lodging and avoid prepaid locks while plans are uncertain",
+        "preference_value": "The user strongly prefers cancellable/refundable hotel rates and avoids prepaid/nonrefundable bookings when schedules, spouse participation, or site locations are uncertain.",
+        "scope_condition": "Hotel reservations, split stays, backup holds, and leisure rooms with uncertain timing or amenities."
+      },
+      {
+        "boundary_condition": "A one-day rental may be considered for a specific leisure day trip, but not a full-stay rental when hotel parking is expensive.",
+        "confidence": 0.9,
+        "default_action": "Skip the rental for city-center conferences and use rideshare/taxi/transit; rent when sites, gear, or family logistics make independence valuable.",
+        "evidence": [
+          {
+            "quote": "I do not want a rental car unless Seattle makes that foolish.",
+            "session_id": "tm_pd_v04_user_001_s0071"
+          },
+          {
+            "quote": "I would rather not rent a car unless it’s clearly useful. I’ll have a backpack and maybe one small kit, not the big demo case.",
+            "session_id": "tm_pd_v04_user_001_s0079"
+          },
+          {
+            "quote": "No rental. I’ll rideshare with the demo gear.",
+            "session_id": "tm_pd_v04_user_001_s0090"
+          },
+          {
+            "quote": "Rental car seems unavoidable, right? Lab, hotel, dinner, and St. Paul maybe later are all spread out.",
+            "session_id": "tm_pd_v04_user_001_s0049"
+          },
+          {
+            "quote": "Okay. I need a rental car then, right? I wondered about rideshares, but with the analyzer that sounds annoying.",
+            "session_id": "tm_pd_v04_user_001_s0102"
+          }
+        ],
+        "exception_condition": "If demo/analyzer cases, workbook cartons, multiple clinics, or uncertain pickups are involved, rental becomes the default.",
+        "family": "ground_transport_mode",
+        "name": "Rent cars only when operationally useful; otherwise use rideshare/transit",
+        "preference_value": "The user does not want a rental car by default. For urban conference stays, she prefers rideshare/transit; for multi-site suburbs, equipment, unreliable family pickups, or spread-out logistics, she rents a car.",
+        "scope_condition": "Ground transportation decisions for work conferences, clinic loops, family trips, and spouse leisure extensions."
+      },
+      {
+        "boundary_condition": "A standard SUV is acceptable when spouse gear or additional cartons justify it; a compact/midsize car is fine only for light personal trips.",
+        "confidence": 0.88,
+        "default_action": "Reserve the smallest SUV/crossover class that reliably fits the case/cartons and is practical for garages/parking.",
+        "evidence": [
+          {
+            "quote": "Rental car: compact SUV or midsize? I need room for the case and demo materials, but one clinic has a tight garage.",
+            "session_id": "tm_pd_v04_user_001_s0067"
+          },
+          {
+            "quote": "Rental car: sedan or small SUV? The analyzer case is basically a chunky Pelican case, plus two cartons if shipping fails.",
+            "session_id": "tm_pd_v04_user_001_s0116"
+          },
+          {
+            "quote": "Book the compact SUV too. I need enough room for two cartons and the demo laptop case, but I do not want something oversized.",
+            "session_id": "tm_pd_v04_user_001_s0121"
+          },
+          {
+            "quote": "Standard SUV, with midsize SUV as fallback. No sedan unless there’s no choice and you ask me.",
+            "session_id": "tm_pd_v04_user_001_s0130"
+          }
+        ],
+        "exception_condition": "Do not substitute a sedan for gear-heavy trips without asking; avoid a huge SUV unless inventory or cargo volume requires it.",
+        "family": "rental_vehicle_class",
+        "name": "Choose SUV/crossover class for gear, not sedan; avoid oversizing unless needed",
+        "preference_value": "When transporting demo/analyzer cases, cartons, or family gear, the user prefers a compact/midsize/standard SUV or crossover with easy loading rather than a sedan; she also avoids unnecessarily oversized vehicles.",
+        "scope_condition": "Rental car class selection for clinic rollouts, equipment travel, and family trips with extra cargo."
+      },
+      {
+        "boundary_condition": "One move can be acceptable; multiple or low-value moves are avoided.",
+        "confidence": 0.86,
+        "default_action": "Prefer one continuous hotel when it does not harm logistics; split only after work obligations or when it materially improves work mornings/weekend value; keep folios/cards/receipts separate.",
+        "evidence": [
+          {
+            "quote": "Would you split it or stay put? I hate changing hotels on work trips unless the upside is real.",
+            "session_id": "tm_pd_v04_user_001_s0003"
+          },
+          {
+            "quote": "That difference is fine. I’ll expense the Wednesday/Thursday part and cover the weekend upgrade personally if needed.",
+            "session_id": "tm_pd_v04_user_001_s0004"
+          },
+          {
+            "quote": "I don’t mind moving hotels if it actually improves the weekend.",
+            "session_id": "tm_pd_v04_user_001_s0023"
+          },
+          {
+            "quote": "How should I split this so accounting doesn’t get weird?",
+            "session_id": "tm_pd_v04_user_001_s0046"
+          },
+          {
+            "quote": "If Mark comes, I would rather not change hotels Friday.",
+            "session_id": "tm_pd_v04_user_001_s0073"
+          }
+        ],
+        "exception_condition": "If repacking/bag handling would create friction and the benefit is marginal, stay put.",
+        "family": "split_stay_and_expensing",
+        "name": "Avoid hotel moves on work trips unless the upside is real; separate business and personal pieces",
+        "preference_value": "The user dislikes changing hotels during work trips, but will split stays when the work/weekend or logistics upside is meaningful. She wants business and personal costs clearly separated.",
+        "scope_condition": "Work trips with spouse/weekend extensions, conference-to-weekend transitions, or changing work locations."
+      },
+      {
+        "boundary_condition": "Alternate airports or cheaper routings remain candidates only when net savings are substantial and the drive/weather/timing is acceptable.",
+        "confidence": 0.9,
+        "default_action": "Pay a modest premium for the simpler or more reliable option when the net savings shrink after logistics are included.",
+        "evidence": [
+          {
+            "quote": "Assume my brother says no pickups after 10:30. Does the airport hotel kill the savings?",
+            "session_id": "tm_pd_v04_user_001_s0011"
+          },
+          {
+            "quote": "Fares already look uneven, and I’m wondering whether we should fly into Milwaukee or use Chicago and rent a car.",
+            "session_id": "tm_pd_v04_user_001_s0034"
+          },
+          {
+            "quote": "Even with the fare difference? It’s about $310 more total for the two of us.",
+            "session_id": "tm_pd_v04_user_001_s0035"
+          },
+          {
+            "quote": "The Santa Fe nonstop is running about $180 more per person than the Albuquerque option once I include the rental. That still feels annoying.",
+            "session_id": "tm_pd_v04_user_001_s0096"
+          },
+          {
+            "quote": "Milwaukee if at all possible. I do not want to add O’Hare and a rental drive to a holiday week unless the savings are ridiculous.",
+            "session_id": "tm_pd_v04_user_001_s0105"
+          }
+        ],
+        "exception_condition": "If savings become truly large or budget is the controlling factor, the user will reconsider the less convenient option.",
+        "family": "cost_hassle_tradeoff",
+        "name": "Evaluate total trip cost and hassle, not just headline fare",
+        "preference_value": "The user compares door-to-door package cost and hassle, including rental cars, hotels, parking, tolls, pickups, and late arrivals. Small savings are not worth added driving, alternate airports, hotels, or misconnect risk.",
+        "scope_condition": "Choosing between airports, flight times, connections, late arrivals, and hotel/car packages for work, family, and leisure trips."
+      },
+      {
+        "boundary_condition": "Fixed pieces such as a definite destination flight or cancellable hotel may be held earlier if fares/rooms are at risk.",
+        "confidence": 0.91,
+        "default_action": "Ask the coordinator/client targeted questions and use conditional branches or cancellable holds until the key logistics are confirmed.",
+        "evidence": [
+          {
+            "quote": "What exactly should I ask the client before I book?",
+            "session_id": "tm_pd_v04_user_001_s0008"
+          },
+          {
+            "quote": "Let us not book until they confirm Tuesday. What exactly should I ask the client by Friday?",
+            "session_id": "tm_pd_v04_user_001_s0027"
+          },
+          {
+            "quote": "And what questions do I send the client so we can stop maintaining two plans?",
+            "session_id": "tm_pd_v04_user_001_s0031"
+          },
+          {
+            "quote": "What client details should I ask before I book anything nonrefundable?",
+            "session_id": "tm_pd_v04_user_001_s0055"
+          },
+          {
+            "quote": "Before I commit, give me the confirmation questions for the coordinator. Include whether I actually need to be in Stockton Thursday.",
+            "session_id": "tm_pd_v04_user_001_s0135"
+          }
+        ],
+        "exception_condition": "Do not lock tight returns, site-dependent hotels, or nonrefundable rooms while Thursday/Friday obligations, addresses, or equipment handling remain unresolved.",
+        "family": "prebooking_workflow",
+        "name": "Confirm work-trip operational details before locking nonrefundable pieces",
+        "preference_value": "For work travel, the user wants exact operational details before finalizing nonrefundable or hard-to-change bookings: site order, start/end times, setup/handoff requirements, parking/loading, storage, and gear/shipping responsibilities.",
+        "scope_condition": "Client trainings, analyzer rollouts, certification labs, and multi-site clinic trips with uncertain schedules or equipment."
+      },
+      {
+        "boundary_condition": "Checked bags/cases are used when equipment, consumables, family luggage, or long trips require them.",
+        "confidence": 0.82,
+        "default_action": "Use carry-on plus backpack/tote where possible; if checking equipment, keep laptop, chargers, medication, handouts, adapters, and must-have demo pieces with her.",
+        "evidence": [
+          {
+            "quote": "No checked bag. Carry-on and backpack.",
+            "session_id": "tm_pd_v04_user_001_s0005"
+          },
+          {
+            "quote": "No checked bags, just carry-ons.",
+            "session_id": "tm_pd_v04_user_001_s0036"
+          },
+          {
+            "quote": "Carry-on plus backpack is fine.",
+            "session_id": "tm_pd_v04_user_001_s0047"
+          },
+          {
+            "quote": "Help me keep this carry-on only.",
+            "session_id": "tm_pd_v04_user_001_s0062"
+          },
+          {
+            "quote": "I want carry-on only if possible.",
+            "session_id": "tm_pd_v04_user_001_s0074"
+          }
+        ],
+        "exception_condition": "When a first-day schedule is tight, avoid checked personal bags unless operationally necessary.",
+        "family": "baggage_packing",
+        "name": "Carry-on personal luggage when feasible; check only required gear and keep essentials with her",
+        "preference_value": "The user prefers carry-on-only personal travel when feasible, especially for conferences and tight arrivals. Checked baggage is acceptable for demo/training cases or consumables, but critical items should remain in the carry-on/personal item.",
+        "scope_condition": "Packing and baggage decisions for flights, especially with certification check-ins, weather, or equipment risk."
+      },
+      {
+        "boundary_condition": "The user will not pay nonrefundable or excessive premiums merely for a view/balcony, and family-event logistics or budget can shift the hotel choice more practical.",
+        "confidence": 0.84,
+        "default_action": "Hold/request cancellable resort, oceanfront, lodge, or recovery-style rooms; plan reasonable arrival/return times and avoid over-scheduled or driving-heavy weekends.",
+        "evidence": [
+          {
+            "quote": "We want restaurants without driving if possible, light hiking, a comfortable room, and some kind of pool or soaking option. I don’t want a poorly reviewed bargain.",
+            "session_id": "tm_pd_v04_user_001_s0017"
+          },
+          {
+            "quote": "Hotel matters more than usual: solid guest reviews, comfortable room, hot tub or pool and a gym if we can get them. Balcony would be nice, not mandatory.",
+            "session_id": "tm_pd_v04_user_001_s0041"
+          },
+          {
+            "quote": "Beach access and strong reviews matter. A balcony would be great. Hot tub would be nice after hiking, but I don’t want to turn the weekend into a driving project.",
+            "session_id": "tm_pd_v04_user_001_s0052"
+          },
+          {
+            "quote": "Recovery weekend, but not luxury for the sake of it. Friday evening arrival feels like it cuts too much out. I like the balcony-room idea; he cares more about hot tub and easy parking.",
+            "session_id": "tm_pd_v04_user_001_s0095"
+          },
+          {
+            "quote": "I want either a true oceanfront/boardwalk stay or something closer to family in Chesapeake. I’d like the guest rating to be at least around 4.0. Pool and fitness room matter; hot tub is nice but not a deal breaker. Balcony if we do oceanfront.",
+            "session_id": "tm_pd_v04_user_001_s0123"
+          }
+        ],
+        "exception_condition": "If the weekend is primarily family obligations rather than a getaway, location and logistics can outweigh resort amenities.",
+        "family": "leisure_trip_style",
+        "name": "For spouse leisure weekends, choose restorative lodging and avoid turning the trip into logistics",
+        "preference_value": "For personal weekends with her spouse, the user wants the trip to feel restorative: strong reviews, comfortable room, beach/resort/scenic feel, pool or hot tub when possible, fitness access, easy parking, and balcony/patio as a nice-to-have.",
+        "scope_condition": "Anniversary, beach, Santa Fe, Oregon Coast, Sedona, and similar spouse leisure weekends or work-plus-weekend extensions."
+      }
+    ]
+  }
+}

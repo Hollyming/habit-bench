@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "f7c08f6da5a8ffed9fabe927e68b5477135732e820b8eac265432d9f564da843",
+  "habits": [
+    {
+      "boundary_condition": "Applies only as a non-exclusive airline preference; the evidence shows United named alongside other acceptable carriers rather than as the only acceptable airline.",
+      "bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+      "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+      "confidence": 0.68,
+      "decision": "accept",
+      "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+      "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+      "family": "flight_airline_preference",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+      "induced_at": "2026-07-16T07:57:49.684600+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "soft_united_preferred_carrier",
+      "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+      "rationale": "All three independent flight dialogues name United as an acceptable or preferred carrier. The surrounding turns show this is flexible because United is listed with alternatives, and one dialogue explicitly allows another good airline.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Names United in a preferred airline list while also showing the preference is non-exclusive.",
+          "conversation_id": "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c",
+          "exact_user_quote": "I also would prefer to either take Southwest, JetBlue, United, or Delta.",
+          "instruction_id": "flight-8",
+          "turn_index": 10
+        },
+        {
+          "contribution": "Supports United as a preferred option and explicitly establishes a fallback to another good airline.",
+          "conversation_id": "dlg-a49b2970-2672-4a95-aa29-3a898512c405",
+          "exact_user_quote": "It could be United and Delta. But, if there's another one that's pretty good, I would take that, too.",
+          "instruction_id": "flight-4",
+          "turn_index": 13
+        },
+        {
+          "contribution": "Requests United as one acceptable carrier in a carrier shortlist, reinforcing the soft and non-exclusive nature of the preference.",
+          "conversation_id": "dlg-1b56b360-6ff6-4a77-9517-fb04a34b60cb",
+          "exact_user_quote": "Okay. Are there any nonstop flights that are also either on United, Jet Blue, or American Airlines?",
+          "instruction_id": "flight-12",
+          "turn_index": 9
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I also would prefer to either take Southwest, JetBlue, United, or Delta.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c",
+          "habitual_language": false,
+          "instruction_id": "flight-8",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 10,
+          "user_utterance": "I also would prefer to either take Southwest, JetBlue, United, or Delta."
+        },
+        {
+          "annotated_segment": "It could be United and Delta. But, if there's another one that's pretty good, I would take that, too.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-a49b2970-2672-4a95-aa29-3a898512c405",
+          "habitual_language": false,
+          "instruction_id": "flight-4",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 13,
+          "user_utterance": "It could be United and Delta. But, if there's another one that's pretty good, I would take that, too."
+        },
+        {
+          "annotated_segment": "Okay. Are there any nonstop flights that are also either on United, Jet Blue, or American Airlines?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-1b56b360-6ff6-4a77-9517-fb04a34b60cb",
+          "habitual_language": false,
+          "instruction_id": "flight-12",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 9,
+          "user_utterance": "Okay. Are there any nonstop flights that are also either on United, Jet Blue, or American Airlines?"
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c",
+    "dlg-a49b2970-2672-4a95-aa29-3a898512c405",
+    "dlg-1b56b360-6ff6-4a77-9517-fb04a34b60cb"
+  ]
+}

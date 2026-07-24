@@ -1,0 +1,511 @@
+{
+  "cache_fingerprint": "b3fb8e830405363eae22d99741c62d30a07147ef35abeb819b218a438a981967",
+  "raw_recovery": {
+    "recovered_habits": [
+      {
+        "boundary_condition": "MDW must save enough money or improve timing enough to justify the airport swap.",
+        "confidence": 0.98,
+        "default_action": "Search and plan around ORD first, then compare MDW only as a value check.",
+        "evidence": [
+          {
+            "quote": "ORD is easier, but MDW is fine only if it saves enough to matter.",
+            "session_id": "tm_pd_v04_user_002_s0000"
+          },
+          {
+            "quote": "ORD is easiest; MDW is acceptable if the timing or price is clearly better.",
+            "session_id": "tm_pd_v04_user_002_s0003"
+          },
+          {
+            "quote": "ORD is easier than Midway, but I would use Midway for a big savings.",
+            "session_id": "tm_pd_v04_user_002_s0039"
+          },
+          {
+            "quote": "ORD is easier, MDW is okay if the savings are real.",
+            "session_id": "tm_pd_v04_user_002_s0057"
+          },
+          {
+            "quote": "ORD is easier, but MDW is okay if it’s a clear savings.",
+            "session_id": "tm_pd_v04_user_002_s0100"
+          },
+          {
+            "quote": "Use ORD first; Midway only if it is a clear bargain.",
+            "session_id": "tm_pd_v04_user_002_s0106"
+          }
+        ],
+        "exception_condition": "Use MDW when the savings or schedule advantage is clearly substantial; otherwise keep ORD even if MDW is slightly cheaper.",
+        "family": "flight_airport_selection",
+        "name": "Default to O'Hare unless Midway has a material advantage",
+        "preference_value": "O'Hare/ORD is the default Chicago airport; Midway/MDW is acceptable only for a clear, meaningful fare or timing advantage.",
+        "scope_condition": "Any trip requiring flights from Chicago."
+      },
+      {
+        "boundary_condition": "Do not pay a large premium or accept weaker timing just to fly United.",
+        "confidence": 0.93,
+        "default_action": "Keep United in the shortlist and choose it when comparable.",
+        "evidence": [
+          {
+            "quote": "United is nice if comparable, but timing and total cost matter more.",
+            "session_id": "tm_pd_v04_user_002_s0000"
+          },
+          {
+            "quote": "United is nice if comparable, but not at the expense of Friday timing.",
+            "session_id": "tm_pd_v04_user_002_s0039"
+          },
+          {
+            "quote": "United is fine if it’s comparable, but don’t force it if Delta is cleaner for Atlanta.",
+            "session_id": "tm_pd_v04_user_002_s0070"
+          },
+          {
+            "quote": "United is fine if it is close, but do not make me pay a big premium.",
+            "session_id": "tm_pd_v04_user_002_s0078"
+          },
+          {
+            "quote": "United is nice if the schedule and fare are close, but timing and reimbursement matter more.",
+            "session_id": "tm_pd_v04_user_002_s0096"
+          },
+          {
+            "quote": "United is fine if it’s comparable, but timing matters more than airline.",
+            "session_id": "tm_pd_v04_user_002_s0106"
+          }
+        ],
+        "exception_condition": "Use Delta, American, Southwest, or another carrier when their timing or cost is materially better.",
+        "family": "flight_carrier_selection",
+        "name": "Treat United as a tie-breaker, not a mandate",
+        "preference_value": "United is preferred only when it is close on fare and schedule; timing, total cost, and destination fit outrank airline loyalty.",
+        "scope_condition": "When comparing airlines for Chicago-origin flights."
+      },
+      {
+        "boundary_condition": "Seat preference is opportunistic only when free; timing takes priority over seat choice.",
+        "confidence": 0.96,
+        "default_action": "Book standard economy/main cabin, carry on only, select a free aisle/window if available, and skip paid upgrades or paid seats.",
+        "evidence": [
+          {
+            "quote": "Economy is fine, carry-on only.",
+            "session_id": "tm_pd_v04_user_002_s0000"
+          },
+          {
+            "quote": "Please use the United main cabin option, no basic economy. Aisle seat if available, but timing matters more.",
+            "session_id": "tm_pd_v04_user_002_s0055"
+          },
+          {
+            "quote": "Let's ticket the United nonstop pair in economy. Aisle only if free; no paid seat.",
+            "session_id": "tm_pd_v04_user_002_s0072"
+          },
+          {
+            "quote": "Please ticket the United nonstops in standard economy, no paid seat upgrades. Window if a free one is available.",
+            "session_id": "tm_pd_v04_user_002_s0080"
+          },
+          {
+            "quote": "One traveler, economy, carry-on only.",
+            "session_id": "tm_pd_v04_user_002_s0100"
+          },
+          {
+            "quote": "Please ticket the United economy fare, not basic economy.",
+            "session_id": "tm_pd_v04_user_002_s0108"
+          }
+        ],
+        "exception_condition": "No durable exception is evidenced beyond accepting whatever free seat is available; checked bags and paid upgrades are not part of the default plan.",
+        "family": "flight_cabin_and_ancillaries",
+        "name": "Book practical economy fares with carry-on only and no paid seat extras",
+        "preference_value": "Use economy/main-cabin style fares, carry-on only, avoid basic economy when it restricts normal work-trip needs, and avoid paid seat upgrades.",
+        "scope_condition": "Short domestic work and personal flights unless stated otherwise."
+      },
+      {
+        "boundary_condition": "A one-stop itinerary must save meaningfully more than a small fare gap and must not create a tight arrival, tight return, or late homecoming.",
+        "confidence": 0.93,
+        "default_action": "Start with nonstops and pay a modest premium for the cleaner route when it protects the agenda.",
+        "evidence": [
+          {
+            "quote": "This is such a short hop that a connection feels a little silly, but I’m trying not to overspend.",
+            "session_id": "tm_pd_v04_user_002_s0000"
+          },
+          {
+            "quote": "I do not want a connection unless the savings are really meaningful.",
+            "session_id": "tm_pd_v04_user_002_s0041"
+          },
+          {
+            "quote": "Nonstops only.",
+            "session_id": "tm_pd_v04_user_002_s0053"
+          },
+          {
+            "quote": "Nonstop first, and United is fine if it is close, but do not make me pay a big premium.",
+            "session_id": "tm_pd_v04_user_002_s0078"
+          },
+          {
+            "quote": "Then United via PVD seems like connection risk plus a tighter return, for more money.",
+            "session_id": "tm_pd_v04_user_002_s0092"
+          },
+          {
+            "quote": "Please compare the United nonstop pair I was leaning toward with the cheaper connecting option.",
+            "session_id": "tm_pd_v04_user_002_s0108"
+          }
+        ],
+        "exception_condition": "Use a connection when no good nonstop exists, when the nonstop premium is excessive, or when the connection is still the least-friction overall option.",
+        "family": "flight_routing",
+        "name": "Prefer nonstop flights; accept connections only for meaningful savings or necessity",
+        "preference_value": "Nonstops are the default, especially for short domestic work trips; connections are acceptable only when savings are large enough and timing risk is controlled.",
+        "scope_condition": "When a nonstop route exists or when comparing nonstop versus one-stop itineraries."
+      },
+      {
+        "boundary_condition": "Earlier or tighter flights are acceptable only when the meeting end is firm and carry-on-only logistics make the margin safe.",
+        "confidence": 0.97,
+        "default_action": "Choose outbound flights that allow check-in or bag drop before the first commitment and return flights after lunch/debrief with enough transfer cushion.",
+        "evidence": [
+          {
+            "quote": "Friday now has a noon lunch with the library director, so show returns after 2 p.m. only. Avoid a rushed RDU transfer or a late ORD arrival.",
+            "session_id": "tm_pd_v04_user_002_s0010"
+          },
+          {
+            "quote": "I need to arrive Wednesday with time to check in and eat, depart Friday only after lunch, and avoid a late return to Chicago.",
+            "session_id": "tm_pd_v04_user_002_s0041"
+          },
+          {
+            "quote": "I need to arrive Wednesday with time to check in and eat, and leave Friday after lunch without getting back to Chicago late.",
+            "session_id": "tm_pd_v04_user_002_s0051"
+          },
+          {
+            "quote": "I need to arrive Wednesday with time to drop my bag before a 5 p.m. welcome dinner, leave Friday only after lunch, and not get back to Chicago too late.",
+            "session_id": "tm_pd_v04_user_002_s0063"
+          },
+          {
+            "quote": "return should be after lunch and I do not want to get back to O'Hare too late.",
+            "session_id": "tm_pd_v04_user_002_s0098"
+          },
+          {
+            "quote": "I need Tuesday bag-drop time before the early-evening welcome, no rental car, and a Thursday return after lunch.",
+            "session_id": "tm_pd_v04_user_002_s0108"
+          }
+        ],
+        "exception_condition": "If meetings, lunches, or debriefs slip later, move the return later rather than rushing; if fare pressure is severe, consider a cheaper later return but not a risky tight one.",
+        "family": "flight_timing",
+        "name": "Require flight buffers for bag drop, meetings, lunch, and a not-too-late return",
+        "preference_value": "Flights should provide real arrival buffer before first events and after-lunch returns with comfortable airport transfer time, while avoiding late-evening Chicago arrivals.",
+        "scope_condition": "Work trips with fixed meetings, debriefs, receptions, or host lunches."
+      },
+      {
+        "boundary_condition": "The no-car plan must not create fragile early-morning transfers or excessive cross-town movement.",
+        "confidence": 0.97,
+        "default_action": "Select a hotel base and flight timing that make rideshare/transit workable, then skip rental car and parking costs.",
+        "evidence": [
+          {
+            "quote": "I’d rather not rent a car if rideshares look reliable",
+            "session_id": "tm_pd_v04_user_002_s0008"
+          },
+          {
+            "quote": "I would like to avoid a rental car if rideshares and hotel location make sense",
+            "session_id": "tm_pd_v04_user_002_s0039"
+          },
+          {
+            "quote": "I’d like to avoid renting a car if that’s realistic",
+            "session_id": "tm_pd_v04_user_002_s0057"
+          },
+          {
+            "quote": "I want to fly from Chicago, avoid renting a car, and get back Thursday after lunch without landing really late.",
+            "session_id": "tm_pd_v04_user_002_s0100"
+          },
+          {
+            "quote": "I’d like no rental car.",
+            "session_id": "tm_pd_v04_user_002_s0106"
+          },
+          {
+            "quote": "No rental car; breakfast, room coffee, and a fridge would be helpful if practical.",
+            "session_id": "tm_pd_v04_user_002_s0110"
+          }
+        ],
+        "exception_condition": "Rent or drive only when sites are too spread out, host transport is unavailable, rideshare reliability is questionable, or the trip is explicitly planned as a driving trip.",
+        "family": "ground_transport",
+        "name": "Avoid rental cars when rideshares, transit, host transport, or hotel location make that realistic",
+        "preference_value": "No rental car is the default for work trips and many personal city trips; use rideshares, transit, trains, shuttles, or host rides instead when reliable.",
+        "scope_condition": "City trips where meetings, hotels, and airports are reachable without driving."
+      },
+      {
+        "boundary_condition": "Small headline savings are not worth added breakfast purchases, ride costs, parking fees, uncertainty, or schedule friction.",
+        "confidence": 0.95,
+        "default_action": "Build side-by-side totals and identify which savings remain after likely extras.",
+        "evidence": [
+          {
+            "quote": "I don’t want to chase a $20 or $30 difference and end up buying breakfast both mornings or calling the desk for a fridge.",
+            "session_id": "tm_pd_v04_user_002_s0006"
+          },
+          {
+            "quote": "How much do I really save at Hyatt after rideshares?",
+            "session_id": "tm_pd_v04_user_002_s0015"
+          },
+          {
+            "quote": "I want flexible cancellation in case the weather looks bad, and I don't want parking to turn a good rate into a silly one.",
+            "session_id": "tm_pd_v04_user_002_s0068"
+          },
+          {
+            "quote": "How much does Home2 really save after the extra rideshares?",
+            "session_id": "tm_pd_v04_user_002_s0079"
+          },
+          {
+            "quote": "I do not want to save $100 and then spend it on short rideshares all week.",
+            "session_id": "tm_pd_v04_user_002_s0082"
+          },
+          {
+            "quote": "Add breakfast out for the block so I can see the real difference.",
+            "session_id": "tm_pd_v04_user_002_s0106"
+          }
+        ],
+        "exception_condition": "Choose the cheaper option when the all-in savings remain meaningful after extras and the logistics stay reliable.",
+        "family": "cost_evaluation",
+        "name": "Compare true all-in cost, not headline price",
+        "preference_value": "Decisions should use total practical cost, including taxes, fees, rideshares, parking, breakfast, baggage/seat extras, and time/friction, not just room rate or airfare.",
+        "scope_condition": "Whenever comparing flights, hotels, packages, airports, train/driving choices, or block versus off-block lodging."
+      },
+      {
+        "boundary_condition": "Breakfast timing and room-level amenity language matter, not just hotel-wide overview text.",
+        "confidence": 0.97,
+        "default_action": "Choose or verify room types that explicitly list breakfast, in-room coffee, and a mini-fridge/refrigerator; favor kitchenette setups when useful.",
+        "evidence": [
+          {
+            "quote": "please note breakfast, in-room coffee/fridge, and easy dinner access.",
+            "session_id": "tm_pd_v04_user_002_s0000"
+          },
+          {
+            "quote": "I don’t want to chase a $20 or $30 difference and end up buying breakfast both mornings or calling the desk for a fridge.",
+            "session_id": "tm_pd_v04_user_002_s0006"
+          },
+          {
+            "quote": "I care less about style than being able to make coffee and stash yogurt or leftovers.",
+            "session_id": "tm_pd_v04_user_002_s0015"
+          },
+          {
+            "quote": "I don’t want to be chasing coffee before registration, and I may need a fridge for snacks.",
+            "session_id": "tm_pd_v04_user_002_s0054"
+          },
+          {
+            "quote": "I mainly want Wednesday morning to be simple and I do not want to buy breakfast somewhere at 7:30 if I can avoid it.",
+            "session_id": "tm_pd_v04_user_002_s0097"
+          },
+          {
+            "quote": "For the Hampton, is breakfast definitely included, and do the rooms list both coffee and a refrigerator?",
+            "session_id": "tm_pd_v04_user_002_s0106"
+          }
+        ],
+        "exception_condition": "Accept paid breakfast or request-only fridge only when event-hotel convenience or another strong logistical reason outweighs the amenity gap.",
+        "family": "hotel_amenities",
+        "name": "Prioritize included breakfast, in-room coffee, and a usable fridge",
+        "preference_value": "Hotels should preferably include breakfast and have in-room coffee plus a usable mini-fridge/refrigerator; vague, request-only, minibar, or lobby-only wording should be verified.",
+        "scope_condition": "Hotel selection for work trips and many personal trips, especially when mornings are early or no car is planned."
+      },
+      {
+        "boundary_condition": "Cancellation terms must be explicit enough to calendar; vague free-cancellation language is not sufficient.",
+        "confidence": 0.95,
+        "default_action": "Hold refundable rooms, record cancellation deadlines, avoid opaque/prepaid terms, and request an itemized folio.",
+        "evidence": [
+          {
+            "quote": "I don't mind prepaid for this if the savings are real, but I don't want a noisy hotel.",
+            "session_id": "tm_pd_v04_user_002_s0005"
+          },
+          {
+            "quote": "What cancellation times would you use for the calendar? I’m wary of a vague free-cancellation line.",
+            "session_id": "tm_pd_v04_user_002_s0015"
+          },
+          {
+            "quote": "I’ll book downtown, refundable, single queen or king, unless the cancellation window is harsher than two days.",
+            "session_id": "tm_pd_v04_user_002_s0033"
+          },
+          {
+            "quote": "I will need an itemized hotel folio, so avoid opaque prepaid rates.",
+            "session_id": "tm_pd_v04_user_002_s0078"
+          },
+          {
+            "quote": "Pay at hotel, please.",
+            "session_id": "tm_pd_v04_user_002_s0079"
+          },
+          {
+            "quote": "Refundable hotel is preferred while the agenda firms up.",
+            "session_id": "tm_pd_v04_user_002_s0106"
+          }
+        ],
+        "exception_condition": "Prepaid or package bookings may be considered for personal travel or when savings are genuinely large and room/cancellation details are acceptable.",
+        "family": "hotel_booking_terms",
+        "name": "Use refundable, transparent hotel bookings with clear deadlines and work-ready receipts",
+        "preference_value": "Refundable/pay-at-hotel bookings with clear cancellation timestamps and itemized folios are strongly preferred; opaque prepaid rates are avoided for work travel.",
+        "scope_condition": "Hotel holds and bookings, especially before agendas, host addresses, or finance approval are final."
+      },
+      {
+        "boundary_condition": "King is acceptable if queen is unavailable or same price; two-bed rooms are used only when the party actually needs separate beds.",
+        "confidence": 0.91,
+        "default_action": "Book a standard one-bed non-smoking room with quiet-room notes; for multi-adult trips, ensure real beds rather than sofa/rollaway substitutes.",
+        "evidence": [
+          {
+            "quote": "One queen is fine; king only if same price.",
+            "session_id": "tm_pd_v04_user_002_s0032"
+          },
+          {
+            "quote": "One room is fine if it’s two real beds, not just a rollaway.",
+            "session_id": "tm_pd_v04_user_002_s0046"
+          },
+          {
+            "quote": "One queen if available; one king is fine if not. Non-smoking, quiet room away from the elevator.",
+            "session_id": "tm_pd_v04_user_002_s0079"
+          },
+          {
+            "quote": "Refundable hotel only for now, standard one-bed room, queen if selectable.",
+            "session_id": "tm_pd_v04_user_002_s0096"
+          },
+          {
+            "quote": "Standard one-bed room, refrigerator confirmed if possible",
+            "session_id": "tm_pd_v04_user_002_s0101"
+          },
+          {
+            "quote": "The Hampton room held is one bed, not two doubles, right? I don’t need a sofa bed if that’s the only king option.",
+            "session_id": "tm_pd_v04_user_002_s0107"
+          }
+        ],
+        "exception_condition": "Upgrade or larger room only when it solves a real sleeping setup problem, not for luxury or style alone.",
+        "family": "hotel_room_type",
+        "name": "Prefer simple, quiet, correctly bedded rooms over upgrades",
+        "preference_value": "Use a standard one-bed room for solo/couple travel, preferably queen when selectable but king is fine; request quiet non-smoking rooms away from elevator/ice and avoid unwanted doubles, sofa beds, rollaways, or unnecessary suites.",
+        "scope_condition": "Hotel room selection for work trips and personal trips."
+      },
+      {
+        "boundary_condition": "The hotel should remain near the travel-rate target or be justifiable by lower transport risk and host logistics.",
+        "confidence": 0.94,
+        "default_action": "Hold the central/downtown/neighborhood hotel that minimizes the risky morning transfer and keeps breakfast straightforward.",
+        "evidence": [
+          {
+            "quote": "I care most about not creating a crazy early rideshare, staying near the $195/night reimbursable target, and having a straightforward breakfast.",
+            "session_id": "tm_pd_v04_user_002_s0009"
+          },
+          {
+            "quote": "The arts organization moved the Thursday tour to 8:15 a.m. and will only pick me up if I am downtown",
+            "session_id": "tm_pd_v04_user_002_s0033"
+          },
+          {
+            "quote": "I’m trying to decide whether the savings are worth the friction.",
+            "session_id": "tm_pd_v04_user_002_s0058"
+          },
+          {
+            "quote": "the host can only do Thursday morning pickup from downtown Durham, and Wednesday dinner with the project director is also downtown.",
+            "session_id": "tm_pd_v04_user_002_s0065"
+          },
+          {
+            "quote": "I mainly want Wednesday morning to be simple and I do not want to buy breakfast somewhere at 7:30 if I can avoid it.",
+            "session_id": "tm_pd_v04_user_002_s0097"
+          },
+          {
+            "quote": "Mornings should be easy.",
+            "session_id": "tm_pd_v04_user_002_s0101"
+          }
+        ],
+        "exception_condition": "Use a cheaper airport/suburban hotel only when the net savings remain meaningful after rideshares and it does not create an early-morning failure point.",
+        "family": "hotel_location_site_visits",
+        "name": "For site visits, choose the hotel base that protects early starts and host pickup",
+        "preference_value": "A hotel near the first morning meeting, host pickup point, or main no-car logistics is preferred over a cheaper airport or outlying hotel when early timing is at risk.",
+        "scope_condition": "Grant/site-visit trips with early meetings, host pickups, multiple local stops, or no rental car."
+      },
+      {
+        "boundary_condition": "The block premium must be defensible under the cap and tied to real logistical benefits, not just being in the elevator bank.",
+        "confidence": 0.93,
+        "default_action": "Compare block hotel against nearby breakfast-value hotel using all-in cost and morning/session friction.",
+        "evidence": [
+          {
+            "quote": "the coordinator added a 7:30 a.m. breakfast briefing at the Marriott on Thursday, and the block deadline got extended.",
+            "session_id": "tm_pd_v04_user_002_s0004"
+          },
+          {
+            "quote": "The early presentation is what worries me. Is the Hyatt worth that difference?",
+            "session_id": "tm_pd_v04_user_002_s0027"
+          },
+          {
+            "quote": "the organizer confirmed Thursday starts with an 8:00 breakfast briefing inside the Hilton.",
+            "session_id": "tm_pd_v04_user_002_s0044"
+          },
+          {
+            "quote": "the Renaissance block is attached by an indoor walkway.",
+            "session_id": "tm_pd_v04_user_002_s0062"
+          },
+          {
+            "quote": "both Thursday and Friday morning roundtables start at 8:00 at the Hyatt Regency.",
+            "session_id": "tm_pd_v04_user_002_s0071"
+          },
+          {
+            "quote": "Tuesday’s welcome moved to Centro de Artes.",
+            "session_id": "tm_pd_v04_user_002_s0107"
+          }
+        ],
+        "exception_condition": "Choose the off-block hotel when sessions/receptions are elsewhere, the walk is manageable, and savings plus breakfast/amenities remain meaningful.",
+        "family": "hotel_event_block_policy",
+        "name": "Use event blocks only when same-building convenience materially matters",
+        "preference_value": "Official room blocks are worth a premium when early sessions, packet pickup, materials, or networking are in or attached to the hotel; otherwise a nearby breakfast-included hotel with clearer amenities is preferred.",
+        "scope_condition": "Conferences, board meetings, convenings, and forum trips with block hotels and nearby alternatives."
+      },
+      {
+        "boundary_condition": "On-site dining is helpful but not mandatory if nearby dinner choices are easy and safe; late hours matter for after-work arrivals.",
+        "confidence": 0.9,
+        "default_action": "Favor neighborhoods or hotels with walkable restaurants, on-site dining fallback, or simple short-rideshare dinner access.",
+        "evidence": [
+          {
+            "quote": "please note breakfast, in-room coffee/fridge, and easy dinner access.",
+            "session_id": "tm_pd_v04_user_002_s0000"
+          },
+          {
+            "quote": "I just do not want to be stuck hunting for dinner after a site day.",
+            "session_id": "tm_pd_v04_user_002_s0014"
+          },
+          {
+            "quote": "I want Friday dinner to be easy after a late arrival.",
+            "session_id": "tm_pd_v04_user_002_s0030"
+          },
+          {
+            "quote": "somewhere easy for dinner Friday night.",
+            "session_id": "tm_pd_v04_user_002_s0046"
+          },
+          {
+            "quote": "I’d rather not be stuck somewhere without an easy dinner option after the reception.",
+            "session_id": "tm_pd_v04_user_002_s0100"
+          },
+          {
+            "quote": "I’m fine with a short well-lit walk, but I don’t want a hotel that makes me take extra cars at night.",
+            "session_id": "tm_pd_v04_user_002_s0101"
+          }
+        ],
+        "exception_condition": "Accept weaker dinner access only when the meeting logistics or total savings clearly outweigh the inconvenience.",
+        "family": "hotel_evening_access",
+        "name": "Require easy dinner access, especially after travel or site days",
+        "preference_value": "Hotels should have easy dinner options on-site, nearby on foot, or by very short rideshare; the user avoids isolated stays that require hunting for food after arrival or meetings.",
+        "scope_condition": "Hotel selection for no-car trips, late arrivals, site visits, and personal weekends."
+      },
+      {
+        "boundary_condition": "Move faster when a block deadline or refundable rate is expiring, but keep air unbooked if meeting end times remain uncertain.",
+        "confidence": 0.95,
+        "default_action": "Compare options, hold a refundable hotel if needed, and delay ticketing flights until the agenda and return window are firm.",
+        "evidence": [
+          {
+            "quote": "Good. Please recommend a plan for now, but don’t book yet. I may get the final grantee address tomorrow.",
+            "session_id": "tm_pd_v04_user_002_s0000"
+          },
+          {
+            "quote": "Can you give me the booking recommendation in one compact table? I’m not ready to book until finance signs off.",
+            "session_id": "tm_pd_v04_user_002_s0008"
+          },
+          {
+            "quote": "Let’s do that, but don’t ticket flights until I confirm whether Friday ends by 11:30.",
+            "session_id": "tm_pd_v04_user_002_s0049"
+          },
+          {
+            "quote": "And for flights, don’t ticket until I confirm the debrief end time, but pencil in United?",
+            "session_id": "tm_pd_v04_user_002_s0074"
+          },
+          {
+            "quote": "Let’s not ticket airfare until I confirm whether the reception is actually at the block hotel.",
+            "session_id": "tm_pd_v04_user_002_s0100"
+          },
+          {
+            "quote": "Airfare can wait until the hotel is settled.",
+            "session_id": "tm_pd_v04_user_002_s0107"
+          }
+        ],
+        "exception_condition": "Ticket flights once the debrief/end time is confirmed or when fare risk becomes the bigger issue.",
+        "family": "planning_workflow",
+        "name": "Plan in stages: provisional comparison, refundable hold, then ticket after agenda details firm up",
+        "preference_value": "Do not finalize airfare or nonrefundable commitments until key addresses, end times, finance approval, and block/hotel decisions are settled; use refundable holds as placeholders.",
+        "scope_condition": "Multi-day work trips with moving agendas, host addresses, finance signoff, or uncertain debrief/lunch times."
+      }
+    ]
+  }
+}

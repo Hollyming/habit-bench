@@ -1,0 +1,53 @@
+{
+  "cache_fingerprint": "efffdb3092dca90ea862a48e06f35d0b5ac14b3d1f4260a74977bf7f496f86a5",
+  "decisions": [
+    {
+      "action": "reject",
+      "alternative_group_key": "",
+      "boundary_condition": null,
+      "canonical_value": null,
+      "condition": null,
+      "default_action": null,
+      "exception_condition": null,
+      "input_ids": [
+        "tm_v04_habit_4367bb98a771"
+      ],
+      "name": null,
+      "preference_value": null,
+      "rationale": "Reject because the candidate collapses genuinely different hotel-quality thresholds, including at least 3 stars, 4 stars, 4.5 stars, and general high-review language, into one broad 3-star floor plus ranking rule. These are not true aliases and should not be merged merely because they share the hotel-rating family.",
+      "representative_id": "tm_v04_habit_4367bb98a771"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_quality_threshold",
+      "boundary_condition": "Applies only to hotel or lodging quality-rating filters, including property-star ratings or customer-review ratings; does not apply to destination, dates, amenities, price, flights, restaurants, or activities.",
+      "canonical_value": "minimum_hotel_rating_3_5_stars",
+      "condition": "When searching for hotels and no explicit current-trip hotel rating or review threshold has been provided.",
+      "default_action": "Filter or prioritize hotel options with ratings of 3.5 stars or better; if a range is required, use 3.5 to 5 stars.",
+      "exception_condition": "If the current request states a different rating threshold or range, accepts a lower or unrated property for budget, availability, or location reasons, or names a specific property, follow the current request instead.",
+      "input_ids": [
+        "tm_v04_habit_29f19c7f4467"
+      ],
+      "name": "Prefer hotels rated at least 3.5 stars",
+      "preference_value": "at_least_3_5_star_rating",
+      "rationale": "Keep because the evidence consistently supports a reusable 3.5-star-or-better hotel rating threshold, scoped to lodging quality filters and overridden by explicit current-trip instructions.",
+      "representative_id": "tm_v04_habit_29f19c7f4467"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_quality_threshold",
+      "boundary_condition": "Applies only to hotel property-star or customer-review rating thresholds; does not imply destination, dates, price level, location type, amenities, or a five-star luxury requirement.",
+      "canonical_value": "minimum_hotel_rating_4_stars",
+      "condition": "When searching for hotels and no explicit current-trip hotel rating or review threshold has been provided.",
+      "default_action": "Filter or prioritize hotels with property-star ratings of at least 4 stars or customer-review scores around 4.0 or higher.",
+      "exception_condition": "If the current request gives a different threshold or range, such as 3 to 4 stars, asks to broaden for budget or availability, or names a specific property, follow that explicit instruction instead.",
+      "input_ids": [
+        "tm_v04_habit_6b4320bdcfe3"
+      ],
+      "name": "Prefer hotels rated at least 4 stars",
+      "preference_value": "at_least_4_star_rating_or_review_score",
+      "rationale": "Keep as a distinct 4-star-or-better hotel quality threshold. The evidence is mostly aligned around 4-star or 4-plus ratings; the contrasting 3-to-4 example is handled as an explicit-current-request exception rather than merged with lower-threshold policies.",
+      "representative_id": "tm_v04_habit_6b4320bdcfe3"
+    }
+  ]
+}

@@ -1,0 +1,894 @@
+{
+  "habit_id": "tm_pd_v04_user_005_h00",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c04",
+        "c08"
+      ],
+      "accepted_total": [
+        "c04",
+        "c08"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United SFO-DEN-AUS: 12:55 p.m.-6:50 p.m., 82-minute Denver connection, standard economy, $456; keep the American option as backup."
+              },
+              {
+                "choice_id": "B",
+                "text": "American SFO-DFW-AUS: 1:05 p.m.-6:45 p.m., 78-minute Dallas connection, standard economy, $438; keep the United option as backup."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta SFO-SLC-AUS: 1:25 p.m.-7:20 p.m., 58-minute Salt Lake City connection, standard economy, $449; use it for the slightly later departure."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest OAK-PHX-AUS: 1:15 p.m.-7:05 p.m., 62-minute Phoenix connection, $414; use it for the lower fare and Oakland departure."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A travel planner without the long history could reasonably prefer the slightly cheaper, five-minute-earlier American option. The necessary reasoning is to identify the trip as within the recurring flight-search scope and then resolve a near-tie by applying the user's soft carrier weighting without excluding the backup.",
+            "gold_action": "Make the United SFO-DEN-AUS itinerary the lead option while retaining American as a realistic backup.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0004",
+              "tm_pd_v04_user_005_s0005",
+              "tm_pd_v04_user_005_s0030",
+              "tm_pd_v04_user_005_s0059"
+            ],
+            "label_rationale": "This is Jonah's self-booked commercial flight from a Bay Area airport for a client trip, with no current-trip carrier override. His history supports giving United extra weight when it is otherwise close, while not treating it as mandatory. Here the United and American options are nearly equivalent on timing, routing, fare, and cabin, and the small United fare premium is not a material disadvantage.",
+            "probe_type": "direct_use",
+            "query": "Jonah is booking his own Bay Area-to-Austin flight for a Tuesday client controls review. He can leave after a noon call, needs to be in Austin by about 7:30 p.m., wants standard economy with a selectable window if free, and has no hotel or rental dependency. Which flight recommendation should you make as the lead option?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query explicitly states standard economy with a selectable window if free, which disfavors the no-assigned-seat Southwest option.",
+              "The choice text naming backup options is a wording cue, but B is selectable from objective price/timing fit alone."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c00",
+            "rationale": "B best fits the stated constraints without relying on personal carrier preference: it leaves after the noon call, arrives before about 7:30 p.m., uses standard economy, is cheaper than the comparable United option, and arrives slightly earlier. Southwest is less aligned with the stated selectable-window/standard-economy preference."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United SFO-IAH-MSY: 7:20 a.m.-3:05 p.m., 38-minute Houston connection, standard economy, $402."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta SFO-ATL-MSY: 7:05 a.m.-3:20 p.m., 86-minute Atlanta connection, standard economy, $429."
+              },
+              {
+                "choice_id": "C",
+                "text": "American SFO-DFW-MSY: 7:35 a.m.-3:55 p.m., 52-minute Dallas connection, standard economy, $462."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest OAK-DEN-MSY: 8:10 a.m.-4:05 p.m., 65-minute Denver connection, lower fare at $374, no assigned seats."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "The closest distractor follows the user's usual carrier direction but fails the supported exception: current trip reliability makes the tight connection a primary constraint. Generic reasoning alone might split between cheaper-earlier United and safer Delta; the history resolves the tie toward the safer non-United routing.",
+            "gold_action": "Recommend the Delta SFO-ATL-MSY itinerary because its connection is materially safer for the demo-kit timing.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0005",
+              "tm_pd_v04_user_005_s0021",
+              "tm_pd_v04_user_005_s0041",
+              "tm_pd_v04_user_005_s0109"
+            ],
+            "label_rationale": "The long-history pattern is not to preserve United at the cost of a materially weaker connection or arrival reliability. Several trips show United being acceptable only when close, and non-United carriers being chosen when they better protected the schedule. In this query, the United option is cheaper and slightly earlier, but the 38-minute connection is the key weakness for a demo-kit trip.",
+            "probe_type": "exception",
+            "query": "Jonah is arranging his own Monday Bay Area-to-New Orleans travel for a Tuesday morning equipment demo. He can depart anytime after 7 a.m., needs to arrive before early evening, and the demo kit will travel with him, so a missed connection would be costly but not impossible to recover. Which lead should you recommend?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query explicitly says a missed connection would be costly, which is sufficient to prioritize the longest reasonable connection."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "Because the demo kit makes a missed connection costly, the longest reasonable connection buffer is the most important stated factor. B has an 86-minute connection, arrives well before early evening, and costs only modestly more than the riskier short-connection options."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United SFO-YVR nonstop both ways: depart 9:40 a.m. Saturday, return 2:10 p.m. Monday, $326 per person, adjacent standard seats available."
+              },
+              {
+                "choice_id": "B",
+                "text": "Air Canada SFO-YVR nonstop both ways: depart 9:20 a.m. Saturday, return 2:05 p.m. Monday, $319 per person, adjacent standard seats available."
+              },
+              {
+                "choice_id": "C",
+                "text": "Alaska SFO-SEA-YVR outbound and nonstop return: depart 8:55 a.m. Saturday, return 1:45 p.m. Monday, $292 per person, one 64-minute connection outbound."
+              },
+              {
+                "choice_id": "D",
+                "text": "WestJet SFO-YYC-YVR outbound and YVR-SFO nonstop return: depart 10:15 a.m. Saturday, return 3:00 p.m. Monday, $284 per person, longer outbound travel."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Without history, Air Canada looks marginally cheaper and a few minutes earlier, so a generic planner could choose it. The probe requires first recognizing that the personal Bay Area trip is still in scope, then distinguishing a close alternative from a materially better one.",
+            "gold_action": "Recommend the United SFO-YVR nonstop package as the lead, with Air Canada as the comparable backup.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0028",
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0032",
+              "tm_pd_v04_user_005_s0119"
+            ],
+            "label_rationale": "The habit transfers to comparable personal trips that Jonah self-books from Bay Area airports, but remains non-exclusive. Prior personal-travel evidence shows airline should not override better timing, while other work-trip evidence shows United receives positive weight when the options are otherwise close. Here United and Air Canada are effectively tied; the small fare and timing differences are not enough to displace the durable soft weighting.",
+            "probe_type": "cross_context_transfer",
+            "query": "Jonah is planning a self-booked long weekend from the Bay Area to Vancouver with his spouse. They want to leave Saturday morning, return Monday after lunch, avoid basic economy, and sit together if no paid seat bundle is required. The following packages all fit the hotel timing. Which package should be the recommendation?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The adjacent-standard-seats wording narrows the field to A/B.",
+              "B price-dominates the comparable United nonstop option."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c02",
+            "rationale": "B and A both provide nonstop flights and adjacent standard seats, but B is cheaper with nearly identical timing. The cheaper one-stop options do not match the nonstop convenience and do not state the same adjacent-seat availability."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United SFO-DEN-CLT: depart 12:45 p.m., arrive 8:55 p.m., 77-minute connection, standard economy, $625."
+              },
+              {
+                "choice_id": "B",
+                "text": "American SFO-DFW-CLT: depart 12:35 p.m., arrive 9:40 p.m., 73-minute connection, standard economy, $455."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta SFO-ATL-CLT: depart 1:25 p.m., arrive 10:15 p.m., 61-minute connection, standard economy, $430."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest OAK-MDW-CLT: depart 12:05 p.m., arrive 10:55 p.m., 64-minute connection, $419, no assigned seats."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "The nearest distractor follows the recurring United inclination and offers an earlier arrival, so generic reasoning could justify it. The hard part is recognizing that the fare gap makes United materially less attractive, so the durable preference should yield rather than be treated as an exclusive rule.",
+            "gold_action": "Recommend the American SFO-DFW-CLT itinerary rather than paying the large premium for the United option.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0030",
+              "tm_pd_v04_user_005_s0049",
+              "tm_pd_v04_user_005_s0005",
+              "tm_pd_v04_user_005_s0025"
+            ],
+            "label_rationale": "United gets a positive ranking only when it remains commercially reasonable and otherwise suitable. The history includes explicit limits around not using United when price becomes unreasonable and examples of non-United packages being selected for trip-specific value or logistics. Here the United itinerary is much more expensive for only a modestly earlier arrival, while American still satisfies the arrival and routing constraints.",
+            "probe_type": "exception",
+            "query": "Jonah needs a self-booked Bay Area-to-Charlotte itinerary for a distributor pricing workshop. He has a 10:30 a.m. Pacific internal call before leaving, a next-morning 8:30 plant start, and wants to avoid arriving so late that hotel check-in becomes a midnight project. Which flight should you put forward?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The 'midnight project' wording explicitly prioritizes avoiding the latest arrivals.",
+              "The very high fare on A makes B the objectively stronger balance of arrival time and price."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c03",
+            "rationale": "B is the best common-sense balance: it departs after the internal call, arrives early enough to avoid a near-midnight hotel check-in, has a reasonable connection, and is far cheaper than the earliest United option while only modestly more than the later Delta option."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Alaska SFO-BUR nonstop: 7:50-9:10 a.m., return BUR-SFO 6:05-7:25 p.m., assigned standard seats, $296."
+              },
+              {
+                "choice_id": "B",
+                "text": "United SFO-LAX nonstop: 7:30-8:55 a.m., return LAX-SFO 6:45-8:15 p.m., assigned standard seats, $218; plan on the longer cross-town transfer."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest OAK-BUR nonstop: 8:20-9:35 a.m., return BUR-OAK 6:35-7:50 p.m., $265, no assigned seats."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta SFO-LAX nonstop: 8:05-9:35 a.m., return LAX-SFO 7:10-8:40 p.m., $235; use LAX but preserve SFO."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "The United/LAX option is cheaper and keeps the departure airport convenient, making it a strong near-miss. The required reasoning is to apply the boundary that the carrier tendency should not outrank a materially cleaner airport and routing fit.",
+            "gold_action": "Recommend the Alaska SFO-BUR nonstop because it preserves the better destination airport and simple routing.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0073",
+              "tm_pd_v04_user_005_s0071",
+              "tm_pd_v04_user_005_s0117",
+              "tm_pd_v04_user_005_s0014"
+            ],
+            "label_rationale": "The user's history repeatedly treats United as acceptable but not sufficient reason to rank a worse routing or location over a cleaner non-United plan. Evidence includes choosing non-United nonstops or better airport/routing combinations when they protected the schedule. Here United is cheaper and from SFO, but using LAX adds a material ground-transfer complication for a Burbank-area visit.",
+            "probe_type": "boundary",
+            "query": "Jonah has a one-day Bay Area-to-Burbank supplier visit. He starts near SFO that morning; OAK is usable but adds a cross-bridge reposition. The supplier is close to BUR, while LAX is workable with extra freeway time. He wants to be in the Valley by 10:30 a.m. and return after a 4:30 p.m. wrap-up. Which recommendation best fits the flight piece?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query explicitly states SFO is the convenient origin and BUR is the convenient destination, which is sufficient to select A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "A best matches the explicit location constraints: he starts near SFO and the supplier is close to BUR. It avoids both the OAK reposition and the LAX freeway transfer, arrives in time for the Valley by 10:30 a.m., and returns after the 4:30 p.m. wrap-up."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United SFO-LAS nonstop: Friday 4:35-6:05 p.m., Sunday 2:10-3:45 p.m., standard economy with seat selection, $238."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest OAK-LAS nonstop: Friday 4:45-6:15 p.m., Sunday 2:05-3:35 p.m., lower fare at $214, no assigned seats."
+              },
+              {
+                "choice_id": "C",
+                "text": "Alaska SFO-LAS nonstop: Friday 5:35-7:05 p.m., Sunday 12:15-1:45 p.m., standard economy with seat selection, $230."
+              },
+              {
+                "choice_id": "D",
+                "text": "Frontier SFO-LAS nonstop: Friday 6:50-8:20 p.m., Sunday 3:05-4:40 p.m., $149 before any bag or seat fees."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A generic planner could choose Southwest for the lower fare and nearly identical times, especially with airports declared equally easy. The history is needed to recognize the personal-trip transfer and to decide that the small savings do not outweigh the soft United weighting.",
+            "gold_action": "Lead with the United SFO-LAS nonstop package because it is comparable on schedule and cost while fitting Jonah's Bay Area self-booked personal travel pattern.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0028",
+              "tm_pd_v04_user_005_s0004",
+              "tm_pd_v04_user_005_s0030",
+              "tm_pd_v04_user_005_s0068"
+            ],
+            "label_rationale": "The same soft carrier weighting applies to comparable personal travel from Bay Area airports when no stronger trip-specific preference overrides it. The personal-trip evidence shows airline should give way if timing is better, but here the Southwest alternative is only modestly cheaper and similarly timed, with less seat-selection control. United remains suitable and close enough to lead.",
+            "probe_type": "cross_context_transfer",
+            "query": "Jonah is self-booking a weekend Bay Area-to-Las Vegas flight for a family birthday. SFO and OAK are equally easy that afternoon, he wants Friday late-afternoon arrival before dinner and a Sunday early-afternoon return, he has no checked bag, and he would take a free window if available. Which package should be lead?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The free-window-if-available cue favors a standard-economy fare with seat selection.",
+              "The query removes airport and checked-bag preferences, so those should not be inferred."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "A has the strongest fit: it arrives before dinner, returns early afternoon, and provides standard economy with seat selection for a possible free window. B is cheaper but lacks assigned seats; C is only slightly cheaper than A but arrives an hour later Friday; D is much later and likely involves seat fees."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United SFO-DEN-SAT: 12:20 p.m.-10:40 p.m., 80-minute Denver connection, standard economy, $360."
+              },
+              {
+                "choice_id": "B",
+                "text": "American SFO-DFW-SAT: 12:35 p.m.-8:55 p.m., 74-minute Dallas connection, standard economy, $421."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest OAK-PHX-SAT: 12:15 p.m.-9:25 p.m., 63-minute Phoenix connection, $382, no assigned seats."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta SFO-SLC-SAT: 1:10 p.m.-9:45 p.m., 59-minute Salt Lake City connection, standard economy, $456."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "The closest distractor has the favored carrier and a lower fare, so it is tempting without the history. The two-step reasoning is to identify that the carrier preference is applicable in scope, then apply the supported exception because the current trip's early start makes the late United arrival materially worse.",
+            "gold_action": "Recommend the American SFO-DFW-SAT itinerary because it better protects the evening arrival before an early plant start.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0041",
+              "tm_pd_v04_user_005_s0109",
+              "tm_pd_v04_user_005_s0021",
+              "tm_pd_v04_user_005_s0005"
+            ],
+            "label_rationale": "The user's history supports choosing another carrier when United makes the day more rushed or weakens arrival reliability. The United option is cheaper, but its late arrival would undercut dinner/rest before the 7:00 a.m. badge-in. The American option remains a standard one-stop and better satisfies the primary timing constraint.",
+            "probe_type": "exception",
+            "query": "Jonah is booking his own Bay Area-to-San Antonio flight for a plant kickoff with a 7:00 a.m. badge-in the next morning. He cannot leave before an 11:00 a.m. Pacific call, and he would like a hotel arrival that still leaves time to eat. Which flight should be the lead?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The 7:00 a.m. badge-in and desire for time to eat explicitly prioritize earlier arrival."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c07",
+            "rationale": "B arrives the earliest by a meaningful margin, which best supports the next-morning 7:00 a.m. badge-in and leaves time for hotel arrival and dinner. A is cheaper but arrives much too late for the stated comfort goal; C and D are later or lower-quality/more expensive."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Use Delta SFO-MSP-DSM outbound, 12:05 p.m.-8:35 p.m. with an 86-minute connection, then United DSM-DEN-SFO return, 4:10 p.m.-8:20 p.m. with a 76-minute connection; price-check as split or multi-city."
+              },
+              {
+                "choice_id": "B",
+                "text": "Use United SFO-DEN-DSM outbound, 12:20 p.m.-8:15 p.m. with a 43-minute connection, and United DSM-DEN-SFO return, 4:10 p.m.-8:20 p.m., keeping the itinerary on one carrier."
+              },
+              {
+                "choice_id": "C",
+                "text": "Use Delta SFO-MSP-DSM outbound, 12:05 p.m.-8:35 p.m. with an 86-minute connection, and American DSM-DFW-SFO return, 4:20 p.m.-8:10 p.m.; the return is about $18 less than United."
+              },
+              {
+                "choice_id": "D",
+                "text": "Use American SFO-DFW-DSM round trip, outbound 10:50 a.m.-7:55 p.m. with a 55-minute connection and return 3:45 p.m.-8:05 p.m., avoiding a mixed-carrier ticket."
+              }
+            ],
+            "closest_distractor_choice_id": "C",
+            "difficulty_rationale": "Choice C correctly resolves the outbound exception but misses the soft United weighting on the return; choice B over-applies the carrier tendency to the fragile outbound. The probe requires segment-level reasoning rather than applying a single carrier rule to the whole itinerary.",
+            "gold_action": "Recommend the mixed plan: Delta outbound for the safer Monday connection and United return where the return options are otherwise comparable.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0021",
+              "tm_pd_v04_user_005_s0118",
+              "tm_pd_v04_user_005_s0119",
+              "tm_pd_v04_user_005_s0005",
+              "tm_pd_v04_user_005_s0032"
+            ],
+            "label_rationale": "The history supports two simultaneous rules: do not take a worse United connection when arrival protection matters, and still give United positive weight on comparable flight pieces. Prior mixed-carrier handling and non-United exceptions were trip-specific, not a permanent shift away from United. Here the outbound should avoid the tight United connection, while the return is close enough for United to lead over American despite a tiny price difference.",
+            "probe_type": "conflict_resolution",
+            "query": "Jonah is building a Bay Area-to-Des Moines itinerary for a Monday arrival, Tuesday plant acceptance test, and Thursday afternoon return. The outbound has to protect the Tuesday 7:30 a.m. start; the return only needs to leave after a 2:00 p.m. debrief. Which flight plan should you recommend before booking?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query explicitly says the outbound has to protect the Tuesday start, pointing to the 86-minute Delta outbound.",
+              "The query also says the return only needs to leave after 2:00 p.m., making the cheaper, valid American return sufficient over a same-carrier preference."
+            ],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c09",
+            "rationale": "C uses the protected Delta outbound with the 86-minute connection, satisfying the critical Tuesday start requirement. For the less-critical return, it leaves after the debrief, arrives slightly earlier than the United return, and is about $18 cheaper, so no private carrier preference is needed."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c03"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c03",
+        "c04",
+        "c08"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United SFO-YVR nonstop both ways: depart 9:40 a.m. Saturday, return 2:35 p.m. Monday, standard economy, adjacent standard seats available, $326 per person."
+              },
+              {
+                "choice_id": "B",
+                "text": "Air Canada SFO-YVR nonstop both ways: depart 9:15 a.m. Saturday, return 1:55 p.m. Monday, standard economy, adjacent standard seats available, $314 per person."
+              },
+              {
+                "choice_id": "C",
+                "text": "Alaska SFO-SEA-YVR outbound and nonstop return: depart 8:55 a.m. Saturday, return 2:45 p.m. Monday, standard economy, 68-minute Seattle connection outbound, $298 per person."
+              },
+              {
+                "choice_id": "D",
+                "text": "WestJet SFO-YYC-YVR outbound and YVR-SFO nonstop return: depart 10:10 a.m. Saturday, return 3:05 p.m. Monday, standard economy, longer outbound travel, $287 per person."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Without history, Air Canada is very defensible because it is a little cheaper and has similar nonstop timing. The probe requires recognizing the personal-trip scope transfer and using the soft United weighting only across otherwise comparable packages.",
+            "gold_action": "Recommend the United SFO-YVR nonstop package as the lead, with Air Canada as the comparable backup.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0028",
+              "tm_pd_v04_user_005_s0004",
+              "tm_pd_v04_user_005_s0032",
+              "tm_pd_v04_user_005_s0068"
+            ],
+            "label_rationale": "The soft United preference transfers to comparable self-booked personal trips from Bay Area airports, while remaining non-exclusive. Prior personal-trip evidence shows Jonah will ignore airline if timing is meaningfully better, but here United and Air Canada are close: both are SFO nonstops with workable weekend timing and adjacent standard seats. The small Air Canada savings and slightly earlier Monday return do not materially beat the United option.",
+            "probe_type": "cross_context_transfer",
+            "query": "Jonah is planning a self-booked Bay Area-to-Vancouver long weekend with his spouse. They want a Saturday morning departure and a Monday return after lunch; the hotel pieces work with any option below. Which package should be the recommendation?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The spouse context plus 'adjacent standard seats available' on A and B is a wording cue favoring those options.",
+              "B materially beats A on fare while preserving the same nonstop/adjacent-seat advantages."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c02",
+            "rationale": "B is the cheaper of the two nonstop, standard-economy SFO-YVR round trips with adjacent standard seats available, and it meets the stated Saturday-morning departure and Monday-after-lunch return requirements. The connecting options save only modest fare amounts while adding outbound connection hassle for a short spouse weekend."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Alaska SFO-BUR nonstop: 7:55–9:15 a.m., return BUR-SFO 6:05–7:25 p.m., standard economy, $304."
+              },
+              {
+                "choice_id": "B",
+                "text": "United SFO-LAX nonstop: 7:25–8:45 a.m., return LAX-SFO 6:45–8:15 p.m., standard economy, $256."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest OAK-BUR nonstop: 8:10–9:30 a.m., return BUR-OAK 6:35–7:50 p.m., $284."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta SFO-LAX nonstop: 8:00–9:30 a.m., return LAX-SFO 7:05–8:35 p.m., standard economy, $238."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Without the longitudinal boundary, the cheaper United SFO-LAX option is a plausible lead because it leaves from the convenient Bay Area side and arrives earlier. The memory-dependent reasoning is that United's soft carrier weight should not override the cleaner destination-airport fit.",
+            "gold_action": "Recommend the Alaska SFO-BUR nonstop because it keeps the cleaner destination airport for the Burbank/Glendale visit rather than choosing United solely for carrier and fare.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0073",
+              "tm_pd_v04_user_005_s0071",
+              "tm_pd_v04_user_005_s0117",
+              "tm_pd_v04_user_005_s0063",
+              "tm_pd_v04_user_005_s0014"
+            ],
+            "label_rationale": "Jonah's history repeatedly shows that United should not be ranked over a materially cleaner routing, airport, or nonstop fit just because it is United. He has chosen Alaska or other carriers when they better protected the site logistics or destination-airport fit. Here United is cheaper and workable, but BUR is the cleaner airport for the Burbank/Glendale corridor, so the United preference stays bounded.",
+            "probe_type": "boundary",
+            "query": "Jonah has a one-day supplier visit in the Burbank/Glendale corridor. He will be on the Peninsula before and after the trip, but all listed Bay Area airport choices are feasible. The site window is late morning through about 4:30 p.m., and the team says either BUR or LAX can be made to work. Which recommendation best fits the flight piece?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "'Burbank/Glendale corridor' and 'on the Peninsula before and after' are sufficient public location cues.",
+              "The query says LAX can work, but that is feasibility, not equality with BUR for this destination."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "For a Burbank/Glendale corridor visit with the traveler on the Peninsula before and after, SFO-BUR best matches the public geography: SFO is the natural Peninsula airport and BUR is materially more convenient than LAX for Burbank/Glendale. The schedule fits the site window and avoids LAX ground-traffic risk on a one-day trip."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United SFO-LAS nonstop: Friday 4:35–6:05 p.m., Sunday 2:10–3:45 p.m., standard economy, $238."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest OAK-LAS nonstop: Friday 4:55–6:25 p.m., Sunday 1:50–3:20 p.m., $216."
+              },
+              {
+                "choice_id": "C",
+                "text": "Alaska SFO-LAS nonstop: Friday 5:25–6:55 p.m., Sunday 12:40–2:10 p.m., standard economy, $226."
+              },
+              {
+                "choice_id": "D",
+                "text": "Frontier SFO-LAS nonstop: Friday 6:35–8:05 p.m., Sunday 2:55–4:30 p.m., $168 before seat or bag extras."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A generic planner could pick Southwest for the lower fare and comparable weekend timing, especially with both Bay Area airports declared easy. The hidden memory is needed to transfer the soft United preference to a comparable personal trip and decide that the small savings do not outweigh it.",
+            "gold_action": "Lead with the United SFO-LAS nonstop package because it is close on schedule and cost while fitting Jonah's Bay Area self-booked personal travel pattern.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0028",
+              "tm_pd_v04_user_005_s0004",
+              "tm_pd_v04_user_005_s0030",
+              "tm_pd_v04_user_005_s0068",
+              "tm_pd_v04_user_005_s0119"
+            ],
+            "label_rationale": "The soft United weighting applies to comparable personal trips from Bay Area airports when no stronger trip-specific carrier or timing instruction overrides it. The personal-trip evidence also shows airline should give way if timing is better, but the Southwest alternative here is only modestly cheaper with similarly workable timing. United remains suitable and close enough to lead.",
+            "probe_type": "cross_context_transfer",
+            "query": "Jonah is self-booking a weekend Bay Area-to-Las Vegas flight for a family birthday. SFO and OAK are both easy that day; he wants to arrive Friday in time for dinner and come back Sunday early afternoon. Which package should be lead?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query explicitly removes the SFO-versus-OAK airport preference issue.",
+              "D's 'before seat or bag extras' wording is a quality/total-cost warning.",
+              "The stated dinner and early-afternoon return windows are sufficient to screen out weaker timing."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c06",
+            "rationale": "SFO and OAK are explicitly both easy, and B is the lowest-priced normal nonstop option that arrives in time for Friday dinner and has an early-afternoon Sunday return. D is cheaper before extras but has seat/bag caveats and weaker timing; A and C cost more without a material stated advantage."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United SFO-DEN-SAT: 12:20–9:55 p.m., 82-minute Denver connection, standard economy, $360."
+              },
+              {
+                "choice_id": "B",
+                "text": "American SFO-DFW-SAT: 12:40–9:10 p.m., 68-minute Dallas connection, standard economy, $412."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest OAK-PHX-SAT: 12:15–9:40 p.m., 63-minute Phoenix connection, $382."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta SFO-SLC-SAT: 1:05–9:35 p.m., 59-minute Salt Lake City connection, standard economy, $396."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "The United itinerary is tempting because it is cheaper and still feasible. The query alone leaves a price-versus-evening-arrival tradeoff; the hidden history is needed to know that Jonah usually lets schedule protection override the United tendency for early plant commitments.",
+            "gold_action": "Recommend the American SFO-DFW-SAT itinerary because the earlier Monday evening arrival better protects the early plant-start context than the cheaper United option.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0041",
+              "tm_pd_v04_user_005_s0109",
+              "tm_pd_v04_user_005_s0021",
+              "tm_pd_v04_user_005_s0005",
+              "tm_pd_v04_user_005_s0022"
+            ],
+            "label_rationale": "Jonah's history supports choosing another carrier when United would make a site-start day more rushed or weaken arrival reliability. The United option has a lower fare and a longer connection, but the later arrival is a meaningful disadvantage before a 7:00 a.m. badge-in. The American option remains a standard one-stop and better satisfies the primary timing context.",
+            "probe_type": "exception",
+            "query": "Jonah is booking his own Bay Area-to-San Antonio flight for a plant kickoff with a 7:00 a.m. badge-in the next morning. He can leave after an 11:00 a.m. Pacific call; the listed one-stop options all leave after that and arrive Monday evening. Which flight should be the lead?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The explicit '7:00 a.m. badge-in' is a strong public cue to prioritize the earliest feasible arrival.",
+              "All options arrive Monday evening, but the early badge-in distinguishes the earliest arrival from merely acceptable later arrivals."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c07",
+            "rationale": "The 7:00 a.m. badge-in next morning makes earlier arrival materially important for rest and ground transfer. B is the earliest arrival by at least 25 minutes while still having a reasonable connection and standard economy; the fare premium is justified by the stated early-start constraint."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Use Delta SFO-MSP-DSM outbound, 12:05 p.m.–8:35 p.m. with an 86-minute MSP connection, then United DSM-DEN-SFO return, 4:25 p.m.–8:35 p.m. with a 78-minute DEN connection; price about $512 as a multi-city or split ticket."
+              },
+              {
+                "choice_id": "B",
+                "text": "Use United SFO-DEN-DSM outbound, 12:20 p.m.–8:15 p.m. with a 47-minute DEN connection, and the United DSM-DEN-SFO return, 4:25 p.m.–8:35 p.m.; price about $486 on one carrier."
+              },
+              {
+                "choice_id": "C",
+                "text": "Use the same Delta SFO-MSP-DSM outbound, then American DSM-DFW-SFO return, 4:15 p.m.–8:25 p.m. with a 63-minute DFW connection; price about $498 as a multi-city or split ticket."
+              },
+              {
+                "choice_id": "D",
+                "text": "Use American SFO-DFW-DSM round trip, outbound 11:55 a.m.–8:05 p.m. with a 58-minute DFW connection and return 3:55 p.m.–8:10 p.m.; price about $474 on one carrier."
+              }
+            ],
+            "closest_distractor_choice_id": "C",
+            "difficulty_rationale": "Choice C correctly uses the safer Delta outbound but misses the soft United weighting on the return. Choice B over-applies the United tendency to the fragile outbound. The probe requires applying the exception and the default at different itinerary segments, which cannot be resolved from the query alone.",
+            "gold_action": "Recommend the mixed plan: Delta outbound for the safer Monday connection and United return where the return options are otherwise comparable.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0021",
+              "tm_pd_v04_user_005_s0022",
+              "tm_pd_v04_user_005_s0118",
+              "tm_pd_v04_user_005_s0119",
+              "tm_pd_v04_user_005_s0005",
+              "tm_pd_v04_user_005_s0032"
+            ],
+            "label_rationale": "The history supports segment-level reasoning: Jonah should not take a weaker United connection when the outbound protects an early plant commitment, but United still receives positive weight on comparable flight pieces. Prior mixed-carrier handling shows that a non-United outbound exception does not erase the United preference for a later comparable return. Here Delta is the better outbound, while the United and American returns are close enough for United to lead despite a small price disadvantage.",
+            "probe_type": "conflict_resolution",
+            "query": "Jonah is putting together Bay Area-to-Des Moines travel for a Monday arrival, a Tuesday morning plant acceptance test, and a Thursday afternoon trip home after the debrief. He can leave Monday around midday; any listed return departure leaves after the expected debrief window. Which flight plan should you recommend before booking?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The 'one carrier' versus 'multi-city or split ticket' wording is a public quality cue.",
+              "D combines the lowest price with the best or tied-best timing, making the cue sufficient rather than history-dependent."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c09",
+            "rationale": "D is the lowest price, one-carrier round trip, has the earliest outbound arrival, an acceptable midday departure, a better outbound connection than B, and the earliest listed arrival home after the debrief. It dominates the other plans on the stated travel criteria without needing private history."
+          }
+        }
+      ],
+      "round": 1
+    },
+    {
+      "accepted_this_round": [
+        "c07",
+        "c09"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c03",
+        "c04",
+        "c07",
+        "c08",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United SFO-YVR nonstop round trip: depart 9:35 a.m. Saturday and arrive 11:55 a.m.; return 2:35 p.m. Monday and arrive 4:55 p.m.; standard economy with adjacent standard seats currently selectable; $329 per person."
+              },
+              {
+                "choice_id": "B",
+                "text": "Air Canada SFO-YVR nonstop round trip: depart 9:05 a.m. Saturday and arrive 11:25 a.m.; return 2:10 p.m. Monday and arrive 4:30 p.m.; standard economy with adjacent standard seats currently selectable; $321 per person."
+              },
+              {
+                "choice_id": "C",
+                "text": "Alaska SFO-SEA-YVR outbound and YVR-SFO nonstop return: depart 8:50 a.m. Saturday and arrive 12:35 p.m. after a 72-minute Seattle connection; return 2:45 p.m. Monday and arrive 5:05 p.m.; standard economy; $306 per person."
+              },
+              {
+                "choice_id": "D",
+                "text": "WestJet SFO-YVR nonstop round trip: depart 10:20 a.m. Saturday and arrive 12:44 p.m.; return 3:05 p.m. Monday and arrive 5:25 p.m.; standard economy with adjacent seat selection after booking; $323 per person."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "From the query alone, Air Canada is defensible because it is slightly cheaper and a little earlier while preserving the nonstop and adjacent-seat advantages. The correct lead depends on remembering that United gets positive weight only when otherwise comparable options are being ranked for Jonah's Bay Area self-booked travel.",
+            "gold_action": "Recommend the United SFO-YVR nonstop package as the lead, with Air Canada as the comparable backup.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0028",
+              "tm_pd_v04_user_005_s0004",
+              "tm_pd_v04_user_005_s0032",
+              "tm_pd_v04_user_005_s0068",
+              "tm_pd_v04_user_005_s0119"
+            ],
+            "label_rationale": "This self-booked Bay Area personal weekend falls within the soft United carrier-preference scope. The United and Air Canada packages are both SFO nonstops with workable weekend timing and adjacent standard seats; Air Canada has only a small fare and timing edge, not a material improvement. The hidden history therefore breaks the near-tie toward United while still treating Air Canada as a strong backup.",
+            "probe_type": "cross_context_transfer",
+            "query": "Jonah is self-booking a Bay Area-to-Vancouver long weekend with his spouse. They want a Saturday morning departure and a Monday return after lunch; the hotel and airport-transfer pieces work with any option below. Which flight package should be the recommendation?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Spouse/adjacent-seat wording is a selection cue, but it is stated in the query and choices, so no private history is needed."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c02",
+            "rationale": "B satisfies the stated timing, is nonstop, is the cheapest nonstop, and has adjacent standard seats currently selectable for the spouse trip. A costs more for the same basic product, D is slightly more expensive with less-certain adjacent selection, and C saves only a small amount while adding an outbound connection and later arrival."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Alaska SFO-BUR nonstop: depart 8:05 a.m. and arrive 9:25 a.m.; return BUR-SFO 6:20 p.m.–7:40 p.m.; standard economy; $304."
+              },
+              {
+                "choice_id": "B",
+                "text": "United SFO-LAX nonstop: depart 7:40 a.m. and arrive 9:05 a.m.; return LAX-SFO 6:30 p.m.–8:00 p.m.; standard economy; $266."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta SFO-LAX nonstop: depart 8:00 a.m. and arrive 9:25 a.m.; return LAX-SFO 7:05 p.m.–8:35 p.m.; standard economy; $258."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest OAK-BUR nonstop: depart 8:20 a.m. and arrive 9:40 a.m.; return BUR-OAK 6:35 p.m.–7:55 p.m.; economy-style open seating; $286."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Without the longitudinal boundary, the United LAX itinerary is a plausible lead because it is cheaper, leaves from SFO, and lands earlier. The hidden memory is needed to know that United gets only soft weight and should not outrank a cleaner airport fit for this kind of site visit.",
+            "gold_action": "Recommend the Alaska SFO-BUR nonstop because it keeps the cleaner destination-airport plan rather than selecting the United LAX option solely for carrier and fare.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0073",
+              "tm_pd_v04_user_005_s0071",
+              "tm_pd_v04_user_005_s0117",
+              "tm_pd_v04_user_005_s0063",
+              "tm_pd_v04_user_005_s0014"
+            ],
+            "label_rationale": "Jonah's United preference is bounded: it should not override a cleaner routing or destination-airport fit when the alternatives are otherwise workable. Here the United option is cheaper and lands a little earlier, but it uses LAX for a meeting where the BUR pickup is simpler and all schedules meet the meeting window. His history supports choosing the non-United option when it better protects practical trip logistics.",
+            "probe_type": "boundary",
+            "query": "Jonah has a one-day supplier meeting in the north Los Angeles area. He will be on the Peninsula before and after, and the host says either BUR or LAX fits the pickup plan; BUR is a simpler airport pickup, while the listed LAX choices are a little cheaper or land a bit earlier. The meeting window is late morning through about 4:15 p.m. Which flight piece should be recommended?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Peninsula-to-SFO and north-LA-to-BUR are context/location cues supplied in the query; they are sufficient public cues rather than private-history requirements."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "A uses SFO, which aligns with being on the Peninsula before and after, and BUR, which the query explicitly says is the simpler pickup for the north Los Angeles meeting. Its schedule fits the meeting window. The cheaper LAX options trade away the stated pickup convenience, and D uses OAK despite the Peninsula context."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United SFO-LAS nonstop: Friday 4:35 p.m.–6:05 p.m.; Sunday 1:45 p.m.–3:20 p.m.; standard economy with regular seat selection included; $238."
+              },
+              {
+                "choice_id": "B",
+                "text": "Southwest OAK-LAS nonstop: Friday 4:20 p.m.–5:50 p.m.; Sunday 2:25 p.m.–3:55 p.m.; economy-style open seating with the usual Southwest bag allowance; $228."
+              },
+              {
+                "choice_id": "C",
+                "text": "Alaska SFO-LAS nonstop: Friday 5:15 p.m.–6:45 p.m.; Sunday 1:15 p.m.–2:50 p.m.; standard economy with regular seat selection included; $232."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta SFO-LAS nonstop: Friday 4:55 p.m.–6:25 p.m.; Sunday 12:55 p.m.–2:30 p.m.; standard economy with regular seat selection included; $241."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A generic planner could prefer Southwest for the lower fare and earlier Friday arrival, or Alaska for a lower fare and earlier Sunday arrival. The longitudinal memory is needed to treat those modest advantages as insufficient to displace United on a comparable personal Bay Area trip.",
+            "gold_action": "Lead with the United SFO-LAS nonstop because it is close on price and schedule while fitting Jonah's Bay Area self-booked personal travel pattern.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0028",
+              "tm_pd_v04_user_005_s0004",
+              "tm_pd_v04_user_005_s0030",
+              "tm_pd_v04_user_005_s0068",
+              "tm_pd_v04_user_005_s0119"
+            ],
+            "label_rationale": "The family weekend is a self-booked Bay Area trip with no stronger current-trip carrier instruction. All four options are nonstops that satisfy the dinner and Sunday-return windows, and the Southwest or Alaska savings are modest rather than material. Jonah's hidden pattern gives United positive ranking weight among otherwise comparable packages, so United should lead while the cheaper non-United nonstops remain reasonable backups.",
+            "probe_type": "cross_context_transfer",
+            "query": "Jonah is self-booking a Bay Area-to-Las Vegas weekend for a family birthday. SFO and OAK are both practical that day; he wants to arrive Friday in time for dinner and return Sunday early afternoon. No hotel or rental-car differences depend on the flight. Which package should be lead?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Southwest open seating, bag allowance, and airport choice could be preference-sensitive in general, but the stated facts make B the generic best on price and schedule."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c06",
+            "rationale": "B is the lowest price, arrives earliest on Friday for dinner, and has the latest Sunday early-afternoon return. The query says both SFO and OAK are practical and there are no hotel or rental-car differences, so the airport tradeoff is neutralized."
+          }
+        }
+      ],
+      "round": 2
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 5,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 1,
+      "gold_disagreement_or_unresolved": 1
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 5,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "direct_use": 1,
+      "exception": 3
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_005"
+}

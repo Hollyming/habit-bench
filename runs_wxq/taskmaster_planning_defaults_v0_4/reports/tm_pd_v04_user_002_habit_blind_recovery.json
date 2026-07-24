@@ -1,0 +1,241 @@
+{
+  "blind_recovered_count": 12,
+  "hidden_matches": [
+    {
+      "boundary_match": "match",
+      "confidence": 0.93,
+      "core_match": "match",
+      "exception_match": "match",
+      "habit_id": "tm_pd_v04_user_002_h00",
+      "reason": "Recovered h00 correctly treats United as a soft, non-exclusive preference that yields to fare, timing, and itinerary quality. Its scope is broader than the hidden habit because it says Chicago-origin flights generally and omits the grant-site/board/conference/solo-domestic and no-stronger-current-instruction limitations.",
+      "recovered_habit_ids": [
+        "tm_pd_v04_user_002_recovered_h00"
+      ],
+      "scope_match": "partial"
+    },
+    {
+      "boundary_match": "mismatch",
+      "confidence": 0.42,
+      "core_match": "partial",
+      "exception_match": "mismatch",
+      "habit_id": "tm_pd_v04_user_002_h01",
+      "reason": "Recovered h02 includes an after-lunch return component, which partially overlaps the hidden afternoon-return preference. It does not cleanly recover the hidden habit because it turns the policy into a broader fixed-agenda buffer rule covering outbound bag-drop/check-in, meeting buffers, and avoiding late Chicago arrivals. The hidden habit is a soft return-leg departure-time default and explicitly should not be generalized into an outbound-leg rule.",
+      "recovered_habit_ids": [
+        "tm_pd_v04_user_002_recovered_h02"
+      ],
+      "scope_match": "partial"
+    },
+    {
+      "boundary_match": "match",
+      "confidence": 0.92,
+      "core_match": "match",
+      "exception_match": "match",
+      "habit_id": "tm_pd_v04_user_002_h02",
+      "reason": "Recovered h05 correctly captures included breakfast as a recurring soft hotel amenity preference, including verifying ambiguous breakfast language and allowing stronger logistical reasons to outweigh it. It is combined with other amenities, but the breakfast component matches the hidden value, scope, default action, and soft boundary.",
+      "recovered_habit_ids": [
+        "tm_pd_v04_user_002_recovered_h05"
+      ],
+      "scope_match": "match"
+    },
+    {
+      "boundary_match": "partial",
+      "confidence": 0.86,
+      "core_match": "match",
+      "exception_match": "match",
+      "habit_id": "tm_pd_v04_user_002_h03",
+      "reason": "Recovered h05 correctly captures the preference for in-room coffee and a refrigerator/mini-fridge and the need to verify vague wording. Boundary is only partial because it adds a kitchenette-favoring statement, which is not part of the hidden habit and should not be generalized to other room amenities.",
+      "recovered_habit_ids": [
+        "tm_pd_v04_user_002_recovered_h05"
+      ],
+      "scope_match": "match"
+    },
+    {
+      "boundary_match": "match",
+      "confidence": 0.89,
+      "core_match": "match",
+      "exception_match": "match",
+      "habit_id": "tm_pd_v04_user_002_h04",
+      "reason": "Recovered h10 matches the hidden preference for convenient restaurant/dinner access near or at the hotel, especially for no-car or post-work arrivals. It preserves the soft nature by allowing on-site dining to be optional when nearby dinner choices are easy and allowing stronger logistics or savings to override.",
+      "recovered_habit_ids": [
+        "tm_pd_v04_user_002_recovered_h10"
+      ],
+      "scope_match": "match"
+    },
+    {
+      "boundary_match": "partial",
+      "confidence": 0.74,
+      "core_match": "match",
+      "exception_match": "match",
+      "habit_id": "tm_pd_v04_user_002_h05",
+      "reason": "Recovered h07 captures the queen-bed preference for standard one-bed rooms and allows king as an acceptable fallback rather than a reusable upgrade requirement. Its scope and boundary are only partial because it merges the bed policy with unsupported quiet-room, non-smoking, elevator/ice-machine, sofa-bed, and upgrade preferences that are not part of the hidden habit.",
+      "recovered_habit_ids": [
+        "tm_pd_v04_user_002_recovered_h07"
+      ],
+      "scope_match": "partial"
+    }
+  ],
+  "hidden_testable_count": 5,
+  "improper_splits": [],
+  "missing_testable_habits": [],
+  "reasoning_effort": "xhigh",
+  "recovered_adjudications": [
+    {
+      "matched_habit_ids": [
+        "tm_pd_v04_user_002_h00"
+      ],
+      "reason": "Semantically matches the hidden United soft-preference habit, with only a broader stated scope than the hidden habit.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h00",
+      "status": "matched_hidden"
+    },
+    {
+      "matched_habit_ids": [],
+      "reason": "No hidden habit establishes a general nonstop-flight preference. Hidden h00 only allows United to yield to primary itinerary constraints such as nonstop/timing; it does not create a reusable nonstop-default routing policy.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h01",
+      "status": "unsupported_extra"
+    },
+    {
+      "matched_habit_ids": [],
+      "reason": "Only partially overlaps hidden h01 through after-lunch/afternoon return timing. The recovered habit materially overexpands into outbound buffers, bag-drop/check-in margins, meeting/lunch transfer cushions, and avoiding late Chicago arrivals, which are not the hidden policy.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h02",
+      "status": "unsupported_extra"
+    },
+    {
+      "matched_habit_ids": [],
+      "reason": "No hidden habit establishes a no-rental-car or rideshare/transit default. No-car logistics appear only as contextual circumstances for other hotel preferences, not as a grounded transport habit.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h03",
+      "status": "unsupported_extra"
+    },
+    {
+      "matched_habit_ids": [],
+      "reason": "No hidden habit establishes a general all-in-cost comparison policy across flights, hotels, packages, airports, trains, or driving. Cost and reimbursement appear as constraints or boundaries in some hidden habits, not as this broad default action.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h04",
+      "status": "unsupported_extra"
+    },
+    {
+      "matched_habit_ids": [
+        "tm_pd_v04_user_002_h02",
+        "tm_pd_v04_user_002_h03"
+      ],
+      "reason": "Matches the hidden free-breakfast preference and the hidden in-room coffee-maker plus refrigerator/mini-fridge preference. The amenities should remain soft and independent; the recovery should not be read as making a kitchenette or a bundled all-or-nothing amenity package mandatory.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h05",
+      "status": "matched_hidden"
+    },
+    {
+      "matched_habit_ids": [],
+      "reason": "No hidden habit establishes refundable/pay-at-hotel booking terms, itemized folios, or avoidance of opaque prepaid rates as a stable policy. The cited evidence is conditional on agenda uncertainty, finance approval, or work-travel paperwork and includes prepaid acceptance in at least one context.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h06",
+      "status": "not_stable"
+    },
+    {
+      "matched_habit_ids": [
+        "tm_pd_v04_user_002_h05"
+      ],
+      "reason": "Matches the hidden queen-bed preference for standard one-bed/shared-bed hotel rooms, including king as an acceptable fallback and separate beds when actually needed. The quiet-room, non-smoking, elevator/ice-machine, sofa-bed, rollaway, and upgrade claims are not matched hidden habits.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h07",
+      "status": "matched_hidden"
+    },
+    {
+      "matched_habit_ids": [],
+      "reason": "No hidden habit establishes a reusable hotel-location rule based on first-morning meetings, host pickup, or central/downtown bases. The cited evidence is tied to specific site-visit logistics and early-start constraints.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h08",
+      "status": "not_stable"
+    },
+    {
+      "matched_habit_ids": [],
+      "reason": "No hidden habit establishes an official-room-block policy. The cited evidence concerns event-specific block deadlines, briefing locations, indoor walkways, and session schedules rather than a grounded reusable preference.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h09",
+      "status": "not_stable"
+    },
+    {
+      "matched_habit_ids": [
+        "tm_pd_v04_user_002_h04"
+      ],
+      "reason": "Matches the hidden hotel restaurant/dining-access preference as a soft tie-breaker for no-car, late-arrival, and post-work contexts.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h10",
+      "status": "matched_hidden"
+    },
+    {
+      "matched_habit_ids": [],
+      "reason": "No hidden habit establishes a staged planning workflow or rule to delay airfare until addresses, end times, finance approval, or hotel choices firm up. The cited evidence reflects current-trip uncertainty and booking sequencing, not a grounded stable habit.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h11",
+      "status": "not_stable"
+    }
+  ],
+  "recovery_item_rejections": [
+    {
+      "candidate_index": 0,
+      "name": "Default to O'Hare unless Midway has a material advantage",
+      "reasons": [
+        "untraceable_quote:tm_pd_v04_user_002_s0106"
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "name": "Book practical economy fares with carry-on only and no paid seat extras",
+      "reasons": [
+        "untraceable_quote:tm_pd_v04_user_002_s0108"
+      ]
+    }
+  ],
+  "recovery_model": "gpt-5.5",
+  "status": "reject",
+  "unsupported_high_confidence_recoveries": [
+    {
+      "matched_habit_ids": [],
+      "reason": "No hidden habit establishes a general nonstop-flight preference. Hidden h00 only allows United to yield to primary itinerary constraints such as nonstop/timing; it does not create a reusable nonstop-default routing policy.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h01",
+      "status": "unsupported_extra"
+    },
+    {
+      "matched_habit_ids": [],
+      "reason": "Only partially overlaps hidden h01 through after-lunch/afternoon return timing. The recovered habit materially overexpands into outbound buffers, bag-drop/check-in margins, meeting/lunch transfer cushions, and avoiding late Chicago arrivals, which are not the hidden policy.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h02",
+      "status": "unsupported_extra"
+    },
+    {
+      "matched_habit_ids": [],
+      "reason": "No hidden habit establishes a no-rental-car or rideshare/transit default. No-car logistics appear only as contextual circumstances for other hotel preferences, not as a grounded transport habit.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h03",
+      "status": "unsupported_extra"
+    },
+    {
+      "matched_habit_ids": [],
+      "reason": "No hidden habit establishes a general all-in-cost comparison policy across flights, hotels, packages, airports, trains, or driving. Cost and reimbursement appear as constraints or boundaries in some hidden habits, not as this broad default action.",
+      "recovered_habit_id": "tm_pd_v04_user_002_recovered_h04",
+      "status": "unsupported_extra"
+    }
+  ],
+  "user_id": "tm_pd_v04_user_002",
+  "weak_testable_matches": [
+    {
+      "habit_id": "tm_pd_v04_user_002_h00",
+      "verdict": {
+        "boundary_match": "match",
+        "confidence": 0.93,
+        "core_match": "match",
+        "exception_match": "match",
+        "habit_id": "tm_pd_v04_user_002_h00",
+        "reason": "Recovered h00 correctly treats United as a soft, non-exclusive preference that yields to fare, timing, and itinerary quality. Its scope is broader than the hidden habit because it says Chicago-origin flights generally and omits the grant-site/board/conference/solo-domestic and no-stronger-current-instruction limitations.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_002_recovered_h00"
+        ],
+        "scope_match": "partial"
+      }
+    },
+    {
+      "habit_id": "tm_pd_v04_user_002_h01",
+      "verdict": {
+        "boundary_match": "mismatch",
+        "confidence": 0.42,
+        "core_match": "partial",
+        "exception_match": "mismatch",
+        "habit_id": "tm_pd_v04_user_002_h01",
+        "reason": "Recovered h02 includes an after-lunch return component, which partially overlaps the hidden afternoon-return preference. It does not cleanly recover the hidden habit because it turns the policy into a broader fixed-agenda buffer rule covering outbound bag-drop/check-in, meeting buffers, and avoiding late Chicago arrivals. The hidden habit is a soft return-leg departure-time default and explicitly should not be generalized into an outbound-leg rule.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_002_recovered_h02"
+        ],
+        "scope_match": "partial"
+      }
+    }
+  ]
+}

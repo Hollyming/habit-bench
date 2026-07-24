@@ -1,0 +1,619 @@
+{
+  "cache_fingerprint": "e5488636ae529a4837e764bf48bbcfa9b0a29b70024c446dbdeae7cdcc2b0af2",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A and B are both one-stop routings with useful tradeoffs. Without Jonah's history, A could reasonably win on fare and arrival time; the memory signal is what makes the more buffered B the lead.",
+      "gold_action": "Hold the SFO-ORD-GRB itinerary with the more comfortably buffered single connection.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0006",
+        "tm_pd_v04_user_005_s0022",
+        "tm_pd_v04_user_005_s0115",
+        "tm_pd_v04_user_005_s0121"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_005_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_005_h03",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when Jonah is evaluating connecting itineraries, especially routes from the Bay Area to smaller industrial or municipal markets.",
+        "scope_key": "single_short_layover_boundary_for_connection_itineraries",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "A is cheaper and arrives earlier, but the 52-minute MSP connection is close to the tight-connection range Jonah has specifically said he does not want to gamble on.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "B is the best fit because it keeps the routing to one connection and gives a comfortable 1h37 at ORD. Jonah has repeatedly said not to choose a tight connection just to save a little, and he avoids both two-stop routings and long layovers.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Jonah has repeatedly pushed back on transfers that are technically possible but feel fragile for fixed work starts. B keeps the itinerary to one connection while giving a more comfortable buffer. A is attractive because it is cheaper and earlier, but the MSP transfer is the weak point; C adds a second transfer, and D substitutes a long wait for connection comfort.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h03_p00",
+      "probe_type": "boundary",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The options all get in Monday before the Tuesday training, with competing advantages: cheaper/earlier routings, safer connection buffers, one-stop routings, and different Bay Area airports. Picking one would require an unstated weighting.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A generic planner could plausibly favor B for extra pickup cushion or A for simpler routing. Jonah's history supplies the tie-breaker: do not treat schedule as an exception to the one-manageable-connection default unless the current request clearly says so.",
+      "gold_action": "Put forward the SFO-DEN-RAP itinerary with one comfortable Denver connection, while noting that pickup details could change the tradeoff later.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0030",
+        "tm_pd_v04_user_005_s0076",
+        "tm_pd_v04_user_005_s0106",
+        "tm_pd_v04_user_005_s0129"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_005_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_005_h03",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when Jonah is evaluating connecting itineraries, especially routes from the Bay Area to smaller industrial or municipal markets.",
+        "scope_key": "single_short_layover_boundary_for_connection_itineraries",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "D is tempting because it leaves later, arrives earlier, and is cheaper, but the 48-minute DEN connection conflicts with Jonah's stated aversion to 40- to 50-minute airport sprints.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "A keeps the trip to one connection and gives a safer 1h20 at DEN while still arriving in the early afternoon window. B has two stops, C has a long 4h30 layover, and D relies on a 48-minute connection that Jonah would view as fragile.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The handoff context makes earlier arrival attractive, but the current request does not explicitly say to trade routing cleanliness for maximum arrival cushion. A reaches the stated early-afternoon window with one manageable connection. B is the closest distractor because it is earlier and a bit cheaper, but it adds a second transfer; C has a long hub wait, and D depends on a tight connection.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h03_p01",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All arrivals appear compatible with the stated early-afternoon pickup window. The choices trade off earlier arrival, later departure, fare, extra stops, long layover, and a tight DEN connection, with no stated priority among them.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B is quite defensible on generic grounds because it is nonstop and cheaper. The longitudinal evidence is needed to disambiguate prior nonstop episodes from Jonah's broader acceptance of one clean connection.",
+      "gold_action": "Lead with the SFO-IAH-LFT option into Lafayette using a single reasonable connection.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0005",
+        "tm_pd_v04_user_005_s0024",
+        "tm_pd_v04_user_005_s0030",
+        "tm_pd_v04_user_005_s0003",
+        "tm_pd_v04_user_005_s0012"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_005_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_005_h03",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when Jonah is evaluating connecting itineraries, especially routes from the Bay Area to smaller industrial or municipal markets.",
+        "scope_key": "single_short_layover_boundary_for_connection_itineraries",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "B is tempting because it is a nonstop and cheaper, but it shifts the burden to a 2h15 evening drive and arrives at the hotel later. His history supports treating a closer-airport one-stop as the lead when the connection is reasonable.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "A uses the closer airport with a single reasonable 1h25 connection and gets him to the Lafayette hotel earlier. Jonah will use a clean one-stop into the better local airport when it avoids a long drive, while still rejecting fragile connections, two-stop routings, and long layovers.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Jonah's past nonstop choices were tied to specific trip constraints and should not be generalized into a permanent nonstop-first rule. Here, the clean connection into the closer airport is consistent with his normal routing boundary. B is cheaper and nonstop but shifts the burden to a long evening drive; C saves more but adds a second transfer, and D creates a long layover.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h03_p02",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The wording highlights closer-airport versus nonstop-plus-drive, but does not state which strategy is preferred."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The closer-airport option is convenient and reaches the hotel earliest, but the nonstop-plus-drive and other routings have price or nonstop/airport advantages. The query does not state how to value driving, fare, airport choice, or connection risk.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B is a strong generic pick because it is substantially cheaper and slightly earlier. The longitudinal policy is needed to avoid treating the fare difference alone as a trip-specific exception.",
+      "gold_action": "Recommend the SFO-EWR-BTV itinerary with one reasonable connection.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0076",
+        "tm_pd_v04_user_005_s0091",
+        "tm_pd_v04_user_005_s0048",
+        "tm_pd_v04_user_005_s0103"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_005_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_005_h03",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when Jonah is evaluating connecting itineraries, especially routes from the Bay Area to smaller industrial or municipal markets.",
+        "scope_key": "single_short_layover_boundary_for_connection_itineraries",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "D is tempting because it is cheaper and arrives earlier, but the 49-minute IAD connection is the kind of tight transfer Jonah has said not to dress up as a good option.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "A is the clean one-stop option with a comfortable 1h35 connection. B has two stops, C has a 4h45 layover, and D has a 49-minute connection, which falls into the tight-transfer pattern Jonah rejects.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The lower fare on B is attractive, but the current request does not say that price should override layover count or transfer complexity. Jonah's default therefore points to the single manageable connection. C has a long wait, and D has a fragile transfer despite being one stop.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h03_p03",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All options arrive Monday before the Tuesday demo. They trade off lowest fare, one-stop routing, connection buffer, long layover, different airport, and earliest arrival with a tight connection, so no single lead follows from the query alone.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "For two leisure travelers, B's lower fare and earlier arrival are genuinely tempting. The personal-trip history is needed to carry over Jonah's aversion to extra layovers rather than optimizing only on fare and arrival time.",
+      "gold_action": "Present the SFO-SLC-JAC option with one reasonable transfer as the recommended outbound.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0064",
+        "tm_pd_v04_user_005_s0082",
+        "tm_pd_v04_user_005_s0097",
+        "tm_pd_v04_user_005_s0098"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_005_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_005_h03",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when Jonah is evaluating connecting itineraries, especially routes from the Bay Area to smaller industrial or municipal markets.",
+        "scope_key": "single_short_layover_boundary_for_connection_itineraries",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "D is tempting because it is also SFO-SLC-JAC and arrives much earlier, but the 43-minute connection is too fragile for his stated personal-trip and tight-connection preferences.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "For personal trips with his spouse, Jonah has been especially wary of gambling on connections and avoids two-stop slogs. A gives them a single reasonable 1h30 connection. B has two stops, C has a long 4h10 layover, and D has a tight 43-minute connection.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Jonah's routing boundary has appeared in personal weekend planning as well as work travel, while prior nonstop choices for personal trips were tied to particular circumstances. A gives a clean one-connection itinerary. B is cheaper and earlier but adds a second transfer, C has a long layover, and D depends on a tight SLC connection.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h03_p04",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Carry-ons and post-routing seat selection are explicit cues, but they are not sufficient to choose one routing."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "For the leisure trip, the carry-on and seat details remove some ancillary concerns but do not resolve the main tradeoffs among fare, stops, airport, layover length, arrival time, and tight-connection risk.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B is generically attractive because it saves money and gets him home earlier while remaining a same-day return. Jonah's longitudinal preference for a cleaner one-connection itinerary is needed to select A.",
+      "gold_action": "Mark the ATW-ORD-SFO return with a single buffered connection as the lead.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0106",
+        "tm_pd_v04_user_005_s0107",
+        "tm_pd_v04_user_005_s0109",
+        "tm_pd_v04_user_005_s0129",
+        "tm_pd_v04_user_005_s0041"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_005_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_005_h03",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when Jonah is evaluating connecting itineraries, especially routes from the Bay Area to smaller industrial or municipal markets.",
+        "scope_key": "single_short_layover_boundary_for_connection_itineraries",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "C is tempting because it is one stop, cheaper, and arrives earlier, but it departs sooner after the closeout and has a 46-minute ORD connection, both of which run against Jonah's buffer and tight-connection preferences.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "A gives the best return structure after an early-afternoon closeout: later departure buffer plus a comfortable 1h25 ORD connection. Jonah avoids two-stop returns, long layovers, tight airport sprints, and returns that make him watch the clock after plant work.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The same layover pattern applies to returns from smaller work markets after site visits. With no explicit current instruction to optimize for the lowest fare or earliest home arrival, Jonah's history points to the single buffered connection. B is cheaper and earlier but adds a second transfer, C is earlier but tight, and D creates a long wait.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h03_p05",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The early-afternoon closeout does not give an exact feasible departure threshold. The returns trade off post-closeout buffer, fare, arrival time, extra stops, long layover, and tight ORD connection; no choice is uniquely best without unstated priorities.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "SFO-MSP-GRB, departing 11:55 a.m., with 52m at MSP, arriving 5:40 p.m.; about $465."
+        },
+        {
+          "choice_id": "B",
+          "text": "SFO-ORD-GRB, departing 12:15 p.m., with 1h37 at ORD, arriving 6:25 p.m.; about $520."
+        },
+        {
+          "choice_id": "C",
+          "text": "SJC-DEN-ORD-GRB, departing 11:45 a.m., with 1h05 at DEN and 1h00 at ORD, arriving 5:15 p.m.; about $450."
+        },
+        {
+          "choice_id": "D",
+          "text": "SFO-ATL-GRB, departing 12:05 p.m., with 3h50 at ATL, arriving 7:05 p.m.; about $490."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "boundary",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h03_p00",
+      "query": "Green Bay training starts Tuesday morning. Jonah is comparing Monday Bay Area outbounds that leave after a mid-morning meeting. Which itinerary should be held as the lead for discussion?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "SFO-DEN-RAP, departing 7:15 a.m., with 1h20 at DEN, arriving 1:40 p.m.; about $565."
+        },
+        {
+          "choice_id": "B",
+          "text": "SFO-PHX-DEN-RAP, departing 6:30 a.m., with 1h12 at PHX and 1h05 at DEN, arriving 12:45 p.m.; about $545."
+        },
+        {
+          "choice_id": "C",
+          "text": "OAK-DEN-RAP, departing 6:50 a.m., with 4h30 at DEN, arriving 1:20 p.m.; about $525."
+        },
+        {
+          "choice_id": "D",
+          "text": "SFO-DEN-RAP, departing 8:05 a.m., with 48m at DEN, arriving 12:55 p.m.; about $535."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "exception",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h03_p01",
+      "query": "Rapid City is one option for a Monday equipment handoff. The local contact expects someone can meet flights into early afternoon, and Jonah asks for a draft outbound to compare before pickup details are finalized. Which itinerary should you put forward first?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly SFO-IAH-LFT with a 1h25 connection at IAH, land 7:30 p.m., and reach the Lafayette hotel around 8:05 p.m.; about $620."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly SFO-MSY nonstop, land 6:10 p.m., and drive about 2h15 to the Lafayette hotel, arriving around 8:55 p.m.; about $545."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly OAK-LAX-IAH-LFT with 1h05 at LAX and 1h10 at IAH, land 7:50 p.m., and reach the hotel around 8:25 p.m.; about $510."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly SFO-DFW-LFT with a 4h20 connection at DFW, land 8:15 p.m., and reach the hotel around 8:50 p.m.; about $575."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h03_p02",
+      "query": "Jonah is sketching travel for a Lafayette, Louisiana pump-station review with a first meeting the next morning. The travel desk found a closer-airport connection and a New Orleans nonstop-plus-drive option, along with two other routings. Which plan should lead?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "SFO-EWR-BTV, departing 9:20 a.m., with 1h35 at EWR, arriving 6:50 p.m.; about $685."
+        },
+        {
+          "choice_id": "B",
+          "text": "OAK-LAS-EWR-BTV, departing 8:45 a.m., with 1h20 at LAS and 1h10 at EWR, arriving 6:35 p.m.; about $565."
+        },
+        {
+          "choice_id": "C",
+          "text": "SFO-ORD-BTV, departing 9:05 a.m., with 4h45 at ORD, arriving 8:15 p.m.; about $590."
+        },
+        {
+          "choice_id": "D",
+          "text": "SFO-IAD-BTV, departing 9:40 a.m., with 49m at IAD, arriving 6:05 p.m.; about $610."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "exception",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h03_p03",
+      "query": "Jonah is considering a Burlington, Vermont vendor demo with a Tuesday morning start. The options below are available for Monday from the Bay Area. Which outbound should be recommended in the draft note?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "SFO-SLC-JAC, departing 1:10 p.m., with 1h30 at SLC, arriving 5:45 p.m.; about $780 for two."
+        },
+        {
+          "choice_id": "B",
+          "text": "SFO-LAX-SLC-JAC, departing 12:20 p.m., with 1h05 at LAX and 1h10 at SLC, arriving 4:50 p.m.; about $700 for two."
+        },
+        {
+          "choice_id": "C",
+          "text": "OAK-DEN-JAC, departing 12:55 p.m., with 4h10 at DEN, arriving 6:15 p.m.; about $720 for two."
+        },
+        {
+          "choice_id": "D",
+          "text": "SFO-SLC-JAC, departing 2:05 p.m., with 43m at SLC, arriving 4:25 p.m.; about $800 for two."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "cross_context_transfer",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h03_p04",
+      "query": "Jonah and his spouse are comparing Friday outbound flights for a long weekend in Jackson, Wyoming. They plan to travel with carry-ons and choose seats after the routing is selected. Which outbound should be presented as the recommended option?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "ATW-ORD-SFO, departing 4:20 p.m., with 1h25 at ORD, arriving SFO 9:00 p.m.; about $615."
+        },
+        {
+          "choice_id": "B",
+          "text": "ATW-MSP-DEN-SFO, departing 3:50 p.m., with 1h10 at MSP and 1h05 at DEN, arriving SFO 8:20 p.m.; about $545."
+        },
+        {
+          "choice_id": "C",
+          "text": "ATW-ORD-SFO, departing 3:15 p.m., with 46m at ORD, arriving SFO 7:50 p.m.; about $590."
+        },
+        {
+          "choice_id": "D",
+          "text": "ATW-ATL-SFO, departing 4:05 p.m., with 4h40 at ATL, arriving SFO 10:05 p.m.; about $560."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "cross_context_transfer",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h03_p05",
+      "query": "Jonah is planning the return from an Appleton packaging-line audit. The closeout is expected early afternoon, and these same-day coach returns are available from ATW. Which return should be marked as the lead?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 6,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 9,
+    "selected_count": 6,
+    "selected_difficulty_counts": {
+      "medium": 6
+    },
+    "selected_type_counts": {
+      "boundary": 1,
+      "cross_context_transfer": 2,
+      "evidence_disambiguation": 1,
+      "exception": 2
+    }
+  }
+}

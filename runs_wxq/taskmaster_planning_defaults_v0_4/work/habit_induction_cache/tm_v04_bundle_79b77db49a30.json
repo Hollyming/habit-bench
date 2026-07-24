@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Nearby-to-downtown or a known distance from downtown satisfies the default; the hotel does not have to be located exactly downtown.",
+  "bundle_id": "tm_v04_bundle_79b77db49a30",
+  "condition": "When comparing hotel locations for an urban hotel stay where downtown access is relevant.",
+  "confidence": 0.8,
+  "decision": "accept",
+  "default_action": "Prefer hotels that are downtown, close to downtown, near downtown, or have clear information about distance from downtown, while not requiring exact downtown placement.",
+  "exception_condition": "If the current request explicitly says downtown is not necessary or makes another hotel feature more important, do not filter out otherwise suitable non-downtown hotels.",
+  "family": "hotel_location_priority",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_79b77db49a30",
+  "induced_at": "2026-07-15T12:36:34.893514+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Downtown-proximate hotel location default",
+  "preference_value": "central_or_downtown_proximity",
+  "rationale": "Multiple independent hotel-task instruction_ids show interest in downtown or near-downtown placement. One example says the hotel does not have to be downtown, so the coherent habit is a soft central-location preference rather than a hard downtown requirement.",
+  "seed_value": "central_or_downtown",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "The user asks how far the hotel is from downtown, showing downtown access is relevant.",
+      "conversation_id": "dlg-9c02c76a-dcd3-49d8-a5a7-abad604ea38b",
+      "turn_index": 11
+    },
+    {
+      "contribution": "The user explicitly wants the hotel to be downtown.",
+      "conversation_id": "dlg-9a97b940-e452-424a-a374-a51fde0b5cf0",
+      "turn_index": 8
+    },
+    {
+      "contribution": "The user asks whether the hotel is near downtown.",
+      "conversation_id": "dlg-8b1312b4-7db9-4891-88a1-7f48b1dc02ae",
+      "turn_index": 5
+    },
+    {
+      "contribution": "The user requests something close to downtown.",
+      "conversation_id": "dlg-8072084e-0cd5-4fc4-a3e0-7f495ac653b3",
+      "turn_index": 7
+    },
+    {
+      "contribution": "The user says the room does not have to be downtown, supporting a soft preference rather than a hard requirement.",
+      "conversation_id": "dlg-3231a427-cce3-428e-b08e-3452a9816f68",
+      "turn_index": 8
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "from downtown",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-9c02c76a-dcd3-49d8-a5a7-abad604ea38b",
+      "habitual_language": false,
+      "instruction_id": "hotel-1b",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 11,
+      "user_utterance": "And one more thing, I like to know about restaurants and hotel grounds like a full bar and they have kid-friendly. Yes, coming 19th January 2016 to 25th January 2016. And also I would like to know about the hotel amenities like a pool, hot tub indoor or outdoor. And also I need a fitness center. I like to know how far away is the hotel from downtown."
+    },
+    {
+      "annotated_segment": "Downtown",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-3231a427-cce3-428e-b08e-3452a9816f68",
+      "habitual_language": false,
+      "instruction_id": "hotel-16",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "Well, I just want a room with king-size bed and a balcony, preferably. And somewhere with free parking. It doesn't have to be Downtown, though."
+    },
+    {
+      "annotated_segment": "downtown",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-9a97b940-e452-424a-a374-a51fde0b5cf0",
+      "habitual_language": false,
+      "instruction_id": "hotel-12",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "I want it to be downtown. And I want it to be four stars."
+    },
+    {
+      "annotated_segment": "near to downtown",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-8b1312b4-7db9-4891-88a1-7f48b1dc02ae",
+      "habitual_language": false,
+      "instruction_id": "hotel-1",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "I would like to know that, is it near to downtown? and does it have pool and hot tub? Does hotel restaurant on ground floor have full bar?"
+    },
+    {
+      "annotated_segment": "close to downtown",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-8072084e-0cd5-4fc4-a3e0-7f495ac653b3",
+      "habitual_language": false,
+      "instruction_id": "hotel-14",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 7,
+      "user_utterance": "Also, I would like it to have a king-sized bed. And something that's close to downtown."
+    }
+  ]
+}

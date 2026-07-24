@@ -1,0 +1,364 @@
+{
+  "cache_fingerprint": "2abba0d436eb058c94ec35588cefdbcb4e8ca6d9052f80d4378d32c2389fb479",
+  "sessions": [
+    {
+      "domain": "itinerary_refinement",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Jonah prioritized the badge-pickup cushion and connection reliability over the later Bay Area departure, accepted the OAK nonstop as the best fit once the 6:30 gate window was confirmed, and chose the Overland Park hotel despite the longer plant drive because it better supported Monday and Wednesday distributor logistics.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.92,
+            "evidence_quote": "Badge pickup has to happen Monday before close of business, and Marco wants me to inspect the demo case Monday evening. The 1:25 OAK flight now feels too late.",
+            "habit_id": "tm_pd_v04_user_005_h01",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Security wrote back on Olathe. Badge pickup has to happen Monday before close of business, and Marco wants me to inspect the demo case Monday evening. The 1:25 OAK flight now feels too late. Can you rerun the safer outbound and the hotel location?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I found two better Monday options than the held 1:25 OAK flight. Option A: United SFO-DEN-MCI, 10:55 a.m.-4:42 p.m., with a 68-minute Denver connection. Option B: Southwest OAK-MCI nonstop, 12:05-5:18 p.m. SFO gives more clock cushion, but the connection is the risk. OAK is cleaner and still early enough only if the badge desk can handle a near-6:00 arrival at the gate.",
+          "role": "assistant"
+        },
+        {
+          "content": "They said the contractor window closes at 6:30 if I'm pre-cleared. I need to call if the flight is running late.",
+          "role": "user"
+        },
+        {
+          "content": "Then I would make the OAK nonstop the best fit. Door to door is tight but workable: land 5:18, rental car around 5:40, Olathe gate roughly 6:20 if traffic is normal. The SFO routing is the acceptable backup if you want more scheduled cushion, but one Denver delay could wipe that out. I would drop the original later OAK flight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. Now compare the hotel decision with the Monday demo inspection in mind.",
+          "role": "user"
+        },
+        {
+          "content": "Olathe hotel: easiest Tuesday morning, about 7-10 minutes to the plant, but it puts you farther from Marco and has fewer dinner choices nearby. Overland Park hotel: about 22-25 minutes to the Tuesday plant check-in, but it is closer to the distributor, better for inspecting the demo case Monday night, and has more restaurant options after long days.",
+          "role": "assistant"
+        },
+        {
+          "content": "Plant check-in is 7:15 Tuesday. Is Overland Park a dumb move?",
+          "role": "user"
+        },
+        {
+          "content": "Not dumb, just a little earlier alarm. If you leave the hotel around 6:30, you should have enough buffer for a 7:15 check-in. If weather or roadwork looks bad, Olathe is safer. Otherwise Overland Park is the better overall trip base because Monday night and Wednesday are both distributor-side.",
+          "role": "assistant"
+        },
+        {
+          "content": "Which Overland Park property is strongest?",
+          "role": "user"
+        },
+        {
+          "content": "Best fit: Marriott Kansas City Overland Park, about $209 before tax on the flexible rate, strong guest feedback, on-site restaurant, several easy dinner options nearby, and standard king rooms that list coffee makers; mini-fridge should be confirmed. Backup: Hyatt Place Overland Park, usually closer to $190, breakfast included, mini-fridge listed, but lighter restaurant setup.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the Marriott unless the fridge isn't actually in-room.",
+          "role": "user"
+        },
+        {
+          "content": "I will flag the fridge confirmation before booking. Rental-car logistics look fine: National at MCI is open late, Emerald Aisle is available, and landing after 5 should not create a counter issue. I would set pickup for 5:30 p.m. and tell security you will call from baggage claim if arrival slips.",
+          "role": "assistant"
+        },
+        {
+          "content": "Save that. No booking until I get final approval. Keep Wednesday return if I get released by 3, otherwise Thursday morning.",
+          "role": "user"
+        },
+        {
+          "content": "Saved, not booked. Lead plan is Monday June 9 OAK-MCI nonstop, 12:05-5:18 p.m., with badge pickup relying on the pre-cleared 6:30 gate window. Hotel lead is Marriott Kansas City Overland Park, flexible king, June 9-11, pending confirmation of in-room mini-fridge and coffee setup. Rental lead is National midsize at MCI. Return remains conditional: Wednesday 6:10 p.m. MCI-OAK if you are released around 3:00; otherwise Thursday morning.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0015",
+      "session_index": 15,
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "domain": "booking_confirmation",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The Kansas City-area trip was finalized with the OAK nonstop routing, Overland Park Marriott, National rental car, room notes for coffee maker and mini-fridge, and open-seating boarding support instead of assigned window-seat selection.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "If seats can be picked, take a window.",
+            "habit_id": "tm_pd_v04_user_005_h02",
+            "signal_type": "boundary"
+          },
+          {
+            "confidence": 1.0,
+            "evidence_quote": "Room note should request a quiet king with coffee maker and mini-fridge.",
+            "habit_id": "tm_pd_v04_user_005_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Approval came through. Security will hold the badge packet at the gate until 6:30 if I send the flight number, and the Wednesday debrief is done by 2:45. No Thursday meeting. Book the OAK nonstop plan and the Overland Park Marriott. If seats can be picked, take a window.",
+          "role": "user"
+        },
+        {
+          "content": "I can book that. Quick confirm: Monday June 9 OAK-MCI 12:05-5:18 p.m.; Wednesday June 11 MCI-OAK 6:10-8:05 p.m.; Marriott Kansas City Overland Park June 9-11 on the flexible king rate; National midsize rental car. The airline uses open seating, so no assigned window seat, but I can add EarlyBird to improve boarding position.",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. Add EarlyBird if it's under $30 each way. Room note should request a quiet king with coffee maker and mini-fridge.",
+          "role": "user"
+        },
+        {
+          "content": "EarlyBird is $25 each way. The Marriott lists in-room coffee makers, and the king room shows a mini-fridge, but I will still put both in the reservation notes. Want the arrival note sent to security and Marco after booking?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, include the ETA to the gate and the distributor office.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I am booking the flights, hotel, car, and EarlyBird now, then I will send the arrival details.",
+          "role": "assistant"
+        },
+        {
+          "content": "Thanks. Put the receipt under the Olathe startup project code.",
+          "role": "user"
+        },
+        {
+          "content": "Booked. Flights: Southwest OAK-MCI Monday June 9, 12:05-5:18 p.m., and MCI-OAK Wednesday June 11, 6:10-8:05 p.m.; EarlyBird added both ways since seats are open seating. Hotel: Marriott Kansas City Overland Park, flexible king, June 9-11, cancellation allowed until June 8 at 6 p.m.; notes request quiet room, coffee maker, and mini-fridge. Car: National midsize at MCI, pickup Monday 5:30 p.m., return Wednesday 4:30 p.m. Receipt filed to the Olathe startup project code. I sent security and Marco the flight numbers, gate ETA, and distributor-office ETA.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0016",
+      "session_index": 16,
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "domain": "conference_flight_hotel_search",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For the Denver conference, Jonah kept SFO and OAK in play but chose SFO once setup reliability and assigned-seat practicality mattered. He explicitly set a 4.0+ hotel guest-rating floor, asked about desk/fridge/coffee for the conference hotel, favored flexible cancellation, and left booking pending the Saturday dinner and Maya's teardown coverage.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "If the dinner happens, I would fly Saturday afternoon.",
+            "habit_id": "tm_pd_v04_user_005_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.97,
+            "evidence_quote": "Keep it 4.0+ guest rating unless the block is materially better.",
+            "habit_id": "tm_pd_v04_user_005_h04",
+            "signal_type": "boundary"
+          },
+          {
+            "confidence": 0.91,
+            "evidence_quote": "Any useful United option from OAK?",
+            "habit_id": "tm_pd_v04_user_005_h00",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "New one: registration opened for the Denver regional water-reuse conference. Colorado Convention Center. Booth setup is Sunday Aug 24 from 2 to 6, sessions Monday through Wednesday Aug 25-27. There may be a customer dinner Saturday night, not confirmed. Start a flight and hotel shortlist, no booking yet.",
+          "role": "user"
+        },
+        {
+          "content": "Got it. For Sunday, do you need to be useful at the start of setup, or is arriving mid-setup acceptable? Also, are SFO and OAK both in play for this one?",
+          "role": "assistant"
+        },
+        {
+          "content": "Useful by about 3:30 Sunday. SFO or OAK are fine. Skip SJC unless it's dramatically better. If the dinner happens, I would fly Saturday afternoon.",
+          "role": "user"
+        },
+        {
+          "content": "Flight shortlist: Sunday safest setup option is United SFO-DEN nonstop, 10:45 a.m.-2:20 p.m., which should put you at the convention center around 3:15. Sunday cleaner-but-tight option is Southwest OAK-DEN nonstop, 12:10-3:40 p.m.; that only works if someone else starts setup. Sunday 1:05 p.m. SFO-DEN arrives too late for your 3:30 target. Saturday dinner version: United SFO-DEN 2:15-5:50 p.m. or Southwest OAK-DEN 2:50-6:20 p.m., both nonstop.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Hotels: compare the official block against nearby options. Keep it 4.0+ guest rating unless the block is materially better.",
+          "role": "user"
+        },
+        {
+          "content": "Hotel shortlist near the convention center: Hyatt Regency Denver at Colorado Convention Center, official block, about $259/night, 0.1 mile, guest rating around 4.4, but the block is filling and cancellation is stricter. The Slate Denver, about $229/night, 0.3 mile, around 4.5, flexible cancellation to 48 hours. AC Hotel Denver Downtown, about $221/night, 0.3 mile, around 4.3, flexible to 72 hours. Embassy Suites Downtown Convention Center, about $239/night, 0.2 mile, around 4.2, breakfast included, but larger and busier.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does The Slate have a real desk and fridge and coffee? Conference days start early.",
+          "role": "user"
+        },
+        {
+          "content": "The Slate lists a work desk, in-room coffee maker, and mini-fridge in the king rooms I am seeing; I would still confirm the fridge at booking. AC Hotel also lists desk, mini-fridge, and coffee maker, but the rooms are smaller. Hyatt block rooms have coffee makers; mini-fridge appears by request, not guaranteed. Embassy suites include fridge, coffee, and microwave.",
+          "role": "assistant"
+        },
+        {
+          "content": "Which would you pick if I don't care about being in the block?",
+          "role": "user"
+        },
+        {
+          "content": "Best fit is The Slate: close enough to walk, better guest feedback, better cancellation, and the room setup looks more practical. Acceptable backup is the Hyatt block if booth logistics or team coordination matter more than flexibility. AC is the lower-rate backup. Embassy is the room-space and breakfast backup, but I would not lead with it unless that matters.",
+          "role": "assistant"
+        },
+        {
+          "content": "Cancellation matters because the Saturday dinner is not confirmed. Can I hold Sunday-Wednesday and add Saturday later?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, with a risk. The Slate has flexible availability Sunday-Wednesday at about $229/night, and Saturday can be added now at about $252. If you wait, Saturday could sell out or price up. Safer structure is to reserve Saturday-Wednesday on a flexible rate and drop Saturday if the dinner disappears. Leaner structure is Sunday-Wednesday only and revisit Saturday once the dinner is real.",
+          "role": "assistant"
+        },
+        {
+          "content": "Don't book yet. Put both hotel structures in the note.",
+          "role": "user"
+        },
+        {
+          "content": "Done. I have The Slate as the hotel lead with two structures: Sunday-Wednesday if no dinner, or Saturday-Wednesday flexible if the dinner firms up. What should I assume for the Wednesday return?",
+          "role": "assistant"
+        },
+        {
+          "content": "Maya may handle teardown after 3. If yes, I can leave the convention center around 3:30. If not, I'm there until 5:30.",
+          "role": "user"
+        },
+        {
+          "content": "Then the return split is clear. If Maya covers teardown, United DEN-SFO 5:35-7:15 p.m. is the best fit. Southwest DEN-OAK 6:10-7:45 p.m. is workable but uses open seating. If you stay until 5:30, United DEN-SFO 8:20-10:00 p.m. works, but it is a late landing. Thursday 8:05-9:50 a.m. is the lower-stress backup if teardown or shipping runs long.",
+          "role": "assistant"
+        },
+        {
+          "content": "Prefer not to land at 10 if I have a Thursday customer call. Use 5:35 if Maya confirms; otherwise probably Thursday morning.",
+          "role": "user"
+        },
+        {
+          "content": "Agreed. I will not make the 8:20 p.m. return the lead; it is only a last-resort option. For the outbound, if there is no Saturday dinner, I recommend the Sunday 10:45 a.m. SFO-DEN nonstop because it protects setup. If the dinner happens, the Saturday 2:15 p.m. SFO-DEN nonstop is the cleanest version.",
+          "role": "assistant"
+        },
+        {
+          "content": "Any useful United option from OAK?",
+          "role": "user"
+        },
+        {
+          "content": "No useful United option from OAK for this route. OAK is mainly Southwest nonstop for these times. If assigned seats and a cleaner booking flow matter, SFO on United is the cleaner airport/carrier combination. If airport convenience wins, Southwest OAK is fine, but seats are not assigned at booking.",
+          "role": "assistant"
+        },
+        {
+          "content": "SFO is fine for this one. Save the shortlist and ask me before booking anything. Also draft a note to Maya asking about teardown.",
+          "role": "user"
+        },
+        {
+          "content": "Saved, no booking. Lead plan: Sunday Aug 24 SFO-DEN nonstop 10:45 a.m.-2:20 p.m., The Slate Denver flexible Sunday-Wednesday, and Wednesday 5:35 p.m. DEN-SFO only if Maya covers teardown after 3. If not, use a Thursday morning return. Saturday-dinner version: add Saturday night at The Slate and fly SFO-DEN Saturday 2:15-5:50 p.m. Backups are Hyatt Regency official block for team logistics, AC Hotel for lower rate, and Embassy Suites for larger room/breakfast. Draft note: Maya, I’m building travel for Denver. Can you confirm whether you can handle booth teardown and shipping after about 3:00 p.m. Wednesday? If yes, I’ll plan on an early evening return; if not, I’ll stay through teardown and return Thursday morning. Also let me know whether the Saturday customer dinner is firm before I book the hotel nights.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0017",
+      "session_index": 17,
+      "user_id": "tm_pd_v04_user_005"
+    }
+  ],
+  "updated_continuity_summary": "{'traveler': 'Jonah Kim, San Francisco-based technical sales engineer who self-books practical work travel around client-site timing, distributor meetings, conferences, and occasional personal weekends with his spouse.', 'resolved_plans': [{'episode_id': 'ep_0001_twin_falls_site_visit', 'status': 'booked earlier', 'plan': 'May 5-9 Twin Falls site visit via SFO-Boise, daylight drive to Twin Falls, Hilton Garden Inn Twin Falls, Thursday afternoon return, with Tuesday 6:45 a.m. plant check-in noted.'}, {'episode_id': 'ep_0003_cedar_rapids_distributor_training', 'status': 'updated after schedule change', 'plan': 'Outbound changed to SFO-ORD-CID Tuesday, arriving 7:36 p.m. with one ORD layover and window seats selected; Thursday return unchanged. Hotel remains The Hotel at Kirkwood Center, standard king with desk, coffee maker, and mini-fridge.'}, {'episode_id': 'ep_0002_seattle_water_conference', 'status': 'locked', 'plan': 'United SFO-SEA Sunday June 23 at 9:35 a.m., Residence Inn Seattle Downtown/Convention Center king studio June 23-26 at the lower cancellable non-block rate, and Alaska SEA-SFO Wednesday June 26 at 6:55 p.m. after 4 p.m. teardown; window seats selected.'}, {'episode_id': 'ep_0004_chandler_food_beverage_site_visit', 'status': 'booked', 'plan': 'United SFO-PHX Monday July 15 at 1:05 p.m., Marriott Phoenix Chandler July 15-18 on a flexible rate with quiet king/coffee maker/mini-fridge notes, and United PHX-SFO Thursday July 18 at 3:35 p.m. after the Mesa site visit. Seats 18A and 21F selected.'}, {'episode_id': 'ep_0005_santa_fe_personal_weekend', 'status': 'booked', 'plan': 'May 16-19 personal weekend with spouse booked as United SFO-ABQ Friday 3:10-6:34 p.m., United ABQ-SFO Monday 3:20-5:05 p.m., Railyard District Hotel Santa Fe flexible king with parking at $18/night, and National midsize rental car at ABQ. Seats together selected both ways.'}, {'episode_id': 'ep_0006_kansas_city_utility_site_visit', 'status': 'booked', 'plan': 'June 9-11 Olathe/Overland Park trip booked as Southwest OAK-MCI Monday 12:05-5:18 p.m. with EarlyBird, Southwest MCI-OAK Wednesday 6:10-8:05 p.m. with EarlyBird, Marriott Kansas City Overland Park flexible king with quiet room/coffee maker/mini-fridge notes, and National midsize rental car at MCI. Security and distributor received flight numbers and arrival ETAs.'}], 'ongoing_planning': [{'episode_id': 'ep_0007_denver_regional_water_conference', 'status': 'shortlisted, not booked', 'plan': 'Aug 24-27 Denver regional water-reuse conference at Colorado Convention Center. Lead no-dinner plan is Sunday SFO-DEN nonstop 10:45 a.m.-2:20 p.m., The Slate Denver flexible Sunday-Wednesday, and Wednesday 5:35 p.m. DEN-SFO only if Maya covers teardown after 3. If the Saturday customer dinner becomes firm, add Saturday night at The Slate and fly SFO-DEN Saturday 2:15-5:50 p.m. If Maya cannot handle teardown, use Thursday morning return instead of a late Wednesday landing.'}], 'open_follow_ups': ['Confirm National rental-car pickup details for Cedar Rapids through the company portal.', 'Seattle customer dinner location remains pending but does not affect the locked flight or hotel.', 'For Chandler, Jonah still needs to complete/send the visitor form and forward the drafted arrival/security note; final Mesa check-in address, PPE, and photo restrictions should be confirmed.', 'For Kansas City/Olathe, monitor the Southwest boarding/check-in window since seats are open seating, and keep the security gate 6:30 badge-packet arrangement handy on arrival.', 'For Denver, confirm whether the Saturday customer dinner is firm, whether Maya can cover Wednesday teardown and shipping after about 3 p.m., and recheck The Slate cancellation terms and Saturday-night availability before booking.'], 'durable_user_facts_noted': 'Jonah favors reliable schedules, clean routing, and adequate airport cushions around fixed site visits. He is willing to use non-United or non-SFO options when timing and routing are better. For work hotels, he values strong guest feedback, flexible rates when plans are unsettled, practical in-room coffee/fridge setup, and convenient dinner access. On personal trips with his spouse, sitting together and cancellation flexibility can outweigh solo-seat preferences or work-room routines.'}",
+  "verification": {
+    "15": {
+      "habit_signals": [
+        {
+          "confidence": 0.92,
+          "evidence_quote": "Badge pickup has to happen Monday before close of business, and Marco wants me to inspect the demo case Monday evening. The 1:25 OAK flight now feels too late.",
+          "habit_id": "tm_pd_v04_user_005_h01",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "No leakage: all candidate habits were already established before the block; no hidden-profile or benchmark meta-language appeared. Fridge-only hotel wording was not counted as evidence for the full coffee-maker-plus-fridge habit."
+    },
+    "16": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "If seats can be picked, take a window.",
+          "habit_id": "tm_pd_v04_user_005_h02",
+          "signal_type": "boundary"
+        },
+        {
+          "confidence": 1.0,
+          "evidence_quote": "Room note should request a quiet king with coffee maker and mini-fridge.",
+          "habit_id": "tm_pd_v04_user_005_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "No leakage: all candidate habits were already established before the block; no hidden-profile or benchmark meta-language appeared."
+    },
+    "17": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "If the dinner happens, I would fly Saturday afternoon.",
+          "habit_id": "tm_pd_v04_user_005_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.97,
+          "evidence_quote": "Keep it 4.0+ guest rating unless the block is materially better.",
+          "habit_id": "tm_pd_v04_user_005_h04",
+          "signal_type": "boundary"
+        },
+        {
+          "confidence": 0.91,
+          "evidence_quote": "Any useful United option from OAK?",
+          "habit_id": "tm_pd_v04_user_005_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "No leakage: all candidate habits were already established before the block; no hidden-profile or benchmark meta-language appeared. The hotel amenity question was not counted as support because it did not endorse the amenities."
+    }
+  }
+}

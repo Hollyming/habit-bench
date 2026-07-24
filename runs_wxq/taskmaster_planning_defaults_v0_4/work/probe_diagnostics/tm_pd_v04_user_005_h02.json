@@ -1,0 +1,414 @@
+{
+  "habit_id": "tm_pd_v04_user_005_h02",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c04",
+        "c07",
+        "c09"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c04",
+        "c07",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Book the chosen fare, record that standard seat selection is deferred, and set a check-in reminder to choose from the opened map then."
+              },
+              {
+                "choice_id": "B",
+                "text": "Add the $44 advance purchase for 18A now so the seat is locked before ticketing."
+              },
+              {
+                "choice_id": "C",
+                "text": "Switch to the later flight with free 12C because that seat can be assigned immediately."
+              },
+              {
+                "choice_id": "D",
+                "text": "Book the chosen fare without any seat note or follow-up because no standard seat can be assigned at purchase."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Paying for 18A follows the seat-location preference but conflicts with the repeated no-buy-up/deferred-selection boundary. A planner without the history could plausibly pay the moderate fee to remove uncertainty.",
+            "gold_action": "Proceed with the chosen itinerary, note the seat-selection limitation, and try to secure the preferred seat type when the map opens.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0025",
+              "tm_pd_v04_user_005_s0032",
+              "tm_pd_v04_user_005_s0068",
+              "tm_pd_v04_user_005_s0131"
+            ],
+            "label_rationale": "When seat selection is not open or would require an extra seat purchase, Jonah's pattern is to avoid buying up solely for the seat and to handle the desired seat when selection becomes available. The later flight should not be chosen just to get an immediately assignable aisle seat.",
+            "probe_type": "boundary",
+            "query": "Jonah is approving a solo work trip to Fargo. The best fare and schedule are otherwise settled, but this airline does not open its standard seat map until 24-hour check-in. At purchase it offers only a $44 advance preferred-seat purchase for 18A. A later flight at the same fare has a free 12C available now but arrives 75 minutes later. Which booking instruction best fits Jonah's pattern?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrase \"Jonah's pattern\" invokes private history, but the objective cost, timing, and follow-up facts are sufficient to choose A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "A keeps the already-set best fare and schedule, avoids an unstated $44 seat purchase, avoids switching to a flight that arrives 75 minutes later just for seat assignment, and includes a concrete follow-up when the free standard map opens."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Assign the adjacent 18B/18C-style pair on each flight so they remain together."
+              },
+              {
+                "choice_id": "B",
+                "text": "Assign separate window seats like 12A and 21F so each traveler has that seat location."
+              },
+              {
+                "choice_id": "C",
+                "text": "Assign 12A for Jonah and an unpaired aisle for his spouse, splitting them but improving Jonah's seat."
+              },
+              {
+                "choice_id": "D",
+                "text": "Leave both travelers unassigned and ask the airport agent to look for a better arrangement later."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "The closest distractor applies the solo-flight seat tendency but fails to recognize the companion-travel exception. Generic travel reasoning may be split between comfort seats and adjacent seats; the long history identifies which tradeoff Jonah makes.",
+            "gold_action": "Choose adjacent seats for the couple even though the available pair is not a window-seat pair.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0011",
+              "tm_pd_v04_user_005_s0029",
+              "tm_pd_v04_user_005_s0047",
+              "tm_pd_v04_user_005_s0113"
+            ],
+            "label_rationale": "Jonah's personal companion trips are a recurring exception: when traveling with his spouse, staying together overrides his usual solo seat-location pattern. This is a companion reservation, so the adjacent pair is the best match despite the separated window alternatives.",
+            "probe_type": "exception",
+            "query": "Jonah and his spouse are booking a personal long weekend to Vancouver. The flights and fare are settled, and the seat map is free. On the outbound 3-3 aircraft, the only adjacent pair left is 18B/18C; the available window seats are 12A and 21F in separate rows. The return has a similar pattern. Which seating action should the planner take?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "For two spouses traveling together on a personal trip, the only free adjacent pair is the common-sense best choice. The alternatives split them or defer despite an available together option."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Select 20A outbound and 16C return, leaving seat fees off the booking."
+              },
+              {
+                "choice_id": "B",
+                "text": "Select 20A outbound and add 18F return for $52."
+              },
+              {
+                "choice_id": "C",
+                "text": "Select 13C outbound and 16C return so both flights have aisle seats."
+              },
+              {
+                "choice_id": "D",
+                "text": "Select 20A outbound and leave the return unassigned until airport check-in."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "The paid 18F option follows part of Jonah's seat-location pattern, making it a strong near miss. The judge must reconcile multiple evidence strands: preferred location, free-seat boundary, and aisle fallback.",
+            "gold_action": "Take the available outbound window seat and use a free aisle backup on the return where no acceptable free window is available.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0023",
+              "tm_pd_v04_user_005_s0032",
+              "tm_pd_v04_user_005_s0095",
+              "tm_pd_v04_user_005_s0131"
+            ],
+            "label_rationale": "Jonah has used an aisle as the backup when a suitable window is not available, and he has repeatedly avoided paid seat upgrades just to obtain the preferred location. The correct plan preserves the outbound window and uses the best free return alternative.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Jonah is booking a solo work round trip to St. Louis. The flights are fixed. On the outbound, 20A is a free standard seat. On the return, no free A/F seats remain; the realistic no-fee choices are 16C or 14B, while 18F is available only as a $52 preferred-seat purchase. Which seat plan should be applied?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The A/F-seat and paid 18F details may hint at a hidden window preference, but the no-fee and feasibility constraints are sufficient to choose A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "A uses the stated free outbound seat and the better realistic no-fee return option, avoiding the free middle seat, the $52 paid window, and leaving a seat unassigned. C introduces an outbound aisle not stated as available/free and relies on unstated aisle consistency."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Book Option 1 and note that the seat must be handled when the standard map opens."
+              },
+              {
+                "choice_id": "B",
+                "text": "Switch to Option 2 so 16A can be assigned during booking."
+              },
+              {
+                "choice_id": "C",
+                "text": "Choose a later nonstop arriving after 8 p.m. because it has 22A open now."
+              },
+              {
+                "choice_id": "D",
+                "text": "Book Option 1 but add a paid preferred seat if the airline offers one before check-in."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Option 2 has the desired seat type immediately and only a modestly later arrival, so generic travel reasoning cannot dismiss it. The long-history boundary that seat choice should not decide the carrier/routing is needed.",
+            "gold_action": "Keep the cleaner nonstop itinerary and defer seat selection until it becomes available.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0062",
+              "tm_pd_v04_user_005_s0025",
+              "tm_pd_v04_user_005_s0032",
+              "tm_pd_v04_user_005_s0068"
+            ],
+            "label_rationale": "Jonah's history shows the seat-location preference should be applied when possible but should not drive carrier or routing selection, and deferred seat maps should be monitored rather than solved with a buy-up or worse schedule. The nonstop remains the better travel package here.",
+            "probe_type": "conflict_resolution",
+            "query": "Jonah needs a solo flight to Atlanta for a controls training. Both options meet the 7 p.m. prep dinner and are within $20. Option 1 leaves SFO at 6:15 a.m., is nonstop, arrives at 3:55 p.m., and opens its standard seat map only at check-in. Option 2 leaves at 7:20 a.m., connects for 60 minutes, arrives at 4:45 p.m., and has 16A assignable now. Which instruction should the planner give?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The assignable 16A could cue a hidden seat preference, but routing and timing make A the generic best choice."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "Option 1 is nonstop and arrives earlier while still meeting the dinner constraint; losing advance seat assignment is handled by a check-in note. The alternatives switch to a connection for seat assignment, miss the dinner, or add an unstated paid seat."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Assign 17A/17B together, accepting the rear-half location."
+              },
+              {
+                "choice_id": "B",
+                "text": "Assign 8A and 12A, separating them but giving both the same side-seat location."
+              },
+              {
+                "choice_id": "C",
+                "text": "Assign 7C and 13D, separating them for nearer-front aisle seats."
+              },
+              {
+                "choice_id": "D",
+                "text": "Leave seats unassigned and ask at the airport for a paired option."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Separate 8A/12A seats strongly match the solo seat-location pattern and are nearer the front, but they violate the companion-seating exception. The item tests whether the exception is recognized as trip-specific rather than a permanent change.",
+            "gold_action": "Assign the available adjacent pair for the spouse trip, with one traveler in the side seat and both seated together.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0047",
+              "tm_pd_v04_user_005_s0083",
+              "tm_pd_v04_user_005_s0113",
+              "tm_pd_v04_user_005_s0124"
+            ],
+            "label_rationale": "For personal trips with his spouse, Jonah has consistently treated adjacent seating as the controlling condition, with the solo seat-location habit applied only when it does not split them. The rear paired seats best match that exception.",
+            "probe_type": "exception",
+            "query": "Jonah and his spouse are taking a personal anniversary weekend to Eugene on a 2-by-2 regional jet. Seat selection is included. The available options are 17A/17B together in the rear half of the cabin, 8A and 12A in separate rows, 7C and 13D in separate rows, or waiting for airport reassignment. Which seating choice should the planner make?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "For spouses on an anniversary weekend, the available adjacent 2-by-2 pair is the common-sense best choice. The alternatives split them for seat location or defer despite an available pair."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c02",
+        "c05",
+        "c06"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c04",
+        "c05",
+        "c06",
+        "c07",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Assign 24B/24C on each segment, using the only side-by-side standard pair and accepting the rear-third placement."
+              },
+              {
+                "choice_id": "B",
+                "text": "Assign 10A/10F on each segment, using the forward same-row seats with matching side letters and accepting that they are not adjacent."
+              },
+              {
+                "choice_id": "C",
+                "text": "Assign 11C/11D on each segment, using forward same-row seats across the aisle and accepting that they are not side-by-side."
+              },
+              {
+                "choice_id": "D",
+                "text": "Leave the seats unassigned for now and set a check-in reminder to look for a side-by-side pair closer to the front if one opens."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B has strong generic appeal because it gives both travelers forward A/F seats at no fee, while A preserves adjacency at the cost of rear placement and one less desirable seat. The hidden companion-travel exception is needed to break that tie.",
+            "gold_action": "Choose the available side-by-side pair for the couple, even though the forward A/F seats are available only as separated seats.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0011",
+              "tm_pd_v04_user_005_s0013",
+              "tm_pd_v04_user_005_s0029",
+              "tm_pd_v04_user_005_s0113"
+            ],
+            "label_rationale": "Jonah's spouse trips are a recurring exception to his solo seat-location habit: he prioritizes sitting together over taking separated window-coded seats. Because this is companion personal travel and a side-by-side pair is available, the adjacent pair is the history-consistent choice.",
+            "probe_type": "exception",
+            "query": "Jonah and his spouse are booking a personal long weekend to Vancouver. The flights and fare are fixed, seat selection is included, and all listed seats are free standard seats with comparable legroom and no exit-row issue. On each segment, the only side-by-side pair left is 24B/24C in the rear third; the map also has 10A/10F in the same forward row but not adjacent, and 11C/11D across the aisle in the forward half. Which seating action best matches Jonah's established pattern?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "\"Spouse\" and \"personal long weekend\" cue the common-sense objective of seating the party together.",
+              "\"Only side-by-side pair left\" and repeated \"not adjacent\" wording make A identifiable without private history.",
+              "The phrase \"established pattern\" is suspicious, but the adjacency cue is sufficient to select a generic best answer."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "For two people traveling together on a personal trip, assigning the only available side-by-side free standard pair is the ordinary travel-planning choice. The alternatives separate the travelers or gamble by leaving seats unassigned, and the query removes material legroom, fee, exit-row, timing, and baggage differences."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Assign 22C/22D on each segment, using the only side-by-side pair and accepting the rear-third placement."
+              },
+              {
+                "choice_id": "B",
+                "text": "Assign 7A and 8A on each segment, using forward same-side seats and accepting that they are one row apart."
+              },
+              {
+                "choice_id": "C",
+                "text": "Assign 7B/7C on each segment, using forward same-row seats across the aisle and accepting that they are not side-by-side."
+              },
+              {
+                "choice_id": "D",
+                "text": "Leave seats unassigned for now and set a check-in reminder to request a side-by-side pair closer to the front if the map changes."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B offers forward individual seats at no fee and preserves a side-letter pattern, while A preserves the companion arrangement but is farther back. The hidden spouse-travel exception is needed to choose A over the otherwise defensible forward split.",
+            "gold_action": "Assign the available side-by-side pair for the spouse trip, rather than splitting them for forward individual seats or waiting for a possibly better pair.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0047",
+              "tm_pd_v04_user_005_s0083",
+              "tm_pd_v04_user_005_s0113",
+              "tm_pd_v04_user_005_s0124"
+            ],
+            "label_rationale": "On personal trips with his spouse, Jonah consistently prioritizes staying together, with the solo window-seat habit applied only when it does not split the couple. A 2-by-2 side-by-side pair is available here, so the history-consistent action is to take it despite the rear-third location.",
+            "probe_type": "exception",
+            "query": "Jonah and his spouse are taking a personal anniversary weekend to Eugene on a 2-by-2 regional jet. The flights and fare are fixed, seat selection is included, and all listed seats are free standard seats with comparable legroom. On each segment, the only side-by-side pair left is 22C/22D in the rear third; the map also has 7A and 8A in the forward cabin one row apart, plus 7B/7C in the forward cabin across the aisle. Which seating choice should the planner make?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "\"Spouse\" and \"anniversary weekend\" strongly cue the common-sense objective of sitting together.",
+              "\"Only side-by-side pair left\" versus \"one row apart\" and \"not side-by-side\" makes A identifiable without private history.",
+              "The forward-versus-rear contrast may be a private preference cue, but adjacency for the traveling pair is sufficient to select a generic best answer."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "For spouses on a personal anniversary trip, the only side-by-side free standard pair is the ordinary best seating choice. The other options split them by row or aisle, or leave seats unassigned despite an available adjacent pair, with no compensating objective advantage stated beyond forward placement."
+          }
+        }
+      ],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 4
+    },
+    "query_only_unresolved_count": 8,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 2,
+      "medium": 2
+    },
+    "selected_type_counts": {
+      "boundary": 2,
+      "conflict_resolution": 1,
+      "cross_context_transfer": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_005"
+}

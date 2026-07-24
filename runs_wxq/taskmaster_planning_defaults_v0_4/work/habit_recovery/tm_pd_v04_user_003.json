@@ -1,0 +1,439 @@
+{
+  "cache_fingerprint": "c37e2017cecc5de22a61b5707e1ce0e6a10696149ca5ee04d774d8cbd81a504f",
+  "raw_recovery": {
+    "recovered_habits": [
+      {
+        "boundary_condition": "Compare all-in airfare, one-way/drop fee, connection quality, airport timing, and reimbursement justification before committing.",
+        "confidence": 0.95,
+        "default_action": "Price SLC-to-first-city and last-city-to-SLC air with a one-way rental, then document the route logic for approval.",
+        "evidence": [
+          {
+            "quote": "Hi, I’m Tessa. I’m trying to sketch a September recruitment loop from Salt Lake City through Boise, the Palouse, and Spokane. I need to avoid backtracking if we can.",
+            "session_id": "tm_pd_v04_user_003_s0000"
+          },
+          {
+            "quote": "Open-jaw is allowed if there’s a good reason.",
+            "session_id": "tm_pd_v04_user_003_s0033"
+          },
+          {
+            "quote": "If Eugene return is nicer but expensive, how much cheaper would Portland have to be for you to consider driving back?",
+            "session_id": "tm_pd_v04_user_003_s0044"
+          },
+          {
+            "quote": "The Portland round trip may be about $150 cheaper in airfare. Is the backtracking still that bad?",
+            "session_id": "tm_pd_v04_user_003_s0074"
+          },
+          {
+            "quote": "I need to compare open-jaw flying, Dallas round-trip flying, and just driving from Salt Lake with materials.",
+            "session_id": "tm_pd_v04_user_003_s0120"
+          },
+          {
+            "quote": "If my director vetoes the one-way rental drop fee, what is the fallback?",
+            "session_id": "tm_pd_v04_user_003_s0137"
+          }
+        ],
+        "exception_condition": "Use a round trip or full drive if the open-jaw fare or drop fee is extreme, the return connection is unreliable, or materials make flying impractical.",
+        "family": "routing",
+        "name": "Use directional open-jaw routing for multi-city work loops when the cost is defensible",
+        "preference_value": "Prefers open-jaw flights and one-way rentals over a simple round trip when the event path is directional and a round trip would create backtracking.",
+        "scope_condition": "Work recruitment/admissions loops that start in one metro area and end in another, especially with several cities and a final event far from the arrival airport."
+      },
+      {
+        "boundary_condition": "A single connection is acceptable when it is comfortably timed, commonly around an hour or better and preferably 70–90 minutes for work returns.",
+        "confidence": 0.97,
+        "default_action": "Choose nonstop when reasonable; otherwise use one comfortable connection and preserve event/airport buffers even if it costs modestly more.",
+        "evidence": [
+          {
+            "quote": "Delta is nice if it’s comparable, but schedule matters more. Coach is fine. I’d rather not do more than one connection, and I don’t want a tiny 35-minute layover.",
+            "session_id": "tm_pd_v04_user_003_s0000"
+          },
+          {
+            "quote": "Reliability matters more here. I’m fine getting home around dinner, but I don’t want a long layover or a connection that turns a short return into a whole evening.",
+            "session_id": "tm_pd_v04_user_003_s0001"
+          },
+          {
+            "quote": "I don’t want to gamble the school visit just to save a little.",
+            "session_id": "tm_pd_v04_user_003_s0009"
+          },
+          {
+            "quote": "I do not want to sweat a 35-minute connection out of COS.",
+            "session_id": "tm_pd_v04_user_003_s0026"
+          },
+          {
+            "quote": "I would rather avoid a connection under an hour.",
+            "session_id": "tm_pd_v04_user_003_s0083"
+          },
+          {
+            "quote": "Late is better than sprinting or missing it.",
+            "session_id": "tm_pd_v04_user_003_s0130"
+          }
+        ],
+        "exception_condition": "Use a cheaper carrier or connection only when the timing, total travel time, and buffer remain comparable; do not choose a tight connection just to save money or fly Delta.",
+        "family": "flights",
+        "name": "Prioritize flight reliability and comfortable connections over the cheapest fare or preferred carrier",
+        "preference_value": "Schedule reliability, sane arrival/departure times, and non-sprinting connections matter more than small fare savings or carrier preference.",
+        "scope_condition": "Any flight selection, especially work trips with fixed school visits, fairs, receptions, or return deadlines."
+      },
+      {
+        "boundary_condition": "Avoid paying extra for preferred windows unless the fee is negligible or reimbursable; avoid Basic when seat selection may become a problem.",
+        "confidence": 0.92,
+        "default_action": "Select economy/Main Cabin, choose standard no-fee window seats if available, and recheck the seat map at check-in.",
+        "evidence": [
+          {
+            "quote": "Good. Main cabin/economy, and I’ll pick a window if there’s one. Anything else to note for reimbursement?",
+            "session_id": "tm_pd_v04_user_003_s0005"
+          },
+          {
+            "quote": "Good. Book economy. If seat selection is open, take window on both legs. What should I put in the receipt packet?",
+            "session_id": "tm_pd_v04_user_003_s0009"
+          },
+          {
+            "quote": "Seats are open: 19A outbound and 21F return. Main cabin, not basic.",
+            "session_id": "tm_pd_v04_user_003_s0022"
+          },
+          {
+            "quote": "Good. Can I request window seats without paying extra?",
+            "session_id": "tm_pd_v04_user_003_s0026"
+          },
+          {
+            "quote": "Good point. I also don’t want basic economy if seat selection gets weird.",
+            "session_id": "tm_pd_v04_user_003_s0029"
+          },
+          {
+            "quote": "Pairs first. One window is nice, but I do not want kids separated from an adult.",
+            "session_id": "tm_pd_v04_user_003_s0133"
+          }
+        ],
+        "exception_condition": "When traveling with family, keeping kids with an adult or keeping the group in adjacent pairs overrides the window-seat preference.",
+        "family": "flights",
+        "name": "Book economy/Main Cabin with standard window seats when practical",
+        "preference_value": "Uses economy or Main Cabin, prefers window seats when selectable, and avoids Basic Economy when seat selection or schedule flexibility matters.",
+        "scope_condition": "Flight purchases for both work and family travel."
+      },
+      {
+        "boundary_condition": "Breakfast and parking are most important on early event mornings; dinner access becomes decisive after evening fairs, receptions, or late drives.",
+        "confidence": 0.98,
+        "default_action": "Search practical chain or business hotels under the cap, verify breakfast hours and parking charges, and choose areas with nearby restaurants or reliable takeout.",
+        "evidence": [
+          {
+            "quote": "Hotels are the other piece. Breakfast included helps a lot on school-visit mornings, and I’d like not to be stranded for dinner after the Nampa fair. One queen bed is fine; I don’t need anything fancy.",
+            "session_id": "tm_pd_v04_user_003_s0000"
+          },
+          {
+            "quote": "For hotels, I need to stay inside the university reimbursement range, breakfast included if I can get it, and decent food nearby after the evening events. Nothing fancy.",
+            "session_id": "tm_pd_v04_user_003_s0003"
+          },
+          {
+            "quote": "Breakfast matters because first games can be early. Parking too. I don’t want a resort fee situation.",
+            "session_id": "tm_pd_v04_user_003_s0014"
+          },
+          {
+            "quote": "I would rather not pay downtown Portland parking. Breakfast at the hotels matters on Tuesday and Thursday because those mornings are early.",
+            "session_id": "tm_pd_v04_user_003_s0044"
+          },
+          {
+            "quote": "Breakfast and parking need to be in the approval note. The school visits start early enough that I do not want breakfast to be a mystery.",
+            "session_id": "tm_pd_v04_user_003_s0074"
+          },
+          {
+            "quote": "Breakfast and dinner access matter because the days are going to be weird. Flag that in the approval note.",
+            "session_id": "tm_pd_v04_user_003_s0120"
+          }
+        ],
+        "exception_condition": "Will give up included breakfast or accept paid parking when the official/closest hotel materially protects required sessions, winter walking, or a fixed morning event.",
+        "family": "lodging",
+        "name": "Choose practical hotels with breakfast, clear parking, and nearby food over fancy properties",
+        "preference_value": "Prefers predictable, reimbursable hotels with breakfast, simple parking, and real dinner access; does not value luxury for these trips.",
+        "scope_condition": "Work recruitment/conference hotels and family sports-trip hotels, especially where mornings start early or evenings end late."
+      },
+      {
+        "boundary_condition": "Cancellation window, local time cutoff, deposit/prepay terms, and exact room type must be clear before relying on a hold.",
+        "confidence": 0.94,
+        "default_action": "Place refundable holds, track cancellation deadlines, keep backups only briefly, and release extras once the primary plan is safe.",
+        "evidence": [
+          {
+            "quote": "The block becomes basically nonrefundable after tomorrow night. I’m nervous because youth soccer schedules have lied to me before.",
+            "session_id": "tm_pd_v04_user_003_s0015"
+          },
+          {
+            "quote": "Breakfast by 6:30 would be ideal. I’d like cancellable at least to Feb 20. After Monday reception I may not eat until 8:45 or 9.",
+            "session_id": "tm_pd_v04_user_003_s0057"
+          },
+          {
+            "quote": "Yes: refundable, single queen room is fine, Delta if it’s comparable, and please request window seats. If a non-Delta nonstop is much better, I don’t need Delta for the sake of it.",
+            "session_id": "tm_pd_v04_user_003_s0094"
+          },
+          {
+            "quote": "The team block now only has nonrefundable rooms. A refundable hotel about 12 minutes farther has two queens, breakfast, and free parking. Help me choose.",
+            "session_id": "tm_pd_v04_user_003_s0125"
+          },
+          {
+            "quote": "Just me. Queen is fine, non-smoking, and no prepaid rates. I also want dinner access Sunday after landing.",
+            "session_id": "tm_pd_v04_user_003_s0134"
+          },
+          {
+            "quote": "Okay, I-15 side. No prepaid rooms. Queen if selectable, but flag it if the refundable inventory only shows something odd.",
+            "session_id": "tm_pd_v04_user_003_s0138"
+          }
+        ],
+        "exception_condition": "A stricter official block or less flexible rate is acceptable only when reimbursement/approval is clear and the convenience materially reduces trip risk.",
+        "family": "lodging",
+        "name": "Prefer refundable, non-prepaid hotel holds while schedules are still moving",
+        "preference_value": "Strongly favors refundable/cancellable hotel rates and avoids prepaid or nonrefundable rooms while event times, brackets, or host details may change.",
+        "scope_condition": "Hotel planning before final agendas, tournament brackets, or host timing are fully stable."
+      },
+      {
+        "boundary_condition": "The extra night needs a clear reliability reason and should be avoided if same-day travel is genuinely safe.",
+        "confidence": 0.91,
+        "default_action": "Use a previous-day arrival or earlier flight when a delay would make the first obligation stressful or risky.",
+        "evidence": [
+          {
+            "quote": "Sunday evening is less convenient at home, but I can justify it if the Monday risk is real.",
+            "session_id": "tm_pd_v04_user_003_s0037"
+          },
+          {
+            "quote": "Let’s not build the week around hoping the Monday flight runs perfectly. I can justify one extra hotel night if it keeps the reception day calm.",
+            "session_id": "tm_pd_v04_user_003_s0044"
+          },
+          {
+            "quote": "I’d rather not burn an extra night unless Sunday makes the reception risky.",
+            "session_id": "tm_pd_v04_user_003_s0051"
+          },
+          {
+            "quote": "I’d rather not be tense about a Monday arrival, but I also don’t want an unnecessary night if Monday morning is safe.",
+            "session_id": "tm_pd_v04_user_003_s0056"
+          },
+          {
+            "quote": "No prep before 1:00, but I cannot be late. The university will reimburse either airfare or mileage. An extra night should be okay if the reason is solid.",
+            "session_id": "tm_pd_v04_user_003_s0134"
+          },
+          {
+            "quote": "The Denver workshop agenda finally posted. Monday check-in is required by 12:30, so I agree the Monday morning flight is too risky.",
+            "session_id": "tm_pd_v04_user_003_s0135"
+          }
+        ],
+        "exception_condition": "Same-day arrival is acceptable when a clean early nonstop lands with ample cushion and the first agenda item is not mission-critical.",
+        "family": "trip_timing",
+        "name": "Arrive the prior day or earlier when a same-day arrival would endanger a required event",
+        "preference_value": "Accepts an extra hotel night or earlier arrival when it protects a mandatory meeting, check-in, reception setup, or early breakfast.",
+        "scope_condition": "Trips with fixed early-morning events, required badge pickup, setup deadlines, winter weather, or important first-day sessions."
+      },
+      {
+        "boundary_condition": "One controlled late-ish drive can be acceptable, but not repeated late drives, not rolling in after 11 if avoidable, and not when roads are bad.",
+        "confidence": 0.94,
+        "default_action": "Place the overnight near the next fixed morning event or split the drive with a sensible intermediate stop.",
+        "evidence": [
+          {
+            "quote": "I’m okay with one longer post-fair drive, but not two in a row. I also don’t want to roll into a hotel after 11 if I can help it.",
+            "session_id": "tm_pd_v04_user_003_s0007"
+          },
+          {
+            "quote": "The reception could run to 8:45. I’d rather not do a long late drive after shaking hands all evening. Spokane Valley sounds okay if Tuesday morning isn’t awful.",
+            "session_id": "tm_pd_v04_user_003_s0017"
+          },
+          {
+            "quote": "That makes sense. I can handle one late-ish drive better than a pre-dawn one before a counselor breakfast.",
+            "session_id": "tm_pd_v04_user_003_s0033"
+          },
+          {
+            "quote": "I can leave Sunday after lunch, and I’d like to avoid heroic drives after a fair.",
+            "session_id": "tm_pd_v04_user_003_s0078"
+          },
+          {
+            "quote": "Finance would prefer one hotel night, but I can justify a second if driving home that late is a bad idea. I need the ranking.",
+            "session_id": "tm_pd_v04_user_003_s0104"
+          },
+          {
+            "quote": "I do not love hotel changes, but I hate the long late drive more.",
+            "session_id": "tm_pd_v04_user_003_s0117"
+          }
+        ],
+        "exception_condition": "Will accept a late drive if it clearly prevents a worse pre-dawn drive and conditions are dry/normal; will add an extra night if safety or fatigue makes the late return unreasonable.",
+        "family": "drive_timing",
+        "name": "Avoid heroic late-night drives and pre-dawn gambles; move hotels when it protects the next event",
+        "preference_value": "Prefers to avoid long drives after evening events and very early drives before counselor breakfasts or school visits, even if that means another hotel move.",
+        "scope_condition": "Road portions of work loops and family tournament trips, especially after fairs/receptions or before early check-ins."
+      },
+      {
+        "boundary_condition": "Parking hassle, materials, number of cities, late-night movement, and risk of being stranded decide the choice more than the theoretical lowest cost.",
+        "confidence": 0.86,
+        "default_action": "Rent a car for multi-stop recruitment loops; skip the rental and use airport rail/rideshare for downtown conferences or family trips with local rides.",
+        "evidence": [
+          {
+            "quote": "Do I really need a rental car? Parking in Seattle is never fun.",
+            "session_id": "tm_pd_v04_user_003_s0056"
+          },
+          {
+            "quote": "What about full rental car versus rideshares? I am not wild about driving I-35, but I also do not want to be stranded between events.",
+            "session_id": "tm_pd_v04_user_003_s0060"
+          },
+          {
+            "quote": "I really do not want a rental car downtown. Is the airport train reasonable on a Sunday afternoon?",
+            "session_id": "tm_pd_v04_user_003_s0070"
+          },
+          {
+            "quote": "Do I need a rental car because of the dinner move south?",
+            "session_id": "tm_pd_v04_user_003_s0110"
+          },
+          {
+            "quote": "I would also rather not rent a car unless it makes the weekend dramatically easier.",
+            "session_id": "tm_pd_v04_user_003_s0132"
+          },
+          {
+            "quote": "Yes, draft that note. Also ground transportation: no rental, right?",
+            "session_id": "tm_pd_v04_user_003_s0135"
+          }
+        ],
+        "exception_condition": "Even when a rental is kept for the route, use rideshare for a local urban dinner or event if parking is likely to be difficult.",
+        "family": "ground_transport",
+        "name": "Use rental cars for dispersed/material-heavy routes, but avoid them for compact downtown conference trips",
+        "preference_value": "Prefers a rental car when events are spread across suburbs/cities or materials must move, but prefers rail/rideshare when the trip is a downtown, single-site conference with expensive parking.",
+        "scope_condition": "Ground transport decisions after flight selection."
+      },
+      {
+        "boundary_condition": "Luggage/materials should not be visible in the car; laptops, folio bags, badges, and high-value items travel inside with her.",
+        "confidence": 0.88,
+        "default_action": "Decide what ships versus rides in the car, choose vehicle/cargo space accordingly, pre-plan garage/load-in, and separate each event’s materials before travel.",
+        "evidence": [
+          {
+            "quote": "I’m mostly worried about the luggage sitting in the car during lunch.",
+            "session_id": "tm_pd_v04_user_003_s0059"
+          },
+          {
+            "quote": "I also don't want luggage visible in the car during the Vancouver transfer table.",
+            "session_id": "tm_pd_v04_user_003_s0099"
+          },
+          {
+            "quote": "Probably five boxes plus the banner tube if I don't ship.",
+            "session_id": "tm_pd_v04_user_003_s0120"
+          },
+          {
+            "quote": "Two medium boxes, tablecloth, retractable banner, laptop bag. I can ship one box to Boise if that makes flying workable.",
+            "session_id": "tm_pd_v04_user_003_s0137"
+          },
+          {
+            "quote": "Can you map the materials handoff points? That’s the part my supervisor keeps asking about.",
+            "session_id": "tm_pd_v04_user_003_s0139"
+          },
+          {
+            "quote": "Materials can ship to Plano but not Austin.",
+            "session_id": "tm_pd_v04_user_003_s0141"
+          }
+        ],
+        "exception_condition": "If shipping is unavailable or material volume is too high, driving or an SUV rental becomes the fallback even if flying would otherwise be attractive.",
+        "family": "materials",
+        "name": "Plan materials logistics explicitly before booking the route",
+        "preference_value": "Treats recruitment boxes, banner tubes, laptops, and luggage as routing constraints that require shipping, cargo, parking, and security plans rather than improvisation.",
+        "scope_condition": "Admissions/recruitment trips with brochure boxes, banners, display materials, or luggage left between stops."
+      },
+      {
+        "boundary_condition": "Documentation is most important when finance or a director may question a higher fare, one-way drop fee, official block, or non-obvious routing choice.",
+        "confidence": 0.95,
+        "default_action": "Save itemized receipts/folios, parking/toll/fuel records when applicable, cancellation screenshots, fare comparisons, and a concise rationale for the selected plan.",
+        "evidence": [
+          {
+            "quote": "Perfect. Can you give me the final booking summary in travel-request language?",
+            "session_id": "tm_pd_v04_user_003_s0002"
+          },
+          {
+            "quote": "Anything else to note for reimbursement?",
+            "session_id": "tm_pd_v04_user_003_s0005"
+          },
+          {
+            "quote": "Receipts and checkout stuff?",
+            "session_id": "tm_pd_v04_user_003_s0019"
+          },
+          {
+            "quote": "Our office will pay a reasonable nonstop if the schedule makes sense. I just need clean documentation.",
+            "session_id": "tm_pd_v04_user_003_s0052"
+          },
+          {
+            "quote": "Receipt list? My director will ask about the one-way car.",
+            "session_id": "tm_pd_v04_user_003_s0076"
+          },
+          {
+            "quote": "Last piece: mileage, parking, and meal receipts. The garage receipt is the one I’m most likely to forget.",
+            "session_id": "tm_pd_v04_user_003_s0139"
+          }
+        ],
+        "exception_condition": "For mileage trips, fuel may be covered by mileage rather than reimbursed separately, but she still wants route/mileage and key parking/meal receipts organized.",
+        "family": "administration",
+        "name": "Keep clean reimbursement documentation and decision rationales",
+        "preference_value": "Wants final travel-request language, reimbursement notes, receipt lists, and comparison rationale for choices that cost more but reduce risk.",
+        "scope_condition": "Work travel bookings, especially open-jaw flights, one-way rentals, above-cap hotels, parking-heavy venues, and mileage trips."
+      },
+      {
+        "boundary_condition": "The room type must be explicit rather than run-of-house or requested-only when bed setup matters.",
+        "confidence": 0.93,
+        "default_action": "Book a specific, non-smoking queen/king for solo travel and a guaranteed two-queen room for family trips with teens or gear.",
+        "evidence": [
+          {
+            "quote": "One queen bed is fine; I don’t need anything fancy.",
+            "session_id": "tm_pd_v04_user_003_s0000"
+          },
+          {
+            "quote": "Room types: I’m solo, so one queen or king is fine. I don’t want a double-double unless that’s all that’s left.",
+            "session_id": "tm_pd_v04_user_003_s0050"
+          },
+          {
+            "quote": "It’s me, Miguel, and Sofia. Sofia needs her own bed. Two queens sounds easier than a sleeper sofa after a late drive.",
+            "session_id": "tm_pd_v04_user_003_s0068"
+          },
+          {
+            "quote": "We need a real two-queen room, not a sofa-bed setup, and breakfast at the hotel would help.",
+            "session_id": "tm_pd_v04_user_003_s0106"
+          },
+          {
+            "quote": "We need one room with two queens, parking, and breakfast if possible. I do not want to be hunting for food before a 7 a.m. warmup.",
+            "session_id": "tm_pd_v04_user_003_s0124"
+          },
+          {
+            "quote": "Just me. Queen is fine, non-smoking, and no prepaid rates. I also want dinner access Sunday after landing.",
+            "session_id": "tm_pd_v04_user_003_s0134"
+          }
+        ],
+        "exception_condition": "A king is acceptable for solo travel if refundable and non-smoking; double/double or sofa-bed setups are fallback only when no better refundable option exists.",
+        "family": "lodging",
+        "name": "Match room type to traveler group: simple single bed solo, real two queens for family or teen trips",
+        "preference_value": "For solo work travel, a non-smoking queen or king is fine; for family/tournament travel, wants a real two-queen room and avoids sofa-bed or vague bedding setups.",
+        "scope_condition": "Hotel room selection for both solo work trips and family sports/family trips."
+      },
+      {
+        "boundary_condition": "Cold/dry roads are acceptable; active snow/ice, closures, traction controls, severe gusts, or forecasted travel-time blowups trigger a change.",
+        "confidence": 0.88,
+        "default_action": "Check road/weather status before travel, leave earlier or add a buffer only when road conditions justify it, and keep the base plan if conditions are merely cold but dry.",
+        "evidence": [
+          {
+            "quote": "Snow is now in the I-80 forecast, so driving feels like a bad idea.",
+            "session_id": "tm_pd_v04_user_003_s0050"
+          },
+          {
+            "quote": "We cannot leave SLC before 4:15 Friday, and the forecast has blowing snow around Twin Falls.",
+            "session_id": "tm_pd_v04_user_003_s0055"
+          },
+          {
+            "quote": "I can do the late drive if it is cold and dry. I do not want to do it in active snow or ice. University vehicle is approved now, so use that assumption.",
+            "session_id": "tm_pd_v04_user_003_s0087"
+          },
+          {
+            "quote": "Also the forecast shows gusts on I-15. Can you tighten the timing instead of changing reservations?",
+            "session_id": "tm_pd_v04_user_003_s0091"
+          },
+          {
+            "quote": "Delta shifted the Sunday outbound by 18 minutes later, and now there is a Front Range storm forecast Sunday night. I do not want to rebuild the trip, just tell me if I should move earlier.",
+            "session_id": "tm_pd_v04_user_003_s0136"
+          },
+          {
+            "quote": "Forecast now shows a snow band on I-84 between Burley and Twin Falls Tuesday morning, and the Boise venue moved the materials drop to 3:30 PM. Nampa says they can do a grab-and-go breakfast. Also, the restaurant closest to the Pocatello hotel is closed Wednesday. I’d like to avoid rebuilding the trip unless Tuesday gets too tight.",
+            "session_id": "tm_pd_v04_user_003_s0140"
+          }
+        ],
+        "exception_condition": "If a storm threatens the flight/road window but does not yet overlap the actual travel time, keep the plan and monitor for waivers or updated road alerts.",
+        "family": "weather_and_roads",
+        "name": "Use weather-triggered pivots for winter driving rather than rebuilding prematurely",
+        "preference_value": "Avoids active snow, ice, closures, heavy gusts, or road-warning drives, but does not want to rebuild a trip unless the forecast crosses a real risk threshold.",
+        "scope_condition": "Winter or shoulder-season road trips and flight timing decisions involving I-80, I-84, I-15, Denver/Front Range, Idaho, and tournament travel."
+      }
+    ]
+  }
+}

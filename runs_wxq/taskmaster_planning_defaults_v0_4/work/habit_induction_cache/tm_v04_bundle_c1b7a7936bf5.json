@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Apply only to hotel location selection in cities where a recognizable downtown or central area is relevant, and only when the user has not already supplied a different location anchor.",
+  "bundle_id": "tm_v04_bundle_c1b7a7936bf5",
+  "condition": "When searching for a hotel in a city and no more specific neighborhood, landmark, or venue anchor has been provided, treat a central or downtown location as the reusable default location type.",
+  "confidence": 0.86,
+  "decision": "accept",
+  "default_action": "Prioritize hotel options located downtown or close to the city's central district over outlying or suburban options.",
+  "exception_condition": "Do not apply if the user specifies another anchor such as an airport, event venue, beach area, named neighborhood, or if downtown options conflict with explicit constraints such as availability or required amenities.",
+  "family": "hotel_location_priority",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_c1b7a7936bf5",
+  "induced_at": "2026-07-15T12:31:16.162355+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefer hotels in or near a downtown/central district",
+  "preference_value": "central_or_downtown",
+  "rationale": "Three independent hotel-search conversations request hotels downtown, near downtown, or near a downtown area. The shared reusable pattern is a central/downtown location type, not any one city or property.",
+  "seed_value": "central_or_downtown",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "instruction_id hotel-6: User asks for a hotel in a downtown/Times Square area: \"Downtown, Open Times Square. How about a few blocks from Times Square?\"",
+      "conversation_id": "dlg-a423690b-50f8-45eb-9e80-4a00876d53a3",
+      "turn_index": 2
+    },
+    {
+      "contribution": "instruction_id hotel-13: User requests a hotel \"near a downtown area, within 5 to 10 miles.\"",
+      "conversation_id": "dlg-23c80417-8e7d-45ad-b49d-e3d5e788ad62",
+      "turn_index": 16
+    },
+    {
+      "contribution": "instruction_id hotel-7: User says, \"I'd like somewhere near downtown.\"",
+      "conversation_id": "dlg-6a08c6f2-82d9-450f-8037-12344d95dd8a",
+      "turn_index": 13
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "Downtown, Open Times Square",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-a423690b-50f8-45eb-9e80-4a00876d53a3",
+      "habitual_language": false,
+      "instruction_id": "hotel-6",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 2,
+      "user_utterance": "Downtown, Open Times Square. How about a few blocks from Times Square?"
+    },
+    {
+      "annotated_segment": "near a downtown area, within 5 to 10 miles",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-23c80417-8e7d-45ad-b49d-e3d5e788ad62",
+      "habitual_language": false,
+      "instruction_id": "hotel-13",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 16,
+      "user_utterance": "Yes. I'd like to have my hotel located near a downtown area, within 5 to 10 miles."
+    },
+    {
+      "annotated_segment": "near downtown",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-6a08c6f2-82d9-450f-8037-12344d95dd8a",
+      "habitual_language": false,
+      "instruction_id": "hotel-7",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 13,
+      "user_utterance": "I'd like somewhere near downtown."
+    }
+  ]
+}

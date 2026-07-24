@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "c829391b4970841e76a72d4f4d3aa11e89ef5da46af053e3aba81a0157a0b0ae",
+  "habits": [
+    {
+      "boundary_condition": "Do not infer the same daypart for every trip or leg; the desired window is trip-specific, and explicit boundaries such as after 6 p.m. or no red-eye should be preserved.",
+      "bundle_id": "tm_v04_e2e_bundle_0dae3e1ac146",
+      "condition": "When searching or comparing flight options and no hard appointment requires an exact departure or arrival time.",
+      "confidence": 0.68,
+      "decision": "accept",
+      "default_action": "Search within the user’s stated daypart window for each leg and offer available times inside that window instead of defaulting to one fixed departure time.",
+      "exception_condition": "If availability, price, or a hard commitment makes the stated window impractical, ask before moving outside the window or treating another time as acceptable.",
+      "family": "flight_schedule_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_0dae3e1ac146",
+      "induced_at": "2026-07-16T08:01:56.336223+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Uses soft daypart windows for flight timing",
+      "preference_value": "Tends to prefer flight departure timing expressed as broad dayparts or thresholds, rather than a single exact clock time.",
+      "rationale": "Across three independent flight dialogues, the user gives schedule preferences as morning/afternoon/evening-style windows or thresholds, indicating a reusable soft scheduling style without supporting one universal preferred time of day.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows flight timing requested as broad daypart windows and a threshold rather than an exact departure time.",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "exact_user_quote": "I want to leave in the morning and come back in at night after 6:00 p.m.",
+          "instruction_id": "flight-7",
+          "turn_index": 8
+        },
+        {
+          "contribution": "Uses a daypart preference with excluded time windows, supporting soft schedule boundaries.",
+          "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+          "exact_user_quote": "I'd prefer to fly in the afternoon. No early-morning or red-eye flights.",
+          "instruction_id": "flight-6",
+          "turn_index": 10
+        },
+        {
+          "contribution": "Specifies different flight legs by daypart windows rather than fixed clock times.",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "exact_user_quote": "I would like to depart San Francisco in the morning and depart Orlando in the afternoon.",
+          "instruction_id": "flight-3",
+          "turn_index": 16
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I want to leave in the morning and come back in at night after 6:00 p.m.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "habitual_language": false,
+          "instruction_id": "flight-7",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 8,
+          "user_utterance": "I want to leave in the morning and come back in at night after 6:00 p.m."
+        },
+        {
+          "annotated_segment": "I'd prefer to fly in the afternoon. No early-morning or red-eye flights.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+          "habitual_language": false,
+          "instruction_id": "flight-6",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 10,
+          "user_utterance": "I'd prefer to fly in the afternoon. No early-morning or red-eye flights."
+        },
+        {
+          "annotated_segment": "I would like to depart San Francisco in the morning and depart Orlando in the afternoon.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "habitual_language": false,
+          "instruction_id": "flight-3",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 16,
+          "user_utterance": "I would like to depart San Francisco in the morning and depart Orlando in the afternoon."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+    "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+    "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218"
+  ]
+}

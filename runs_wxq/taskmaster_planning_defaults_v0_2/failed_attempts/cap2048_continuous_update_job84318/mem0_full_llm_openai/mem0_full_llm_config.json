@@ -1,0 +1,33 @@
+{
+  "custom_instructions": "Extract durable user preferences, habits, exceptions, boundaries, temporal changes, and consent constraints. Preserve session ids when useful for later evidence.",
+  "embedder": {
+    "config": {
+      "embedding_dims": 768,
+      "model": "/home/xqwang/project/habit-bench/runs_wxq/taskmaster_planning_defaults_v0_2/official_deps/models/e5-base-v2",
+      "model_kwargs": {
+        "device": "cpu"
+      }
+    },
+    "provider": "huggingface"
+  },
+  "history_db_path": "/home/xqwang/project/habit-bench/runs_wxq/taskmaster_planning_defaults_v0_2/full_official_results/mem0_full_llm_openai/mem0_full_llm_store/history.db",
+  "llm": {
+    "config": {
+      "api_key": "<redacted>",
+      "max_tokens": 2048,
+      "model": "habitbench-open-llm",
+      "openai_base_url": "http://127.0.0.1:8000/v1",
+      "temperature": 0.0
+    },
+    "provider": "openai"
+  },
+  "vector_store": {
+    "config": {
+      "collection_name": "habit_bench_mem0_full_llm",
+      "embedding_model_dims": 768,
+      "on_disk": false,
+      "path": "/home/xqwang/project/habit-bench/runs_wxq/taskmaster_planning_defaults_v0_2/full_official_results/mem0_full_llm_openai/mem0_full_llm_store/qdrant"
+    },
+    "provider": "qdrant"
+  }
+}

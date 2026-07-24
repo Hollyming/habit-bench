@@ -1,0 +1,997 @@
+{
+  "habit_id": "tm_pd_v04_user_003_h00",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00"
+      ],
+      "accepted_total": [
+        "c00"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta Main Cabin via ATL, leaving SLC 12:05 p.m., landing RIC 6:05 p.m., with a 48-minute outbound connection; return Wednesday 3:35-8:10; $418."
+              },
+              {
+                "choice_id": "B",
+                "text": "United Main Cabin via ORD, leaving SLC 10:05 a.m., landing RIC 5:35 p.m., with a longer layover but no tight sprint; return Wednesday 2:55-7:45; $409."
+              },
+              {
+                "choice_id": "C",
+                "text": "American Main Cabin via DFW outbound and CLT return, leaving SLC 10:25 a.m., landing RIC 4:55 p.m., with 83- and 88-minute connections; return Wednesday 3:20-7:55; $432."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest with one connection, leaving SLC 10:40 a.m., landing RIC 5:45 p.m., no assigned seat, and returning Wednesday 3:00-8:05; $392."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Delta is cheaper and lets her leave later after the morning meeting, making it a strong near-miss. The user's history is needed to prioritize arrival buffer and connection comfort over the carrier when those values conflict.",
+            "gold_action": "Recommend the American itinerary because it protects arrival margin better than the later, tighter Delta option.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0003",
+              "tm_pd_v04_user_003_s0016",
+              "tm_pd_v04_user_003_s0109",
+              "tm_pd_v04_user_003_s0127"
+            ],
+            "label_rationale": "The trip is in scope, but the available Delta option is not otherwise comparable: it combines a tight connection with a compressed evening arrival. The user's history repeatedly says not to accept worse routing or sprint-style connections for the carrier, so a non-Delta option with better timing and connection reliability is the correct resolution.",
+            "probe_type": "conflict_resolution",
+            "query": "Tessa needs a flight to Richmond for a Tuesday-Wednesday counselor institute. She has an 8:00-8:45 a.m. meeting in Salt Lake City before leaving, packet pickup starts at 6:30 p.m., and she would like enough margin for hotel check-in and a quick dinner. Use coach, one connection at most, and keep the fare under $475. Which option should be recommended?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c01",
+            "rationale": "C leaves after the morning meeting, arrives much earlier than the other options for hotel check-in and dinner before 6:30 p.m. packet pickup, has comfortable connections, and stays under the fare cap."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American Main Cabin via DFW, SLC 1:20-6:55 Friday and IND-SLC 10:55-1:35 Monday, 75/95-minute connections, selectable adjacent seats, $1,034 total."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta Main Cabin via MSP, SLC 1:30-7:05 Friday and IND-SLC 10:40-1:20 Monday, 80/90-minute connections, selectable seats in a row or adjacent pairs, $1,086 total."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest via DEN, SLC 2:25-8:20 Friday and IND-SLC 11:20-1:55 Monday, no assigned seats, $984 total before any EarlyBird or check-in choices."
+              },
+              {
+                "choice_id": "D",
+                "text": "United via ORD, SLC 4:05-10:25 Friday and IND-SLC 6:15-8:55 Monday, preserving more school Friday but making both ends of the trip rougher, $1,018 total."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "American is $52 cheaper with nearly identical timing and assigned seats, so a planner without history could reasonably pick it. The deciding step is recognizing that the user's carrier habit applies beyond work loops to occasional family travel when the options remain comparable.",
+            "gold_action": "Hold the Delta Main Cabin family itinerary because it is comparable on price and timing and supports assigned seating.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0014",
+              "tm_pd_v04_user_003_s0131",
+              "tm_pd_v04_user_003_s0132",
+              "tm_pd_v04_user_003_s0039"
+            ],
+            "label_rationale": "The scope includes occasional family trips from SLC. Prior family evidence shows non-Delta choices can be acceptable for a specific budget or seating exception, but it also supports using Delta Main when it fits the family constraints. Here Delta and American are close enough that the soft Delta ordering should transfer to this family context.",
+            "probe_type": "cross_context_transfer",
+            "query": "Tessa is booking a family robotics weekend in Indianapolis for herself and two teenagers. They can preserve part of the school day on Friday if possible but must reach the hotel before 8:30 p.m.; return Monday late morning or early afternoon. Assigned seats are helpful, one family checked bag is likely, and the total airfare target is around $1,100. Which flight should she hold?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "A meets the hotel-arrival deadline, has selectable adjacent seats, fits the Monday return window, and is cheaper than the similar Delta option. C is too close to the 8:30 hotel deadline and lacks assigned seats; D fails the timing badly."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Southwest via MDW, SLC 12:45-7:25 Sunday and CLT-SLC 2:45-6:55 Wednesday, one connection each way, no assigned seat, $416."
+              },
+              {
+                "choice_id": "B",
+                "text": "American Main Cabin via DFW, SLC 1:35-8:05 Sunday and CLT-SLC 1:10-5:35 Wednesday, assigned seat, $419."
+              },
+              {
+                "choice_id": "C",
+                "text": "United Main Cabin via DEN, SLC 2:05-8:40 Sunday and CLT-SLC 5:35-10:15 Wednesday, assigned seat, $390."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta Main Cabin via ATL, SLC 12:40-7:10 Sunday and CLT-SLC 2:25-6:50 Wednesday, 85/80-minute connections, seat selection available, $438."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "The prompt intentionally mentions a prior Southwest outcome, and Southwest is cheaper with similar timing. The judge must distinguish that one-trip exception from the longer pattern of favoring Delta when it remains a suitable option.",
+            "gold_action": "Put the Delta Main Cabin itinerary first for the solo Charlotte workshop.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0131",
+              "tm_pd_v04_user_003_s0132",
+              "tm_pd_v04_user_003_s0135",
+              "tm_pd_v04_user_003_s0039"
+            ],
+            "label_rationale": "The Southwest family booking was a trip-specific exception rather than a permanent carrier revision. For this self-booked work conference from SLC, Delta is available, within the stated fare and routing constraints, and comparable to the cheaper Southwest option, so the user's durable pattern points back to Delta.",
+            "probe_type": "evidence_disambiguation",
+            "query": "After a recent family airfare decision ended up using Southwest, Tessa is now pricing a solo admissions analytics workshop in Charlotte. She needs to leave SLC Sunday after noon, arrive by about 8:00 p.m., return Wednesday after the closing lunch, and keep to one connection with a fare below $475. She is carrying on only. Which item should be first in her Concur note?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query references a recent family Southwest decision, which is history-like and could bias toward A, but it is not needed as a stated personal preference to resolve this probe."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "A meets the after-noon departure, arrives before about 8:00 p.m., gives a safer post-lunch return than the 1:10 option, and is the lowest fare among the well-timed choices. C is too late outbound and returns very late; D costs more for only a minor schedule gain."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American Main Cabin via PHL, leaving SLC 10:45 a.m., arriving BTV 9:05 p.m., with a 65-minute connection; return Thursday 1:10-6:25; $392."
+              },
+              {
+                "choice_id": "B",
+                "text": "United Main Cabin via DEN, leaving SLC 11:40 a.m., arriving BTV 7:55 p.m., with a 96-minute connection; return Thursday 2:20-7:35; $428."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta Main Cabin via ATL, leaving SLC 1:05 p.m., arriving BTV 9:40 p.m., with a 42-minute outbound connection; return Thursday 2:35-7:50; $406."
+              },
+              {
+                "choice_id": "D",
+                "text": "JetBlue via JFK, leaving SLC 12:10 p.m., arriving BTV 10:15 p.m. after a long layover; return Thursday 12:45-6:10; $414."
+              }
+            ],
+            "closest_distractor_choice_id": "C",
+            "difficulty_rationale": "Delta is cheaper than the gold option and leaves later after the morning obligation, so it is not trivially wrong. The history is needed to identify that this is an exception case rather than a normal comparable-carrier case.",
+            "gold_action": "Hold the United option because it gives a safer connection and earlier evening arrival than the Delta alternative.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0003",
+              "tm_pd_v04_user_003_s0109",
+              "tm_pd_v04_user_003_s0127",
+              "tm_pd_v04_user_003_s0094"
+            ],
+            "label_rationale": "Although the trip is in scope and Delta appears in the fare set, the Delta option is materially worse for this itinerary because of the very tight connection and late arrival before an early meeting. The user's history treats route and connection reliability as higher priority than the carrier when they conflict.",
+            "probe_type": "exception",
+            "query": "February Burlington visit: Tessa can realistically leave for the airport after 10:00 a.m. Monday and has a Tuesday 7:45 a.m. school meeting in Vermont. She wants no more than one connection, coach fares under $450, and a Monday arrival that does not make dinner and check-in too fragile. Which flight is the best hold?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "B is the only option with a reasonably early Monday arrival and a comfortable connection, giving a practical dinner/check-in margin before the early Tuesday meeting while staying under budget."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta Main Cabin via MSP, SLC 1:25-6:35 Monday and OMA-SLC 2:10-5:05 Thursday, 82/88-minute connections, $332."
+              },
+              {
+                "choice_id": "B",
+                "text": "United Main Cabin via DEN, SLC 1:15-6:20 Monday and OMA-SLC 2:00-4:55 Thursday, 78/84-minute connections, $319."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest via STL, SLC 1:40-7:25 Monday and OMA-SLC 1:05-4:10 Thursday, no assigned seat, $287."
+              },
+              {
+                "choice_id": "D",
+                "text": "American Main Cabin via DFW, SLC 2:05-7:40 Monday and OMA-SLC 2:20-5:30 Thursday, 52/60-minute connections, $336."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "United is slightly cheaper and a few minutes faster with comfortable connections, so the query alone does not determine a unique answer. The user's long-history carrier pattern is the decisive extra information.",
+            "gold_action": "Put the Delta Main Cabin Omaha itinerary first.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0012",
+              "tm_pd_v04_user_003_s0065",
+              "tm_pd_v04_user_003_s0135",
+              "tm_pd_v04_user_003_s0092"
+            ],
+            "label_rationale": "This is a straightforward in-scope domestic work trip from SLC. Delta satisfies the departure, arrival, fare, and connection requirements, and the closest alternative is only modestly cheaper and similarly timed, so the user's established soft carrier ordering selects Delta.",
+            "probe_type": "direct_use",
+            "query": "New Omaha admissions mini-conference: Tessa can leave SLC after 1:00 p.m. on Monday, needs to be at the hotel by 7:30, and should return Thursday after a noon wrap-up. One connection is fine if it is comfortable, coach under $375. Which option should the assistant put first?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c05",
+            "rationale": "B meets the after-1:00 departure, arrives early enough to get to the hotel by 7:30, has comfortable connections, and is cheaper than the other feasible main-cabin option. C and D miss or are too close to the hotel deadline."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Recommend American Main Cabin open-jaw: SLC-RDU via DFW 1:00-6:55 Sunday and CHS-SLC via CLT 2:55-7:45 Thursday, 78/85-minute connections, $431; note Delta as the schedule backup."
+              },
+              {
+                "choice_id": "B",
+                "text": "Recommend the cheaper Delta Raleigh round trip at $368, returning RDU-SLC Thursday 5:30-10:20, and plan the extra Charleston-to-Raleigh drive after the event."
+              },
+              {
+                "choice_id": "C",
+                "text": "Recommend Delta Main Cabin open-jaw: SLC-RDU via ATL 1:10-7:05 Sunday and CHS-SLC via ATL 2:45-7:50 Thursday, 83/92-minute connections, $456; note American as the fare backup."
+              },
+              {
+                "choice_id": "D",
+                "text": "Recommend Southwest open-jaw at $439, with one connection each way, open seating, and a 9:45 p.m. SLC arrival on Thursday to stay below the other open-jaw fares."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "American is $25 cheaper and very similar operationally, so a generic planner could put it first. The memory-dependent step is applying the user's soft carrier ordering only after preserving the open-jaw route constraints.",
+            "gold_action": "Recommend the Delta Main Cabin open-jaw itinerary and keep American as the fare backup.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0022",
+              "tm_pd_v04_user_003_s0042",
+              "tm_pd_v04_user_003_s0098",
+              "tm_pd_v04_user_003_s0074"
+            ],
+            "label_rationale": "The approved open-jaw structure and one-connection limit are part of the current trip constraints. Within that structure, Delta and American are both suitable, and the Delta fare is still under the stated ceiling; the history supports choosing Delta when it fits without making the route worse. The cheaper Delta round trip is a near-miss because it creates a backtrack that the approved route is meant to avoid.",
+            "probe_type": "boundary",
+            "query": "South Atlantic recruitment loop: Tessa needs to fly from SLC to Raleigh-Durham on Sunday afternoon, drive a one-way rental through two school visits, and fly home from Charleston after a Thursday noon event. The open-jaw car has already been approved if the flights stay under $475 and use no more than one connection. Which approval wording should she use?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "A uses the required open-jaw routing, stays under the cap, has good connection times, and beats the comparable Delta open-jaw on price and schedule. The Raleigh round trip adds an unnecessary drive, and Southwest is worse on price/schedule quality."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United Main Cabin via DEN, SLC 10:50-4:45 Monday and ANC-SLC 12:40-10:15 Thursday, 70/75-minute connections, $512."
+              },
+              {
+                "choice_id": "B",
+                "text": "Alaska Main via SEA, SLC 11:20-4:00 Monday and ANC-SLC 1:00-9:35 Thursday, 85/90-minute connections, $529."
+              },
+              {
+                "choice_id": "C",
+                "text": "American Main Cabin via DFW, SLC 9:55-4:55 Monday and ANC-SLC 12:20-10:40 Thursday, 70/80-minute connections, $502."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta Main Cabin via SEA, SLC 11:40-4:10 Monday and ANC-SLC 1:15-9:50 Thursday, 90/95-minute connections, $548."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Alaska has a small price and time edge, and prior history contains Alaska-acceptable cases, making it a strong distractor. The judge must disambiguate conditional acceptance of Alaska from the durable comparable-option preference for Delta.",
+            "gold_action": "Put the Delta Main Cabin Anchorage itinerary first in the shortlist.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0044",
+              "tm_pd_v04_user_003_s0046",
+              "tm_pd_v04_user_003_s0056",
+              "tm_pd_v04_user_003_s0022",
+              "tm_pd_v04_user_003_s0074"
+            ],
+            "label_rationale": "The user's openness to Alaska in prior West Coast planning was conditional on cleaner timing or materially better routing, not a permanent replacement of the Delta ordering. Here Alaska is only slightly cheaper and slightly earlier while Delta remains within the trip's schedule, route, fare, and stop boundaries, so Delta should be listed first.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Anchorage counselor institute: Tessa needs a domestic SLC departure Monday late morning, arrival before the 5:30 p.m. registration desk closes, and a Thursday return after noon. One connection is acceptable, but two connections would need special approval. The airfare ceiling is $600. Which flight should be first in the shortlist?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c07",
+            "rationale": "B gives a late-morning departure, the best arrival margin before the 5:30 registration cutoff, a reasonable Thursday return, one connection, and a fare under the ceiling. D is similar but more expensive; A and C save little while giving less arrival margin."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "JetBlue Blue nonstop, SLC 2:05-8:35 Friday and BOS-SLC 11:40-3:10 Monday, selectable standard seats, $1,104 total."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta Main Cabin nonstop, SLC 2:15-8:45 Friday and BOS-SLC 11:30-3:00 Monday, selectable seats with one window pair, $1,128 total."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest via Chicago, SLC 1:55-9:40 Friday and BOS-SLC 12:15-4:20 Monday, no assigned seats, $1,006 total."
+              },
+              {
+                "choice_id": "D",
+                "text": "United via Denver, SLC 3:30-11:05 Friday and BOS-SLC 9:05-12:40 Monday, assigned seats but late arrival and earlier return, $1,058 total."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "JetBlue is slightly cheaper and a few minutes better on paper, so generic utility does not single out Delta. The answer requires transferring the user's comparable-carrier pattern into a family trip rather than treating it as work-only.",
+            "gold_action": "Book the Delta Main Cabin nonstop for the Boston family weekend.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0014",
+              "tm_pd_v04_user_003_s0132",
+              "tm_pd_v04_user_003_s0131",
+              "tm_pd_v04_user_003_s0039"
+            ],
+            "label_rationale": "The habit's scope includes occasional family flights from SLC. The family evidence shows both exceptions and Delta selections, but not an abandonment of the comparable-Delta pattern. With JetBlue and Delta both nonstop, assigned-seat, and near the budget target, the long-history carrier preference favors Delta.",
+            "probe_type": "cross_context_transfer",
+            "query": "Family graduation weekend in Boston: Tessa is buying three tickets from SLC, leaving Friday after lunch and returning Monday late morning. They want a nonstop if available, assigned seats if possible, and a total fare near $1,150 before bags. Which option should she book?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "A provides the requested nonstop, selectable seats, appropriate Friday and Monday times, and the lowest fare among the nonstop assigned-seat options. C and D add connections and worse timing."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Primary: American Main Cabin via PHL, SLC 12:50-6:55 Sunday and PVD-SLC 2:40-7:30 Wednesday, 75/85-minute connections, $421. Fallback: Delta via JFK at $436."
+              },
+              {
+                "choice_id": "B",
+                "text": "Primary: Delta Main Cabin via JFK at $436 and no fallback unless the fare changes, since it meets the timing and connection rules."
+              },
+              {
+                "choice_id": "C",
+                "text": "Primary: Delta Main Cabin via JFK, SLC 12:55-7:05 Sunday and PVD-SLC 2:45-7:35 Wednesday, 80/90-minute connections, $436. Fallback: American via PHL at $421 with similar times."
+              },
+              {
+                "choice_id": "D",
+                "text": "Primary: Southwest to Boston with ground transfer to Providence, $389 and one connection, with United via Newark at $414 as fallback; both avoid the slightly higher fares into PVD."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A and C contain the same two plausible flights, with only the primary/fallback ordering changed and a small fare difference favoring American. The user's long-history habit is needed to decide the ordering while also respecting the nonexclusive boundary.",
+            "gold_action": "Send Delta as the primary Providence option with American retained as the fallback.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0000",
+              "tm_pd_v04_user_003_s0039",
+              "tm_pd_v04_user_003_s0046",
+              "tm_pd_v04_user_003_s0141"
+            ],
+            "label_rationale": "The user's policy is soft rather than exclusive: when Delta is suitable and comparable, it should be favored, but other acceptable carriers should remain in the shortlist when a fallback is requested. Choice C preserves both parts, whereas choice A reverses the ordering and choice B over-hardens the preference by dropping the fallback.",
+            "probe_type": "boundary",
+            "query": "Providence admissions institute: Tessa is not ready to buy, but her director wants a primary flight and one fallback. She can leave SLC after noon Sunday, needs to arrive by about 8:00 p.m., and returns Wednesday after a 1:00 p.m. panel. Coach, one connection, and under $460. Which note best matches how the shortlist should be sent?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c09",
+            "rationale": "A supplies both the requested primary and fallback, meets the time/connection/fare rules, and is cheaper with slightly better times than making Delta the primary. B lacks a fallback, and D adds an unnecessary Boston ground transfer despite valid PVD options."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c03",
+        "c06"
+      ],
+      "accepted_total": [
+        "c00",
+        "c03",
+        "c06"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta Main Cabin via ATL, leaving SLC 12:00 p.m., arriving RIC 5:55 p.m., with a 47-minute outbound connection; return Wednesday RIC-SLC 3:30-8:20 with an 86-minute connection; $414."
+              },
+              {
+                "choice_id": "B",
+                "text": "United Main Cabin via ORD, leaving SLC 10:05 a.m., arriving RIC 5:50 p.m., with a 92-minute outbound connection; return Wednesday RIC-SLC 2:45-7:55 with a 74-minute connection; $407."
+              },
+              {
+                "choice_id": "C",
+                "text": "American Main Cabin via CLT outbound and DFW return, leaving SLC 10:35 a.m., arriving RIC 5:30 p.m., with 82- and 88-minute connections; return Wednesday RIC-SLC 3:15-8:00; $428."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest with one connection, leaving SLC 10:55 a.m., arriving RIC 6:05 p.m., open seating, and returning Wednesday RIC-SLC 3:05-8:25; $399."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Delta is cheaper and preserves more post-meeting time in Salt Lake City, while American gives a better connection and a little more Richmond margin. Without the longitudinal boundary around not forcing Delta through fragile routing, both are defensible.",
+            "gold_action": "Put the American itinerary first because the Delta option is not comparable once the tight connection and later arrival are considered.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0000",
+              "tm_pd_v04_user_003_s0003",
+              "tm_pd_v04_user_003_s0109",
+              "tm_pd_v04_user_003_s0127"
+            ],
+            "label_rationale": "This is an in-scope work trip from SLC, but the user's long-history carrier rule is soft. Delta should be favored only when it remains operationally comparable; here it trades a later departure and lower fare for a short connection and less evening margin. Her repeated boundary evidence says schedule and connection reliability outrank the carrier, so the American option is the correct first recommendation.",
+            "probe_type": "conflict_resolution",
+            "query": "Tessa is sketching flights to Richmond for a Tuesday-Wednesday counselor institute. She has an 8:00-8:45 a.m. meeting in Salt Lake City before going to the airport, and packet materials open that evening. Coach, no more than one connection, and fares in the usual reimbursement band. Which option should the assistant put first?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c01",
+            "rationale": "C is the best fit on stated constraints and ordinary travel planning: it avoids A's 47-minute connection, avoids B's very tight post-meeting airport window, arrives in Richmond earliest, has comfortable connections, and remains within the stated fare band. D is cheaper but has later arrival/return timing and open seating."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American Main Cabin via DFW, SLC 1:20-7:05 Friday and IND-SLC 10:55-1:35 Monday, with 78- and 92-minute connections, selectable adjacent seats, $1,064 total."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta Main Cabin via MSP, SLC 1:30-7:15 Friday and IND-SLC 10:45-1:25 Monday, with 82- and 90-minute connections, selectable seats in one row or adjacent pairs with one window, $1,087 total."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest via DEN, SLC 1:50-7:30 Friday and IND-SLC 11:10-1:55 Monday, one connection each way, open seating, $1,012 total before any check-in add-ons."
+              },
+              {
+                "choice_id": "D",
+                "text": "United Main Cabin via ORD, SLC 12:55-7:00 Friday and IND-SLC 11:25-2:05 Monday, with 66- and 84-minute connections, selectable adjacent seats, $1,102 total."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "American is a little cheaper and arrives a few minutes earlier, while Delta returns a little earlier and fits the assigned-seat plan. The deciding factor is not visible in the query alone; it requires knowing the user's comparable-option Delta preference applies to family travel too.",
+            "gold_action": "Hold the Delta Main Cabin Indianapolis itinerary first for the family weekend.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0014",
+              "tm_pd_v04_user_003_s0039",
+              "tm_pd_v04_user_003_s0131",
+              "tm_pd_v04_user_003_s0132"
+            ],
+            "label_rationale": "The habit scope includes occasional family trips from SLC. Prior family evidence shows that non-Delta carriers can be chosen for a specific exception, but it does not replace the durable pattern of favoring Delta when timing, routing, seating, and fare remain comparable. Here Delta and American are close enough that the soft Delta ordering transfers to the family context.",
+            "probe_type": "cross_context_transfer",
+            "query": "Tessa is holding flights for a family robotics weekend in Indianapolis for herself and two teenagers. They can leave after lunch Friday, should be in town Friday evening, and return Monday around midday. Coach fares, one connection at most, and assigned seats are useful for the family bag-and-seats plan. Which hold should go first?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "A best matches the family need for assigned adjacent seats while keeping Friday evening and Monday midday timing. It is the lowest total among the assigned-seat options and has no material schedule disadvantage. C is cheaper but conflicts with the stated usefulness of assigned seats/open seating concern."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American Main Cabin via PHL, leaving SLC 10:45 a.m., arriving BTV 9:05 p.m., with a 66-minute outbound connection; return Thursday BTV-SLC 1:10-6:25 with an 82-minute connection; $392."
+              },
+              {
+                "choice_id": "B",
+                "text": "United Main Cabin via DEN, leaving SLC 11:25 a.m., arriving BTV 8:15 p.m., with a 93-minute outbound connection; return Thursday BTV-SLC 2:10-7:30 with an 88-minute connection; $424."
+              },
+              {
+                "choice_id": "C",
+                "text": "Delta Main Cabin via ATL, leaving SLC 12:20 p.m., arriving BTV 8:50 p.m., with a 46-minute outbound connection; return Thursday BTV-SLC 2:30-7:45 with an 82-minute connection; $398."
+              },
+              {
+                "choice_id": "D",
+                "text": "JetBlue via JFK, leaving SLC 11:55 a.m., arriving BTV 9:00 p.m., with a longer JFK layover; return Thursday BTV-SLC 12:55-6:15 with a 74-minute connection; $410."
+              }
+            ],
+            "closest_distractor_choice_id": "C",
+            "difficulty_rationale": "Delta has the lower fare and a later Salt Lake City departure, while United has the cleaner connection and earlier arrival. The query alone leaves a real tradeoff; the user's longitudinal boundary around Delta resolves it.",
+            "gold_action": "Hold the United option because the available Delta itinerary is too fragile for the trip pattern.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0003",
+              "tm_pd_v04_user_003_s0094",
+              "tm_pd_v04_user_003_s0109",
+              "tm_pd_v04_user_003_s0127"
+            ],
+            "label_rationale": "This is in scope, but the Delta choice is an exception case: it is cheaper and leaves later, yet it has a very short outbound connection and a later arrival before an early Vermont appointment. The user's history repeatedly treats tight or terrible connections as a reason not to force Delta, so United is the safer hold.",
+            "probe_type": "exception",
+            "query": "February Burlington school visit: Tessa has a Monday morning block in Salt Lake City before flying east and a first appointment in Vermont on Tuesday morning. Coach, at most one connection, and ordinary reimbursable fares. Which flight should be held first?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "B is materially strongest for a February Burlington trip before a Tuesday morning appointment: it leaves after the morning block, arrives earliest, and has the most comfortable outbound connection. A leaves earlier and arrives later, C has a risky 46-minute connection, and D arrives later via JFK with a longer layover."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta Main Cabin via MSP, SLC 1:25-6:35 Monday and OMA-SLC 2:15-5:10 Thursday, with 82- and 88-minute connections, $334."
+              },
+              {
+                "choice_id": "B",
+                "text": "United Main Cabin via DEN, SLC 1:15-6:25 Monday and OMA-SLC 2:05-5:00 Thursday, with 86- and 84-minute connections, $326."
+              },
+              {
+                "choice_id": "C",
+                "text": "American Main Cabin via DFW, SLC 1:35-6:50 Monday and OMA-SLC 2:20-5:25 Thursday, with 78- and 83-minute connections, $329."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest via STL, SLC 1:05-6:45 Monday and OMA-SLC 2:10-5:20 Thursday, one connection each way, open seating, $309."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "United is slightly cheaper and a few minutes earlier, while Delta leaves a little later after lunch and is otherwise comparable. The hidden Delta-when-comparable habit is the only stable reason to put Delta first.",
+            "gold_action": "Put the Delta Main Cabin Omaha itinerary first.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0012",
+              "tm_pd_v04_user_003_s0065",
+              "tm_pd_v04_user_003_s0092",
+              "tm_pd_v04_user_003_s0135"
+            ],
+            "label_rationale": "This is a straightforward in-scope domestic work trip from SLC. Delta satisfies the schedule, stop, fare, and seat-class pattern, and the lower-priced United and American options are only marginally different. Under the user's long-term soft carrier ordering, Delta should lead the shortlist.",
+            "probe_type": "direct_use",
+            "query": "New Omaha admissions mini-conference: Tessa can leave SLC after Monday lunch, needs a same-evening hotel arrival, and returns Thursday after the wrap-up. Coach, at most one connection, and reimbursable main-cabin fares. Which option should the assistant put first?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c05",
+            "rationale": "B dominates the other main-cabin options on fare and timing, with robust connections and the earliest hotel/home arrivals. D is cheaper, but the small savings come with open seating and later arrivals, so B is the generic first hold under the stated reimbursable main-cabin framing."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "United Main Cabin via DEN, SLC 10:55-4:30 Monday and ANC-SLC 12:35-10:05 Thursday, with 74- and 78-minute connections, $520."
+              },
+              {
+                "choice_id": "B",
+                "text": "Alaska Main via SEA, SLC 11:25-4:15 Monday and ANC-SLC 12:55-9:45 Thursday, with 90- and 84-minute connections, $534."
+              },
+              {
+                "choice_id": "C",
+                "text": "American Main Cabin via DFW, SLC 9:50-4:55 Monday and ANC-SLC 1:10-10:55 Thursday, with 70- and 82-minute connections, $506."
+              },
+              {
+                "choice_id": "D",
+                "text": "Delta Main Cabin via SEA, SLC 11:35-4:20 Monday and ANC-SLC 1:05-9:35 Thursday, with 88- and 92-minute connections, $548."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Alaska is a realistic near-miss because it is a little cheaper and has older-file support. The answer requires disambiguating conditional acceptance of Alaska from the user's longitudinal Delta-when-comparable ordering.",
+            "gold_action": "Put the Delta Main Cabin Anchorage itinerary first in the shortlist.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0022",
+              "tm_pd_v04_user_003_s0044",
+              "tm_pd_v04_user_003_s0056",
+              "tm_pd_v04_user_003_s0074"
+            ],
+            "label_rationale": "Prior openness to Alaska was conditional on Alaska being cleaner or materially better; it was not a replacement for the comparable-Delta pattern. In this Anchorage set, Alaska has a small fare and outbound-time edge, while Delta remains within the trip's timing and stop pattern and has a slightly smoother return. The durable preference puts Delta first.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Anchorage counselor institute: Some older West Coast trip notes in Tessa's file included Alaska, and the coordinator asks what should lead this new shortlist. Tessa needs a Monday late-morning SLC departure, a Thursday post-session return, coach, and one connection unless there is a stronger case. Which flight should be first?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Query mentions older West Coast trip notes including Alaska; this is a private-history-like cue, but B is selected from generic routing, timing, and connection advantages rather than inferred airline preference."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c07",
+            "rationale": "B is generically best: C leaves before the requested late-morning window, while B gives a later outbound departure, earliest Anchorage arrival, later return departure, earlier home arrival, and safer connections than A for only a small fare increase. D costs more for only a marginal return-time improvement."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "JetBlue Blue nonstop, SLC 2:00-8:35 Friday and BOS-SLC 11:45-3:10 Monday, selectable standard seats, $1,112 total."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta Main Cabin nonstop, SLC 2:15-8:45 Friday and BOS-SLC 11:35-3:00 Monday, selectable seats with one window pair, $1,136 total."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest via MDW, SLC 1:50-9:15 Friday and BOS-SLC 12:15-4:20 Monday, one connection each way, open seating, $1,018 total."
+              },
+              {
+                "choice_id": "D",
+                "text": "United via DEN, SLC 2:35-10:05 Friday and BOS-SLC 10:20-1:50 Monday, assigned seats with one connection each way, $1,058 total."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "JetBlue is slightly cheaper and arrives a little earlier on Friday, while Delta has a slightly better Monday return and matches the user's soft carrier preference. The query alone does not uniquely identify the Delta option.",
+            "gold_action": "Book the Delta Main Cabin nonstop for the Boston family weekend.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0014",
+              "tm_pd_v04_user_003_s0039",
+              "tm_pd_v04_user_003_s0131",
+              "tm_pd_v04_user_003_s0132"
+            ],
+            "label_rationale": "The carrier habit applies to occasional family flights from SLC as well as work travel. JetBlue is a plausible nonstop alternative, but Delta is also nonstop, assigned-seat, and close in total fare. The long-history preference therefore favors Delta for this family trip while acknowledging that non-Delta exceptions have occurred when the situation called for them.",
+            "probe_type": "cross_context_transfer",
+            "query": "Family graduation weekend in Boston: Tessa is buying three tickets from SLC, leaving after lunch Friday and returning Monday late morning. Nonstop and assigned-seat options are available in the fare set, and the prices are in the family budget range. Which option should she book?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "For three family tickets where nonstop and assigned seats are available within budget, the nonstop assigned-seat options dominate the connecting/open-seating alternatives. A is cheaper than B with essentially equivalent or slightly better timing, so it is the generic booking choice."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Primary: American Main Cabin via PHL, SLC 12:45-7:00 Sunday and PVD-SLC 2:40-7:25 Wednesday, with 78- and 86-minute connections, $428. Fallback: Delta via JFK at $439 with nearly identical times."
+              },
+              {
+                "choice_id": "B",
+                "text": "Primary: Delta Main Cabin via JFK, SLC 12:55-7:10 Sunday and PVD-SLC 2:50-7:35 Wednesday, with 80- and 90-minute connections, $439; do not list a fallback unless the fare changes."
+              },
+              {
+                "choice_id": "C",
+                "text": "Primary: Delta Main Cabin via JFK, SLC 12:55-7:10 Sunday and PVD-SLC 2:50-7:35 Wednesday, with 80- and 90-minute connections, $439. Fallback: American via PHL at $428 with similar times."
+              },
+              {
+                "choice_id": "D",
+                "text": "Primary: Southwest to Boston via BWI, SLC 12:35-6:50 Sunday and BOS arrival followed by ground transfer to Providence, $392. Fallback: United via Newark into PVD at $424."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A and C use the same two viable flights with only the ordering changed and a small fare advantage for American. The hidden longitudinal policy is needed to make Delta primary without dropping the non-Delta fallback.",
+            "gold_action": "Send Delta as the primary Providence option with American retained as the fallback.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0000",
+              "tm_pd_v04_user_003_s0039",
+              "tm_pd_v04_user_003_s0046",
+              "tm_pd_v04_user_003_s0141"
+            ],
+            "label_rationale": "The user's preference is soft and nonexclusive: Delta should lead when comparable, but other acceptable carriers should remain in the set when a fallback is requested. Choice C preserves both pieces. Choice A reverses the user's ordering, while choice B hardens the preference too much by omitting the requested fallback.",
+            "probe_type": "boundary",
+            "query": "Providence admissions institute: Tessa is not ready to buy, and her director wants a primary flight plus one fallback for a Sunday-Wednesday plan. She can leave after a midday Sunday commitment, needs a normal Sunday-evening arrival in Providence, and returns after the Wednesday panel. Coach, one connection, and similar reimbursable fares. Which note should be sent?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c09",
+            "rationale": "The director explicitly wants a primary plus fallback. B fails to list a fallback, and D substitutes Boston plus ground transfer instead of a normal Providence arrival. Between A and C, A uses the cheaper primary with very similar timing and still provides the requested fallback."
+          }
+        }
+      ],
+      "round": 1
+    },
+    {
+      "accepted_this_round": [
+        "c01",
+        "c04",
+        "c07",
+        "c09"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c03",
+        "c04",
+        "c06",
+        "c07",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "American Main Cabin via DFW, SLC 1:25-7:05 Friday and IND-SLC 11:05-1:45 Monday, with 82- and 90-minute connections, selectable seats together or adjacent, $1,064 total."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta Main Cabin via MSP, SLC 1:40-7:15 Friday and IND-SLC 10:55-1:30 Monday, with 86- and 88-minute connections, selectable seats together or adjacent, $1,087 total."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest via DEN, SLC 1:50-7:35 Friday and IND-SLC 11:20-2:00 Monday, with one connection each way, open seating, $1,012 total before any check-in add-ons."
+              },
+              {
+                "choice_id": "D",
+                "text": "United Main Cabin via ORD, SLC 1:15-7:00 Friday and IND-SLC 11:30-2:05 Monday, with 70- and 84-minute connections, selectable adjacent seats, $1,095 total."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "American and Delta are both realistic holds with small, offsetting timing and price differences. Nothing in the query states a carrier preference, so the reason to lead with Delta must come from the user's longitudinal pattern.",
+            "gold_action": "Hold the Delta Main Cabin Indianapolis itinerary first for the family weekend.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0014",
+              "tm_pd_v04_user_003_s0039",
+              "tm_pd_v04_user_003_s0131",
+              "tm_pd_v04_user_003_s0132"
+            ],
+            "label_rationale": "The habit scope includes occasional family trips from SLC, and the family-trip evidence shows non-Delta carriers can be chosen when they materially fit better without replacing the durable comparable-Delta ordering. Here American is a close near-miss because it is a little cheaper and arrives a few minutes earlier Friday, while Delta returns a little earlier Monday and has a similarly clean one-stop/seatable setup. The soft carrier preference breaks the tie toward Delta.",
+            "probe_type": "cross_context_transfer",
+            "query": "Tessa is holding flights for a family robotics weekend in Indianapolis for herself and two teenagers. They can leave after lunch Friday, should be in town Friday evening, and return Monday around midday. Coach fares, one connection at most, and the totals are within the family budget range. Which hold should go first?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Family travel plus selectable seats together/adjacent is a strong wording cue",
+              "Southwest open seating and pre-add-on pricing are negative convenience/cost cues"
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "For a family trip with two teenagers, assigned/selectable seats together or adjacent are a relevant common-sense convenience cue. Among the assigned-seat options, A has the lowest total fare, solid connection times, and a Friday-evening arrival comparable to the others. C is cheaper but has open seating and possible check-in add-ons; B and D cost more without a material advantage."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Delta Main Cabin via MSP, SLC 1:35-6:40 Monday and OMA-SLC 2:30-5:05 Thursday, with 84- and 88-minute connections, $334."
+              },
+              {
+                "choice_id": "B",
+                "text": "United Main Cabin via DEN, SLC 1:15-6:25 Monday and OMA-SLC 2:05-5:15 Thursday, with 86- and 84-minute connections, $326."
+              },
+              {
+                "choice_id": "C",
+                "text": "American Main Cabin via DFW, SLC 1:25-6:50 Monday and OMA-SLC 2:25-5:20 Thursday, with 78- and 82-minute connections, $329."
+              },
+              {
+                "choice_id": "D",
+                "text": "Southwest via STL, SLC 1:40-6:55 Monday and OMA-SLC 2:15-5:35 Thursday, with one connection each way and open seating, $309."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "The visible trip details do not create a single dominant itinerary. The deciding factor between a slightly cheaper United option and a similarly practical Delta option is the remembered comparable-Delta preference.",
+            "gold_action": "Put the Delta Main Cabin Omaha itinerary first.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0012",
+              "tm_pd_v04_user_003_s0065",
+              "tm_pd_v04_user_003_s0092",
+              "tm_pd_v04_user_003_s0135"
+            ],
+            "label_rationale": "This is a straightforward in-scope domestic work trip from SLC. United is a credible near-miss because it is a few dollars cheaper and reaches Omaha a little earlier, while Delta leaves later after lunch and gets Tessa home a bit earlier with similarly comfortable connections. Since Delta satisfies the stated schedule, stop, fare, and cabin constraints, the user's soft carrier ordering puts Delta first.",
+            "probe_type": "direct_use",
+            "query": "New Omaha admissions mini-conference: Tessa can leave SLC after Monday lunch, needs a same-evening hotel arrival, and returns Thursday after the wrap-up. Coach, at most one connection, and reimbursable main-cabin fares. Which option should the assistant put first?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Main-cabin wording disfavors the Southwest open-seating option",
+              "Same-evening hotel arrival makes B's earliest arrival a material advantage"
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c05",
+            "rationale": "B is the lowest-priced regular Main Cabin option, has the earliest same-evening Omaha arrival, and has solid connection times. A has a slightly better return timing but costs more and arrives later; C is slightly more expensive and worse on schedule; D is cheaper but has open seating and later overall timing, while the query asks for reimbursable main-cabin fares."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "JetBlue Blue nonstop, SLC 2:00-8:35 Friday and BOS-SLC 11:55-3:20 Monday, with selectable standard seats, $1,108 total."
+              },
+              {
+                "choice_id": "B",
+                "text": "Delta Main Cabin nonstop, SLC 2:20-8:50 Friday and BOS-SLC 11:30-2:55 Monday, with selectable standard seats, $1,132 total."
+              },
+              {
+                "choice_id": "C",
+                "text": "Southwest via MDW, SLC 1:55-9:15 Friday and BOS-SLC 12:10-4:20 Monday, with one connection each way and open seating, $1,018 total."
+              },
+              {
+                "choice_id": "D",
+                "text": "United Main Cabin via DEN, SLC 2:30-10:00 Friday and BOS-SLC 10:35-2:10 Monday, with selectable standard seats and one connection each way, $1,060 total."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Two nonstop assigned-seat options are close, with JetBlue winning on fare and Friday arrival and Delta winning on Monday return and the user's remembered carrier ordering. The query alone leaves both defensible.",
+            "gold_action": "Book the Delta Main Cabin nonstop for the Boston family weekend.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_003_s0014",
+              "tm_pd_v04_user_003_s0039",
+              "tm_pd_v04_user_003_s0131",
+              "tm_pd_v04_user_003_s0132",
+              "tm_pd_v04_user_003_s0135"
+            ],
+            "label_rationale": "The carrier habit applies to occasional family flights from SLC as well as work travel. JetBlue is a very plausible near-miss because it is nonstop, a little cheaper, and arrives slightly earlier Friday, while Delta is also nonstop, close in total fare, leaves a bit later after lunch, and gets the family home earlier Monday. The long-history comparable-Delta preference carries over to this family context.",
+            "probe_type": "cross_context_transfer",
+            "query": "Family graduation weekend in Boston: Tessa is buying three tickets from SLC, leaving after lunch Friday and returning Monday late morning. Nonstop and one-connection options are available within the family budget range. Which option should she book?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Nonstop availability within budget is a strong generic-convenience cue",
+              "Selectable seats versus Southwest open seating is a family-trip convenience cue"
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "Because nonstop options are available within budget, the one-connection options are materially less convenient for relatively modest savings. Among the nonstops, A is cheaper than B, has a slightly earlier Friday arrival, and still returns Monday late morning with selectable seats. B's only clear advantage is a slightly earlier arrival home."
+          }
+        }
+      ],
+      "round": 2
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 5,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 1,
+      "gold_disagreement_or_unresolved": 1
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 5,
+    "selected_difficulty_counts": {
+      "medium": 5
+    },
+    "selected_type_counts": {
+      "boundary": 2,
+      "conflict_resolution": 1,
+      "evidence_disambiguation": 2
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_003"
+}

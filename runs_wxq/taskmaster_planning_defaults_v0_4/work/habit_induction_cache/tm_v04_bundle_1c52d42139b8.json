@@ -1,0 +1,92 @@
+{
+  "boundary_condition": "This default only applies to the airline/carrier field; it does not set destination, travel dates, route, cabin, price, or departure time.",
+  "bundle_id": "tm_v04_bundle_1c52d42139b8",
+  "condition": "When searching for or booking flights and airline choice is open among otherwise viable options, with no explicit request for a different carrier.",
+  "confidence": 0.76,
+  "decision": "accept",
+  "default_action": "Prioritize and select an American Airlines flight when it satisfies the requested itinerary constraints.",
+  "exception_condition": "Do not force American Airlines if it is unavailable for the required itinerary, fails a hard schedule or route constraint, or the user explicitly asks for another airline.",
+  "family": "airline_choice",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_1c52d42139b8",
+  "induced_at": "2026-07-15T12:37:08.723263+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefer American Airlines when choosing flights",
+  "preference_value": "American Airlines as the preferred flight carrier",
+  "rationale": "The cited independent flight-task sources repeatedly name American Airlines in the airline slot, including one explicit preference, and none cite a competing carrier. This supports a controlled synthetic default for carrier selection without treating the speakers as one real longitudinal user.",
+  "seed_value": "american_airline",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "In instruction flight-8, the user says, \"Yes. Preferably another American Airline flight in the morning,\" directly supporting American Airlines as a preferred carrier while the morning detail remains request-specific.",
+      "conversation_id": "dlg-16bc9bb3-c60e-4858-8e82-5ba517d9ff84",
+      "turn_index": 23
+    },
+    {
+      "contribution": "In instruction flight-7, the user asks, \"These are both American Airlines?\", grounding attention to American Airlines as the relevant carrier in the flight choice.",
+      "conversation_id": "dlg-d94dd1ac-4762-4106-a406-1577e3a0ac7e",
+      "turn_index": 17
+    },
+    {
+      "contribution": "In instruction flight-4, the user answers \"American Airline,\" supplying American Airlines for the flight_search.airline slot.",
+      "conversation_id": "dlg-40ad4f03-1ff9-4d45-a2f3-9badd28e772a",
+      "turn_index": 11
+    },
+    {
+      "contribution": "In instruction flight-5, the user answers \"American Airline,\" again supplying American Airlines for the flight_search.airline slot.",
+      "conversation_id": "dlg-c93fff32-7bb4-444d-bff8-bdafc2f31d96",
+      "turn_index": 14
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "American Airline",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-16bc9bb3-c60e-4858-8e82-5ba517d9ff84",
+      "habitual_language": false,
+      "instruction_id": "flight-8",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 23,
+      "user_utterance": "Yes. Preferably another American Airline flight in the morning."
+    },
+    {
+      "annotated_segment": "American Airline",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-d94dd1ac-4762-4106-a406-1577e3a0ac7e",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 17,
+      "user_utterance": "These are both American Airlines?"
+    },
+    {
+      "annotated_segment": "American Airline",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-40ad4f03-1ff9-4d45-a2f3-9badd28e772a",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 11,
+      "user_utterance": "American Airline."
+    },
+    {
+      "annotated_segment": "American Airline",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-c93fff32-7bb4-444d-bff8-bdafc2f31d96",
+      "habitual_language": false,
+      "instruction_id": "flight-5",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 14,
+      "user_utterance": "American Airline."
+    }
+  ]
+}

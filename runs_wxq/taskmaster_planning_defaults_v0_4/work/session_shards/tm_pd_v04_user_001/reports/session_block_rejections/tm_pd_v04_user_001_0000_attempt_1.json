@@ -1,0 +1,156 @@
+{
+  "reason": "unnatural_habit_leakage_session_1:The user chose the United option. Leakage is present because the assistant advised selecting a window seat before any user utterance established a window-seat preference.",
+  "sessions": [
+    {
+      "domain": "combined_flight_hotel",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Erin stated that for this trip she values reliable, simple routing over carrier loyalty; United and afternoon departures are acceptable only if they do not weaken the schedule. She asked for a short, ranked set of flight-hotel pairings and said hotel reviews around 4 stars or better plus fitness/pool/hot tub amenities are useful, while commute and cap still matter.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I’m starting on a Sacramento client training trip and want a first pass at flights plus hotels. It’s for a veterinary hospital network, Tuesday through Thursday, with a Friday morning debrief. I don’t have the exact clinic address yet, just that it’s in the Sacramento area.",
+          "role": "user"
+        },
+        {
+          "content": "Sure. To keep the first pass useful, I need a few anchors: are you flying from Denver, what dates should I use, and do you expect to arrive Monday or Tuesday morning?",
+          "role": "assistant"
+        },
+        {
+          "content": "From Denver. Use Monday April 8 to Friday April 12 for now. The client keeps calling it a three-night training trip, but because the Friday debrief is in person I think I need hotel Monday through Thursday unless they clarify otherwise.",
+          "role": "user"
+        },
+        {
+          "content": "That makes sense. A Tuesday-morning arrival would be tight for a 10:00 a.m. start, so I’ll build around Monday arrival and Friday return. Any airline, time-of-day, or hotel requirements before I shortlist?",
+          "role": "assistant"
+        },
+        {
+          "content": "I like afternoon departures when they work, and United is fine, but don’t force either one if it makes the schedule weaker. Reliability and simple routing matter more. For the hotel, I’d like well-reviewed, ideally around 4 stars or better, and if there’s a pool, hot tub, and fitness room that’s a plus. Keep it to a few realistic pairings, please.",
+          "role": "user"
+        },
+        {
+          "content": "Here are three workable pairings, ranked with the trade-offs called out:\n\n1. Best balance: United nonstop DEN-SMF Monday about 12:35 p.m.–2:10 p.m.; return Friday around 1:25 p.m.–4:55 p.m. No connection, good cushion for Tuesday, and still a reasonable Denver arrival. Pair with Sacramento Marriott Rancho Cordova: roughly 4.1 Google rating, fitness center, outdoor pool, hot tub, usually near the upper-middle business rate range. Commute depends on the final clinic address, but it’s a good east-side/Sacramento-suburb hedge.\n\n2. Safest setup cushion: Southwest nonstop Monday late morning, about 10:15 a.m.–11:55 a.m.; Friday midday return. Strong timing and often a little cheaper, but no assigned seat in the same way, so less control. Pair with Hyatt Place Rancho Cordova: around 4.3 rating, fitness center and outdoor pool, but no hot tub. Likely very practical if the clinic is in Rancho Cordova.\n\n3. Only if fare matters: a one-stop option via Salt Lake or San Francisco, typically arriving late afternoon. I would not lead with this unless it is materially cheaper; the connection adds delay risk without much benefit.",
+          "role": "assistant"
+        },
+        {
+          "content": "If the site ends up being Rancho Cordova, which of those would you lean toward?",
+          "role": "user"
+        },
+        {
+          "content": "For Rancho Cordova specifically, I’d lean toward the late-morning or midday nonstop and the Hyatt Place or Marriott in Rancho Cordova. The hotel decision is the trade-off: Hyatt looks more convenient and often comes in under corporate caps, but it gives up the hot tub. Marriott is more amenity-complete, but may be a bit farther or pricier depending on the exact address.",
+          "role": "assistant"
+        },
+        {
+          "content": "Got it. I don’t want to book before the address and the hotel cap come back. Can you give me the questions I should send the client?",
+          "role": "user"
+        },
+        {
+          "content": "Ask them for: the exact clinic address, any required or preferred hotel, nightly cap before taxes and fees, whether parking is reimbursable, the Monday setup window, and what time the Friday debrief should end. I’d also ask whether four hotel nights are approved because the Friday meeting makes Thursday night necessary.",
+          "role": "assistant"
+        },
+        {
+          "content": "If the cap comes back under $200 before tax, do any of these still look viable?",
+          "role": "user"
+        },
+        {
+          "content": "Most likely, yes. Hyatt Place Rancho Cordova is the safer bet under $200 before tax. Marriott may be borderline depending on demand that week. If the client address is east of Sacramento, I would not chase a cheaper downtown hotel unless the savings are significant, because the commute could eat up the benefit during training days.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_001_s0000",
+      "session_index": 0,
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "domain": "booking_refinement",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Erin confirmed the Rancho Cordova address, $210 pretax hotel cap, and Monday 3:30 setup. She accepted the late-morning United nonstop over a cheaper or later option to protect the schedule, and chose the closer Hyatt Place despite no hot tub because commute and cap were more important for this work trip.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I have the Sacramento details now. The clinic is at 10823 Olson Drive in Rancho Cordova. Hotel cap is $210 before taxes, and they want me there Monday by 3:30 for setup. Can we turn this into a bookable plan?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. With a 3:30 setup, I would drop the attractive afternoon outbound we looked at. It now arrives too close to 4:00 after baggage and ground transport. The cleaner flight is United nonstop DEN-SMF Monday about 10:55 a.m.–12:35 p.m.; return Friday about 2:10 p.m.–5:45 p.m. Main Cabin is pricing around $418. Southwest is a little cheaper, but the United timing is clean and keeps assigned-seat control.",
+          "role": "assistant"
+        },
+        {
+          "content": "I’m fine not taking the cheapest one. What about hotels around that address?",
+          "role": "user"
+        },
+        {
+          "content": "Best practical pick: Hyatt Place Sacramento/Rancho Cordova, about 6–8 minutes from the clinic, around $184 before tax, roughly 4.3 guest rating, fitness center and outdoor pool, no hot tub. It stays under cap and minimizes commute.\n\nAmenity pick: Hampton Inn & Suites Folsom or a similar Folsom option, around $195–$205, generally strong reviews, pool/hot tub/fitness, but about 25 minutes each way without traffic. That adds up over the week.",
+          "role": "assistant"
+        },
+        {
+          "content": "So you’d take the Hyatt even though it’s missing the hot tub?",
+          "role": "user"
+        },
+        {
+          "content": "For this training week, yes. The shorter drive and under-cap rate are more valuable than the hot tub, especially with early starts and the Monday setup. It still covers the fitness center and pool, and the rating is strong.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay, let’s go with the United nonstop and the Hyatt. Anything I should watch on the booking screen?",
+          "role": "user"
+        },
+        {
+          "content": "Book Main Cabin rather than Basic so changes and seat selection are not boxed in. Pick a window seat if one is open on both legs. For the Hyatt, choose the cancellable rate if the difference is small, confirm parking is included or reimbursable, and make the hotel Monday through Thursday nights unless the client changes the Friday debrief plan.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_001_s0001",
+      "session_index": 1,
+      "user_id": "tm_pd_v04_user_001"
+    },
+    {
+      "domain": "pre_trip_follow_up",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The later Friday return did not disrupt Erin’s commitments, so she kept the nonstop rather than switching to a connection or higher-cost alternative. Final checks emphasized window seats, hotel confirmation, commute, and the missing hot tub note.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "United just moved my Friday Sacramento return about an hour later. It’s now 3:05 p.m. out of SMF, arriving Denver around 6:30. Is that still okay?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, it still works. Your Friday debrief ends in the morning, so the later nonstop leaves plenty of airport cushion. The earlier same-day options I see either add a connection or cost more for little gain, so I’d keep the changed nonstop unless you need to be home before dinner.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please give me the final itinerary notes, including seat and hotel confirmation items.",
+          "role": "user"
+        },
+        {
+          "content": "Final notes: United DEN-SMF Monday 10:55 a.m.–12:35 p.m., nonstop, window seat selected/requested. Hyatt Place Sacramento/Rancho Cordova, Monday–Thursday nights, under the $210 cap, about 6–8 minutes from the clinic; fitness center and outdoor pool, no hot tub. Return United SMF-DEN Friday 3:05 p.m.–about 6:30 p.m., nonstop, window seat selected/requested. Hotel confirmation and cancellation terms look in order for your internal itinerary.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_001_s0002",
+      "session_index": 2,
+      "user_id": "tm_pd_v04_user_001"
+    }
+  ],
+  "updated_continuity_summary": "{'traveler': 'Erin Kowalski is a Denver-based senior training manager who self-books domestic work travel and prefers practical, ranked comparisons with clear schedule, commute, and amenity trade-offs.', 'established_preferences_from_conversation': ['For the Sacramento training trip, Erin prioritized reliable, simple routing over airline loyalty or cheapest fare.', 'United is acceptable when the schedule is strong, but not a requirement.', 'Afternoon departures are welcome when they do not compromise setup or arrival reliability.', 'For work hotels, Erin wants well-reviewed properties around 4 stars or better; fitness, pool, and hot tub are useful, but she will trade an amenity for a better commute and cap fit.', 'She wants window seats selected or requested when available.'], 'sacramento_training_trip': {'status': 'planned and effectively finalized', 'purpose': 'Client training for a veterinary hospital network', 'destination_area': 'Rancho Cordova / Sacramento, California', 'clinic_address': '10823 Olson Drive, Rancho Cordova', 'travel_dates': 'Monday April 8 to Friday April 12', 'flight_plan': 'United nonstop DEN-SMF Monday late morning; United nonstop SMF-DEN Friday afternoon, shifted about an hour later and accepted.', 'hotel_plan': 'Hyatt Place Sacramento/Rancho Cordova for Monday through Thursday nights, under the $210 pretax cap, close to the clinic, with fitness center and outdoor pool but no hot tub.', 'practical_notes': 'Window seats selected or requested. Hotel confirmation and cancellation terms checked for the internal itinerary. Earlier Friday return alternatives were not worth the connection burden or added cost.'}, 'open_follow_ups': ['Complete standard airline check-in and recheck seats before departure.', 'Send the finalized itinerary to the regional manager.']}"
+}

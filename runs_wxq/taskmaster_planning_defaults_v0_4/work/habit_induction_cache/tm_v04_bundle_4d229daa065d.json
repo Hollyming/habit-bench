@@ -1,0 +1,92 @@
+{
+  "boundary_condition": "This applies only to flight cabin or seating-class selection; it does not imply a preferred airline, route, travel date, departure time, or fare budget.",
+  "bundle_id": "tm_v04_bundle_4d229daa065d",
+  "condition": "When booking or searching for flights and a cabin or seating class is needed, if no trip-specific upgrade is requested.",
+  "confidence": 0.84,
+  "decision": "accept",
+  "default_action": "Default the flight cabin search to coach/economy seating.",
+  "exception_condition": "If the user explicitly asks for or accepts a different cabin such as premium economy, business, or first class for the current trip, use that requested cabin instead of coach/economy.",
+  "family": "cabin_class",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_4d229daa065d",
+  "induced_at": "2026-07-15T12:36:05.623575+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefers coach/economy cabin for flights",
+  "preference_value": "coach/economy seating",
+  "rationale": "Across four independent flight-task instruction_ids, the cited users select or prefer the seating class transcribed as “couch,” which is plausibly the coach/economy cabin in the flight_search.seating_class annotation. This supports a controlled synthetic-user default for coach/economy seating when cabin class is otherwise unspecified, without treating the speakers as one real user.",
+  "seed_value": "couch",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User states a seating-class preference: “I'd like morning flight and I would hope for the couch,” with “couch” annotated as flight_search.seating_class.",
+      "conversation_id": "dlg-4e6b40eb-408a-4735-a9b9-c2056db2f87b",
+      "turn_index": 7
+    },
+    {
+      "contribution": "User chooses the seating class: “Couch would be better,” with “Couch” annotated as flight_search.seating_class.",
+      "conversation_id": "dlg-e20b2f46-b87a-40c0-82d4-b827f62ea2d6",
+      "turn_index": 10
+    },
+    {
+      "contribution": "User accepts the seating class: “I thing couch is fine,” with “couch” annotated as flight_search.seating_class.",
+      "conversation_id": "dlg-caff49b9-3139-4db7-af24-a22f7a945375",
+      "turn_index": 4
+    },
+    {
+      "contribution": "User answers the seating-class prompt with “Couch,” annotated as flight_search.seating_class.",
+      "conversation_id": "dlg-82bb4629-fb15-4a9a-9d90-077a14d71720",
+      "turn_index": 13
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "couch",
+      "annotation": "flight_search.seating_class",
+      "conversation_id": "dlg-4e6b40eb-408a-4735-a9b9-c2056db2f87b",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 7,
+      "user_utterance": "I'd like morning flight and I would hope for the couch."
+    },
+    {
+      "annotated_segment": "Couch",
+      "annotation": "flight_search.seating_class",
+      "conversation_id": "dlg-e20b2f46-b87a-40c0-82d4-b827f62ea2d6",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 10,
+      "user_utterance": "Couch would be better."
+    },
+    {
+      "annotated_segment": "couch",
+      "annotation": "flight_search.seating_class",
+      "conversation_id": "dlg-caff49b9-3139-4db7-af24-a22f7a945375",
+      "habitual_language": false,
+      "instruction_id": "flight-10",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 4,
+      "user_utterance": "I thing couch is fine. I'd like to leave today and return in 4 days."
+    },
+    {
+      "annotated_segment": "Couch",
+      "annotation": "flight_search.seating_class",
+      "conversation_id": "dlg-82bb4629-fb15-4a9a-9d90-077a14d71720",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 13,
+      "user_utterance": "Couch."
+    }
+  ]
+}

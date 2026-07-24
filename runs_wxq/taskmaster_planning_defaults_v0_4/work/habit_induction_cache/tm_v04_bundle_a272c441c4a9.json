@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Applies only to hotel/lodging selection or hotel-detail follow-up questions; it should not be applied to flights, restaurants, activities, or unrelated travel tasks.",
+  "bundle_id": "tm_v04_bundle_a272c441c4a9",
+  "condition": "When the synthetic user is searching for or choosing a hotel and a brand can be specified or compared.",
+  "confidence": 0.82,
+  "decision": "accept",
+  "default_action": "Prioritize Marriott-branded hotel options and select a Marriott when one satisfies the current trip constraints.",
+  "exception_condition": "If the current request explicitly requires a different named hotel/brand, or no Marriott option fits the stated trip constraints, do not force a Marriott choice.",
+  "family": "hotel_brand_choice",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_a272c441c4a9",
+  "induced_at": "2026-07-15T12:31:00.105243+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefers Marriott when choosing a hotel",
+  "preference_value": "Marriott-branded hotels",
+  "rationale": "The independent hotel dialogues all involve the user naming Marriott as the hotel brand under consideration, including one explicit reason for choosing it because of Marriott points. This supports a controlled synthetic-user default to prefer Marriott hotels, without treating any one airport/location or address question as the habit itself.",
+  "seed_value": "marriott",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User asks for the address of 'the Marriott,' showing Marriott as the property being pursued in that hotel task.",
+      "conversation_id": "dlg-d50bab6c-4cb5-4b5c-9889-1eb407b8ec48",
+      "turn_index": 11
+    },
+    {
+      "contribution": "User states, 'I have Marriott's points, so I will go to a Marriott hotel,' directly supporting Marriott as the preferred hotel brand.",
+      "conversation_id": "dlg-8c3a7cd9-c120-4ff4-8d27-7d4b85a2f641",
+      "turn_index": 8
+    },
+    {
+      "contribution": "User requests, 'I'd like a Marriott by the airport,' supporting selection of a Marriott-branded hotel within trip-specific constraints.",
+      "conversation_id": "dlg-344a6bee-bf87-475d-8723-9a77df7c1995",
+      "turn_index": 5
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "Marriott",
+      "annotation": "hotel_search.name.hotel",
+      "conversation_id": "dlg-d50bab6c-4cb5-4b5c-9889-1eb407b8ec48",
+      "habitual_language": false,
+      "instruction_id": "hotel-14",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 11,
+      "user_utterance": "Where is the Marriott? What's the address?"
+    },
+    {
+      "annotated_segment": "Marriott",
+      "annotation": "hotel_search.name.hotel",
+      "conversation_id": "dlg-8c3a7cd9-c120-4ff4-8d27-7d4b85a2f641",
+      "habitual_language": false,
+      "instruction_id": "hotel-12",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "I have Marriott's points, so I will go to a Marriott hotel."
+    },
+    {
+      "annotated_segment": "Marriott",
+      "annotation": "hotel_search.name.hotel",
+      "conversation_id": "dlg-344a6bee-bf87-475d-8723-9a77df7c1995",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "I'd like a Marriott by the airport."
+    }
+  ]
+}

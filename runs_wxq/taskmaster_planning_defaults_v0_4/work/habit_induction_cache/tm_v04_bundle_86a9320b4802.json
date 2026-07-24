@@ -1,0 +1,92 @@
+{
+  "boundary_condition": "Apply only to the hotel’s location choice; do not treat it as a preference about destination city, airport selection, flight routing, or ground-transport route.",
+  "bundle_id": "tm_v04_bundle_86a9320b4802",
+  "condition": "When booking a hotel for a trip where airport access is relevant, such as before or after air travel.",
+  "confidence": 0.86,
+  "decision": "accept",
+  "default_action": "Prioritize hotels located near the airport rather than farther city, resort, or attraction-centered areas.",
+  "exception_condition": "If the user explicitly requests a different required area, such as downtown, beachfront, near a venue, or says airport proximity is not needed, follow that stated location instead.",
+  "family": "hotel_location_priority",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_86a9320b4802",
+  "induced_at": "2026-07-15T12:29:23.994462+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefers airport-adjacent hotels",
+  "preference_value": "near_airport_hotel_location",
+  "rationale": "Four independent hotel-task sources request staying near the airport. The reusable habit is a location-type preference for airport-adjacent lodging, not any one named airport or city.",
+  "seed_value": "near_airport",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User requests a hotel room “near the airport,” grounding airport-adjacent lodging as the location type.",
+      "conversation_id": "dlg-c5b8fc83-028e-4f86-920e-326eb6b00ee6",
+      "turn_index": 0
+    },
+    {
+      "contribution": "User says “I would like to stay near the airport,” supporting airport proximity for hotel location.",
+      "conversation_id": "dlg-5340f3b7-ad23-48a5-9f04-de653e4105d8",
+      "turn_index": 8
+    },
+    {
+      "contribution": "User again states “I would like to stay near the airport,” confirming the same location preference type.",
+      "conversation_id": "dlg-c95db6b2-8f7c-4e07-a35b-96ebdc9f5a35",
+      "turn_index": 6
+    },
+    {
+      "contribution": "User asks for a hotel with free breakfast and “near the airport,” adding further independent support for airport-adjacent hotel location.",
+      "conversation_id": "dlg-f51f226d-7931-451d-9dce-7f4d69ca29fd",
+      "turn_index": 16
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "near the airport",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-c5b8fc83-028e-4f86-920e-326eb6b00ee6",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 0,
+      "user_utterance": "Yes, I need a hotel room four-star March 27th for one person. With a king-size bed near the airport. King Shaka Airport. In San Francisco."
+    },
+    {
+      "annotated_segment": "near the airport",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-5340f3b7-ad23-48a5-9f04-de653e4105d8",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "I would like to stay near the airport and I would like it to have a shuttle also from the airport."
+    },
+    {
+      "annotated_segment": "near the airport",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-c95db6b2-8f7c-4e07-a35b-96ebdc9f5a35",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 6,
+      "user_utterance": "I would like to stay near the airport."
+    },
+    {
+      "annotated_segment": "near the airport",
+      "annotation": "hotel_search.sub_location.hotel",
+      "conversation_id": "dlg-f51f226d-7931-451d-9dce-7f4d69ca29fd",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 16,
+      "user_utterance": "I'd like free breakfast and near the airport."
+    }
+  ]
+}

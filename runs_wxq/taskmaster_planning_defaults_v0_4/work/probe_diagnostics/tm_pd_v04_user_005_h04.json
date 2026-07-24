@@ -1,0 +1,980 @@
+{
+  "habit_id": "tm_pd_v04_user_005_h04",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c09"
+      ],
+      "accepted_total": [
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Residence Inn Sacramento Midtown: Google 4.2, $218/night refundable, 11-minute drive, desk/fridge, $18 self-parking."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with Courtyard Sacramento Downtown: Google 3.8, $203/night refundable, six-minute walk, desk/fridge, $30 self-parking."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with Kimpton Sawyer: Google 4.6, $302/night refundable, eight-minute walk, stylish room, no mini-fridge guarantee, $49 valet."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Home2 Suites West Sacramento: Google 4.1, $176/night refundable, free parking, desk/fridge, 25-minute commute."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A generic planner could reasonably prefer B for walkability and slightly lower price, while A is only modestly farther. The user's history breaks the tie because B falls below his durable customer-rating comfort level for work hotels.",
+            "gold_action": "Recommend Residence Inn Sacramento Midtown as the lead and report the Google 4.2 rating source, despite the Courtyard being a little closer and cheaper.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0021",
+              "tm_pd_v04_user_005_s0051",
+              "tm_pd_v04_user_005_s0103"
+            ],
+            "label_rationale": "The cited work-trip evidence repeatedly supports using a clearly good customer-facing hotel rating as a default filter for Jonah's self-booked business stays. Here the scope applies, ratings are clear, and no trip-specific reason overrides the default, so the 4.2 Google-rated option should outrank the closer 3.8 option while still balancing cost and commute.",
+            "probe_type": "direct_use",
+            "query": "Jonah is arranging his own hotel for a two-night Sacramento stormwater client meeting. The meeting is downtown; he wants a usable desk, a cancellable corporate rate, and parking he can explain, but the explicit constraints do not require walking. The search shows these options. Which should be the lead recommendation?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrase 'explicit constraints do not require walking' is a strong wording cue against overvaluing walkability.",
+              "'parking he can explain' points toward simple, moderate self-parking rather than expensive valet or a distant free-parking tradeoff."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c00",
+            "rationale": "A best balances the stated business constraints: refundable rate, desk/fridge, explainable lower-cost self-parking, acceptable downtown drive, and better reviews than the cheaper walkable option. Walking is explicitly not required, while C is costly/valet-heavy and D adds a much longer commute."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with the conference-block hotel: Tripadvisor 3.9, $209/night refundable, sessions and booth are in-building; list the Hyatt as backup if the block falls through."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with the nearby Hyatt Place: Google 4.2, $219/night refundable, 12-minute rideshare to setup; use the block only as a logistics backup."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with the JW Marriott: Google 4.5, $289/night refundable, 10-minute walk, better restaurants, no event logistics included."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with the airport Embassy Suites: Google 4.3, $159/night refundable, free breakfast, 25-minute morning drive."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A and B are close: B better follows the normal review-rating preference, while A materially improves conference logistics at a similar price. Without the long-history boundary evidence, either could be defended.",
+            "gold_action": "Lead with the conference block despite the Tripadvisor 3.9 score, because the in-building conference logistics are a specific trip reason; note it as a one-trip exception and keep the 4.2 Hyatt as backup.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0017",
+              "tm_pd_v04_user_005_s0034",
+              "tm_pd_v04_user_005_s0103"
+            ],
+            "label_rationale": "Jonah's hotel-rating pattern is a soft customer-review default, not an absolute ban. The Denver and other conference evidence show that materially better block logistics can justify bending the usual rating preference for that trip, especially with early setup and in-building sessions.",
+            "probe_type": "conflict_resolution",
+            "query": "Jonah needs a hotel for a self-booked Austin water-reuse conference. He has badge pickup the night before and early booth setup in the same building; he also wants a refundable rate and a real desk. The block and nearby independents are all available. Which lead/backup stance should you send?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "'Badge pickup' and 'early booth setup in the same building' directly identify the in-building block hotel.",
+              "Choice A uniquely includes the requested lead/backup stance."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c01",
+            "rationale": "The badge pickup, sessions, and early booth setup are in the same building, so the conference-block hotel has decisive logistics value while still meeting the refundable-rate and desk requirements. The Hyatt is reasonable only as a backup if the block fails."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Treat the downtown Grand Plaza's 4-star hotel-class label as enough, make it the lead at $226/night, and skip a separate review-source check."
+              },
+              {
+                "choice_id": "B",
+                "text": "Shortlist the best-located refundable hotels, but before final ranking, recheck Google/Booking/Tripadvisor customer scores or ask the travel desk to identify the guest-review source."
+              },
+              {
+                "choice_id": "C",
+                "text": "Make the luxury Le Méridien the lead because it shows a 4.5-star hotel-class label, even though the customer-review field is blank and the rate is $314/night."
+              },
+              {
+                "choice_id": "D",
+                "text": "Use the $181/night airport option with the portal's vendor quality index of 92, since that is a numeric score and the commute is manageable."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is a strong near miss because it uses a familiar star label and a good location, but it confuses hotel class with customer-review quality. The history is needed to know which rating signal matters.",
+            "gold_action": "Do not substitute hotel-class stars or an internal quality index for a customer-facing review score; verify the rating source before final ranking.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0051",
+              "tm_pd_v04_user_005_s0091",
+              "tm_pd_v04_user_005_s0114"
+            ],
+            "label_rationale": "The habit concerns customer-facing hotel ratings such as Google or guest review scores, not hotel-class stars or opaque portal metrics. When the rating metric is unclear, the supported behavior is to clarify or recheck rather than hard-enforce a class-star rule.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Jonah is sending a hotel note for a self-booked Salt Lake City controls seminar. The corporate portal is messy: it shows hotel-class star icons for some properties, but the guest-review field is blank or labeled 'vendor quality index' for the two best-located hotels. He needs a defensible recommendation before anything is booked. Which action fits best?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query explicitly distinguishes hotel-class stars/vendor indices from real guest-review scores.",
+              "'Needs a defensible recommendation before anything is booked' cues verification rather than blindly selecting a portal label."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c02",
+            "rationale": "Because the portal is mixing hotel-class labels and opaque quality indices with missing guest-review data, the defensible action is to shortlist the good locations but verify customer-review sources before final ranking."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Hyatt Place Palm Springs/Rancho Mirage: Google 4.1, $229/night refundable, desk/fridge, self-parking, eight-minute drive."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with Miramonte Resort: Google 4.6, $349/night refundable plus resort fee, nicer grounds and lounge, eight-minute drive."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with a walkable boutique inn: Tripadvisor 3.9, $209/night refundable, closest to restaurants, smaller work desk."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with a branded airport-area suite hotel: Google 4.3, $244/night refundable, breakfast included, 22-minute drive."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is generically appealing for an upscale retreat and has much stronger reviews, while A is less expensive and still well reviewed. The history is needed to know that higher ratings are a bonus rather than a new mandatory threshold.",
+            "gold_action": "Lead with Hyatt Place and cite the Google 4.1 rating; treat the 4.6 resort as a nice but not necessary upgrade for this work retreat.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0051",
+              "tm_pd_v04_user_005_s0076",
+              "tm_pd_v04_user_005_s0103",
+              "tm_pd_v04_user_005_s0114"
+            ],
+            "label_rationale": "The long history supports a good customer-review floor for work hotels, but not a reusable requirement to chase 4.5+ ratings. A 4.1 Google-rated, refundable, practical property satisfies the durable default while respecting Jonah's rate-sanity constraint.",
+            "probe_type": "boundary",
+            "query": "Jonah is planning a two-night Palm Springs utility leadership retreat that he will book himself. The stay should feel polished enough for client dinners, but he also asked to keep the rate sane and avoid prepaid deals. The venue is a short drive from all of these. Which hotel should be the lead?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "'Keep the rate sane' and 'avoid prepaid deals' are explicit constraints that steer away from the resort-style premium option despite its nicer grounds."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "A is the best value/polish compromise: refundable, sane mid-$200s rate, decent rating, desk/fridge, self-parking, and the same short drive as the resort. B is more polished but materially less rate-sane with a much higher rate plus resort fee; C and D are weaker on work setup, review quality, or location."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Holiday Inn Express: Google 4.2, $171/night refundable, easy self-parking, fridge/coffee, 12 minutes from the plant; note it needs over-cap approval."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with Best Western Plus: Google 3.8, $139/night refundable, interior corridors, desk/coffee, 10 minutes from the plant; flag that it is the budget-driven pick."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with La Quinta South: Google 3.6, $119/night refundable, free breakfast/parking, 14 minutes from the plant, desk size not confirmed."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Padre Hotel downtown: Google 4.4, $204/night refundable, restaurants nearby, valet parking, 18 minutes from the plant."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A better matches the normal review-quality pattern, while B better matches the current budget and one-night context. Only the longitudinal habit plus its exception boundaries identify B as the correct one-trip compromise.",
+            "gold_action": "Lead with Best Western Plus for this budget-capped sleep stop, noting the Google 3.8 source and that the lower rating is a trip-specific compromise rather than a new default.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0017",
+              "tm_pd_v04_user_005_s0051",
+              "tm_pd_v04_user_005_s0076"
+            ],
+            "label_rationale": "Jonah normally prefers clearly good customer-facing ratings for work hotels, but the pattern is soft and allows specific trip reasons. A reimbursement cap and quick overnight justify selecting the best practical under-cap option while explicitly avoiding a permanent lowering of his usual hotel-quality preference.",
+            "probe_type": "boundary",
+            "query": "Jonah has a one-night Bakersfield plant-shutdown visit, landing late and checking out before a 7 a.m. site arrival. The client reimbursement note flags $145 before tax as the expected cap unless there is a clear justification, and he described the stay as a quick practical overnight. Which lead should you send?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The explicit $145 reimbursement cap and 'quick practical overnight' wording make the budget-compliant adequate choice decisive."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "B stays under the stated $145 cap, is close to the plant, and has adequate practical overnight amenities. A and D require over-cap justification, while C is cheaper but weaker and has an unconfirmed desk."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Cannery Row Inn: Expedia 3.8, $179/night refundable, five-minute walk to the aquarium, breakfast included, paid self-parking."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with Seaside Suites: Google 4.2, $189/night refundable, 15-minute drive to the aquarium, free parking, basic breakfast."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with Portola boutique hotel: Google 4.5, $285/night refundable, seven-minute walk, valet parking, no breakfast."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with a Marina motel: Booking.com 7.6/10, $149/night refundable, 20-minute drive, free parking, no breakfast."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B follows the work-hotel rating pattern and is only slightly more expensive, but it fails the current scope and weakens the sister's stated aquarium-location preference. The scope boundary is not inferable from the query alone.",
+            "gold_action": "Recommend Cannery Row Inn for the sister's shortlist because her leisure-trip location, breakfast, and price constraints govern; do not transfer Jonah's work-hotel rating default to her booking.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0021",
+              "tm_pd_v04_user_005_s0038",
+              "tm_pd_v04_user_005_s0109",
+              "tm_pd_v04_user_005_s0114"
+            ],
+            "label_rationale": "The supplied evidence comes from Jonah's own self-booked business, conference, training, and site-visit hotels. That history supports a work-travel hotel habit, not a universal rule for another traveler’s personal weekend, so the lower-rated but better-fitting family option can lead without treating this as a revision.",
+            "probe_type": "cross_context_transfer",
+            "query": "Jonah is helping his sister choose a Monterey weekend hotel for her family; he is not traveling and this is not a work booking. She wants to stay close to the aquarium, keep the nightly rate around the high-$100s, and would like breakfast if possible. Which recommendation should you make for her shortlist?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "'He is not traveling and this is not a work booking' explicitly rules out relying on Jonah's personal travel history.",
+              "The aquarium proximity, high-$100s rate, and breakfast cues uniquely point to A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "A directly matches the sister's stated priorities: high-$100s refundable rate, five-minute walk to the aquarium, and breakfast included. The alternatives either require a drive, exceed the budget, or lack breakfast."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Shutters Hotel Elko: Google 3.9, $158/night refundable, 12 minutes from the site road, self-parking, desk/fridge; state that local review options are limited."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with SpringHill Suites in the larger town: Google 4.3, $149/night refundable, 70-minute pre-dawn drive, desk/fridge, free parking."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with Quality Inn Elko: Google 3.6, $118/night refundable, 11 minutes from the site road, free breakfast, basic desk."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Red Lion Casino: Tripadvisor 4.1, $174/night refundable, 48-minute pre-dawn drive in the opposite direction, restaurants on-site, self-parking."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B satisfies the normal review-quality preference and is slightly cheaper, while A better preserves site logistics. The user's history is needed to know that the rating default should bend when only unsuitable higher-rated alternatives exist.",
+            "gold_action": "Lead with Shutters Hotel Elko as the best suitable local option, cite the Google 3.9 rating, and flag that the usual review preference is being softened because the practical local set is limited.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0034",
+              "tm_pd_v04_user_005_s0038",
+              "tm_pd_v04_user_005_s0109"
+            ],
+            "label_rationale": "Jonah's work-hotel review preference is conditional when enough decent choices exist. The evidence includes soft qualifiers around availability and practical fit, so a remote-site case with no good close options should use the best suitable local hotel rather than force a long pre-dawn commute for a better score.",
+            "probe_type": "boundary",
+            "query": "Jonah is covering a remote pump-station startup outside Elko and needs to be at the site before sunrise. The plant manager says staying close matters because gate time may move on short notice; the higher-review hotels are much farther away, while the local choices are modest but cancellable. Which lead should you recommend?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "'Staying close matters' and 'gate time may move on short notice' are decisive proximity cues.",
+              "The query preemptively explains why higher-review hotels farther away should not lead."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "The plant manager's proximity warning makes a local hotel the right lead. A is essentially as close as C but has better reviews and stronger work-room amenities; the higher-review distant options undermine the pre-dawn/gate-time requirement."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Novotel Centre: Booking.com 8.2/10, $236/night, nine-minute transit to training, desk/fridge, breakfast available."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with the official block hotel: Google 3.9/5, $221/night, five-minute walk to training, desk/fridge, breakfast not included."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with the airport Residence Inn: Booking.com 8.8/10, $189/night, 35-minute train ride, full breakfast and kitchenette."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with the downtown boutique hotel: Google 4.6/5, $318/night, 10-minute walk, refundable room, smaller desk."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is closer and cheaper, and a generic planner might pick the official block. The history is needed both to map a non-Google review score into Jonah's customer-rating habit and to prefer the better-reviewed practical downtown option.",
+            "gold_action": "Lead with Novotel Centre and report its Booking.com 8.2/10 review score as the customer-facing source, balancing the score against downtown practicality.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0091",
+              "tm_pd_v04_user_005_s0103",
+              "tm_pd_v04_user_005_s0114"
+            ],
+            "label_rationale": "The durable policy transfers from Google-style stars to similar customer-facing review scores when the source is clear. A Booking.com 8.2/10 downtown option is consistent with the work-hotel quality default, while the 3.9 Google official block is a near miss without a strong enough logistics advantage here.",
+            "probe_type": "cross_context_transfer",
+            "query": "Jonah is arranging his own hotel for a Toronto vendor training. The Canadian booking site mixes Google ratings with Booking.com-style review scores; all listed room rates are cancellable. He wants a practical downtown stay with enough evening prep time, not an airport commute unless it clearly pays off. Which lead should you send?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The mixed Google/Booking rating scales caution against picking solely by the highest-looking score.",
+              "'Not an airport commute unless it clearly pays off' rules out the airport option despite its lower rate and high Booking.com score.",
+              "'Enough evening prep time' favors the closest practical training location."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c07",
+            "rationale": "B is the most practical downtown choice: refundable, cheapest downtown option, five-minute walk to training, and has the required desk/fridge. A is slightly higher-rated but costs more and requires transit; C is an airport commute that does not clearly pay off; D is expensive with a smaller desk."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with the portal's top match: preferred match 96, Google 3.8, $188/night, six-minute walk, desk, refundable."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with Hampton Inn Downtown: preferred match 83, Google 4.1, $197/night, nine-minute rideshare, desk/fridge, refundable."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with Renaissance Albany: preferred match 78, Google 4.4, $278/night, five-minute walk, larger room, refundable."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Airport Fairfield: preferred match 92, Google 4.0, $164/night, 25-minute drive, free parking, refundable."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is a strong near miss because it is cheaper, closer, and favored by the portal. The historical evidence is needed to disambiguate which metric carries the user's personal hotel-quality policy.",
+            "gold_action": "Lead with Hampton Inn Downtown and cite the Google 4.1 rating, treating the portal match score as secondary because it is not the relevant customer-facing rating.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0051",
+              "tm_pd_v04_user_005_s0076",
+              "tm_pd_v04_user_005_s0091",
+              "tm_pd_v04_user_005_s0103"
+            ],
+            "label_rationale": "Jonah's hotel-quality habit is anchored to customer-visible ratings, not opaque corporate fit scores. Since management did not require the top portal match, the Google 4.1 option should outrank the closer but lower-reviewed portal favorite.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Jonah is preparing a self-booked Albany regulatory-hearing hotel shortlist. The company portal displays both a 'preferred match' number and Google ratings. He wants downtown access, a workable desk, and a refundable rate, but management did not mandate the portal's top match. Which lead should you choose?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "'Management did not mandate the portal's top match' is a cue not to select solely because of the preferred-match number, but the explicit price/location/desk facts still make A generically best."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "A best meets the stated objective on location, rate, desk, and refundability: it is a six-minute walk downtown and the least expensive suitable downtown option. The portal match is not mandatory, but A does not need that score to be defensible; B trades away walkability for only a modest rating gain."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c05"
+      ],
+      "accepted_total": [
+        "c05",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Residence Inn Sacramento Midtown: Google 4.2, $222/night refundable corporate rate, 11-minute drive to the meeting, desk/fridge, $18 self-parking."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with Courtyard Sacramento Downtown: Google 3.8, $203/night refundable corporate rate, six-minute walk to the meeting, desk/fridge, $30 self-parking."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with Kimpton Sawyer: Google 4.6, $289/night refundable, eight-minute walk to the meeting, stylish lobby, compact desk, $49 valet parking."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Home2 Suites West Sacramento: Google 4.1, $181/night refundable, 23-minute drive to the meeting, desk/fridge, free self-parking."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is cheaper and more convenient to the downtown meeting, so a generic planner could reasonably lead with it. Jonah's stored hotel-quality policy is what breaks the tie toward the 4.2 Google-rated option.",
+            "gold_action": "Recommend Residence Inn Sacramento Midtown as the lead and cite its Google 4.2 rating source, while noting that the Courtyard is closer and slightly cheaper but below Jonah's usual work-hotel comfort level.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0021",
+              "tm_pd_v04_user_005_s0051",
+              "tm_pd_v04_user_005_s0103"
+            ],
+            "label_rationale": "This is Jonah's own self-booked work lodging and the choices include clear customer-facing Google ratings. His longitudinal pattern supports favoring hotels with good guest-visible ratings, normally at least around 4.0, when there is no trip-specific reason to go lower. A balances that preference with workable parking, desk/fridge, and a reasonable downtown drive.",
+            "probe_type": "direct_use",
+            "query": "Jonah is arranging his own hotel for a two-night Sacramento stormwater client meeting. The meeting is downtown, and he expects to have a rental car. He wants a usable desk, a cancellable corporate rate, and a parking setup that will be straightforward to expense. The search shows these available options. Which should be the lead recommendation?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Explicit downtown meeting, corporate-rate, desk, and self-parking cues are sufficient to select a lead without private history."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c00",
+            "rationale": "B satisfies the stated needs: refundable corporate rate, usable desk/fridge, self-parking, and the best meeting logistics with a six-minute walk. Its room rate plus parking is still slightly lower than A, while C has expensive valet/compact desk and D is much farther and lacks the stated corporate-rate cue."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with the conference-block hotel: Tripadvisor 3.9, $212/night refundable, attached to the convention center, bell desk can hold the booth case; list the Hyatt as backup if the block falls through."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with the nearby Hyatt Place: Google 4.2, $219/night refundable, 10-minute walk or short rideshare to the convention center, larger desk/fridge; use the block only as the logistics backup."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with the JW Marriott: Google 4.5, $285/night refundable, eight-minute walk to the convention center, strong client-dinner area, no event case handling included."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with the airport Embassy Suites: Google 4.3, $169/night refundable, breakfast included, desk/fridge, about a 25-minute rideshare to the convention center."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B better satisfies the ordinary review-rating pattern and has a stronger room setup, while A has event-logistics advantages. The hidden boundary history is needed to know that a below-4.0 block can lead when the block's logistics are materially useful.",
+            "gold_action": "Lead with the conference block despite the Tripadvisor 3.9 score, cite the rating source, and frame it as a trip-specific logistics exception with the 4.2 Hyatt kept as backup.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0017",
+              "tm_pd_v04_user_005_s0034",
+              "tm_pd_v04_user_005_s0103"
+            ],
+            "label_rationale": "Jonah's rating preference is a soft work-hotel default, not an absolute ban. His Denver conference boundary evidence specifically allows bending the usual review floor when the block is materially better, and this conference-block option materially simplifies badge, booth, and case logistics while remaining refundable and cost-comparable.",
+            "probe_type": "conflict_resolution",
+            "query": "Jonah needs a hotel for a self-booked Austin water-reuse conference. He will have a small roll-up booth case, badge pickup the prior evening, and morning booth access on the first day. Two central options are close in total cost, but they trade off event logistics against room polish. Which lead/backup stance should you send?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The wording explicitly frames event logistics versus room polish and gives the block hotel the logistics advantages."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c01",
+            "rationale": "The query emphasizes booth-case handling, badge pickup, and morning booth access. The attached conference-block hotel directly solves those logistics at a comparable refundable rate, while the Hyatt is better as backup for room polish."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Downtown Grand Plaza: portal hotel class 4 stars, portal preferred fit 94, $224/night refundable, six-minute walk to the seminar, desk/fridge; no public review score shown in the portal."
+              },
+              {
+                "choice_id": "B",
+                "text": "Use Hampton Inn Downtown as the provisional lead: Google 4.1, portal preferred fit 81, $232/night refundable, nine-minute rideshare or light-rail ride, desk/fridge; ask the travel desk for Grand Plaza's public review score before swapping it in."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with Le Meridien: portal hotel class 4.5 stars, $306/night refundable, seven-minute walk to the seminar, upscale restaurant, compact desk; no public review score shown in the portal."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with the airport Hyatt House: portal quality index 91, $184/night refundable, 22-minute drive to the seminar, desk/fridge, breakfast included; the portal does not show the source for the index."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is closer, slightly cheaper, and favored by the portal, so it is a plausible generic lead. The hidden history is needed to know that the clear Google guest score matters more for Jonah than a hotel-class star label.",
+            "gold_action": "Use Hampton Inn Downtown as the defensible provisional lead because it has a clear Google 4.1 customer-facing score, and do not substitute hotel-class stars or an opaque portal index for a guest-review source.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0051",
+              "tm_pd_v04_user_005_s0091",
+              "tm_pd_v04_user_005_s0114"
+            ],
+            "label_rationale": "The stored habit concerns customer-facing hotel ratings such as Google or guest-review scores. It does not treat hotel-class stars or internal portal quality numbers as equivalent. When the metric is unclear, Jonah's pattern supports clarifying the source rather than letting a class label override the review-quality preference.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Jonah is preparing an unbooked Salt Lake City controls-seminar hotel note. The corporate portal lists several quality signals side by side, and the travel desk has not filled in the same fields for every property. He wants a lead that he can defend to his manager without overcomplicating the note. Which action fits best?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrase 'defend to his manager without overcomplicating' plus A's strong portal/location/rate signals is sufficient; no private rating habit is needed."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "A is the strongest manager-defensible simple lead: high portal preferred fit, 4-star portal class, lower rate than B, six-minute walk, refundable rate, and desk/fridge. Waiting for a missing public review score would overcomplicate the note when the internal portal signals and logistics already support A."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Hyatt Place Palm Springs/Rancho Mirage: Google 4.1, $258/night refundable, eight-minute drive, desk/fridge, self-parking, casual lobby and nearby dining."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with Miramonte Resort: Google 4.6, $299/night refundable plus a $28 resort fee, six-minute drive, polished grounds and lounge, desk/fridge on request, paid self-parking."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with a walkable boutique inn: Tripadvisor 3.9, $224/night refundable, five-minute drive and short walk to a dinner strip, smaller work desk, limited parking."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Embassy Suites La Quinta: Google 4.3, $241/night refundable, 18-minute drive, suite desk/fridge, breakfast included, free self-parking."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is more polished and much higher-rated, so it is attractive for a leadership retreat. Jonah's history is needed to know that a 4.1 Google-rated practical hotel is already sufficient and that the higher rating is only a bonus.",
+            "gold_action": "Lead with Hyatt Place and cite the Google 4.1 source; treat Miramonte's 4.6 resort feel as a nice upgrade rather than a necessary standard for this work retreat.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0051",
+              "tm_pd_v04_user_005_s0076",
+              "tm_pd_v04_user_005_s0103",
+              "tm_pd_v04_user_005_s0114"
+            ],
+            "label_rationale": "Jonah's long-running work-hotel habit supports a clearly good customer-facing rating around 4.0 or better, but it does not create a reusable requirement to chase 4.5+ resort-style properties. A meets the durable quality floor while better matching ordinary corporate-travel cost and practical room needs.",
+            "probe_type": "boundary",
+            "query": "Jonah is choosing his own hotel for a two-night Palm Springs utility leadership retreat. The off-site sessions and client dinner are in Rancho Mirage, and he wants something presentable enough for colleagues while still easy to justify as ordinary corporate travel. All options are cancellable and within a short-to-moderate drive of the venue. Which should be the lead?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The 'ordinary corporate travel' and Rancho Mirage venue cues point to the nearby business-chain option."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "A best balances the stated goals: close to the Rancho Mirage sessions and dinner, presentable enough, standard corporate-hotel profile, desk/fridge, and straightforward self-parking. B looks resort-like and fee-heavy, C is less work/parking friendly, and D saves modestly but is materially farther from the retreat area."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Holiday Inn Express: Google 4.2, $169/night refundable, 12 minutes from the plant, desk/fridge/coffee, easy self-parking."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with Best Western Plus: Google 3.8, $139/night refundable, 10 minutes from the plant, interior corridors, full desk/coffee, easy self-parking."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with La Quinta South: Google 3.6, $123/night refundable, 13 minutes from the plant, breakfast and parking included, compact desk, fridge not listed."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Padre Hotel downtown: Google 4.4, $198/night refundable, 17 minutes from the plant, restaurants nearby, valet parking, smaller work surface."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A more closely matches Jonah's ordinary review-quality pattern and has slightly better amenities, while B is cheaper and just as practical for the quick shutdown night. The hidden boundary history is needed to treat B as an acceptable one-trip compromise.",
+            "gold_action": "Lead with Best Western Plus for this lean one-night shutdown stop, cite the Google 3.8 source, and note that the lower rating is a trip-specific cost/practicality compromise rather than a new default.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0017",
+              "tm_pd_v04_user_005_s0051",
+              "tm_pd_v04_user_005_s0076"
+            ],
+            "label_rationale": "Jonah normally favors work hotels with clearly good customer-facing ratings, but the evidence frames that as a soft default with practical exceptions. For a late-arrival, early-departure overnight where the admin is watching the hotel line item, the adequate under-cost option can lead without rewriting his usual preference.",
+            "probe_type": "boundary",
+            "query": "Jonah is making a one-night Bakersfield hotel pick around a plant-shutdown visit. He lands late, leaves for the site early, and the project admin has asked him to keep the hotel line item lean if the work setup is still adequate. All options are refundable. Which lead should you send?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The 'lean if work setup is still adequate' wording directly identifies the lower-cost adequate option."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "The admin explicitly asked to keep the hotel line item lean if the work setup is adequate. B is much cheaper than A, close to the plant, has a full desk/coffee and easy self-parking, while C is more compromised and D is pricier with less practical parking/work setup."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Shutters Hotel Elko: Google 3.9, $158/night refundable, 16 minutes to the site road, self-parking, desk/fridge, limited dinner options nearby."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with SpringHill Suites in the regional hub: Google 4.3, $151/night refundable, 42-minute pre-dawn drive to the site road, desk/fridge, breakfast included."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with Quality Inn by the interstate: Google 3.6, $119/night refundable, 13 minutes to the site road, free breakfast/parking, basic desk, older rooms."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Red Lion Casino: Tripadvisor 4.1, $171/night refundable, 35-minute pre-dawn drive to the site road, restaurants on site, larger room, self-parking."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is cheaper and clearly better-reviewed, so a generic planner could favor it. Jonah's hidden boundary history is needed to know when the rating default should bend for remote-site logistics.",
+            "gold_action": "Lead with Shutters Hotel Elko as the best suitable nearby option, cite the Google 3.9 source, and flag that Jonah's usual review preference is being softened because the practical local set is limited for this early site start.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0034",
+              "tm_pd_v04_user_005_s0038",
+              "tm_pd_v04_user_005_s0109"
+            ],
+            "label_rationale": "Jonah's history phrases the review-quality preference conditionally, with qualifiers such as if practical, if possible, and if there are enough options. When the higher-rated alternatives impose a longer pre-dawn drive for a shifting site time, the best nearby cancellable option can lead even if its customer-facing score is just under the usual floor.",
+            "probe_type": "boundary",
+            "query": "Jonah is booking a hotel for a pump-station startup outside Elko. He has one pre-dawn site arrival, and the final gate time may shift after the contractor call; the rental car is already assumed. The nearby lodging is modest, while the better-reviewed hotels require a longer early drive. Which lead should you recommend?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Pre-dawn arrival and shifting gate time explicitly cue prioritizing nearby acceptable lodging over better-reviewed distant options."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "A is the best fit for a pre-dawn site arrival with a potentially shifting gate time: it is close to the site road while still offering acceptable quality, desk/fridge, refundable rate, and self-parking. B and D impose long early drives, and C is closer/cheaper but notably more basic and lower-rated."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Novotel Centre: Booking.com 8.2/10, CAD 236/night refundable, nine-minute streetcar or 18-minute walk to training, desk/fridge, breakfast available."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with the official block hotel: Google 3.9/5, CAD 221/night refundable, five-minute walk to training, desk/fridge, breakfast not included."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with the airport Residence Inn: Booking.com 8.8/10, CAD 189/night refundable, 35-minute train plus short walk to training, suite kitchenette, breakfast included."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with the downtown boutique hotel: Google 4.6/5, CAD 315/night refundable, 10-minute walk to training, quieter lobby, smaller desk, fridge on request."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is cheaper, official, and closer to training, so it is a strong generic contender. The hidden history is needed both to map the Booking.com score into Jonah's rating habit and to keep the 3.9 Google block from leading on proximity alone.",
+            "gold_action": "Lead with Novotel Centre and report its Booking.com 8.2/10 review score as the customer-facing source, balancing that clearer quality signal against the block hotel's closer walk and lower rate.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0091",
+              "tm_pd_v04_user_005_s0103",
+              "tm_pd_v04_user_005_s0114"
+            ],
+            "label_rationale": "The durable preference applies to customer-facing hotel ratings generally, not only Google star displays. A clear Booking.com 8.2/10 downtown score is consistent with Jonah's usual work-hotel quality floor, while the official block's Google 3.9 is a near miss without enough logistics advantage to justify bending the default.",
+            "probe_type": "cross_context_transfer",
+            "query": "Jonah is arranging his own hotel for a Toronto vendor training. The booking site shows a mix of Google-style ratings and Booking.com review scores. He wants a practical downtown base with time to review slides in the evening; a lower airport rate is tempting but would add transit. Which lead should you send?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The 'practical downtown base' and 'time to review slides' cues, plus the warning that the airport rate adds transit, are sufficient to select the nearby block hotel."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c07",
+            "rationale": "B is the practical downtown base: refundable, lowest central rate, five-minute walk to training, and desk/fridge for evening slide review. A is farther and slightly pricier, C adds airport transit, and D is much more expensive with a smaller desk."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with the portal's top match: preferred match 96, Google 3.8, $184/night refundable, six-minute walk to the hearing room, desk, standard king, no fridge listed."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with Hampton Inn Downtown: preferred match 83, Google 4.1, $197/night refundable, nine-minute rideshare or 18-minute walk to the hearing room, desk/fridge, breakfast included."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with Renaissance Albany: preferred match 78, Google 4.4, $274/night refundable, five-minute walk to the hearing room, larger room, valet parking, restaurant on site."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Airport Fairfield: preferred match 92, Google 4.0, $163/night refundable, 24-minute drive to the hearing room, desk/fridge, free parking."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is cheaper, closer, and has the highest portal match score, making it a plausible generic lead. The longitudinal memory is required to know which quality metric Jonah personally treats as meaningful.",
+            "gold_action": "Lead with Hampton Inn Downtown and cite its Google 4.1 rating source, treating the portal preferred-match score as secondary to the customer-facing hotel rating for Jonah's work stay.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0051",
+              "tm_pd_v04_user_005_s0076",
+              "tm_pd_v04_user_005_s0091",
+              "tm_pd_v04_user_005_s0103"
+            ],
+            "label_rationale": "Jonah's hotel-quality habit is anchored to guest-visible sources such as Google or similar customer-review scores, not opaque corporate match numbers. Since a short rideshare is acceptable and the Hampton remains refundable and practical, the clearer 4.1 Google-rated work-hotel option should outrank the closer but lower-reviewed portal favorite.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Jonah is preparing a self-booked Albany hotel shortlist for a regulatory hearing. The corporate portal displays a preferred-match score next to Google ratings, and the hearing room is downtown. He wants a refundable rate and a desk, with either a short walk or a short rideshare acceptable. Which lead should you choose?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The portal top-match score and downtown short-walk constraint provide enough non-private basis for A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c08",
+            "rationale": "A matches the stated needs most directly: refundable rate, desk, six-minute walk downtown, lowest relevant central price, and the portal's top preferred-match score. B has amenities not required and needs a rideshare or longer walk, C is much more expensive, and D is outside the short-walk/short-rideshare downtown setup."
+          }
+        }
+      ],
+      "round": 1
+    },
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c07",
+        "c08"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c05",
+        "c07",
+        "c08",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Shutters Hotel Elko: Google 3.9, $158/night refundable, 18-minute drive to the site road, self-parking, desk/fridge, limited dinner options nearby."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with SpringHill Suites in the regional hub: Google 4.3, $151/night refundable, 41-minute drive to the site road, desk/fridge, breakfast included, newer rooms."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with Quality Inn by the interstate: Google 3.6, $119/night refundable, 14-minute drive to the site road, free breakfast/parking, basic desk, older rooms."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Red Lion Casino: Tripadvisor 4.1, $171/night refundable, 34-minute drive to the site road, restaurants on site, larger room, self-parking."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is cheaper, newer, and clearly higher-rated, so a generic planner could favor it. The hidden boundary history is needed to know that Jonah's rating default can bend when remote-site logistics make the nearby set materially more practical.",
+            "gold_action": "Lead with Shutters Hotel Elko as the best suitable nearby option, cite the Google 3.9 source, and flag that Jonah's usual review preference is being softened for this remote early-start site visit.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0003",
+              "tm_pd_v04_user_005_s0034",
+              "tm_pd_v04_user_005_s0038",
+              "tm_pd_v04_user_005_s0109"
+            ],
+            "label_rationale": "Jonah's history phrases the review-quality preference conditionally, with qualifiers such as if practical, if possible, and when there is a decent choice. For a remote site with an early and possibly shifting gate time, the close-enough 3.9 local option can lead over better-reviewed hotels that add a longer pre-dawn drive.",
+            "probe_type": "boundary",
+            "query": "Jonah is selecting a hotel for a pump-station startup outside Elko. He will have a rental car, needs to be on site early, and the contractor may adjust the exact gate time after a call. He also wants enough room to review notes the night before. Which lead should you recommend?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Early-start and adjustable gate-time wording is an explicit routing/convenience cue sufficient to reject the farther hotels; no private history is needed."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "The early site start and potentially changing gate time make the much longer 34- to 41-minute options poor leads. Compared with the closer Quality Inn, A has materially better room quality and a more complete desk/fridge setup while remaining close to the site road; the 4-minute distance difference is minor."
+          }
+        }
+      ],
+      "round": 2
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 5,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2,
+      "gold_disagreement_or_unresolved": 2
+    },
+    "query_only_unresolved_count": 9,
+    "selected_count": 5,
+    "selected_difficulty_counts": {
+      "medium": 5
+    },
+    "selected_type_counts": {
+      "boundary": 2,
+      "cross_context_transfer": 1,
+      "evidence_disambiguation": 2
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_005"
+}

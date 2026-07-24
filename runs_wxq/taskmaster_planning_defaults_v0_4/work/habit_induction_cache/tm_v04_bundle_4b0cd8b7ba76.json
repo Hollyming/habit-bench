@@ -1,0 +1,92 @@
+{
+  "boundary_condition": "Do not apply this default to rooms that are specifically meant to have separate beds for occupants; for those rooms, keep the requested separate-bed setup such as two twins.",
+  "bundle_id": "tm_v04_bundle_4b0cd8b7ba76",
+  "condition": "When selecting a bed type for a hotel room where a single main bed is appropriate, use a queen-size bed as the minimum acceptable main bed.",
+  "confidence": 0.86,
+  "decision": "accept",
+  "default_action": "Request a queen-size or better bed, with a king-size bed acceptable as an upgrade when offered.",
+  "exception_condition": "If a room has an explicit layout requirement, such as a queen-size bed plus a pull-out couch, preserve that stated layout instead of automatically changing the bed configuration.",
+  "family": "bed_configuration",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_4b0cd8b7ba76",
+  "induced_at": "2026-07-15T12:29:36.410160+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Queen-or-better hotel bed default",
+  "preference_value": "queen-size or better main bed",
+  "rationale": "Across four distinct scripted sources, the user asks for a queen-size bed, queen-size or better, or queen/king. The multi-room example also shows that the queen preference is scoped by room role, since another room separately needs two twins.",
+  "seed_value": "a_queen_size",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "hotel-9 explicitly supports the minimum: \"We'd like a queen size or better bed.\"",
+      "conversation_id": "dlg-a7b6b489-2016-4d0e-8d9c-08316cd1f64b",
+      "turn_index": 9
+    },
+    {
+      "contribution": "hotel-11 repeats the same bed-size threshold: \"I'd like a queen-size or better bed.\"",
+      "conversation_id": "dlg-37f0bf8a-4921-4658-afd9-482a767f0f06",
+      "turn_index": 8
+    },
+    {
+      "contribution": "hotel-8 supports queen as the main-bed choice for one room while showing a separate-bed boundary for another room: \"One room needs a queen size and a pull out couch. And, the other room needs two twins.\"",
+      "conversation_id": "dlg-1260e8ad-ed37-43ba-bdb4-530a2dab471a",
+      "turn_index": 6
+    },
+    {
+      "contribution": "hotel-10 supports queen as the minimum and king as acceptable: \"I'd like a room with either a queen-size or king-size bed.\"",
+      "conversation_id": "dlg-0b6d7b97-a72b-4b47-b05c-1354fb9fd1e9",
+      "turn_index": 14
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "a queen size",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-a7b6b489-2016-4d0e-8d9c-08316cd1f64b",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 9,
+      "user_utterance": "We'd like a queen size or better bed, A Three-star hotel or better near the airport and free breakfast."
+    },
+    {
+      "annotated_segment": "a queen-size",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-37f0bf8a-4921-4658-afd9-482a767f0f06",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "I'd like a queen-size or better bed. This is for just one person."
+    },
+    {
+      "annotated_segment": "a queen size",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-1260e8ad-ed37-43ba-bdb4-530a2dab471a",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 6,
+      "user_utterance": "One room needs a queen size and a pull out couch. And, the other room needs two twins. We'd also like a refrigerator, coffee machine. Price would be under $300 a night."
+    },
+    {
+      "annotated_segment": "a queen-size",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-0b6d7b97-a72b-4b47-b05c-1354fb9fd1e9",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 14,
+      "user_utterance": "It's just for one person, but I'd like a room with either a queen-size or king-size bed."
+    }
+  ]
+}

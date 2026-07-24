@@ -41,4 +41,13 @@
 
 ## Evaluation Note
 
-The public probe format remains `choice_equals`, but reporting should not rely only on aggregate accuracy. Because this slice tests scoped preference use, metrics should also be broken down by probe type and should track boundary/exception failures separately from direct-use success.
+The public probe format is accepted unchanged by the repository reference
+loader and uses the same `choice_equals` scoring contract as the reference
+runs. Formal results must be produced through `eval/evaluate_baselines.py` or
+`eval/run_external_baseline.py` with the repository official adapters.
+
+The current slice is structurally aligned. Its reference no-memory lexical
+control is evaluated against a 0.45 ceiling calibrated to the reference
+curated-v0.2 result (0.3986) with allowance for this slice's smaller sample.
+See `reports/reference_alignment_audit.md`. A separate Qwen full-history or
+Qwen answer-head matrix is not part of the aligned evaluation.

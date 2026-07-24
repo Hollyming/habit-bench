@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Applies only to flight time-of-day selection for departure or return legs, not to destinations, trip dates, routes, lodging, or activities.",
+  "bundle_id": "tm_v04_bundle_53cf04c773d6",
+  "condition": "When booking flights and choosing a time-of-day window for an outbound or return leg, if no more specific time has been given.",
+  "confidence": 0.93,
+  "decision": "accept",
+  "default_action": "Search for and prioritize morning flights for the applicable legs; when both outbound and return time windows are needed, default both to morning.",
+  "exception_condition": "If the user explicitly requests a different time window or morning flights are unavailable for the needed itinerary, do not force the morning default.",
+  "family": "departure_time",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_53cf04c773d6",
+  "induced_at": "2026-07-15T12:28:51.762999+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefers morning flight departures and returns",
+  "preference_value": "morning flight times",
+  "rationale": "Across independent Taskmaster flight conversations with distinct instruction IDs, the supplied utterances repeatedly specify morning as the desired time of day, including cases where both departure and return should be in the morning. This supports a scoped synthetic-user default for morning flight timing without treating the speakers as one real longitudinal user.",
+  "seed_value": "morning",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User answers the flight time-of-day prompt with \"In the morning.\"",
+      "conversation_id": "dlg-f3189470-c660-4764-97e7-a1b6daa4d541",
+      "turn_index": 48
+    },
+    {
+      "contribution": "User says they \"need to leave and return in the morning,\" grounding the default for both outbound and return legs.",
+      "conversation_id": "dlg-b0bcda8f-2fc5-4258-b3e2-e6a0ea5d96f4",
+      "turn_index": 10
+    },
+    {
+      "contribution": "User specifies the time of day as \"Morning.\"",
+      "conversation_id": "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+      "turn_index": 7
+    },
+    {
+      "contribution": "User says, \"I'm leaving tomorrow morning,\" grounding morning as the departure time window.",
+      "conversation_id": "dlg-86585618-0ea3-418c-b1d1-05513ae2f522",
+      "turn_index": 6
+    },
+    {
+      "contribution": "User says they are \"looking to depart in the morning and return in the morning,\" again grounding morning for both flight legs.",
+      "conversation_id": "dlg-05b7672d-c352-496c-8115-d8d2271b1059",
+      "turn_index": 5
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "morning",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-f3189470-c660-4764-97e7-a1b6daa4d541",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 48,
+      "user_utterance": "In the morning."
+    },
+    {
+      "annotated_segment": "in the morning",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-b0bcda8f-2fc5-4258-b3e2-e6a0ea5d96f4",
+      "habitual_language": false,
+      "instruction_id": "flight-11",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 10,
+      "user_utterance": "Yeah, I need to leave and return in the morning. I'd like business class."
+    },
+    {
+      "annotated_segment": "Morning",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+      "habitual_language": false,
+      "instruction_id": "flight-14",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 7,
+      "user_utterance": "Ah, Morning."
+    },
+    {
+      "annotated_segment": "morning",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-86585618-0ea3-418c-b1d1-05513ae2f522",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 6,
+      "user_utterance": "I'm leaving tomorrow morning."
+    },
+    {
+      "annotated_segment": "in the morning",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-05b7672d-c352-496c-8115-d8d2271b1059",
+      "habitual_language": false,
+      "instruction_id": "flight-10",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 5,
+      "user_utterance": "I would like to return on June 10th. And I'm looking to depart in the morning and return in the morning."
+    }
+  ]
+}

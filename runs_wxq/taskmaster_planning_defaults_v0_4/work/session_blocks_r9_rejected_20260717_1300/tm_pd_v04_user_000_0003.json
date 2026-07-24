@@ -1,0 +1,356 @@
+{
+  "cache_fingerprint": "70c245a560d6013e8d79a1a44cf04bcd27422068e864bd850adf7b2356fb92e0",
+  "sessions": [
+    {
+      "domain": "flights_and_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "User reported the Minneapolis client wrap-up moved to 2:00 p.m., confirmed a held 3:35 p.m. Delta return, rideshare from Eden Prairie, and fare-difference visibility. Assistant compared the original return, later Delta nonstop, and American one-stop, recommended the later Delta return, and advised adding a late-arrival note to the hotel.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Quick issue on Minneapolis: the client moved the Thursday wrap-up from noon to 2:00. We’re two days out. Does that break the return flight plan?",
+          "role": "user"
+        },
+        {
+          "content": "Possibly. The hard constraint is not missing the flight; your usual afternoon-return preference is secondary here. What is the held MSP-ATL departure time, and are you using rideshare or a rental car?",
+          "role": "assistant"
+        },
+        {
+          "content": "Held return is Delta nonstop at 3:35 p.m. Thursday. No rental car, just rideshare from Eden Prairie. Hotel stays Hyatt Place. Travel says no change fee, but any fare difference has to be visible.",
+          "role": "user"
+        },
+        {
+          "content": "A 3:35 departure is tight after a 2:00 wrap: 25-35 minutes to MSP, security, and boarding around 3:00. I would price a later nonstop before keeping it. Have you got the fare difference for the next Delta or any backup?",
+          "role": "assistant"
+        },
+        {
+          "content": "Portal shows Delta nonstop at 6:18 p.m. for +$126. American one-stop through ORD is +$74 and gets me to ATL after midnight. Original is no extra cost.",
+          "role": "user"
+        },
+        {
+          "content": "Side by side: keep 3:35 = no cost but fragile; Delta 6:18 = +$126, still nonstop, protects the 2:00 meeting; American one-stop = cheaper than Delta but adds connection risk and a late arrival. I’d recommend Delta 6:18 and state the fare difference.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there any defensible case for keeping the 3:35 if I step out right at 1:45?",
+          "role": "user"
+        },
+        {
+          "content": "Only if the client agrees in advance, your car is waiting, you have PreCheck, and no checked bag. Even then, one extra question or traffic pocket could sink it. I would not choose that unless approval rejects the +$126.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. For Monday, if my arrival slips to after 8 or 9 p.m., do I need to change the hotel?",
+          "role": "user"
+        },
+        {
+          "content": "Keep the Hyatt reservation, but add a late-arrival note or call the front desk because you may arrive after the normal evening rush. Also reconfirm breakfast and the cancellation deadline. Approval note: shift return to Delta 6:18 p.m. MSP-ATL due client wrap-up moving to 2:00 p.m.; fare difference +$126; avoids missed-flight risk and avoids a one-stop late-night return.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0003",
+      "session_index": 3,
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "domain": "flights_and_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "User began planning a family DC spring-break museum trip for three, provided a likely Apr 5-13 break window, possible Apr 4 after-school departure, room needs, and budget ceiling. Assistant compared DCA/IAD/BWI, central DC versus Arlington hotel tradeoffs, breakfast and rating priorities, and flagged unresolved dates, length, fare premium, and hotel-location choice.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "evidence_quote": "Breakfast is useful, but not if it means a mediocre place.",
+            "habit_id": "tm_pd_v04_user_000_h05",
+            "signal_type": "boundary"
+          },
+          {
+            "evidence_quote": "would a one-stop into DCA be okay?",
+            "habit_id": "tm_pd_v04_user_000_h03",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Minneapolis is finally off my plate. Can we start a rough plan for spring break in DC? It would be me, Ravi, and Anika, mostly museums.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Before I compare real options, I need four missing pieces: exact school-break dates, how many nights, rough hotel budget, and whether museum-area convenience beats a lower rate one Metro ride away. I’ll assume nonstop from ATL and an arrival that does not make the first evening miserable.",
+          "role": "assistant"
+        },
+        {
+          "content": "School break should be April 5 through 13. We could leave Friday after school on April 4 if the flight is not too late, or Saturday morning. Four or five days is probably enough. We need a room that works for three, ideally two queens or a sofa bed.",
+          "role": "user"
+        },
+        {
+          "content": "For airports, I’d start with ATL-DCA nonstop. DCA is the easiest for a family museum trip. IAD is acceptable if the fare is meaningfully lower, since the Silver Line works but is longer. BWI is only worth keeping if the savings are big; the transfer is more annoying, especially in the evening. I won’t treat Delta as required, but if Delta has the best nonstop timing it belongs in the shortlist.",
+          "role": "assistant"
+        },
+        {
+          "content": "Why DCA first? IAD has Metro now, right?",
+          "role": "user"
+        },
+        {
+          "content": "It does, but DCA is still the low-friction choice: short Metro or rideshare to central DC, easier late-day arrival, and less time lost on a short trip. IAD can be 45 to 60 minutes by Metro depending on hotel location. BWI usually needs train or longer rideshare logistics. My rough threshold: choose DCA if it is within about $75 per person of the other airports.",
+          "role": "assistant"
+        },
+        {
+          "content": "That makes sense. On hotels, I am torn between staying near the Mall and saving money in Arlington.",
+          "role": "user"
+        },
+        {
+          "content": "Here is the practical split: Penn Quarter/Mount Vernon/National Mall gives the easiest museum days and lots of restaurants, but rates are highest and breakfast is less consistent. Capitol Hill or Navy Yard can be a good compromise with Metro access, newer hotels, and dining, but not always walkable to every museum. Arlington, especially Rosslyn, Courthouse, or Crystal City, usually has better rates and more suite-style breakfast options, with a 10 to 20 minute Metro ride. I’d keep the normal rating floor around 4.0 or better.",
+          "role": "assistant"
+        },
+        {
+          "content": "Breakfast is useful, but not if it means a mediocre place.",
+          "role": "user"
+        },
+        {
+          "content": "Agreed. Hard constraints for this trip are room for three, reliable Metro access, reasonable total cost, and sane flight times. The softer hotel preferences are good guest ratings, included breakfast when available, and easy dinner nearby. If breakfast conflicts with rating or location, I would not let breakfast win.",
+          "role": "assistant"
+        },
+        {
+          "content": "What budget should I be thinking about?",
+          "role": "user"
+        },
+        {
+          "content": "For spring break in DC, central hotels can jump quickly. Do you want me to screen under a specific nightly cap before tax, or compare total trip cost including flights?",
+          "role": "assistant"
+        },
+        {
+          "content": "Use under $320 a night before tax as a ceiling. If we stay outside the core, I would hope for more like $270 or less.",
+          "role": "user"
+        },
+        {
+          "content": "With that cap, I’d shortlist select-service or suite hotels rather than luxury properties: Hyatt Place or Residence Inn near the National Mall if the rate lands under the ceiling; Homewood Suites or Residence Inn around Navy Yard or Capitol Hill; and Hyatt Place, Residence Inn, or Hampton-style options in Arlington or Crystal City. I would verify the current guest rating, the exact bed setup, whether breakfast is truly included, and the Metro walk before booking.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would you avoid Union Station with a kid?",
+          "role": "user"
+        },
+        {
+          "content": "Not automatically. Union Station is useful for transit and has dining, but some nearby blocks feel more office-oriented or quiet at night. I’d pick it if the hotel is clearly rated well, close to Metro, and materially cheaper. For a tired child after museums, Penn Quarter/Mall area or an Arlington hotel on an easy Metro line is more predictable.",
+          "role": "assistant"
+        },
+        {
+          "content": "What flight pattern should I watch for?",
+          "role": "user"
+        },
+        {
+          "content": "Best pattern: Friday after school, ATL-DCA nonstop departing around 5:00 to 7:30 p.m., or Saturday morning nonstop around 8:00 to 11:00 if Friday fares are high. Return Tuesday or Wednesday between about 1:00 and 5:00 p.m. fits your usual preference for not rushing home in the morning without pushing into late evening. I’d avoid late Friday arrivals into BWI for this trip.",
+          "role": "assistant"
+        },
+        {
+          "content": "If Friday fares are high, would a one-stop into DCA be okay?",
+          "role": "user"
+        },
+        {
+          "content": "For ATL to DC, I would not start there. Nonstops are common, and a connection adds a lot of failure points for a short family trip. A one-stop would need to save a lot, roughly $150 or more per person, and still land at a decent hour. This is a case where your usual tolerance for one short layover is worth relaxing toward nonstop because the route is short.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you give me the spouse-facing summary and what we still need to decide?",
+          "role": "user"
+        },
+        {
+          "content": "Spouse-facing summary: Option A is ATL-DCA nonstop plus a Mall/Penn Quarter hotel: easiest museum logistics, highest hotel cost. Option B is ATL-DCA nonstop plus Arlington or Crystal City: best cost/convenience balance, breakfast more likely, one Metro ride to museums. Option C is IAD or BWI plus a cheaper hotel: only worth it for a large fare savings because it adds transfer friction. My preliminary pick is Option B unless central DC prices come in under the cap. Still needed: confirm exact travel dates, decide four versus five days, set the fare premium you will pay for DCA, and choose whether walking convenience is worth a higher nightly rate.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0004",
+      "session_index": 4,
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "domain": "flights_and_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "User confirmed DC dates of Apr 4-8, current DCA and BWI fare options, hotel shortlist with rates, breakfast, cancellability, and ratings. Assistant compared total pre-tax costs, recommended the Friday DCA nonstop over BWI or shortening the trip, selected Residence Inn Arlington Courthouse as the value hotel with Hyatt Place National Mall as the convenience backup, and provided booking notes including seat priorities.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "evidence_quote": "Return should be after lunch but not late.",
+            "habit_id": "tm_pd_v04_user_000_h02",
+            "signal_type": "support"
+          },
+          {
+            "evidence_quote": "ratings are around 4.1 or better.",
+            "habit_id": "tm_pd_v04_user_000_h04",
+            "signal_type": "support"
+          },
+          {
+            "evidence_quote": "breakfast is shown",
+            "habit_id": "tm_pd_v04_user_000_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "We have dates now: Friday April 4 after school through Tuesday April 8. Return should be after lunch but not late. Fares are higher than when we first looked.",
+          "role": "user"
+        },
+        {
+          "content": "That window works. Current hard constraints are nonstop if possible, avoid a difficult first evening, and return Tuesday afternoon. Your Delta preference is still soft; timing and airport matter more. What prices are you seeing?",
+          "role": "assistant"
+        },
+        {
+          "content": "Delta ATL-DCA is 6:05 p.m. Friday, returning 2:35 p.m. Tuesday, $368 per person. American DCA is similar but $391. Southwest into BWI is $242, lands 8:25 p.m. Friday. Delta DCA Saturday morning to Tuesday afternoon is $286.",
+          "role": "user"
+        },
+        {
+          "content": "For three travelers: Delta Friday DCA is about $1,104; American Friday DCA about $1,173; Southwest BWI about $726; Saturday DCA about $858. Saturday saves $246 versus Friday DCA but cuts the trip shorter. BWI saves more, but an 8:25 landing plus transfer is exactly the first-evening friction we were trying to avoid. I’d book the Delta Friday DCA nonstop if the hotel total still works.",
+          "role": "assistant"
+        },
+        {
+          "content": "Hotel shortlist: Hyatt Place National Mall is $315 a night, Residence Inn Arlington Courthouse is $246, and Homewood Suites Navy Yard is $279. All are cancellable, breakfast is shown, and ratings are around 4.1 or better.",
+          "role": "user"
+        },
+        {
+          "content": "All three pass the practical screen. Hyatt Place is best for Smithsonian-heavy days but costs the most. Residence Inn Arlington Courthouse saves about $276 over four nights versus Hyatt, likely gives more room and breakfast, but adds a Metro ride. Homewood Navy Yard sits in the middle with good dining access, but it is less direct for the Zoo and some museums. Paired with DCA, Residence Inn looks like the best balance.",
+          "role": "assistant"
+        },
+        {
+          "content": "Anika gets tired, and we want Air and Space, Natural History, and maybe the Zoo.",
+          "role": "user"
+        },
+        {
+          "content": "Then the tradeoff is real. Hyatt helps most on Air and Space/Natural History days because you can reduce walking and transit. The Zoo requires Metro either way. If mid-day hotel breaks are important, pick Hyatt. If she is mostly tired at the end of the day, Arlington is fine and the extra space plus breakfast may matter more.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you show the total before taxes?",
+          "role": "user"
+        },
+        {
+          "content": "Pre-tax estimate: Delta Friday DCA plus Hyatt is $1,104 + $1,260 = $2,364. Delta Friday DCA plus Residence Inn is $1,104 + $984 = $2,088. Delta Friday DCA plus Homewood is $1,104 + $1,116 = $2,220. Saturday DCA plus three nights at Residence Inn is about $1,596, but you lose Friday night and Saturday morning. BWI plus four nights at Residence Inn is about $1,710, with more transfer hassle.",
+          "role": "assistant"
+        },
+        {
+          "content": "Under $2,500 before taxes is okay. I do not want to shorten it unless the savings are much bigger.",
+          "role": "user"
+        },
+        {
+          "content": "Then I’d keep the four-night plan and book the Friday DCA nonstop now. For the hotel, my pick is Residence Inn Arlington Courthouse unless you decide the Mall walking convenience is worth $276 more. Hyatt is the comfort pick; Residence Inn is the value pick without dropping the rating or breakfast.",
+          "role": "assistant"
+        },
+        {
+          "content": "Should I book the hotel first or flights?",
+          "role": "user"
+        },
+        {
+          "content": "Flights first because the fare has already moved and the timing is the fragile piece. Then reserve a cancellable hotel the same day. If both hotel rates are fully cancellable, you could hold Residence Inn and Hyatt briefly while you confirm bed setup, but do not wait on the airfare for that.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me final booking notes. Include seats if relevant.",
+          "role": "user"
+        },
+        {
+          "content": "Booking notes: book three economy seats ATL-DCA nonstop Friday Apr 4 at 6:05 p.m., returning DCA-ATL Tuesday Apr 8 at 2:35 p.m.; choose Delta over American because it is cheaper on the same airport pattern and avoids BWI transfer friction. Select a window seat for you if available, then keep the family seated together as the higher priority. Reserve a cancellable Residence Inn Arlington Courthouse room for four nights, verifying room occupancy for three, actual bed or sofa-bed setup, free breakfast terms, cancellation deadline, and walking route to Metro. Keep Hyatt Place National Mall as the backup if you decide central convenience is worth the premium.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0005",
+      "session_index": 5,
+      "user_id": "tm_pd_v04_user_000"
+    }
+  ],
+  "updated_continuity_summary": "{'ongoing_trips': ['DC family spring-break trip for Maya, Ravi, and Anika is planned for Friday Apr 4 through Tuesday Apr 8, focused on museums with a possible Zoo visit.'], 'resolved_plans': ['Minneapolis work trip is no longer active; the last practical recommendation was to move the MSP-ATL return to the later Delta nonstop because the client wrap-up shifted to 2:00 p.m., and to keep the Hyatt reservation with a late-arrival note.', 'For DC, recommended booking ATL-DCA nonstop on Delta: Apr 4 at 6:05 p.m. outbound and Apr 8 at 2:35 p.m. return, instead of BWI or a shorter Saturday departure.', 'For DC lodging, recommended Residence Inn Arlington Courthouse for four nights as the best value balance, with Hyatt Place National Mall as the convenience backup if walking access to museums is worth the higher rate.'], 'unresolved_follow_ups': ['Before ticketing DC flights, confirm final fare, passenger names, dates of birth, and baggage needs.', 'Select seats after booking, prioritizing keeping the family together; Maya prefers a window seat if it does not disrupt the family seating arrangement.', 'Before booking the DC hotel, verify room occupancy for three, bed or sofa-bed setup, actual breakfast inclusion, cancellation deadline, current guest rating, and walking route to Metro.'], 'durable_user_facts': ['Maya is Atlanta-based and generally prefers practical nonstop or simple flight logistics when the fare difference is reasonable.', 'Her carrier preference for Delta is useful only when timing, airport, and cost also fit.', 'For hotels, she values good guest ratings, breakfast when available, and low-friction access to transit and dining, without letting breakfast override quality or location.']}",
+  "verification": {
+    "3": {
+      "habit_signals": [],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User messages provide current itinerary and option facts, but do not independently state a reusable carrier, seat, hotel, breakfast, rating, or layover preference."
+    },
+    "4": {
+      "habit_signals": [
+        {
+          "evidence_quote": "Breakfast is useful, but not if it means a mediocre place.",
+          "habit_id": "tm_pd_v04_user_000_h05",
+          "signal_type": "boundary"
+        },
+        {
+          "evidence_quote": "would a one-stop into DCA be okay?",
+          "habit_id": "tm_pd_v04_user_000_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User explicitly treats breakfast as useful but subordinate to hotel quality, and considers a one-stop flight only in the fare-sensitive scenario."
+    },
+    "5": {
+      "habit_signals": [
+        {
+          "evidence_quote": "Return should be after lunch but not late.",
+          "habit_id": "tm_pd_v04_user_000_h02",
+          "signal_type": "support"
+        },
+        {
+          "evidence_quote": "ratings are around 4.1 or better.",
+          "habit_id": "tm_pd_v04_user_000_h04",
+          "signal_type": "support"
+        },
+        {
+          "evidence_quote": "breakfast is shown",
+          "habit_id": "tm_pd_v04_user_000_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User states an afternoon-not-late return preference and includes both 4.1+ ratings and breakfast in the hotel shortlist."
+    }
+  }
+}

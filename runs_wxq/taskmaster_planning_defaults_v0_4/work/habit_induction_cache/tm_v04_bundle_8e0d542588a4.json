@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "This applies only to flight departure time-of-day selection; it does not set the destination, travel date, return time, route, cabin class, or price limit.",
+  "bundle_id": "tm_v04_bundle_8e0d542588a4",
+  "condition": "When searching for flights and choosing a departure time of day, if the itinerary does not impose a different schedule constraint.",
+  "confidence": 0.9,
+  "decision": "accept",
+  "default_action": "Prefer or filter for flights departing at night.",
+  "exception_condition": "If the user specifies another departure window or nighttime flights are unavailable or incompatible with the current itinerary, follow the stated schedule constraint instead of defaulting to night.",
+  "family": "departure_time",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_8e0d542588a4",
+  "induced_at": "2026-07-15T12:36:05.623621+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefers nighttime departures for flights",
+  "preference_value": "nighttime flight departures",
+  "rationale": "Three independent flight-task instruction_ids contain requests or selections for “night time” flights. The examples consistently support a reusable synthetic default toward nighttime flight departures, scoped to departure-time selection rather than to any one route or date.",
+  "seed_value": "night_time",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User selects “the night time flight” and says it “works best for me,” with “night time” annotated as flight_search.time_of_day.",
+      "conversation_id": "dlg-6281a447-44db-4f9c-b8ed-17ae2d3851db",
+      "turn_index": 21
+    },
+    {
+      "contribution": "User directly requests the time of day: “I want to fly at night time,” with “night time” annotated as flight_search.time_of_day.",
+      "conversation_id": "dlg-799c04a1-9054-4509-bf4e-e7417741f35f",
+      "turn_index": 19
+    },
+    {
+      "contribution": "User gives an approximate departure window: “Somewhere around night time,” with “night time” annotated as flight_search.time_of_day.",
+      "conversation_id": "dlg-f3189470-c660-4764-97e7-a1b6daa4d541",
+      "turn_index": 59
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "night time",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-6281a447-44db-4f9c-b8ed-17ae2d3851db",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 21,
+      "user_utterance": "I think I'll go with the economy non-stop and the night time flight I think works best for me."
+    },
+    {
+      "annotated_segment": "night time",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-799c04a1-9054-4509-bf4e-e7417741f35f",
+      "habitual_language": false,
+      "instruction_id": "flight-3",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 19,
+      "user_utterance": "I want to fly at night time."
+    },
+    {
+      "annotated_segment": "night time",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-f3189470-c660-4764-97e7-a1b6daa4d541",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 59,
+      "user_utterance": "Somewhere around night time."
+    }
+  ]
+}

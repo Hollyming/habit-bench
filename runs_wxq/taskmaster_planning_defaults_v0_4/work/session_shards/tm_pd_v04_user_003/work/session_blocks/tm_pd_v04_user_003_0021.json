@@ -1,0 +1,344 @@
+{
+  "cache_fingerprint": "79d63c16ea16c00d961ace7cb35fa248458dd9558f39a553fd78022df8e9ac55",
+  "sessions": [
+    {
+      "domain": "hotel_area_refinement",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "User reported the Redmond venue change and earlier Tacoma setup, confirmed no hosted dinner after the reception, and accepted one longer Tuesday-night drive to improve Wednesday morning reliability. Tentative hotel sequence became Monday Redmond/north Bellevue and Tuesday-Wednesday Federal Way, with breakfast timing and cancellation deadlines still to verify.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.93,
+            "evidence_quote": "The Redmond hotel I liked is still refundable but breakfast isn’t included anymore. Federal Way is $45 cheaper, has breakfast, and is better for Tacoma. Can you re-rank the hotel sequence?",
+            "habit_id": "tm_pd_v04_user_003_h04",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.95,
+            "evidence_quote": "What about dinner after Redmond if I drive south? I don’t want to arrive hungry at 9:30 and have nothing.",
+            "habit_id": "tm_pd_v04_user_003_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The Puget Sound plan got annoying. The Bellevue reception is now in Redmond, not Bellevue, Tuesday 6:30-8:00. Tacoma transfer fair wants table setup by 7:30 Wednesday. The Redmond hotel I liked is still refundable but breakfast isn’t included anymore. Federal Way is $45 cheaper, has breakfast, and is better for Tacoma. Can you re-rank the hotel sequence?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Because the Tacoma setup is early, I’d weight Wednesday-morning drive reliability over the Redmond breakfast issue. Do you have any hosted dinner after the Redmond reception, or can you leave as soon as it wraps?",
+          "role": "assistant"
+        },
+        {
+          "content": "No hosted dinner. I may need 10 minutes to box materials, so realistically I’m in the car at 8:15 or 8:20. I don’t love a longer late drive, but it’s not unsafe-late.",
+          "role": "user"
+        },
+        {
+          "content": "Then my ranking is: 1) Monday Redmond or north Bellevue, Tuesday plus Wednesday Federal Way. Best overall: one longer post-reception drive, then no Wednesday checkout and an easier Tacoma morning. 2) Monday plus Tuesday Redmond, Wednesday Federal Way. More comfortable Tuesday night, but Wednesday morning Redmond-to-Tacoma is the least reliable piece. 3) Monday Lynnwood/Everett, Tuesday Redmond, Wednesday Federal Way. Best for reducing individual drive lengths, but three check-ins is fussy.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would you put Renton or Tukwila between Redmond and Federal Way, or does that just split the difference badly?",
+          "role": "user"
+        },
+        {
+          "content": "Renton or Tukwila is a reasonable fallback, not the lead. It shortens the Tuesday night drive by maybe 15-20 minutes versus Federal Way, but you give some of that time back Wednesday morning and still have more traffic exposure before a fixed setup time. Federal Way is cleaner if the rate and cancellation terms are good.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Federal Way option is Home2 Suites near the mall, free breakfast, free parking, cancel until 6 pm the day before. Redmond is a Hyatt House, parking $18, no included breakfast on the rate I see, cancel 48 hours out.",
+          "role": "user"
+        },
+        {
+          "content": "That pushes me further toward one Redmond night and two Federal Way nights. Hyatt House is acceptable for Monday because you can solve Tuesday breakfast with a coffee stop or grocery run. The Federal Way terms are better for the part of the trip where timing matters most.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about dinner after Redmond if I drive south? I don’t want to arrive hungry at 9:30 and have nothing.",
+          "role": "user"
+        },
+        {
+          "content": "Plan dinner before leaving Redmond if the reception food is light: pick up something near the venue or order ahead for 8:10. If you leave by 8:25, Federal Way should still be a late-evening arrival rather than a night-owl arrival. I would not count on a full sit-down dinner after you check in.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay, so rank is Redmond one night, Federal Way two nights. Any reason to keep Olympia/Tumwater for Wednesday?",
+          "role": "user"
+        },
+        {
+          "content": "Only if the Thursday Olympia appointment becomes very early or the Federal Way rate loses free cancellation. Tumwater or Olympia improves Thursday morning and dinner options, but it adds another hotel move and makes Wednesday evening less efficient after Tacoma. With the current 7:30 Tacoma setup, the bigger win is sleeping south before Wednesday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Put the final sequence in plain English so I can price it tonight.",
+          "role": "user"
+        },
+        {
+          "content": "Bookable sequence: Monday night in Redmond or north Bellevue, with Hyatt House okay if the total still works despite parking and no included breakfast. Tuesday night and Wednesday night in Federal Way, preferably the Home2 Suites rate with free parking, included breakfast, and cancellation until 6 pm Pacific the day before. Trade-off: you accept the one longer Tuesday-night drive after the Redmond reception so Wednesday morning is calmer, you avoid a Wednesday checkout, and breakfast/parking are easier for the two fixed-event mornings. Before clicking, re-check the breakfast start time at Federal Way and save both cancellation deadlines.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_003_s0021",
+      "session_index": 21,
+      "user_id": "tm_pd_v04_user_003"
+    },
+    {
+      "domain": "flight_booking_decision",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "User chose Delta Main via SEA over the cheaper Paine Field option because the return connection was awkward. User selected window seats 19A and 21F, paired the flights with one Redmond night and two Federal Way nights, set rental timing around SEA, and gathered reimbursement receipt requirements.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.91,
+            "evidence_quote": "Delta Main SLC-SEA Monday 1:15-2:32 and SEA-SLC Thursday 3:55-6:55 is $318. Alaska into Paine Monday is $262, but the return that works has a Portland connection and lands after 8. I think SEA is cleaner, but is Thursday after Olympia too tight?",
+            "habit_id": "tm_pd_v04_user_003_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.92,
+            "evidence_quote": "Delta Main SLC-SEA Monday 1:15-2:32 and SEA-SLC Thursday 3:55-6:55 is $318.",
+            "habit_id": "tm_pd_v04_user_003_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.9,
+            "evidence_quote": "Seats are open: 19A outbound and 21F return. Main cabin, not basic.",
+            "habit_id": "tm_pd_v04_user_003_h03",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.9,
+            "evidence_quote": "Home2 Federal Way Tuesday/Wednesday is $144, parking included, breakfast listed, cancel Monday 6 pm. Does that pair with the flights?",
+            "habit_id": "tm_pd_v04_user_003_h04",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I have airfare now. Delta Main SLC-SEA Monday 1:15-2:32 and SEA-SLC Thursday 3:55-6:55 is $318. Alaska into Paine Monday is $262, but the return that works has a Portland connection and lands after 8. I think SEA is cleaner, but is Thursday after Olympia too tight?",
+          "role": "user"
+        },
+        {
+          "content": "What time is the Olympia visit ending, and do you need to stay for lunch or a counselor handoff?",
+          "role": "assistant"
+        },
+        {
+          "content": "Visit is 9:00-10:15. I told them I’d leave by 10:30. No lunch. I’ll have the rental car.",
+          "role": "user"
+        },
+        {
+          "content": "The 3:55 SEA departure is comfortable if you leave Olympia by 10:30. Build it this way: 10:30 depart, aim for the SEA rental return around 12:30, and be in the terminal by about 12:45 if traffic is ordinary. Even with an extra 45 minutes on I-5, you are not pressing against boarding.",
+          "role": "assistant"
+        },
+        {
+          "content": "So skip Paine Field?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Paine is attractive only on the inbound. The awkward return connection creates more failure points than it saves, and you would still need to manage the rental car around SEA or a one-way return. SEA both ways is the cleaner reimbursement and operations story.",
+          "role": "assistant"
+        },
+        {
+          "content": "Hotels before I click: Hyatt House Redmond Monday is $189 plus $18 parking, cancel Saturday 11:59 pm. Home2 Federal Way Tuesday/Wednesday is $144, parking included, breakfast listed, cancel Monday 6 pm. Does that pair with the flights?",
+          "role": "user"
+        },
+        {
+          "content": "It pairs well. Monday arrival at 2:32 gives you time to pick up the car, get to Redmond before dinner traffic gets too painful, and sleep near Tuesday’s eastside stops. Tuesday after the reception, drive to Federal Way and keep that room for two nights. That protects the Tacoma setup and avoids a Wednesday checkout.",
+          "role": "assistant"
+        },
+        {
+          "content": "Rental car screen wants pickup Monday at 3:15 and return Thursday at 1:00. Should I pad those?",
+          "role": "user"
+        },
+        {
+          "content": "Set pickup to 3:00 or 3:15; either is fine because the desk will key off actual arrival. For return, use 1:00 or 1:30 only if the price is identical. I’d target being at the return facility by 12:30 and treat 1:00 as the reservation time, not the planned arrival.",
+          "role": "assistant"
+        },
+        {
+          "content": "Seats are open: 19A outbound and 21F return. Main cabin, not basic.",
+          "role": "user"
+        },
+        {
+          "content": "Take 19A and 21F. Main is the right call here because you can select seats now and avoid the tighter restrictions that would make a schedule shift harder.",
+          "role": "assistant"
+        },
+        {
+          "content": "Anything I’m missing for reimbursement? This loop has too many little pieces.",
+          "role": "user"
+        },
+        {
+          "content": "Save the airfare e-receipt showing Main Cabin, the rental estimate with pickup/drop times and taxes, the final rental receipt after return, both hotel confirmations with cancellation policies, hotel folios at checkout, the Redmond parking line item, fuel receipt, and any toll or airport concession fee details that show on the rental final.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. Book order?",
+          "role": "user"
+        },
+        {
+          "content": "Book in this order: 1) Delta SLC-SEA Monday 1:15 and SEA-SLC Thursday 3:55, select 19A/21F, and save the receipt. 2) Rental car at SEA, pickup about 3:15 Monday and return listed around 1:00 Thursday, with a personal target of 12:30. 3) Hyatt House Redmond for Monday only, noting Saturday’s cancellation deadline and parking. 4) Home2 Federal Way for Tuesday and Wednesday, noting Monday’s cancellation deadline and verifying breakfast start time. This is a reliable pairing; I would not hold out for Paine Field.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_003_s0022",
+      "session_index": 22,
+      "user_id": "tm_pd_v04_user_003"
+    },
+    {
+      "domain": "brief_pretrip_adjustment",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "User reported that Federal Way breakfast begins at the planned departure time and that an Olympia room would cost about $70 more. Decision was to keep Federal Way, leave earlier, request grab-and-go if available, and handle breakfast after arrival or after the school visit.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.9,
+            "evidence_quote": "Federal Way just emailed: breakfast starts at 6:30, which is exactly when I planned to leave for Olympia Thursday. The last night is cancellable until tonight. Move to Olympia, or keep it?",
+            "habit_id": "tm_pd_v04_user_003_h04",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Federal Way just emailed: breakfast starts at 6:30, which is exactly when I planned to leave for Olympia Thursday. The last night is cancellable until tonight. Move to Olympia, or keep it?",
+          "role": "user"
+        },
+        {
+          "content": "Quick check: what time do you need to be at the Olympia school, and is the 6:30 departure padded or the latest safe time?",
+          "role": "assistant"
+        },
+        {
+          "content": "I need to be parked by 7:50 for an 8:15 counselor breakfast. 6:30 has maybe 15 minutes of padding. Olympia room is about $70 more.",
+          "role": "user"
+        },
+        {
+          "content": "Keep Federal Way. A $70 move just to access hotel breakfast is not worth another checkout unless weather looks bad or the school moves earlier. Make food independent of the hotel and leave before breakfast opens.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does that look like in practice?",
+          "role": "user"
+        },
+        {
+          "content": "Wednesday night: ask the desk to settle the folio, request a grab-and-go bag if they have one, and put coffee/snack backup in the car. Thursday: keys ready, depart 6:15-6:20, stop for coffee only after you’re near Olympia, and keep the SEA return plan unchanged. If traffic looks ugly when you wake up, skip all stops and buy breakfast after the school visit.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_003_s0023",
+      "session_index": 23,
+      "user_id": "tm_pd_v04_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Northern California February swing remains resolved: Delta Main SLC-SMF and OAK-SLC, SMF-to-OAK rental, Sacramento/Pleasant Hill/Santa Rosa hotels, and Thursday OAK return with receipts/folios to retain. Puget Sound late-March yield loop is now booked/resolved: Delta Main SLC-SEA Monday 1:15-2:32 and SEA-SLC Thursday 3:55-6:55 with seats 19A and 21F; SEA rental pickup about 3:15 Monday and return listed around 1:00 Thursday, with a target return around 12:30. Hotels are Monday Hyatt House Redmond/north Bellevue at $189 plus parking, then Tuesday-Wednesday Home2 Federal Way at $144 with parking included. Keep the final Federal Way night despite breakfast starting at 6:30; ask for grab-and-go and folio help Wednesday night, leave Thursday 6:15-6:20 for the Olympia school visit, and handle coffee/breakfast near Olympia or after the visit. Receipt list for Puget Sound: airfare e-receipt, rental estimate/final receipt/fuel/tolls or fees, hotel confirmations, cancellation policies, folios, and Redmond parking. Open follow-ups are only to monitor flight times, weather/I-5 traffic, and collect final folios.",
+  "verification": {
+    "21": {
+      "habit_signals": [
+        {
+          "confidence": 0.93,
+          "evidence_quote": "The Redmond hotel I liked is still refundable but breakfast isn’t included anymore. Federal Way is $45 cheaper, has breakfast, and is better for Tacoma. Can you re-rank the hotel sequence?",
+          "habit_id": "tm_pd_v04_user_003_h04",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.95,
+          "evidence_quote": "What about dinner after Redmond if I drive south? I don’t want to arrive hungry at 9:30 and have nothing.",
+          "habit_id": "tm_pd_v04_user_003_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User-originated hotel comparison makes included breakfast relevant, and the user explicitly raises late-arrival dinner availability. No hidden-profile leakage detected."
+    },
+    "22": {
+      "habit_signals": [
+        {
+          "confidence": 0.91,
+          "evidence_quote": "Delta Main SLC-SEA Monday 1:15-2:32 and SEA-SLC Thursday 3:55-6:55 is $318. Alaska into Paine Monday is $262, but the return that works has a Portland connection and lands after 8. I think SEA is cleaner, but is Thursday after Olympia too tight?",
+          "habit_id": "tm_pd_v04_user_003_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.92,
+          "evidence_quote": "Delta Main SLC-SEA Monday 1:15-2:32 and SEA-SLC Thursday 3:55-6:55 is $318.",
+          "habit_id": "tm_pd_v04_user_003_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.9,
+          "evidence_quote": "Seats are open: 19A outbound and 21F return. Main cabin, not basic.",
+          "habit_id": "tm_pd_v04_user_003_h03",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.9,
+          "evidence_quote": "Home2 Federal Way Tuesday/Wednesday is $144, parking included, breakfast listed, cancel Monday 6 pm. Does that pair with the flights?",
+          "habit_id": "tm_pd_v04_user_003_h04",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User-originated airfare, seat, and hotel details support the listed habits. No hidden-profile leakage detected."
+    },
+    "23": {
+      "habit_signals": [
+        {
+          "confidence": 0.9,
+          "evidence_quote": "Federal Way just emailed: breakfast starts at 6:30, which is exactly when I planned to leave for Olympia Thursday. The last night is cancellable until tonight. Move to Olympia, or keep it?",
+          "habit_id": "tm_pd_v04_user_003_h04",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User frames hotel breakfast timing as a tradeoff against a fixed early departure. No hidden-profile leakage detected."
+    }
+  }
+}

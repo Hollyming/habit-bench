@@ -1,0 +1,185 @@
+{
+  "cache_fingerprint": "2b36505ad464584e22f1b4c51c0621a460630afdf687881386c5206787a89aea",
+  "profile": {
+    "communication_style": {
+      "decision_cues": "Responds well to recommendations framed as 'best fit,' 'acceptable backup,' and 'ask before booking' rather than long narrative explanations.",
+      "follow_up_behavior": "Often refines one variable at a time after an initial search, such as moving the departure later, checking a room amenity, or comparing a different airport.",
+      "planning_preferences": "Likes shortlists with the trade-offs called out plainly, especially where timing, connection quality, hotel rating, and room amenities differ.",
+      "tone": "concise, pragmatic, and comparison-oriented"
+    },
+    "generated_by": {
+      "model": "gpt-5.5",
+      "reasoning_effort": "xhigh"
+    },
+    "generation_method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+    "habit_interactions": [
+      "For flights, the connection policy and explicit client timing usually matter more than the soft United preference; a non-United itinerary can win when it has a cleaner schedule or better connection.",
+      "The afternoon-departure habit fits his Bay Area work rhythm, but it should not be treated as an automatic return-flight rule or as stronger than a fixed meeting time.",
+      "The window-seat habit is most visible on solo work flights and becomes less important when he is traveling with his spouse or needs a different seating arrangement.",
+      "For hotels, the customer-rating threshold is the main quality screen; restaurant access and the coffee-maker/fridge bundle are practical tie-breakers for suburban work stays.",
+      "Personal weekend trips may still show the flight and hotel-quality defaults, but the work-specific room-routine and suburban-dining concerns should be lighter."
+    ],
+    "habits": [
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_005_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies to Jonah's self-booked commercial flights from Bay Area airports for client visits, distributor meetings, conferences, and comparable personal trips.",
+        "scope_key": "soft_united_preferred_carrier_for_bay_area_self_booked_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005"
+      },
+      {
+        "alternative_group_key": "flight_departure_time_of_day_preference",
+        "boundary_condition": "Applies only to flight departure time-of-day. Do not infer it for arrival times, dates, routes, every leg automatically, or earliest-afternoon departures as a recurring rule.",
+        "condition": "When selecting or comparing flight departure times.",
+        "default_action": "Look first for departure options in the afternoon; follow any current explicit request for another time window or exact time.",
+        "exception_condition": "If acceptable afternoon departures are unavailable or conflict with other stated constraints, ask before broadening to nearby time windows.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_005_h01",
+        "name": "prefers_afternoon_departures",
+        "preference_value": "Prefers flight departures in the afternoon when no different departure-time constraint is specified.",
+        "scope_condition": "Applies when Jonah is choosing flight departure times without a stronger meeting-driven or same-day urgency constraint.",
+        "scope_key": "afternoon_departure_default_for_self_booked_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_ff9a7f3c433c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ff9a7f3c433c",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005"
+      },
+      {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v04_user_005_h02",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Applies to Jonah's solo work and personal flights when seat selection is available and no traveling-companion seating need overrides it.",
+        "scope_key": "window_seat_for_solo_commercial_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "background",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005"
+      },
+      {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_005_h03",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when Jonah is evaluating connecting itineraries, especially routes from the Bay Area to smaller industrial or municipal markets.",
+        "scope_key": "single_short_layover_boundary_for_connection_itineraries",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005"
+      },
+      {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_005_h04",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies to Jonah's self-booked business and conference hotels when customer-facing hotel ratings are available.",
+        "scope_key": "four_point_zero_customer_rating_floor_for_work_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005"
+      },
+      {
+        "alternative_group_key": "trip_context_hotel_in_room_amenity_bundle",
+        "boundary_condition": "Do not generalize this to other amenities such as microwave, balcony, bar, fireplace, room size, location, dates, or price.",
+        "condition": "When selecting or comparing hotel rooms and in-room amenities are being considered.",
+        "default_action": "Use an in-room coffee maker and refrigerator or mini-fridge as soft amenity criteria, and confirm availability when relevant.",
+        "exception_condition": "If a hotel otherwise strongly matches the current trip, treat a missing coffee maker or refrigerator/mini-fridge as a point to confirm with the user rather than an automatic rejection.",
+        "family": "trip_context_hotel_policy",
+        "habit_id": "tm_pd_v04_user_005_h05",
+        "name": "hotel_room_coffee_maker_and_fridge_preference",
+        "preference_value": "Prefers a hotel room with both a coffee maker and a refrigerator or mini-fridge.",
+        "scope_condition": "Applies to Jonah's multi-night hotel rooms, especially work trips with early site starts or long days away from the hotel.",
+        "scope_key": "coffee_maker_and_fridge_for_multinight_hotel_rooms",
+        "source_bundle_id": "tm_v04_e2e_bundle_12de0f7be5d5",
+        "source_habit_instance_id": "tm_v04_e2e_habit_12de0f7be5d5",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005"
+      },
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Do not infer specific cuisine, star rating, bar service, kid-friendliness, downtown location, ski access, or wooded setting unless stated for the current trip.",
+        "condition": "When searching for, comparing, or summarizing hotel options.",
+        "default_action": "Mention on-site or nearby restaurant availability and use convenient dining access as a soft tie-breaker rather than a hard filter.",
+        "exception_condition": "Do not apply if the user explicitly deprioritizes dining access or if stronger current-trip constraints override it.",
+        "family": "hotel_accessibility_amenity_priority",
+        "habit_id": "tm_pd_v04_user_005_h06",
+        "name": "hotel_restaurant_access",
+        "preference_value": "Hotels with on-site or nearby restaurant access, with restaurant availability noted during comparisons.",
+        "scope_condition": "Applies to Jonah's suburban, airport-adjacent, and industrial-area work hotels where convenient evening dining logistics matter.",
+        "scope_key": "restaurant_access_for_suburban_and_airport_work_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_11cb153da985",
+        "source_habit_instance_id": "tm_v04_e2e_habit_11cb153da985",
+        "strength": "background",
+        "testable": false,
+        "user_id": "tm_pd_v04_user_005"
+      }
+    ],
+    "longitudinal_plan": {
+      "target_history_characters": 344000,
+      "target_sessions": 133,
+      "travel_tempo": "High but uneven over roughly twenty months: several spring and fall client-site bursts, quieter holiday periods, a few annual conferences, and occasional personal weekends.",
+      "typical_episode_shape": "Most travel episodes span 2 to 4 sessions: initial flight-and-hotel search, one refinement around meeting times or airport choice, booking confirmation, and occasional follow-up for seat choice, room amenities, or hotel comparison. A minority of urgent site visits compress into a single session, while conference trips may generate longer planning threads."
+    },
+    "persona": {
+      "age_range": "mid 40s",
+      "decision_posture": "Schedule-reliability focused and practical. He likes comfortable, predictable flights and hotels that support early workdays, but he treats most preferences as soft when a client schedule, route availability, or budget ceiling is more important.",
+      "home_base": "San Francisco, California",
+      "name": "Jonah Kim",
+      "occupation": "technical sales engineer for a water-treatment equipment manufacturer",
+      "travel_identity": "Frequent self-booking traveler who visits municipal utilities, food-and-beverage plants, distributor trainings, and industry conferences, mostly on domestic trips from the Bay Area with occasional personal long weekends with his spouse.",
+      "user_id": "tm_pd_v04_user_005"
+    },
+    "travel_contexts": [
+      {
+        "context_key": "client_site_visits",
+        "description": "Two- to four-night weekday trips to water plants, industrial parks, and municipal offices, often with fixed site-access windows and early starts."
+      },
+      {
+        "context_key": "distributor_training_and_sales_meetings",
+        "description": "Short domestic trips for demos, lunch-and-learns, and partner check-ins where he balances flight timing against presentation prep and equipment-shipping logistics."
+      },
+      {
+        "context_key": "industry_conferences",
+        "description": "Several annual trade shows where he may compare official hotel blocks with better-rated nearby options and book around booth setup or teardown schedules."
+      },
+      {
+        "context_key": "personal_weekends",
+        "description": "A few leisure trips with his spouse each year, usually planned with lighter constraints and fewer work-driven hotel requirements."
+      }
+    ],
+    "user_id": "tm_pd_v04_user_005"
+  }
+}

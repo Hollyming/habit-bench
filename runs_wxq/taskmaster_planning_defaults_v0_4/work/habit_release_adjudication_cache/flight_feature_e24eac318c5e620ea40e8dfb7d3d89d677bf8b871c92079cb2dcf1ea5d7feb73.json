@@ -1,0 +1,54 @@
+{
+  "cache_fingerprint": "e24eac318c5e620ea40e8dfb7d3d89d677bf8b871c92079cb2dcf1ea5d7feb73",
+  "decisions": [
+    {
+      "action": "merge",
+      "alternative_group_key": "flight_onboard_connectivity_preference",
+      "boundary_condition": "Applies only to flight onboard connectivity amenities. Do not infer destination, airline loyalty, cabin class, route, schedule, lodging, or ground-transport preferences from this policy.",
+      "canonical_value": "prefer_free_onboard_wifi_with_wifi_availability_fallback",
+      "condition": "When comparing, filtering, or finalizing flight options and onboard connectivity amenities are available as filters or descriptors.",
+      "default_action": "Prefer flight options that include free onboard Wi-Fi. If free Wi-Fi is unavailable or unclear, prefer otherwise suitable options with onboard Wi-Fi and flag whether it is free, paid, or unspecified.",
+      "exception_condition": "If the current request explicitly makes Wi-Fi mandatory, enforce that trip-specific constraint. Otherwise, if no Wi-Fi-equipped option satisfies the current trip's hard constraints, do not fail the booking solely for lack of Wi-Fi; present the best otherwise suitable options and call out the missing or non-free connectivity tradeoff.",
+      "input_ids": [
+        "tm_v04_habit_ff00dc6c7b4d",
+        "tm_v04_habit_c9153d214ac9"
+      ],
+      "name": "Prefers flights with free or available onboard Wi-Fi",
+      "preference_value": "free Wi-Fi preferred; any onboard Wi-Fi acceptable as fallback",
+      "rationale": "Both inputs concern the same onboard connectivity preference. The evidence supports a soft preference for free Wi-Fi when available, with ordinary Wi-Fi availability as the fallback/check rather than a separate incompatible policy. The merged policy preserves that free Wi-Fi is preferred, Wi-Fi availability is still useful when free Wi-Fi is unavailable or unclear, and lack of Wi-Fi should not automatically block booking unless the current request makes it mandatory.",
+      "representative_id": "tm_v04_habit_ff00dc6c7b4d"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_itinerary_time_priority",
+      "boundary_condition": "Applies only to flight itinerary selection by total travel time. Do not generalize it to non-flight travel, destination choice, travel dates, cabin class, airline, or price preferences.",
+      "canonical_value": "minimize_total_flight_travel_time",
+      "condition": "When comparing flight itineraries and the current request does not override this preference.",
+      "default_action": "Rank or request otherwise suitable flight options with the smallest total travel time first.",
+      "exception_condition": "If the current request explicitly prioritizes another factor, such as a specific schedule, route, stop requirement, fare limit, or other hard constraint that requires a longer itinerary, satisfy that current constraint instead.",
+      "input_ids": [
+        "tm_v04_habit_d366e1607884"
+      ],
+      "name": "Prefers shortest total flight travel time",
+      "preference_value": "shortest possible total flight travel time",
+      "rationale": "Multiple examples directly state a preference for the smallest possible total travel time. This is a stable flight-itinerary selection preference and is not merely a one-off transaction constraint.",
+      "representative_id": "tm_v04_habit_d366e1607884"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_onboard_alcohol_service_preference",
+      "boundary_condition": "Applies only to flight choices and onboard beverage-service amenities. Do not infer cabin class, route, destination, travel date, airline, price, or party size from this preference.",
+      "canonical_value": "prefer_flights_serving_alcohol",
+      "condition": "When selecting a passenger flight and onboard service features are available for comparison alongside the trip's explicit itinerary constraints.",
+      "default_action": "Prefer flight options that explicitly serve alcohol onboard.",
+      "exception_condition": "If no flight that serves alcohol satisfies the explicit trip constraints, or if the traveler opts out of alcohol service for the current trip, choose an otherwise suitable flight without requiring alcohol service and call out the tradeoff if relevant.",
+      "input_ids": [
+        "tm_v04_habit_02da1ca7c458"
+      ],
+      "name": "Prefers flights with onboard alcohol service",
+      "preference_value": "serves alcohol onboard",
+      "rationale": "The examples repeatedly indicate a desire for flights that serve alcohol. This is a distinct onboard-service preference and does not alias with Wi-Fi or travel-time preferences.",
+      "representative_id": "tm_v04_habit_02da1ca7c458"
+    }
+  ]
+}

@@ -1,0 +1,421 @@
+{
+  "cache_fingerprint": "f1757e44bd36cfc9ee14b079d9be799c8e07cc5584f16872353b74191ba7f715",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "Choice B is a strong generic alternative because it leaves Chicago later on Tuesday, costs slightly less, and gets her home earlier Thursday. Choice A is not generically dominant on fare or outbound convenience; it becomes the lead only if the assistant remembers that Marisol's recurring timing preference is for the return departure.",
+      "gold_action": "Recommend choice A as the lead itinerary.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0008",
+        "tm_pd_v04_user_002_s0055",
+        "tm_pd_v04_user_002_s0063"
+      ],
+      "habit_family": "flight_departure_arrival_timing",
+      "habit_id": "tm_pd_v04_user_002_h01",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_return_departure_time_preference",
+        "boundary_condition": "Treat as a soft default; if true afternoon return departures are unavailable, limited, or unattractive, consider options close to afternoon.",
+        "condition": "When booking or comparing round-trip flights and selecting the return-leg departure time.",
+        "default_action": "Search for return-flight options departing in the afternoon and present those first when available.",
+        "exception_condition": "Do not apply as a universal outbound-leg rule; one supporting dialogue separately used a morning outbound while still preferring an afternoon return.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_002_h01",
+        "name": "afternoon_return_departure_preference",
+        "preference_value": "Prefer the return flight to depart in the afternoon.",
+        "scope_condition": "Applies to round-trip itineraries when she is choosing the return-leg departure after a work site visit, board meeting, conference, or short personal stay and does not have a fixed agenda or family constraint requiring another time.",
+        "scope_key": "return_legs_after_site_visits_and_short_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_26cf0aa15c48",
+        "source_habit_instance_id": "tm_v04_e2e_habit_26cf0aa15c48",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "Delta is tempting because it is cheaper and still returns after lunch, with a reasonable Tuesday arrival. It loses because it adds a connection and gets Marisol back close to 7 p.m.; her history repeatedly rejects connection/late-arrival savings when a reasonable United nonstop is available.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Lead with the United nonstop because it gives Marisol the comfortable post-lunch Thursday return she repeatedly asks for, avoids a rushed checkout/airport move after a late-morning discussion, and gets back to ORD well before evening. The modest premium is consistent with her pattern of paying more for a midafternoon United/nonstop option that avoids both tight transfers and late arrivals.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The stored preference is about the return leg, not a blanket rule against morning outbound flights. In Durham, Philadelphia, and Minneapolis, Marisol accepted practical or morning outbound timing while still favoring a later return after the concluding session. Choice A preserves that return-leg pattern despite the earlier Tuesday departure.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_002_h01_p00",
+      "probe_type": "boundary",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Only early-evening Tuesday reception",
+          "Late-morning Thursday closing discussion before checkout logistics",
+          "These cues narrow timing considerations but do not resolve the cost/nonstop/buffer tradeoff."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The query gives timing constraints but not enough to decide the tradeoff among nonstop service, lowest fare, later outbound timing, and return buffer. A is the safest nonstop-style choice but is early and expensive; B is efficient and nonstop but may be tight after the Thursday closing/check-out sequence; C is a middle-cost timing compromise with a connection; D is cheapest and later outbound but may be tight for an early-evening reception. No single choice is forced without an unstated priority.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A is cheaper and gets them home earlier, and the Sunday café stop is explicitly flexible, so generic travel reasoning cannot rule it out. B is selected only by applying the user's longitudinal return-leg habit. C is a near-miss because the return is later but adds airport and connection friction; D is a plausible middle ground but not as aligned as B.",
+      "gold_action": "Recommend choice B as the lead option.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0005",
+        "tm_pd_v04_user_002_s0017",
+        "tm_pd_v04_user_002_s0061"
+      ],
+      "habit_family": "flight_departure_arrival_timing",
+      "habit_id": "tm_pd_v04_user_002_h01",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_return_departure_time_preference",
+        "boundary_condition": "Treat as a soft default; if true afternoon return departures are unavailable, limited, or unattractive, consider options close to afternoon.",
+        "condition": "When booking or comparing round-trip flights and selecting the return-leg departure time.",
+        "default_action": "Search for return-flight options departing in the afternoon and present those first when available.",
+        "exception_condition": "Do not apply as a universal outbound-leg rule; one supporting dialogue separately used a morning outbound while still preferring an afternoon return.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_002_h01",
+        "name": "afternoon_return_departure_preference",
+        "preference_value": "Prefer the return flight to depart in the afternoon.",
+        "scope_condition": "Applies to round-trip itineraries when she is choosing the return-leg departure after a work site visit, board meeting, conference, or short personal stay and does not have a fixed agenda or family constraint requiring another time.",
+        "scope_key": "return_legs_after_site_visits_and_short_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_26cf0aa15c48",
+        "source_habit_instance_id": "tm_v04_e2e_habit_26cf0aa15c48",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "American is tempting because it uses ORD, costs less than the later United option, and has an early-afternoon Sunday return. It loses because the Thursday connecting outbound is less convenient and likely cuts into the trip more than the clean United ORD timing, while the savings are modest.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "For leisure weekends, Marisol has preferred a Sunday afternoon return that still allows brunch or a relaxed stop before the airport, and she dislikes switching airports or taking less convenient routings for small savings. The United ORD option with the 3:10 p.m. Sunday return best preserves the getaway while avoiding a late Chicago arrival.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The pattern transfers beyond work site visits to short personal stays: Marisol's Minneapolis and Pittsburgh weekend planning both favored a Sunday return later in the day when no fixed family or agenda constraint required otherwise. Choice B uses the same airport and outbound as A but better reflects that repeated return-leg choice.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_002_h01_p01",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The stated cue that ORD is easier is explicit but not decisive because the query also says neither airport is impossible.",
+          "The flexible cafe stop is a cue about Sunday plans, but it does not resolve whether they prefer a longer getaway or an earlier return."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The query does not state a priority among lower fare, easier ORD use, maximizing Sunday time in Asheville, getting back to Chicago earlier, or avoiding connections. Each option can be defended under a different unstated weighting, so selecting one would guess a preference.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A is a very plausible distractor because it uses United/ORD, costs less than B, and gets her home sooner. Only the history disambiguates that the recurring signal is about the return-leg departure window, not simply United or earliest arrival. C partially fits the timing but adds Midway and a connection; D keeps United but pushes the return later than necessary.",
+      "gold_action": "Recommend choice B as the lead airfare line.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0025",
+        "tm_pd_v04_user_002_s0034",
+        "tm_pd_v04_user_002_s0055"
+      ],
+      "habit_family": "flight_departure_arrival_timing",
+      "habit_id": "tm_pd_v04_user_002_h01",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_return_departure_time_preference",
+        "boundary_condition": "Treat as a soft default; if true afternoon return departures are unavailable, limited, or unattractive, consider options close to afternoon.",
+        "condition": "When booking or comparing round-trip flights and selecting the return-leg departure time.",
+        "default_action": "Search for return-flight options departing in the afternoon and present those first when available.",
+        "exception_condition": "Do not apply as a universal outbound-leg rule; one supporting dialogue separately used a morning outbound while still preferring an afternoon return.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_002_h01",
+        "name": "afternoon_return_departure_preference",
+        "preference_value": "Prefer the return flight to depart in the afternoon.",
+        "scope_condition": "Applies to round-trip itineraries when she is choosing the return-leg departure after a work site visit, board meeting, conference, or short personal stay and does not have a fixed agenda or family constraint requiring another time.",
+        "scope_key": "return_legs_after_site_visits_and_short_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_26cf0aa15c48",
+        "source_habit_instance_id": "tm_v04_e2e_habit_26cf0aa15c48",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "The later United option is tempting because it preserves United/ORD and is safely after lunch. It loses because it pushes the ORD arrival past 7 p.m., a tradeoff Marisol has repeatedly avoided when a better-timed main-cabin option exists.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "The American ORD line is the best fit because Friday’s 2:50 p.m. return leaves real margin after an 11:20 closeout, still gets Marisol back before dinner, and avoids the cheaper connected/late options. Her history makes timing and avoiding rushed transfers more important than choosing United when the United choices are either too tight or too late.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The evidence should be read as a return-timing preference rather than a carrier loyalty rule. In prior Albuquerque/Santa Fe, Richmond, and Philadelphia decisions, Marisol treated carrier as secondary when the return timing was materially better. Choice B uses the better return timing even though A has United and an earlier Chicago arrival.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_002_h01_p02",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The phrase \"United through ORD is available but not the only reasonable fare\" hints at airline/airport preference but does not resolve the choice.",
+          "Carry-on only is a feasibility cue, but it is insufficient to make the very tight 12:05 p.m. return the generic recommendation."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "A's 12:05 p.m. departure is too tight after an approximately 11:20 a.m. closeout. Among the remaining options, B offers the earlier ORD return, C offers the lowest fare but MDW/connection/later arrival, and D offers a later outbound/United-ORD option but a late return. The query does not state which tradeoff should dominate.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "Choice A is cheaper and gets her to Chicago earlier, while still being workable after the scheduled debrief. Choice B costs only a little more and has a less compressed connection and departure window, but those facts alone do not make it generically mandatory. Choices C and D overextend the day or create late-arrival friction.",
+      "gold_action": "Recommend choice B as the working return plan.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0002",
+        "tm_pd_v04_user_002_s0095",
+        "tm_pd_v04_user_002_s0103"
+      ],
+      "habit_family": "flight_departure_arrival_timing",
+      "habit_id": "tm_pd_v04_user_002_h01",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_return_departure_time_preference",
+        "boundary_condition": "Treat as a soft default; if true afternoon return departures are unavailable, limited, or unattractive, consider options close to afternoon.",
+        "condition": "When booking or comparing round-trip flights and selecting the return-leg departure time.",
+        "default_action": "Search for return-flight options departing in the afternoon and present those first when available.",
+        "exception_condition": "Do not apply as a universal outbound-leg rule; one supporting dialogue separately used a morning outbound while still preferring an afternoon return.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_002_h01",
+        "name": "afternoon_return_departure_preference",
+        "preference_value": "Prefer the return flight to depart in the afternoon.",
+        "scope_condition": "Applies to round-trip itineraries when she is choosing the return-leg departure after a work site visit, board meeting, conference, or short personal stay and does not have a fixed agenda or family constraint requiring another time.",
+        "scope_key": "return_legs_after_site_visits_and_short_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_26cf0aa15c48",
+        "source_habit_instance_id": "tm_v04_e2e_habit_26cf0aa15c48",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "The 11:35 a.m. option is tempting because the meeting ends early, it is cheaper, and it gets her to ORD before dinner. It loses because the ground window is tighter and the 42-minute Denver connection is the kind of rushed-transfer risk she usually pays a modest amount to avoid.",
+        "difficulty": "hard",
+        "model": "gpt-5.5",
+        "rationale": "The 12:50 p.m. return is the best balance: the early debrief and pre-handled checkout mean Marisol does not need to wait until midafternoon, but paying a small premium for a 70-minute connection and more ground margin is consistent with her preference to avoid rushed transfers. It still avoids the very late arrivals of the later options.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The evidence supports a soft return-leg default, not a rule to force any late option regardless of cost or arrival time. When the more clearly later options are unattractive, the right transfer is to favor a reasonable closer-to-afternoon return rather than the earliest feasible departure or a much later itinerary. Choice B best applies that boundary.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_002_h01_p03",
+      "probe_type": "boundary",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The query flags return timing, connection length, and arrival time, but does not state how to trade a tighter connection against an earlier/cheaper arrival.",
+          "Checkout and debrief timing make the late-morning departures plausible, but they do not resolve A versus B."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "A is earlier-arriving and slightly cheaper, but has a tight 42-minute connection. B costs a little more and arrives 45 minutes later, but has a safer 70-minute connection. Without a stated rule about valuing connection cushion versus earlier arrival/lower fare, both remain reasonably defensible; C and D are not competitive for a lead recommendation.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_002"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "United ORD-ALB nonstop pair: Tuesday 7:50 a.m. departure, arrive 10:45 a.m.; Thursday 2:50 p.m. return, arrive ORD 4:15 p.m.; $384 main cabin."
+        },
+        {
+          "choice_id": "B",
+          "text": "American ORD-ALB nonstop pair: Tuesday 11:55 a.m. departure, arrive 2:50 p.m.; Thursday 12:25 p.m. return, arrive ORD 1:50 p.m.; $369 main cabin."
+        },
+        {
+          "choice_id": "C",
+          "text": "Delta ORD-ALB one-stop pair via Detroit: Tuesday 9:40 a.m. departure, arrive 2:10 p.m.; Thursday 3:20 p.m. return, arrive ORD 6:55 p.m.; $352 main cabin."
+        },
+        {
+          "choice_id": "D",
+          "text": "United ORD-ALB one-stop pair via Newark: Tuesday 12:45 p.m. departure, arrive 4:55 p.m.; Thursday 2:15 p.m. return, arrive ORD 5:50 p.m.; $333 main cabin."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "boundary",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_002_h01_p00",
+      "query": "Marisol needs a round trip for an Albany regional-funders workshop. Tuesday has only an early-evening reception at the meeting hotel, while Thursday has a late-morning closing discussion before checkout logistics are handled. She asks which complete itinerary should lead the recommendation.",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_002",
+      "visible_history_scope": {
+        "max_session_index": 111
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "United from ORD: Thursday 6:05 p.m. outbound; Sunday 11:20 a.m. return; $368 total; lands in Chicago about 12:55 p.m."
+        },
+        {
+          "choice_id": "B",
+          "text": "United from ORD: Thursday 6:05 p.m. outbound; Sunday 3:10 p.m. return; $414 total; lands in Chicago about 4:50 p.m."
+        },
+        {
+          "choice_id": "C",
+          "text": "Southwest from MDW: Thursday 6:40 p.m. outbound; Sunday 4:45 p.m. return via Nashville; $356 total; lands about 8:45 p.m."
+        },
+        {
+          "choice_id": "D",
+          "text": "American from ORD: Thursday 7:30 p.m. outbound via Charlotte; Sunday 1:05 p.m. return; $392 total; lands about 3:15 p.m."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "cross_context_transfer",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_002_h01_p01",
+      "query": "Marisol and her spouse are comparing flights for a three-night Asheville getaway. They can leave Chicago after work on Thursday, have hotel checkout at 11:00 a.m. Sunday, and have only a flexible café stop penciled in before going to the airport. ORD is easier, but neither airport is impossible. Which option should be listed first?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_002",
+      "visible_history_scope": {
+        "max_session_index": 111
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "United/ORD round trip: Wednesday 9:10 a.m. outbound; Friday 12:05 p.m. return; $359; arrive Chicago 1:35 p.m."
+        },
+        {
+          "choice_id": "B",
+          "text": "American/ORD round trip: Wednesday 8:55 a.m. outbound; Friday 2:50 p.m. return; $386; arrive Chicago 4:20 p.m."
+        },
+        {
+          "choice_id": "C",
+          "text": "Southwest/MDW round trip: Wednesday 7:30 a.m. outbound; Friday 3:10 p.m. return with a connection; $303; arrive Chicago 6:45 p.m."
+        },
+        {
+          "choice_id": "D",
+          "text": "United/ORD round trip: Wednesday 1:10 p.m. outbound; Friday 5:40 p.m. return; $379; arrive Chicago 7:15 p.m."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_002_h01_p02",
+      "query": "The Lincoln humanities-data roundtable has set Marisol's hotel and meetings: Wednesday reception at 5:30 p.m., Friday closeout ending about 11:20 a.m., carry-on only. United through ORD is available but not the only reasonable fare. Which airfare line should be the recommended one?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_002",
+      "visible_history_scope": {
+        "max_session_index": 111
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Depart BOI 11:35 a.m. via Denver with a 42-minute connection; arrive ORD 5:20 p.m.; $336 main cabin."
+        },
+        {
+          "choice_id": "B",
+          "text": "Depart BOI 12:50 p.m. via Minneapolis with a 70-minute connection; arrive ORD 6:05 p.m.; $352 main cabin."
+        },
+        {
+          "choice_id": "C",
+          "text": "Depart BOI 3:25 p.m. via Salt Lake City with a 58-minute connection; arrive ORD 10:05 p.m.; $441 main cabin."
+        },
+        {
+          "choice_id": "D",
+          "text": "Depart BOI 5:45 p.m. via Seattle with a 55-minute connection; arrive ORD 11:55 p.m.; $329 main cabin."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "boundary",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_002_h01_p03",
+      "query": "Marisol is comparing Chicago-Boise flights for a short foundation audit. The Thursday debrief is scheduled to finish at 9:50 a.m.; checkout can be handled before the closeout, and the hotel is near the meeting site. The search results differ mostly in return timing, connection length, and arrival time. Which return plan should be placed first in the comparison?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_002",
+      "visible_history_scope": {
+        "max_session_index": 111
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {},
+    "query_only_unresolved_count": 4,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "boundary": 2,
+      "cross_context_transfer": 1,
+      "evidence_disambiguation": 1
+    }
+  }
+}

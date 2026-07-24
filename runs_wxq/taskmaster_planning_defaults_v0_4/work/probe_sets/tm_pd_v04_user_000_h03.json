@@ -1,0 +1,422 @@
+{
+  "cache_fingerprint": "eb4a8c38fc57317b05ea0c03e0e94ba8522fbde44b18b2edea4f796e445e6850",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B arrive at essentially the same time, and B is meaningfully cheaper, so a planner without history could defend either. The tie is broken by the user's repeated preference for simpler connecting itineraries over small-to-moderate savings.",
+      "gold_action": "Recommend the one-connection ATL-DFW-SAF itinerary with the normal DFW transfer.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_000_s0000",
+        "tm_pd_v04_user_000_s0013",
+        "tm_pd_v04_user_000_s0023"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_000_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_000_h03",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Work and personal flight itineraries where a connection is acceptable, necessary, or under consideration, especially on domestic and simple international routes.",
+        "scope_key": "commercial_flights_at_most_one_short_layover_when_connecting",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_000",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "The ABQ nonstop is tempting because it avoids an air connection and has a lower base fare, but it is not an arrival into SAF and adds a separate shuttle or rental-car leg; the quoted savings may be eroded by ground transfer and it is less directly within her usual one-short-connection fallback.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Maya's repeated pattern is to keep flights simple: nonstop when reasonable, otherwise one short connection, and not add messy routing or long layovers for modest savings. With no nonstop to SAF, the one-short-connection ATL-DFW-SAF option is the cleanest recommendation.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Maya's history supports using a connection when needed, but not adding extra segments or long waits for modest savings. With no higher-priority constraint stated, the one normal connection in A best matches her durable routing pattern; B saves money but adds an extra change, and C turns the trip into a long airport wait.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_000_h03_p00",
+      "probe_type": "direct_use",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The query states lower fare and simpler travel are both legitimate approval arguments without a tie-breaker.",
+          "The dinner constraint is neutralized by saying every option reaches the hotel by midafternoon."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All options meet the dinner timing. A is the cleanest and earliest SAF routing but costs most; B is much cheaper with extra tight connections; C keeps a one-connection SAF routing at a lower fare but has a long wait and later arrival; D avoids an air connection but adds ABQ ground transfer and uncertain total cost. The query gives no priority between fare, simplicity, and ground-transfer tolerance.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B is substantially cheaper, arrives earlier, and has connection times that are not obviously tight, so it is a plausible generic recommendation. The user's remembered routing preference is what breaks the tie toward A.",
+      "gold_action": "Recommend the ATL-SLC-BOI itinerary with one comfortable connection.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_000_s0032",
+        "tm_pd_v04_user_000_s0110",
+        "tm_pd_v04_user_000_s0122"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_000_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_000_h03",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Work and personal flight itineraries where a connection is acceptable, necessary, or under consideration, especially on domestic and simple international routes.",
+        "scope_key": "commercial_flights_at_most_one_short_layover_when_connecting",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_000",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "B has the biggest fare savings and arrives earliest, so it is tempting, but it uses two connections. The savings are meaningful but not the kind of dramatic exception shown in her history for accepting messier routing.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "The ATL-SLC-BOI option gives the simple one-change routing with a reasonable connection and enough arrival buffer. The cheaper alternatives require either an extra connection or multi-hour waits, which conflicts with her preference for straightforward routing unless savings are dramatic.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Maya's longitudinal pattern favors at most one short, comfortable layover when a connection is acceptable and no current instruction prioritizes fare or arrival time. A is more expensive and not the earliest, but it avoids the extra aircraft change in B and the prolonged waits in C and D.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_000_h03_p01",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All options satisfy the only hard timing constraint. A has the cleanest short one-stop routing but the highest fare; B is cheapest and earliest but has two connections; C and D are cheaper one-stop options with long layovers. The query gives no stated priority among price, number of stops, layover length, or arrival buffer.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B is cheaper in both cash and points and arrives a little earlier, making it a real near miss for a family trip. The longitudinal memory is needed to prefer the simpler one-connection routing in A.",
+      "gold_action": "Put forward the ATL-DFW-JAC outbound with one comfortable connection into Jackson Hole.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_000_s0004",
+        "tm_pd_v04_user_000_s0107",
+        "tm_pd_v04_user_000_s0055"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_000_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_000_h03",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Work and personal flight itineraries where a connection is acceptable, necessary, or under consideration, especially on domestic and simple international routes.",
+        "scope_key": "commercial_flights_at_most_one_short_layover_when_connecting",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_000",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "D is tempting because it is the only nonstop flight and has the lowest fare or points quote before car costs, but it lands in Salt Lake City rather than Jackson Hole and adds roughly 4.5 hours of driving plus car logistics, which is not the calmer simple-routing choice.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "For family travel, Maya has still preferred nonstops or the simplest reasonable routing. Since there is no direct JAC option shown, the one short DFW connection into Jackson Hole is the cleanest fit and avoids both extra connections and a long post-flight drive.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Maya's routing habit carries across work and family travel: when a connection is acceptable, she tends to choose the itinerary with no more than one short layover unless the current request makes another factor dominant. A avoids B's extra connection, C's long wait, and D's alternate-airport drive strategy.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_000_h03_p02",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Cash and points quotes are provided without a stated point valuation or redemption preference.",
+          "The lodge-shuttle cutoff is an explicit constraint but is not sufficient to choose among the viable options."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The shuttle cutoff and Jackson-area feasibility narrow the field but do not identify one best option. A is simpler and arrives comfortably before 5 p.m.; B is cheaper in both cash and points and arrives earlier but adds a second connection; C has one connection but a very long wait and later arrival; D is cheapest before car costs and nonstop to SLC but requires a long drive and likely forfeits the shuttle advantage. Cash-versus-points valuation and tolerance for extra stops or driving are not stated.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B follows her usual routing style, while A follows the current budget constraint. The query is hard because only the history shows that she distinguishes small savings from genuinely large, trip-specific exceptions.",
+      "gold_action": "Hold the reimbursable two-connection fare as a trip-specific budget exception.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_000_s0063",
+        "tm_pd_v04_user_000_s0122",
+        "tm_pd_v04_user_000_s0110",
+        "tm_pd_v04_user_000_s0032"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_000_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_000_h03",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Work and personal flight itineraries where a connection is acceptable, necessary, or under consideration, especially on domestic and simple international routes.",
+        "scope_key": "commercial_flights_at_most_one_short_layover_when_connecting",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_000",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "C is tempting because it is also under the reimbursement cap and has only one plane change, but the 6h25 wait is a long layover, which Maya has repeatedly tried to avoid. A bends the connection-count norm for major savings without adding a half-day airport wait.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Maya normally avoids messier routing, but her stated exception is when savings are huge or dramatic. Here the one-change fare is $735 versus an under-cap $426, with reimbursement uncertainty if she waits. Holding the two-short-connection option is the cost-driven exception, and it avoids the very long layover in the other cheap option.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Her ordinary pattern rejects extra connections for small savings, but the evidence also frames that as conditional when savings become dramatic or constraints dominate. Here the fare gap and reimbursement cap make a one-trip exception appropriate; choosing A should not be treated as a permanent revision, and C's prolonged wait is a worse fit than two normal transfers.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_000_h03_p03",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The query explicitly asks what Maya normally treats as worth bending her routing norms for, which is private habit/history.",
+          "The grant cap and approval uncertainty favor considering under-cap options, but they do not uniquely determine the routing-norm tradeoff."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rationale": "The stated decision criterion is Maya's normal willingness to bend routing norms for a fare gap, but no such history is supplied. A is an under-cap cost-driven option with two reasonable connections; B preserves the usual simpler routing if she would seek above-cap approval; C stays under cap while keeping fewer plane changes but with a very long wait. D is speculative and does not make a current hold.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_000"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "ATL-DFW-SAF, with a 1h10 connection at DFW; arrive 11:45 a.m.; $462."
+        },
+        {
+          "choice_id": "B",
+          "text": "ATL-CLT-DFW-SAF, with 45m and 55m connections; arrive 11:50 a.m.; $388."
+        },
+        {
+          "choice_id": "C",
+          "text": "ATL-DEN-SAF, with a 4h40 connection at DEN; arrive 3:25 p.m.; $419."
+        },
+        {
+          "choice_id": "D",
+          "text": "ATL-ABQ nonstop, then shuttle or rental car to Santa Fe; reach the hotel about 2:25 p.m.; $407 plus ground transfer."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "direct_use",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_000_h03_p00",
+      "query": "You are drafting Maya's recommended outbound for a solo ATL-to-Santa Fe work trip. No nonstop to SAF is offered on the needed date. The client dinner is at 6 p.m.; every option below reaches the hotel by midafternoon, and lower fare and simpler travel are both legitimate approval arguments. Which option should lead the recommendation?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_000",
+      "visible_history_scope": {
+        "max_session_index": 125
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "ATL-SLC-BOI, with a 1h20 connection at SLC; arrive 1:05 p.m.; $512."
+        },
+        {
+          "choice_id": "B",
+          "text": "ATL-DFW-PHX-BOI, with 1h25 and 1h20 connections; arrive 11:50 a.m.; $398."
+        },
+        {
+          "choice_id": "C",
+          "text": "ATL-DEN-BOI, with a 4h15 wait at DEN; arrive 12:40 p.m.; $462."
+        },
+        {
+          "choice_id": "D",
+          "text": "ATL-MSP-BOI, with a 3h40 MSP layover; arrive 1:45 p.m.; $436."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "conflict_resolution",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_000_h03_p01",
+      "query": "Maya is attending a product demo in Boise. The first event starts at 4 p.m., and the search results below all leave time to reach the venue after landing. Which line should be the tentative recommendation?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_000",
+      "visible_history_scope": {
+        "max_session_index": 125
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "ATL-DFW-JAC, with a 1h25 connection at DFW; arrive 2:05 p.m.; $728 or 42k points per person."
+        },
+        {
+          "choice_id": "B",
+          "text": "ATL-ORD-DEN-JAC, with 1h15 and 1h10 connections; arrive 1:25 p.m.; $648 or 36k points per person."
+        },
+        {
+          "choice_id": "C",
+          "text": "ATL-SLC-JAC, with a 5h05 wait at SLC; arrive 4:15 p.m.; $672 or 38k points per person."
+        },
+        {
+          "choice_id": "D",
+          "text": "ATL-SLC nonstop, arrive 11:40 a.m., then rent a car for the roughly 4.5-hour drive to Jackson; $598 or 33k points per person before car costs."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "cross_context_transfer",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_000_h03_p02",
+      "query": "Maya is choosing an ATL-to-Jackson Hole outbound for a family lodge stay. The lodge shuttle can meet arrivals before 5 p.m., and cash and points quotes are available. Which outbound should you put forward?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_000",
+      "visible_history_scope": {
+        "max_session_index": 125
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold ATL-CLT-DEN-MSO at $426 with two 1h15-1h25 connections, and mark it as a cost-driven choice for this trip."
+        },
+        {
+          "choice_id": "B",
+          "text": "Request approval for ATL-DEN-MSO at $735 with one 1h20 connection, and leave the cheaper fares unheld."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold ATL-DFW-MSO at $418 with a 6h25 DFW wait, because it keeps the number of plane changes lower."
+        },
+        {
+          "choice_id": "D",
+          "text": "Wait for a nonstop or one-change fare under $450 instead of holding any current option."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "exception",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_000_h03_p03",
+      "query": "Maya is traveling to Missoula on a grant-funded trip. The usual one-change routing is $735, while the grant automatically reimburses only fares at or below $450; above-cap approval is possible but uncertain and will take a day. She asks you to make the hold based on whether this is the kind of airfare gap she normally treats as worth bending her routing norms for. What should you do before the fare expires?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_000",
+      "visible_history_scope": {
+        "max_session_index": 125
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "cross_context_transfer": 1,
+      "direct_use": 1,
+      "exception": 1
+    }
+  }
+}

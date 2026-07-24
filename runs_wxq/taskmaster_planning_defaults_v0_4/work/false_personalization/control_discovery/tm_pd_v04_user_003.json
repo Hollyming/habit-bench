@@ -1,0 +1,368 @@
+{
+  "controls": [
+    {
+      "control_id": "ctrl_false_open_jaw_default",
+      "correct_memory_policy": "Keep route topology unset. For each trip, compare open-jaw, round trip, and full-drive options using current event order, final airport times, connection quality, one-way rental/drop fees, fuel/tolls/parking, materials load, and reimbursement rules. Recommend open-jaw only when it materially reduces backtracking or schedule risk and the added cost/connection risk is reasonable.",
+      "decision_dimension": "Open-jaw or one-way routing versus round-trip routing",
+      "evidence": [
+        {
+          "evidence_quote": "I need to avoid backtracking if we can.",
+          "role_in_nonhabit": "Route-specific goal for the Inland Northwest loop, not a global routing preference.",
+          "session_id": "tm_pd_v04_user_003_s0000"
+        },
+        {
+          "evidence_quote": "Recommendation: request MSP round trip with an MSP-to-MSP rental.",
+          "role_in_nonhabit": "Round trip was preferred when it gave better reliability and rental simplicity.",
+          "session_id": "tm_pd_v04_user_003_s0007"
+        },
+        {
+          "evidence_quote": "The $38 one-way rental add is reasonable for the shorter route.",
+          "role_in_nonhabit": "Open-jaw was justified only because the specific added fee was small and the route was shorter.",
+          "session_id": "tm_pd_v04_user_003_s0018"
+        },
+        {
+          "evidence_quote": "The open-jaw plan costs about $221 more before gas differences: $86 more in airfare plus about $135 more for the one-way car.",
+          "role_in_nonhabit": "Open-jaw was weighed as a documented cost-risk tradeoff, not assumed automatically.",
+          "session_id": "tm_pd_v04_user_003_s0035"
+        },
+        {
+          "evidence_quote": "the office approved it as mileage instead of the open-jaw flight. I’ll have two boxes of admitted-student materials, and the one-way rental fee made flying look bad.",
+          "role_in_nonhabit": "Full driving replaced open-jaw when materials and the one-way fee made the flight plan unattractive.",
+          "session_id": "tm_pd_v04_user_003_s0138"
+        }
+      ],
+      "family": "route_airport_car_topology",
+      "opportunity_description": "The user often evaluates open-jaw flights and one-way rentals for multi-city loops, so a memory system might treat that as her default routing style.",
+      "strongest_false_inference": "Tessa prefers open-jaw itineraries and one-way rental cars by default, even when they cost more.",
+      "tempting_false_inferences": [
+        "Always route into the first event city and out of the last event city.",
+        "Always accept one-way rental fees to avoid backtracking.",
+        "Treat round trips as budget-only fallbacks."
+      ],
+      "why_no_stable_habit": "The lifeline shows many open-jaw choices when a loop ends far from the start, but also several round-trip, same-airport, or full-drive choices when schedule reliability, smaller-airport risk, weather, materials, or one-way costs changed the outcome."
+    },
+    {
+      "control_id": "ctrl_false_prior_day_arrival_default",
+      "correct_memory_policy": "Keep the arrival-buffer default unset. For each trip, decide arrival day from the first required check-in time, severity of consequence if late, season/weather, nonstop availability, airport transfer time, material handling, family constraints, and extra hotel-night approval. Use same-day morning arrival when the first fixed obligation has enough cushion and a delay would not be catastrophic; use prior-day arrival when the first event is early, mandatory, weather-exposed, or setup-sensitive.",
+      "decision_dimension": "Arrive the day before versus same-day arrival",
+      "evidence": [
+        {
+          "evidence_quote": "Could I fly in Monday morning, or am I kidding myself and should come Sunday night?",
+          "role_in_nonhabit": "The user evaluates prior-night arrival as a reliability question rather than a standing default.",
+          "session_id": "tm_pd_v04_user_003_s0003"
+        },
+        {
+          "evidence_quote": "Then I’d book the Tuesday morning nonstop and SpringHill/Auraria for Tuesday and Wednesday only.",
+          "role_in_nonhabit": "A same-day conference arrival was chosen when the noon opening was not mission-critical and the 1:30 commitment had buffer.",
+          "session_id": "tm_pd_v04_user_003_s0012"
+        },
+        {
+          "evidence_quote": "I’d choose the Saturday afternoon arrival.",
+          "role_in_nonhabit": "Earlier arrival was chosen because the Sunday regional meeting was mandatory.",
+          "session_id": "tm_pd_v04_user_003_s0029"
+        },
+        {
+          "evidence_quote": "My pick: Sunday 10:20 outbound, Hyatt hold, and the 2:35 Wednesday return.",
+          "role_in_nonhabit": "Sunday morning, not Saturday, was enough once the Sunday panel prep time was known.",
+          "session_id": "tm_pd_v04_user_003_s0052"
+        },
+        {
+          "evidence_quote": "The Saturday nonstop is the better compromise.",
+          "role_in_nonhabit": "Same-day Saturday arrival was accepted for a family ceremony when Friday became unreliable.",
+          "session_id": "tm_pd_v04_user_003_s0107"
+        },
+        {
+          "evidence_quote": "I would keep the Sunday Jan. 12 arrival and Wednesday Jan. 15 afternoon return.",
+          "role_in_nonhabit": "Prior-day arrival was chosen for a January workshop with required Monday check-in.",
+          "session_id": "tm_pd_v04_user_003_s0135"
+        }
+      ],
+      "family": "arrival_buffer_policy",
+      "opportunity_description": "The user repeatedly chooses earlier arrival to protect mandatory meetings, winter travel, or family events, which could tempt a memory agent to store a fixed prior-day-arrival default.",
+      "strongest_false_inference": "Tessa always wants to arrive the day before the first event.",
+      "tempting_false_inferences": [
+        "Always add a hotel night before the first commitment.",
+        "Treat Monday or same-day arrivals as unacceptable.",
+        "Prefer Saturday/Sunday arrival whenever available, regardless of cost or first-event timing."
+      ],
+      "why_no_stable_habit": "The user often pays for earlier arrival when reliability matters, but the record also contains same-day or day-of-event arrivals when the first commitment had enough slack or cost mattered."
+    },
+    {
+      "control_id": "ctrl_false_rental_car_default",
+      "correct_memory_policy": "Keep ground-transport mode unset. For each trip, choose rental, rideshare, rail, shuttle, or no car based on event geography, number of cities, materials/boxes, luggage security, hotel parking cost, airport transfer complexity, weather, and family mobility needs. Use a rental when multi-city suburban movement or materials make it operationally useful; avoid a rental for compact downtown or conference-only trips where parking and handoffs add friction.",
+      "decision_dimension": "Rental car versus rideshare, rail, shuttle, or no car",
+      "evidence": [
+        {
+          "evidence_quote": "For a Tempe-only conference, yes, a rental is probably overkill.",
+          "role_in_nonhabit": "Conference geography made rideshare/walking preferable to a rental.",
+          "session_id": "tm_pd_v04_user_003_s0051"
+        },
+        {
+          "evidence_quote": "No, not for one off-site dinner. Use rideshare unless the institute offers a shuttle.",
+          "role_in_nonhabit": "A single off-site dinner was not enough to justify a rental.",
+          "session_id": "tm_pd_v04_user_003_s0110"
+        },
+        {
+          "evidence_quote": "No rental needed. Best plan is the A Line from DEN to Union Station, then a short rideshare to the hotel if the sidewalks are snowy or you have the materials bag.",
+          "role_in_nonhabit": "Denver workshop used rail/rideshare because the downtown agenda did not need a car.",
+          "session_id": "tm_pd_v04_user_003_s0135"
+        },
+        {
+          "evidence_quote": "For this route, yes to a rental car, with one exception: use rideshare for the Tuesday Seattle dinner if parking looks annoying.",
+          "role_in_nonhabit": "Puget Sound required a car for multi-city movement, but local dinner parking still favored rideshare.",
+          "session_id": "tm_pd_v04_user_003_s0056"
+        },
+        {
+          "evidence_quote": "I’d book the Sunday Delta nonstop, the Wednesday return, the Bloomington hotel, and the MSP rental car.",
+          "role_in_nonhabit": "Twin Cities required a car because events moved across Bloomington, St. Paul, Plymouth, and the airport.",
+          "session_id": "tm_pd_v04_user_003_s0066"
+        },
+        {
+          "evidence_quote": "I also reserved a pay-later standard SUV: DFW pickup Sunday 7:15 pm, AUS return Thursday 1:30 pm, one-way fee included, unlimited miles, covered cargo area noted.",
+          "role_in_nonhabit": "A standard SUV was chosen for a materials-heavy, multi-city Texas route, not as a generic rental preference.",
+          "session_id": "tm_pd_v04_user_003_s0122"
+        }
+      ],
+      "family": "ground_transport_mode",
+      "opportunity_description": "Recruitment loops and family tournaments often involve rental cars, but urban conferences and some family trips use rail or rideshare instead.",
+      "strongest_false_inference": "Tessa generally wants a rental car for travel.",
+      "tempting_false_inferences": [
+        "Always reserve a car when she flies.",
+        "Assume a rental is needed for any off-site dinner or local transfer.",
+        "Treat rideshare or rail as only a backup, not a valid primary plan."
+      ],
+      "why_no_stable_habit": "The user rents cars for dispersed recruitment loops and tournaments, but repeatedly skips rentals for compact urban conferences or family trips when rail/rideshare and hotel proximity are cleaner."
+    },
+    {
+      "control_id": "ctrl_false_major_airport_default",
+      "correct_memory_policy": "Keep airport-size preference unset. For each trip, compare candidate airports by event proximity, departure time, nonstop or one-stop quality, connection length, rental pickup/return hours, one-way fees, weather exposure, and final-day buffer. Use major hubs when they materially improve reliability or rental logistics; use regional airports when schedules and connections are comfortable and they reduce backtracking.",
+      "decision_dimension": "Major hub airport versus smaller or regional airport",
+      "evidence": [
+        {
+          "evidence_quote": "It can be. I would treat EAU as a comparison point, not the plan.",
+          "role_in_nonhabit": "Eau Claire was not rejected categorically; it was only a comparison point because of thin schedules and connection risk.",
+          "session_id": "tm_pd_v04_user_003_s0007"
+        },
+        {
+          "evidence_quote": "Paine is attractive only on the inbound. The awkward return connection creates more failure points than it saves",
+          "role_in_nonhabit": "Paine Field was rejected for the return because the connection pattern was worse, not because smaller airports are never allowed.",
+          "session_id": "tm_pd_v04_user_003_s0022"
+        },
+        {
+          "evidence_quote": "Then skip the Colorado Springs return. A connected COS itinerary adds exactly the risk you are trying to avoid.",
+          "role_in_nonhabit": "Colorado Springs return was rejected because the available connections were fragile after the school visit.",
+          "session_id": "tm_pd_v04_user_003_s0026"
+        },
+        {
+          "evidence_quote": "With the 2:10 PSC departure, you can leave the breakfast around 10:30 or 10:45, refuel, return the car, and still have a normal airport cushion.",
+          "role_in_nonhabit": "Pasco was accepted when the final event ended nearby and the timing was comfortable.",
+          "session_id": "tm_pd_v04_user_003_s0035"
+        },
+        {
+          "evidence_quote": "Return is EUG-SEA-SLC Thu Sep 19, departing Eugene 2:30 pm, Seattle connection about 80 minutes, arriving Salt Lake City 7:50 pm.",
+          "role_in_nonhabit": "Eugene return was selected because the connection was long enough and it avoided a Portland backtrack.",
+          "session_id": "tm_pd_v04_user_003_s0118"
+        },
+        {
+          "evidence_quote": "Pocatello airport is closer but has thinner schedules, so Idaho Falls is the safer return airport.",
+          "role_in_nonhabit": "The smaller-airport choice was refined by schedule reliability, not decided by airport size alone.",
+          "session_id": "tm_pd_v04_user_003_s0137"
+        }
+      ],
+      "family": "airport_selection_policy",
+      "opportunity_description": "The user often avoids small-airport fragility, but also uses regional airports when they fit the route and have acceptable flights.",
+      "strongest_false_inference": "Tessa always prefers major hub airports and avoids smaller airports.",
+      "tempting_false_inferences": [
+        "Default to SEA/MSP/DEN/DFW/PDX even when a smaller airport matches the final event city.",
+        "Treat regional departures as unacceptable unless finance forces them.",
+        "Assume a major-airport round trip is safer than any regional open-jaw return."
+      ],
+      "why_no_stable_habit": "The lifeline includes many cases where large hubs were safer, but also cases where Pasco, Eugene, Milwaukee, or another non-hub return was selected because it fit the route and had acceptable timing."
+    },
+    {
+      "control_id": "ctrl_false_downtown_hotel_avoidance",
+      "correct_memory_policy": "Keep hotel-location default unset. For each stay, choose the hotel area from current event addresses, first-morning timing, late-event ending time, parking cost, weather/walking risk, dinner access, receipt requirements, and whether the event is in the hotel. Use suburban or airport hotels when parking and driving are the main constraints; use downtown, official-block, or event-adjacent lodging when proximity materially reduces timing or weather risk.",
+      "decision_dimension": "Downtown/event-adjacent hotel versus suburban, airport, or outlying hotel base",
+      "evidence": [
+        {
+          "evidence_quote": "I don't want a downtown Dallas hotel.",
+          "role_in_nonhabit": "Downtown was rejected for a North Texas driving loop with suburban events.",
+          "session_id": "tm_pd_v04_user_003_s0037"
+        },
+        {
+          "evidence_quote": "Avoid downtown Portland unless you need to be there because parking adds hassle.",
+          "role_in_nonhabit": "Downtown avoidance was tied to parking and this Oregon route, not generalized.",
+          "session_id": "tm_pd_v04_user_003_s0044"
+        },
+        {
+          "evidence_quote": "I would rather be close to the meeting rooms.",
+          "role_in_nonhabit": "The official downtown conference hotel was chosen despite no breakfast because proximity mattered.",
+          "session_id": "tm_pd_v04_user_003_s0072"
+        },
+        {
+          "evidence_quote": "Book: Sunday late-morning nonstop SLC-MSP, Wednesday mid/late-afternoon nonstop MSP-SLC, refundable Hampton downtown queen with breakfast.",
+          "role_in_nonhabit": "A downtown Minneapolis hotel was selected when it matched conference logistics and breakfast.",
+          "session_id": "tm_pd_v04_user_003_s0101"
+        },
+        {
+          "evidence_quote": "Use the downtown Hampton if it has breakfast.",
+          "role_in_nonhabit": "Downtown Boise was preferred for a late downtown meetup and next-morning return.",
+          "session_id": "tm_pd_v04_user_003_s0105"
+        },
+        {
+          "evidence_quote": "Hotel is Hampton Inn San Diego-Kearny Mesa, two queens, breakfast included, free self-parking, refundable until Monday 11/25 at 11:59 PM, about $756 before tax.",
+          "role_in_nonhabit": "A non-downtown family hotel was selected because it fit relatives, breakfast, and parking.",
+          "session_id": "tm_pd_v04_user_003_s0132"
+        }
+      ],
+      "family": "hotel_location_policy",
+      "opportunity_description": "The user often avoids downtown hotels because of parking and cost, but sometimes chooses downtown or official-event lodging when proximity protects the schedule.",
+      "strongest_false_inference": "Tessa avoids downtown hotels and prefers suburban chain hotels by default.",
+      "tempting_false_inferences": [
+        "Avoid downtown hotels whenever parking costs are mentioned.",
+        "Prefer suburbs, airport zones, or business parks even for conferences.",
+        "Treat official blocks as low priority if breakfast or parking is worse."
+      ],
+      "why_no_stable_habit": "The user rejects downtown stays in some driving-heavy loops, but also books downtown or official conference hotels when conference proximity, late events, or airport-free logistics matter more."
+    },
+    {
+      "control_id": "ctrl_false_refundable_only_default",
+      "correct_memory_policy": "Keep booking-flexibility default unset. While hosts, brackets, weather, or agendas are uncertain, prioritize refundable/no-prepay holds and calendar cancellation deadlines. Once the schedule is approved and the operational advantage is clear, allow a stricter or nonrefundable option if it is policy-compliant, documented, and materially better for timing, proximity, or fare quality. Always surface cancellation deadline, deposit/prepay status, and the operational reason.",
+      "decision_dimension": "Refundable and cancellable bookings versus stricter, prepaid, or nonrefundable options",
+      "evidence": [
+        {
+          "evidence_quote": "The block becomes basically nonrefundable after tomorrow night. I’m nervous because youth soccer schedules have lied to me before.",
+          "role_in_nonhabit": "Nonrefundable lodging was risky because the tournament schedule was still uncertain.",
+          "session_id": "tm_pd_v04_user_003_s0015"
+        },
+        {
+          "evidence_quote": "Confirm Hyatt for Sunday Dec. 8 through Wednesday Dec. 11, cancellable through Dec. 6, breakfast at 6:30, late check-in, bag hold before check-in and after checkout, itemized folio with room and tax separated, any amenity or parking fees even without a car, and nearby dinner options after the Sunday reception.",
+          "role_in_nonhabit": "Cancellable hotel terms were important while agenda details and fees were being verified.",
+          "session_id": "tm_pd_v04_user_003_s0052"
+        },
+        {
+          "evidence_quote": "If the block room checks out as refundable until June 14 at 5 p.m., I would skip the Hampton backup.",
+          "role_in_nonhabit": "A stricter official block was acceptable once it remained refundable and operationally better.",
+          "session_id": "tm_pd_v04_user_003_s0072"
+        },
+        {
+          "evidence_quote": "Take Rancho Cordova refundable. It keeps you closer to Carmichael/Fair Oaks and still reasonable to Sac State.",
+          "role_in_nonhabit": "Refundability outweighed a prepaid closer-in family hotel because plans were shifting.",
+          "session_id": "tm_pd_v04_user_003_s0107"
+        },
+        {
+          "evidence_quote": "Flights can be nonrefundable if the schedule is right.",
+          "role_in_nonhabit": "The user explicitly allowed less-flexible airfare when the schedule was right.",
+          "session_id": "tm_pd_v04_user_003_s0122"
+        },
+        {
+          "evidence_quote": "I would also skip the nonrefundable team block. The refundable hotel costs a little more in drive time, but it protects you if the bracket shifts or anyone gets sick, and breakfast plus free parking offsets part of the rate difference.",
+          "role_in_nonhabit": "Refundable lodging was chosen for a tournament with possible bracket changes, not as an absolute rule for all bookings.",
+          "session_id": "tm_pd_v04_user_003_s0125"
+        }
+      ],
+      "family": "booking_flexibility_policy",
+      "opportunity_description": "The user frequently asks for refundable holds while schedules are unsettled, but not every final booking remains fully flexible.",
+      "strongest_false_inference": "Tessa always refuses prepaid, nonrefundable, or stricter-cancellation bookings.",
+      "tempting_false_inferences": [
+        "Always select the most flexible hotel rate regardless of cost or location.",
+        "Never use official blocks with earlier cancellation dates.",
+        "Treat nonrefundable flights or stricter hotel deadlines as unacceptable."
+      ],
+      "why_no_stable_habit": "The user repeatedly protects flexibility during uncertain planning, especially for youth sports and moving agendas, but later accepts stricter official blocks or nonrefundable air when schedule and reimbursement justify it."
+    },
+    {
+      "control_id": "ctrl_false_hampton_hilton_brand_loyalty",
+      "correct_memory_policy": "Keep hotel-brand preference unset. Use brand names only as candidate examples when they satisfy current constraints: location, rate cap, breakfast/parking, room setup, cancellation, late arrival, folio needs, dinner access, and event timing. Do not rank a chain above a better-fit property unless the current request explicitly states brand loyalty or points/status requirements.",
+      "decision_dimension": "Hotel brand or chain selection",
+      "evidence": [
+        {
+          "evidence_quote": "Hotels are Hampton Inn and Suites Boise-Meridian for Monday and Tuesday, Holiday Inn Express Pullman for Wednesday, and Hampton Inn Spokane Valley for Thursday.",
+          "role_in_nonhabit": "Hampton was part of a route-specific hotel sequence, not a chain-only choice.",
+          "session_id": "tm_pd_v04_user_003_s0002"
+        },
+        {
+          "evidence_quote": "Hotels: Brookfield Fairfield is $149, breakfast 6:30, free parking. Wauwatosa Marriott is nicer but paid breakfast and garage. Janesville Hampton is $132, breakfast at 6, free parking. Rockford East State Holiday Inn is $158, breakfast unclear, restaurants next door.",
+          "role_in_nonhabit": "Multiple brands were compared by breakfast, parking, and location rather than loyalty.",
+          "session_id": "tm_pd_v04_user_003_s0042"
+        },
+        {
+          "evidence_quote": "Hotels: Tacoma Marriott Sun night, queen breakfast-rate room, $24 parking, cancel by Feb 21 at 6 p.m.; Hyatt House Eastgate Mon/Tue, queen studio, breakfast included at 6:30, $12 parking, cancel by Feb 22 at 4 p.m.",
+          "role_in_nonhabit": "Marriott and Hyatt were selected for a Puget Sound route when they fit timing and parking.",
+          "session_id": "tm_pd_v04_user_003_s0058"
+        },
+        {
+          "evidence_quote": "Hotel: official downtown conference block, one-queen room, about $219 before taxes, cancel by June 14 at 5 p.m. local time.",
+          "role_in_nonhabit": "An official block beat breakfast-included alternatives when proximity to sessions mattered more.",
+          "session_id": "tm_pd_v04_user_003_s0072"
+        },
+        {
+          "evidence_quote": "Best practical set: St. Paul Sunday-Monday, Hampton Inn & Suites Downtown, $151/night, two-queen refundable room, breakfast from 6:00, parking $15/night, several dinner spots within a few blocks. Madison Tuesday, Hampton Madison East Towne, $139, queen room, breakfast from 6:00, free parking, chain restaurants and a grocery close by. Brookfield Wednesday, Fairfield Inn & Suites Milwaukee Brookfield, $156, two queens, breakfast from 6:30, free parking, restaurants along Bluemound Road.",
+          "role_in_nonhabit": "Hampton and Fairfield were mixed within one trip according to city-specific logistics.",
+          "session_id": "tm_pd_v04_user_003_s0129"
+        },
+        {
+          "evidence_quote": "Pocatello is in place: Fairfield Inn & Suites Pocatello, Wednesday Feb. 26, refundable non-smoking king, free parking, breakfast 6:30-9:30, cancellation by 6:00 PM Feb. 25.",
+          "role_in_nonhabit": "A Fairfield was chosen when it fit the Pocatello route and rate constraints.",
+          "session_id": "tm_pd_v04_user_003_s0139"
+        }
+      ],
+      "family": "hotel_brand_selection",
+      "opportunity_description": "Hampton, Home2, Hyatt, Fairfield, Residence Inn, Holiday Inn Express, and official blocks recur often, so a memory system might infer loyalty to one chain.",
+      "strongest_false_inference": "Tessa prefers Hampton or Hilton-family hotels by default.",
+      "tempting_false_inferences": [
+        "Search Hampton first for every hotel stay.",
+        "Treat Hilton-family hotels as preferred even when location or cancellation is weaker.",
+        "Assume repeated Hampton bookings indicate brand loyalty rather than amenity/location fit."
+      ],
+      "why_no_stable_habit": "Hampton appears often because it commonly matches breakfast, parking, and predictable-room requirements, but the user also chooses Marriott, Hyatt, Holiday Inn Express, Fairfield, Residence Inn, official blocks, and independent area choices depending on the trip."
+    },
+    {
+      "control_id": "ctrl_false_fixed_materials_strategy",
+      "correct_memory_policy": "Keep the materials-handling method unset. For each trip, ask or infer current material volume, irreplaceable items, shipping feasibility, hotel or venue package acceptance, flight baggage rules, vehicle cargo coverage, theft risk, and reimbursement for shipping/baggage/SUV. Keep essential items with the user, ship or check replaceable bulk items when reliable, use a covered-cargo rental only when the current load requires it, and choose full driving only when materials plus route/cost make flying impractical.",
+      "decision_dimension": "Shipping, checking, carrying, driving, or vehicle choice for recruitment materials",
+      "evidence": [
+        {
+          "evidence_quote": "Carry-on plus a small box of materials if I can ship the rest. No checked bag planned.",
+          "role_in_nonhabit": "Puget Sound materials plan combined carry-on, small box, and possible shipping rather than a fixed method.",
+          "session_id": "tm_pd_v04_user_003_s0056"
+        },
+        {
+          "evidence_quote": "The hotel can hold packages; they just will not promise a room before standard check-in.",
+          "role_in_nonhabit": "Kansas City depended on package holding by the hotel, not a general carry-everything rule.",
+          "session_id": "tm_pd_v04_user_003_s0111"
+        },
+        {
+          "evidence_quote": "It is the rolling display bag, technically checked size. I can ship a small box to the first hotel.",
+          "role_in_nonhabit": "Front Range considered checking a display bag and shipping a small box.",
+          "session_id": "tm_pd_v04_user_003_s0112"
+        },
+        {
+          "evidence_quote": "Standard SUV is needed for five boxes and a banner tube; one-way fee is documented.",
+          "role_in_nonhabit": "Texas required an SUV because the current load was five boxes plus a banner.",
+          "session_id": "tm_pd_v04_user_003_s0122"
+        },
+        {
+          "evidence_quote": "I’ll have two boxes of admitted-student materials, and the one-way rental fee made flying look bad.",
+          "role_in_nonhabit": "Idaho shifted to driving because materials and one-way rental cost changed the economics.",
+          "session_id": "tm_pd_v04_user_003_s0138"
+        },
+        {
+          "evidence_quote": "Materials can ship to Plano but not Austin.",
+          "role_in_nonhabit": "Texas materials handling was split by venue capability, proving the strategy must be trip-specific.",
+          "session_id": "tm_pd_v04_user_003_s0141"
+        }
+      ],
+      "family": "materials_and_luggage_handling",
+      "opportunity_description": "The user frequently discusses boxes, banners, and materials, but the handling strategy changes by trip, mode, host capability, and cost.",
+      "strongest_false_inference": "Tessa has a fixed materials strategy, such as always shipping boxes ahead or always driving/renting an SUV for materials.",
+      "tempting_false_inferences": [
+        "Always ship materials to the first hotel or venue.",
+        "Always drive when there are boxes.",
+        "Always book an SUV whenever materials are mentioned.",
+        "Always avoid checked material bags."
+      ],
+      "why_no_stable_habit": "Across the lifeline, materials are shipped, carried, checked, stored at hotels, moved by rental SUV, or driven in the user’s own car depending on trip facts. No single durable default is supported."
+    }
+  ]
+}

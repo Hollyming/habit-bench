@@ -1,0 +1,201 @@
+{
+  "habit_id": "tm_pd_v04_user_004_h05",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c03",
+        "c04",
+        "c07",
+        "c08",
+        "c09"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c03",
+        "c04",
+        "c07",
+        "c08",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold the connected block: 4.1 rating, $248, elevator to sessions, in-room brewer, refrigerator request-only; call the property and record that caveat with the suite as backup."
+              },
+              {
+                "choice_id": "B",
+                "text": "Book the suite: 4.5 rating, $226, 11-minute rideshare, queen studio with in-room brewer and compact refrigerator, and let the block deadline pass."
+              },
+              {
+                "choice_id": "C",
+                "text": "Book the connected block and summarize the room as fully equipped, since the hotel can add appliance requests during checkout."
+              },
+              {
+                "choice_id": "D",
+                "text": "Ignore both and use the cheaper airport hotel: 4.3 rating, free breakfast, lowest total cost, and a 25-minute ride to the convention complex."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B follows the normal confirmed-room pattern and is cheaper and better-rated, while A wins on connected logistics and preserves confirmation. Only the user's history distinguishes a soft criterion with an exception from a hard rejection rule.",
+            "gold_action": "Hold the connected block, verify the request-only refrigerator, document the caveat, and keep the suite as backup.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0018",
+              "tm_pd_v04_user_004_s0101",
+              "tm_pd_v04_user_004_s0112"
+            ],
+            "label_rationale": "The gold applies the supported exception: when the hotel strongly fits the current conference logistics, an unresolved refrigerator should be verified and caveated rather than treated as an automatic rejection or as guaranteed. This is a one-trip caveat, not a permanent relaxation of the room-setup preference.",
+            "probe_type": "exception",
+            "query": "For a Providence pediatric rehab conference, the official connected hotel has a block deadline today. Kara has a 7:00 a.m. podium setup in the same complex, no rental car, and an evening reception there. A highly reviewed suite hotel is also available a short rideshare away. What next step should the planner take?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Block deadline today plus 7:00 a.m. same-complex setup strongly cues the connected option",
+              "The call-and-record-caveat wording makes A procedurally safer than the other choices",
+              "C contains an obviously unsafe summary of request-only amenities as fully equipped"
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "A preserves the connected block before the deadline, directly supports the 7:00 a.m. setup and evening reception in the same complex, and truthfully records the refrigerator caveat while keeping the suite as backup. B lets the block deadline pass, C overstates the amenities, and D is much less convenient."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Call both properties and ask whether the exact bookable room has an in-room brewer and refrigerator; rank the one that can confirm it."
+              },
+              {
+                "choice_id": "B",
+                "text": "Treat 'refreshment center' or 'kitchenette on request' as sufficient and rank by which hotel has the shorter walk."
+              },
+              {
+                "choice_id": "C",
+                "text": "Ask about pool, hot-tub, and gym hours first, then handle room appliance details after choosing a hotel."
+              },
+              {
+                "choice_id": "D",
+                "text": "Reserve the official block immediately and add a generic amenities note, since the page language is probably standard boilerplate."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is plausible because generic hotel listings often use shorthand and the hotels are otherwise tied. The memory-dependent step is knowing which ambiguous amenity language matters enough to verify before ranking.",
+            "gold_action": "Verify the exact in-room brewer and refrigerator availability for the bookable room before ranking the tied hotels.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0053",
+              "tm_pd_v04_user_004_s0083",
+              "tm_pd_v04_user_004_s0101"
+            ],
+            "label_rationale": "The gold disambiguates vague listing language and request-only amenities by checking the exact room type before relying on it. The cited episodes show Kara asking for direct confirmation and distinguishing requested or non-guaranteed details from confirmed room facts.",
+            "probe_type": "evidence_disambiguation",
+            "query": "For a Sacramento pediatric therapy conference, two hotels are otherwise tied on price, rating, walk time, and cancellation. The pages use vague phrases like 'refreshment center,' 'coffee service,' and 'kitchenette on request.' Kara wants a recommendation tomorrow, not a booking today. What should the planner do first?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The stem highlights vague phrases such as refreshment center and kitchenette on request",
+              "Recommendation tomorrow, not booking today, cues verification before ranking",
+              "Exact in-room brewer and refrigerator wording is suspiciously specific but sufficient here because verification is the procedural best step"
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "Because the hotels are otherwise tied and the amenity language is vague, the sensible next step before a recommendation tomorrow is to verify the exact bookable room details. B treats vague language as sufficient and even refers to a shorter walk despite the stated tie; C and D address irrelevant or premature actions."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Wellness Inn: 4.5 rating, seven-minute walk, strong gym, indoor pool and hot tub, king room, lobby coffee, and no refrigerator information."
+              },
+              {
+                "choice_id": "B",
+                "text": "Residence-style hotel: 4.2 rating, eleven-minute rideshare, modest fitness room, no hot tub, queen studio with in-room brewer and compact refrigerator."
+              },
+              {
+                "choice_id": "C",
+                "text": "Official block: 4.0 rating, four-minute walk, lowest rate, standard queen, refrigerator request at check-in, and no coffee detail."
+              },
+              {
+                "choice_id": "D",
+                "text": "Downtown boutique: 4.6 rating, nine-minute walk, restaurant and bar, balcony room, in-room espresso, and no refrigerator detail."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is higher-rated, closer, and better for recovery, so generic travel reasoning could favor it. The user's boundary pattern is needed to avoid substituting gym/pool/hot-tub value for the recurring in-room criteria.",
+            "gold_action": "Rank the residence-style hotel first despite weaker recovery amenities and a slightly longer ride.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0000",
+              "tm_pd_v04_user_004_s0010",
+              "tm_pd_v04_user_004_s0069"
+            ],
+            "label_rationale": "The gold separates the durable room setup from adjacent amenities. The cited histories show pool, hot tub, gym, and other comfort features can matter, but they do not replace the specific in-room setup when hotel options are otherwise comparable.",
+            "probe_type": "boundary",
+            "query": "For an Omaha pediatric gait seminar, hotel rates are close and all are cancellable. Kara's first teaching block starts at 7:15 a.m.; recovery amenities would be useful but she will not choose on luxury alone. Which hotel should be ranked first?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrase recovery amenities would be useful points directly to gym/pool/hot-tub value",
+              "The warning that she will not choose on luxury alone rules out pure luxury cues but A also satisfies early-start logistics",
+              "Repeated refrigerator/coffee details are suspicious but not needed to select A"
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "The query explicitly says recovery amenities would be useful, and A is the only option pairing strong recovery amenities with a still-walkable seven-minute route for a 7:15 a.m. teaching block and the highest relevant rating. B requires a rideshare and lacks the recovery amenities, C is closer and cheaper but lacks the stated useful amenities, and D is more like luxury/dining without the same recovery fit."
+          }
+        }
+      ],
+      "round": 0
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "cross_context_transfer": 2,
+      "exception": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_004"
+}

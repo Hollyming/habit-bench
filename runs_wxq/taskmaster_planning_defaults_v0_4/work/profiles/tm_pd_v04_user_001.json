@@ -1,0 +1,188 @@
+{
+  "cache_fingerprint": "7b4bff7a72fe5bfe35d92feb9b959ee34bd395f384601c4cbcf44df1cb34b951",
+  "profile": {
+    "communication_style": {
+      "decision_behavior": "Often starts with broad dates or cities, then narrows after seeing realistic options; appreciates being asked before a plan violates a recurring default.",
+      "detail_level": "Wants enough detail to act, but not an exhaustive dump of every available fare or hotel.",
+      "planning_preferences": "Likes ranked shortlists with the main trade-offs called out, especially timing, connection burden, hotel rating, and amenity gaps.",
+      "tone": "Practical, direct, and friendly."
+    },
+    "generated_by": {
+      "model": "gpt-5.5",
+      "reasoning_effort": "xhigh"
+    },
+    "generation_method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+    "habit_interactions": [
+      "For flights, schedule reliability and connection simplicity matter more than carrier loyalty, so the airline preference should not crowd out a better itinerary.",
+      "The afternoon-departure tendency and short-layover policy often reinforce each other, but if they conflict she usually wants the cleaner connection surfaced clearly before deciding.",
+      "The hotel rating floor and wellness-amenity preference together shape her first hotel shortlist for work trips, while leisure extensions may add the balcony preference as a softer room-level cue.",
+      "The window-seat preference is low-friction: it should be handled during seat selection or check-in without derailing higher-priority itinerary planning."
+    ],
+    "habits": [
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_001_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies when Erin is choosing commercial flights for work, conferences, or personal travel from or back to Denver and no current trip instruction fixes another carrier.",
+        "scope_key": "self_booked_denver_commercial_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001"
+      },
+      {
+        "alternative_group_key": "flight_departure_time_of_day_preference",
+        "boundary_condition": "Applies only to flight departure time-of-day. Do not infer it for arrival times, dates, routes, every leg automatically, or earliest-afternoon departures as a recurring rule.",
+        "condition": "When selecting or comparing flight departure times.",
+        "default_action": "Look first for departure options in the afternoon; follow any current explicit request for another time window or exact time.",
+        "exception_condition": "If acceptable afternoon departures are unavailable or conflict with other stated constraints, ask before broadening to nearby time windows.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_001_h01",
+        "name": "prefers_afternoon_departures",
+        "preference_value": "Prefers flight departures in the afternoon when no different departure-time constraint is specified.",
+        "scope_condition": "Applies when Erin is comparing flight options and the current trip does not impose a different departure-time window.",
+        "scope_key": "flexible_departure_time_flight_searches",
+        "source_bundle_id": "tm_v04_e2e_bundle_ff9a7f3c433c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ff9a7f3c433c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001"
+      },
+      {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_001_h02",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies when a nonstop flight is not selected or when connecting itineraries are being compared for her domestic work, conference, family, or leisure trips.",
+        "scope_key": "domestic_connecting_itinerary_evaluation",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001"
+      },
+      {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v04_user_001_h03",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Applies when Erin or the assistant can choose or request a seat on flights she is taking.",
+        "scope_key": "seat_selection_for_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "background",
+        "testable": false,
+        "user_id": "tm_pd_v04_user_001"
+      },
+      {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_001_h04",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies when Erin is searching for or comparing hotels outside of a mandatory event room block or host-selected lodging.",
+        "scope_key": "self_selected_overnight_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001"
+      },
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Treat this as a reusable hotel-amenity preference, not a destination, date, price, restaurant/bar, or indoor/outdoor pool preference. Use it as soft unless the current request makes the amenities mandatory.",
+        "condition": "When selecting or evaluating hotel options.",
+        "default_action": "Prioritize or verify hotels that offer all three amenities: a pool, a hot tub, and fitness or exercise access; clearly note if one is missing.",
+        "exception_condition": "If otherwise suitable hotels do not offer all three amenities, present close matches while explicitly noting which of pool, hot tub, or fitness/exercise access is absent.",
+        "family": "hotel_included_services",
+        "habit_id": "tm_pd_v04_user_001_h05",
+        "name": "prefer_hotel_pool_hot_tub_fitness",
+        "preference_value": "Prefer hotels with a pool, hot tub, and fitness or exercise access.",
+        "scope_condition": "Applies when Erin is choosing hotels for multi-night client trainings, conferences, or active leisure stays where she expects to use recovery or exercise amenities.",
+        "scope_key": "multi_night_work_and_active_leisure_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_fd8a73454935",
+        "source_habit_instance_id": "tm_v04_e2e_habit_fd8a73454935",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_001"
+      },
+      {
+        "alternative_group_key": "hotel_room_balcony_preference",
+        "boundary_condition": "Do not treat balcony as mandatory unless the current request explicitly says it is required. Do not infer an ocean view or any specific view from the balcony preference alone.",
+        "condition": "Use when searching for, booking, or evaluating hotel room amenities, particularly when the room is above the first floor or the floor has not been specified.",
+        "default_action": "Ask for or verify that the hotel room has a balcony as a soft default preference.",
+        "exception_condition": "If the room is on the first floor, the balcony preference may be waived.",
+        "family": "hotel_view_balcony_flexibility",
+        "habit_id": "tm_pd_v04_user_001_h06",
+        "name": "hotel_room_balcony_preference",
+        "preference_value": "Prefers a hotel room with a balcony when booking or evaluating rooms.",
+        "scope_condition": "Applies mainly when Erin is booking personal weekend stays or leisure extensions where the room itself is part of the experience.",
+        "scope_key": "leisure_extensions_and_scenic_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_5687f4a741ee",
+        "source_habit_instance_id": "tm_v04_e2e_habit_5687f4a741ee",
+        "strength": "background",
+        "testable": false,
+        "user_id": "tm_pd_v04_user_001"
+      }
+    ],
+    "longitudinal_plan": {
+      "target_history_characters": 342000,
+      "target_sessions": 137,
+      "travel_tempo": "High but not constant: roughly 18 to 24 trips per year across work travel, conferences, family visits, and leisure add-ons, with clusters of planning activity before training rollouts.",
+      "typical_episode_shape": "A typical trip uses 3 to 6 sessions: initial route/date exploration, flight shortlist refinement, hotel comparison, booking or policy check, and occasional follow-up for seat selection, schedule changes, or leisure extension details."
+    },
+    "persona": {
+      "age_range": "early 40s",
+      "decision_posture": "Routine-driven and comfort-conscious without being luxury-first: she likes reliable schedules, well-reviewed hotels, and recovery-friendly amenities, but she will accept trade-offs when the trip has a firm date, route, or budget constraint.",
+      "home_base": "Denver, Colorado",
+      "name": "Erin Kowalski",
+      "occupation": "senior training manager for a veterinary diagnostics company",
+      "travel_identity": "Frequent self-booking domestic traveler who plans clinic training weeks, trade-show trips, and occasional active long-weekend escapes with her spouse.",
+      "user_id": "tm_pd_v04_user_001"
+    },
+    "travel_contexts": [
+      {
+        "context_key": "client_training_weeks",
+        "description": "Two- to four-night trips from Denver to veterinary hospital networks, regional labs, and corporate training sites.",
+        "recurrence": "Usually one or two trips most months, with heavier planning around spring and fall rollout seasons."
+      },
+      {
+        "context_key": "trade_shows_and_certifications",
+        "description": "Conference and certification travel where she compares flights, hotel blocks, and independent hotel options.",
+        "recurrence": "Several times per year, often planned farther ahead than client visits."
+      },
+      {
+        "context_key": "leisure_extensions",
+        "description": "Weekend stays attached to work travel or short scenic trips with her spouse, often in mountain, desert, or waterfront destinations.",
+        "recurrence": "A handful of times per year, usually with more attention to room comfort and hotel amenities."
+      },
+      {
+        "context_key": "family_and_holiday_travel",
+        "description": "Occasional trips to visit relatives where holiday timing and fare availability can override normal defaults.",
+        "recurrence": "A few times per year, with more schedule rigidity than her work trips."
+      }
+    ],
+    "user_id": "tm_pd_v04_user_001"
+  }
+}

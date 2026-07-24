@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "5252b610795d10414a081937aade14ad781e34755e13b01e8a0728816fdb5a3a",
+  "habits": [
+    {
+      "boundary_condition": "This should be treated as a soft default rather than a hard requirement, and it should not override explicit trip-specific constraints such as location, rating, or budget. Do not infer a specific view type unless the user asks for it in the current trip.",
+      "bundle_id": "tm_v04_e2e_bundle_572f078bb517",
+      "condition": "When searching for or booking a hotel room for a leisure stay.",
+      "confidence": 0.78,
+      "decision": "accept",
+      "default_action": "Include a balcony or terrace in the hotel-room amenity search and confirm availability before booking; treat a terrace as an acceptable alternative to a balcony.",
+      "exception_condition": "Skip or relax this preference if the user explicitly prioritizes other constraints, if balcony/terrace rooms are unavailable, or if the user declines that amenity for the current booking.",
+      "family": "hotel_view_balcony_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_572f078bb517",
+      "induced_at": "2026-07-16T08:10:58.977571+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_room_balcony_or_terrace_preference",
+      "preference_value": "Prefers hotel rooms that have a balcony or terrace.",
+      "rationale": "Across three independent hotel dialogues, the user repeatedly asks for or confirms a balcony/terrace as a room amenity, sometimes emphasizing it as part of the desired stay experience.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows the user actively wants a balcony as part of the room experience, with a view requested in this specific waterfront context.",
+          "conversation_id": "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+          "exact_user_quote": "I'd like to have a good view of the ocean and a balcony to look out over the water.",
+          "instruction_id": "hotel-13",
+          "turn_index": 9
+        },
+        {
+          "contribution": "Lists balcony or terrace as a room amenity to check, supporting terrace as an acceptable alternative to balcony.",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "exact_user_quote": "A balcony or terrace, a TV with cable, mini fridge, coffee maker, honor bar and fireplace.",
+          "instruction_id": "hotel-1b",
+          "turn_index": 14
+        },
+        {
+          "contribution": "Strongly states a preference for a balcony or terrace and explains the desired use of relaxing there.",
+          "conversation_id": "dlg-17a9410c-dbb4-47ba-a2ac-218346429404",
+          "exact_user_quote": "I would love a balcony or, you know, a terrace. I would love just to sit on the balcony and relax.",
+          "instruction_id": "hotel-4",
+          "turn_index": 7
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I'd like to have a good view of the ocean and a balcony to look out over the water.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+          "habitual_language": false,
+          "instruction_id": "hotel-13",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 9,
+          "user_utterance": "I'd like to have a good view of the ocean and a balcony to look out over the water."
+        },
+        {
+          "annotated_segment": "A balcony or terrace, a TV with cable, mini fridge, coffee maker, honor bar and fireplace.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "habitual_language": false,
+          "instruction_id": "hotel-1b",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 14,
+          "user_utterance": "A balcony or terrace, a TV with cable, mini fridge, coffee maker, honor bar and fireplace."
+        },
+        {
+          "annotated_segment": "I would love a balcony or, you know, a terrace. I would love just to sit on the balcony and relax.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-17a9410c-dbb4-47ba-a2ac-218346429404",
+          "habitual_language": false,
+          "instruction_id": "hotel-4",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 7,
+          "user_utterance": "I would love a balcony or, you know, a terrace. I would love just to sit on the balcony and relax."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+    "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+    "dlg-17a9410c-dbb4-47ba-a2ac-218346429404"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "If a connecting itinerary is considered for savings, keep the stop tolerance low by allowing only one layover rather than multiple stops.",
+  "bundle_id": "tm_v04_bundle_7d3077495d01",
+  "condition": "When comparing flight itineraries for a typical trip and no special comfort or major price-saving reason favors a stop.",
+  "confidence": 0.78,
+  "decision": "accept",
+  "default_action": "Prioritize nonstop flights before connecting itineraries.",
+  "exception_condition": "For very long coast-to-coast-style flights where the traveler wants a break, look for a midway stopover instead of forcing nonstop.",
+  "family": "stop_tolerance",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_7d3077495d01",
+  "induced_at": "2026-07-15T12:35:41.918104+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Default to nonstop flights when practical",
+  "preference_value": "nonstop by default, with limited exceptions for cost or long-flight comfort",
+  "rationale": "Most independent examples state or imply that nonstop is preferred, including 'non-stop is always preferred,' 'definitely a non-stop,' and 'a nonstop flight.' One example allows a layover when it is cheaper but limits it to one layover, and another requests a midway stopover for coast-to-coast travel. Together, these support a scoped synthetic habit: default to nonstop when practical, but allow a single layover for savings or a stopover for long-flight comfort.",
+  "seed_value": "nonstop",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User says, 'non-stop is always preferred,' directly supporting nonstop as the default.",
+      "conversation_id": "dlg-407c082e-65a1-4937-b5e1-6d452fb1a3a4",
+      "turn_index": 14
+    },
+    {
+      "contribution": "User says, 'Yes, definitely a non-stop,' supporting prioritization of nonstop flights.",
+      "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+      "turn_index": 15
+    },
+    {
+      "contribution": "User says, 'I'd like it to be a nonstop flight, please,' supporting nonstop as the requested stop pattern.",
+      "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+      "turn_index": 20
+    },
+    {
+      "contribution": "User says that if it is cheaper to go with a layover, they prefer 'just one layover,' supporting a cost-based boundary that does not extend to multiple stops.",
+      "conversation_id": "dlg-b391bbe3-dc9b-4efd-b7f0-45c46dd052ea",
+      "turn_index": 15
+    },
+    {
+      "contribution": "User asks for a 'stopover about midway' and says they do not want to fly 'coast to coast non-stop,' supporting a long-flight comfort exception.",
+      "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+      "turn_index": 29
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "one layover",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-b391bbe3-dc9b-4efd-b7f0-45c46dd052ea",
+      "habitual_language": true,
+      "instruction_id": "flight-5",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 15,
+      "user_utterance": "Oh. You mean generally. Okay. We would prefer a let's start off with layover. We If that's a significantly cheaper ticket, we'd prefer non-stop, but if it's cheaper to go layover, we'd prefer just one layover though."
+    },
+    {
+      "annotated_segment": "non-stop",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-407c082e-65a1-4937-b5e1-6d452fb1a3a4",
+      "habitual_language": true,
+      "instruction_id": "flight-7",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 14,
+      "user_utterance": "Yeah, I know non-stop is always preferred but you haven't have open in Vallejo."
+    },
+    {
+      "annotated_segment": "stopover",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 29,
+      "user_utterance": "Are there any other flights that have a stopover about midway? I don't want to fly from coast to coast non-stop."
+    },
+    {
+      "annotated_segment": "non-stop",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+      "habitual_language": false,
+      "instruction_id": "flight-11",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 15,
+      "user_utterance": "Yes, definitely a non-stop."
+    },
+    {
+      "annotated_segment": "nonstop",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+      "habitual_language": false,
+      "instruction_id": "flight-8",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 20,
+      "user_utterance": "I'd like it to have all the same options and I'd like it to be a nonstop flight, please."
+    }
+  ]
+}

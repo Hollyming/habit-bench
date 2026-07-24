@@ -1,0 +1,619 @@
+{
+  "cache_fingerprint": "ad065a5e9c03833a3692da5cb334a4acca01d2fcf049a3fd6da325a3a5967dee",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "The aisle and window request notes have the same generic booking utility and neither assigns a seat immediately. The hidden policy is needed to choose which location request to enter while still handling the seat-map boundary.",
+      "gold_action": "Ticket the best-timed fare now, note that the seat map is deferred, add a window-location request, and set the earliest check-in reminder to secure one if available.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0035",
+        "tm_pd_v04_user_004_s0090",
+        "tm_pd_v04_user_004_s0070",
+        "tm_pd_v04_user_004_s0047"
+      ],
+      "habit_family": "flight_seat_preference",
+      "habit_id": "tm_pd_v04_user_004_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v04_user_004_h00",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Flights Kara books for herself for seminars, clinic visits, conferences, or solo positioning legs when she is not coordinating adjacent seats with someone else.",
+        "scope_key": "solo_flight_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "A gets the ticketing and check-in reminder behavior mostly right, but it requests an aisle even though her repeated default location preference is window.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "When the map is unavailable, Kara's history supports proceeding with the practical booking, requesting a window if possible, and actively checking again at online check-in. There is no basis to request an aisle or hold the ticket solely for the seat map.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Kara's history shows that when seat selection is available she asks for windows, and when it is not yet available she wants the limitation noted with a follow-up at the earliest practical time. The Sacramento query gives no current-thread location preference, so the window note comes from the longitudinal pattern rather than the stated facts alone.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_004_h00_p00",
+      "probe_type": "boundary",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The query says no new seat instruction appears in the current thread, implying a prior/user-history seat preference may be needed.",
+          "The remaining viable choices turn on aisle versus window despite no stated preference."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "C"
+        ],
+        "rationale": "Ticketing now and setting a check-in reminder is generically sensible, while holding the booking is poor and leaving the request blank is less proactive. But A and C are otherwise identical except aisle versus window, and the query gives no seat-location preference.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_004"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "Choices A and B both preserve adjacency, cost nothing, and have the same operational value. Without memory, assigning the window to Kara versus her partner is underdetermined.",
+      "gold_action": "Use a no-fee adjacent pair, placing Kara in the window and her partner beside her, while keeping the pair together and monitoring only if the aircraft changes.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0033",
+        "tm_pd_v04_user_004_s0051",
+        "tm_pd_v04_user_004_s0077",
+        "tm_pd_v04_user_004_s0011"
+      ],
+      "habit_family": "flight_seat_preference",
+      "habit_id": "tm_pd_v04_user_004_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v04_user_004_h00",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Flights Kara books for herself for seminars, clinic visits, conferences, or solo positioning legs when she is not coordinating adjacent seats with someone else.",
+        "scope_key": "solo_flight_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "A preserves adjacency, which is important, but it reverses the usual side assignment; the stronger recurring pattern is Kara in the window and her partner beside her when that works.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "For partner trips, Kara's first rule is to keep the pair adjacent, not split them for separate windows. When an adjacent pair can also put her at the window, her later instructions repeatedly say to put Kara by the window with her partner beside her.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Partner-trip history shows that Kara should not be split from her partner just to force a seat type, but when an adjacent window/aisle pair works, she commonly takes the window herself. The query makes the adjacent pairs otherwise equivalent, so the longitudinal pattern determines who should get the window.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_004_h00_p01",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The query explicitly notes no current-thread instruction about which traveler should take the outside seat.",
+          "A and B encode an unstated traveler-specific window allocation."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "An adjacent no-fee pair is generically better than separate windows or leaving seats unassigned, but the two equivalent adjacent-pair choices differ only on whether Kara or her partner gets the window/outside seat. That preference is not stated.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_004"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "Sitting near a colleague is plausible, and the aisle is more forward; the hard part is distinguishing casual co-travel from the specific adjacent-seat exception.",
+      "gold_action": "Assign Kara the available no-fee window because she is not coordinating an adjacent companion arrangement.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0043",
+        "tm_pd_v04_user_004_s0058",
+        "tm_pd_v04_user_004_s0113",
+        "tm_pd_v04_user_004_s0011"
+      ],
+      "habit_family": "flight_seat_preference",
+      "habit_id": "tm_pd_v04_user_004_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v04_user_004_h00",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Flights Kara books for herself for seminars, clinic visits, conferences, or solo positioning legs when she is not coordinating adjacent seats with someone else.",
+        "scope_key": "solo_flight_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "A is tempting because it places her near a colleague, but the trip facts explicitly say they are on separate reservations and plan to meet at the hotel, while her own seat preference points to the window.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "This is Kara's solo seat assignment, and the current facts say the colleagues are not coordinating seats. Her applicable solo default is to take a no-fee window if available, without importing an adjacency note from other contexts.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The colleague detail could be confused with partner-adjacent exceptions, but the query says there is no coordinated seating need. Baltimore, Denver, and Chicago conference evidence support selecting windows for Kara's own professional flights, while the Blue Ridge exception was about not splitting a companion pair.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_004_h00_p02",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Colleague details are a cue not to add an adjacent-seat or coordination note.",
+          "The final window-versus-aisle decision would require private seat preference history."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "C",
+          "D"
+        ],
+        "rationale": "The query explicitly says colleagues are not coordinating seats, so choosing based on colleague proximity is not supported. After ignoring colleague seating, the remaining reasonable no-fee choices are a mid-cabin window and a mid-cabin aisle, and the query gives no aisle/window preference.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_004"
+    },
+    {
+      "generator_closest_distractor_choice_id": "C",
+      "generator_difficulty_rationale": "The closest distractor handles the boundary correctly but chooses the wrong location; the more expensive itinerary and paid preferred row are plausible overreactions.",
+      "gold_action": "Use the available included window on the return, note that outbound selection is deferred, and set an earliest-check-in reminder for an outbound window.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0035",
+        "tm_pd_v04_user_004_s0090",
+        "tm_pd_v04_user_004_s0047",
+        "tm_pd_v04_user_004_s0070"
+      ],
+      "habit_family": "flight_seat_preference",
+      "habit_id": "tm_pd_v04_user_004_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v04_user_004_h00",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Flights Kara books for herself for seminars, clinic visits, conferences, or solo positioning legs when she is not coordinating adjacent seats with someone else.",
+        "scope_key": "solo_flight_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "B is tempting because Kara values seat choice, but the excerpts do not support paying more and taking a longer itinerary mainly to avoid a temporary partner-carrier map limitation.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Kara's pattern is to take windows where the map allows, avoid paying extra when a no-fee option works, and set reminders or alerts when a seat map is not open. Ticket the chosen practical itinerary, take the free return window, and use check-in to try for an outbound window.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The seat-map boundary does not erase the seat-location pattern. Kara's history supports selecting windows where available and setting reminders when maps are not open, without paying or changing the whole itinerary solely for seat-map access.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_004_h00_p03",
+      "probe_type": "boundary",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Higher price, longer duration, and partner-carrier seat-map limitation cue rejecting the alternate itinerary.",
+          "The A-versus-C distinction is purely window preference versus aisle preference."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "C"
+        ],
+        "rationale": "The cheaper, shorter chosen itinerary should be kept rather than switching mainly for seat-map availability, and the paid return seat is not generically justified. But selecting the return window and requesting an outbound window versus selecting/requesting aisles depends on an unstated seat-type preference.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_004"
+    },
+    {
+      "generator_closest_distractor_choice_id": "D",
+      "generator_difficulty_rationale": "Choices C and D are both no-fee same-row adjacent pairs with the same feasibility. The only meaningful difference is which traveler occupies the window, which the current query does not specify.",
+      "gold_action": "Keep the partners adjacent in a no-fee pair, but use the equivalent open pair that places Kara at the window and her partner beside her.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0011",
+        "tm_pd_v04_user_004_s0051",
+        "tm_pd_v04_user_004_s0078",
+        "tm_pd_v04_user_004_s0107"
+      ],
+      "habit_family": "flight_seat_preference",
+      "habit_id": "tm_pd_v04_user_004_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v04_user_004_h00",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Flights Kara books for herself for seminars, clinic visits, conferences, or solo positioning legs when she is not coordinating adjacent seats with someone else.",
+        "scope_key": "solo_flight_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "D is tempting because it keeps the partner's temporary seat and preserves adjacency, but it leaves Kara away from the window even though an equivalent adjacent pair can put her there.",
+        "difficulty": "hard",
+        "model": "gpt-5.5",
+        "rationale": "On partner trips, adjacency is more important than separate windows, and when an adjacent pair can put Kara by the window, that is her recurring preference. Because all seats are no-fee with free changes and the partner's 8A is only temporary, move them to the pair that gives Kara the window.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Kara's partner-trip evidence prioritizes not splitting the travelers, while also showing that if an adjacent window/aisle setup works, Kara is typically placed at the window. Because the temporary assignment is not a stated preference and an equivalent no-fee pair is open, the history supports moving the pair rather than simply giving the window to her partner.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_004_h00_p04",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The query says no current-thread note says whether to preserve the temporary side assignment.",
+          "The viable choices differ by traveler/side/window allocation rather than objective cost or schedule factors."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "C",
+          "D"
+        ],
+        "rationale": "Keeping the travelers adjacent in no-fee standard seats is generically better than separating Kara or leaving her unassigned. But C and D are equivalent adjacent plans that differ on preserving the partner's temporary 8A/window-side placement versus moving the pair so Kara gets the outside/window-side seat. The query does not state that preference.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_004"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "The closest distractor correctly drops the companion note and chooses a practical forward seat, but it misses the durable solo seat-location pattern.",
+      "gold_action": "Drop the companion-pair note as trip-specific and select the available no-fee window for Kara's solo symposium flight.",
+      "gold_choice_id": "D",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0011",
+        "tm_pd_v04_user_004_s0095",
+        "tm_pd_v04_user_004_s0098",
+        "tm_pd_v04_user_004_s0104"
+      ],
+      "habit_family": "flight_seat_preference",
+      "habit_id": "tm_pd_v04_user_004_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v04_user_004_h00",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Flights Kara books for herself for seminars, clinic visits, conferences, or solo positioning legs when she is not coordinating adjacent seats with someone else.",
+        "scope_key": "solo_flight_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "A correctly avoids carrying over the companion note and offers a forward no-fee aisle, but Kara's solo seat history favors the available window when there is no stated timing reason to prioritize the front.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "The companion-pair rule applies to partner bookings, not a new solo symposium reservation. For Kara alone, the recurring default is to take an available no-fee window, so choose 28A despite its rear location.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The companion and paid-seat caveats were one-trip exceptions, not a permanent revision. For a new solo professional booking with an included window available, later Raleigh and Milwaukee solo evidence supports selecting the window, while partner-trip evidence explains why the companion note should not carry over.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_004_h00_p05",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Prior companion note versus current solo booking is sufficient to reject carrying over the note.",
+          "The remaining forward-aisle versus rear-window assignment would require unstated seat preference history."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "D"
+        ],
+        "rationale": "The prior companion-pair note should not carry over because the new booking is solo. However, both 16C forward aisle and 28A rear window avoid carrying over that note, and the query does not state an aisle/window preference strong enough to choose between them.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_004"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Ticket the itinerary now, enter an aisle-location request, and set a reminder for the first moment online check-in opens."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold the booking until online check-in opens, then ticket and choose a seat once the map is visible."
+        },
+        {
+          "choice_id": "C",
+          "text": "Ticket the itinerary now, enter a window-location request, and set a reminder for the first moment online check-in opens."
+        },
+        {
+          "choice_id": "D",
+          "text": "Ticket the itinerary now, leave the location field blank, and rely on the routine airline check-in notice."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "boundary",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_004_h00_p00",
+      "query": "Kara is ready to ticket a solo Sacramento university lab visit on the itinerary that fits the host schedule. The carrier sells the ticket now but does not display the seat map until online check-in; today's form allows one optional location request and no actual assignment. No new seat instruction appears in the current thread. What booking instruction should you give?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_004",
+      "visible_history_scope": {
+        "max_session_index": 120
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Assign an equivalent adjacent pair with her partner in the window and Kara beside them; save it and recheck if the aircraft changes."
+        },
+        {
+          "choice_id": "B",
+          "text": "Assign an equivalent adjacent pair with Kara in the window and her partner beside her; save it and recheck if the aircraft changes."
+        },
+        {
+          "choice_id": "C",
+          "text": "Assign two separate no-fee windows in nearby rows for now; save them and recheck later for an adjacent pair."
+        },
+        {
+          "choice_id": "D",
+          "text": "Leave both travelers unassigned for now and use online check-in to choose from whatever paired seats remain."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "exception",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_004_h00_p01",
+      "query": "Kara and her partner are ticketing a Santa Fe long-weekend hiking trip. The seat map is open on a 2-2 aircraft: two no-fee adjacent pairs in the main cabin are otherwise equivalent in row, cabin position, and changeability, and there are also separate no-fee windows in nearby rows. No current-thread note says which traveler should take the outside seat. Which instruction should you apply?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_004",
+      "visible_history_scope": {
+        "max_session_index": 120
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Assign 11C so she is near a colleague without changing reservations."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold off assigning a seat until she confirms whether colleagues matter."
+        },
+        {
+          "choice_id": "C",
+          "text": "Assign 17A and do not add an adjacent-seat note."
+        },
+        {
+          "choice_id": "D",
+          "text": "Assign 18D to keep a mid-cabin aisle away from the colleague row."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_004_h00_p02",
+      "query": "Kara is booking Boston rehab-conference flights on the same itinerary as two colleagues, but they are on separate reservations and plan to meet at the hotel rather than coordinate seats. Standard no-fee seats left on Kara's outbound are 11C aisle across from one colleague, 17A window mid-cabin, 18D aisle mid-cabin, and 20B middle. Which seat should you assign?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_004",
+      "visible_history_scope": {
+        "max_session_index": 120
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Ticket the chosen itinerary, select 23F on the return, and set a check-in reminder to try for a no-fee window outbound."
+        },
+        {
+          "choice_id": "B",
+          "text": "Switch to the $64-more itinerary mainly to avoid the partner-carrier seat-map limitation."
+        },
+        {
+          "choice_id": "C",
+          "text": "Ticket the chosen itinerary, select 15C on the return, and set a check-in reminder to try for a no-fee aisle outbound."
+        },
+        {
+          "choice_id": "D",
+          "text": "Ticket the chosen itinerary, pay for 8A on the return, and leave the outbound for the airport."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "boundary",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_004_h00_p03",
+      "query": "For a solo Omaha pediatric-technology course, Kara has chosen the shortest itinerary. The outbound is operated by a partner carrier whose seat map opens only at online check-in; the return seat map is open now with no-fee 15C aisle and 23F window, plus a $39 preferred 8A window. A different itinerary with both maps open is $64 more and 35 minutes longer. What should you do at ticketing?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_004",
+      "visible_history_scope": {
+        "max_session_index": 120
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Put Kara in the separate later-row window and keep the partner's temporary 8A; recheck later for adjacent seats."
+        },
+        {
+          "choice_id": "B",
+          "text": "Leave Kara unassigned while keeping the partner's temporary 8A; use online check-in to see whether the map improves."
+        },
+        {
+          "choice_id": "C",
+          "text": "Move the pair to 8C/8D with Kara in 8D and her partner in 8C; save the pair and recheck if the map changes."
+        },
+        {
+          "choice_id": "D",
+          "text": "Confirm the partner's temporary 8A and put Kara in 8B beside them; save the pair and recheck if the map changes."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "exception",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_004_h00_p04",
+      "query": "For a Monterey recovery weekend, after a schedule update the map is asking you to confirm seats before ticketing. Kara's partner is temporarily placed in 8A; 8B is open, the across-aisle 8C/8D pair is open, and a separate later-row window is open. All listed seats are no-fee standard seats with free changes. No current-thread note says whether to preserve the temporary side assignment. What should you do for Kara's seat plan?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_004",
+      "visible_history_scope": {
+        "max_session_index": 120
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Do not carry over the companion-pair note; choose 16C as a straightforward forward aisle."
+        },
+        {
+          "choice_id": "B",
+          "text": "Do not assign a seat now because recent files included paid-seat caveats."
+        },
+        {
+          "choice_id": "C",
+          "text": "Carry over the companion-pair note and leave assignment pending until another traveler is added."
+        },
+        {
+          "choice_id": "D",
+          "text": "Do not carry over the companion-pair note; select 28A for this solo booking."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_004_h00_p05",
+      "query": "A prior weekend file on Kara's account has a note about keeping a companion seat pair together, but the new Halifax pediatric symposium booking is just for Kara. The chosen fare includes standard seat selection. The only no-fee options left are 16C aisle near the front, 28A window near the rear, 29B middle, and 30D aisle near the lavatory. How should you handle the seat note and assignment?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_004",
+      "visible_history_scope": {
+        "max_session_index": 120
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 6,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 4
+    },
+    "query_only_unresolved_count": 10,
+    "selected_count": 6,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 5
+    },
+    "selected_type_counts": {
+      "boundary": 2,
+      "evidence_disambiguation": 2,
+      "exception": 2
+    }
+  }
+}

@@ -1,0 +1,428 @@
+{
+  "habit_id": "tm_pd_v04_user_004_h02",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c02",
+        "c03",
+        "c05"
+      ],
+      "accepted_total": [
+        "c00",
+        "c02",
+        "c03",
+        "c05"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Name Granville Boutique: $242, six-minute walk, four-star hotel class, queen and coffee, mini-fridge not guaranteed, Google guest rating 3.9/5 from 1150 reviews."
+              },
+              {
+                "choice_id": "B",
+                "text": "Name Coal Harbour Reserve: $389, 25-minute taxi, spa/pool, queen/coffee/fridge, TripAdvisor traveler rating 4.7/5 from 2400 reviews."
+              },
+              {
+                "choice_id": "C",
+                "text": "Name Fairview Suite Hotel: $251, twelve-minute walk or short bus ride, three-star hotel class, queen/coffee/fridge confirmed, Google guest rating 4.3/5 from 870 reviews."
+              },
+              {
+                "choice_id": "D",
+                "text": "Name Campus Residence Plus: $221, 15-minute walk, kitchenette, internal host satisfaction score 9/10 but no public guest rating shown, limited evening desk coverage."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Granville and Fairview are close on price and practicality, with Granville winning on walk time and hotel-class label while Fairview wins on public guest score and room certainty. Without Kara's history, either could be the lead; the evidence disambiguates that the public guest rating matters more than the hotel-class star label.",
+            "gold_action": "Name Fairview Suite Hotel first and report its Google guest rating as the rating source.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0000",
+              "tm_pd_v04_user_004_s0067",
+              "tm_pd_v04_user_004_s0083",
+              "tm_pd_v04_user_004_s0115"
+            ],
+            "label_rationale": "Kara's history distinguishes customer-facing guest ratings from other quality labels: she repeatedly reacted to guest-review levels, and sub-4-ish ratings made her uneasy even when other practical factors were good. Fairview has a clear public Google guest rating above her usual comfort floor and confirmed room basics. Granville follows the hotel-class cue and better location, but its public guest rating falls just short; Campus Residence has an unclear internal metric; Coal Harbour's very high traveler rating is not worth the splurge and commute for a practical backup.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Kara has a Vancouver university clinic meeting and needs a backup hotel in case the campus rooms sell out. The host list mixes hotel-class labels with public review scores, and all four choices are cancellable, with only one clear splurge. She wants a practical lead, not a trophy property. Which backup should you name first?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The wording practical lead, not a trophy property directly rules out the splurge.",
+              "The query flags hotel-class labels versus public review scores, enough to prefer the reliably reviewed practical hotel."
+            ],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c01",
+            "rationale": "C is the practical non-splurge: confirmed queen, coffee, and mini-fridge; strong public guest rating; walkable or short bus access; and only a small price difference versus weaker nearby options. A lacks a guaranteed mini-fridge and has a lower rating, B is the clear splurge and farther away, and D has no public guest rating plus limited desk coverage."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold Midtown Medical Suites now: $206, four-minute walk, queen/coffee/fridge confirmed, portal score 4.2 for location, no separate public guest-review score shown."
+              },
+              {
+                "choice_id": "B",
+                "text": "Verify the actual guest-review score for Midtown through the travel office or a public site before treating it as the lead; keep Emory Garden as the provisional backup because its Google guest rating is 4.1/5."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold Campus Lodge now: $189, next door to the clinic, kitchenette, Google guest rating 3.8/5 from 480 reviews, limited gym access."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold Emory Garden Hotel now: $212, twelve-minute rideshare, queen/coffee/fridge confirmed, Google guest rating 4.1/5 from 840 reviews, no pool."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Midtown now versus verifying Midtown is a close procedural tradeoff: holding immediately protects the best location, while verifying avoids treating an ambiguous portal field as a customer rating. Generic travel logic may value speed and proximity; Kara's history makes the rating-source distinction necessary.",
+            "gold_action": "Verify Midtown's actual customer-facing guest-review score before ranking it, while keeping Emory Garden as the clear-rated backup.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0000",
+              "tm_pd_v04_user_004_s0067",
+              "tm_pd_v04_user_004_s0083",
+              "tm_pd_v04_user_004_s0115"
+            ],
+            "label_rationale": "The repeated evidence is about public guest/customer ratings, not any numeric field. Because Midtown's number is a location score rather than a clear guest-review score, the soft rating default should not be hard-enforced or assumed; the right move is to clarify the metric and preserve a clear-rated backup. Campus Lodge repeats the sub-4-ish concern from the history, and immediately booking Emory Garden is plausible but skips the easy clarification that could validate the better-located option.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Kara is choosing a hotel for a two-night Atlanta clinic observation through a sponsor portal. The portal shows odd fields, and she can either place a cancellable hold now or send one verification email before holding. The commute differences are manageable. What should you do first?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Odd fields and send one verification email are answer-bearing wording cues.",
+              "Location score versus public guest-review score is explicitly flagged and sufficient to choose verification."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "B directly addresses the portal ambiguity before treating Midtown as the lead. The apparent 4.2 for Midtown is a location score, not a separate guest-review score, so verifying it while keeping Emory as a provisional backup is safer than placing an immediate lead hold."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Suggest Ferry Sleep Inn: $121 refundable, 12-minute drive to the ferry, free parking, queen/coffee/fridge confirmed, Google guest rating 3.8/5 from 520 reviews, no breakfast."
+              },
+              {
+                "choice_id": "B",
+                "text": "Suggest Harbor Suites: $142 refundable, eight-minute drive to the ferry, free parking and breakfast, queen/coffee/fridge confirmed, Google guest rating 4.1/5 from 760 reviews."
+              },
+              {
+                "choice_id": "C",
+                "text": "Suggest Lakefront Resort: $184 refundable, 22-minute drive, paid parking, queen/coffee/fridge and hot tub, Google guest rating 4.5/5 from 1100 reviews."
+              },
+              {
+                "choice_id": "D",
+                "text": "Suggest Economy Motel North: $96 refundable, six-minute drive, free parking, queen and coffee only, no mini-fridge, public guest rating not shown."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Ferry Sleep Inn and Harbor Suites are balanced: Harbor has the stronger usual-quality signal, breakfast, and slightly shorter drive, while Ferry Sleep fits the stated one-night budget and still has the basics and a known review source. Without the long-history distinction between defaults and trip-specific exceptions, either could be defended; with it, Ferry Sleep is the better label for this trip only.",
+            "gold_action": "Suggest Ferry Sleep Inn for this one-night budget-oriented stop and note its Google guest rating as the known source.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0000",
+              "tm_pd_v04_user_004_s0067",
+              "tm_pd_v04_user_004_s0083",
+              "tm_pd_v04_user_004_s0115"
+            ],
+            "label_rationale": "The cited sessions establish Kara's durable default for ordinary rated hotel searches, but the current query frames this as a one-night utilitarian budget stop with a specific spend target, not a nicer conference or resort-style stay. Ferry Sleep Inn preserves the required basics and known public reviews while fitting the trip-specific budget instruction. Harbor Suites is the strong near miss because it follows the normal review-rating default, but applying that here would turn a one-trip budget exception into a hard rule. Lakefront Resort overweights luxury and a high score, while Economy Motel lacks both the room basics and a clear public rating.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Kara is doing a one-night Burlington-to-Plattsburgh ferry reposition before an early family obligation. She calls this a utilitarian sleep stop rather than a nice-stay search, wants free parking and room basics, and asks you to keep the hotel line close to $120 if there is a reasonable option. Which plan should you suggest for this trip?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Utilitarian sleep stop and close to $120 are explicit preference cues and sufficient.",
+              "No private history is needed because the chosen option satisfies the stated constraints."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "A directly meets the utilitarian brief: free parking, confirmed room basics, near the ferry, refundable, and essentially at the requested $120 line. B is nicer but above the requested line, C violates parking and price constraints, and D lacks the mini-fridge and public guest rating."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [],
+      "accepted_total": [
+        "c00",
+        "c02",
+        "c03",
+        "c05"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Name Granville Academic Hotel: $232 cancellable, six-minute walk to the clinic building, four-star hotel class, queen/coffee/mini-fridge confirmed, Google guest rating 3.9/5 from 1,180 reviews, small fitness room."
+              },
+              {
+                "choice_id": "B",
+                "text": "Name Harbour Park Suites: $263 cancellable, 15-minute rideshare or 30-minute transit ride, queen/coffee/mini-fridge confirmed, Google guest rating 4.5/5 from 1,940 reviews, indoor pool but no included breakfast."
+              },
+              {
+                "choice_id": "C",
+                "text": "Name Fairview University Suites: $247 cancellable, twelve-minute walk or short campus bus ride, three-star hotel class, queen/coffee/mini-fridge confirmed, Google guest rating 4.2/5 from 870 reviews, no pool."
+              },
+              {
+                "choice_id": "D",
+                "text": "Name Campus Residence Plus: $219 cancellable, nine-minute walk to the clinic building, queen room with kitchenette, internal host satisfaction score 9/10, no public guest-review rating shown, desk staffed until 10 p.m."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Granville and Fairview are both realistic leads: Granville wins on walk time, price, hotel-class label, and gym access, while Fairview wins mainly on the public guest-review score. Without Kara's longitudinal pattern, either could reasonably be ranked first; her history is what makes the customer-facing rating source break the tie toward Fairview.",
+            "gold_action": "Name Fairview University Suites first and report its Google guest rating of 4.2/5 as the known customer-facing rating source.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0000",
+              "tm_pd_v04_user_004_s0067",
+              "tm_pd_v04_user_004_s0083",
+              "tm_pd_v04_user_004_s0115"
+            ],
+            "label_rationale": "Across the Raleigh seminar, Savannah weekend, Portland lab, and later Raleigh clinic planning, Kara repeatedly treated customer-facing guest ratings around 4.0 or better as a comfort floor and became uneasy when otherwise practical lodging sat below that range or used an unclear rating source. Fairview is not the closest or fanciest option, but it has confirmed basics and a clear Google guest rating above that usual floor. Granville is the near miss because it is cheaper, closer, and carries a higher hotel-class label, but its public guest rating is just under the level Kara has historically preferred. Harbour's higher rating is a bonus, not enough to justify the less convenient backup, and Campus Residence uses an internal score rather than a public guest-review source.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Kara is arranging a two-night Vancouver university clinic visit and needs a cancellable backup if campus rooms are unavailable. The meeting is on the south side of campus; she will have a rolling teaching case, so an awkward transfer would be annoying but not impossible. Which backup should you name first?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The south-campus clinic location plus rolling-case/awkward-transfer wording makes shortest direct walking access the decisive cue.",
+              "Choice A is uniquely framed as the six-minute walk to the clinic building with broadly acceptable hotel attributes."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c01",
+            "rationale": "The query explicitly prioritizes a cancellable backup close to the south-campus clinic and notes that carrying a rolling teaching case makes awkward transfers undesirable. Choice A is cancellable, has the shortest direct walk to the clinic, avoids transit/rideshare transfers, has the stated room basics, and offers a public review signal and higher hotel class for only a modest premium over the cheapest option. The other choices trade away the stated convenience objective or introduce review/source uncertainty."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Place the refundable hold on Midtown Medical Suites as the current lead: $205, four-minute walk, queen/coffee/mini-fridge confirmed, sponsor card shows a 4.2 location/comfort panel without a review count, cancellation allowed until next week."
+              },
+              {
+                "choice_id": "B",
+                "text": "Keep Midtown Medical Suites pending and send the travel office a same-day note asking for its customer guest-rating source; use Emory Garden Hotel as the rated fallback for now at $212, twelve-minute rideshare, queen/coffee/mini-fridge confirmed, Google guest rating 4.1/5 from 840 reviews."
+              },
+              {
+                "choice_id": "C",
+                "text": "Place the refundable hold on Campus Lodge as the current lead: $189, two-minute walk, kitchenette and coffee setup, Google guest rating 3.8/5 from 480 reviews, gym access across campus, cancellation allowed until next week."
+              },
+              {
+                "choice_id": "D",
+                "text": "Place the refundable hold on Emory Garden Hotel as the current lead: $212, twelve-minute rideshare, queen/coffee/mini-fridge confirmed, Google guest rating 4.1/5 from 840 reviews, no pool, cancellation allowed until next week."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Midtown-now versus Midtown-pending is a genuine tradeoff: the immediate hold protects the best location, while the verification step may delay the hold but prevents an ambiguous sponsor score from being treated as a guest rating. A generic planner could reasonably prioritize the refundable close option; Kara's history is needed to know that the source of the customer rating matters enough to check first.",
+            "gold_action": "Ask the travel office to identify Midtown's actual customer-facing guest-rating source before treating it as the lead, while keeping Emory Garden's Google 4.1/5 rating as the provisional rated fallback.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0000",
+              "tm_pd_v04_user_004_s0067",
+              "tm_pd_v04_user_004_s0083",
+              "tm_pd_v04_user_004_s0115"
+            ],
+            "label_rationale": "Kara's prior trips show that the relevant quality signal is a customer-facing guest or traveler rating, not just any numeric portal field. Because Midtown's 4.2 appears tied to a location/comfort panel and lacks a review source, the right move is to clarify the metric instead of assuming it satisfies her usual hotel-quality preference. Emory Garden remains a sensible fallback because it has a clear Google guest rating above the level she has repeatedly favored. Holding Midtown immediately is tempting because it is closest, and holding Emory immediately is also defensible, but the longitudinal pattern makes the rating-source check the best first step.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Kara has a two-night Atlanta clinic observation booked through a sponsor portal, with a hold deadline later today. The commute differences below are manageable, and she can either place a refundable hold or send a same-day note to the travel office before ranking the list. What next step should you choose?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query explicitly mentions the option to send a same-day note before ranking, which maps directly to choice B.",
+              "The sponsor-card 4.2 panel without a review count is a highlighted rating-source cue that choice B uniquely resolves."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "The query asks for the next step before ranking and explicitly says a same-day note to the travel office is available. The main uncertainty is that Midtown's sponsor-portal score lacks a customer guest-rating source or review count. Choice B uniquely addresses that uncertainty while keeping a publicly rated fallback; the other choices prematurely place a hold or rank options without resolving the highlighted data-quality issue."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Suggest Ferry Sleep Inn: $123 refundable, six-minute drive to the ferry, free parking, queen/coffee/mini-fridge confirmed, Google guest rating 3.8/5 from 520 reviews, grab-and-go breakfast."
+              },
+              {
+                "choice_id": "B",
+                "text": "Suggest Harbor Suites: $139 refundable, eleven-minute drive to the ferry, free parking, queen/coffee/mini-fridge confirmed, Google guest rating 4.1/5 from 760 reviews, quiet rear-room requests available."
+              },
+              {
+                "choice_id": "C",
+                "text": "Suggest Northside Motor Court: $112 refundable, eight-minute drive to the ferry, free parking, queen/coffee/mini-fridge confirmed, local tourism board recommended listing, no public guest-review rating shown."
+              },
+              {
+                "choice_id": "D",
+                "text": "Suggest Lake Champlain Hotel: $157 refundable, fifteen-minute drive to the ferry, free parking, queen/coffee/mini-fridge confirmed, Google guest rating 4.4/5 from 1,080 reviews, indoor pool and hot tub."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Ferry Sleep Inn and Harbor Suites are both defensible from the current trip details alone: one is cheaper, closer, and includes breakfast, while the other mainly offers the stronger public guest rating. The long-running hotel-quality preference is needed to rank Harbor first rather than defaulting to the most convenient ferry stop.",
+            "gold_action": "Suggest Harbor Suites first and report its Google guest rating of 4.1/5 as the known customer-facing rating source.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0000",
+              "tm_pd_v04_user_004_s0067",
+              "tm_pd_v04_user_004_s0083",
+              "tm_pd_v04_user_004_s0115"
+            ],
+            "label_rationale": "Although this is only a one-night personal stay, Kara's prior hotel planning consistently favored clear customer-facing ratings at or above about four stars when no different trip-specific threshold was stated. Harbor Suites costs more and is a few minutes farther than Ferry Sleep Inn, but it preserves the stated parking and room basics while meeting the public-rating pattern from her history. Ferry Sleep Inn is the closest near miss because it is cheaper, closer, and includes breakfast, yet its Google guest rating falls below the level that has made her uneasy in past lodging decisions. Lake Champlain's higher score is a bonus but adds price and distance for a simple overnight, and Northside lacks a public guest-review source.",
+            "probe_type": "cross_context_transfer",
+            "query": "Kara needs one overnight near the Burlington–Plattsburgh ferry before an early family handoff. She wants a cancellable stop that keeps the morning simple, with free parking and in-room coffee and a mini-fridge useful for the early start. Which hotel plan should you put first?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The early handoff and 'keeps the morning simple' wording make the shortest ferry drive and early-start convenience decisive.",
+              "Choice A is the closest ferry option and includes grab-and-go breakfast, matching the early-morning cue."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "The stated objective is a cancellable overnight that keeps an early ferry morning simple, with free parking, in-room coffee, and a mini-fridge. Choice A is refundable, has the required parking and room amenities, is the shortest drive to the ferry, is inexpensive, and adds grab-and-go breakfast for the early start. The alternatives are farther, more expensive, lack a public rating, or add amenities not relevant to the stated objective."
+          }
+        }
+      ],
+      "round": 1
+    },
+    {
+      "accepted_this_round": [
+        "c01",
+        "c04"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c05"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Suggest Ferry Sleep Inn: $123 refundable, six-minute drive to the ferry dock, queen/coffee/mini-fridge confirmed, free parking, Google guest rating 3.8/5 from 520 reviews, grab-and-go breakfast available from 5:30 a.m."
+              },
+              {
+                "choice_id": "B",
+                "text": "Suggest Harbor Suites: $139 refundable, ten-minute drive to the ferry dock, queen/coffee/mini-fridge confirmed, free parking, Google guest rating 4.1/5 from 760 reviews, quiet rear-room requests available."
+              },
+              {
+                "choice_id": "C",
+                "text": "Suggest Northside Motor Court: $116 refundable, eight-minute drive to the ferry dock, queen/coffee/mini-fridge confirmed, free parking, local tourism-board recommended listing, no public guest-review rating shown."
+              },
+              {
+                "choice_id": "D",
+                "text": "Suggest Lake Champlain Hotel: $158 refundable, fourteen-minute drive to the ferry dock, queen/coffee/mini-fridge confirmed, free parking, Google guest rating 4.4/5 from 1,080 reviews, indoor pool and hot tub."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "The current trip constraints alone leave Ferry Sleep Inn and Harbor Suites both reasonable: one is cheaper, closer, and breakfast-friendly for the ferry morning, while the other mainly offers the stronger public guest-review signal. Kara's longitudinal hotel-quality preference is needed to rank Harbor Suites first.",
+            "gold_action": "Suggest Harbor Suites first and report its Google guest rating of 4.1/5 from 760 reviews as the known customer-facing rating source.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0000",
+              "tm_pd_v04_user_004_s0067",
+              "tm_pd_v04_user_004_s0083",
+              "tm_pd_v04_user_004_s0115"
+            ],
+            "label_rationale": "Even for a simple personal overnight, Kara's prior hotel planning shows a recurring preference for clear customer-facing ratings at about four stars or better when no different trip-specific threshold is stated. She requested reliably rated 4.0+ lodging for Raleigh, asked for real reviews around four stars in Savannah, flagged a sub-4 rating as an issue in Portland, and was uneasy about a below-four-ish adjacent hotel before the later Raleigh clinic morning. Harbor Suites costs a little more and adds a few minutes to the ferry drive, but it keeps the parking and room basics while meeting that known public-rating pattern. Ferry Sleep Inn is the closest near miss because it is cheaper, closer, and has early breakfast, but its Google guest rating is below the level that has made her uncomfortable before. Lake Champlain's higher rating and amenities are nice extras but add more cost and distance than this practical stopover needs, and Northside lacks a public guest-review rating.",
+            "probe_type": "cross_context_transfer",
+            "query": "Kara needs one cancellable overnight before an early family handoff using the Burlington–Plattsburgh ferry. All four options have free parking and the room basics she usually checks for, and she only needs a practical stopover rather than a destination hotel. Which hotel plan should you put first?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Private-history-flavored phrase: \"room basics she usually checks for\" is neutralized because the query says all four options have them.",
+              "The explicit wording cues \"early family handoff\" and \"practical stopover rather than a destination hotel\" are sufficient to prioritize ferry proximity, low cost, and early breakfast over destination amenities."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "The query explicitly frames this as a practical cancellable stopover before an early ferry handoff, not a destination hotel. Since all options have parking and the room basics, A is the best generic fit: it is closest to the ferry, low-cost, publicly rated, and has grab-and-go breakfast starting at 5:30 a.m. C saves only a small amount but is farther, lacks a public rating, and lacks the early-breakfast convenience; B and D cost more and are farther for benefits that matter less for a practical stopover."
+          }
+        }
+      ],
+      "round": 2
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "cross_context_transfer": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 2
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_004"
+}

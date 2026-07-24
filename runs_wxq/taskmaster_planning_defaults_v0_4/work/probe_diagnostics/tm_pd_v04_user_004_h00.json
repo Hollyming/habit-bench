@@ -1,0 +1,321 @@
+{
+  "habit_id": "tm_pd_v04_user_004_h00",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c05",
+        "c06",
+        "c09"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c05",
+        "c06",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Ticket now, add an aisle request note, and set a reminder to choose one as soon as check-in opens."
+              },
+              {
+                "choice_id": "B",
+                "text": "Wait to ticket until the seat map opens, even if the fare may change."
+              },
+              {
+                "choice_id": "C",
+                "text": "Ticket now, add a window request note, and set a reminder to choose one as soon as check-in opens."
+              },
+              {
+                "choice_id": "D",
+                "text": "Ticket now with only a generic no-middle note, then decide once the map is visible."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Aisle and window request notes are equally easy and nonbinding; the query alone does not reveal which one Kara normally wants, and delaying ticketing would overreact to a seat-map boundary.",
+            "gold_action": "Ticket the best-timed fare, note the limitation, request a window, and set the earliest check-in reminder to secure one if available.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0035",
+              "tm_pd_v04_user_004_s0090",
+              "tm_pd_v04_user_004_s0070"
+            ],
+            "label_rationale": "When the seat map is unavailable, the history supports noting the limitation and trying at the earliest available time rather than abandoning the seat-location request. Denver January, Indianapolis October, and Charlotte evidence all show the boundary pattern: choose windows if selection is open, or set a check-in reminder when it is not.",
+            "probe_type": "boundary",
+            "query": "For a solo Sacramento university lab visit, the best-timed ticket is on a carrier that will not open its seat map until online check-in. The booking page allows only a nonbinding seat note today; waiting to ticket could lose the fare. Which booking instruction best fits the situation?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Fare-loss risk is sufficient to reject waiting to ticket.",
+              "Aisle and window request options look like possible hidden preference cues; the generic no-middle option resolves this without history."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c02",
+            "rationale": "The fare and timing cues support ticketing now rather than waiting. Since no aisle or window preference is stated, the generic no-middle note avoids guessing a personal preference and defers the real choice until the map opens."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Select 12A for Kara and 12F for her partner so both seats have the same location type without fees."
+              },
+              {
+                "choice_id": "B",
+                "text": "Select 16B/16C together and set a reminder to look for a no-fee paired option later."
+              },
+              {
+                "choice_id": "C",
+                "text": "Pay $92 for the adjacent pair that includes a window."
+              },
+              {
+                "choice_id": "D",
+                "text": "Leave both seats unassigned and ask the gate to improve the pair."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "Separate no-fee windows and a free adjacent pair are both defensible; the near-miss follows her usual location preference but misses the partner-trip exception.",
+            "gold_action": "Keep the partners adjacent for free, while monitoring for a no-fee paired option that better matches Kara's usual location.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0011",
+              "tm_pd_v04_user_004_s0077",
+              "tm_pd_v04_user_004_s0095",
+              "tm_pd_v04_user_004_s0107"
+            ],
+            "label_rationale": "This is a companion leisure trip, not a solo professional seat assignment. In multiple partner-trip episodes, Kara prioritized sitting together over forcing her own window position, and she declined expensive paid windows when adjacency and total trip cost mattered.",
+            "probe_type": "exception",
+            "query": "Kara and her partner are flying to Santa Fe for a long-weekend hiking trip. On the outbound, the only no-fee choices are two separate standard windows, 12A and 12F, or an adjacent 16B/16C pair in the main cabin. An adjacent pair that includes a window costs $92 total. The flight is short and the lodge/rental costs are already higher than expected. What should you select?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Partner-travel cue supports prioritizing sitting together.",
+              "Short-flight and high-cost cues are sufficient to avoid the paid adjacent-window option."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c03",
+            "rationale": "For a partner trip, the no-fee adjacent pair is the common-sense choice. The short flight and higher-than-expected trip costs make the paid window pair unattractive, and separating the travelers or leaving seats to the gate is weaker."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Pay $49 for 4A now so the seat location is locked."
+              },
+              {
+                "choice_id": "B",
+                "text": "Choose 21B because the adjacent seat is currently empty."
+              },
+              {
+                "choice_id": "C",
+                "text": "Leave the segment unassigned and accept whatever the airline assigns."
+              },
+              {
+                "choice_id": "D",
+                "text": "Choose 18C and set an alert to recheck for a no-fee window before check-in."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "The paid window follows the default location preference, while the no-fee aisle manages cost and monitoring; the correct resolution depends on recognizing the supported paid-seat exception, not replacing the default permanently.",
+            "gold_action": "Do not pay the high fee for the short segment; take the best no-fee non-middle seat and keep checking for a no-fee window.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0007",
+              "tm_pd_v04_user_004_s0023",
+              "tm_pd_v04_user_004_s0105",
+              "tm_pd_v04_user_004_s0090"
+            ],
+            "label_rationale": "Kara's window pattern is real, but her history treats expensive paid windows on short or final legs as exceptions. Denver, San Antonio, Milwaukee, and Indianapolis evidence show she declined paid windows or paid exit-row options and used a best non-middle seat plus alert/check-in reminder instead.",
+            "probe_type": "conflict_resolution",
+            "query": "On a solo Salt Lake City conference return, the airline changed the final 48-minute segment. The only open window on that segment is 4A with a $49 preferred-seat fee. No-fee options include 18C aisle, 19D aisle, and 21B middle; the arrival time is unchanged and there is no connection afterward. What seat action should you take for that segment?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Short-segment, no-connection, and paid-window cues are sufficient to reject the upgrade.",
+              "The recheck-for-window wording may echo a hidden window preference, but the selected no-fee aisle is supported without history."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c04",
+            "rationale": "On a 48-minute segment with no connection afterward, paying $49 for the only window is not generically justified. A no-fee aisle is better than a middle or no assignment, and 18C is the better of the listed no-fee aisle options."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Put Kara in 12D and keep her partner in 8A."
+              },
+              {
+                "choice_id": "B",
+                "text": "Leave Kara unassigned so the gate can try to seat them together."
+              },
+              {
+                "choice_id": "C",
+                "text": "Put Kara in 8B beside her partner and watch for a no-fee paired window/aisle to open."
+              },
+              {
+                "choice_id": "D",
+                "text": "Pay $52 to move both travelers into the paired window/aisle set."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A separate no-fee window and a no-fee adjacent aisle are both reasonable; the correct action requires treating the partner seating need as a scoped exception rather than a permanent seat-location change.",
+            "gold_action": "Seat Kara beside her partner in the available no-fee adjacent seat, while monitoring for a no-fee paired window/aisle improvement.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0011",
+              "tm_pd_v04_user_004_s0051",
+              "tm_pd_v04_user_004_s0078",
+              "tm_pd_v04_user_004_s0107"
+            ],
+            "label_rationale": "Partner-trip evidence shows adjacency can override Kara's own solo-seat default; when an adjacent arrangement works without a fee, she should not be split off just to take a separate window. The monitoring note preserves the usual preference if a compatible pair later opens.",
+            "probe_type": "exception",
+            "query": "For a Monterey recovery weekend, Kara's partner's ticket is already assigned 8A on a 2-2 aircraft; 8B is open beside him, while Kara also has a separate no-fee 12D window available. Moving both travelers into a paired window/aisle set would cost $52, and they have already accepted higher hotel parking charges. What should you do for Kara's seat?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Partner already assigned 8A and open adjacent 8B are sufficient cues for the no-fee together option.",
+              "Higher hotel parking and the $52 move cue avoiding the paid pair."
+            ],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c07",
+            "rationale": "Kara can sit beside her partner at no fee by taking 8B. The alternative paid move is disfavored by the added trip costs, and choosing a separate window or waiting for the gate is weaker than locking the no-fee adjacent seat."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Take 26A and 24F, then recheck the maps if the aircraft changes again."
+              },
+              {
+                "choice_id": "B",
+                "text": "Take 15C and 16C to reduce deplaning time after the late arrival."
+              },
+              {
+                "choice_id": "C",
+                "text": "Pay for 8A and 8F to combine forward rows with the preferred location."
+              },
+              {
+                "choice_id": "D",
+                "text": "Leave the new flights unassigned and deal with seats at the airport."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Late arrival makes forward aisles attractive, and paid forward windows are also tempting; the solution requires separating schedule protection from the seat-location action.",
+            "gold_action": "After the operational change, reassign Kara to the available no-fee window seats and recheck if equipment changes again.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0037",
+              "tm_pd_v04_user_004_s0027",
+              "tm_pd_v04_user_004_s0117",
+              "tm_pd_v04_user_004_s0031"
+            ],
+            "label_rationale": "Operational changes do not change the underlying solo-seat preference. In prior retimed or switched-flight situations, Kara asked to check maps and move or keep her in windows when available; she did not need paid preferred windows when acceptable included windows existed.",
+            "probe_type": "cross_context_transfer",
+            "query": "A solo Minneapolis pediatric-training trip is protected onto a later aircraft after an operational change, and Kara no longer has assigned seats. The new flights are acceptable, but arrival will be late. For the two legs, the no-fee choices are 15C/16C aisles closer to the front, 26A/24F standard windows farther back, and 8A/8F preferred windows for $38 each. Which seat plan should you apply?"
+          },
+          "candidate_id": "c08",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Late-arrival wording is a sufficient convenience/time cue to favor forward seats.",
+              "Farther-back no-fee windows and paid preferred windows probe a possible hidden window preference, but the stated late-arrival cue resolves the choice."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c08",
+            "rationale": "Because the protected itinerary now arrives late, the no-fee aisles closer to the front are materially better for deplaning than farther-back windows. Paying for preferred windows or leaving seats unassigned is not generically justified."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c02",
+        "c03",
+        "c04",
+        "c07",
+        "c08"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c05",
+        "c06",
+        "c07",
+        "c08",
+        "c09"
+      ],
+      "failed": [],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 6,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 4
+    },
+    "query_only_unresolved_count": 10,
+    "selected_count": 6,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 5
+    },
+    "selected_type_counts": {
+      "boundary": 2,
+      "evidence_disambiguation": 2,
+      "exception": 2
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_004"
+}

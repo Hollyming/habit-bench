@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Apply this only to airfare choice for the current trip, using the budget limit stated in that task if one is given; do not convert any one-off dollar amount into a permanent ceiling.",
+  "bundle_id": "tm_v04_bundle_3cf5800ce123",
+  "condition": "When selecting flights for a specific trip and comparing fares among options that meet the current itinerary needs.",
+  "confidence": 0.86,
+  "decision": "accept",
+  "default_action": "Start with the cheapest acceptable fare or a trip-specific stated maximum, and consider less convenient options such as stopovers when that keeps the fare lower.",
+  "exception_condition": "If the cheapest option creates unacceptable airport time, layover burden, or fails another stated requirement such as a required seat or nonstop preference, compare the next-lowest acceptable fare instead of choosing purely by price.",
+  "family": "flight_price_tradeoff",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_3cf5800ce123",
+  "induced_at": "2026-07-15T12:33:01.812901+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Choose lower-priced acceptable flights",
+  "preference_value": "budget-sensitive airfare selection",
+  "rationale": "The independent flight tasks consistently show cost-conscious behavior: asking for the cheapest fare, giving trip-specific maximums, and being willing to trade nonstop convenience for lower price while still considering layover burden. This supports a qualitative budget-sensitive synthetic default, not a numeric recurring budget.",
+  "seed_value": "budget_sensitive",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "flight-5: stated nonstop is preferred but would accept stopovers if needed to stay within a trip-specific fare limit, while avoiding too much airport time.",
+      "conversation_id": "dlg-78de9237-4c9a-4923-a509-25c657c48f63",
+      "turn_index": 8
+    },
+    {
+      "contribution": "flight-10: asked to get the cheapest flight possible, grounding a reusable low-fare default.",
+      "conversation_id": "dlg-5b9d6fe0-f540-4e58-a9ec-b9e57456bba5",
+      "turn_index": 5
+    },
+    {
+      "contribution": "flight-7: chose based on whichever option was cheapest while also asking about layover differences.",
+      "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+      "turn_index": 33
+    },
+    {
+      "contribution": "flight-6: expressed a preferred trip-specific maximum fare along with another requirement, supporting budget sensitivity rather than an absolute permanent cap.",
+      "conversation_id": "dlg-e39ee300-241b-472b-9762-d4321ae60f83",
+      "turn_index": 7
+    },
+    {
+      "contribution": "flight-11: requested, if possible, to keep the round-trip fare within a stated trip-specific amount.",
+      "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+      "turn_index": 4
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "under $1,600",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-78de9237-4c9a-4923-a509-25c657c48f63",
+      "habitual_language": true,
+      "instruction_id": "flight-5",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 8,
+      "user_utterance": "You know nonstop is always a preference of mine but I don't want to pay more than $1,600 roundtrip. So if you can't find it nonstop under $1,600 I'd say I'm willing to have a stopover or maybe two, but I don't want to spend to much time in other airports."
+    },
+    {
+      "annotated_segment": "the cheapest flight",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-5b9d6fe0-f540-4e58-a9ec-b9e57456bba5",
+      "habitual_language": true,
+      "instruction_id": "flight-10",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 5,
+      "user_utterance": "Yeah, we always find. Let's just try to get the cheapest flight we can."
+    },
+    {
+      "annotated_segment": "the cheapest",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 33,
+      "user_utterance": "Oh, okay. Alright. Whichever one's the cheapest or Well, what are their layover differences?"
+    },
+    {
+      "annotated_segment": "less than $700",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-e39ee300-241b-472b-9762-d4321ae60f83",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 7,
+      "user_utterance": "I'd like it to be less than $700 preferably and I need a window seat."
+    },
+    {
+      "annotated_segment": "no more than $6,000",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+      "habitual_language": false,
+      "instruction_id": "flight-11",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 4,
+      "user_utterance": "I would like, if possible, to spend no more than $6,000 on the round-trip flight."
+    }
+  ]
+}

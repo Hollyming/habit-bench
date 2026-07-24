@@ -1,0 +1,368 @@
+{
+  "cache_fingerprint": "076d31a9091987f49e58096c9af95c814686951e8f68d738bf4bc990374012a7",
+  "sessions": [
+    {
+      "domain": "flights_and_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Session frames a Feb 10-13 solo ATL-MSP client trip, flags missing office and meeting details, balances Delta/nonstop convenience against fare, and applies hotel preferences for ratings, breakfast, and restaurant access without making them hard requirements.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "evidence_quote": "Delta nonstop sounds easiest",
+            "habit_id": "tm_pd_v04_user_000_h00",
+            "signal_type": "support"
+          },
+          {
+            "evidence_quote": "Coming home Thursday afternoon would be ideal if we finish by noon.",
+            "habit_id": "tm_pd_v04_user_000_h02",
+            "signal_type": "support"
+          },
+          {
+            "evidence_quote": "Yes. I do not need luxury, but I do need the travel day to be predictable.",
+            "habit_id": "tm_pd_v04_user_000_h03",
+            "signal_type": "support"
+          },
+          {
+            "evidence_quote": "Breakfast would help",
+            "habit_id": "tm_pd_v04_user_000_h05",
+            "signal_type": "support"
+          },
+          {
+            "evidence_quote": "Dinner needs to be easy without a car.",
+            "habit_id": "tm_pd_v04_user_000_h06",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I need to start planning a Minneapolis client trip. It would be Atlanta to MSP, February 10 to 13, just me. The client is in Eden Prairie, but I do not have the exact office address yet.",
+          "role": "user"
+        },
+        {
+          "content": "Got it. I’ll treat the confirmed pieces as ATL to MSP, Feb 10-13, solo, three hotel nights near Eden Prairie. Missing items that affect the plan: exact office address, Tuesday meeting start time, Thursday wrap-up time, and whether you’ll have a rental car or rely on rideshare.",
+          "role": "assistant"
+        },
+        {
+          "content": "Assume rideshare for now. I want to get in Monday with enough time to settle before Tuesday morning meetings. Coming home Thursday afternoon would be ideal if we finish by noon.",
+          "role": "user"
+        },
+        {
+          "content": "That points toward a Monday arrival no later than early evening and a Thursday return leaving MSP after about 1:00 p.m. I’ll keep the flight options simple; for you I’ll favor nonstop or one short connection rather than anything with multiple stops.",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. I do not need luxury, but I do need the travel day to be predictable. What flight options should I be looking at?",
+          "role": "user"
+        },
+        {
+          "content": "Initial shortlist:\n\n1. Delta nonstop, ATL-MSP Monday late morning or early afternoon, return Thursday early-to-mid afternoon. Best fit for schedule and connection risk, especially in February. Likely higher fare.\n\n2. American one-stop, usually via ORD or CLT. Lower fare potential, but adds weather and connection risk.\n\n3. United one-stop, often via ORD. Similar tradeoff to American, but I’d only keep it if the times or fare are clearly better.",
+          "role": "assistant"
+        },
+        {
+          "content": "Delta nonstop sounds easiest, but I’ll need to justify the fare if it is much higher. I don’t want a late-night MSP arrival.",
+          "role": "user"
+        },
+        {
+          "content": "Then I’d compare Delta nonstop against one reasonable one-stop, not a long list. The decision point is whether the one-stop saves enough to offset the added travel time and winter connection risk. I would avoid anything arriving after about 7:00 p.m. Monday.",
+          "role": "assistant"
+        },
+        {
+          "content": "For the hotel, should I search right in Eden Prairie or closer to the airport?",
+          "role": "user"
+        },
+        {
+          "content": "Start with Eden Prairie or the I-494/Normandale corridor. That keeps the Tuesday commute short once the address is confirmed. Airport/Bloomington can work as a backup if rates are much better, but it could add 20-30 minutes each way depending on traffic and the client’s exact location.",
+          "role": "assistant"
+        },
+        {
+          "content": "Breakfast would help, and I’ll probably be working from the room in the evenings. Dinner needs to be easy without a car.",
+          "role": "user"
+        },
+        {
+          "content": "For hotels I’ll prioritize: guest rating around 4.0 or better, quiet business-friendly rooms, free breakfast where available, and either on-site dining or several restaurants within a short rideshare or walk. I won’t assume breakfast is included unless the rate clearly says so.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you give me a rough recommendation before I chase the exact address?",
+          "role": "user"
+        },
+        {
+          "content": "Preliminary recommendation: plan on the Delta nonstop if its fare is not wildly above the one-stop alternatives, and focus the hotel search on Eden Prairie first. I’d hold off on picking the hotel until you have the office address and Tuesday start time. For now, the open questions are: exact client address, first meeting time Tuesday, whether Thursday truly ends by noon, and your company’s fare tolerance for the nonstop.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0000",
+      "session_index": 0,
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Session resolves the flight recommendation by choosing the higher-fare Delta nonstop over an acceptable American one-stop because it better meets timing, reliability, and return preferences; window seat is deferred until ticketing.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "evidence_quote": "The Delta fare is about $130 more. Is it worth putting that one forward?",
+            "habit_id": "tm_pd_v04_user_000_h00",
+            "signal_type": "boundary"
+          },
+          {
+            "evidence_quote": "If finance pushes back, is the American connection at least acceptable?",
+            "habit_id": "tm_pd_v04_user_000_h03",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I have the Minneapolis details now. The office is in Eden Prairie, near Valley View Road, and the first meeting is Tuesday at 9:00. I need to route the flights for approval by Friday.",
+          "role": "user"
+        },
+        {
+          "content": "Great. Current hard constraints: ATL-MSP Feb 10, return Feb 13, arrive Monday before evening, be ready for a 9:00 a.m. Tuesday start, and aim for a Thursday afternoon return after a noon wrap-up. Your usual preference for simple connections supports the nonstop if the fare is defensible.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the realistic choices?",
+          "role": "user"
+        },
+        {
+          "content": "Best comparison:\n\nA. Delta nonstop: depart ATL about 11:15 a.m., arrive MSP about 1:05 p.m.; return MSP about 1:40 p.m., arrive ATL about 5:10 p.m. Approx. $455.\n\nB. American one-stop: depart ATL about 10:30 a.m., connect once, arrive MSP about 2:10 p.m.; return about 2:15 p.m., arrive ATL around 7:30 p.m. Approx. $325.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Delta fare is about $130 more. Is it worth putting that one forward?",
+          "role": "user"
+        },
+        {
+          "content": "I would, yes. The Delta option fits the school-drop-off timing better, avoids a February connection, gets you in early enough to settle, and preserves the Thursday afternoon return. The American fare is reasonable, but the later return and connection make the workday longer.",
+          "role": "assistant"
+        },
+        {
+          "content": "If finance pushes back, is the American connection at least acceptable?",
+          "role": "user"
+        },
+        {
+          "content": "Acceptable as a backup if the layover is at least 50-60 minutes and not through a very late bank. It still meets the trip, but it is a cost-saving fallback rather than the cleanest option.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. Please make the recommendation language concise for approval.",
+          "role": "user"
+        },
+        {
+          "content": "Recommend routing the Delta nonstop ATL-MSP round trip for approval: Monday late-morning departure, early-afternoon MSP arrival, Thursday early-afternoon return. Rationale: no connection risk in winter, arrival allows Monday setup before Tuesday 9:00 a.m. client start, and return timing aligns with expected noon wrap-up. Backup if required: lower-fare American one-stop, with a longer travel day. Seat choice may need to be handled after ticketing; I’d look for a window seat then.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0001",
+      "session_index": 1,
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Session compares Eden Prairie and Bloomington hotel tradeoffs, chooses Hyatt Place as the candidate due to proximity, rating, breakfast, and dining access, and keeps Hilton Garden Inn as backup while noting unresolved verification items.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "evidence_quote": "Exactly.",
+            "habit_id": "tm_pd_v04_user_000_h04",
+            "signal_type": "support"
+          },
+          {
+            "evidence_quote": "Exactly.",
+            "habit_id": "tm_pd_v04_user_000_h05",
+            "signal_type": "support"
+          },
+          {
+            "evidence_quote": "I may not want to go far for dinner.",
+            "habit_id": "tm_pd_v04_user_000_h06",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Flights are moving through approval. Now I need the Minneapolis hotel for Feb 10 to 13 near the Eden Prairie office.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll use the confirmed office area near Valley View Road and assume no rental car. Current hotel priorities: short rideshare to the office, solid guest rating around 4.0 or better, quiet enough for evening work, breakfast if practical, and easy dinner options Monday night.",
+          "role": "assistant"
+        },
+        {
+          "content": "Exactly. I’m seeing a cheaper option farther away, but I’m not sure the savings are worth it.",
+          "role": "user"
+        },
+        {
+          "content": "Here are the strongest practical options:\n\n1. Hyatt Place Minneapolis/Eden Prairie — about 7-10 minutes to the office, guest rating around 4.2, usually includes breakfast, larger work-friendly rooms, restaurants nearby. Around $148/night.\n\n2. Hilton Garden Inn Minneapolis/Eden Prairie — about 9-12 minutes, rating around 4.3, on-site restaurant/bar, quieter business feel. Breakfast usually extra. Around $155/night.\n\n3. Sheraton Bloomington Hotel — about 18-25 minutes depending on traffic, rating around 4.4, on-site dining, often cheaper around $122/night, but farther from the client.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Sheraton rate is tempting. Does the commute make it a bad idea?",
+          "role": "user"
+        },
+        {
+          "content": "Not bad, but less efficient. Over three mornings and evenings, the extra rideshare time and cost could erase much of the nightly savings. Since you have a 9:00 a.m. Tuesday start and likely evening work, I’d keep Bloomington as a backup rather than the first choice.",
+          "role": "assistant"
+        },
+        {
+          "content": "Between Hyatt Place and Hilton Garden, which is better for this trip?",
+          "role": "user"
+        },
+        {
+          "content": "Hyatt Place is the better all-around fit if the listed breakfast is included in your rate: closer, breakfast handled, and enough nearby dinner options without needing a long rideshare. Hilton Garden Inn is stronger if you value on-site dinner over included breakfast.",
+          "role": "assistant"
+        },
+        {
+          "content": "I’ll probably arrive Monday around midafternoon, but I may not want to go far for dinner.",
+          "role": "user"
+        },
+        {
+          "content": "That still works for Hyatt Place as long as you are comfortable with a short walk or short rideshare for dinner. If you want the lowest-friction Monday evening, Hilton Garden Inn’s on-site restaurant is convenient, but you give up the likely free breakfast.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you call the booking candidate and a backup?",
+          "role": "user"
+        },
+        {
+          "content": "Booking candidate: Hyatt Place Minneapolis/Eden Prairie, Feb 10-13, if the rate is cancellable and breakfast is confirmed included. It best balances office proximity, rating, workspace, and morning convenience.\n\nBackup: Hilton Garden Inn Minneapolis/Eden Prairie if the Hyatt rate jumps or breakfast is not included. It keeps the commute short and solves dinner on-site, though breakfast may be extra.",
+          "role": "assistant"
+        },
+        {
+          "content": "What should I note in the approval request?",
+          "role": "user"
+        },
+        {
+          "content": "Use: “Requesting Hyatt Place Minneapolis/Eden Prairie for Feb 10-13. Property is a short rideshare from the Eden Prairie client office, has a guest rating above 4.0, includes breakfast on the selected rate if confirmed, and offers practical nearby dining for a no-rental-car trip. Backup is Hilton Garden Inn Eden Prairie if rate or breakfast terms change.” Before final booking, verify cancellation deadline, breakfast inclusion, and whether your company rate is available.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0002",
+      "session_index": 2,
+      "user_id": "tm_pd_v04_user_000"
+    }
+  ],
+  "updated_continuity_summary": "{'ongoing_trip': 'Maya is planning a solo client implementation trip from Atlanta to Minneapolis, Feb 10-13, with meetings at an Eden Prairie office near Valley View Road beginning Tuesday at 9:00 a.m.', 'resolved_plans': 'Flight recommendation is the Delta nonstop ATL-MSP round trip: Monday late-morning departure with early-afternoon arrival, and Thursday early-afternoon return after the expected noon wrap-up. American one-stop remains the lower-fare backup. Hotel candidate is Hyatt Place Minneapolis/Eden Prairie for three nights, with Hilton Garden Inn Minneapolis/Eden Prairie as backup.', 'unresolved_follow_ups': 'Need final travel approval, then seat selection with a window preference if available. For the hotel, verify cancellable rate, company rate, and whether breakfast is included before booking.', 'durable_user_facts': 'Maya is Atlanta-based, plans practical work travel, prefers simple flight logistics over fragile connections when the fare difference is reasonable, and values business hotels with good guest ratings, breakfast when available, and easy dinner access when she will not have a car.'}",
+  "verification": {
+    "0": {
+      "habit_signals": [
+        {
+          "evidence_quote": "Delta nonstop sounds easiest",
+          "habit_id": "tm_pd_v04_user_000_h00",
+          "signal_type": "support"
+        },
+        {
+          "evidence_quote": "Coming home Thursday afternoon would be ideal if we finish by noon.",
+          "habit_id": "tm_pd_v04_user_000_h02",
+          "signal_type": "support"
+        },
+        {
+          "evidence_quote": "Yes. I do not need luxury, but I do need the travel day to be predictable.",
+          "habit_id": "tm_pd_v04_user_000_h03",
+          "signal_type": "support"
+        },
+        {
+          "evidence_quote": "Breakfast would help",
+          "habit_id": "tm_pd_v04_user_000_h05",
+          "signal_type": "support"
+        },
+        {
+          "evidence_quote": "Dinner needs to be easy without a car.",
+          "habit_id": "tm_pd_v04_user_000_h06",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User states current-trip preferences for Delta/nonstop ease, afternoon return, predictable travel, breakfast, and easy dinner without a car. No user evidence for seat or hotel rating threshold."
+    },
+    "1": {
+      "habit_signals": [
+        {
+          "evidence_quote": "The Delta fare is about $130 more. Is it worth putting that one forward?",
+          "habit_id": "tm_pd_v04_user_000_h00",
+          "signal_type": "boundary"
+        },
+        {
+          "evidence_quote": "If finance pushes back, is the American connection at least acceptable?",
+          "habit_id": "tm_pd_v04_user_000_h03",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User frames Delta as subject to fare approval and considers a one-connection backup if finance objects. Assistant-only seat preference is ignored."
+    },
+    "2": {
+      "habit_signals": [
+        {
+          "evidence_quote": "Exactly.",
+          "habit_id": "tm_pd_v04_user_000_h04",
+          "signal_type": "support"
+        },
+        {
+          "evidence_quote": "Exactly.",
+          "habit_id": "tm_pd_v04_user_000_h05",
+          "signal_type": "support"
+        },
+        {
+          "evidence_quote": "I may not want to go far for dinner.",
+          "habit_id": "tm_pd_v04_user_000_h06",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "The user's “Exactly.” confirms the immediately preceding hotel-priority list, including rating and breakfast; dinner access is also directly stated."
+    }
+  }
+}

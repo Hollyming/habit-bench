@@ -1,0 +1,529 @@
+{
+  "probes": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use a nonstop-first rule for teaching travel: buy the 1:10 nonstop when the gap is under $175."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book the 12:35 ATL connection; switch to nonstop only if forecast or setup tightens."
+        },
+        {
+          "choice_id": "C",
+          "text": "Rank nonstops above connections and show connections only below a $300 fare cap."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book the 3:05 CLT connection; choose lowest fare when arrival is before midnight."
+        }
+      ],
+      "control_id": "ctrl_false_001",
+      "difficulty_rationale": "The teaching context and moderate fare gap make the nonstop-forward policies plausible, while the lowest-fare CLT option creates a separate cost-saving pull.",
+      "gold_action": "Book the 12:35 ATL connection under current facts; treat the nonstop as a risk buy-up if weather or setup changes.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0039",
+        "tm_pd_v04_user_004_s0043",
+        "tm_pd_v04_user_004_s0047",
+        "tm_pd_v04_user_004_s0081",
+        "tm_pd_v04_user_004_s0110",
+        "tm_pd_v04_user_004_s0113"
+      ],
+      "label_rationale": "Nonstops were selected when they protected a room preview, an early workshop, or a clean ORD schedule, while Milwaukee/Madison and Salt Lake used connections when timing worked. This PVD context has enough buffer for the mid-day connection.",
+      "query": "Kara is planning a Thursday TPA-PVD trip for a Saturday 9 a.m. skills session. She can leave campus by 11:15 a.m. Thursday, room access is available until 8 p.m., and she has no Friday teaching. Options are a nonstop 1:10-4:05 for $468, a one-stop via ATL 12:35-6:05 for $322 with a 58-minute connection, or a one-stop via CLT 3:05-8:55 for $280. Forecast is clear and she is carrying one poster tube plus a rollaboard. Which routing policy should the planner apply?",
+      "variant_id": "ctrl_false_001_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the 2:15 nonstop; this setup window makes the fare premium useful."
+        },
+        {
+          "choice_id": "B",
+          "text": "Apply a nonstop-before-teaching rule: pay up to $200 extra whenever available."
+        },
+        {
+          "choice_id": "C",
+          "text": "List the 1:05 ATL connection first because a 5:55 arrival is still inside setup."
+        },
+        {
+          "choice_id": "D",
+          "text": "Keep connections as backup listings whenever a nonstop reaches the city same day."
+        }
+      ],
+      "control_id": "ctrl_false_001",
+      "difficulty_rationale": "Two choices reach the same nonstop action but differ between current-trip reasoning and a broad teaching-trip rule; the cheaper connection is also tempting because it technically lands during setup.",
+      "gold_action": "Book the 2:15 nonstop for this MSY trip because it protects the classroom check-in window.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0039",
+        "tm_pd_v04_user_004_s0043",
+        "tm_pd_v04_user_004_s0047",
+        "tm_pd_v04_user_004_s0081",
+        "tm_pd_v04_user_004_s0110",
+        "tm_pd_v04_user_004_s0113"
+      ],
+      "label_rationale": "The prior nonstop choices were tied to setup, sleep, or workshop timing, while other practical trips used connections. Here the 44-minute connection and narrow check-in window make the nonstop a trip-specific schedule protection.",
+      "query": "Kara has a Friday TPA-MSY trip before an 8 a.m. Saturday lab practicum. She can leave after an 11:30 call. The hotel will hold the demo case, but the classroom check-in window is Friday 5:30-7:00 p.m. Options are a nonstop 2:15-3:05 for $410, a 1:05 one-stop arriving 5:55 for $275 with a 44-minute ATL connection, or a 4:25 one-stop arriving 9:40 for $235. Which routing policy fits this trip?",
+      "variant_id": "ctrl_false_001_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the 6:20 nonstop; direct routings are worth a morning start on work trips."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book the 10:40 CLT connection; it clears packet pickup before evening snow risk."
+        },
+        {
+          "choice_id": "C",
+          "text": "Rank nonstops first unless their fare is more than double the cheapest option."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book the 1:55 connection; no same-day teaching makes the lowest fare acceptable."
+        }
+      ],
+      "control_id": "ctrl_false_001",
+      "difficulty_rationale": "The nonstop has the safest arrival and the cheap connection has no same-day teaching conflict, so the calibrated middle option must beat two intuitive but overbroad shortcuts.",
+      "gold_action": "Book the 10:40 CLT connection because it satisfies packet pickup before the snow-risk window at a lower fare.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0039",
+        "tm_pd_v04_user_004_s0043",
+        "tm_pd_v04_user_004_s0047",
+        "tm_pd_v04_user_004_s0081",
+        "tm_pd_v04_user_004_s0110",
+        "tm_pd_v04_user_004_s0113"
+      ],
+      "label_rationale": "The examples show nonstops being useful for specific time protection and connections being fine when the buffer and risk are workable. The PIT facts point to the middle connection rather than a categorical nonstop preference.",
+      "query": "Kara is looking at a January TPA-PIT trip for a Monday noon roundtable. She is free Friday, wants to arrive by Friday 4 p.m. for packet pickup, has carry-on only, and can sleep in Saturday. Options are a 6:20 a.m. nonstop arriving 8:35 for $520, a 10:40 one-stop via CLT arriving 2:45 for $315 with a 90-minute connection, or a 1:55 one-stop arriving 6:50 for $260. Snow risk is moderate in Pittsburgh after 6 p.m. Which routing policy should be used?",
+      "variant_id": "ctrl_false_001_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book 6:15; rehearsal buffer matters more than avoiding an early alarm here."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use Tampa departures after noon unless setup would be missed."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use late-morning or afternoon as the normal outbound pattern for work trips."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book 10:55; it balances sleep with a pre-rehearsal arrival."
+        }
+      ],
+      "control_id": "ctrl_false_002",
+      "difficulty_rationale": "The 10:55 option is attractive because it avoids dawn, and the after-noon policies echo several prior work-block constraints without fitting this rehearsal.",
+      "gold_action": "Book the 6:15 a.m. MSP departure because the rehearsal requires a real arrival buffer.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0000",
+        "tm_pd_v04_user_004_s0015",
+        "tm_pd_v04_user_004_s0047",
+        "tm_pd_v04_user_004_s0084",
+        "tm_pd_v04_user_004_s0101",
+        "tm_pd_v04_user_004_s0110"
+      ],
+      "label_rationale": "Later Tampa departures were tied to class, call, or Sunday obligations, while early departures were accepted when they protected lab access, presenter check-in, or setup. The MSP rehearsal needs the early-buffer pattern.",
+      "query": "Kara is flying TPA-MSP on Tuesday for a 3:30 p.m. downtown rehearsal and a Wednesday morning keynote. The rehearsal site is about 30 minutes from MSP, and she has no Tuesday campus block. Options are 6:15 a.m. arriving 11:20, 10:55 a.m. arriving 2:05, 12:45 p.m. arriving 5:40, and 3:00 p.m. arriving 8:30. Fares differ by less than $60. Which outbound-time policy should the planner use?",
+      "variant_id": "ctrl_false_002_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book 7:20; presenter trips should start early when a nonstop is open."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book 12:50; class ends in time and dinner still has buffer."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use after-noon Tampa departures as the standing work-trip rule."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book 3:35; add airport buffer after class even if dinner runs tight."
+        }
+      ],
+      "control_id": "ctrl_false_002",
+      "difficulty_rationale": "The correct action looks similar to an after-noon habit, while the early nonstop and the later post-class buffer each offer plausible operational advantages.",
+      "gold_action": "Book the 12:50 p.m. PHL departure after class because it preserves the dinner buffer.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0000",
+        "tm_pd_v04_user_004_s0015",
+        "tm_pd_v04_user_004_s0047",
+        "tm_pd_v04_user_004_s0084",
+        "tm_pd_v04_user_004_s0101",
+        "tm_pd_v04_user_004_s0110"
+      ],
+      "label_rationale": "The evidence supports using the current work block and setup needs: after-noon departures occurred when obligations required them, and early departures occurred when arrival protection mattered. This PHL trip has a class-driven midday departure.",
+      "query": "Kara needs TPA-PHL on Wednesday. She teaches 9:00-11:00 a.m. in Tampa, can reach the airport at 12:10, and only needs to be at the hotel before a 7:00 p.m. dinner. Options are 7:20 a.m. nonstop arriving 9:45, 12:50 p.m. nonstop arriving 3:20, 3:35 p.m. one-stop arriving 7:10, and 6:10 p.m. one-stop arriving 10:40. Which outbound-time policy is best?",
+      "variant_id": "ctrl_false_002_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book 7:10; workshop trips should favor morning arrivals when possible."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book 1:35; the panel ends in time and Friday remains protected."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use after-noon departures from Tampa as the recurring rule."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book 4:50; keep the campus day unrushed and accept the late arrival."
+        }
+      ],
+      "control_id": "ctrl_false_002",
+      "difficulty_rationale": "The gold choice resembles the tempting after-noon rule, and the latest option seems calmer for campus work, so the policy must distinguish constraint satisfaction from a broad time preference.",
+      "gold_action": "Book the 1:35 p.m. BOI departure after the panel because Friday remains protected without a late arrival.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0000",
+        "tm_pd_v04_user_004_s0015",
+        "tm_pd_v04_user_004_s0047",
+        "tm_pd_v04_user_004_s0084",
+        "tm_pd_v04_user_004_s0101",
+        "tm_pd_v04_user_004_s0110"
+      ],
+      "label_rationale": "The after-noon examples arose from current obligations, while morning flights were chosen for setup or check-in. The BOI panel creates a real midday constraint, but the result is still based on this itinerary.",
+      "query": "Kara is traveling TPA-BOI on Thursday for a Friday 10 a.m. workshop. A required grant panel runs 10:00-11:00 a.m. and has to be taken from campus; she can reach TPA around noon. There is no Thursday setup. Options are 7:10 a.m. arriving 12:05, 1:35 p.m. arriving 6:05, and 4:50 p.m. arriving 10:20. Which outbound-time policy should the planner follow?",
+      "variant_id": "ctrl_false_002_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Keep the new ATL routing; arrival still leaves nearly three hours before setup."
+        },
+        {
+          "choice_id": "B",
+          "text": "Switch to DFW; 78 minutes protects setup better than a 38-minute ATL hop."
+        },
+        {
+          "choice_id": "C",
+          "text": "Apply a short-connection rule: reissue any changed connection under 45 minutes."
+        },
+        {
+          "choice_id": "D",
+          "text": "Apply a keep rule: retain retimes that still arrive before first event."
+        }
+      ],
+      "control_id": "ctrl_false_003",
+      "difficulty_rationale": "A same-day arrival before setup makes keeping plausible, while the under-45-minute connection also tempts a broad reissue rule; the gold action uses both connection risk and the live setup window.",
+      "gold_action": "Switch the retimed OMA itinerary to DFW because 38 minutes in ATL is exposed before setup.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0014",
+        "tm_pd_v04_user_004_s0031",
+        "tm_pd_v04_user_004_s0041",
+        "tm_pd_v04_user_004_s0075",
+        "tm_pd_v04_user_004_s0105",
+        "tm_pd_v04_user_004_s0111"
+      ],
+      "label_rationale": "Changed flights were kept when buffers stayed adequate and switched when shortened connections threatened setup or return reliability. The OMA retime resembles the exposed-connection switch cases rather than the harmless-retime cases.",
+      "query": "Kara's TPA-OMA outbound was retimed. Original: TPA-ATL-OMA arriving 1:35 p.m. with a 72-minute ATL connection. New: arrival 2:10 p.m. with a 38-minute ATL connection. Her poster setup is 5:00-6:30 p.m.; she has carry-on plus a poster tube. Alternative via DFW costs $86 more, arrives 2:55 p.m., and has a 78-minute connection. Which schedule-change policy should be applied?",
+      "variant_id": "ctrl_false_003_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Keep 3:45; Monday and checkout make the later arrival workable."
+        },
+        {
+          "choice_id": "B",
+          "text": "Apply a later-retime rule: seek a substitute whenever arrival moves past 7 p.m."
+        },
+        {
+          "choice_id": "C",
+          "text": "Buy the nonstop after changes when the premium is under $250."
+        },
+        {
+          "choice_id": "D",
+          "text": "Apply a same-day keep rule: retain retimes that do not change travel date."
+        }
+      ],
+      "control_id": "ctrl_false_003",
+      "difficulty_rationale": "The arrival crosses an intuitive 7 p.m. line and a nonstop is available, so switching feels reasonable; the same-day keep rule is also tempting but too broad.",
+      "gold_action": "Keep the CLE retime because it remains workable and alternatives are costlier or riskier.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0014",
+        "tm_pd_v04_user_004_s0031",
+        "tm_pd_v04_user_004_s0041",
+        "tm_pd_v04_user_004_s0075",
+        "tm_pd_v04_user_004_s0105",
+        "tm_pd_v04_user_004_s0111"
+      ],
+      "label_rationale": "The prior keeps were accepted when calendar buffers stayed intact, while switches were made for risky connections, setup pressure, or recovery problems. The CLE change has workable Monday recovery and weak alternatives.",
+      "query": "Kara's CLE-TPA return changed from a 2:30 p.m. departure arriving 5:50 to a 3:45 p.m. departure arriving 7:05. Checkout can be extended to 1:00, the workshop ends the prior night, and Monday has no commitment before noon. Alternatives are a 12:10 one-stop for $140 more with a 42-minute connection or a 6:05 nonstop for $220 more arriving 8:20. Which schedule-change policy fits?",
+      "variant_id": "ctrl_false_003_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Keep the earlier retime; longer connection and 1:20 arrival protect badge pickup."
+        },
+        {
+          "choice_id": "B",
+          "text": "Apply an early-alarm rule: replace retimes that move departure before 6 a.m."
+        },
+        {
+          "choice_id": "C",
+          "text": "Buy the nonstop after changes when it cuts total travel time."
+        },
+        {
+          "choice_id": "D",
+          "text": "Apply a same-date keep rule for schedule changes."
+        }
+      ],
+      "control_id": "ctrl_false_003",
+      "difficulty_rationale": "The pre-6 a.m. departure and the available nonstop make switching attractive, while the same-date keep policy reaches the same broad direction without the needed connection analysis.",
+      "gold_action": "Keep the AUS retime because it improves connection margin and still protects badge pickup.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0014",
+        "tm_pd_v04_user_004_s0031",
+        "tm_pd_v04_user_004_s0041",
+        "tm_pd_v04_user_004_s0075",
+        "tm_pd_v04_user_004_s0105",
+        "tm_pd_v04_user_004_s0111"
+      ],
+      "label_rationale": "Some changed itineraries were kept when they still fit the trip, while others were switched when connection or recovery risk worsened. This AUS retime is early but operationally stronger than the alternatives.",
+      "query": "Kara's TPA-AUS outbound shifted from 7:05 a.m. to 5:50 a.m., but the connection grows from 65 to 90 minutes and Austin arrival stays 1:20 p.m. Badge pickup is 3:30-5:00 p.m. Alternatives are an 8:30 a.m. one-stop for $70 more arriving 2:45 with a 44-minute connection, or a 9:45 nonstop for $260 more arriving 11:10. Which policy should the planner use?",
+      "variant_id": "ctrl_false_003_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly Saturday 5:20; teardown and airport timing leave usable margin."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book Sunday 11:00 under a weekend-teaching stayover rule."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book Sunday 11:00 whenever Tampa arrival would be after 10:30 p.m."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Sunday 11:00 for workshop returns to protect recovery."
+        }
+      ],
+      "control_id": "ctrl_false_004",
+      "difficulty_rationale": "Sunday is attractive for recovery and echoes several stayover cases, but the current teardown and airport facts support the Saturday flight.",
+      "gold_action": "Use the same-day PHX return because teardown and transit leave a comfortable margin.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0004",
+        "tm_pd_v04_user_004_s0029",
+        "tm_pd_v04_user_004_s0093",
+        "tm_pd_v04_user_004_s0101",
+        "tm_pd_v04_user_004_s0104",
+        "tm_pd_v04_user_004_s0116"
+      ],
+      "label_rationale": "Extra nights were added when kit, teardown, or compressed timing made same-day travel brittle, while clean wraps used same-day returns. The PHX facts have a late landing but a workable event-to-airport window.",
+      "query": "Kara teaches a Saturday workshop in PHX from 8:00 a.m. to 2:00 p.m. Teardown is one rolling case and 45 minutes; the airport is 20 minutes away; no checked bag. Return choices are Saturday 5:20 p.m. via DEN arriving TPA 11:35 p.m. for $318, or Sunday 11:00 a.m. arriving 6:05 p.m. plus a $190 hotel night. Monday starts at noon. Which return-day policy should be used?",
+      "variant_id": "ctrl_false_004_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Stay Friday and fly Saturday 10:15; crate work and traffic make Friday brittle."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book Friday 6:25 when the event ends before 5:00."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book the Friday 8:40 red-eye under a same-day lab-return rule."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Saturday 10:15 after equipment-heavy labs as the standing pattern."
+        }
+      ],
+      "control_id": "ctrl_false_004",
+      "difficulty_rationale": "Both the event end time and the red-eye make same-day travel technically possible, and the Saturday choice can be confused with a broad equipment-lab rule.",
+      "gold_action": "Add the Friday night in SAC and return Saturday because equipment and rush-hour transit make Friday brittle.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0004",
+        "tm_pd_v04_user_004_s0029",
+        "tm_pd_v04_user_004_s0093",
+        "tm_pd_v04_user_004_s0101",
+        "tm_pd_v04_user_004_s0104",
+        "tm_pd_v04_user_004_s0116"
+      ],
+      "label_rationale": "The stayover cases were driven by kit, debrief, teardown, or overly tight event-to-airport timing, while same-day returns worked when the release was clean. The SAC lab has equipment and traffic risks that justify the extra night.",
+      "query": "Kara's SAC lab ends Friday at 4:30 p.m. The sponsor wants her to help crate demo equipment for about an hour, the airport is 35-45 minutes away in rush-hour traffic, and she would have one checked Pelican case. Return choices are Friday 6:25 p.m. connecting home at 12:55 a.m., Friday 8:40 p.m. red-eye via LAX, or Saturday 10:15 a.m. arriving TPA 5:20 p.m. with a $165 hotel night. Which return-day policy fits?",
+      "variant_id": "ctrl_false_004_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Return Sunday 2:10; no teardown and short transfer make it clean."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book Monday 7:00 under a weekend-conference stayover rule."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book Monday 7:00 whenever Monday commitments start at noon or later."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Monday 7:00 after Sunday events to avoid event-day airports."
+        }
+      ],
+      "control_id": "ctrl_false_004",
+      "difficulty_rationale": "The Monday nonstop is comfortable and still reaches the noon meeting, so stayover policies are credible unless the decision is anchored to the current lack of teardown.",
+      "gold_action": "Use the Sunday BHM return because the event ends cleanly with a short airport transfer.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0004",
+        "tm_pd_v04_user_004_s0029",
+        "tm_pd_v04_user_004_s0093",
+        "tm_pd_v04_user_004_s0101",
+        "tm_pd_v04_user_004_s0104",
+        "tm_pd_v04_user_004_s0116"
+      ],
+      "label_rationale": "The evidence mixes next-day returns for compressed teardown or gear with same-day returns when the end time and airport transfer were clean. Birmingham matches the clean same-day cases.",
+      "query": "Kara is at a Birmingham symposium that ends Sunday at 11:30 a.m. There is no teardown, the hotel stores her rollaboard, and the airport is 15 minutes away. Options are Sunday 2:10 p.m. via ATL arriving TPA 6:30, or Monday 7:00 a.m. nonstop arriving 8:10 with one more hotel night. Monday's first meeting is at noon. Which return-day policy should the planner apply?",
+      "variant_id": "ctrl_false_004_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use rideshares for airport and clinic legs; parking and storage make the rental idle."
+        },
+        {
+          "choice_id": "B",
+          "text": "Reserve a compact for airport and clinic legs whenever a demo bag travels."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use rideshares for city clinics as the standing ground plan."
+        },
+        {
+          "choice_id": "D",
+          "text": "Prebook car service for airport and clinic legs whenever materials travel."
+        }
+      ],
+      "control_id": "ctrl_false_005",
+      "difficulty_rationale": "The demo bag makes a compact rental tempting, and the city setting makes a broad rideshare rule tempting; the gold choice relies on the specific storage and parking details.",
+      "gold_action": "Use rideshare in Tucson because storage and parking facts make a rental unnecessary.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0024",
+        "tm_pd_v04_user_004_s0047",
+        "tm_pd_v04_user_004_s0054",
+        "tm_pd_v04_user_004_s0065",
+        "tm_pd_v04_user_004_s0070",
+        "tm_pd_v04_user_004_s0093"
+      ],
+      "label_rationale": "Rental cars were useful for regional driving, loading, parking, or timing, while rideshare worked when storage, short distances, and parking costs made a car add little value. Tucson matches the rideshare-side facts.",
+      "query": "Kara is flying to TUS for a downtown clinic visit. The hotel is eight minutes from the clinic, parking is $34 per night, the host will lock the demo bag onsite, and airport rideshares are reliable. She has one dinner within walking distance. Which ground-transport policy should be applied?",
+      "variant_id": "ctrl_false_005_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Reserve the compact; early setup, bins, and free loading favor driving."
+        },
+        {
+          "choice_id": "B",
+          "text": "Prebook car service; scheduled rides beat rental-counter friction."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use rideshares or workshop shuttles unless a host personally drives."
+        },
+        {
+          "choice_id": "D",
+          "text": "Reserve compact cars for material-heavy workshops as the standing plan."
+        }
+      ],
+      "control_id": "ctrl_false_005",
+      "difficulty_rationale": "The rental action can be mistaken for a broad material-heavy workshop habit, and scheduled car service is plausible because it reduces counter friction.",
+      "gold_action": "Reserve the Spokane compact rental because early setup, bins, and free loading favor driving.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0024",
+        "tm_pd_v04_user_004_s0047",
+        "tm_pd_v04_user_004_s0054",
+        "tm_pd_v04_user_004_s0065",
+        "tm_pd_v04_user_004_s0070",
+        "tm_pd_v04_user_004_s0093"
+      ],
+      "label_rationale": "The car bookings were tied to regional distance, loading, gear, and parking support, while rideshare plans were chosen when those factors disappeared. Spokane has the specific car-supporting factors.",
+      "query": "Kara is going to Spokane for a regional workshop. The airport hotel is 25 miles from the venue, setup starts at 7:00 a.m., she has two bins to load, the venue provides a reserved free parking/loading space, and early rideshare coverage is thin. A compact rental is $112 total; prebooked car service is $78 each way. Which ground-transport policy fits?",
+      "variant_id": "ctrl_false_005_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Take the airport shuttle and use rideshare for the optional dinner."
+        },
+        {
+          "choice_id": "B",
+          "text": "Reserve a compact and park onsite for full schedule control."
+        },
+        {
+          "choice_id": "C",
+          "text": "Reserve compact cars for conferences lasting three nights."
+        },
+        {
+          "choice_id": "D",
+          "text": "Use rideshare for urban conferences as the standing ground plan."
+        }
+      ],
+      "control_id": "ctrl_false_005",
+      "difficulty_rationale": "The three-night duration and desire for control make a compact plausible, while the correct shuttle/rideshare action must be separated from a broad urban rideshare rule.",
+      "gold_action": "Use the Boston shuttle/rideshare plan because the venue hotel and lack of gear leave no car task.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_004_s0024",
+        "tm_pd_v04_user_004_s0047",
+        "tm_pd_v04_user_004_s0054",
+        "tm_pd_v04_user_004_s0065",
+        "tm_pd_v04_user_004_s0070",
+        "tm_pd_v04_user_004_s0093"
+      ],
+      "label_rationale": "The evidence shows rentals selected when they solved logistics and left off when parking, storage, or short urban movements made them unnecessary. BOS has the storage, gear, and parking profile of a no-rental trip.",
+      "query": "Kara lands at BOS for a three-night conference. The hotel is attached to the conference center, the airport shuttle runs every 20 minutes, garage parking is $49 per night, the host supplies all A/V gear, and she has only a backpack and carry-on. There is one optional offsite dinner. Which ground-transport policy should be used?",
+      "variant_id": "ctrl_false_005_v03"
+    }
+  ]
+}

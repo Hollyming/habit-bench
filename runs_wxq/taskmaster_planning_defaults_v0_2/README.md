@@ -16,3 +16,15 @@
 - Length contract: at least 1500 chars and 12 messages per session.
 
 Primary human-review file: `review/planning_defaults_review_queue_all.csv`.
+
+Evaluation status:
+
+- Structural format: compatible with the unchanged reference evaluator.
+- Formal lightweight results: `baseline_results/`, produced by
+  `eval/evaluate_baselines.py`.
+- Formal official-adapter results: `official_results/`, produced by the same
+  commands as `scripts/run_official_subset_adapters.sh`.
+- Content alignment gate: evaluated only with the unchanged reference
+  no-memory baseline; see `reports/reference_alignment_audit.md`.
+- Non-reference Qwen full-history/memory-matrix results are intentionally not
+  part of this run.

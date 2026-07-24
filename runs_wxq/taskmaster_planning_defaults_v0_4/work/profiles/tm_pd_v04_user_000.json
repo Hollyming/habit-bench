@@ -1,0 +1,187 @@
+{
+  "cache_fingerprint": "93b3997e63b5e79d0e7fc72a1a126dd542738ec17bb19c44f5075f8536ae6585",
+  "profile": {
+    "communication_style": {
+      "assumption_preference": "Appreciates caveats and confirmation questions when an amenity is not shown; dislikes invented details or hidden assumptions.",
+      "detail_level": "Likes enough detail to understand trade-offs, especially flight timing, connection quality, hotel rating, and whether amenities are confirmed or merely unlisted.",
+      "interaction_pattern": "Often starts with dates and city, then refines around schedule fit and hotel conveniences rather than asking for an exhaustive search.",
+      "preferred_format": "Concise shortlists with a clear best-fit recommendation and one or two reasonable alternatives."
+    },
+    "generated_by": {
+      "model": "gpt-5.5",
+      "reasoning_effort": "xhigh"
+    },
+    "generation_method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+    "habit_interactions": [
+      "For flights, connection quality is usually the first recurring screen, then Delta receives a soft ranking boost when it is otherwise a good fit.",
+      "Afternoon return timing matters most on business round trips because she often wants to finish a meeting day or avoid a rushed hotel departure before flying home.",
+      "For hotels, public customer rating is the reliability screen; breakfast, in-room coffee/fridge, and dining access are convenience layers rather than automatic deal-breakers.",
+      "When flight timing conflicts with the preferred carrier, timing and connection practicality usually win over carrier loyalty.",
+      "When a hotel has strong ratings and location fit but one convenience is unclear, the realistic next step is to verify the amenity rather than discard the option immediately."
+    ],
+    "habits": [
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "This is a soft preference: Delta is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When choosing among flight carriers and Delta is available while also satisfying the trip's schedule, route, price, and stop constraints.",
+        "default_action": "Search for or present Delta options as part of the preferred carrier set, and favor Delta when it is otherwise comparable to alternatives.",
+        "exception_condition": "Use another acceptable carrier when Delta is unavailable, materially worse, or does not meet the current trip constraints.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_000_h00",
+        "name": "soft_delta_preferred_carrier",
+        "preference_value": "Delta is a preferred airline to include in the flight shortlist, but not an exclusive carrier requirement.",
+        "scope_condition": "Applies when Maya is comparing carriers for domestic client, conference, or internal-meeting flights and no current trip specifies a different carrier requirement.",
+        "scope_key": "domestic_work_and_conference_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_9f7064c606c7",
+        "source_habit_instance_id": "tm_v04_e2e_habit_9f7064c606c7",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_000"
+      },
+      {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_000_h01",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies across her work, conference, and occasional leisure flights whenever connecting itineraries are being considered.",
+        "scope_key": "connecting_itinerary_evaluation",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_000"
+      },
+      {
+        "alternative_group_key": "flight_return_departure_time_preference",
+        "boundary_condition": "Treat as a soft default; if true afternoon return departures are unavailable, limited, or unattractive, consider options close to afternoon.",
+        "condition": "When booking or comparing round-trip flights and selecting the return-leg departure time.",
+        "default_action": "Search for return-flight options departing in the afternoon and present those first when available.",
+        "exception_condition": "Do not apply as a universal outbound-leg rule; one supporting dialogue separately used a morning outbound while still preferring an afternoon return.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_000_h02",
+        "name": "afternoon_return_departure_preference",
+        "preference_value": "Prefer the return flight to depart in the afternoon.",
+        "scope_condition": "Applies most strongly to return legs from client visits, conferences, and company meetings, especially late-week returns home.",
+        "scope_key": "business_round_trip_return_legs",
+        "source_bundle_id": "tm_v04_e2e_bundle_26cf0aa15c48",
+        "source_habit_instance_id": "tm_v04_e2e_habit_26cf0aa15c48",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_000"
+      },
+      {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_000_h03",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Applies when Maya is comparing hotels for her own overnight stays in work, conference, or personal travel where customer-facing ratings are available.",
+        "scope_key": "multi_night_hotel_searches",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_000"
+      },
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Use this as a soft preference, not an absolute requirement, because the evidence ranges from a direct requirement to a tentative request and a later verification question.",
+        "condition": "When evaluating or booking a hotel, treat free breakfast as a recurring included-service preference.",
+        "default_action": "Prioritize or verify hotels with free breakfast when available; if breakfast is not listed, ask or check rather than assuming it is included.",
+        "exception_condition": "Do not reject an otherwise suitable hotel solely for lacking free breakfast unless the user explicitly makes it required in the current booking; do not infer a full or high-quality breakfast requirement unless stated.",
+        "family": "hotel_included_services",
+        "habit_id": "tm_pd_v04_user_000_h04",
+        "name": "prefer_included_hotel_breakfast",
+        "preference_value": "Prefer hotels that include free breakfast.",
+        "scope_condition": "Applies most often to hotels for client visits and conferences with early starts; it is weaker on short leisure stays.",
+        "scope_key": "weekday_work_hotel_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_4159e7bcd6b1",
+        "source_habit_instance_id": "tm_v04_e2e_habit_4159e7bcd6b1",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_000"
+      },
+      {
+        "alternative_group_key": "trip_context_hotel_in_room_amenity_bundle",
+        "boundary_condition": "Do not generalize this to other amenities such as microwave, balcony, bar, fireplace, room size, location, dates, or price.",
+        "condition": "When selecting or comparing hotel rooms and in-room amenities are being considered.",
+        "default_action": "Use an in-room coffee maker and refrigerator or mini-fridge as soft amenity criteria, and confirm availability when relevant.",
+        "exception_condition": "If a hotel otherwise strongly matches the current trip, treat a missing coffee maker or refrigerator/mini-fridge as a point to confirm with the user rather than an automatic rejection.",
+        "family": "trip_context_hotel_policy",
+        "habit_id": "tm_pd_v04_user_000_h05",
+        "name": "hotel_room_coffee_maker_and_fridge_preference",
+        "preference_value": "Prefers a hotel room with both a coffee maker and a refrigerator or mini-fridge.",
+        "scope_condition": "Applies to Maya's own room on multi-night client or conference stays where in-room amenity details can be checked.",
+        "scope_key": "multi_night_work_hotel_rooms",
+        "source_bundle_id": "tm_v04_e2e_bundle_12de0f7be5d5",
+        "source_habit_instance_id": "tm_v04_e2e_habit_12de0f7be5d5",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_000"
+      },
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Do not infer specific cuisine, star rating, bar service, kid-friendliness, downtown location, ski access, or wooded setting unless stated for the current trip.",
+        "condition": "When searching for, comparing, or summarizing hotel options.",
+        "default_action": "Mention on-site or nearby restaurant availability and use convenient dining access as a soft tie-breaker rather than a hard filter.",
+        "exception_condition": "Do not apply if the user explicitly deprioritizes dining access or if stronger current-trip constraints override it.",
+        "family": "hotel_accessibility_amenity_priority",
+        "habit_id": "tm_pd_v04_user_000_h06",
+        "name": "hotel_restaurant_access",
+        "preference_value": "Hotels with on-site or nearby restaurant access, with restaurant availability noted during comparisons.",
+        "scope_condition": "Applies when comparing hotels for work trips with evening arrivals, packed meeting days, or unfamiliar neighborhoods.",
+        "scope_key": "late_arrival_and_busy_day_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_11cb153da985",
+        "source_habit_instance_id": "tm_v04_e2e_habit_11cb153da985",
+        "strength": "background",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_000"
+      }
+    ],
+    "longitudinal_plan": {
+      "target_history_characters": 336000,
+      "target_sessions": 128,
+      "travel_tempo": "About two substantive travel-planning episodes per month, with heavier bursts around client rollout seasons and conference quarters. Simple trips may take one or two sessions; complex business trips can span flight search, hotel comparison, amenity verification, booking changes, and final itinerary checks.",
+      "typical_episode_shape": [
+        "User gives destination, dates, and rough purpose, often asking for flight and hotel help together.",
+        "Assistant proposes a compact set of options, highlighting schedule practicality and hotel quality.",
+        "User narrows based on return timing, connection burden, and hotel conveniences.",
+        "Assistant verifies uncertain amenities or revises the shortlist when current-trip constraints override defaults.",
+        "Later sessions may include final confirmation, small schedule adjustments, or a separate hotel-only refinement."
+      ]
+    },
+    "persona": {
+      "age_range": "late 30s",
+      "decision_posture": "Practical and reliability-focused: she prefers comfortable, low-friction travel over luxury, and accepts trade-offs when schedule, availability, or budget clearly justify them.",
+      "home_base": "Atlanta, Georgia",
+      "name": "Maya Patel",
+      "occupation": "implementation program director for a healthcare software company",
+      "travel_identity": "Frequent domestic business traveler who books her own flights and hotels for client rollouts, conferences, and occasional personal weekends.",
+      "user_id": "tm_pd_v04_user_000"
+    },
+    "travel_contexts": [
+      {
+        "context_key": "solo_client_travel",
+        "description": "Primary recurring pattern: 2- to 4-night domestic trips to client sites, usually with flights, a hotel near the work location, and enough amenities to support early mornings and evening catch-up work."
+      },
+      {
+        "context_key": "conference_and_internal_meetings",
+        "description": "Several times per year she attends conferences or company meetings in major U.S. cities, where she compares flight timing and hotel quality more carefully because days are packed."
+      },
+      {
+        "context_key": "short_personal_getaways",
+        "description": "A few times per year she plans a long weekend with her spouse. Some hotel-quality and flight-comfort habits carry over, but workday conveniences are less dominant."
+      }
+    ],
+    "user_id": "tm_pd_v04_user_000"
+  }
+}

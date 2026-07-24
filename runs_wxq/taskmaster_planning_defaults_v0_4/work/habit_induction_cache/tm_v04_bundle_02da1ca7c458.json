@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Apply only to flight choices and onboard beverage-service filtering; do not infer a preferred cabin class, route, destination, travel date, or party size from this habit.",
+  "bundle_id": "tm_v04_bundle_02da1ca7c458",
+  "condition": "When selecting a passenger flight and onboard service features are being considered alongside the trip's explicit itinerary constraints.",
+  "confidence": 0.86,
+  "decision": "accept",
+  "default_action": "Prioritize flight options that explicitly serve alcohol onboard.",
+  "exception_condition": "If no flight that serves alcohol satisfies the explicit trip constraints, or if the traveler explicitly opts out of alcohol service for that trip, choose an otherwise suitable flight without requiring alcohol service.",
+  "family": "flight_feature",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_02da1ca7c458",
+  "induced_at": "2026-07-15T12:36:27.935076+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefers flights with onboard alcohol service",
+  "preference_value": "serves_alcohol",
+  "rationale": "Three independent flight-search dialogues each include a request for alcohol service on the plane. This supports a controlled synthetic-user default for preferring flights that serve alcohol, without treating the speakers as one real longitudinal user.",
+  "seed_value": "serves_alcohol",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User says, \"I need a flight that serves alcohol,\" directly grounding a flight option default for onboard alcohol service.",
+      "conversation_id": "dlg-b5f9c7fe-1150-4011-8df4-0eb55a8410a0",
+      "turn_index": 7
+    },
+    {
+      "contribution": "User says, \"I need first class that serves alcohol,\" supporting alcohol service as the reusable flight feature while cabin class remains request-specific.",
+      "conversation_id": "dlg-370cd125-de13-4d06-93ff-31aecdfa56cf",
+      "turn_index": 8
+    },
+    {
+      "contribution": "User says, \"I'd like to fly on a plane that serves alcohol,\" further supporting a default to choose flights with onboard alcohol service.",
+      "conversation_id": "dlg-6ab1cf5d-79e4-4555-9249-b560b18bfcc3",
+      "turn_index": 19
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "serves alcohol",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-b5f9c7fe-1150-4011-8df4-0eb55a8410a0",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 7,
+      "user_utterance": "I need a flight that serves alcohol."
+    },
+    {
+      "annotated_segment": "serves alcohol",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-370cd125-de13-4d06-93ff-31aecdfa56cf",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 8,
+      "user_utterance": "I need first class that serves alcohol."
+    },
+    {
+      "annotated_segment": "serves alcohol",
+      "annotation": "flight_search.other_description",
+      "conversation_id": "dlg-6ab1cf5d-79e4-4555-9249-b560b18bfcc3",
+      "habitual_language": false,
+      "instruction_id": "flight-5",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 19,
+      "user_utterance": "I'd like to fly on a plane that serves alcohol."
+    }
+  ]
+}

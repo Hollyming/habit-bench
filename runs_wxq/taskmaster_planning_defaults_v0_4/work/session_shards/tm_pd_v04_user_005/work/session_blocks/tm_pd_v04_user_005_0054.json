@@ -1,0 +1,392 @@
+{
+  "cache_fingerprint": "9c21786cfb68f0287f5e39f18fd0c6420b2609774d34106248541a42aa05d664",
+  "sessions": [
+    {
+      "domain": "distributor_combined_flight_hotel_search",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "User set trip-specific constraints: SFO preferred with OAK only if clearly better, no two-stop routing, later Thursday departure only if it still allows slide review, refundable hotel, decent guest feedback, and a king room with work basics. Demo-case handling remained open, with direct distributor shipment preferred over checked baggage.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.97,
+            "evidence_quote": "Avoid two stops.",
+            "habit_id": "tm_pd_v04_user_005_h03",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.95,
+            "evidence_quote": "Hotel should compare airport-area practicality against downtown restaurants and whatever is closer to the Spokane Valley office.",
+            "habit_id": "tm_pd_v04_user_005_h06",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Check the room basics. King room, desk, coffee maker, mini-fridge.",
+            "habit_id": "tm_pd_v04_user_005_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "New Spokane request. Northwest distributor wants me to lead a controls and membrane troubleshooting training at their Spokane office on Friday June 26, probably starting at 8:30 a.m. Can you build flight and hotel options for arriving Thursday?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I can shortlist it. What are the boundaries: Bay Area airport, latest acceptable Thursday arrival, and are you trying to come home Friday night?",
+          "role": "assistant"
+        },
+        {
+          "content": "Leave Thursday June 25. I would rather not burn the whole day, so later departure is better if it still gives me time to review slides Thursday evening. Avoid two stops. There may be a municipal pump-station walk-through Friday afternoon, so Friday return is possible but not if it turns into a scramble. Hotel should compare airport-area practicality against downtown restaurants and whatever is closer to the Spokane Valley office. One night for now. Open question: I may have a small demo case with me.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. For the demo case, is it airline-checkable size, and do you want me to keep hotel package receiving in play if the distributor cannot take it?",
+          "role": "assistant"
+        },
+        {
+          "content": "It is a small Pelican case, checkable if needed, but I would rather ship it directly if they can receive it. SFO is easiest. OAK is acceptable only if it is clearly better. I do not want SJC for this one. Arrival by about 6:30 or 7 would be ideal. Hotel needs decent guest feedback; do not put me in a bare-bones motel just because it is closer.",
+          "role": "user"
+        },
+        {
+          "content": "Here is the practical flight cut. I excluded the two-stop routings. Best fit: Alaska SFO-SEA-GEG, depart 1:20 p.m., arrive Spokane 5:42 p.m., with about 1 hour in Seattle. It preserves Thursday morning, arrives early enough for dinner and slide review, and the connection is manageable. Acceptable backup: United SFO-DEN-GEG, depart 12:55 p.m., arrive 6:18 p.m., with about 1 hour 20 in Denver; longer routing but a little more connection buffer. Cheaper but weaker: an OAK routing via Seattle or Las Vegas, roughly 2:00 p.m. departure and after 8:00 p.m. arrival depending on fare bucket; that is too late for a calm prep night unless the savings matter.",
+          "role": "assistant"
+        },
+        {
+          "content": "If the Friday afternoon walk-through happens, what does the return look like?",
+          "role": "user"
+        },
+        {
+          "content": "Friday return is workable only if the afternoon stays short. If you leave the distributor right after training, there are one-stop returns around 3:45 to 5:45 p.m. that get back to SFO roughly 9:30 to 10:30 p.m. If the pump-station visit runs until 4:00 or 4:30, the realistic Friday option is closer to a 6:30 p.m. departure and near-midnight arrival, with little margin. Saturday morning return is cleaner: depart Spokane around 9:05 a.m., connect once in Seattle, arrive SFO about 12:54 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. For hotels, the distributor is in Spokane Valley, not at the airport. Is the airport even worth considering?",
+          "role": "user"
+        },
+        {
+          "content": "Only as a fallback if the flight slips late. Airport-area option: Hampton Inn Spokane Airport, around 4.4 guest rating, easy late arrival and shuttle logistics, but it is not closer to the Spokane Valley office and dinner choices are thinner. Downtown options are stronger for the evening: The Davenport Grand, about 4.6 guest feedback, many restaurants within a few blocks, roughly 18 to 24 minutes to Spokane Valley in the morning; Oxford Suites Downtown is also strong, about 4.5, easier breakfast setup, and similar ride time. Closer-to-office option: Mirabeau Park Hotel in Spokane Valley, about 4.2 to 4.3, 6 to 8 minutes from the office, on-site restaurant, simpler morning. For one night and an 8:30 start, Mirabeau is easiest; if you may stay Friday night too, downtown becomes more attractive.",
+          "role": "assistant"
+        },
+        {
+          "content": "Drop the airport unless the flight changes. Between Davenport and Mirabeau, what is the real trade-off?",
+          "role": "user"
+        },
+        {
+          "content": "Davenport: better guest feedback, better dinner options, and a more comfortable place to decompress if you are there two nights. Morning trade-off is leaving around 7:40 or 7:45 for an 8:30 arrival. Mirabeau: much easier morning, basically a short rideshare to the office, and the on-site restaurant is convenient, but it is less useful if you want downtown dinner or a better-rated stay. If the trip remains one night, Mirabeau is the simplest. If Friday night becomes likely, Davenport is the better fit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the room basics. King room, desk, coffee maker, mini-fridge. I do not need a suite.",
+          "role": "user"
+        },
+        {
+          "content": "Mirabeau king rooms list a work desk, coffee maker, and mini-fridge. Davenport Grand standard king rooms list a desk and coffee maker; mini-fridge availability appears in the room amenity notes but I would still add it as a request and verify before booking. Oxford is strongest on room basics, with fridge and microwave more consistently listed, but it is not as nice as Davenport.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep everything refundable on the hotel side. If I end up checking the demo case, does that push us away from the Alaska connection?",
+          "role": "user"
+        },
+        {
+          "content": "Not automatically. A one-hour Seattle connection is comfortable for you, but checked equipment always adds a small baggage-transfer risk. The United via Denver option gives a little more connection buffer but arrives later and takes a longer path. If the case is critical for Friday morning, best answer is ship it directly to the distributor. If they cannot receive it, I would either use the Denver-buffer itinerary or carry only noncritical material in the case.",
+          "role": "assistant"
+        },
+        {
+          "content": "Make a note to ask Casey if they can receive the Pelican case by Thursday and hold it for Friday morning.",
+          "role": "user"
+        },
+        {
+          "content": "Noted. The question for Casey: can the Spokane office receive one small Pelican demo case Tuesday through Thursday, store it securely, and confirm a delivery contact plus receiving hours? If yes, no hotel receiving is needed. If no, we keep the checked-bag risk visible before booking the flight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the short recommendation. No booking yet.",
+          "role": "user"
+        },
+        {
+          "content": "Best fit for now: Alaska SFO-SEA-GEG Thursday June 25, 1:20 p.m. to 5:42 p.m.; hold off on the return until the pump-station visit is confirmed, with Saturday morning as the cleaner option if Friday runs late. Hotel: Mirabeau if this is truly one night and the morning ride matters most; Davenport Grand if you may stay Friday night and want better guest feedback plus downtown dinner. Acceptable backups: United via Denver if the demo case must be checked, and Oxford Suites if room amenities outrank the nicer downtown hotel. Ask before booking items: Casey receiving the demo case, Friday afternoon timing, and whether to make the hotel one night or two.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0054",
+      "session_index": 54,
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "domain": "distributor_itinerary_refinement",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "User refined the trip after the pump-station visit and demo-case shipping were clarified. He chose the cleaner SFO one-connection schedule over the cheaper Oakland itinerary with a longer layover, decided to stay Friday night and return Saturday morning, and moved the hotel choice toward downtown because the trip became two nights.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.95,
+            "evidence_quote": "hold Alaska out of SFO",
+            "habit_id": "tm_pd_v04_user_005_h00",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Update on Spokane: Casey confirmed the pump-station walk-through for Friday afternoon and said it could run until about 4:30. They can receive the Pelican case at the office, so no hotel package handling. Compare the Thursday SFO option against the cheaper Oakland one again.",
+          "role": "user"
+        },
+        {
+          "content": "Good, shipping the case direct removes the baggage-transfer concern. The cleaner SFO option is still Alaska SFO-SEA-GEG on Thursday June 25, 1:20 p.m. to 5:42 p.m., with about 1 hour in Seattle. The cheaper OAK option I would compare is OAK-SEA-GEG around 12:35 p.m. to 6:55 p.m., with roughly 2 hours 40 in Seattle. It saves about $70 to $85, but you leave earlier, sit longer, and arrive later. Best fit is SFO unless the fare gap gets much larger.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there still a Friday night return that is not stupid?",
+          "role": "user"
+        },
+        {
+          "content": "Not if the walk-through can run to 4:30. A 6:20-ish Spokane departure would require leaving the pump station almost immediately, hoping traffic and check-in are smooth, and getting home close to midnight. Saturday morning is much cleaner: around 9:05 a.m. out of Spokane, one Seattle connection, SFO about 12:54 p.m. I would stay Friday night.",
+          "role": "assistant"
+        },
+        {
+          "content": "Assume I stay Friday. Does that change the hotel choice?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. For two nights, downtown moves ahead. The Davenport Grand is around 4.6 guest rating, stronger dinner options, and a better place to be after the site day. Mirabeau Park is still the closer property, around 6 to 8 minutes from the distributor office, but the advantage is mostly Friday morning. Once you are staying Friday night too, the downtown restaurant access and stronger feedback matter more.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the actual morning timing from Davenport versus Mirabeau.",
+          "role": "user"
+        },
+        {
+          "content": "From Davenport downtown, I would schedule a rideshare at 7:35 and expect arrival at the Spokane Valley office around 8:00 to 8:10, with cushion for an 8:30 start. From Mirabeau, you could leave around 8:05 and still be fine. So Mirabeau saves about 25 to 30 minutes Friday morning, but Davenport is better for both evenings.",
+          "role": "assistant"
+        },
+        {
+          "content": "If I use Oakland, am I really saving enough after the extra time?",
+          "role": "user"
+        },
+        {
+          "content": "Probably not. The fare savings are under $100, and the OAK routing adds a longer layover plus later arrival. If you were already in the East Bay that day it would be acceptable. From San Francisco, the SFO itinerary is the cleaner schedule.",
+          "role": "assistant"
+        },
+        {
+          "content": "No rental car for this, right?",
+          "role": "user"
+        },
+        {
+          "content": "I do not think you need one. Airport to downtown is an easy rideshare. Downtown to the distributor office Friday morning is straightforward. For the pump-station visit, ask Casey whether you can ride with them from the office; keep rideshare as the backup. A rental would mostly sit parked downtown.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay, hold Alaska out of SFO and Davenport downtown. Do not book until I get expense approval.",
+          "role": "user"
+        },
+        {
+          "content": "Held plan, no booking made: Alaska SFO-SEA-GEG Thursday June 25, 1:20 p.m. to 5:42 p.m.; return Saturday June 27 around 9:05 a.m. via Seattle to SFO about 12:54 p.m. Hotel best fit: The Davenport Grand downtown for June 25-27, refundable king if available, with coffee maker and mini-fridge request to be added. Backup hotel: Mirabeau Park if the morning ride becomes the priority. Demo case ships directly to Casey, and no rental car is planned.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0055",
+      "session_index": 55,
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "domain": "distributor_booking_confirmation",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "User approved booking and confirmed the specific SFO itinerary, two-night downtown hotel, company card, Alaska number, window seats, and room notes. Booking completed with flight and hotel confirmations, seat selections, cancellation deadline, and local transport plan.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "return Saturday morning",
+            "habit_id": "tm_pd_v04_user_005_h01",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "with the one Seattle connection",
+            "habit_id": "tm_pd_v04_user_005_h03",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.91,
+            "evidence_quote": "Confirmed. Use the company card and my Alaska number on file.",
+            "habit_id": "tm_pd_v04_user_005_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Window seat if available.",
+            "habit_id": "tm_pd_v04_user_005_h02",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Add quiet room, coffee maker, and mini-fridge request.",
+            "habit_id": "tm_pd_v04_user_005_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Expense approval came through. Book the Spokane plan: SFO Thursday afternoon with the one Seattle connection, stay Friday night, return Saturday morning. Davenport downtown, refundable king.",
+          "role": "user"
+        },
+        {
+          "content": "Ready to book: Alaska SFO-SEA-GEG Thursday June 25, 1:20 p.m. to 5:42 p.m.; Alaska GEG-SEA-SFO Saturday June 27, 9:05 a.m. to 12:54 p.m. Hotel: The Davenport Grand downtown, refundable king, June 25-27. Confirm I should ticket this and reserve the room?",
+          "role": "assistant"
+        },
+        {
+          "content": "Confirmed. Use the company card and my Alaska number on file. Window seat if available. Add quiet room, coffee maker, and mini-fridge request. No package receiving at the hotel.",
+          "role": "user"
+        },
+        {
+          "content": "Got it. I am ticketing the flights first, then the hotel. For the hotel note I will include late-ish Thursday arrival around 6:45 to 7:15 p.m., quiet room if available, coffee maker and mini-fridge requested, and no package delivery expected.",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. Also keep the Friday morning rideshare timing in the summary.",
+          "role": "user"
+        },
+        {
+          "content": "Flights booked. Alaska confirmation AS7K2H. Seats selected where available: 12A SFO-SEA, 9A SEA-GEG, 10A GEG-SEA, and 16A SEA-SFO. All are window seats.",
+          "role": "assistant"
+        },
+        {
+          "content": "Hotel done too?",
+          "role": "user"
+        },
+        {
+          "content": "Hotel booked: The Davenport Grand, downtown Spokane, confirmation DVG8426, refundable king room, June 25-27. Cancel by Wednesday June 24 at 6 p.m. local time. Notes added: quiet room if available, coffee maker and mini-fridge requested, Thursday arrival around 6:45-7:15 p.m., and no package receiving. Compact itinerary: Thu fly SFO-SEA-GEG 1:20-5:42, rideshare to downtown; Fri schedule rideshare about 7:35 a.m. for the 8:30 distributor training, pump-station walk-through after lunch; Sat fly GEG-SEA-SFO 9:05-12:54. Demo case ships directly to Casey, and no rental car is booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_005_s0056",
+      "session_index": 56,
+      "user_id": "tm_pd_v04_user_005"
+    }
+  ],
+  "updated_continuity_summary": "{'ongoing_trips': ['Palm Springs personal weekend Apr. 24-26 for Jonah and spouse remains booked: United SFO-PSP Fri Apr. 24 2:10 p.m.-3:35 p.m. and PSP-SFO Sun Apr. 26 3:15 p.m.-4:50 p.m., confirmation U4P8DK, adjacent seats 17A/17B outbound and 18A/18B return. Hotel is Kimpton Rowan Palm Springs Apr. 24-26, cancellable king room, confirmation RWN48217, cancel by Apr. 22 at 6 p.m. local time. No rental car booked.', 'Louisville regional water conference May 16-20 remains booked: United SFO-DEN-SDF Sat May 16 1:18 p.m.-10:49 p.m. and United SDF-ORD-SFO Wed May 20 7:05 p.m.-11:42 p.m., confirmation L8Q3VM, window seats assigned. Hotel is The Grady Hotel May 16-20, king room, confirmation GRD7312, with quiet room, coffee maker, and mini-fridge notes. Demo case ships directly to the show decorator, not the hotel.', 'Visalia/Tulare food-and-beverage plant visit Jun. 8-10 remains booked as a drive-to trip. Hotel: Fairfield Inn & Suites Visalia Tulare, king room, confirmation FVT6249, refundable/cancel by Jun. 7 at 6 p.m. local time, free self-parking, 8-9 p.m. Monday arrival note, early departures both mornings, and coffee maker/mini-fridge request. No flights or rental car.', 'Spokane distributor controls training Jun. 25-27 is booked: Alaska SFO-SEA-GEG Thu Jun. 25 1:20 p.m.-5:42 p.m. and Alaska GEG-SEA-SFO Sat Jun. 27 9:05 a.m.-12:54 p.m., confirmation AS7K2H, window seats selected. Hotel is The Davenport Grand downtown Spokane Jun. 25-27, refundable king room, confirmation DVG8426, cancel by Jun. 24 at 6 p.m. local time, with quiet room, coffee maker, and mini-fridge requested. Friday training starts 8:30 a.m.; rideshare from hotel about 7:35 a.m.; pump-station walk-through after lunch may run to about 4:30. Demo case ships directly to Casey at the distributor office. No rental car booked.'], 'resolved_plans': ['Minneapolis wastewater conference Jan. 25-29 completed/resolved with Delta flights and Element Minneapolis Downtown North Loop.', 'Spokane distributor training Feb. 18-20 completed/resolved with Alaska/United flights, Mirabeau Park Hotel, compact rental, and demo materials shipped to distributor warehouse.', 'Hampton Roads utility assessment Mar. 9-12 completed/resolved with Delta flights into ORF, Hilton Garden Inn Chesapeake/Suffolk Harbour View, compact rental, and River Gate plant-access notes.', 'Earlier completed trips through prior Louisville, Twin Falls, Denver, Boise, Seattle, Cedar Rapids, Chandler, Santa Fe, Kansas City/Olathe, Albuquerque, and Portland remain resolved.'], 'unresolved_follow_ups': ['Palm Springs: monitor United schedule or seat changes and keep Apr. 22 hotel cancellation deadline visible; no rental car unless Jonah and spouse add a day trip.', 'Louisville: monitor United schedule or seat changes before May 16; continue tracking decorator delivery instructions/tracking for the tabletop demo case and confirm it does not need hotel handling.', 'Visalia/Tulare: keep Jun. 7 hotel cancellation deadline visible, watch for any further plant access changes, and verify the room coffee maker/mini-fridge at check-in if critical.', \"Spokane Jun. 25-27: get Casey's receiving contact and delivery hours for the Pelican case, track shipment once sent, confirm whether Casey can drive Jonah from the office to the pump-station walk-through, and monitor Alaska schedule or seat changes.\"], 'durable_user_facts': 'Jonah remains schedule-reliability focused and responds well to concise best-fit versus backup comparisons. For work trips, clean connections and meeting timing can outweigh carrier or fare differences. For Spokane, he chose the cleaner SFO one-connection schedule over a cheaper Oakland routing with a longer layover, and chose stronger downtown hotel feedback and dinner access over the shorter Spokane Valley morning ride.'}",
+  "verification": {
+    "54": {
+      "habit_signals": [
+        {
+          "confidence": 0.97,
+          "evidence_quote": "Avoid two stops.",
+          "habit_id": "tm_pd_v04_user_005_h03",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.95,
+          "evidence_quote": "Hotel should compare airport-area practicality against downtown restaurants and whatever is closer to the Spokane Valley office.",
+          "habit_id": "tm_pd_v04_user_005_h06",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Check the room basics. King room, desk, coffee maker, mini-fridge.",
+          "habit_id": "tm_pd_v04_user_005_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User explicitly requested avoiding two-stop routings, comparing hotel options against restaurant access, and checking/requesting coffee maker plus mini-fridge room basics. No concrete 4.0 hotel-rating threshold, United preference, afternoon-departure value, or window-seat preference was stated by the user."
+    },
+    "55": {
+      "habit_signals": [
+        {
+          "confidence": 0.95,
+          "evidence_quote": "hold Alaska out of SFO",
+          "habit_id": "tm_pd_v04_user_005_h00",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "The user selected Alaska for this trip, which is a current-trip exception to the soft United carrier default. Other user utterances did not state concrete rating, amenity, seat, layover, or restaurant-access values."
+    },
+    "56": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "return Saturday morning",
+          "habit_id": "tm_pd_v04_user_005_h01",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "with the one Seattle connection",
+          "habit_id": "tm_pd_v04_user_005_h03",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.91,
+          "evidence_quote": "Confirmed. Use the company card and my Alaska number on file.",
+          "habit_id": "tm_pd_v04_user_005_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Window seat if available.",
+          "habit_id": "tm_pd_v04_user_005_h02",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Add quiet room, coffee maker, and mini-fridge request.",
+          "habit_id": "tm_pd_v04_user_005_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User explicitly requested an afternoon outbound, a one-connection routing, a Saturday morning return as a trip-specific timing exception, Alaska-specific booking details, window seats if available, and coffee maker plus mini-fridge hotel requests. No concrete hotel-rating threshold or restaurant-access request was user-stated in this session."
+    }
+  }
+}

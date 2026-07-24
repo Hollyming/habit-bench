@@ -1,0 +1,103 @@
+{
+  "boundary_condition": "Apply only to hotel room bed configuration, not to destination, dates, room count, amenities such as balcony or view, or non-hotel travel choices.",
+  "bundle_id": "tm_v04_bundle_3efc195b7db3",
+  "condition": "When booking or comparing hotel rooms where bed type can be selected.",
+  "confidence": 0.82,
+  "decision": "accept",
+  "default_action": "Look for or request a king-size bed before other bed sizes; if a king room is not available within the current hotel constraints, allow a queen-size bed as the fallback.",
+  "exception_condition": "If the current request explicitly asks for queen-size or another bed arrangement, or only queen-size options satisfy the other required hotel constraints, follow that bed arrangement instead of insisting on king-size.",
+  "family": "bed_configuration",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_3efc195b7db3",
+  "induced_at": "2026-07-15T12:32:41.355191+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Request king-size hotel bed first",
+  "preference_value": "king-size bed, with queen-size acceptable fallback",
+  "rationale": "Across independent hotel examples, king-size appears as a desired or acceptable bed type, often alongside queen-size as an acceptable alternative. The most coherent reusable default is to prefer king-size while not treating queen-size as disqualifying.",
+  "seed_value": "king_size",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "Said, \"I need a queen-sized bed, preferably king size,\" grounding king-size as preferred with queen-size as an acceptable fallback.",
+      "conversation_id": "dlg-251344b5-5986-4757-92c4-672bcea8aa27",
+      "turn_index": 11
+    },
+    {
+      "contribution": "Said they would prefer a room with a \"king size or queen size bed,\" grounding both bed sizes as acceptable with king included.",
+      "conversation_id": "dlg-9280452c-8db9-4117-8b24-5e3f381021d1",
+      "turn_index": 5
+    },
+    {
+      "contribution": "Asked for one bedroom and said it \"could be a queen size or a king size,\" grounding queen-or-king flexibility for hotel bed configuration.",
+      "conversation_id": "dlg-bcd163d3-0078-4cc4-aa16-c1f1bfcd426d",
+      "turn_index": 5
+    },
+    {
+      "contribution": "Said, \"we're going to need a king-size bed,\" grounding an explicit king-size bed request.",
+      "conversation_id": "dlg-47c2c426-a672-4eed-9af9-77f8cbd56cee",
+      "turn_index": 9
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "king size",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-b62eb468-8e45-46f2-8359-a7784c55e69e",
+      "habitual_language": false,
+      "instruction_id": "hotel-3",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 20,
+      "user_utterance": "There's a reason to ocean-view balcony and she had coffee in the bedroom king size with HD flat screen TV in your bed lol."
+    },
+    {
+      "annotated_segment": "king size",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-251344b5-5986-4757-92c4-672bcea8aa27",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 11,
+      "user_utterance": "I need a queen-sized bed, preferably king size."
+    },
+    {
+      "annotated_segment": "king size",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-9280452c-8db9-4117-8b24-5e3f381021d1",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "I would prefer the one with king size or queen size bed in the room."
+    },
+    {
+      "annotated_segment": "king size",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-bcd163d3-0078-4cc4-aa16-c1f1bfcd426d",
+      "habitual_language": false,
+      "instruction_id": "hotel-6",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "I just need one bedroom. Could be a queen size or a king size?"
+    },
+    {
+      "annotated_segment": "king-size",
+      "annotation": "hotel_search.type.bed",
+      "conversation_id": "dlg-47c2c426-a672-4eed-9af9-77f8cbd56cee",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 9,
+      "user_utterance": "Yeah, I forgot to tell you we're going to need a king-size bed. And if there's any room with a balcony, that'd be preferable. And I also want it near downtown, if that's possible."
+    }
+  ]
+}

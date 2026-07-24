@@ -1,0 +1,103 @@
+{
+  "boundary_condition": "Apply only to flight-selection decisions where carrier choice is open; do not apply to hotels, ground transport, destinations, dates, routes, or other trip constraints.",
+  "bundle_id": "tm_v04_bundle_4808ee3cd2cf",
+  "condition": "When searching for or selecting flights and the airline can be ranked or filtered without overriding required schedule, cabin, stop, or availability constraints.",
+  "confidence": 0.78,
+  "decision": "accept",
+  "default_action": "Prioritize Delta flight options first; if Delta is not suitable, allow other acceptable major carriers rather than treating Delta as mandatory.",
+  "exception_condition": "If Delta options fail required timing, cabin, stopover, availability, or practical itinerary constraints, present or choose a non-Delta option such as United or American.",
+  "family": "airline_choice",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_4808ee3cd2cf",
+  "induced_at": "2026-07-15T12:37:24.037355+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefers Delta as the first-choice airline when feasible",
+  "preference_value": "Delta-preferred, not exclusive",
+  "rationale": "The supplied independent flight dialogues repeatedly include Delta as a preferred or acceptable carrier, while some examples also name United or American, so the coherent synthetic default is a Delta-first but non-exclusive airline preference.",
+  "seed_value": "delta",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User says, \"Can we try Delta Airlines?\" after rejecting another option, supporting Delta as a preferred carrier.",
+      "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+      "turn_index": 27
+    },
+    {
+      "contribution": "User says, \"if I can get on Delta, that'll be good,\" supporting a Delta preference when available.",
+      "conversation_id": "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+      "turn_index": 6
+    },
+    {
+      "contribution": "User requests a flight \"preferably ... via Delta or United,\" supporting Delta as preferred but not exclusive.",
+      "conversation_id": "dlg-e0d4e503-ca59-464f-9ee8-ab9eb7be53ab",
+      "turn_index": 5
+    },
+    {
+      "contribution": "User says, \"I would prefer Delta, United, or American,\" supporting Delta as one of the preferred carriers rather than a strict requirement.",
+      "conversation_id": "dlg-31e22a5d-8008-4d08-a498-2fe95f7139a3",
+      "turn_index": 13
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "Delta",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 27,
+      "user_utterance": "No, That's not acceptable. Can we try Delta Airlines? I'd prefer to have a stopover in Minneapolis or Detroit. I need to stop halfway, about halfway."
+    },
+    {
+      "annotated_segment": "Delta",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+      "habitual_language": false,
+      "instruction_id": "flight-8",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 6,
+      "user_utterance": "And if I can get on Delta, that'll be good and I need to leave in the morning."
+    },
+    {
+      "annotated_segment": "Delta",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-b7377723-1b87-4a92-8f3c-f05ec010ae4f",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 18,
+      "user_utterance": "Okay, does the Delta, business-class flight have WiFi?"
+    },
+    {
+      "annotated_segment": "Delta",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-e0d4e503-ca59-464f-9ee8-ab9eb7be53ab",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 5,
+      "user_utterance": "I'd like to get a flight in the morning, preferably economy premium via Delta or United."
+    },
+    {
+      "annotated_segment": "Delta",
+      "annotation": "flight_search.airline",
+      "conversation_id": "dlg-31e22a5d-8008-4d08-a498-2fe95f7139a3",
+      "habitual_language": false,
+      "instruction_id": "flight-5",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 13,
+      "user_utterance": "I would prefer Delta, United, or American."
+    }
+  ]
+}

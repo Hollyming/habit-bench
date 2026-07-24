@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Applies only to flight departure time-of-day; it does not determine destination, date, route, arrival time, lodging timing, or transportation outside the flight search.",
+  "bundle_id": "tm_v04_bundle_8430a5b05421",
+  "condition": "When arranging flight itineraries and choosing a departure time of day for a flight leg, prefer evening departures if the user has not given a conflicting time requirement.",
+  "confidence": 0.88,
+  "decision": "accept",
+  "default_action": "Filter or rank flight options toward departures in the evening for the relevant outbound or return leg.",
+  "exception_condition": "If the user specifies a non-evening departure time, needs a departure earlier than evening, or no feasible evening flight satisfies the trip constraints, honor the stated constraint or ask whether a non-evening option is acceptable.",
+  "family": "departure_time",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_8430a5b05421",
+  "induced_at": "2026-07-15T12:32:15.714101+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Evening flight departure default",
+  "preference_value": "evening departures",
+  "rationale": "Multiple independent flight dialogues include explicit requests for evening departures, including outbound-only and both-leg cases. The examples support a scoped synthetic default for departure time, not a universal travel preference or a claim about one real user.",
+  "seed_value": "evening",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "instruction_id flight-10: user wants both flights to leave in the evening if possible.",
+      "conversation_id": "dlg-76731d2b-8f4b-4dcb-a579-f507685c9b02",
+      "turn_index": 3
+    },
+    {
+      "contribution": "instruction_id flight-11: user requests a flight leaving this evening.",
+      "conversation_id": "dlg-810207e7-974d-4b65-ab5d-79fec8b75ec1",
+      "turn_index": 2
+    },
+    {
+      "contribution": "instruction_id flight-3: user chooses sometime in the evening.",
+      "conversation_id": "dlg-e11de364-0a20-46dc-9ee7-fcf9aa4ca5b8",
+      "turn_index": 50
+    },
+    {
+      "contribution": "instruction_id flight-13: user needs to leave this evening.",
+      "conversation_id": "dlg-c0ebb119-5c87-481a-ae20-5b0797064157",
+      "turn_index": 1
+    },
+    {
+      "contribution": "instruction_id flight-12: user says both flights will be in the evening.",
+      "conversation_id": "dlg-ba5f9ff1-e342-4e35-9fb5-915c738cc8f6",
+      "turn_index": 4
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "in the evening",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-76731d2b-8f4b-4dcb-a579-f507685c9b02",
+      "habitual_language": false,
+      "instruction_id": "flight-10",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 3,
+      "user_utterance": "I'm going to be leaving from San Francisco and going to Miami. I want to leave today and come back on Tuesday the 27th. I want to leave for both flight in the evening, if possible."
+    },
+    {
+      "annotated_segment": "evening",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-810207e7-974d-4b65-ab5d-79fec8b75ec1",
+      "habitual_language": false,
+      "instruction_id": "flight-11",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 2,
+      "user_utterance": "Hey, could you help me book a flight from New York City to London? Leaving this evening."
+    },
+    {
+      "annotated_segment": "in the evening",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-e11de364-0a20-46dc-9ee7-fcf9aa4ca5b8",
+      "habitual_language": false,
+      "instruction_id": "flight-3",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 50,
+      "user_utterance": "Let's go for sometime in the evening."
+    },
+    {
+      "annotated_segment": "this evening",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-c0ebb119-5c87-481a-ae20-5b0797064157",
+      "habitual_language": false,
+      "instruction_id": "flight-13",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 1,
+      "user_utterance": "Yeah, I'm looking for a round-trip flight from San Francisco to Jamaica. I need to leave this evening and come back in five days."
+    },
+    {
+      "annotated_segment": "in the evening",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-ba5f9ff1-e342-4e35-9fb5-915c738cc8f6",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 4,
+      "user_utterance": "And both will be in the evening."
+    }
+  ]
+}

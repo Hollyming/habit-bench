@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Apply only to lodging selection; do not infer this preference for flights, restaurants, car rentals, destinations, or other travel tasks.",
+  "bundle_id": "tm_v04_bundle_814fd3ee77b4",
+  "condition": "When booking lodging for a family-oriented stay or when child/family suitability is relevant to the hotel choice.",
+  "confidence": 0.78,
+  "decision": "accept",
+  "default_action": "Prioritize or filter for hotels described as family-friendly or suitable for families/children.",
+  "exception_condition": "If the user explicitly asks for adults-only, romantic, no-children, nightlife-focused, or otherwise non-family-oriented lodging, do not apply the family-friendly default.",
+  "family": "hotel_feature",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_814fd3ee77b4",
+  "induced_at": "2026-07-15T12:29:23.994360+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prioritizes hotels suitable for families and children",
+  "preference_value": "family_friendly_hotel",
+  "rationale": "Three independent hotel-task sources each add family-friendly suitability as a hotel requirement. This supports a controlled synthetic-user default for family-suitable lodging, without treating the separate Taskmaster speakers as one real longitudinal user.",
+  "seed_value": "family_friendly",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User states “Family friendly would be good,” supporting family-suitable lodging as a desired hotel feature.",
+      "conversation_id": "dlg-b5b5ba61-e959-4564-94eb-e4b081a0fb0a",
+      "turn_index": 10
+    },
+    {
+      "contribution": "User says to “make sure it's family-friendly,” again grounding the hotel feature preference.",
+      "conversation_id": "dlg-a1128482-e584-493b-8d0c-7ed7801273b3",
+      "turn_index": 19
+    },
+    {
+      "contribution": "User asks for “Family-friendly?” as a hotel requirement, matching the same reusable lodging feature.",
+      "conversation_id": "dlg-a97646ee-d64d-4e1e-a58a-d8b6565ab137",
+      "turn_index": 9
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "Family friendly",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-b5b5ba61-e959-4564-94eb-e4b081a0fb0a",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 10,
+      "user_utterance": "Family friendly would be good."
+    },
+    {
+      "annotated_segment": "family-friendly",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-a1128482-e584-493b-8d0c-7ed7801273b3",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 19,
+      "user_utterance": "Yeah. I guess just make sure it's family-friendly, and then that's everything."
+    },
+    {
+      "annotated_segment": "Family-friendly",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-a97646ee-d64d-4e1e-a58a-d8b6565ab137",
+      "habitual_language": false,
+      "instruction_id": "hotel-1b",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 9,
+      "user_utterance": "Family-friendly?"
+    }
+  ]
+}

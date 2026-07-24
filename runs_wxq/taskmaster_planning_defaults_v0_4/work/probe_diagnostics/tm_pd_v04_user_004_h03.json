@@ -1,0 +1,602 @@
+{
+  "habit_id": "tm_pd_v04_user_004_h03",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c03",
+        "c08"
+      ],
+      "accepted_total": [
+        "c03",
+        "c08"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "North Loop Suites: 4.3 guest rating, queen studio, 11-13 minute rideshare, fitness room, indoor pool, hot tub, $216/night with free cancellation."
+              },
+              {
+                "choice_id": "B",
+                "text": "Clinic Walk Hotel: 4.5 guest rating, queen room, 5-minute walk, fitness room and indoor pool, no listed hot tub, $203/night with free cancellation."
+              },
+              {
+                "choice_id": "C",
+                "text": "Airport Conference Suites: 4.2 guest rating, queen studio, 18-20 minute drive, fitness room, indoor pool, hot tub, $194/night plus parking."
+              },
+              {
+                "choice_id": "D",
+                "text": "South Campus Inn: 4.4 guest rating, queen room, 8-minute drive, small fitness room, no pool or hot tub, $181/night with free cancellation."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Generic travel reasoning could favor B on walkability, rating, and price, while A is only modestly farther and costlier. The tie is resolved by remembering that this type of multi-night work stay is one of the contexts where the user's hotel-amenity pattern matters.",
+            "gold_action": "Make North Loop Suites the lead refundable hold.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0005",
+              "tm_pd_v04_user_004_s0110",
+              "tm_pd_v04_user_004_s0112"
+            ],
+            "label_rationale": "For a multi-night teaching/practicum stay after long days, the cited history supports giving meaningful weight to a complete recovery-amenity setup while keeping commute reasonable and clearly identifying gaps. Choice A stays within the host's practical radius and includes the full amenity set. Choice B is tempting because it is closer, higher-rated, and cheaper, but it drops one of the user's recurring hotel amenities without a stronger current constraint requiring that tradeoff.",
+            "probe_type": "cross_context_transfer",
+            "query": "I have to choose one refundable hotel hold for a Thursday-Monday Minneapolis pediatric gait practicum. Saturday and Sunday are long teaching days, but once I set up on Friday I will not be hauling materials daily. The host says anything under about 15 minutes from the clinic is workable, and these all meet the bed, fridge, and coffee basics. Which option should be the lead hold?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Repeated pool/hot-tub/fitness details may cue an unstated amenity preference, but the stated location, rating, price, and feasibility constraints are sufficient to select B."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c00",
+            "rationale": "Clinic Walk Hotel best fits the stated work-trip constraints: it is well inside the 15-minute workable range, is the only walkable option, has the highest rating, is cheaper than the other close full-service option, and remains refundable while meeting the stated basics. The hot tub difference is not stated as required, and C exceeds the workable commute."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Plaza Inn: 4.7, walkable to dinner, king room with fridge/coffee, fitness room, no pool or hot tub, refundable, $232/night."
+              },
+              {
+                "choice_id": "B",
+                "text": "Foothill Lodge: 4.3, 12-15 minute drive to dinner and trail access, king or queen room with fridge/coffee, fitness room, pool, hot tub, refundable, $258/night."
+              },
+              {
+                "choice_id": "C",
+                "text": "Spa Resort North: 4.5, full facilities and shuttle, 25-minute drive to the trail base, $344/night plus resort fee, refundable."
+              },
+              {
+                "choice_id": "D",
+                "text": "Trailhead Motel: 4.4, 7-minute drive to the main trailhead, queen room with fridge/coffee, outdoor hot tub, no pool and no real fitness room, refundable, $207/night."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A generic planner could reasonably pick A for rating, dinner walkability, and price. Remembering the user's active-weekend pattern makes B the better fit despite the modest distance and cost penalty.",
+            "gold_action": "Save Foothill Lodge as the practical lead hold.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0011",
+              "tm_pd_v04_user_004_s0076",
+              "tm_pd_v04_user_004_s0118"
+            ],
+            "label_rationale": "The new trip is an active partner weekend where recovery facilities affect the stay, and the history shows that in this context the user is willing to trade a little walkability or cost for the more complete amenity setup, while avoiding resort-level overkill. Choice B supplies the relevant amenities without the excessive cost and commute of C. Choice A is a strong near-miss because it is more walkable and better-rated, but it misses the recovery facilities that matter for a two-hike weekend.",
+            "probe_type": "conflict_resolution",
+            "query": "My partner and I are planning a Friday-Monday Santa Fe trail weekend: one moderate hike Saturday, one longer hike Sunday, and an easy Monday drive to the airport. We do not need a fancy resort, but I want the hotel hold tonight to be practical if we keep both hikes. Which one should I save?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Hot tub/pool/fitness contrasts could reflect a hidden comfort preference, but the query explicitly emphasizes practicality for two hikes, which points to trailhead proximity and cost."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c01",
+            "rationale": "For keeping both hikes, Trailhead Motel is the most practical: it is closest to the main trailhead, refundable, has the lowest rate among the viable options, and still has solid reviews and basic room features. The resort is unnecessarily costly and farther from the trail base; the plaza option is less trail-focused."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Hold Medical Center Suites: 4.4, 8-minute drive, queen suite with fridge/coffee, fitness room and indoor pool, no hot tub listed, refundable, $183/night; record the missing hot tub plainly."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold Westroads Wellness: 4.2, 23-25 minute morning drive, queen room with fridge/coffee, fitness room, indoor pool, hot tub, refundable, $174/night; accept the commute for the fuller amenity list."
+              },
+              {
+                "choice_id": "C",
+                "text": "Hold Campus Guesthouse: 4.0, 4-minute walk, double bed, lobby coffee, uncertain fitness pass, no pool or hot tub, refundable, $149/night; rely on proximity."
+              },
+              {
+                "choice_id": "D",
+                "text": "Do not hold anything yet; keep searching outside the hospital area until a close property with every comfort feature appears."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is cheaper and has the fuller amenity list, while A is closer and more reliable for the lab schedule. Without the user's history, either could be defended; the longitudinal pattern favors the close match with an explicit caveat.",
+            "gold_action": "Hold Medical Center Suites and explicitly note the missing hot tub.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0012",
+              "tm_pd_v04_user_004_s0053",
+              "tm_pd_v04_user_004_s0081"
+            ],
+            "label_rationale": "The history distinguishes the durable hotel-amenity preference from one-trip exceptions: when a practical work stay has no close perfect option, the user accepts a reliable close match if the missing piece is stated clearly. Choice A preserves the commute and room setup and gives the plain caveat. Choice B follows the amenity pattern but over-weights it against the current hospital-access constraint.",
+            "probe_type": "exception",
+            "query": "For a Sunday-Wednesday Omaha hospital lab, the coordinator says staying close to the medical center makes morning access and equipment storage simpler, but she did not make a hotel mandatory. The close hotels are imperfect; I need to choose one hold and send myself the caveats. Which action best fits?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The instruction to record the missing hot tub is a strong wording cue, but it is paired with explicit caveat-taking and proximity requirements."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "Medical Center Suites best follows the coordinator’s advice while avoiding the biggest comfort compromises: it is close to the medical center, has a suite setup with fridge/coffee, good rating, fitness room and pool, and the choice explicitly records the missing hot tub caveat. B gives up the stated access/storage advantage, C has multiple room and amenity compromises, and D contradicts the request for a final hold."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Airport North Suites: 4.5, 6-minute shuttle, queen room with fridge/coffee, fitness room, no pool or hot tub, refundable, $166."
+              },
+              {
+                "choice_id": "B",
+                "text": "Harbor Wellness Hotel: 4.3, 11-minute rideshare, queen room with fridge/coffee, fitness room, indoor pool, hot tub, refundable, $172."
+              },
+              {
+                "choice_id": "C",
+                "text": "Downtown Boutique: 4.6, 18-minute rideshare, king room and good reviews, no fridge and no fitness or water facilities, refundable, $158."
+              },
+              {
+                "choice_id": "D",
+                "text": "Budget Airport Motel: 4.1, 5-minute shuttle, double room, coffee only, no fitness or water facilities, nonrefundable, $126."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "The two leading options are close in price and both have room basics. A generic planner might choose the fuller-facility hotel B, but the user's history shows not to sacrifice low-friction logistics for this kind of one-night boundary case.",
+            "gold_action": "Hold Airport North Suites and note the missing pool and hot tub.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0092",
+              "tm_pd_v04_user_004_s0063",
+              "tm_pd_v04_user_004_s0001"
+            ],
+            "label_rationale": "This is a boundary case: a short non-work, non-active airport overnight does not call for over-applying the amenity pattern as a hard rule. The history shows the user can accept missing water facilities for low-scope or practicality-driven stays, while still wanting caveats stated clearly. Choice A is the lower-friction airport hold; Choice B is a strong near-miss because it follows the amenity pattern in a context where it should stay soft.",
+            "probe_type": "boundary",
+            "query": "I need one hotel night near the Providence airport after a family dinner. I land around 8:30 p.m. and fly out at 10:40 a.m.; I can use a shuttle or a short rideshare, and I am not planning any hiking or teaching around this stop. The rates are within about $10. Which hold is the best fit?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query explicitly says there is no hiking or teaching, which neutralizes any hidden recovery-amenity cue and makes airport convenience decisive."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c04",
+            "rationale": "For a short airport overnight with no hiking or teaching, Airport North Suites is the best fit: it is closest by shuttle, refundable, highly rated, and has the room basics. The extra pool/hot-tub amenities at B are not needed for the stated stopover, C is farther and lacks basics, and D is nonrefundable with weaker features."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Book the official connected hotel: 4.2, queen room, coffee, mini-fridge by request, fitness room, no pool or hot tub, $231/night; note the fridge request and missing water facilities."
+              },
+              {
+                "choice_id": "B",
+                "text": "Book the River Suite Hotel: 4.4, 8-10 minute rideshare, queen suite with fridge/coffee, fitness room, indoor pool, hot tub, $224/night; carry the demo bag as needed."
+              },
+              {
+                "choice_id": "C",
+                "text": "Book the Downtown Boutique: 4.5, 12-minute walk, king room, coffee, fitness room and seasonal pool, no hot tub or guaranteed fridge, $209/night."
+              },
+              {
+                "choice_id": "D",
+                "text": "Book the Airport Wellness Hotel: 4.3, 25-minute drive, queen room with fridge/coffee, fitness room, pool, hot tub, $181/night; rent a car for control."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is cheaper, higher-rated, and amenity-complete, while A is connected and storage-friendly but has clear caveats. Generic travel reasoning cannot uniquely decide this; the user's prior conflict resolutions favor A for this logistics-heavy conference.",
+            "gold_action": "Book the official connected hotel and state the amenity and fridge caveats.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0113",
+              "tm_pd_v04_user_004_s0100",
+              "tm_pd_v04_user_004_s0090"
+            ],
+            "label_rationale": "The hotel amenities are a real preference, but the history shows connected conference logistics, material movement, and presenter access can override the missing pool or hot tub when the tradeoff is stated plainly. Choice A best matches that exception pattern. Choice B is the strongest near-miss because it has the preferred amenities and a confirmed room setup, but it underweights the current storage and check-in logistics.",
+            "probe_type": "conflict_resolution",
+            "query": "For a Thursday-Sunday Pittsburgh pediatric mobility conference, I have a 7:15 a.m. presenter check-in Friday and a Saturday teardown. The official hotel can store a rolling demo bag between sessions; the suite option is a short rideshare away and has a more predictable room setup. Which booking plan should I use?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The water-facility caveat and demo-bag storage language are strong cues, but the explicit conference logistics are sufficient to select the connected hotel."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "The official connected hotel best matches the early presenter check-in, Saturday teardown, and demo-bag storage needs. Its caveats are manageable and explicitly noted. The suite’s amenities and setup do not overcome carrying the demo bag and relying on rideshares for time-sensitive conference logistics."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Confirm parking, cancellation deadline, and whether the room has a microwave; leave the wellness-area details for check-in."
+              },
+              {
+                "choice_id": "B",
+                "text": "Confirm the pool and hot tub hours; if those are open, do not spend time on exercise access."
+              },
+              {
+                "choice_id": "C",
+                "text": "Confirm whether the pool, hot tub, and fitness or exercise access are each available, and record any missing piece in the booking note."
+              },
+              {
+                "choice_id": "D",
+                "text": "Confirm only whether there is a fitness room; assume the water facilities are seasonal and not worth checking."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "The query only says the listing is vague; it does not itself identify which amenities matter. The correct verification bundle requires recalling the user's repeated request to check and flag these specific hotel facilities.",
+            "gold_action": "Verify pool, hot tub, and fitness/exercise access individually and record any gap.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0005",
+              "tm_pd_v04_user_004_s0057",
+              "tm_pd_v04_user_004_s0112"
+            ],
+            "label_rationale": "For hotel evaluation in this work-stay scope, the history supports verifying the whole set of relevant wellness amenities and calling out gaps rather than checking only one piece or leaving the status vague. Choice C captures both the verification action and the caveat-recording action. Choices B and D are plausible but incomplete because each verifies only part of the pattern.",
+            "probe_type": "direct_use",
+            "query": "I am about to book a four-night Madison pediatric therapy workshop hotel. The commute, rate, cancellation policy, bed, fridge, and coffee all check out, but the hotel's own page says only 'wellness area' while other listings disagree. What should I verify before I finalize the hold?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Pool/hot-tub/fitness verification may reflect a hidden amenity checklist, but the query explicitly identifies conflicting wellness-area information, making comprehensive verification the generic best action."
+            ],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c06",
+            "rationale": "Because the hotel’s own page is vague and other listings disagree about the wellness area, the sensible pre-booking step is to verify each disputed wellness component: pool, hot tub, and fitness/exercise access, then record any missing piece. The other options verify only partial or unrelated details."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Keep the suite, note the Thursday-only closure, and verify the Friday reopening before the free-cancel deadline."
+              },
+              {
+                "choice_id": "B",
+                "text": "Switch to the closer downtown hotel because the suite no longer has every facility on arrival night."
+              },
+              {
+                "choice_id": "C",
+                "text": "Upgrade to the resort because every facility is confirmed every night, despite the higher fee and commute."
+              },
+              {
+                "choice_id": "D",
+                "text": "Cancel all hotel holds and wait for the maintenance status to become final."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A generic planner might switch to the cheaper closer hotel or upgrade to the always-open resort. The user's history resolves the ambiguity by keeping a good hotel when the closure is limited and clearly documented.",
+            "gold_action": "Keep the suite, document the limited closure, and verify reopening before the cancellation deadline.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0052",
+              "tm_pd_v04_user_004_s0010",
+              "tm_pd_v04_user_004_s0111"
+            ],
+            "label_rationale": "The history shows temporary or limited facility closures are treated as caveats, not automatic reasons to switch, especially when the main recovery window remains covered and the room/logistics still work. Choice A preserves the better overall fit while adding the verification step. Choice B is a near-miss because it reacts to the arrival-night gap by switching to a property that lacks the facility throughout the stay.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Tucson workshop hotel update: the refundable suite I was going to use now says its courtyard tub is closed Thursday for maintenance, with reopening expected Friday morning; the pool and exercise room are open. Friday and Saturday are the long teaching days. A closer downtown hotel is cheaper but has no tub at all. A resort has everything open but adds a long commute and a resort fee. What should I do before the cancellation deadline?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The courtyard-tub closure is a direct amenity cue, but the timeline and cancellation-deadline facts make A the clear generic action."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c07",
+            "rationale": "Keeping the refundable suite and verifying the Friday reopening is the most practical response: the tub closure is expected to affect only Thursday, while the pool and exercise room remain open and the long teaching days are Friday and Saturday. Switching loses the tub entirely, upgrading adds commute and fees, and canceling all holds is unnecessarily risky."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with the Hospital Suite: 4.5, 7-minute drive, queen suite with fridge/coffee, fitness room and indoor pool, no hot tub; make the no-hot-tub caveat explicit and keep the connected block as backup if storage improves."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with the West Side Hotel: 4.3, 20-minute drive, queen room with fridge/coffee, pool and hot tub, no fitness room; note that exercise access can be improvised."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with the Hospital Suite for its commute and room setup, but omit the amenity caveat unless the hotel mentions it again."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold no hotel; keep checking until another option with the full comfort setup reappears, even if the refundable rates expire."
+              }
+            ],
+            "closest_distractor_choice_id": "C",
+            "difficulty_rationale": "A and C are identical on the underlying hotel utility, so generic travel reasoning may see them as equivalent. The distinction depends on remembering that the user wants missing pool, hot tub, or fitness elements called out rather than hidden.",
+            "gold_action": "Lead with the Hospital Suite and explicitly note the missing hot tub.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0012",
+              "tm_pd_v04_user_004_s0061",
+              "tm_pd_v04_user_004_s0081",
+              "tm_pd_v04_user_004_s0090"
+            ],
+            "label_rationale": "When no perfect hotel remains for a practical work trip, the user's history supports choosing a close reliable match while plainly noting the missing amenity. Choice A does both. Choice C is the closest near-miss because it chooses the same practical hotel but fails the user's repeated need for explicit caveats; Choice B follows only part of the amenity pattern and sacrifices commute plus exercise access.",
+            "probe_type": "exception",
+            "query": "For a Monday-Thursday Des Moines clinic training, the all-around hotel I wanted sold out before I could hold it. The remaining cancellable options are workable but each has a gap. I need a final recommendation note, not an endless search. Which note should I send myself?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The no-hot-tub caveat is a possible hidden preference cue, but the query explicitly asks for a final recommendation note with gaps acknowledged."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c09",
+            "rationale": "The Hospital Suite is the best final recommendation because it preserves a short clinic commute, has the strongest rating and room setup, includes key amenities except the hot tub, and explicitly documents that caveat. B gives up too much commute and fitness access, C improperly omits the caveat, and D contradicts the request to stop endless searching."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c01",
+        "c02",
+        "c05",
+        "c06",
+        "c09"
+      ],
+      "accepted_total": [
+        "c01",
+        "c02",
+        "c03",
+        "c05",
+        "c06",
+        "c08",
+        "c09"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "North Loop Suites: 4.4 guest rating, queen studio, 11-13 minute rideshare to the clinic, fitness room, indoor pool, hot tub, quiet work area, $214/night with free cancellation."
+              },
+              {
+                "choice_id": "B",
+                "text": "Clinic Walk Hotel: 4.5 guest rating, standard queen room, 5-minute walk to the clinic, fitness room and indoor pool, no listed hot tub, simplest morning logistics, $209/night with free cancellation."
+              },
+              {
+                "choice_id": "C",
+                "text": "University Place Hotel: 4.3 guest rating, queen room, 7-9 minute drive to the clinic, fitness room, no pool or hot tub, larger desk, $198/night with free cancellation."
+              },
+              {
+                "choice_id": "D",
+                "text": "Airport Conference Suites: 4.2 guest rating, queen studio, 17-19 minute morning drive, fitness room, indoor pool, hot tub, parking included, $201/night with free cancellation."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A generic planner could reasonably favor B for walkability, rating, and price, while A is only modestly farther and costlier but has the complete amenity set. The user's longitudinal hotel pattern is needed to break that tie in favor of A.",
+            "gold_action": "Make North Loop Suites the lead refundable hold.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0005",
+              "tm_pd_v04_user_004_s0110",
+              "tm_pd_v04_user_004_s0112"
+            ],
+            "label_rationale": "For a multi-night practicum with long teaching days, the user's history supports giving meaningful weight to a complete pool, hot tub, and fitness setup when the commute and room basics remain workable. North Loop Suites preserves those amenities without a large logistics penalty. Clinic Walk Hotel is a strong near-miss because it is closer, slightly higher-rated, and a little cheaper, but it drops one of the recurring recovery amenities in a context where that pattern matters.",
+            "probe_type": "cross_context_transfer",
+            "query": "I need to save one cancellable hotel for a Thursday-Monday Minneapolis pediatric gait practicum. Friday is setup; Saturday and Sunday are long teaching days, and materials can stay at the clinic after setup. The host says both the clinic-adjacent and nearby downtown areas are workable. All four options cover the bed, fridge, and coffee basics. Which should be the lead hold for me?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Personal phrasing such as for me is present.",
+              "Amenity details like hot tub and quiet work area could reflect unstated preferences, but the explicit logistics, rating, and price cues are sufficient to select B."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c00",
+            "rationale": "Clinic Walk is the generic lead: it has the simplest morning logistics for long teaching days, the highest rating, free cancellation, all stated basics, fitness and pool, and is cheaper than the comparable North Loop option. Hot tub, studio space, or desk differences are not stated priorities."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Airport North Suites: 4.4 guest rating, 7-minute hotel shuttle, queen room with fridge and coffee, fitness room, no pool or hot tub, refundable, $169."
+              },
+              {
+                "choice_id": "B",
+                "text": "Harbor Wellness Hotel: 4.4 guest rating, 9-11 minute rideshare, queen room with fridge and coffee, fitness room, indoor pool, hot tub, refundable, $174."
+              },
+              {
+                "choice_id": "C",
+                "text": "Warwick Boutique: 4.6 guest rating, 12-14 minute rideshare, king room with coffee, no in-room fridge, small fitness room, seasonal pool, no hot tub, refundable, $165."
+              },
+              {
+                "choice_id": "D",
+                "text": "Budget Airport Inn: 4.2 guest rating, 5-minute shuttle, queen room with coffee and mini-fridge, no fitness room, pool, or hot tub, refundable, $154."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A generic planner could choose either A for shuttle simplicity or B for the fuller facilities at a similar price. The user's longitudinal pattern is needed to avoid over-applying the amenity preference to a one-night boundary case while still recording the missing items.",
+            "gold_action": "Hold Airport North Suites and note that it lacks a pool and hot tub.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0092",
+              "tm_pd_v04_user_004_s0001",
+              "tm_pd_v04_user_004_s0063"
+            ],
+            "label_rationale": "This is a boundary case: a short airport overnight does not make the recovery-amenity pattern decisive. The user's history shows that missing pool or hot tub can be acceptable for low-scope or logistics-driven stays, as long as gaps are stated plainly. Airport North Suites keeps the airport routine simplest while preserving the room basics and fitness access. Harbor Wellness is a strong near-miss because it has the full amenity set with only a modest rideshare tradeoff.",
+            "probe_type": "boundary",
+            "query": "I need one cancellable room near the Providence airport after a family dinner. Arrival is around 8:30 p.m. and the next flight is midmorning; either a shuttle or a short rideshare is fine. The rates are close enough that this is more about fit than saving a few dollars. Which hold should I make for myself?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Personal phrasing such as for myself and fit is ambiguous.",
+              "Because transport mode and price are explicitly neutralized, the fuller amenity package is enough to select B without private history."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "The query explicitly says either shuttle or short rideshare is fine and the close rates make fit more important than saving a few dollars. Among acceptable airport options, Harbor Wellness keeps the same rating and room basics as A while adding indoor pool and hot tub for only a small cost and ride difference; C lacks an in-room fridge and D gives up rating and facilities."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Keep the suite: 4.4 guest rating, 9-11 minute drive, queen suite with fridge and coffee, fitness room and pool open, hot tub closed Thursday with Friday reopening to verify; keep the cancellation reminder."
+              },
+              {
+                "choice_id": "B",
+                "text": "Switch to Downtown Lofts: 4.5 guest rating, 6-8 minute drive, queen room with fridge and coffee, fitness room and pool, no hot tub, no maintenance uncertainty, $8/night less."
+              },
+              {
+                "choice_id": "C",
+                "text": "Move to Desert Resort: 4.3 guest rating, 18-20 minute drive, queen room with fridge and coffee, fitness room, pool, and hot tub all confirmed open, $36/night more plus resort fee."
+              },
+              {
+                "choice_id": "D",
+                "text": "Hold both the suite and Downtown Lofts until the deadline: keep the suite for its room setup, keep downtown for certainty, then decide after the hotel's Friday maintenance update."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A generic planner could switch to B for certainty and proximity, upgrade to C for guaranteed facilities, or hold both until the update. The user's past handling of limited closures is needed to keep A while verifying the reopening.",
+            "gold_action": "Keep the suite, document the limited hot-tub closure, and verify reopening before the cancellation deadline.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_004_s0052",
+              "tm_pd_v04_user_004_s0010",
+              "tm_pd_v04_user_004_s0111"
+            ],
+            "label_rationale": "The user's history treats temporary or limited facility closures as caveats to verify, not automatic reasons to switch, when the hotel remains a strong overall fit and the other options either lack the facility throughout or add avoidable cost and commute. Choice A preserves the workable suite while making the closure visible and time-bounded. Choice B is a strong near-miss because it is closer, cheaper, and certain, but it gives up the hot tub altogether.",
+            "probe_type": "evidence_disambiguation",
+            "query": "Tucson workshop update before the free-cancel deadline: my held suite still works for commute and room setup, but its courtyard tub is under maintenance Thursday and may not be confirmed for Friday until the hotel posts the morning update. The pool and exercise room remain open. A closer downtown hotel is a little cheaper and has no maintenance notice but a slimmer facility list. A resort has everything open but adds a longer ride and fees. What should I do with the hold?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Hot-tub status is salient, but it is explicitly stated as the operational uncertainty.",
+              "The free-cancel deadline and pending update are sufficient to select D without private history."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c07",
+            "rationale": "With free cancellation still available and the hot-tub reopening update pending, holding both the suite and Downtown Lofts preserves both room setup and certainty until the relevant information arrives. A or B commits before the uncertainty resolves, and C adds commute and fees to solve a temporary uncertainty."
+          }
+        }
+      ],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "cross_context_transfer": 1,
+      "evidence_disambiguation": 1,
+      "exception": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_004"
+}

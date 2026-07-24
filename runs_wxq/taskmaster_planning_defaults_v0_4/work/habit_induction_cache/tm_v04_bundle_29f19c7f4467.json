@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Applies only to hotel/lodging quality-rating filters, not to destination, dates, amenities, price, flights, restaurants, or activities.",
+  "bundle_id": "tm_v04_bundle_29f19c7f4467",
+  "condition": "When searching for hotels and a star or customer-rating filter is available, with no explicit trip-specific request for a different quality level.",
+  "confidence": 0.91,
+  "decision": "accept",
+  "default_action": "Filter hotel options to ratings of 3.5 stars or better; if a range is required, use 3.5 to 5 stars.",
+  "exception_condition": "If the user explicitly asks for a stricter rating, accepts a lower or unrated property for availability/price/location, or names a specific property, follow that explicit instruction instead.",
+  "family": "hotel_quality_threshold",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_29f19c7f4467",
+  "induced_at": "2026-07-15T12:35:57.879795+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Minimum 3.5-star hotel rating",
+  "preference_value": "at_least_3_5_star_rating",
+  "rationale": "Across independent Taskmaster hotel dialogues, the repeated reusable pattern is a hotel quality floor around 3.5 stars. The synthetic default is scoped to rating filters and does not treat any one destination, amenity, or trip as habitual.",
+  "seed_value": "at_least_3_5",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User requested a hotel “between 3.5 stars to 5 stars,” supporting a 3.5-star lower bound.",
+      "conversation_id": "dlg-4763849b-6383-44d9-91f1-955e394bea6c",
+      "turn_index": 5
+    },
+    {
+      "contribution": "User stated “At least a 3.5 star rating,” directly supporting the minimum threshold.",
+      "conversation_id": "dlg-98961d7d-ca70-4cea-ad1d-4cc15730e142",
+      "turn_index": 10
+    },
+    {
+      "contribution": "User specified “Customer rating 3.5 stars or better,” reinforcing the same floor.",
+      "conversation_id": "dlg-8bc0c77a-e51a-4a1c-b137-fa351811cfff",
+      "turn_index": 5
+    },
+    {
+      "contribution": "User asked for “a customer rating of 3.5 stars or better,” again supporting the default.",
+      "conversation_id": "dlg-ca757d5e-3aa8-4730-ab9c-287320a82353",
+      "turn_index": 8
+    },
+    {
+      "contribution": "User requested “something with 3.5 stars,” consistent with using 3.5 as the rating target.",
+      "conversation_id": "dlg-ac0bf78c-1e11-4d7d-b5b7-f22d02966aef",
+      "turn_index": 14
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "between 3.5 stars to 5 stars",
+      "annotation": "hotel_search.star_rating",
+      "conversation_id": "dlg-4763849b-6383-44d9-91f1-955e394bea6c",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "I think I look for a hotel between 3.5 stars to 5 stars and actually I'm looking for a hotel that has two beds in the room and balcony."
+    },
+    {
+      "annotated_segment": "3.5 star rating",
+      "annotation": "hotel_search.customer_rating",
+      "conversation_id": "dlg-98961d7d-ca70-4cea-ad1d-4cc15730e142",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 10,
+      "user_utterance": "At least a 3.5 star rating."
+    },
+    {
+      "annotated_segment": "3.5 stars or better",
+      "annotation": "hotel_search.customer_rating",
+      "conversation_id": "dlg-8bc0c77a-e51a-4a1c-b137-fa351811cfff",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "Customer rating 3.5 stars or better."
+    },
+    {
+      "annotated_segment": "3.5 stars",
+      "annotation": "hotel_search.customer_rating",
+      "conversation_id": "dlg-ca757d5e-3aa8-4730-ab9c-287320a82353",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "I'd like a customer rating of 3.5 stars or better."
+    },
+    {
+      "annotated_segment": "3.5 stars",
+      "annotation": "hotel_search.customer_rating",
+      "conversation_id": "dlg-ac0bf78c-1e11-4d7d-b5b7-f22d02966aef",
+      "habitual_language": false,
+      "instruction_id": "hotel-4",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 14,
+      "user_utterance": "I'd like something with 3.5 stars."
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Apply only to hotel or room amenity selection; maintain explicit trip constraints such as dates, location type, occupancy, and required amenities before using the wet bar as a preference.",
+  "bundle_id": "tm_v04_bundle_ca5ffc34aae2",
+  "condition": "When evaluating hotel room amenities and otherwise suitable lodging options are available, the controlled synthetic user prefers a room that includes an in-room wet bar.",
+  "confidence": 0.82,
+  "decision": "accept",
+  "default_action": "Rank or filter hotel options higher when the room includes a wet bar, treating it as a desirable amenity during hotel selection.",
+  "exception_condition": "If no otherwise suitable wet-bar room is available, or the user explicitly says another hotel factor is more important, proceed without the wet bar rather than blocking the booking.",
+  "family": "hotel_amenity_priority",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_ca5ffc34aae2",
+  "induced_at": "2026-07-15T12:31:24.403068+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "prefer hotel rooms with a wet bar",
+  "preference_value": "in-room wet bar",
+  "rationale": "Three independent hotel task instructions mention a wet bar as a desired or nice room amenity. The evidence supports a scoped synthetic default for hotel amenity ranking, not a universal travel preference or a requirement for every lodging choice.",
+  "seed_value": "a_wet_bar",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "The user says, \"I'd like to have a wet bar and coffeemaker,\" grounding the wet bar as a desired hotel room amenity.",
+      "conversation_id": "dlg-e269e871-d186-4947-a455-d0d919bfcc66",
+      "turn_index": 5
+    },
+    {
+      "contribution": "The user says options would be nice \"if they had a wet bar in the room,\" supporting positive ranking of rooms with this amenity.",
+      "conversation_id": "dlg-33e260e6-6490-4b66-a103-305f589205e7",
+      "turn_index": 28
+    },
+    {
+      "contribution": "The user says, \"A wet bar would be nice,\" supporting the wet bar as a desirable but scoped hotel amenity.",
+      "conversation_id": "dlg-9168e2c8-4662-42cf-a557-a9d05ae67835",
+      "turn_index": 10
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "a wet bar",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-e269e871-d186-4947-a455-d0d919bfcc66",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "I'd like to have a wet bar and coffeemaker."
+    },
+    {
+      "annotated_segment": "a wet bar",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-33e260e6-6490-4b66-a103-305f589205e7",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 28,
+      "user_utterance": "How many of them would they both seem to be nice if they had a wet bar in the room."
+    },
+    {
+      "annotated_segment": "A wet bar",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-9168e2c8-4662-42cf-a557-a9d05ae67835",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 10,
+      "user_utterance": "A wet bar would be nice."
+    }
+  ]
+}

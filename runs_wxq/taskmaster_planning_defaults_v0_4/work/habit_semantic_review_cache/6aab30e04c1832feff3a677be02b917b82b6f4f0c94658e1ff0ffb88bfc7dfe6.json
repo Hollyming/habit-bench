@@ -1,0 +1,369 @@
+{
+  "cache_fingerprint": "6aab30e04c1832feff3a677be02b917b82b6f4f0c94658e1ff0ffb88bfc7dfe6",
+  "rows": [
+    {
+      "boundary_condition": "Use this as a soft preference, not an absolute requirement, because the evidence ranges from a direct requirement to a tentative request and a later verification question.",
+      "bundle_id": "tm_v04_e2e_bundle_4159e7bcd6b1",
+      "canonical_value": "hotel_free_breakfast",
+      "condition": "When evaluating or booking a hotel, treat free breakfast as a recurring included-service preference.",
+      "confidence": 0.7,
+      "decision": "keep",
+      "default_action": "Prioritize or verify hotels with free breakfast when available; if breakfast is not listed, ask/check rather than assuming it is included.",
+      "exception_condition": "Do not reject an otherwise suitable hotel solely for lacking free breakfast unless the user explicitly makes it required in the current booking; do not infer a full or high-quality breakfast requirement unless stated.",
+      "family": "hotel_included_services",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_4159e7bcd6b1",
+      "induced_at": "2026-07-16T08:02:57.864979+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefer_included_hotel_breakfast",
+      "preference_value": "Prefer hotels that include free breakfast.",
+      "rationale": "All three independent hotel dialogues mention free breakfast as a desired or checked included service. The shared reusable policy is a preference for included breakfast, with softness because only one dialogue frames it as a firm requirement.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.87,
+        "reason": "Supported by three distinct instruction_ids (hotel-11, hotel-8, hotel-10) with consistent positive or checking language around free hotel breakfast. The candidate is scoped to hotels and keeps the preference soft, which matches the mixed strength of the evidence.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows the user checks whether a candidate hotel includes free breakfast before accepting it.",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "exact_user_quote": "Do they have a free breakfast there?",
+          "instruction_id": "hotel-11",
+          "turn_index": 42
+        },
+        {
+          "contribution": "States a soft preference for a hotel with free breakfast.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "one that maybe has free breakfast",
+          "instruction_id": "hotel-8",
+          "turn_index": 15
+        },
+        {
+          "contribution": "States a direct preference or requirement that the hotel include free breakfast.",
+          "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+          "exact_user_quote": "I want it to have a free breakfast",
+          "instruction_id": "hotel-10",
+          "turn_index": 13
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Do they have a free breakfast there?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 42,
+          "user_utterance": "Do they have a free breakfast there?"
+        },
+        {
+          "annotated_segment": "one that maybe has free breakfast",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 15,
+          "user_utterance": "one that maybe has free breakfast"
+        },
+        {
+          "annotated_segment": "I want it to have a free breakfast",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 13,
+          "user_utterance": "I want it to have a free breakfast"
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Treat this as a reusable hotel-amenity preference, not a destination, date, price, restaurant/bar, or indoor/outdoor pool preference. Use it as soft unless the current request makes the amenities mandatory.",
+      "bundle_id": "tm_v04_e2e_bundle_fd8a73454935",
+      "canonical_value": "hotel_pool_hot_tub_fitness",
+      "condition": "When selecting or evaluating hotel options.",
+      "confidence": 0.82,
+      "decision": "revise",
+      "default_action": "Prioritize or verify hotels that offer all three amenities: a pool, a hot tub, and fitness or exercise access; clearly note if one is missing.",
+      "exception_condition": "If otherwise suitable hotels do not offer all three amenities, present close matches while explicitly noting which of pool, hot tub, or fitness/exercise access is absent.",
+      "family": "hotel_included_services",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_fd8a73454935",
+      "induced_at": "2026-07-16T08:07:33.431665+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefer_hotel_pool_hot_tub_fitness",
+      "preference_value": "Prefer hotels with a pool, hot tub, and fitness or exercise access.",
+      "rationale": "Across three distinct hotel conversations and instruction IDs, the user independently requests the same recreation-plus-exercise amenity pattern. Because only one dialogue uses hard requirement wording, this should be modeled as a strong preference rather than an absolute rule.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.89,
+        "reason": "The pool, hot tub, and fitness/exercise cluster is supported across three distinct instruction_ids (hotel-2, hotel-3, hotel-1c) with no conflicting polarity. Revise to remove the unsupported leisure-stay framing and keep the behavior scoped to hotel selection generally.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports the default preference for a hotel pool, hot tub, and fitness center.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "a pool with a hot tub and a fitness center at the hotel.",
+          "instruction_id": "hotel-2",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Independently repeats the same pool, hot tub, and fitness center bundle, with hard wording in this instance.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "The hotel must have a pool with a hot tub and a fitness center.",
+          "instruction_id": "hotel-3",
+          "turn_index": 28
+        },
+        {
+          "contribution": "Independently supports seeking a pool, hot tub, and exercise facility while showing the indoor/outdoor detail should remain a boundary rather than the core habit.",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "exact_user_quote": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "instruction_id": "hotel-1c",
+          "turn_index": 16
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "a pool with a hot tub and a fitness center at the hotel.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "a pool with a hot tub and a fitness center at the hotel."
+        },
+        {
+          "annotated_segment": "The hotel must have a pool with a hot tub and a fitness center.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 28,
+          "user_utterance": "The hotel must have a pool with a hot tub and a fitness center."
+        },
+        {
+          "annotated_segment": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 16,
+          "user_utterance": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Do not generalize this into a broad amenity-rich or atmosphere preference. Do not infer destination, dates, price, balcony, ocean view, restaurant/bar, or indoor/outdoor pool type from this habit.",
+      "bundle_id": "tm_v04_e2e_bundle_020c4625aa8b",
+      "canonical_value": "hotel_pool_hot_tub_fitness",
+      "condition": "When selecting or evaluating hotel options.",
+      "confidence": 0.82,
+      "decision": "revise",
+      "default_action": "Prioritize or verify hotel properties with a pool, hot tub, and fitness or exercise access before recommending or booking.",
+      "exception_condition": "If a current trip prioritizes another tradeoff or a property lacks one of these amenities, ask whether a close substitute or omission is acceptable.",
+      "family": "hotel_property_atmosphere",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_020c4625aa8b",
+      "induced_at": "2026-07-16T08:06:31.767326+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefer_hotel_pool_hot_tub_fitness",
+      "preference_value": "Prefer hotels with a pool, hot tub, and fitness or exercise access.",
+      "rationale": "All three independent hotel conversations ask for the same property-style amenity cluster: pool, hot tub, and exercise/fitness access. This supports a reusable preference for recreation-oriented, amenity-rich hotel properties.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.86,
+        "reason": "Supported by three distinct instruction_ids (hotel-3, hotel-2, hotel-1c), but the wording 'amenity-rich' and property-atmosphere framing is broader than the evidence. The reusable behavior should be narrowed to the specific pool, hot tub, and fitness/exercise amenity cluster.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Directly states the hotel should include the pool, hot tub, and fitness-center cluster.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "The hotel must have a pool with a hot tub and a fitness center.",
+          "instruction_id": "hotel-3",
+          "turn_index": 28
+        },
+        {
+          "contribution": "Independently requests the same pool, hot tub, and fitness-center amenities at the hotel.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "I would like to have a restaurant with a bar at the hotel for there and to be a pool with a hot tub and a fitness center at the hotel.",
+          "instruction_id": "hotel-2",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Independently asks for a pool, hot tub, and exercise access, matching the recurring amenity pattern.",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "exact_user_quote": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "instruction_id": "hotel-1c",
+          "turn_index": 16
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "The hotel must have a pool with a hot tub and a fitness center.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 28,
+          "user_utterance": "The hotel must have a pool with a hot tub and a fitness center."
+        },
+        {
+          "annotated_segment": "I would like to have a restaurant with a bar at the hotel for there and to be a pool with a hot tub and a fitness center at the hotel.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "I would like to have a restaurant with a bar at the hotel for there and to be a pool with a hot tub and a fitness center at the hotel."
+        },
+        {
+          "annotated_segment": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 16,
+          "user_utterance": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Use this as a soft included-service preference. Do not infer breakfast quality, full breakfast, destination, dates, price, room setup, or other amenities from this habit.",
+      "bundle_id": "tm_v04_e2e_bundle_f94c5af6a3b1",
+      "canonical_value": "hotel_free_breakfast",
+      "condition": "When searching for, evaluating, or choosing a hotel.",
+      "confidence": 0.76,
+      "decision": "revise",
+      "default_action": "Favor hotels that advertise free breakfast when otherwise suitable options are available; verify availability if breakfast inclusion is unclear.",
+      "exception_condition": "If no otherwise suitable hotel includes free breakfast, or if the current request treats breakfast only tentatively, ask whether a hotel without free breakfast is acceptable rather than rejecting good options outright.",
+      "family": "hotel_property_atmosphere",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_f94c5af6a3b1",
+      "induced_at": "2026-07-16T08:07:29.293693+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefer_included_hotel_breakfast",
+      "preference_value": "Prefer hotels that include free breakfast.",
+      "rationale": "Across three independent hotel conversations, the user repeatedly brings up free breakfast as a desired hotel feature. The wording ranges from a check to a tentative preference to a strong requirement, so this is best modeled as a soft recurring default.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.85,
+        "reason": "The free-breakfast preference is supported across three distinct instruction_ids (hotel-11, hotel-8, hotel-10) with no conflicting polarity, but breakfast quality is not supported by the cited examples and should be removed.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Checks whether the hotel option includes free breakfast, suggesting it matters in the selection.",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "exact_user_quote": "Do they have a free breakfast there?",
+          "instruction_id": "hotel-11",
+          "turn_index": 42
+        },
+        {
+          "contribution": "States free breakfast as a desired, though tentative, hotel feature.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "maybe has free breakfast",
+          "instruction_id": "hotel-8",
+          "turn_index": 15
+        },
+        {
+          "contribution": "Explicitly requests free breakfast as part of the desired hotel profile.",
+          "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+          "exact_user_quote": "I want it to have a free breakfast",
+          "instruction_id": "hotel-10",
+          "turn_index": 13
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Do they have a free breakfast there?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 42,
+          "user_utterance": "Do they have a free breakfast there?"
+        },
+        {
+          "annotated_segment": "maybe has free breakfast",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 15,
+          "user_utterance": "maybe has free breakfast"
+        },
+        {
+          "annotated_segment": "I want it to have a free breakfast",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 13,
+          "user_utterance": "I want it to have a free breakfast"
+        }
+      ]
+    }
+  ]
+}

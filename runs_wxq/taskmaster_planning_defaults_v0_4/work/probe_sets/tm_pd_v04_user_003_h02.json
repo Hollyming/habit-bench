@@ -1,0 +1,525 @@
+{
+  "cache_fingerprint": "60395e18f29744f89f716a99aed7d03107953b1c3741f01e25ab77b1154001e2",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "C",
+      "generator_difficulty_rationale": "C is a one-stop option on Delta, costs less, and arrives earlier, so it is a plausible generic recommendation. The user's history is needed to make the shorter transfer more important than those visible advantages.",
+      "gold_action": "Transfer her usual domestic work-travel connection preference to the training trip and rank the one-connection, better-cushioned routing first.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0109",
+        "tm_pd_v04_user_003_s0042",
+        "tm_pd_v04_user_003_s0137"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_003_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_003_h02",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies to domestic itineraries where a connection is being considered, especially routes from Salt Lake City to smaller recruitment or conference markets.",
+        "scope_key": "single_short_layover_secondary_market_routes",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "D is cheaper and has only one connection, but the 3h05 CLT layover is the long-layover option she has repeatedly tried to avoid.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Even outside recruiting, her general rule is to avoid sprinting and use one easy connection when possible. A gives one 89-minute connection and a reasonable Sunday evening arrival; B has two connections, C is under an hour, and D has a 3-hour-plus layover.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Although this trip is a departmental training rather than a recruiting loop, it is still domestic work travel to a smaller market with connecting options under consideration. The cited Kansas City, Upper Midwest, and Idaho work-trip sessions show the same pattern across conferences, counselor fairs, and regional travel: avoid sprint-like changes, extra stops, and odd multi-stop returns when a cleaner one-connection option is available. A best fits that transferable pattern.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_003_h02_p00",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The phrase \"not doing recruiting this time\" may invite use of contextual history, but no relevant preference is stated.",
+          "The stated constraints deliberately leave only subjective tradeoffs."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All four flights satisfy the stated evening-arrival and budget requirements. A has a comfortable one-stop connection but is highest priced; B is cheapest and earliest but has two stops; C is one-stop and early but has a short connection; D is cheaper one-stop travel but with a long layover and later arrival. The query does not state how to weight those factors.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B is cheaper, arrives earlier, offers a window seat, and uses Delta, so it is a strong generic near miss. The hidden-history step is disambiguating those visible advantages from the user's stronger connection-cushion habit.",
+      "gold_action": "Recommend the better-routing return even though another option has visible airline, seat, price, and arrival-time advantages.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0024",
+        "tm_pd_v04_user_003_s0080",
+        "tm_pd_v04_user_003_s0129"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_003_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_003_h02",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies to domestic itineraries where a connection is being considered, especially routes from Salt Lake City to smaller recruitment or conference markets.",
+        "scope_key": "single_short_layover_secondary_market_routes",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "B is tempting because it is Delta, cheaper, earlier, and has window seats, but the 55-minute ATL connection is under her preferred threshold and creates the sprint risk she avoids.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "A should rank first because it has one comfortable 87-minute connection. Her window-seat and Delta preferences are secondary; she has said a window can wait and that she does not want to force a bad connection.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The cited history should not be read as a blanket preference for Delta or for any available window seat when routing quality is meaningfully different. In the Colorado, Texas, and Upper Midwest sessions, Tessa treated connection reliability and avoiding rushed transfers as more important than small fare, airline, or timing advantages. A preserves that stronger pattern; B's visible perks do not outweigh its shorter connection for this user.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_003_h02_p01",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Seat-map availability is highlighted, with aisle versus window differences, but no seat preference is stated.",
+          "The query says any listed fare is reimbursable, leaving private preference over comfort, seats, stops, and timing."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "Every return meets the departure, reimbursement, and same-day-arrival requirements. A has a comfortable connection and aisle availability but is most expensive; B arrives earliest and is one-stop but has a short connection; C is a cheaper one-stop but has a long layover and later arrival; D is cheapest but has two stops. Seat type is not a stated preference, so no generic winner exists.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B is cheaper, earlier, and still has only one connection, so it could look like the practical same-night choice. The memory-dependent step is recognizing that a soft timing benefit is not enough to create an exception to her usual transfer-cushion preference.",
+      "gold_action": "Recommend the usual one-connection, better-cushioned return rather than treating the cheaper or earlier options as an exception without a current instruction to do so.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0048",
+        "tm_pd_v04_user_003_s0092",
+        "tm_pd_v04_user_003_s0141",
+        "tm_pd_v04_user_003_s0080"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_003_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_003_h02",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies to domestic itineraries where a connection is being considered, especially routes from Salt Lake City to smaller recruitment or conference markets.",
+        "scope_key": "single_short_layover_secondary_market_routes",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "B is tempting because it is one-stop, cheaper, and arrives earlier, but the 54-minute MSP connection falls below her avoid-under-an-hour preference.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "A gives one comfortable 84-minute connection. Her history favors avoiding the sprint over saving money or getting home a little earlier; B is under an hour, C has two connections, and D is a long-layover late-night return.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The cited exception sessions show that Tessa will override routing defaults when the current trip explicitly calls for a nonstop, a specific timing target, or another controlling constraint. This Fargo query gives feasible same-night options but no explicit instruction to prioritize earliest arrival, lowest fare, or airline over connection quality. Her baseline connection pattern therefore still applies, making A preferable to B, C, or D.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_003_h02_p02",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "All stated feasibility and reimbursement requirements are satisfied by every option.",
+          "The remaining decision turns on private tolerance for short connections, late arrivals, extra stops, and cost."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "Each option leaves after the session, fits reimbursement rules, and gets Tessa back the same night. A has a comfortable one-stop connection but costs most and arrives later than B; B is earliest and moderately priced but has a short connection; C is cheaper but two-stop; D is cheapest and one-stop but arrives very late after a long layover. The best choice depends on unstated tradeoffs.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B is under the worksheet line, cheaper, and lands earlier, so an approval-focused planner could reasonably choose it. The user's longitudinal history is needed to avoid treating a soft estimate line as a price-priority exception.",
+      "gold_action": "List the higher-fare one-connection option with the more reliable transfer, since the current budget note is permissible and not a hard instruction to minimize airfare.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0009",
+        "tm_pd_v04_user_003_s0046",
+        "tm_pd_v04_user_003_s0129"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_003_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_003_h02",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies to domestic itineraries where a connection is being considered, especially routes from Salt Lake City to smaller recruitment or conference markets.",
+        "scope_key": "single_short_layover_secondary_market_routes",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "B is tempting because it is under the estimate, lands earlier, and has 70-plus-minute layovers, but it requires two connections; she has repeatedly preferred one easy connection and not gambling the trip just to save money.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "A is the better approval request despite exceeding the worksheet line: it has one non-stressful 86-minute connection and arrives comfortably before the hotel cutoff. The cheaper choices either add a second connection, use a long layover, or squeeze the connection under an hour.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Tessa's history shows that she does not usually trade connection quality merely to save a modest amount, and she has documented higher-cost routings when they better protect the trip. The current query creates an approval tradeoff, but it also says higher airfare can be justified and the holds allow time for that note. A is therefore consistent with the durable connection policy; B's under-line fare is not enough by itself to override it.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_003_h02_p03",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The \"higher routing if it is the better plan\" wording invites a subjective tradeoff rather than a hard rule.",
+          "All options meet the hotel cutoff and hold constraint, leaving unstated preferences over budget discipline, stops, and connection buffers."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The budget note does not create a firm cap because higher routings can be justified. B is under the estimate and cheapest but has two stops; C is under the estimate and one-stop but has a long layover and late arrival; D is earliest and one-stop with only a modest overage but has a short connection; A has a comfortable one-stop connection but is much more over estimate and later than D. No option is clearly first without preference history.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B costs less, arrives earlier, offers a window seat, and uses Delta, so it is a credible generic recommendation. The hidden-history reasoning is needed to prioritize the connection cushion over those other visible benefits.",
+      "gold_action": "Choose the better-routing option even though it is not the cheapest, not Delta, and lacks the visible window-seat cue.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0042",
+        "tm_pd_v04_user_003_s0080",
+        "tm_pd_v04_user_003_s0129"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v04_user_003_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_layover_preference",
+        "boundary_condition": "Do not infer that the user always wants nonstop first, wants a layover for price reasons, or wants to add a stop to break up a long route unless the current request says so.",
+        "condition": "When evaluating flight itineraries where a connection is acceptable, necessary, or being considered.",
+        "default_action": "Favor itineraries with at most one short layover; ask before selecting itineraries with multiple layovers or a long layover.",
+        "exception_condition": "Override this default if the user explicitly requests nonstop only, requests a longer stopover, or prioritizes schedule, availability, price, or another constraint over layover count or layover duration.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v04_user_003_h02",
+        "name": "flight_single_short_layover_preference",
+        "preference_value": "Prefers connecting itineraries with no more than one layover, and for any layover to be short enough for a comfortable transfer rather than prolonged.",
+        "scope_condition": "Applies to domestic itineraries where a connection is being considered, especially routes from Salt Lake City to smaller recruitment or conference markets.",
+        "scope_key": "single_short_layover_secondary_market_routes",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "B is tempting because it is Delta, cheaper, earlier, and has a window seat, but the 55-minute ATL connection would force the bad/squeezed connection she has said not to prioritize.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "A should be recommended because it has one comfortable 88-minute connection. The open window seats on other options do not override her stronger preference to avoid under-hour connections, extra connections, and long layovers.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The seat-map and airline details are visible tradeoffs, but the cited history shows that Tessa's stronger longitudinal pattern is to protect the connection rather than accept a shorter change for small fare, timing, airline, or seat advantages. A is the only listed outbound with one connection and a more forgiving transfer. B is tempting, but its shorter connection is the kind of tradeoff she has repeatedly avoided.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_003_h02_p04",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Seat-map availability is included, with aisle versus window differences, but no stated seat preference.",
+          "The query neutralizes agenda and hotel constraints, leaving subjective tradeoffs among fare, routing, connection length, and seats."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All outbounds satisfy the Tuesday-morning agenda and late hotel-desk constraints. A has a comfortable one-stop connection and aisle availability but costs most; B is earliest and one-stop but has a short connection; C is cheapest but two-stop; D is one-stop and cheaper than B but has a long layover and late arrival. Seat type and connection preferences are not stated, so the answer requires private preference information.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_003"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "American SLC-CLT-AVL with an 89-minute CLT connection, lands 6:25 p.m., $456."
+        },
+        {
+          "choice_id": "B",
+          "text": "United SLC-IAH-IAD-AVL with 70- and 78-minute connections, lands 5:45 p.m., $389."
+        },
+        {
+          "choice_id": "C",
+          "text": "Delta SLC-ATL-AVL with a 53-minute ATL connection, lands 5:55 p.m., $421."
+        },
+        {
+          "choice_id": "D",
+          "text": "American SLC-CLT-AVL with a 3-hour 05-minute CLT connection, lands 8:15 p.m., $392."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "cross_context_transfer",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_003_h02_p00",
+      "query": "Tessa is not doing recruiting this time; she is flying from SLC to Asheville for a departmental training that starts the next morning. The organizer only requires arrival Sunday evening, and all four flights fit the travel budget. Which itinerary should be put first?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_003",
+      "visible_history_scope": {
+        "max_session_index": 141
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "American PNS-CLT-SLC with an 87-minute CLT connection, departs 1:05 p.m., arrives 7:15 p.m., $418; aisle seats remain."
+        },
+        {
+          "choice_id": "B",
+          "text": "Delta PNS-ATL-SLC with a 55-minute ATL connection, departs 1:20 p.m., arrives 6:35 p.m., $392; window seats remain."
+        },
+        {
+          "choice_id": "C",
+          "text": "Delta PNS-ATL-SLC with a 3-hour 05-minute ATL connection, departs 12:50 p.m., arrives 8:50 p.m., $365; window seats remain."
+        },
+        {
+          "choice_id": "D",
+          "text": "United PNS-IAH-DEN-SLC with 72- and 80-minute connections, departs 12:40 p.m., arrives 7:40 p.m., $354; window seats remain."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_003_h02_p01",
+      "query": "Tessa is choosing a return from Pensacola to SLC after a Friday counselor breakfast. She can leave any time after noon, the office will reimburse any listed fare, and the booking page shows current seat-map availability. Which return should you recommend?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_003",
+      "visible_history_scope": {
+        "max_session_index": 141
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "United FAR-DEN-SLC with an 84-minute DEN connection, departs 4:20 p.m. Thursday, arrives 9:40 p.m., $414."
+        },
+        {
+          "choice_id": "B",
+          "text": "Delta FAR-MSP-SLC with a 54-minute MSP connection, departs 3:45 p.m. Thursday, arrives 8:30 p.m., $366."
+        },
+        {
+          "choice_id": "C",
+          "text": "American FAR-ORD-DFW-SLC with 73- and 78-minute connections, departs 4:05 p.m. Thursday, arrives 10:05 p.m., $346."
+        },
+        {
+          "choice_id": "D",
+          "text": "Delta FAR-MSP-SLC with a 3-hour 20-minute MSP connection, departs 5:00 p.m. Thursday, arrives 11:35 p.m., $338."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "exception",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_003_h02_p02",
+      "query": "At a Fargo institute, the final scheduled item ends at 2:15 p.m. Thursday. Tessa is comparing returns that all leave after the session, fit reimbursement rules, and get her back the same night. Which plan should be recommended first?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_003",
+      "visible_history_scope": {
+        "max_session_index": 141
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "United SLC-IAD-ROA with an 86-minute IAD connection, lands 6:50 p.m., $386."
+        },
+        {
+          "choice_id": "B",
+          "text": "American SLC-PHX-CLT-ROA with 74- and 81-minute connections, lands 6:15 p.m., $329."
+        },
+        {
+          "choice_id": "C",
+          "text": "Delta SLC-JFK-ROA with a 3-hour 05-minute JFK connection, lands 8:30 p.m., $338."
+        },
+        {
+          "choice_id": "D",
+          "text": "American SLC-CLT-ROA with a 54-minute CLT connection, lands 6:00 p.m., $354."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "exception",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_003_h02_p03",
+      "query": "Tessa has a late-added Roanoke outreach day. The estimate worksheet had a $340 airfare line, but her office allows a short justification for a higher routing if it is the better plan; all holds last through tomorrow and every option lands before the Monday night hotel cutoff. Which option should she list first for approval?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_003",
+      "visible_history_scope": {
+        "max_session_index": 141
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "American SLC-CLT-TLH with an 88-minute CLT connection, lands 6:45 p.m., $428; only aisle seats are open."
+        },
+        {
+          "choice_id": "B",
+          "text": "Delta SLC-ATL-TLH with a 55-minute ATL connection, lands 6:15 p.m., $404; a window seat is open."
+        },
+        {
+          "choice_id": "C",
+          "text": "United SLC-IAH-IAD-TLH with 70- and 78-minute connections, lands 6:55 p.m., $372; a window seat is open."
+        },
+        {
+          "choice_id": "D",
+          "text": "Delta SLC-ATL-TLH with a 3-hour 15-minute ATL connection, lands 8:40 p.m., $388; a window seat is open."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_003_h02_p04",
+      "query": "Tessa is booking SLC to Tallahassee for a Monday admissions workshop. The agenda begins Tuesday morning, the hotel desk is open late, and the fare page shows current seat-map availability. Which outbound should be recommended?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_003",
+      "visible_history_scope": {
+        "max_session_index": 141
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 5,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 4
+    },
+    "query_only_unresolved_count": 9,
+    "selected_count": 5,
+    "selected_difficulty_counts": {
+      "medium": 5
+    },
+    "selected_type_counts": {
+      "cross_context_transfer": 1,
+      "evidence_disambiguation": 2,
+      "exception": 2
+    }
+  }
+}

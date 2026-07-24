@@ -1,0 +1,69 @@
+{
+  "cache_fingerprint": "5d67c7bba06bfb567e9b81fa35b6e23ae87ba9e4eaff84bc9c189bf3f7d65914",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_family_orientation",
+      "boundary_condition": "Apply only to lodging selection and hotel ranking/filtering; do not infer this preference for flights, restaurants, car rentals, destinations, or other travel tasks.",
+      "canonical_value": "family_friendly_hotel",
+      "condition": "When selecting or booking lodging for a stay where family or child suitability is relevant.",
+      "default_action": "Prefer hotels described as family-friendly or suitable for families and children.",
+      "exception_condition": "If the user explicitly requests adults-only, romantic, no-children, nightlife-focused, or otherwise non-family-oriented lodging, do not apply the family-friendly default.",
+      "input_ids": [
+        "tm_v04_habit_814fd3ee77b4"
+      ],
+      "name": "Prefers family-friendly hotels",
+      "preference_value": "family_friendly_hotel",
+      "rationale": "Multiple examples independently express family-friendly lodging as a desired hotel attribute. This is a reusable hotel-feature preference, with clear exceptions for trips where the user requests a non-family-oriented stay.",
+      "representative_id": "tm_v04_habit_814fd3ee77b4"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_review_quality_preference",
+      "boundary_condition": "Apply only within hotel searches; do not convert associated one-off details such as waterfront location, star rating, or nightly budget into persistent defaults.",
+      "canonical_value": "good_customer_reviews",
+      "condition": "When selecting, comparing, or ranking hotels and customer-review information is available.",
+      "default_action": "Rank hotels with good customer reviews higher among options that otherwise satisfy the current trip constraints.",
+      "exception_condition": "If hotels with good customer reviews conflict with explicit current constraints such as dates, location, room needs, or price limit, surface the conflict and ask whether to relax the review preference or another constraint.",
+      "input_ids": [
+        "tm_v04_habit_2cf0d6fd22f9"
+      ],
+      "name": "Prefers hotels with good customer reviews",
+      "preference_value": "hotels with good customer reviews",
+      "rationale": "The user repeatedly requests hotels with good customer reviews across separate hotel-search contexts. This is a stable quality signal for hotel selection, but should remain a soft ranking preference unless the current request makes it a hard constraint.",
+      "representative_id": "tm_v04_habit_2cf0d6fd22f9"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_room_smoking_status",
+      "boundary_condition": "Apply only to the booked room's smoking status; do not infer broader preferences about hotel-wide smoking areas, balconies, neighborhoods, or transportation.",
+      "canonical_value": "non_smoking_room",
+      "condition": "When selecting, comparing, or booking a hotel room and smoking status can be specified or confirmed.",
+      "default_action": "Choose, request, or confirm a non-smoking hotel room by default.",
+      "exception_condition": "If no non-smoking room is available for the otherwise suitable stay, do not automatically book a smoking room; ask whether to look for alternatives or obtain explicit confirmation before proceeding.",
+      "input_ids": [
+        "tm_v04_habit_162d2d34dddb"
+      ],
+      "name": "Defaults to non-smoking hotel rooms",
+      "preference_value": "non-smoking room",
+      "rationale": "Several examples consistently indicate a preference for non-smoking hotel rooms. This is a standard reusable room-level hotel preference and has a clear fallback when unavailable.",
+      "representative_id": "tm_v04_habit_162d2d34dddb"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_location_beach_proximity",
+      "boundary_condition": "Apply only to hotel lodging choices where beach proximity is a meaningful location feature; do not treat it as a general preference for all travel bookings or non-beach destinations.",
+      "canonical_value": "close_to_the_beach",
+      "condition": "When searching for a hotel in a destination or trip context where beach access is relevant.",
+      "default_action": "Prefer hotels that are close to the beach among otherwise suitable lodging options.",
+      "exception_condition": "If the current request explicitly prioritizes a different hotel location or says beach proximity is unimportant, do not prioritize closeness to the beach.",
+      "input_ids": [
+        "tm_v04_habit_c8e91e3cb1ec"
+      ],
+      "name": "Prefers beach-proximate hotels when beach access is relevant",
+      "preference_value": "close_to_the_beach",
+      "rationale": "The examples repeatedly value proximity to the beach in hotel choices. Because this is destination-dependent, it should be retained only as a contextual lodging-location preference rather than a universal hotel requirement.",
+      "representative_id": "tm_v04_habit_c8e91e3cb1ec"
+    }
+  ]
+}

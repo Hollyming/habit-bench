@@ -1,0 +1,526 @@
+{
+  "probes": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly SLC-BOI and IDA-SLC with a one-way rental."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book SLC-BOI round trip with a BOI rental."
+        },
+        {
+          "choice_id": "C",
+          "text": "Drive the full loop from Salt Lake and claim mileage."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly SLC-BOI and PIH-SLC with a one-way rental."
+        }
+      ],
+      "control_id": "ctrl_false_open_jaw_default",
+      "difficulty_rationale": "Two alternatives route into the first city and out near the last, which looks natural because the query omits fares and drive times. The broader route record is needed to avoid treating open-jaw as a standing habit.",
+      "gold_action": "Drive the full loop from Salt Lake and claim mileage.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0000",
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0018",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0138"
+      ],
+      "label_rationale": "The selected action fits a close regional loop with boxes and mileage reimbursement: she previously switched to full driving when materials and one-way rental friction made flying unattractive. The cited episodes also show that avoiding backtracking was route-specific, MSP round trip could be preferred, and open-jaw was accepted only after a specific cost/route tradeoff.",
+      "query": "New regional admissions loop from Salt Lake City: Boise visit Tuesday afternoon, Twin Falls breakfast Wednesday, Idaho Falls counselor lunch Thursday, then home Thursday night. I'll have two boxes of materials, and the office will reimburse either flights/rental or mileage. Which booking shell should I use?",
+      "variant_id": "ctrl_false_open_jaw_default_v1_idaho_mileage"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book SLC-BOS round trip with a BOS rental."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly SLC-BOS and return PVD-SLC with a one-way rental."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly SLC-MHT and return PVD-SLC with a one-way rental."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book SLC-PVD round trip with a PVD rental."
+        }
+      ],
+      "control_id": "ctrl_false_open_jaw_default",
+      "difficulty_rationale": "The Providence-return options reduce apparent backtracking, so the query by itself leaves them competitive. The full set of episodes is needed to reject a default in-first/out-last routing move.",
+      "gold_action": "Book SLC-BOS round trip with a BOS rental.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0000",
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0018",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0138"
+      ],
+      "label_rationale": "The selected action fits a compact regional run with a normal bag, where same-airport rental simplicity resembles the MSP round-trip episode more than the material-heavy driving episode or the one-way-fee open-jaw episode. The cited episodes show route topology is chosen for the current trip rather than fixed in advance.",
+      "query": "New New England admissions run from Salt Lake City: Boston fair Monday afternoon, Worcester high school Tuesday, Providence breakfast Wednesday, then home Wednesday evening. I have a normal materials bag. Which booking shell should I use?",
+      "variant_id": "ctrl_false_open_jaw_default_v2_new_england_bos_roundtrip"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly SLC-CLT and return AVL-SLC with a one-way rental."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book SLC-CLT round trip with a CLT rental."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly SLC-GSO and return AVL-SLC with a one-way rental."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book SLC-GSO round trip with a GSO rental."
+        }
+      ],
+      "control_id": "ctrl_false_open_jaw_default",
+      "difficulty_rationale": "The Asheville-return choices look appealing because they avoid visible backtracking, and no fares or connection details are given. The cited route episodes are needed to keep the recommendation from collapsing into an open-jaw habit.",
+      "gold_action": "Book SLC-CLT round trip with a CLT rental.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0000",
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0018",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0138"
+      ],
+      "label_rationale": "The selected action matches the same-airport pattern used when rental simplicity and reliability outweighed open-jaw routing. The cited episodes show open-jaw only won when the shorter route and added fee made sense, while other trips used round trip or full driving when current logistics pointed that way.",
+      "query": "New Carolinas counselor run from Salt Lake City: Charlotte reception Monday, Winston-Salem visit Tuesday, Asheville breakfast Wednesday, then home Wednesday evening. I have a normal materials bag. Which booking shell should I use?",
+      "variant_id": "ctrl_false_open_jaw_default_v3_carolinas_clt_roundtrip"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly Monday evening; book the hotel Monday through Wednesday."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly Sunday evening; book the hotel Sunday through Wednesday."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly Tuesday morning; book the hotel Tuesday and Wednesday."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly Monday morning; book the hotel Monday through Wednesday."
+        }
+      ],
+      "control_id": "ctrl_false_prior_day_arrival_default",
+      "difficulty_rationale": "Monday and Sunday arrivals are plausible protective choices because no prices or delay odds are given. The cited episodes are needed to size the arrival buffer instead of applying a fixed extra-night pattern.",
+      "gold_action": "Fly Tuesday morning; book the hotel Tuesday and Wednesday.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0003",
+        "tm_pd_v04_user_003_s0012",
+        "tm_pd_v04_user_003_s0029",
+        "tm_pd_v04_user_003_s0052",
+        "tm_pd_v04_user_003_s0107",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "The selected Tuesday arrival aligns with the Denver case: a same-day morning nonstop was enough when the first assigned commitment had afternoon cushion. The cited prior-day cases involved mandatory, early, or weather-exposed obligations, while other episodes chose only as much buffer as needed.",
+      "query": "New Atlanta higher-ed conference: opening lunch is Tuesday, my first assigned session is mid-afternoon, and the trip ends Thursday after lunch. A Tuesday morning nonstop and Monday arrivals are all workable. Which booking should I use?",
+      "variant_id": "ctrl_false_prior_day_arrival_default_v1_atlanta_same_day"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly Friday evening and stay Friday and Saturday nights."
+        },
+        {
+          "choice_id": "B",
+          "text": "Take the Saturday morning nonstop and stay Saturday night."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly Friday morning and stay Friday and Saturday nights."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly Thursday evening and stay Thursday through Saturday."
+        }
+      ],
+      "control_id": "ctrl_false_prior_day_arrival_default",
+      "difficulty_rationale": "Friday arrivals look safer and all satisfy the family weekend. The broader set of trips is needed to avoid turning a safety buffer into an automatic extra hotel night.",
+      "gold_action": "Take the Saturday morning nonstop and stay Saturday night.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0003",
+        "tm_pd_v04_user_003_s0012",
+        "tm_pd_v04_user_003_s0029",
+        "tm_pd_v04_user_003_s0052",
+        "tm_pd_v04_user_003_s0107",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "The selected Saturday nonstop fits the family-weekend case where a day-of arrival was acceptable for an afternoon ceremony with no earlier role. Other cited episodes show prior-day arrival was worthwhile for mandatory meetings, setup-sensitive events, or winter check-ins.",
+      "query": "Family weekend in Raleigh: the ceremony is Saturday afternoon, there is no Friday role for me, and I fly home Sunday. A Saturday morning nonstop and Friday arrivals all fit the schedule. Which booking should I use?",
+      "variant_id": "ctrl_false_prior_day_arrival_default_v2_raleigh_family_same_day"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly Saturday morning; book the hotel Saturday through Tuesday."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly Saturday afternoon; book the hotel Saturday through Tuesday."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly Friday evening; book the hotel Friday through Tuesday."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly Sunday morning; book the hotel Sunday through Tuesday."
+        }
+      ],
+      "control_id": "ctrl_false_prior_day_arrival_default",
+      "difficulty_rationale": "The Saturday and Friday choices look conservative because the query does not state fares or delay probabilities. The cited episodes are needed to distinguish enough buffer from an automatic day-before arrival.",
+      "gold_action": "Fly Sunday morning; book the hotel Sunday through Tuesday.",
+      "gold_choice_id": "D",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0003",
+        "tm_pd_v04_user_003_s0012",
+        "tm_pd_v04_user_003_s0029",
+        "tm_pd_v04_user_003_s0052",
+        "tm_pd_v04_user_003_s0107",
+        "tm_pd_v04_user_003_s0135"
+      ],
+      "label_rationale": "The selected Sunday morning arrival matches the panel-prep episode: arriving the morning of a Sunday afternoon prep was enough, while Saturday was unnecessary. The mandatory regional meeting and January workshop episodes explain when the earlier buffer was worth using.",
+      "query": "New Nashville forum: speaker prep is Sunday afternoon, the public panel is Monday morning, and I leave Wednesday. A Sunday morning nonstop and Saturday arrivals all work. Which booking should I use?",
+      "variant_id": "ctrl_false_prior_day_arrival_default_v3_nashville_sunday_morning"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Rent a compact car for the full stay."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use transit and rideshares; do not rent a car."
+        },
+        {
+          "choice_id": "C",
+          "text": "Reserve a standard SUV at the airport."
+        },
+        {
+          "choice_id": "D",
+          "text": "Rent a midsize car for the dinner day."
+        }
+      ],
+      "control_id": "ctrl_false_rental_car_default",
+      "difficulty_rationale": "The rental choices look viable because the query omits parking prices, transfer times, and rideshare availability. The broader ground-transport pattern is needed to treat transit and rideshare as the primary plan for compact agendas.",
+      "gold_action": "Use transit and rideshares; do not rent a car.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0051",
+        "tm_pd_v04_user_003_s0056",
+        "tm_pd_v04_user_003_s0066",
+        "tm_pd_v04_user_003_s0110",
+        "tm_pd_v04_user_003_s0135",
+        "tm_pd_v04_user_003_s0122"
+      ],
+      "label_rationale": "The selected ground plan fits a compact conference-area trip with one off-site dinner, matching the no-rental decisions for compact urban agendas. The cited rental-car episodes involved dispersed multi-city movement or heavy materials, not a general rule to add a car to every flight.",
+      "query": "New Boston institute trip: hotel is in the conference area, sessions stay there, and there is one off-site alumni dinner. I fly in Monday and out Thursday with one carry-on and a materials tote. Which ground plan should I use?",
+      "variant_id": "ctrl_false_rental_car_default_v1_boston_no_car"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Rent a compact at ORD for the full stay."
+        },
+        {
+          "choice_id": "B",
+          "text": "Rent a sedan downtown after check-in."
+        },
+        {
+          "choice_id": "C",
+          "text": "Reserve an airport SUV for the full stay."
+        },
+        {
+          "choice_id": "D",
+          "text": "Take the train downtown and rideshare to dinner."
+        }
+      ],
+      "control_id": "ctrl_false_rental_car_default",
+      "difficulty_rationale": "All car choices satisfy the itinerary and may seem familiar from recruiting loops. The cited episodes are needed to reject a flight-plus-rental habit when the new trip is a compact workshop.",
+      "gold_action": "Take the train downtown and rideshare to dinner.",
+      "gold_choice_id": "D",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0051",
+        "tm_pd_v04_user_003_s0056",
+        "tm_pd_v04_user_003_s0066",
+        "tm_pd_v04_user_003_s0110",
+        "tm_pd_v04_user_003_s0135",
+        "tm_pd_v04_user_003_s0122"
+      ],
+      "label_rationale": "The selected plan follows the same logic as the downtown Denver and Tempe-style trips: compact meeting geography and a single dinner do not justify a rental. The Puget Sound, Twin Cities, and Texas examples show cars were chosen when geography or materials made them operationally useful.",
+      "query": "New Chicago workshop: hotel and meeting rooms are downtown, and my only off-site item is a small-group dinner. I have a roller bag and laptop backpack. Which ground plan should I use?",
+      "variant_id": "ctrl_false_rental_car_default_v2_chicago_train_rideshare"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use rail and rideshares; skip the rental."
+        },
+        {
+          "choice_id": "B",
+          "text": "Rent a compact car for the full trip."
+        },
+        {
+          "choice_id": "C",
+          "text": "Rent a car for the reception day only."
+        },
+        {
+          "choice_id": "D",
+          "text": "Reserve a midsize SUV for the full trip."
+        }
+      ],
+      "control_id": "ctrl_false_rental_car_default",
+      "difficulty_rationale": "The query gives no parking cost or traffic facts, so the rental options remain concrete and plausible. The full set of ground-transport episodes is needed to avoid over-personalizing rentals from recruiting loops.",
+      "gold_action": "Use rail and rideshares; skip the rental.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0051",
+        "tm_pd_v04_user_003_s0056",
+        "tm_pd_v04_user_003_s0066",
+        "tm_pd_v04_user_003_s0110",
+        "tm_pd_v04_user_003_s0135",
+        "tm_pd_v04_user_003_s0122"
+      ],
+      "label_rationale": "The selected plan fits the compact urban-conference pattern: one reception across town and no boxes point to rideshare/rail rather than a car. The cited car-using trips were dispersed suburban routes or materials-heavy loops, while the no-car examples used walking, rail, and rideshare as the main plan.",
+      "query": "New Philadelphia conference: hotel is beside the meeting venue, all sessions are in one district, and one reception is across town. I am not hauling boxes. Which ground plan should I use?",
+      "variant_id": "ctrl_false_rental_car_default_v3_philadelphia_skip_rental"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book SLC-SFO round trip with an SFO rental."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly SLC-SMF and return SFO-SLC."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly SLC-SMF and return FAT-SLC."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly SLC-SMF and return SJC-SLC."
+        }
+      ],
+      "control_id": "ctrl_false_major_airport_default",
+      "difficulty_rationale": "SFO and SJC choices look safer on the query alone because no connection quality is stated. The cited airport episodes are needed to reject a blanket major-hub rule.",
+      "gold_action": "Fly SLC-SMF and return FAT-SLC.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0022",
+        "tm_pd_v04_user_003_s0026",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0118",
+        "tm_pd_v04_user_003_s0137"
+      ],
+      "label_rationale": "Returning from Fresno fits the final-city regional pattern shown by Pasco and Eugene: a regional airport can win when it avoids backtracking and still fits the return. The Paine, Colorado Springs, and Eau Claire examples show smaller airports were rejected only when the available routing was fragile.",
+      "query": "New Central Valley visit from Salt Lake City: Sacramento Monday, Modesto Tuesday, Fresno Wednesday morning, then home Wednesday evening. Fresno, Bay Area, and Sacramento routings all fit the calendar. Which airport plan should I use?",
+      "variant_id": "ctrl_false_major_airport_default_v1_central_valley_fresno"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book a Boston round trip."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly into Portland and return from Boston."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly into Boston and return from Portland."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly into Boston and return from Bangor."
+        }
+      ],
+      "control_id": "ctrl_false_major_airport_default",
+      "difficulty_rationale": "A Boston return looks conventionally safer and all options fit the schedule. The cited episodes are needed to avoid converting prior caution about fragile regional flights into a standing major-airport preference.",
+      "gold_action": "Fly into Boston and return from Bangor.",
+      "gold_choice_id": "D",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0022",
+        "tm_pd_v04_user_003_s0026",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0118",
+        "tm_pd_v04_user_003_s0137"
+      ],
+      "label_rationale": "The selected Bangor return mirrors the accepted Pasco and Eugene returns: the final event is near the regional airport, and the itinerary does not need to default back to a major hub. The cited rejected regional cases turned on thin or awkward routings, not airport size by itself.",
+      "query": "New northern New England trip: Boston meeting Monday, Portland visit Tuesday, Bangor breakfast Wednesday, then fly home. Bangor, Portland, and Boston return routings all satisfy the schedule. Which airport plan should I use?",
+      "variant_id": "ctrl_false_major_airport_default_v2_bangor_regional_return"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book a Dulles round trip."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly into Dulles and return from Charlottesville."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly into Dulles and return from Reagan National."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly into Dulles and return from Richmond."
+        }
+      ],
+      "control_id": "ctrl_false_major_airport_default",
+      "difficulty_rationale": "Dulles and Reagan are plausible safer-seeming choices because the query leaves exact schedules and connection lengths out. The cited episodes are needed to keep airport size from becoming the deciding habit.",
+      "gold_action": "Fly into Dulles and return from Charlottesville.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0022",
+        "tm_pd_v04_user_003_s0026",
+        "tm_pd_v04_user_003_s0035",
+        "tm_pd_v04_user_003_s0118",
+        "tm_pd_v04_user_003_s0137"
+      ],
+      "label_rationale": "The selected Charlottesville return follows the regional-airport cases where the final stop and return timing made the smaller airport useful. The same cited set shows hub airports were favored only when they improved connection quality, rental logistics, or final-day reliability.",
+      "query": "New Virginia route from Salt Lake City: Washington meeting Monday, Richmond visit Tuesday, Charlottesville breakfast Wednesday, then home Wednesday evening. Charlottesville, Dulles, Reagan, and Richmond return plans all fit. Which airport plan should I use?",
+      "variant_id": "ctrl_false_major_airport_default_v3_virginia_cho_return"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book an airport Hampton with breakfast."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a suburban Hyatt Place with free parking."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book the official downtown conference hotel."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book an outlying Holiday Inn Express."
+        }
+      ],
+      "control_id": "ctrl_false_downtown_hotel_avoidance",
+      "difficulty_rationale": "Airport and suburban chains look reasonable because the query omits rates and parking fees. The cited hotel episodes are needed to avoid carrying the driving-loop hotel pattern into a hosted meeting.",
+      "gold_action": "Book the official downtown conference hotel.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0037",
+        "tm_pd_v04_user_003_s0044",
+        "tm_pd_v04_user_003_s0072",
+        "tm_pd_v04_user_003_s0101",
+        "tm_pd_v04_user_003_s0105",
+        "tm_pd_v04_user_003_s0132"
+      ],
+      "label_rationale": "The selected hotel fits a hosted meeting where proximity to rooms and reception matters, as in the official conference and downtown Minneapolis/Boise choices. The Dallas and Portland avoidance episodes were tied to parking-heavy driving routes, and the San Diego family stay followed different family and parking constraints.",
+      "query": "New Cleveland association meeting: sessions and the evening reception are in the downtown conference hotel, and I am flying in for the meeting only. The hotel block and several chain hotels are available. Which hotel should I book?",
+      "variant_id": "ctrl_false_downtown_hotel_avoidance_v1_cleveland_official"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the downtown Hampton with breakfast."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book an airport Hampton with breakfast."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book a suburban Drury Inn with free parking."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book a business-park Hyatt Place."
+        }
+      ],
+      "control_id": "ctrl_false_downtown_hotel_avoidance",
+      "difficulty_rationale": "The airport and suburban chain options echo prior parking-conscious choices and remain plausible without rates or drive times. The cited episodes are needed to separate parking-loop lodging from event-adjacent lodging.",
+      "gold_action": "Book the downtown Hampton with breakfast.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0037",
+        "tm_pd_v04_user_003_s0044",
+        "tm_pd_v04_user_003_s0072",
+        "tm_pd_v04_user_003_s0101",
+        "tm_pd_v04_user_003_s0105",
+        "tm_pd_v04_user_003_s0132"
+      ],
+      "label_rationale": "The selected downtown Hampton matches the Boise and Minneapolis-style choices where a downtown event, next-morning timing, and breakfast made downtown lodging useful. The cited downtown-avoidance episodes were about parking hassle on driving loops, not a general rejection of downtown hotels.",
+      "query": "New St. Louis campus weekend: the admitted-student meetup is downtown in the evening, the next morning starts downtown, and I fly home after lunch. Several chain hotels are available. Which hotel should I book?",
+      "variant_id": "ctrl_false_downtown_hotel_avoidance_v2_st_louis_downtown_hampton"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book an airport Hampton with breakfast."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a suburban Homewood Suites with free parking."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book a beltway Holiday Inn Express."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book the downtown host hotel."
+        }
+      ],
+      "control_id": "ctrl_false_downtown_hotel_avoidance",
+      "difficulty_rationale": "The non-downtown chain hotels look familiar because prior driving trips avoided downtown parking. The cited hotel episodes are needed to keep that parking-based pattern from overriding the workshop-hosted context.",
+      "gold_action": "Book the downtown host hotel.",
+      "gold_choice_id": "D",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0037",
+        "tm_pd_v04_user_003_s0044",
+        "tm_pd_v04_user_003_s0072",
+        "tm_pd_v04_user_003_s0101",
+        "tm_pd_v04_user_003_s0105",
+        "tm_pd_v04_user_003_s0132"
+      ],
+      "label_rationale": "The selected host hotel follows the event-adjacent pattern: official or downtown lodging was chosen when meeting-room proximity, winter walking, or next-morning timing mattered. The cited suburban or non-downtown choices were tied to parking-heavy driving or family needs rather than a durable downtown avoidance rule.",
+      "query": "New Baltimore winter workshop: meetings are in the downtown host hotel on Monday and Tuesday, with a Sunday evening prep gathering there. I am flying in Sunday and out Tuesday. Which hotel should I book?",
+      "variant_id": "ctrl_false_downtown_hotel_avoidance_v3_baltimore_host_hotel"
+    }
+  ]
+}

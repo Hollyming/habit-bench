@@ -1,0 +1,388 @@
+{
+  "controls": [
+    {
+      "control_id": "ctrl_false_personalization_001",
+      "correct_memory_policy": "Keep the Bay Area airport decision trip-specific. Start with any airport the current request names; if the user says SFO is easiest, search SFO first, but compare OAK when it materially improves nonstop availability, timing, fare, or meeting risk. Include SJC only when the current trip says it is acceptable or it is clearly better. Do not auto-book or suppress an airport from memory alone.",
+      "decision_dimension": "Bay Area departure and return airport choice",
+      "evidence": [
+        {
+          "evidence_quote": "SFO is easiest; Oakland is acceptable.",
+          "role_in_nonhabit": "Tempts an SFO-default inference, but the same instruction explicitly keeps Oakland available.",
+          "session_id": "tm_pd_v04_user_005_s0000"
+        },
+        {
+          "evidence_quote": "SFO is easiest. Oakland is fine only if it is materially better.",
+          "role_in_nonhabit": "Shows conditional ranking rather than a fixed airport default.",
+          "session_id": "tm_pd_v04_user_005_s0003"
+        },
+        {
+          "evidence_quote": "SFO, OAK, or SJC are all fine if the routing is clean.",
+          "role_in_nonhabit": "Broadens the airport set when routing is the governing factor.",
+          "session_id": "tm_pd_v04_user_005_s0014"
+        },
+        {
+          "evidence_quote": "Book the OAK nonstop plan and the Overland Park Marriott.",
+          "role_in_nonhabit": "Counterexample to an SFO-only memory: OAK is selected when the nonstop plan fits.",
+          "session_id": "tm_pd_v04_user_005_s0016"
+        },
+        {
+          "evidence_quote": "OAK is acceptable. Any reason to use SFO instead?",
+          "role_in_nonhabit": "Shows the user evaluating OAK as a valid lead when the nonstop schedule is cleaner.",
+          "session_id": "tm_pd_v04_user_005_s0105"
+        },
+        {
+          "evidence_quote": "Booked the flights. Outbound is the Tuesday afternoon nonstop OAK-MCI; return is the Thursday United one-stop through Denver.",
+          "role_in_nonhabit": "Mixed airport/carrier handling confirms the current itinerary can override any single-airport habit.",
+          "session_id": "tm_pd_v04_user_005_s0111"
+        }
+      ],
+      "family": "origin_airport_selection",
+      "opportunity_description": "When searching flights from or back to the Bay Area, repeated mentions of SFO, OAK, and occasionally SJC could tempt a memory system to lock in one home airport.",
+      "strongest_false_inference": "Always default Jonah to SFO for Bay Area air travel, treating Oakland and San Jose only as emergency exceptions.",
+      "tempting_false_inferences": [
+        "SFO is a fixed origin and return airport for all trips.",
+        "Oakland should be avoided unless the user explicitly requests it again.",
+        "If a past trip used OAK for a nonstop, future comparable trips should default to OAK.",
+        "SJC can be ignored permanently."
+      ],
+      "why_no_stable_habit": "The lifeline shows SFO is often convenient, but Oakland is repeatedly accepted and sometimes chosen when schedule or nonstop service is better. Airport choice is repeatedly conditioned on current origin logistics, fare, routing, seat rules, and meeting risk rather than a fixed default."
+    },
+    {
+      "control_id": "ctrl_false_personalization_002",
+      "correct_memory_policy": "For each trip, compare total door-to-door risk: flight reliability, number and quality of connections, arrival time, rental-car timing, drive duration and time of day, meeting start time, and fare. Present the larger-airport drive option only when it improves the current trip; choose the closer airport when it protects time, fatigue, or logistics.",
+      "decision_dimension": "Choosing the destination airport versus a larger alternate airport with a drive",
+      "evidence": [
+        {
+          "evidence_quote": "Given your Tuesday security time, I would rank SFO-Boise nonstop first, Oakland-Boise second, and SFO-SLC-Twin Falls only as a backup if you want to avoid the drive entirely.",
+          "role_in_nonhabit": "Supports larger-airport-plus-drive only because it reduces schedule risk for that Twin Falls trip.",
+          "session_id": "tm_pd_v04_user_005_s0000"
+        },
+        {
+          "evidence_quote": "Best fit for reliability: OAK-ABQ nonstop on Southwest, leaving a little after 2 p.m. Friday and landing around 5:25 p.m.",
+          "role_in_nonhabit": "Shows Albuquerque plus a drive can be lead for Santa Fe when it is the reliable option.",
+          "session_id": "tm_pd_v04_user_005_s0011"
+        },
+        {
+          "evidence_quote": "SFO-PSP is the best fit. Ontario remains a backup only if the nonstop into Palm Springs spikes or disappears.",
+          "role_in_nonhabit": "Counterexample: the closer destination airport wins over a cheaper larger-airport drive for a short weekend.",
+          "session_id": "tm_pd_v04_user_005_s0046"
+        },
+        {
+          "evidence_quote": "Richmond is acceptable only as a disruption backup; the flight may look tidy, but the added drive creates more ways to be late for Wednesday.",
+          "role_in_nonhabit": "Shows the larger alternate airport is rejected when the ground leg increases site-access risk.",
+          "session_id": "tm_pd_v04_user_005_s0042"
+        },
+        {
+          "evidence_quote": "The Philadelphia nonstop is cleaner in the air, roughly 1:05 p.m.-9:35 p.m., but after rental pickup and the 1 hour 45 to 2 hour drive, the hotel arrival is around midnight. I would not use PHL unless MDT pricing jumps or the kit unexpectedly needs to be retrieved there.",
+          "role_in_nonhabit": "Rejects a nonstop-plus-drive option because the full itinerary is worse for the early gate.",
+          "session_id": "tm_pd_v04_user_005_s0106"
+        },
+        {
+          "evidence_quote": "The Spokane nonstop still avoids a connection, but it likely puts you at the Richland hotel after 10:00 p.m. and leaves very little margin before Tuesday's 7:00 a.m. safety briefing.",
+          "role_in_nonhabit": "Shows nonstop service alone is not enough to make a farther alternate airport the default.",
+          "session_id": "tm_pd_v04_user_005_s0121"
+        }
+      ],
+      "family": "destination_airport_and_drive_tradeoff",
+      "opportunity_description": "Many trips compare a closer regional airport with a larger airport plus ground travel, creating a temptation to infer a durable rule such as always choosing the larger airport or always choosing the nearest airport.",
+      "strongest_false_inference": "Jonah prefers larger airports with more reliable service even when they require a long drive, so choose those by default.",
+      "tempting_false_inferences": [
+        "Always choose the bigger alternate airport and drive.",
+        "Always avoid small regional airports because of connection risk.",
+        "Always choose the nearest airport to reduce driving.",
+        "For personal trips, always prefer the airport with the cheapest airfare."
+      ],
+      "why_no_stable_habit": "The same user chooses Boise over Twin Falls and Albuquerque over Santa Fe in some contexts, but chooses Palm Springs over Ontario, ORF over Richmond, MDT over Philadelphia, and Pasco over Spokane in others. The controlling variable is current operational risk, not a standing airport-type preference."
+    },
+    {
+      "control_id": "ctrl_false_personalization_003",
+      "correct_memory_policy": "At planning time, evaluate the first fixed obligation, freight/crate duties, dinner obligations, drive after landing, approval status, and sleep risk. Recommend an extra night only when those current facts materially reduce risk; otherwise use the latest workable same-day or prior-afternoon arrival. Do not add a hotel night from memory without current-trip approval.",
+      "decision_dimension": "Whether to arrive a day earlier or add an extra hotel night for schedule protection",
+      "evidence": [
+        {
+          "evidence_quote": "Sunday buys down three risks: first, a delayed Monday afternoon flight no longer cascades into dinner plus a late drive; second, you are not arriving at the hotel around 9:30 before a 6:45 security check; third, if the demo crate needs Monday attention, you are already in Twin Falls instead of trying to fly in around it.",
+          "role_in_nonhabit": "Extra night is justified by specific risks, not treated as automatic.",
+          "session_id": "tm_pd_v04_user_005_s0001"
+        },
+        {
+          "evidence_quote": "That makes the Sunday plan the safer choice. Delta SFO-MSP-SDF on Sunday still lands late, but it gives you Monday morning and afternoon in Louisville.",
+          "role_in_nonhabit": "Earlier arrival is selected because demo-crate timing changed the risk profile.",
+          "session_id": "tm_pd_v04_user_005_s0025"
+        },
+        {
+          "evidence_quote": "With a 1:15 p.m. Monday arrival at the security desk, Sunday becomes the clear safer choice.",
+          "role_in_nonhabit": "Shows prior-day travel depends on the moved Monday security deadline.",
+          "session_id": "tm_pd_v04_user_005_s0031"
+        },
+        {
+          "evidence_quote": "Denver update. Sunday arrival is approved. Packet now adds an 11 a.m. Monday crate inspection and a Wednesday 6 p.m. customer reception, so kill Monday arrival and any Wednesday return.",
+          "role_in_nonhabit": "Earlier travel is triggered by new crate inspection and reception facts.",
+          "session_id": "tm_pd_v04_user_005_s0068"
+        },
+        {
+          "evidence_quote": "The extra night is the cost, but it buys the setup buffer. With 11:30 access, Tuesday only works if delays are minor and someone else can handle badge/materials.",
+          "role_in_nonhabit": "Conference arrival buffer is framed as setup insurance, not a universal preference.",
+          "session_id": "tm_pd_v04_user_005_s0086"
+        },
+        {
+          "evidence_quote": "The 8:35 protects the 4:30 dock check without turning the day into a dawn connection.",
+          "role_in_nonhabit": "Counterexample to always adding a prior night: a same-Monday flight is acceptable when it protects the key dock check.",
+          "session_id": "tm_pd_v04_user_005_s0125"
+        }
+      ],
+      "family": "prearrival_buffer_and_extra_night",
+      "opportunity_description": "The user often approves extra nights or earlier arrivals when early gates, crates, dinners, or booth setup add risk, but other trips use same-day or same-afternoon travel when sufficient.",
+      "strongest_false_inference": "Always add the prior night or prior travel day for work trips with early starts or setup duties.",
+      "tempting_false_inferences": [
+        "Sunday or prior-day arrival is a durable default for all plant visits.",
+        "Never attempt Monday or same-day arrival when there is an early commitment.",
+        "Extra hotel nights should be booked automatically for conference setup.",
+        "The user always chooses cost-saving same-day travel unless explicitly forced."
+      ],
+      "why_no_stable_habit": "Extra nights appear when a specific risk exists, not as a stable default. Twin Falls, Louisville, Albuquerque, and Denver justify earlier arrival, while Nashville uses a Monday morning nonstop rather than Sunday because that specific flight protects the freight check without an extra night."
+    },
+    {
+      "control_id": "ctrl_false_personalization_004",
+      "correct_memory_policy": "Choose hotel area from the current trip's dominant constraint: early plant gate, distributor branch, convention hall, customer dinner, parking, or personal walkability. Rank near-site hotels when early access or plant parking matters; rank downtown/convention/walkable areas when the current trip is conference- or leisure-centered. Do not store one geography as a fixed default.",
+      "decision_dimension": "Hotel neighborhood: plant/branch proximity versus downtown, convention-center, or walkable leisure areas",
+      "evidence": [
+        {
+          "evidence_quote": "I do not want a downtown hotel if the training is by the industrial park.",
+          "role_in_nonhabit": "Tempts a no-downtown work rule, but it is explicitly tied to the industrial-park location.",
+          "session_id": "tm_pd_v04_user_005_s0005"
+        },
+        {
+          "evidence_quote": "Use the Chesapeake/Suffolk Harbour View hotel. For the 6:30 a.m. Wednesday access, it is the safer location by a lot: likely 20-30 minutes to the gate versus 45-60 from downtown Norfolk if tunnel or bridge traffic is ugly.",
+          "role_in_nonhabit": "Plant-gate timing drives the location choice, not a general dislike of downtown.",
+          "session_id": "tm_pd_v04_user_005_s0042"
+        },
+        {
+          "evidence_quote": "Also switch me to the Tyvola airport hotel instead of Kimpton; the Wednesday plant drive matters more than being uptown.",
+          "role_in_nonhabit": "User reverses an uptown hotel choice when the plant drive becomes the stronger constraint.",
+          "session_id": "tm_pd_v04_user_005_s0078"
+        },
+        {
+          "evidence_quote": "The Maven remains Jun 22-25 on the refundable rate. The reservation notes still show quiet room requested, plus coffee maker and mini-fridge if available.",
+          "role_in_nonhabit": "Counterexample to plant-adjacent default: a downtown Denver hotel is kept for conference and dinner logistics.",
+          "session_id": "tm_pd_v04_user_005_s0087"
+        },
+        {
+          "evidence_quote": "Hotel: Hyatt Centric Downtown Nashville, king room at the corporate rate, quiet room away from elevator requested, early check-in requested, coffee maker and mini-fridge noted.",
+          "role_in_nonhabit": "Shows downtown is correct for a convention-center trip despite not being plant-adjacent.",
+          "session_id": "tm_pd_v04_user_005_s0105"
+        },
+        {
+          "evidence_quote": "Hotel target maybe 250 to 350 a night before tax. Not luxury, just well reviewed and not noisy.",
+          "role_in_nonhabit": "Personal Santa Fe hotel geography is driven by quiet, reviews, and Plaza/Railyard access, not the work-trip plant logic.",
+          "session_id": "tm_pd_v04_user_005_s0123"
+        }
+      ],
+      "family": "hotel_geography_selection",
+      "opportunity_description": "The lifeline repeatedly chooses hotels by current trip geography, which could tempt an overbroad memory such as always avoiding downtown or always preferring walkable downtown hotels.",
+      "strongest_false_inference": "For work trips, Jonah always wants a suburban or plant-adjacent hotel and should not be offered downtown properties.",
+      "tempting_false_inferences": [
+        "Always avoid downtown hotels on work travel.",
+        "Always choose the most walkable downtown hotel for dinner access.",
+        "For conferences, always choose the official or closest convention hotel.",
+        "For personal trips, always prioritize Plaza/downtown walkability over parking."
+      ],
+      "why_no_stable_habit": "The user rejects downtown when an industrial or early plant start dominates, but books downtown, Plaza, Eastlund, The Maven, Hyatt Centric, and riverfront options when meetings, conferences, dinners, or personal walking make those locations better."
+    },
+    {
+      "control_id": "ctrl_false_personalization_005",
+      "correct_memory_policy": "When hotel rates are compared, check the current trip's uncertainty, cancellation deadline, client-change risk, PTO status, and prepaid savings. Default to showing a refundable/cancellable option when dates or meetings are unsettled; ask before choosing prepaid or nonrefundable; if the current trip is firm and the savings are material, present both choices rather than enforcing a memory default.",
+      "decision_dimension": "Refundable, cancellable, flexible, prepaid, or nonrefundable hotel rates",
+      "evidence": [
+        {
+          "evidence_quote": "You could book a cancellable hotel now, but I would only do that if the rate is refundable through at least the weekend.",
+          "role_in_nonhabit": "Flexibility is tied to unresolved crate timing, not a universal booking rule.",
+          "session_id": "tm_pd_v04_user_005_s0000"
+        },
+        {
+          "evidence_quote": "Single United ticket. Economy is fine, not basic economy. Grab a window if there is no fee, but not exit row. Book the hotel refundable.",
+          "role_in_nonhabit": "A refundable hotel is explicitly requested for this Seattle conference booking.",
+          "session_id": "tm_pd_v04_user_005_s0004"
+        },
+        {
+          "evidence_quote": "Flexible. Client change history speaks for itself.",
+          "role_in_nonhabit": "Shows flexibility is chosen because the client had a change history.",
+          "session_id": "tm_pd_v04_user_005_s0010"
+        },
+        {
+          "evidence_quote": "Railyard District Hotel: about $286 on a flexible rate, guest rating around 4.5, newer room style, cancellation until May 13, self-parking about $18/night.",
+          "role_in_nonhabit": "Personal-trip hotel choice is linked to cancellation terms in that scenario, not a standing prepaid ban.",
+          "session_id": "tm_pd_v04_user_005_s0012"
+        },
+        {
+          "evidence_quote": "Nothing nonrefundable.",
+          "role_in_nonhabit": "Tempts a fixed no-nonrefundable rule, but it is stated inside a specific uncertain Visalia booking.",
+          "session_id": "tm_pd_v04_user_005_s0051"
+        },
+        {
+          "evidence_quote": "Yes. Refundable hotel unless it is a huge spread. Economy is fine. Windows if available.",
+          "role_in_nonhabit": "Explicitly conditions the refundable choice on the rate spread not being huge.",
+          "session_id": "tm_pd_v04_user_005_s0122"
+        }
+      ],
+      "family": "hotel_rate_flexibility",
+      "opportunity_description": "The user repeatedly selects refundable or flexible hotel rates when plans are uncertain, but the observations are tied to client changes, PTO, hotel deadlines, or modest price gaps.",
+      "strongest_false_inference": "Always book refundable hotel rates and never present prepaid or nonrefundable rates, regardless of price or trip certainty.",
+      "tempting_false_inferences": [
+        "Flexible hotel rates are an unconditional default.",
+        "Prepaid rates should never be compared.",
+        "If a trip is personal, always book cancellable because family plans can move.",
+        "If a trip is work, always book refundable even when dates are locked and the price spread is large."
+      ],
+      "why_no_stable_habit": "The user often chooses refundable rates, but the language repeatedly cites uncertainty or a small rate gap. The lifeline supports a caution about change risk, not a fixed rule to ignore prepaid rates in every circumstance."
+    },
+    {
+      "control_id": "ctrl_false_personalization_006",
+      "correct_memory_policy": "For each trip, decide ground transport from current facts: plant or gate access, urban walkability, conference venue, company portal instruction, weather or gravel roads, gear size, number of travelers, and whether a car would sit unused. If the user says the car is separate, do not book it; if a site visit requires gate access or gear, choose a suitable class; if a downtown conference or no-car leisure plan works, skip the rental.",
+      "decision_dimension": "Whether to book a rental car, who books it, and what class to choose",
+      "evidence": [
+        {
+          "evidence_quote": "If we do SFO to Boise, I will use the company car portal separately for the rental.",
+          "role_in_nonhabit": "Counterexample to always booking the rental through the assistant.",
+          "session_id": "tm_pd_v04_user_005_s0002"
+        },
+        {
+          "evidence_quote": "No rental car booked.",
+          "role_in_nonhabit": "Personal Portland trip deliberately has no rental because the plan is no-car.",
+          "session_id": "tm_pd_v04_user_005_s0029"
+        },
+        {
+          "evidence_quote": "Demo case ships directly to Casey, and no rental car is booked.",
+          "role_in_nonhabit": "Work trip can also skip a rental when rideshare and direct shipping solve the logistics.",
+          "session_id": "tm_pd_v04_user_005_s0056"
+        },
+        {
+          "evidence_quote": "National compact confirmation 6182KJ, pickup after landing and return around 6:10 Friday.",
+          "role_in_nonhabit": "Shows assistant-booked compact is sometimes correct when the site itinerary needs a car.",
+          "session_id": "tm_pd_v04_user_005_s0063"
+        },
+        {
+          "evidence_quote": "Car next. Compact SUV at Corpus, not full-size.",
+          "role_in_nonhabit": "Vehicle class is upgraded for plant-road/rain needs but capped against overkill.",
+          "session_id": "tm_pd_v04_user_005_s0095"
+        },
+        {
+          "evidence_quote": "Compact rental car is confirmed at PSP for pickup after arrival and return before the Monday flight.",
+          "role_in_nonhabit": "Personal leisure trip can include a compact car when the current weekend plan includes a car.",
+          "session_id": "tm_pd_v04_user_005_s0113"
+        }
+      ],
+      "family": "ground_transportation_policy",
+      "opportunity_description": "Across work, conference, and personal trips the user alternates between company-portal rentals, assistant-booked rentals, no rental car, compact cars, compact SUVs, and midsize cars.",
+      "strongest_false_inference": "Always book a compact rental car for Jonah's trips unless he says otherwise.",
+      "tempting_false_inferences": [
+        "The assistant should always book the rental car.",
+        "The user handles rentals separately through the company portal.",
+        "Compact is the durable vehicle class default.",
+        "Compact SUV is always required for plant trips.",
+        "No rental car is needed for conferences because rideshare is usually enough."
+      ],
+      "why_no_stable_habit": "The lifeline contains many true but conflicting rental patterns. Some trips explicitly separate car booking, some require compact SUVs, some book compact or midsize cars, and some deliberately use no rental car. The stable behavior is situational transport planning, not a fixed rental default."
+    },
+    {
+      "control_id": "ctrl_false_personalization_007",
+      "correct_memory_policy": "For every shipment, ask or verify the current receiving party, address format, contact name, receiving hours, item size/weight, hazardous contents, storage fees, and whether the user needs to inspect it before the first meeting. Use hotel receiving only after confirmation and only for suitable items; prefer plant, distributor, decorator, contractor trailer, or warehouse receiving when the current trip requires secure operational staging.",
+      "decision_dimension": "Where demo cases, sample kits, boxes, and conference materials should be shipped or held",
+      "evidence": [
+        {
+          "evidence_quote": "The Slate accepts packages for registered guests; address it to Jonah Kim, guest arriving Aug 24, with the hotel confirmation number.",
+          "role_in_nonhabit": "Tempts a hotel-receiving default, but this was a confirmed hotel-specific package case.",
+          "session_id": "tm_pd_v04_user_005_s0020"
+        },
+        {
+          "evidence_quote": "Best handling is to ship it straight to the distributor warehouse if they can receive and lock it overnight.",
+          "role_in_nonhabit": "Counterexample: distributor receiving is preferred for a 45-pound equipment case.",
+          "session_id": "tm_pd_v04_user_005_s0038"
+        },
+        {
+          "evidence_quote": "Proceed. Carry-on only, no checked demo case, and no hotel package note.",
+          "role_in_nonhabit": "Explicitly rules out hotel package handling for this Spokane trip.",
+          "session_id": "tm_pd_v04_user_005_s0056"
+        },
+        {
+          "evidence_quote": "Still need the distributor receiving contact and delivery note for the board, Thursday AV/contact in the training room, and a firm Friday release target.",
+          "role_in_nonhabit": "Shows equipment receiving depends on a current distributor contact and delivery note.",
+          "session_id": "tm_pd_v04_user_005_s0063"
+        },
+        {
+          "evidence_quote": "Sunday arrive BNA 7:05 p.m., rideshare to Hyatt Centric, check booth crate status after check-in.",
+          "role_in_nonhabit": "Conference crate is expected at the booth, not the hotel.",
+          "session_id": "tm_pd_v04_user_005_s0105"
+        },
+        {
+          "evidence_quote": "Small wrinkle on Nashville: the carrier rerouted the demo case to the brewery receiving dock, not the branch.",
+          "role_in_nonhabit": "Another counterexample: receiving location can change to the plant dock and must be handled trip-specifically.",
+          "session_id": "tm_pd_v04_user_005_s0128"
+        },
+        {
+          "evidence_quote": "Plant says I can inspect the crate Monday evening through the contractor trailer.",
+          "role_in_nonhabit": "Shows current access path and inspection timing control receiving logistics.",
+          "session_id": "tm_pd_v04_user_005_s0122"
+        }
+      ],
+      "family": "equipment_shipping_and_receiving",
+      "opportunity_description": "Many trips include packages, demo cases, crates, literature boxes, or kits. A naive memory could overgeneralize from hotel package acceptance or from repeated direct-to-distributor shipping.",
+      "strongest_false_inference": "Ship work materials to the hotel by default because hotels have repeatedly accepted packages for him.",
+      "tempting_false_inferences": [
+        "Always use hotel package receiving for small boxes and demo materials.",
+        "Never use hotel receiving; always ship to the distributor or plant.",
+        "Conference materials should always go to the booth or decorator.",
+        "Heavy Pelican cases can be treated like normal guest packages.",
+        "If a package went to a hotel once, future hotels can receive similar items without confirmation."
+      ],
+      "why_no_stable_habit": "The same lifeline uses hotel package holding for small boxes, but sends heavy or critical demo cases to distributors, contractors, breweries, booth decorators, or plant receiving. Shipping choice is driven by item type and current receiving logistics, not a durable delivery default."
+    },
+    {
+      "control_id": "ctrl_false_personalization_008",
+      "correct_memory_policy": "For each trip, anchor return timing to the current last required event, confirmed cover person, dinner/reception status, car return, airport drive, next-day obligations, and acceptable arrival time. Hold or delay ticketing when the last-event timing is unresolved; once confirmed, choose the earliest return that does not create a scramble, or the safer later/next-day option when the current facts require it.",
+      "decision_dimension": "Choosing same-day, late-evening, next-morning, or held return flights around teardown, dinners, audits, and debriefs",
+      "evidence": [
+        {
+          "evidence_quote": "Prefer not to land at 10 if I have a Thursday customer call. Use 5:35 if Maya confirms; otherwise probably Thursday morning.",
+          "role_in_nonhabit": "Return choice is conditional on teardown coverage and next-day obligations.",
+          "session_id": "tm_pd_v04_user_005_s0017"
+        },
+        {
+          "evidence_quote": "Too tight. For a 7:35 p.m. domestic departure, you’d want to leave the convention center around 5:35-5:45. If teardown can run to 6:30, that flight is effectively unavailable unless someone else finishes your part.",
+          "role_in_nonhabit": "Shows a same-day flight can be rejected when teardown makes it brittle.",
+          "session_id": "tm_pd_v04_user_005_s0035"
+        },
+        {
+          "evidence_quote": "Not if the walk-through can run to 4:30. A 6:20-ish Spokane departure would require leaving the pump station almost immediately, hoping traffic and check-in are smooth, and getting home close to midnight.",
+          "role_in_nonhabit": "Late same-day return is rejected because current site timing makes it a scramble.",
+          "session_id": "tm_pd_v04_user_005_s0055"
+        },
+        {
+          "evidence_quote": "Use the Sunday 2:05 SFO flight and take the safer Thursday evening return, not the 5:05.",
+          "role_in_nonhabit": "Later return is selected to protect crate release despite a higher fare.",
+          "session_id": "tm_pd_v04_user_005_s0069"
+        },
+        {
+          "evidence_quote": "Michelle is covering Wednesday teardown, and the Hyatt corporate rate is under the block. Go ahead and book the Nashville plan: Sunday afternoon OAK nonstop, Hyatt Centric, and Wednesday evening home after the last panel.",
+          "role_in_nonhabit": "Counterexample: same-day return becomes correct when teardown is covered.",
+          "session_id": "tm_pd_v04_user_005_s0105"
+        },
+        {
+          "evidence_quote": "The 5:18 p.m. DTW-SFO nonstop is the clean choice. Leave public works around 1:00, lunch or email stop if needed, depart Perrysburg/Toledo by 1:45, rental return around 3:00, and still have a good airport cushion. The earlier 3:40-ish flight is too compressed.",
+          "role_in_nonhabit": "Return timing is calculated from debrief end, drive, and rental return rather than a fixed preference.",
+          "session_id": "tm_pd_v04_user_005_s0130"
+        }
+      ],
+      "family": "return_timing_and_hold_strategy",
+      "opportunity_description": "The user repeatedly weighs earlier returns against teardown, dinners, customer calls, procurement meetings, and fatigue, which could be mistaken for a fixed preference either for early returns or for maximum buffer.",
+      "strongest_false_inference": "Always choose the latest safer return or the next morning so Jonah is never rushed.",
+      "tempting_false_inferences": [
+        "Always avoid late-night arrivals.",
+        "Always come home the same day if there is any feasible flight.",
+        "Always hold the return open until every meeting is confirmed.",
+        "When someone else covers teardown, always move to the earliest possible return.",
+        "Prefer Thursday morning returns after conferences by default."
+      ],
+      "why_no_stable_habit": "The user sometimes avoids late landings, sometimes books late returns to protect teardown or meetings, sometimes switches earlier when another person covers freight, and sometimes stays overnight. These are event-dependent choices, not a stable return-time default."
+    }
+  ]
+}

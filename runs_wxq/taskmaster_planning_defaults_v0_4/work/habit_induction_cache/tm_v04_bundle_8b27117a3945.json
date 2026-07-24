@@ -1,0 +1,92 @@
+{
+  "boundary_condition": "This default is limited to flight departure-time selection; it should not be applied to cabin class, price, stop count, hotels, ground transportation, or other travel choices.",
+  "bundle_id": "tm_v04_bundle_8b27117a3945",
+  "condition": "When searching for flights and a departure-time preference is needed for a flight segment, and no conflicting timing constraint has been stated.",
+  "confidence": 0.95,
+  "decision": "accept",
+  "default_action": "Prefer the earliest feasible available flight departure, aiming to leave or fly out as early as possible rather than choosing later departures.",
+  "exception_condition": "If the user gives a specific time window, asks for a later departure, or states a constraint that makes the earliest departure infeasible, follow that explicit constraint instead.",
+  "family": "departure_time",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_8b27117a3945",
+  "induced_at": "2026-07-15T12:34:14.176627+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Earliest feasible flight departure",
+  "preference_value": "as_early_as_possible_departure",
+  "rationale": "Across four independent scripted flight-search sources, the user utterances consistently ask to leave, fly out, or have the flight be as early as possible. This supports a scoped synthetic default for earliest feasible flight departure without treating any destination or date as habitual.",
+  "seed_value": "as_early_as_possible",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "instruction_id flight-7: user says they would like to be there as early as possible and wants the flight to be early.",
+      "conversation_id": "dlg-d092e431-67d9-4c7f-8784-7b2241728c74",
+      "turn_index": 0
+    },
+    {
+      "contribution": "instruction_id flight-12: user says the flight needs to fly out as early as possible.",
+      "conversation_id": "dlg-14e89d1f-95b1-48e3-a7fe-a84bd0e35b1b",
+      "turn_index": 2
+    },
+    {
+      "contribution": "instruction_id flight-4: user says they would prefer to leave as early as possible.",
+      "conversation_id": "dlg-404d6bb5-a9ec-48ce-a5e0-f41e7ba6eed0",
+      "turn_index": 5
+    },
+    {
+      "contribution": "instruction_id flight-3: user answers 'As early as possible' for the flight time preference.",
+      "conversation_id": "dlg-e2a19b42-675e-4c6d-819f-a4bfe97868eb",
+      "turn_index": 23
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "as early as possible",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-d092e431-67d9-4c7f-8784-7b2241728c74",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 0,
+      "user_utterance": "Hello. I'm trying to go to Seattle. I would like to be there as early as possible. So, for my preferences, I would like for my flight to be early."
+    },
+    {
+      "annotated_segment": "as early as possible",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-14e89d1f-95b1-48e3-a7fe-a84bd0e35b1b",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 2,
+      "user_utterance": "Hello, I need a flight from Los Angeles to Denver that fly out tomorrow, September 8th, and returns on 9th or September 11th. It needs to fly out as early as possible."
+    },
+    {
+      "annotated_segment": "as early as possible",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-404d6bb5-a9ec-48ce-a5e0-f41e7ba6eed0",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 5,
+      "user_utterance": "I would prefer to leave as early as possible."
+    },
+    {
+      "annotated_segment": "As early as possible",
+      "annotation": "flight_search.time_of_day",
+      "conversation_id": "dlg-e2a19b42-675e-4c6d-819f-a4bfe97868eb",
+      "habitual_language": false,
+      "instruction_id": "flight-3",
+      "preference_language": false,
+      "source_domain": "flights",
+      "turn_index": 23,
+      "user_utterance": "As early as possible."
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "This is a qualitative airfare-ranking habit, not a permanent dollar ceiling; exact dollar limits stated in a task apply only to that current trip.",
+  "bundle_id": "tm_v04_bundle_3578eacc2942",
+  "condition": "When searching or comparing flight itineraries and multiple viable flights can satisfy the current trip needs.",
+  "confidence": 0.78,
+  "decision": "accept",
+  "default_action": "Start with lower-priced viable fares, avoid options that seem too expensive, and consider acceptable cheaper tradeoffs before choosing a more expensive convenience.",
+  "exception_condition": "If the trip is necessary and no cheaper acceptable itinerary is available, allow a higher-priced fare rather than abandoning the trip, while noting that it stretches the cost preference.",
+  "family": "flight_price_tradeoff",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_3578eacc2942",
+  "induced_at": "2026-07-15T12:35:37.622600+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Keeps flight costs in check",
+  "preference_value": "budget-sensitive flight selection without a fixed standing fare cap",
+  "rationale": "The examples consistently treat airfare as a meaningful constraint or tradeoff: some set one-off trip caps, some prefer cheaper layover options over pricier nonstop choices, and one says price is fairly open but still cannot be too expensive. Taken together, they support a synthetic default of budget-sensitive flight shopping rather than any reusable numeric budget.",
+  "seed_value": "stated_price_band",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "Preferred a cheaper itinerary tradeoff, accepting a layover if it is cheaper while limiting it to one layover.",
+      "conversation_id": "dlg-b391bbe3-dc9b-4efd-b7f0-45c46dd052ea",
+      "turn_index": 15
+    },
+    {
+      "contribution": "Set a one-off total spending cap for that flight task: 'I don't want to spend more than $3,000 total.'",
+      "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+      "turn_index": 27
+    },
+    {
+      "contribution": "Expressed qualitative cost sensitivity without a strict standing cap: price is fairly open but 'can't be too expensive' because they need to get there.",
+      "conversation_id": "dlg-6b71498f-d25f-4856-a495-49c3bb25ea58",
+      "turn_index": 19
+    },
+    {
+      "contribution": "Set a one-off round-trip price limit and would move from nonstop to one layover if nonstop was not in that price range.",
+      "conversation_id": "dlg-f1fd63ea-7397-4428-9666-e217ac74745c",
+      "turn_index": 6
+    },
+    {
+      "contribution": "Set a one-off round-trip upper spend for that task: 'I don't want it to be more than $1,500 there and back.'",
+      "conversation_id": "dlg-f3189470-c660-4764-97e7-a1b6daa4d541",
+      "turn_index": 39
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "cheaper",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-b391bbe3-dc9b-4efd-b7f0-45c46dd052ea",
+      "habitual_language": true,
+      "instruction_id": "flight-5",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 15,
+      "user_utterance": "Oh. You mean generally. Okay. We would prefer a let's start off with layover. We If that's a significantly cheaper ticket, we'd prefer non-stop, but if it's cheaper to go layover, we'd prefer just one layover though."
+    },
+    {
+      "annotated_segment": "$3,000 total",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+      "habitual_language": false,
+      "instruction_id": "flight-8",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 27,
+      "user_utterance": "Okay, and I don't want to spend more than $3,000 total."
+    },
+    {
+      "annotated_segment": "too expensive",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-6b71498f-d25f-4856-a495-49c3bb25ea58",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 19,
+      "user_utterance": "No, I think that's about it. I'm open to the price, depending on it can't be too expensive, but I'm fairly open to the price. I need to get there so I'm going to have to pay it."
+    },
+    {
+      "annotated_segment": "$500",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-f1fd63ea-7397-4428-9666-e217ac74745c",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 6,
+      "user_utterance": "For a round-trip ticket, $500 is the price limit and my first preference would be a non-stop flight. If it's not in that price range, one layover."
+    },
+    {
+      "annotated_segment": "$1,500",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-f3189470-c660-4764-97e7-a1b6daa4d541",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 39,
+      "user_utterance": "I don't want it to be more than $1,500 there and back."
+    }
+  ]
+}

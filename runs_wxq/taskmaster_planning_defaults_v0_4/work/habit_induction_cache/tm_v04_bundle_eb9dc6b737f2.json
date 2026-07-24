@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "For round trips or multi-leg searches, apply the one-layover maximum separately to each flight or direction; this habit only governs stop count, not cabin, airline, time of day, or exact price.",
+  "bundle_id": "tm_v04_bundle_eb9dc6b737f2",
+  "condition": "When searching or comparing flight itineraries and no stricter nonstop-only requirement has been stated.",
+  "confidence": 0.9,
+  "decision": "accept",
+  "default_action": "Prefer itineraries with zero or one layover only; filter out flights with two or more stops unless the user explicitly agrees to relax the cap.",
+  "exception_condition": "If no zero- or one-layover itinerary satisfies the trip constraints, ask the user before considering flights with two or more stops.",
+  "family": "stop_tolerance",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_eb9dc6b737f2",
+  "induced_at": "2026-07-15T12:33:56.799130+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Caps flight itineraries at one layover",
+  "preference_value": "at_most_one_layover_per_flight",
+  "rationale": "Across independent flight-search dialogues, users repeatedly request or accept one layover/one stop while phrasing the limit as \"no more than one\" in multiple cases. This supports a reusable synthetic default of tolerating up to one layover, not a demand for nonstop-only travel and not acceptance of multi-stop itineraries.",
+  "seed_value": "at_most_one_stop",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "Directly states the cap: \"I'd like no more than one layover, please.\"",
+      "conversation_id": "dlg-58b9a1af-bd51-4092-90f7-2b7d98174bc4",
+      "turn_index": 9
+    },
+    {
+      "contribution": "Requests \"a flight with no more than one layover,\" supporting the same maximum.",
+      "conversation_id": "dlg-e4c5b676-3c4f-4d5d-8a2b-cd4f2cf86dbf",
+      "turn_index": 10
+    },
+    {
+      "contribution": "Specifies \"no more than one layover on each flight,\" supporting the per-flight boundary.",
+      "conversation_id": "dlg-72ca82de-8ada-414a-95ce-3125e651229a",
+      "turn_index": 10
+    },
+    {
+      "contribution": "Accepts one stop: \"It's fine for one stop.\"",
+      "conversation_id": "dlg-d5c34433-9e86-4eb3-83a3-cef7367d0ee5",
+      "turn_index": 19
+    },
+    {
+      "contribution": "Asks whether any \"one layover\" options are available, showing willingness to consider a one-layover itinerary.",
+      "conversation_id": "dlg-238fc01e-b1f7-41b8-9eca-f72966c15858",
+      "turn_index": 14
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "one layover",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-238fc01e-b1f7-41b8-9eca-f72966c15858",
+      "habitual_language": false,
+      "instruction_id": "flight-7",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 14,
+      "user_utterance": "That's okay. Are there at least any one layover available?"
+    },
+    {
+      "annotated_segment": "one layover",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-58b9a1af-bd51-4092-90f7-2b7d98174bc4",
+      "habitual_language": false,
+      "instruction_id": "flight-6",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 9,
+      "user_utterance": "Okay. And, I'd like no more than one layover, please. And, also the lowest."
+    },
+    {
+      "annotated_segment": "no more than one layover",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-e4c5b676-3c4f-4d5d-8a2b-cd4f2cf86dbf",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 10,
+      "user_utterance": "Yeah. If you could find a flight with no more than one layover."
+    },
+    {
+      "annotated_segment": "layover",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-72ca82de-8ada-414a-95ce-3125e651229a",
+      "habitual_language": false,
+      "instruction_id": "flight-8",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 10,
+      "user_utterance": "I'd like no more than one layover on each flight."
+    },
+    {
+      "annotated_segment": "one stop",
+      "annotation": "flight_search.stops",
+      "conversation_id": "dlg-d5c34433-9e86-4eb3-83a3-cef7367d0ee5",
+      "habitual_language": false,
+      "instruction_id": "flight-11",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 19,
+      "user_utterance": "It's fine for one stop. I just really need the cheapest ticket."
+    }
+  ]
+}

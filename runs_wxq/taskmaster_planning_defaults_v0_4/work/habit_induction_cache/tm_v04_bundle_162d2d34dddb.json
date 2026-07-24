@@ -1,0 +1,92 @@
+{
+  "boundary_condition": "Apply this to the booked room's smoking status only; do not infer broader preferences about hotel-wide smoking areas, balconies, neighborhoods, or transportation.",
+  "bundle_id": "tm_v04_bundle_162d2d34dddb",
+  "condition": "When the synthetic user is selecting, comparing, or booking a hotel room and smoking status can be specified or confirmed.",
+  "confidence": 0.9,
+  "decision": "accept",
+  "default_action": "Choose, request, or confirm a non-smoking hotel room by default.",
+  "exception_condition": "If no non-smoking room is available for the otherwise suitable stay, do not automatically book a smoking room; ask whether to look for alternatives or get explicit confirmation before proceeding.",
+  "family": "hotel_feature",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_162d2d34dddb",
+  "induced_at": "2026-07-15T12:35:00.150695+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Default to non-smoking hotel rooms",
+  "preference_value": "non-smoking room",
+  "rationale": "Multiple independent hotel dialogues request or confirm \"non-smoking\" as a room feature. The examples support a reusable hotel-room default for non-smoking status, while dates, prices, bed types, and other one-off constraints remain outside this habit.",
+  "seed_value": "non_smoking",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User stated, \"I only prefer the two queen beds and non-smoking\".",
+      "conversation_id": "dlg-e9f56150-0a2a-48fd-9dad-734a9ba90627",
+      "turn_index": 9
+    },
+    {
+      "contribution": "User specified \"Queen size bed and non-smoking\".",
+      "conversation_id": "dlg-083175f0-20df-43ab-b1da-1f28219c0591",
+      "turn_index": 15
+    },
+    {
+      "contribution": "User asked, \"Okay and is it non-smoking?\"",
+      "conversation_id": "dlg-306bffa1-f4c1-4e8c-a4c3-29480c544d98",
+      "turn_index": 15
+    },
+    {
+      "contribution": "User gave the room request \"Non-smoking\".",
+      "conversation_id": "dlg-6dde4233-3784-4fc7-91c7-8c808c434f14",
+      "turn_index": 12
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "non-smoking",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-e9f56150-0a2a-48fd-9dad-734a9ba90627",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 9,
+      "user_utterance": "Yes, I only prefer the two queen beds and non-smoking, and it should be around $80 or below."
+    },
+    {
+      "annotated_segment": "non-smoking",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-083175f0-20df-43ab-b1da-1f28219c0591",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 15,
+      "user_utterance": "Queen size bed and non-smoking."
+    },
+    {
+      "annotated_segment": "non-smoking",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-306bffa1-f4c1-4e8c-a4c3-29480c544d98",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 15,
+      "user_utterance": "Okay and is it non-smoking?"
+    },
+    {
+      "annotated_segment": "Non-smoking",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-6dde4233-3784-4fc7-91c7-8c808c434f14",
+      "habitual_language": false,
+      "instruction_id": "hotel-6",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 12,
+      "user_utterance": "Non-smoking."
+    }
+  ]
+}

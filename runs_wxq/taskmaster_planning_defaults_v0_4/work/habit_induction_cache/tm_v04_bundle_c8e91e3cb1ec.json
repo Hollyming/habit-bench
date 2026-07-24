@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Apply this only to hotel lodging choices where beach proximity is a meaningful location feature; it should not be treated as a general preference for every travel booking or non-beach destination.",
+  "bundle_id": "tm_v04_bundle_c8e91e3cb1ec",
+  "condition": "When searching for a hotel in a destination or trip context where beach access is relevant.",
+  "confidence": 0.86,
+  "decision": "accept",
+  "default_action": "Prefer hotels that are close to the beach.",
+  "exception_condition": "If the current request explicitly prioritizes a different hotel location or says beach proximity is unimportant, do not prioritize closeness to the beach.",
+  "family": "hotel_feature",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_c8e91e3cb1ec",
+  "induced_at": "2026-07-15T12:36:34.893417+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Beach-proximate hotel default",
+  "preference_value": "close_to_the_beach",
+  "rationale": "Across three independent hotel-task instruction_ids, the user either requests, selects, or positively reacts to hotels being close to the beach. This supports a scoped synthetic default for beach-relevant hotel searches, not a universal travel preference.",
+  "seed_value": "close_to_the_beach",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "The user explicitly requests that the hotel be close to the beach.",
+      "conversation_id": "dlg-8a72fb53-2062-447e-b6f6-75129e1df269",
+      "turn_index": 8
+    },
+    {
+      "contribution": "The user chooses the option that is close to the beach.",
+      "conversation_id": "dlg-f9177e0d-7a2b-4f81-8449-6a38c31fc9e3",
+      "turn_index": 3
+    },
+    {
+      "contribution": "The user positively evaluates and books a hotel partly because it is close to the beach.",
+      "conversation_id": "dlg-4246cb11-c56a-4da6-8e98-8bf966d8ed16",
+      "turn_index": 20
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "close to the beach",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-8a72fb53-2062-447e-b6f6-75129e1df269",
+      "habitual_language": false,
+      "instruction_id": "hotel-2",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 8,
+      "user_utterance": "Room should have mini-refrigerator and king-size bed. Hotel should be close to the beach. And price should be below $300 and it should be 4-star and up rating hotel. It should also have pool with hot tub and fitness center. It should have balcony with ocean view. It should have in-room coffee and flat screen TV. My dates for stay will be between 16th and 19th June."
+    },
+    {
+      "annotated_segment": "close to the beach",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-f9177e0d-7a2b-4f81-8449-6a38c31fc9e3",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 3,
+      "user_utterance": "Yeah. I think I want the one that is close to the beach. And, I'd like a balcony room."
+    },
+    {
+      "annotated_segment": "close to the beach",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-4246cb11-c56a-4da6-8e98-8bf966d8ed16",
+      "habitual_language": false,
+      "instruction_id": "hotel-13",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 20,
+      "user_utterance": "Oh, that sounds good. I like that it's close to the beach. I think I'll book this hotel."
+    }
+  ]
+}

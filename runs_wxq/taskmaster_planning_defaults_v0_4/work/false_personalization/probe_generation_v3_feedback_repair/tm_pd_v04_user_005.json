@@ -1,0 +1,528 @@
+{
+  "probes": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly into MSP and drive to La Crosse."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly into LSE and rent there."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly into MSN and drive to La Crosse."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly into RST and drive to La Crosse."
+        }
+      ],
+      "control_id": "false_personalization_control_02",
+      "difficulty_rationale": "The prompt omits fares, elapsed times, exact drive lengths, and connection details. MSP, MSN, and RST are plausible drive-in targets for a fixed large-airport strategy, while LSE is selected only by applying the trip-by-trip airport trade-off shown across the cited episodes.",
+      "gold_action": "Fly into LSE and rent there.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0000",
+        "tm_pd_v04_user_005_s0012",
+        "tm_pd_v04_user_005_s0041",
+        "tm_pd_v04_user_005_s0049",
+        "tm_pd_v04_user_005_s0106",
+        "tm_pd_v04_user_005_s0122"
+      ],
+      "label_rationale": "The cited trips show that larger airports are accepted only when they improve the whole plan, while ORF, MDT, and Pasco won when ground exposure and first-site timing mattered. For a plant session after a positioning day, LSE best matches the current site-focused context instead of applying a large-airport drive habit.",
+      "query": "Draft the air-ticket line for a La Crosse controls trip. Travel is set for the day before the first plant session, and the airport shortlist has one regional target plus three larger drive-in targets.",
+      "variant_id": "false_personalization_control_02_replacement_01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly into SAF and rent there."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly into ABQ and rent there."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly into DEN and rent there."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly into COS and rent there."
+        }
+      ],
+      "control_id": "false_personalization_control_02",
+      "difficulty_rationale": "SAF and ABQ are both concrete, plausible airport targets from the query alone, and DEN/COS tempt an over-broad large-airport default. No fare, schedule, or drive-time scoring is given, so the gold depends on the pattern that the user weighs the whole door-to-door plan rather than storing closest or largest as a rule.",
+      "gold_action": "Fly into ABQ and rent there.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0000",
+        "tm_pd_v04_user_005_s0012",
+        "tm_pd_v04_user_005_s0041",
+        "tm_pd_v04_user_005_s0106",
+        "tm_pd_v04_user_005_s0122"
+      ],
+      "label_rationale": "The spouse leisure evidence supports ABQ over the small Santa Fe-style connection when connection comfort matters and the first fixed item is not on arrival day. The same history rejects a universal large-airport rule because ORF, MDT, and Pasco won in other timing-sensitive trips.",
+      "query": "Set the arrival airport for a Taos getaway with my wife. Friday is only the positioning day; the booked activity is on the next day, and the shortlist pairs a small regional option with larger drive-in airports.",
+      "variant_id": "false_personalization_control_02_replacement_02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly into PHL and drive to Scranton."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly into EWR and drive to Scranton."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly into AVP and rent there."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly into MDT and drive to Scranton."
+        }
+      ],
+      "control_id": "false_personalization_control_02",
+      "difficulty_rationale": "The query does not state which flight is cheaper, nonstop, shorter, or more recoverable. PHL, EWR, and MDT all encode tempting drive-in habits, while AVP relies on the cited pattern that first-site timing and final-drive exposure can outweigh airport size.",
+      "gold_action": "Fly into AVP and rent there.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0000",
+        "tm_pd_v04_user_005_s0012",
+        "tm_pd_v04_user_005_s0041",
+        "tm_pd_v04_user_005_s0049",
+        "tm_pd_v04_user_005_s0106",
+        "tm_pd_v04_user_005_s0122"
+      ],
+      "label_rationale": "Earlier decisions reject both fixed extremes: ABQ and Boise worked when they improved reliability, but ORF, MDT, and Pasco were chosen when a drive-in alternate threatened the site schedule. For a next-morning badge-in, AVP is the context-matched target over the bigger drive-in airports.",
+      "query": "Choose the air destination for a Scranton service call. The ticket needs to position me before the next-morning badge-in, and the shortlist is split between a regional target and bigger drive-in airports.",
+      "variant_id": "false_personalization_control_02_replacement_03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly Monday morning and book Monday night."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly Sunday and book Sunday-Monday nights."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly Saturday and book Saturday-Monday nights."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly Sunday red-eye and book Monday night."
+        }
+      ],
+      "control_id": "false_personalization_control_03",
+      "difficulty_rationale": "The prompt leaves out the exact crate time, hotel cost, and flight schedule, so Monday morning, Sunday, and Saturday all look actionable. The distractors encode both fixed same-day-minimal and fixed over-buffering patterns; the gold follows the risk-based arrival pattern across the cited trips.",
+      "gold_action": "Fly Sunday and book Sunday-Monday nights.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0001",
+        "tm_pd_v04_user_005_s0018",
+        "tm_pd_v04_user_005_s0025",
+        "tm_pd_v04_user_005_s0068",
+        "tm_pd_v04_user_005_s0086",
+        "tm_pd_v04_user_005_s0126"
+      ],
+      "label_rationale": "The cited trips support adding an earlier night for specific crate, security, or early setup exposure, while rejecting extra nights when that exposure disappears. A Monday-morning crate check calls for Sunday positioning, but not the extra Saturday night.",
+      "query": "Build the inbound line for the Salt Lake expo. The calendar opens with a Monday-morning crate check and booth work later that day; origin is SFO.",
+      "variant_id": "false_personalization_control_03_replacement_01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly Sunday and book Sunday-Monday nights."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly Monday and book Monday night."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly Saturday and book Saturday-Monday nights."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly Tuesday at dawn and book Tuesday night."
+        }
+      ],
+      "control_id": "false_personalization_control_03",
+      "difficulty_rationale": "The query gives a soft Monday cue and a Tuesday work cue without fare, approval, or exact timing. Sunday and Saturday tempt an automatic extra-night rule, while Tuesday dawn tempts a minimal-arrival rule; Monday is selected by the cited risk-based scheduling pattern.",
+      "gold_action": "Fly Monday and book Monday night.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0001",
+        "tm_pd_v04_user_005_s0018",
+        "tm_pd_v04_user_005_s0025",
+        "tm_pd_v04_user_005_s0068",
+        "tm_pd_v04_user_005_s0086",
+        "tm_pd_v04_user_005_s0126"
+      ],
+      "label_rationale": "Earlier Sunday arrivals were tied to concrete crate, access, or inspection risks. Other trips removed Saturday or Sunday when the first required work block allowed later positioning. Here the informal Monday dinner does not justify a Sunday or Saturday hotel night, while Monday still protects the Tuesday work block.",
+      "query": "Set the arrival plan for the Omaha workshop. The first assigned work block is Tuesday after lunch, and the only Monday item is an informal team dinner near the hotel.",
+      "variant_id": "false_personalization_control_03_replacement_02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Fly Tuesday and book Tuesday-Wednesday nights."
+        },
+        {
+          "choice_id": "B",
+          "text": "Fly Monday and book Monday-Wednesday nights."
+        },
+        {
+          "choice_id": "C",
+          "text": "Fly Wednesday morning and book Wednesday night."
+        },
+        {
+          "choice_id": "D",
+          "text": "Fly Sunday and book Sunday-Wednesday nights."
+        }
+      ],
+      "control_id": "false_personalization_control_03",
+      "difficulty_rationale": "The prompt does not state flight times, delay forecasts, or hotel cost, so Tuesday positioning remains plausible and Monday/Sunday encode a fixed buffer habit. The gold rejects an automatic extra-night pattern and follows the current absence of crate, badge, freight, or dinner obligations.",
+      "gold_action": "Fly Wednesday morning and book Wednesday night.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0001",
+        "tm_pd_v04_user_005_s0018",
+        "tm_pd_v04_user_005_s0025",
+        "tm_pd_v04_user_005_s0068",
+        "tm_pd_v04_user_005_s0086",
+        "tm_pd_v04_user_005_s0126"
+      ],
+      "label_rationale": "The cited history adds earlier nights for crates, freight, badge gates, or approved setup risk, and removes them when those triggers are absent. With the kit staged and the first block late in the day from a short SFO-origin routing, Wednesday arrival is the context-matched plan.",
+      "query": "Set the inbound line for the San Diego vendor demo. The demo kit is already staged, the first assigned block is late Wednesday afternoon, and origin is SFO.",
+      "variant_id": "false_personalization_control_03_replacement_03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book a downtown Fort Wayne hotel."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a New Haven or east-side Fort Wayne hotel."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book an FWA airport hotel."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book the convention-center block hotel."
+        }
+      ],
+      "control_id": "false_personalization_control_04",
+      "difficulty_rationale": "The query contains competing geography cues: plant access and downtown dinner. Downtown, airport, and block-hotel distractors each reflect plausible standing geography habits, while the gold follows the cited conditional pattern rather than a universal downtown or non-downtown rule.",
+      "gold_action": "Book a New Haven or east-side Fort Wayne hotel.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0005",
+        "tm_pd_v04_user_005_s0014",
+        "tm_pd_v04_user_005_s0029",
+        "tm_pd_v04_user_005_s0055",
+        "tm_pd_v04_user_005_s0078",
+        "tm_pd_v04_user_005_s0119"
+      ],
+      "label_rationale": "The cited trips show plant-side choices for industrial starts and central choices for leisure, conference, or evening-heavy trips. With the workday starting at the plant and a car available, the New Haven or east-side base fits the operational priority despite the downtown dinner.",
+      "query": "Pick the hotel base for a Fort Wayne customer trip. The workday starts at a New Haven plant, but the hosted dinner is downtown; a rental car is on the itinerary.",
+      "variant_id": "false_personalization_control_04_replacement_01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book a Cranberry business-park hotel."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a PIT airport hotel."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book a downtown Pittsburgh hotel."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book a Monroeville highway hotel."
+        }
+      ],
+      "control_id": "false_personalization_control_04",
+      "difficulty_rationale": "The Cranberry breakfast and business-park option make a suburban base plausible, while the convention and evening cues support downtown. Airport and highway options tempt fixed practical-location defaults; the cited history is needed to resolve the mixed cues.",
+      "gold_action": "Book a downtown Pittsburgh hotel.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0005",
+        "tm_pd_v04_user_005_s0029",
+        "tm_pd_v04_user_005_s0055",
+        "tm_pd_v04_user_005_s0078",
+        "tm_pd_v04_user_005_s0119"
+      ],
+      "label_rationale": "Central hotels won for the Pearl, Davenport downtown, and Eastlund convention-style trips when evenings, conference access, or walkability mattered. Plant-side choices in other trips were tied to early industrial access, which is absent here. Downtown Pittsburgh best matches the summit and evening pattern.",
+      "query": "Pick the hotel base for a Pittsburgh user summit. Booth access is at the convention center, two evening events are in the Cultural District, and a late-week distributor breakfast is in Cranberry; no plant gate is on this trip.",
+      "variant_id": "false_personalization_control_04_replacement_02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book a Clayton hotel."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a downtown St. Louis hotel."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book an STL airport or Hazelwood hotel."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book a convention-center block hotel."
+        }
+      ],
+      "control_id": "false_personalization_control_04",
+      "difficulty_rationale": "Clayton dinner, downtown comfort, airport practicality, and plant access are all plausible hotel anchors from the query. The distractors encode fixed downtown, convention-block, and general-airport habits; the gold follows the cited current-purpose geography pattern.",
+      "gold_action": "Book an STL airport or Hazelwood hotel.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0005",
+        "tm_pd_v04_user_005_s0014",
+        "tm_pd_v04_user_005_s0029",
+        "tm_pd_v04_user_005_s0055",
+        "tm_pd_v04_user_005_s0078",
+        "tm_pd_v04_user_005_s0119"
+      ],
+      "label_rationale": "The Tyvola switch and industrial-park evidence show that a next-morning plant drive can outweigh a more attractive evening location. The downtown and Pearl-style trips show the opposite when conference or leisure context dominates. Here the Hazelwood plant start makes the airport or Hazelwood base the matched choice.",
+      "query": "Pick the hotel base for a St. Louis follow-up. Tuesday dinner is in Clayton, Wednesday morning starts at the Hazelwood plant, and I will have a rental car.",
+      "variant_id": "false_personalization_control_04_replacement_03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book no rental and use rideshare or transit."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a National compact car."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book a compact SUV at PHL."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book a full-size sedan through the company portal."
+        }
+      ],
+      "control_id": "false_personalization_control_05",
+      "difficulty_rationale": "The dinner outside the immediate session area makes a car plausible, and compact, SUV, and portal choices each encode fixed rental habits. The prompt withholds parking, fare, and transfer details, so the gold depends on the cited site-access and cargo-based rental pattern.",
+      "gold_action": "Book no rental and use rideshare or transit.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0029",
+        "tm_pd_v04_user_005_s0055",
+        "tm_pd_v04_user_005_s0067",
+        "tm_pd_v04_user_005_s0071",
+        "tm_pd_v04_user_005_s0095",
+        "tm_pd_v04_user_005_s0113"
+      ],
+      "label_rationale": "The cited trips distinguish no-car urban conference plans from plant or cargo-driven rentals. With Center City sessions and no plant gate, the across-river dinner is not enough to add a rental. Rideshare or transit matches the Denver and Spokane-style no-rental pattern.",
+      "query": "Pick ground transport for a Philadelphia training week. Sessions are in Center City, one customer dinner is across the river, and no plant gate is on the calendar.",
+      "variant_id": "false_personalization_control_05_replacement_01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book no rental and use rideshares."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a National compact car."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book a compact SUV at FAR."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book a full-size pickup at FAR."
+        }
+      ],
+      "control_id": "false_personalization_control_05",
+      "difficulty_rationale": "The query does not specify weather, road surface, rental cost, or luggage volume, leaving compact and compact SUV both plausible. The no-rental, compact, and pickup distractors encode common fixed defaults; the gold follows the cited smallest-fitting-class pattern.",
+      "gold_action": "Book a compact SUV at FAR.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0029",
+        "tm_pd_v04_user_005_s0055",
+        "tm_pd_v04_user_005_s0067",
+        "tm_pd_v04_user_005_s0071",
+        "tm_pd_v04_user_005_s0095",
+        "tm_pd_v04_user_005_s0113"
+      ],
+      "label_rationale": "Earlier trips used no rental for urban conference contexts, a compact for ordinary site mobility, and a compact SUV when plant-road, rain, or gear conditions justified it. Two gates, a yard office, PPE, and a sample tote make compact SUV the matched class without escalating to a pickup.",
+      "query": "Pick the rental line for a Fargo plant trip. I am driving myself between the hotel, two site gates, and the yard office while carrying PPE and a sample tote.",
+      "variant_id": "false_personalization_control_05_replacement_02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book no rental and use rideshares."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a compact SUV at MRY."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book a compact car at MRY."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book a full-size sedan at MRY."
+        }
+      ],
+      "control_id": "false_personalization_control_05",
+      "difficulty_rationale": "The query omits parking, route distance, hotel location, and fare. No rental remains plausible for a walkable weekend, and SUV or full-size choices tempt fixed class habits; the gold relies on the cited distinction between leisure mobility and work-site vehicle needs.",
+      "gold_action": "Book a compact car at MRY.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0029",
+        "tm_pd_v04_user_005_s0055",
+        "tm_pd_v04_user_005_s0067",
+        "tm_pd_v04_user_005_s0071",
+        "tm_pd_v04_user_005_s0095",
+        "tm_pd_v04_user_005_s0113"
+      ],
+      "label_rationale": "The personal-trip evidence supports no rental when there is no excursion and a compact car when a leisure day trip is planned. Compact SUVs were tied to plant or weather needs, not spouse weekends with no work gear. A compact car is the matched plan here.",
+      "query": "Pick ground transport for a Carmel-by-the-Sea weekend with my wife. We have one coastal day trip on the itinerary and no work cases.",
+      "variant_id": "false_personalization_control_05_replacement_03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Ship it to the hotel front desk under the reservation."
+        },
+        {
+          "choice_id": "B",
+          "text": "Ship it to the show decorator under the booth."
+        },
+        {
+          "choice_id": "C",
+          "text": "Ship it to the local distributor branch."
+        },
+        {
+          "choice_id": "D",
+          "text": "Ship it to the plant receiving dock."
+        }
+      ],
+      "control_id": "false_personalization_control_07",
+      "difficulty_rationale": "All four addresses are presented as available, and booth paperwork makes the decorator choice plausible. Branch and dock choices encode other fixed receiver habits; the gold depends on matching package size, contents, and reservation status to the cited shipment cases.",
+      "gold_action": "Ship it to the hotel front desk under the reservation.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0020",
+        "tm_pd_v04_user_005_s0033",
+        "tm_pd_v04_user_005_s0037",
+        "tm_pd_v04_user_005_s0040",
+        "tm_pd_v04_user_005_s0050",
+        "tm_pd_v04_user_005_s0116",
+        "tm_pd_v04_user_005_s0128"
+      ],
+      "label_rationale": "Hotel receiving was used for small non-hazardous items under a reservation, while demo cases, sampling kits, and rerouted plant materials went to decorator, trailer, or receiving dock when those were the right receivers. This small badge-scanner box fits the hotel-front-desk pattern.",
+      "query": "Put the receiver on the plan for the Charlotte user forum. Marketing has one small badge-scanner box, no chemicals or batteries, and the shipping sheet has hotel, booth, branch, and dock addresses in my name.",
+      "variant_id": "false_personalization_control_07_replacement_01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Ship the case to the hotel front desk."
+        },
+        {
+          "choice_id": "B",
+          "text": "Ship the case to the show decorator."
+        },
+        {
+          "choice_id": "C",
+          "text": "Send the case to the distributor branch."
+        },
+        {
+          "choice_id": "D",
+          "text": "Send the case to the plant receiving dock."
+        }
+      ],
+      "control_id": "false_personalization_control_07",
+      "difficulty_rationale": "The hotel address is usable, so a fixed hotel-package habit is tempting, and branch or dock choices encode other receiver defaults. The query avoids weight, fee, or delivery-window scoring; the gold turns on item type and event receiver from the cited episodes.",
+      "gold_action": "Ship the case to the show decorator.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0020",
+        "tm_pd_v04_user_005_s0033",
+        "tm_pd_v04_user_005_s0040",
+        "tm_pd_v04_user_005_s0050",
+        "tm_pd_v04_user_005_s0116",
+        "tm_pd_v04_user_005_s0128"
+      ],
+      "label_rationale": "The decorator evidence covers booth demo materials, while hotel receiving was limited to small non-hazardous boxes under a reservation. Branches, trailers, and plant docks were chosen for different site-specific materials. A rolling Pelican case of booth gear belongs with the show decorator.",
+      "query": "Put the receiver on the plan for the Las Vegas expo. The rolling Pelican demo case is booth gear, and the hotel, decorator, branch, and dock addresses are all usable.",
+      "variant_id": "false_personalization_control_07_replacement_02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Send the kit to the contractor trailer."
+        },
+        {
+          "choice_id": "B",
+          "text": "Send the kit to the hotel front desk."
+        },
+        {
+          "choice_id": "C",
+          "text": "Send the kit to the distributor branch."
+        },
+        {
+          "choice_id": "D",
+          "text": "Send the kit to the plant receiving dock."
+        }
+      ],
+      "control_id": "false_personalization_control_07",
+      "difficulty_rationale": "The prompt makes trailer, hotel, branch, and dock all available, so several concrete receivers are plausible. Hotel, branch, and dock distractors reflect tempting fixed receiver habits; the gold relies on matching the sampling-kit review context to the cited shipment pattern.",
+      "gold_action": "Send the kit to the contractor trailer.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0020",
+        "tm_pd_v04_user_005_s0033",
+        "tm_pd_v04_user_005_s0040",
+        "tm_pd_v04_user_005_s0050",
+        "tm_pd_v04_user_005_s0116",
+        "tm_pd_v04_user_005_s0128"
+      ],
+      "label_rationale": "The Tucson controls review used the contractor trailer for the sampling kit, while hotels handled only small verified packages and docks or branches were used for other receiving arrangements. For a kit needed at a controls review, the contractor trailer is the matched receiver.",
+      "query": "Put the receiver on the plan for the Mobile mill visit. The sampling kit is needed at the controls review, and the packet lists a contractor trailer, hotel, branch, and plant dock as available receivers.",
+      "variant_id": "false_personalization_control_07_replacement_03"
+    }
+  ]
+}

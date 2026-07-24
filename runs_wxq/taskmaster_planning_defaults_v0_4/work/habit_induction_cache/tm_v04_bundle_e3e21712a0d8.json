@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Apply only to hotel searches where amenity selection is relevant; do not apply to flights, restaurants, destinations, dates, routes, or hotel tasks focused only on availability or pricing.",
+  "bundle_id": "tm_v04_bundle_e3e21712a0d8",
+  "condition": "When searching for a hotel and on-site amenities are being compared or requested.",
+  "confidence": 0.76,
+  "decision": "accept",
+  "default_action": "Prefer or filter for hotels that have a pool.",
+  "exception_condition": "If the user explicitly says a pool is not wanted or prioritizes another feature over a pool, such as a room with a view, do not require the pool.",
+  "family": "hotel_amenity_priority",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_e3e21712a0d8",
+  "induced_at": "2026-07-15T12:28:52.281666+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Pool-preferred hotel amenity default",
+  "preference_value": "hotel with a pool",
+  "rationale": "Most supplied independent hotel examples request a pool as a desired amenity, including cases where it is paired with other amenities such as a bar, restaurant, hot tub, or fitness center. One example explicitly rejects a pool in favor of a room view, so the induced habit should be a soft default with a clear override rather than an unconditional requirement.",
+  "seed_value": "a_pool",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User explicitly adds a pool as a desired hotel amenity: \"I want to have a pool, too.\"",
+      "conversation_id": "dlg-d45740b9-bd0f-4dab-8fc0-460b8d6f9c19",
+      "turn_index": 13
+    },
+    {
+      "contribution": "User requests that the hotel have a pool along with other amenities.",
+      "conversation_id": "dlg-bcdb335b-74f9-49ca-a6d3-e08e7c41718f",
+      "turn_index": 7
+    },
+    {
+      "contribution": "User asks about hotel amenities including a pool, hot tub, and fitness center.",
+      "conversation_id": "dlg-9c02c76a-dcd3-49d8-a5a7-abad604ea38b",
+      "turn_index": 11
+    },
+    {
+      "contribution": "User strongly requests a hotel with a pool and hot tub: \"We definitely want a hotel with a pool and a hot tub.\"",
+      "conversation_id": "dlg-0817fee9-2e0f-4014-b523-478608723935",
+      "turn_index": 34
+    },
+    {
+      "contribution": "User states that a pool should not override another stated feature preference: \"Not a pool the view would be preferable.\"",
+      "conversation_id": "dlg-c547e884-9352-4539-ad59-5795158758d2",
+      "turn_index": 7
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "a pool",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-c547e884-9352-4539-ad59-5795158758d2",
+      "habitual_language": false,
+      "instruction_id": "hotel-8",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 7,
+      "user_utterance": "Not a pool the view would be preferable. So, I want a room with a view."
+    },
+    {
+      "annotated_segment": "a pool",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-d45740b9-bd0f-4dab-8fc0-460b8d6f9c19",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 13,
+      "user_utterance": "I want to have a pool, too."
+    },
+    {
+      "annotated_segment": "a pool",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-bcdb335b-74f9-49ca-a6d3-e08e7c41718f",
+      "habitual_language": false,
+      "instruction_id": "hotel-4",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 7,
+      "user_utterance": "I would like the hotel to have a pool, a bar and a restaurant and that it be close to the convention center."
+    },
+    {
+      "annotated_segment": "a pool",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-9c02c76a-dcd3-49d8-a5a7-abad604ea38b",
+      "habitual_language": false,
+      "instruction_id": "hotel-1b",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 11,
+      "user_utterance": "And one more thing, I like to know about restaurants and hotel grounds like a full bar and they have kid-friendly. Yes, coming 19th January 2016 to 25th January 2016. And also I would like to know about the hotel amenities like a pool, hot tub indoor or outdoor. And also I need a fitness center. I like to know how far away is the hotel from downtown."
+    },
+    {
+      "annotated_segment": "a pool",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-0817fee9-2e0f-4014-b523-478608723935",
+      "habitual_language": false,
+      "instruction_id": "hotel-13",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 34,
+      "user_utterance": "We definitely want a hotel with a pool and a hot tub."
+    }
+  ]
+}

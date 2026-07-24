@@ -1,0 +1,245 @@
+{
+  "habit_id": "tm_pd_v04_user_005_h01",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c05",
+        "c08"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c05",
+        "c08"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Select SFO 12:40 p.m. via DFW, arriving 5:05 p.m.; note that the badge stop is tight but possible."
+              },
+              {
+                "choice_id": "B",
+                "text": "Select SFO 7:55 a.m. via IAH, arriving 2:15 p.m.; maximize the badge cushion without further discussion."
+              },
+              {
+                "choice_id": "C",
+                "text": "Select OAK 2:20 p.m. via PHX, arriving 6:40 p.m.; plan on the manual Tuesday badge issue."
+              },
+              {
+                "choice_id": "D",
+                "text": "Ask whether to move earlier, comparing the 12:40 p.m. arrival risk with a 10:35 a.m. departure that lands 3:55 p.m."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A preserves the remembered timing and is not impossible, making it a tempting near miss. D is harder because it recognizes both the default and the exception-handling step rather than unilaterally choosing either side.",
+            "gold_action": "Ask Jonah before moving earlier, comparing the tight afternoon arrival with the safer late-morning alternative.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0015",
+              "tm_pd_v04_user_005_s0094",
+              "tm_pd_v04_user_005_s0106",
+              "tm_pd_v04_user_005_s0125"
+            ],
+            "label_rationale": "The afternoon-timing default is weakened by badge and early-start risk. Prior exceptions show Jonah will protect plant logistics over a later departure, but the policy is to ask before broadening when the afternoon option is only marginally acceptable.",
+            "probe_type": "exception",
+            "query": "Jonah is building an Amarillo site-visit itinerary. Monday badge pickup is preferred before the 5:45 p.m. desk close; if he misses it, security can try a slower manual issue before the 7:30 a.m. Tuesday start. The airport is about 25 minutes from the plant hotel, bag risk is low but not zero, and the candidate fares are close. What should you do with the outbound choice?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The prompt highlights badge-desk close, fallback manual issue risk, and a specific ask/compare option; those cues are sufficient to choose D."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c04",
+            "rationale": "The 5:05 p.m. arrival makes the preferred badge pickup tight once transfer and delay/bag risk are considered, while moving earlier is a meaningful schedule change. Asking Jonah to compare the risk with the earlier safer option is the best non-assumptive action."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Pick BTV-EWR-SFO, departing 9:05 a.m. and arriving 2:35 p.m., because the landing time is the best match."
+              },
+              {
+                "choice_id": "B",
+                "text": "Pick BTV-ORD-OAK, departing 8:55 a.m. and arriving 12:40 p.m., because it gets him home earlier."
+              },
+              {
+                "choice_id": "C",
+                "text": "Present the 2:35 p.m. SFO arrival and the 12:40 p.m. OAK arrival as a tradeoff, and ask which factor he wants to prioritize."
+              },
+              {
+                "choice_id": "D",
+                "text": "Pick BTV-JFK-SFO, departing 9:20 a.m. and arriving 4:05 p.m., because it keeps SFO despite a longer layover."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is a strong near miss because it maps the remembered afternoon pattern onto arrival time. The gold requires applying the boundary condition and asking about the unresolved tradeoff.",
+            "gold_action": "Ask instead of using afternoon arrival as a tiebreaker.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0022",
+              "tm_pd_v04_user_005_s0028",
+              "tm_pd_v04_user_005_s0042"
+            ],
+            "label_rationale": "The remembered habit concerns flight departure time, not arrival time. Because every option departs in the same morning band and the remaining differences are arrivals, airports, and layovers, the planner should not infer a preference for the 2:35 p.m. landing.",
+            "probe_type": "boundary",
+            "query": "Jonah is returning from Burlington after a Thursday training. All viable flights leave BTV between 8:45 and 9:20 a.m.; the unresolved tradeoff is Bay Area airport, connection point, and arrival time. He has not said whether getting home earlier, SFO versus OAK, or avoiding a longer layover matters most. Which response fits the history best?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrase 'has not said whether...' directly matches the ask-and-compare choice."
+            ],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c06",
+            "rationale": "The query explicitly says the relevant priority is unresolved: earlier home arrival, SFO versus OAK, or avoiding a longer layover. Presenting the tradeoff and asking which factor to prioritize is the only answer that does not invent a preference."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Make Sunday 3:10 p.m. SFO-BUF via ORD the lead and add the hotel night because that flight timing is more comfortable."
+              },
+              {
+                "choice_id": "B",
+                "text": "Make Monday 6:55 a.m. SFO-BUF via DFW the lead because it avoids Sunday travel and arrives about 12:05 p.m."
+              },
+              {
+                "choice_id": "C",
+                "text": "Make Sunday 8:20 a.m. SFO-BUF via ATL the lead because it creates the largest buffer before the kickoff."
+              },
+              {
+                "choice_id": "D",
+                "text": "Ask Jonah whether the extra night is worth the less compressed Monday; do not choose the travel date from flight timing alone."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A offers the familiar-looking flight timing and a less compressed Monday, so it is tempting. The gold requires separating a departure-time preference from unsupported inferences about travel dates and extra nights.",
+            "gold_action": "Ask about Sunday extra night versus Monday compression; do not shift the travel date based only on departure time.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0000",
+              "tm_pd_v04_user_005_s0017",
+              "tm_pd_v04_user_005_s0027",
+              "tm_pd_v04_user_005_s0097"
+            ],
+            "label_rationale": "The habit can guide departure-time selection within a chosen travel date, but it should not be used to infer that Jonah wants an extra hotel night or a different date. Since Sunday versus Monday is the real unresolved decision, the correct action is to ask.",
+            "probe_type": "boundary",
+            "query": "Jonah is planning travel to Buffalo for a Monday 1:00 p.m. kickoff. Two viable tracks are close in total cost after hotel math: travel Sunday and add one night, or leave early Monday and go straight to the kickoff. He has not said whether preserving Sunday or making Monday less compressed matters more. What should you recommend?"
+          },
+          "candidate_id": "c07",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The explicit 'has not said whether...' cue is sufficient to select the ask option."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c07",
+            "rationale": "Both Sunday travel with an extra hotel night and early Monday travel are described as viable and close in total cost. The query explicitly says Jonah has not prioritized preserving Sunday versus making Monday less compressed, so the correct recommendation is to ask."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Switch to the late-morning itinerary now, noting that the plant-start change makes this a one-trip exception."
+              },
+              {
+                "choice_id": "B",
+                "text": "Keep the 1:30 p.m. itinerary as primary because he did not explicitly ask for a different time window."
+              },
+              {
+                "choice_id": "C",
+                "text": "Ask Jonah to approve moving earlier for this trip, showing the late-arrival risk and the late-morning safer alternative."
+              },
+              {
+                "choice_id": "D",
+                "text": "Replace both with a 6:20 a.m. departure that lands 1:10 p.m., maximizing setup cushion."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A correctly sees that this trip may justify an earlier departure, but it skips the ask-before-broadening step. C requires tracking both the default, the operational exception, and the fact that one-trip exceptions are not permanent revisions.",
+            "gold_action": "Ask for approval to broaden earlier for this Fargo-specific plant-start conflict.",
+            "gold_choice_id": "C",
+            "gold_evidence_session_ids": [
+              "tm_pd_v04_user_005_s0015",
+              "tm_pd_v04_user_005_s0094",
+              "tm_pd_v04_user_005_s0106",
+              "tm_pd_v04_user_005_s0125"
+            ],
+            "label_rationale": "The earlier plant access and near-midnight arrival create a supported exception to the usual departure-time default. But the right handling is not to permanently revise the habit or unilaterally broaden; it is to ask Jonah to approve the earlier trip-specific alternative.",
+            "probe_type": "exception",
+            "query": "Jonah asks you to update a Fargo trip after the plant moves Tuesday access from 10:00 a.m. to 6:30 a.m. The current later-departing Monday itinerary lands at 11:35 p.m. after a 45-minute connection; a late-morning itinerary lands at 6:50 p.m. after a 95-minute connection. He has not approved broadening the search yet. Which action is best?"
+          },
+          "candidate_id": "c09",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The prompt combines a material feasibility change with 'has not approved broadening the search yet', which directly supports the ask-for-approval option."
+            ],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c09",
+            "rationale": "The earlier plant access makes the current late-arriving itinerary risky, but Jonah has not approved broadening or moving the time window. The best action is to ask for approval while showing the current risk and safer late-morning alternative."
+          }
+        }
+      ],
+      "round": 0
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 5,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 1
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 2,
+      "direct_use": 1,
+      "evidence_disambiguation": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v04_user_005"
+}

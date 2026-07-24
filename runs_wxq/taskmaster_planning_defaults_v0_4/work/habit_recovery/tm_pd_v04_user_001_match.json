@@ -1,0 +1,185 @@
+{
+  "cache_fingerprint": "1b31f0b5b2135e0d0644f4f7d56192074f310272124a4d90f1b1fdf013555371",
+  "raw_match": {
+    "hidden_matches": [
+      {
+        "boundary_match": "partial",
+        "confidence": 0.62,
+        "core_match": "partial",
+        "exception_match": "partial",
+        "habit_id": "tm_pd_v04_user_001_h00",
+        "reason": "Recovered h01 captures only the non-exclusive idea that a preferred carrier should not beat better routing, and its evidence mentions United as acceptable when tied. It does not encode United by name as a soft positive ranking/default option. Its scope is flights from Denver generally, but it does not clearly include return-to-Denver searches or current-trip carrier overrides.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_001_recovered_h01"
+        ],
+        "scope_match": "partial"
+      },
+      {
+        "boundary_match": "not_observable",
+        "confidence": 0.96,
+        "core_match": "none",
+        "exception_match": "not_observable",
+        "habit_id": "tm_pd_v04_user_001_h01",
+        "reason": "No recovered habit states an afternoon-departure default. Recovered h00 cites dislike of leaving before lunch or giving up an afternoon flight, but its actual policy is fixed-event buffering and often choosing earlier travel; that is an override scenario, not the hidden default.",
+        "recovered_habit_ids": [],
+        "scope_match": "none"
+      },
+      {
+        "boundary_match": "none",
+        "confidence": 0.78,
+        "core_match": "partial",
+        "exception_match": "partial",
+        "habit_id": "tm_pd_v04_user_001_h02",
+        "reason": "Recovered h01 correctly captures avoiding two stops and long or uncomfortable layovers, and allowing one reasonable connection. It materially overstates the policy by making nonstop-first/simple routing the default, while the hidden boundary explicitly says not to infer a recurring nonstop-first rule. It also applies to all flights from Denver rather than only when connecting itineraries are being considered.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_001_recovered_h01"
+        ],
+        "scope_match": "partial"
+      },
+      {
+        "boundary_match": "partial",
+        "confidence": 0.93,
+        "core_match": "full",
+        "exception_match": "partial",
+        "habit_id": "tm_pd_v04_user_001_h03",
+        "reason": "Recovered h03 correctly recovers the window-seat default for seat selection. It adds extra rules about exit rows, last row, companion seating, middle seats, and fees that are not in the hidden habit, and it does not recover the booking/check-in limitation boundary.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_001_recovered_h03"
+        ],
+        "scope_match": "full"
+      },
+      {
+        "boundary_match": "partial",
+        "confidence": 0.56,
+        "core_match": "partial",
+        "exception_match": "partial",
+        "habit_id": "tm_pd_v04_user_001_h04",
+        "reason": "Recovered h11 includes strong reviews and one around-4.0 leisure-hotel formulation, but no recovered policy encodes the broad customer-facing rating default of normally at least 4.0 for hotel searches outside mandatory lodging. The recovered scope is narrowed to spouse leisure/restorative weekends and is bundled with room, resort, parking, and amenity preferences.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_001_recovered_h11"
+        ],
+        "scope_match": "partial"
+      },
+      {
+        "boundary_match": "partial",
+        "confidence": 0.69,
+        "core_match": "partial",
+        "exception_match": "partial",
+        "habit_id": "tm_pd_v04_user_001_h05",
+        "reason": "Recovered h04 and h11 both mention gym, pool, and hot tub, but recovered h04 changes the hidden all-three amenity preference into a gym-first hierarchy where pool is useful and hot tub is only a bonus. Hidden h05 says to prioritize or verify all three and note omissions. Scope is only partly aligned because h11 narrows the leisure side, while h04 adds commute, parking, and review-quality overrides not present as the hidden default.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_001_recovered_h04",
+          "tm_pd_v04_user_001_recovered_h11"
+        ],
+        "scope_match": "partial"
+      },
+      {
+        "boundary_match": "partial",
+        "confidence": 0.82,
+        "core_match": "full",
+        "exception_match": "not_observable",
+        "habit_id": "tm_pd_v04_user_001_h06",
+        "reason": "Recovered h11 captures balcony as a nice-to-have for spouse/personal leisure stays and work-plus-weekend extensions, which matches the soft balcony preference and main scope. It bundles the balcony with oceanfront, scenic, and restorative lodging, so the hidden boundary not to infer a specific view is only partially preserved. The first-floor waiver exception is not observed.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_001_recovered_h11"
+        ],
+        "scope_match": "full"
+      }
+    ],
+    "improper_splits": [
+      {
+        "reason": "These recoveries split and reshape the single hidden hotel-amenity preference into a gym-first hierarchy, a work-commute/parking override habit, and a leisure-restorative lodging style. The grounded habit is only a soft preference to seek pool, hot tub, and fitness/exercise access together and note missing amenities; the commute and leisure-style material should not become separate default hotel-amenity policies.",
+        "recovered_habit_ids": [
+          "tm_pd_v04_user_001_recovered_h04",
+          "tm_pd_v04_user_001_recovered_h05",
+          "tm_pd_v04_user_001_recovered_h11"
+        ]
+      }
+    ],
+    "recovered_adjudications": [
+      {
+        "matched_habit_ids": [],
+        "reason": "No hidden habit expresses a fixed-event buffer rule, previous-day arrival rule, later-return rule, or willingness to add hotel nights for operational risk. It is not a match for the afternoon-departure preference because it captures exceptions that override that preference.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h00",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [
+          "tm_pd_v04_user_001_h00",
+          "tm_pd_v04_user_001_h02"
+        ],
+        "reason": "It partially overlaps the United-soft-preference and one-short-layover hidden habits, but the recovered policy is not semantically equivalent: it omits United as a positive default and adds a recurring nonstop-first/simple-routing default that conflicts with the hidden layover boundary.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h01",
+        "status": "not_stable"
+      },
+      {
+        "matched_habit_ids": [],
+        "reason": "The grounded hidden graph contains no regular-economy-versus-basic-economy fare-class habit, carry-on-rights habit, or general booking-class policy.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h02",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [
+          "tm_pd_v04_user_001_h03"
+        ],
+        "reason": "It recovers the window-seat default in the correct flight-seat-selection scope. Added restrictions about exit rows, last row, companion seating, middle seats, and fee tolerance are extra and not part of the hidden habit.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h03",
+        "status": "matched_hidden"
+      },
+      {
+        "matched_habit_ids": [
+          "tm_pd_v04_user_001_h05"
+        ],
+        "reason": "It overlaps the hotel amenity habit but changes the recovered value: hidden h05 prefers pool, hot tub, and fitness access together, while this recovery makes gym primary and hot tub/pool optional or bonus.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h04",
+        "status": "not_stable"
+      },
+      {
+        "matched_habit_ids": [],
+        "reason": "No hidden habit states a stable work-hotel priority for commute, parking, unloading, gear handling, or suburban site proximity over downtown or hot tub appeal. Those are not the hotel-amenity default itself.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h05",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [],
+        "reason": "The hidden graph has no general cancellable/refundable lodging or prepaid-rate avoidance habit. Its balcony/nonrefundable remark is only a booking-flexibility boundary-like detail and does not recover the hidden balcony preference.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h06",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [],
+        "reason": "The hidden graph contains no rental vehicle class, SUV, crossover, cargo, or gear-loading preference.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h07",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [],
+        "reason": "The hidden graph contains no total-trip-cost, door-to-door hassle, alternate-airport, or modest-premium-for-convenience policy.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h08",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [],
+        "reason": "The hidden graph contains no prebooking workflow habit requiring confirmation of work-trip operational details before nonrefundable bookings.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h09",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [],
+        "reason": "The hidden graph contains no carry-on-only, checked-equipment, or critical-items packing habit.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h10",
+        "status": "unsupported_extra"
+      },
+      {
+        "matched_habit_ids": [
+          "tm_pd_v04_user_001_h04",
+          "tm_pd_v04_user_001_h05",
+          "tm_pd_v04_user_001_h06"
+        ],
+        "reason": "It cleanly overlaps the soft balcony preference in leisure scope and partially overlaps the hotel rating and amenity habits. It is not a clean recovery of h04 or h05 because it narrows ratings to spouse leisure and bundles pool/hot tub/gym with broader restorative, oceanfront, scenic, parking, and low-logistics preferences.",
+        "recovered_habit_id": "tm_pd_v04_user_001_recovered_h11",
+        "status": "matched_hidden"
+      }
+    ]
+  }
+}

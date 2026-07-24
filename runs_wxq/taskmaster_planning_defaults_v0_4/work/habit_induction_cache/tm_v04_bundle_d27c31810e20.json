@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Applies only to hotel rooming/sleeping-capacity choices; it does not set the destination, exact party size, travel dates, property, or nightly budget.",
+  "bundle_id": "tm_v04_bundle_d27c31810e20",
+  "condition": "When booking hotel lodging for multiple travelers or when room/bed setup is being specified, with no explicit contrary configuration given.",
+  "confidence": 0.68,
+  "decision": "accept",
+  "default_action": "Look first for a two-unit sleeping arrangement: a two-bedroom room or suite, two adjacent rooms, or, when constrained by price or availability, a room with two queen beds.",
+  "exception_condition": "If the user explicitly specifies a different number of rooms, bedrooms, or beds, or says they are traveling solo and do not need extra sleeping capacity, use that stated configuration instead.",
+  "family": "room_configuration",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_d27c31810e20",
+  "induced_at": "2026-07-15T12:35:57.879893+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Two-unit sleeping setup for multi-person hotel stays",
+  "preference_value": "two_sleeping_units",
+  "rationale": "The independent examples vary in the exact hotel layout, but they consistently ground a reusable synthetic default around needing two sleeping-capacity units rather than a single standard bed setup. The habit is scoped to hotel room configuration, not to the one-off party sizes or budgets mentioned in individual tasks.",
+  "seed_value": "two",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User said they would need a hotel offering “at least two bedrooms,” supporting a two-unit rooming setup.",
+      "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+      "turn_index": 5
+    },
+    {
+      "contribution": "User requested “a room that has two bedrooms,” supporting a two-bedroom configuration.",
+      "conversation_id": "dlg-3466864c-eeb6-409e-92bf-9b6d8959aa08",
+      "turn_index": 2
+    },
+    {
+      "contribution": "User asked for a “two-bedroom suite,” supporting the two-unit hotel setup.",
+      "conversation_id": "dlg-fce5d1b8-a7fb-41a6-907c-92c42ef10c68",
+      "turn_index": 18
+    },
+    {
+      "contribution": "User stated they would need “two adjacent rooms,” supporting two rooming units for a hotel stay.",
+      "conversation_id": "dlg-0958939d-418b-4784-89ac-2776747a9268",
+      "turn_index": 2
+    },
+    {
+      "contribution": "User considered “a bedroom that has two queens” under a price constraint, supporting two sleeping units as a fallback configuration.",
+      "conversation_id": "dlg-0127439b-f3e8-4bd2-84ab-9c45847e3cd0",
+      "turn_index": 5
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "two",
+      "annotation": "hotel_search.num.rooms",
+      "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "Well, I would like to find the one that's within a mile of Forest Park. I want a kid-friendly one. We have four children. I'm going to need a hotel that offers at least two bedrooms."
+    },
+    {
+      "annotated_segment": "two",
+      "annotation": "hotel_search.num.rooms",
+      "conversation_id": "dlg-3466864c-eeb6-409e-92bf-9b6d8959aa08",
+      "habitual_language": false,
+      "instruction_id": "hotel-5",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 2,
+      "user_utterance": "I need a room that has two bedrooms for two people, a full kitchen, a mini fridge and a coffee maker and a microwave."
+    },
+    {
+      "annotated_segment": "two",
+      "annotation": "hotel_search.num.rooms",
+      "conversation_id": "dlg-fce5d1b8-a7fb-41a6-907c-92c42ef10c68",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 18,
+      "user_utterance": "Great. Do you have a two-bedroom suite? Awesome. Great with balcony. What else and you had him sweet what to buy?"
+    },
+    {
+      "annotated_segment": "two",
+      "annotation": "hotel_search.num.rooms",
+      "conversation_id": "dlg-0958939d-418b-4784-89ac-2776747a9268",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 2,
+      "user_utterance": "I'm looking to stay from March 23rd to March 28th. There will be five people, and we'll need two adjacent rooms."
+    },
+    {
+      "annotated_segment": "two",
+      "annotation": "hotel_search.num.rooms",
+      "conversation_id": "dlg-0127439b-f3e8-4bd2-84ab-9c45847e3cd0",
+      "habitual_language": false,
+      "instruction_id": "hotel-16",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "Well, I need it under $300 per night, so maybe we could just go with a bedroom that has two queens."
+    }
+  ]
+}

@@ -1,0 +1,524 @@
+{
+  "probes": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use rideshares for every transfer."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a compact BOI rental car."
+        },
+        {
+          "choice_id": "C",
+          "text": "Prebook taxi rides for the workday."
+        },
+        {
+          "choice_id": "D",
+          "text": "Use transit with rideshare connectors."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c01",
+      "difficulty_rationale": "The query gives no fares, ride times, parking details, or rideshare reliability, so no-car modes and a rental all look plausible on the face of the prompt. Three distractors exploit the tempting repeated no-rental pattern.",
+      "gold_action": "Book a compact BOI rental car.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0000",
+        "tm_pd_v04_user_002_s0023",
+        "tm_pd_v04_user_002_s0030",
+        "tm_pd_v04_user_002_s0049",
+        "tm_pd_v04_user_002_s0078"
+      ],
+      "label_rationale": "The prior trips show that no-rental requests were conditional on workable transfers. The Santa Fe episode explicitly switched to a rental when a partner time made the transfer fragile, and another trip became a driving plan. This Boise agenda has a downtown-to-Meridian-to-downtown workday, so the rental action best matches the conditional pattern.",
+      "query": "I’m flying into Boise Monday for a Tuesday workday: morning kickoff downtown, midday campus lab in Meridian, late-afternoon partner meeting back downtown, carry-on only. Pick the ground plan.",
+      "variant_id": "tm_pd_v04_user_002_c01_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use rideshares for all stops."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a compact TYS rental car."
+        },
+        {
+          "choice_id": "C",
+          "text": "Prebook taxis between stops."
+        },
+        {
+          "choice_id": "D",
+          "text": "Use transit plus short rideshares."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c01",
+      "difficulty_rationale": "The prompt omits exact distances, parking costs, weather, and rideshare wait times, leaving rideshares, taxis, transit, and a rental facially actionable. The distractors encode the false car-free default in several concrete forms.",
+      "gold_action": "Book a compact TYS rental car.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0000",
+        "tm_pd_v04_user_002_s0023",
+        "tm_pd_v04_user_002_s0030",
+        "tm_pd_v04_user_002_s0065",
+        "tm_pd_v04_user_002_s0078"
+      ],
+      "label_rationale": "The supplied sessions show car-free choices only after the local layout, hotel position, and rideshares made the plan sensible. They also include a direct rental-car countercondition and a separate driving plan. The Knoxville downtown-campus-Oak Ridge loop fits the spread-out transfer cases where a rental should outrank the no-rental habit cue.",
+      "query": "For a Knoxville trip, I’ll stay near Market Square, go to a university meeting, tour an Oak Ridge partner site, and return downtown for dinner. Pick the ground transport plan.",
+      "variant_id": "tm_pd_v04_user_002_c01_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use rideshares between hotel and sites."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book a compact ROC rental car."
+        },
+        {
+          "choice_id": "C",
+          "text": "Prebook taxis for the site visits."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book a private transfer loop."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c01",
+      "difficulty_rationale": "No prices, commute times, parking facts, luggage issues, or ride availability are stated, so a planner could reasonably pick a no-rental mode from the prompt alone. The no-rental distractors are tempting because they mirror the frequent surface pattern.",
+      "gold_action": "Book a compact ROC rental car.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0000",
+        "tm_pd_v04_user_002_s0023",
+        "tm_pd_v04_user_002_s0030",
+        "tm_pd_v04_user_002_s0049",
+        "tm_pd_v04_user_002_s0106"
+      ],
+      "label_rationale": "The repeated no-rental language in the sessions is tied to workable hotel and rideshare logistics, not a fixed transport rule. The same history contains a rental-car trigger for fragile timing and a driving plan. The Rochester hospital-plus-Henrietta-plus-airport sequence matches the cases where renting is the better concrete move.",
+      "query": "I have a one-night Rochester work trip with a downtown hotel, a hospital meeting, a regional office visit in Henrietta, and a flight after the last meeting. Pick the ground plan.",
+      "variant_id": "tm_pd_v04_user_002_c01_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold the official Grand Hyatt block."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold Hampton Downtown with breakfast."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold Holiday Inn Express Downtown."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold an airport Hampton."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c02",
+      "difficulty_rationale": "The prompt gives no rates, walk times, cancellation deadlines, or room details, so the block and nearby breakfast hotels remain plausible. The Hampton and Holiday Inn choices encode the tempting value-hotel pattern.",
+      "gold_action": "Hold the official Grand Hyatt block.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0003",
+        "tm_pd_v04_user_002_s0004",
+        "tm_pd_v04_user_002_s0027",
+        "tm_pd_v04_user_002_s0054",
+        "tm_pd_v04_user_002_s0083",
+        "tm_pd_v04_user_002_s0101"
+      ],
+      "label_rationale": "The sessions show that block hotels won when early briefings, presentations, materials, or meeting days were inside the hotel, while nearby breakfast hotels won when the block advantage was small. Denver starts with prep in the block hotel, so the official block is the context-matched action.",
+      "query": "For a Denver association forum, the first work item is a prep breakfast in the official block hotel, followed by sessions at the convention center. Pick the lodging.",
+      "variant_id": "tm_pd_v04_user_002_c02_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the official Westin block."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold Hampton Uptown with breakfast."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book the official Marriott block."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold the official overflow Sheraton."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c02",
+      "difficulty_rationale": "The query omits price gaps, exact walks, weather, and networking value, so the official blocks and nearby Hampton are all actionable. Three distractors follow the tempting event-block default.",
+      "gold_action": "Hold Hampton Uptown with breakfast.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0003",
+        "tm_pd_v04_user_002_s0004",
+        "tm_pd_v04_user_002_s0083",
+        "tm_pd_v04_user_002_s0101",
+        "tm_pd_v04_user_002_s0107",
+        "tm_pd_v04_user_002_s0111"
+      ],
+      "label_rationale": "The prior trips split by agenda: block hotels won for in-building early sessions or meeting days, while Hampton-style breakfast hotels won when networking or block-location benefits were limited. Charlotte places the sessions outside the block and gives the block only the reception role, so the nearby breakfast hotel is the matching pick.",
+      "query": "For a Charlotte two-day summit, sessions are at the convention center rather than the hotel block, and the block mainly covers the opening reception. Pick the lodging.",
+      "variant_id": "tm_pd_v04_user_002_c02_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold the conference-hotel block."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold Hampton South Lake Union."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold Hyatt Place Downtown with breakfast."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold an airport Hampton."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c02",
+      "difficulty_rationale": "The prompt excludes room rates, breakfast value, exact distances, and cancellation terms, keeping the nearby hotels plausible. The Hampton and Hyatt Place distractors reflect the tempting cheaper-breakfast-hotel default.",
+      "gold_action": "Hold the conference-hotel block.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0003",
+        "tm_pd_v04_user_002_s0004",
+        "tm_pd_v04_user_002_s0027",
+        "tm_pd_v04_user_002_s0054",
+        "tm_pd_v04_user_002_s0083",
+        "tm_pd_v04_user_002_s0101"
+      ],
+      "label_rationale": "The sessions support paying for the block when early starts, materials, and debriefs are in the hotel, but not when the block advantage is thin. This Seattle agenda puts setup and debrief inside the conference hotel, so the block is the concrete match.",
+      "query": "For a Seattle education board meeting, both days start with materials setup inside the conference hotel, and the lunch debrief is there too. Pick the lodging.",
+      "variant_id": "tm_pd_v04_user_002_c02_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold a downtown hotel."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold a meeting-neighborhood hotel."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold an airport-area hotel."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold a riverfront hotel."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c03",
+      "difficulty_rationale": "No hotel rates, flight time, commute estimates, or rideshare reliability are provided, so both downtown and airport-area choices are credible. The downtown, meeting-neighborhood, and riverfront distractors encode the tempting central-area default.",
+      "gold_action": "Hold an airport-area hotel.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0024",
+        "tm_pd_v04_user_002_s0033",
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0105"
+      ],
+      "label_rationale": "The sessions show central hotels won when early urban meetings or host pickups would make airport stays awkward, while airport or transfer-oriented locations won when luggage and departure flow mattered. Pittsburgh has the workday downtown first and the next required move to the airport, so the airport-area hold fits the pattern.",
+      "query": "For a Pittsburgh overnight, I have an afternoon downtown meeting, no evening commitment, a morning flight home, and a carry-on plus sample tote. Pick the hotel area.",
+      "variant_id": "tm_pd_v04_user_002_c03_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold a downtown hotel."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold a university-area hotel."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold an airport-area hotel."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold a convention-center hotel."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c03",
+      "difficulty_rationale": "The prompt leaves out prices, commute durations, shuttle details, and exact flight timing, so central and airport-area hotels remain actionable. The downtown, university, and convention-center distractors mirror the central-location cue.",
+      "gold_action": "Hold an airport-area hotel.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0024",
+        "tm_pd_v04_user_002_s0033",
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0079",
+        "tm_pd_v04_user_002_s0110"
+      ],
+      "label_rationale": "Prior trips rejected airport hotels when they created an early commute, but accepted an airport-area hotel when it simplified luggage and the departure transfer. This Salt Lake City agenda ends with an airport debrief and flight, so the airport-area hotel is the context-matched area.",
+      "query": "For a Salt Lake City overnight, I have a library meeting on the first day, an airport-office debrief the next day, and a flight home after the debrief. Pick the hotel area.",
+      "variant_id": "tm_pd_v04_user_002_c03_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold a downtown Albany hotel."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold a Rensselaer station hotel."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold a Capitol-area hotel."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold an airport-area hotel."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c03",
+      "difficulty_rationale": "The query gives no rates, train time, cab time, weather, or luggage-storage facts, so downtown, Capitol-area, and station-area hotels are all plausible. The downtown and Capitol choices encode the tempting central-area default.",
+      "gold_action": "Hold a Rensselaer station hotel.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0024",
+        "tm_pd_v04_user_002_s0033",
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0105"
+      ],
+      "label_rationale": "The supplied sessions show downtown or meeting-adjacent hotels often won for early meetings and host pickup, but station or airport logistics could override that pattern. The Albany trip’s next required move is the morning train from Rensselaer, so the station hotel is the matching area.",
+      "query": "For an Albany visit, I arrive by train, meet near the Capitol, and depart the next morning from the Rensselaer Amtrak station. Pick the hotel area.",
+      "variant_id": "tm_pd_v04_user_002_c03_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold Hampton Inn Downtown Detroit."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold Hilton Garden Inn Downtown."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold Roost Book Tower."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold Home2 Suites Downtown."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c04",
+      "difficulty_rationale": "The prompt omits price, loyalty status, exact walking time, and room-grade differences, so the Hampton and Hilton-family options are tempting. Three distractors exploit the surface brand repetition.",
+      "gold_action": "Hold Roost Book Tower.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0093",
+        "tm_pd_v04_user_002_s0101",
+        "tm_pd_v04_user_002_s0107",
+        "tm_pd_v04_user_002_s0075",
+        "tm_pd_v04_user_002_s0105"
+      ],
+      "label_rationale": "The sessions show many Hampton holds, but other brands won when current location and logistics fit better. With room basics and folio needs equal, sessions in Book Tower make Roost Book Tower the right pick over Hampton/Hilton-brand repetition.",
+      "query": "For a Detroit work night, sessions are in Book Tower; each listed hotel has a standard room, refrigerator, coffee, refundable terms, and an itemized folio. Pick the hotel.",
+      "variant_id": "tm_pd_v04_user_002_c04_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold Hampton Inn Downtown."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold Homewood Suites Downtown."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold Crowne Plaza Union Station."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold Hilton Garden Inn Downtown."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c04",
+      "difficulty_rationale": "The query removes prices, exact walks, and loyalty benefits, leaving the Hampton, Hilton, Homewood, and Crowne Plaza choices all actionable. The Hampton and Hilton-family distractors encode the false brand default.",
+      "gold_action": "Hold Crowne Plaza Union Station.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0093",
+        "tm_pd_v04_user_002_s0101",
+        "tm_pd_v04_user_002_s0079",
+        "tm_pd_v04_user_002_s0086",
+        "tm_pd_v04_user_002_s0105"
+      ],
+      "label_rationale": "The prior trips make the Hampton pattern an amenity-and-location artifact, not brand loyalty. Non-Hampton hotels such as Holiday Inn Express, Fairfield, Homewood, and Drury won when they fit the trip. For an Amtrak-centered Indianapolis weekend, Crowne Plaza Union Station is the concrete match.",
+      "query": "For an Indianapolis rail weekend, I arrive by Amtrak and will spend the evening around Union Station; each listed hotel has breakfast, a refrigerator, and refundable terms. Pick the hotel.",
+      "variant_id": "tm_pd_v04_user_002_c04_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold Hampton Inn Downtown/French Quarter."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold Homewood Suites French Quarter."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold Hyatt Regency New Orleans."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold Hilton Garden Inn CBD."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c04",
+      "difficulty_rationale": "The prompt gives no rates, walking minutes, loyalty status, or room differences, so brand repetition can look persuasive. Three distractors are concrete Hampton/Hilton-family recommendations.",
+      "gold_action": "Hold Hyatt Regency New Orleans.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0058",
+        "tm_pd_v04_user_002_s0093",
+        "tm_pd_v04_user_002_s0101",
+        "tm_pd_v04_user_002_s0107",
+        "tm_pd_v04_user_002_s0075",
+        "tm_pd_v04_user_002_s0105"
+      ],
+      "label_rationale": "Hampton appears repeatedly in the sessions because it often met location, breakfast, and room-detail needs, while other brands won when they better fit the agenda. Here the sessions and prep are in the Hyatt building, so Hyatt Regency should outrank the Hampton/Hilton-style choices.",
+      "query": "For a New Orleans conference night, sessions and morning prep are in the Hyatt Regency building; each listed room is refundable and folio-friendly. Pick the hotel.",
+      "variant_id": "tm_pd_v04_user_002_c04_v03"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the direct prepaid king rate."
+        },
+        {
+          "choice_id": "B",
+          "text": "Hold the refundable king rate."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book the pay-at-hotel king rate."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold the flexible member king rate."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c05",
+      "difficulty_rationale": "The query gives no exact dollar savings, trip length, cancellation deadline, or reimbursement detail, so flexible and prepaid terms both remain plausible. Three distractors mirror the tempting refundable/pay-at-hotel pattern.",
+      "gold_action": "Book the direct prepaid king rate.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0006",
+        "tm_pd_v04_user_002_s0068",
+        "tm_pd_v04_user_002_s0078",
+        "tm_pd_v04_user_002_s0106",
+        "tm_pd_v04_user_002_s0083"
+      ],
+      "label_rationale": "The sessions show refundable holds when details, weather, or folio rules were uncertain, but they also explicitly allow prepaid or package booking when savings are real and terms are clear. This fixed same-room direct rate matches the acceptable-prepay side.",
+      "query": "For a fixed Halifax wedding weekend, flights and dates are locked; the hotel’s direct prepaid and refundable pages show the same king room and breakfast, and the prepaid total is materially lower. Pick the booking term.",
+      "variant_id": "tm_pd_v04_user_002_c05_v01"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold the flexible direct rate."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book the direct nonrefundable rate."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold the pay-later member rate."
+        },
+        {
+          "choice_id": "D",
+          "text": "Hold the refundable breakfast rate."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c05",
+      "difficulty_rationale": "No exact savings amount, cancellation cutoff, or weather risk is stated, so the flexible rates are still reasonable from the query alone. The flexible and pay-later distractors encode the apparent refundable default.",
+      "gold_action": "Book the direct nonrefundable rate.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0006",
+        "tm_pd_v04_user_002_s0068",
+        "tm_pd_v04_user_002_s0078",
+        "tm_pd_v04_user_002_s0106",
+        "tm_pd_v04_user_002_s0083"
+      ],
+      "label_rationale": "Prior trips treated flexibility as a risk-control tool, not a fixed rule: low savings, weather, uncertain agendas, or opaque folio terms pushed refundable choices, while real savings with clear terms made prepay acceptable. The fixed Montreal trip has clear direct terms and material savings, so the nonrefundable rate is selected.",
+      "query": "For a Montreal graduation trip, the room type, breakfast, folio, and dates are fixed; the hotel’s direct nonrefundable rate is materially cheaper than the flexible direct rate. Pick the booking term.",
+      "variant_id": "tm_pd_v04_user_002_c05_v02"
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Hold the refundable standard rate."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book the direct prepaid package."
+        },
+        {
+          "choice_id": "C",
+          "text": "Hold the pay-at-hotel package."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book the flexible direct rate."
+        }
+      ],
+      "control_id": "tm_pd_v04_user_002_c05",
+      "difficulty_rationale": "The prompt omits exact price difference, cancellation window, and trip duration, keeping refundable and pay-at-hotel choices plausible. The refundable standard, pay-at-hotel, and flexible-rate distractors capture the tempting no-prepay pattern.",
+      "gold_action": "Book the direct prepaid package.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0001",
+        "tm_pd_v04_user_002_s0006",
+        "tm_pd_v04_user_002_s0068",
+        "tm_pd_v04_user_002_s0078",
+        "tm_pd_v04_user_002_s0106",
+        "tm_pd_v04_user_002_s0083"
+      ],
+      "label_rationale": "The sessions distinguish opaque or low-savings prepaid offers from clear, materially cheaper prepaid/package terms. They also tie refundable holds to weather or unfinished agendas. This conference is finalized and the package has named room, breakfast, and itemized folio, so booking the direct prepaid package follows the prior pattern.",
+      "query": "For a finalized Vancouver work conference, the hotel sells a direct prepaid package with named room type, breakfast, itemized folio, and a materially lower total than the refundable rate. Pick the booking term.",
+      "variant_id": "tm_pd_v04_user_002_c05_v03"
+    }
+  ]
+}

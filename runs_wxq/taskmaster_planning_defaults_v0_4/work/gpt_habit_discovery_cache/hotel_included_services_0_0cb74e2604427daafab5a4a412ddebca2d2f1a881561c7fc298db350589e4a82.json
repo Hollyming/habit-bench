@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "0cb74e2604427daafab5a4a412ddebca2d2f1a881561c7fc298db350589e4a82",
+  "habits": [
+    {
+      "boundary_condition": "Use this as a soft preference, not an absolute requirement, because the evidence ranges from a direct requirement to a tentative request and a later verification question.",
+      "bundle_id": "tm_v04_e2e_bundle_4159e7bcd6b1",
+      "condition": "When evaluating or booking a hotel, treat free breakfast as a recurring included-service preference.",
+      "confidence": 0.7,
+      "decision": "accept",
+      "default_action": "Prioritize or verify hotels with free breakfast when available; if breakfast is not listed, ask/check rather than assuming it is included.",
+      "exception_condition": "Do not reject an otherwise suitable hotel solely for lacking free breakfast unless the user explicitly makes it required in the current booking; do not infer a full or high-quality breakfast requirement unless stated.",
+      "family": "hotel_included_services",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_4159e7bcd6b1",
+      "induced_at": "2026-07-16T08:02:57.864979+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefer_included_hotel_breakfast",
+      "preference_value": "Prefer hotels that include free breakfast.",
+      "rationale": "All three independent hotel dialogues mention free breakfast as a desired or checked included service. The shared reusable policy is a preference for included breakfast, with softness because only one dialogue frames it as a firm requirement.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows the user checks whether a candidate hotel includes free breakfast before accepting it.",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "exact_user_quote": "Do they have a free breakfast there?",
+          "instruction_id": "hotel-11",
+          "turn_index": 42
+        },
+        {
+          "contribution": "States a soft preference for a hotel with free breakfast.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "one that maybe has free breakfast",
+          "instruction_id": "hotel-8",
+          "turn_index": 15
+        },
+        {
+          "contribution": "States a direct preference or requirement that the hotel include free breakfast.",
+          "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+          "exact_user_quote": "I want it to have a free breakfast",
+          "instruction_id": "hotel-10",
+          "turn_index": 13
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Do they have a free breakfast there?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 42,
+          "user_utterance": "Do they have a free breakfast there?"
+        },
+        {
+          "annotated_segment": "one that maybe has free breakfast",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 15,
+          "user_utterance": "one that maybe has free breakfast"
+        },
+        {
+          "annotated_segment": "I want it to have a free breakfast",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 13,
+          "user_utterance": "I want it to have a free breakfast"
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+    "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+    "dlg-51856634-23f6-4305-984f-a938c71a938b"
+  ]
+}

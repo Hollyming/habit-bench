@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "90d76fff409bed1cd17d5a56a6fd0ac38c51528c34e1284fc0781a8b5b14c42b",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "",
+      "boundary_condition": "Use this as a soft preference, not an absolute requirement, because the evidence ranges from a direct requirement to a tentative request and a later verification question.",
+      "canonical_value": "Prefer hotels that include free breakfast.",
+      "condition": "When evaluating or booking a hotel, treat free breakfast as a recurring included-service preference.",
+      "default_action": "Prioritize or verify hotels with free breakfast when available; if breakfast is not listed, ask or check rather than assuming it is included.",
+      "exception_condition": "Do not reject an otherwise suitable hotel solely for lacking free breakfast unless the user explicitly makes it required in the current booking; do not infer a full or high-quality breakfast requirement unless stated.",
+      "input_ids": [
+        "tm_v04_e2e_habit_4159e7bcd6b1"
+      ],
+      "name": "prefer_included_hotel_breakfast",
+      "preference_value": "Prefer hotels that include free breakfast.",
+      "rationale": "Multiple examples show the user asking for or verifying free hotel breakfast. The evidence supports a recurring soft included-service preference, but not an absolute requirement or any specific breakfast quality/type.",
+      "representative_id": "tm_v04_e2e_habit_4159e7bcd6b1"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "",
+      "boundary_condition": "Treat this as a reusable hotel-amenity preference, not a destination, date, price, restaurant/bar, or indoor/outdoor pool preference. Use it as soft unless the current request makes the amenities mandatory.",
+      "canonical_value": "Prefer hotels with a pool, hot tub, and fitness or exercise access.",
+      "condition": "When selecting or evaluating hotel options.",
+      "default_action": "Prioritize or verify hotels that offer all three amenities: a pool, a hot tub, and fitness or exercise access; clearly note if one is missing.",
+      "exception_condition": "If otherwise suitable hotels do not offer all three amenities, present close matches while explicitly noting which of pool, hot tub, or fitness/exercise access is absent.",
+      "input_ids": [
+        "tm_v04_e2e_habit_fd8a73454935"
+      ],
+      "name": "prefer_hotel_pool_hot_tub_fitness",
+      "preference_value": "Prefer hotels with a pool, hot tub, and fitness or exercise access.",
+      "rationale": "The examples consistently ask for hotel pool, hot tub, and exercise/fitness access. This is a reusable hotel-amenity preference. The indoor/outdoor pool detail appears in only one example and should not be generalized here.",
+      "representative_id": "tm_v04_e2e_habit_fd8a73454935"
+    }
+  ]
+}

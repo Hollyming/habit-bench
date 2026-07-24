@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Apply only to hotel room amenity selection; do not infer a preferred destination, view, bed type, star rating, breakfast plan, or other one-off amenities from this habit.",
+  "bundle_id": "tm_v04_bundle_4eb97daa9928",
+  "condition": "When selecting a hotel room and in-room amenities are part of the lodging search.",
+  "confidence": 0.9,
+  "decision": "accept",
+  "default_action": "Prioritize hotel rooms that include a coffeemaker in the room.",
+  "exception_condition": "If no room with a coffeemaker satisfies the explicit trip constraints, or if the traveler explicitly deprioritizes the amenity for that stay, choose an otherwise suitable room without requiring a coffeemaker.",
+  "family": "hotel_amenity_priority",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_4eb97daa9928",
+  "induced_at": "2026-07-15T12:36:27.935170+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Prefers hotel rooms with a coffeemaker",
+  "preference_value": "in_room_coffeemaker",
+  "rationale": "Multiple independent hotel-search dialogues request or check for a coffeemaker as a room amenity. The repeated amenity supports a controlled synthetic-user default for preferring an in-room coffeemaker, while the other listed amenities remain transaction-specific.",
+  "seed_value": "coffeemaker",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User lists \"coffeemaker\" among desired in-room hotel amenities.",
+      "conversation_id": "dlg-1a5086fd-5ffa-44ea-9f3b-10c08b89afa1",
+      "turn_index": 11
+    },
+    {
+      "contribution": "User requests a room \"with the coffeemaker inside the room,\" grounding the in-room scope of the amenity.",
+      "conversation_id": "dlg-bc62cac3-277c-4121-9f0a-3d3a56a3b63c",
+      "turn_index": 9
+    },
+    {
+      "contribution": "User asks for a room with \"a coffeemaker\" along with other hotel criteria.",
+      "conversation_id": "dlg-c96a9011-6d06-43ae-91d4-5a44d3c8767b",
+      "turn_index": 6
+    },
+    {
+      "contribution": "User says, \"I'd like to have a wet bar and coffeemaker,\" supporting the coffeemaker as a desired hotel room amenity.",
+      "conversation_id": "dlg-e269e871-d186-4947-a455-d0d919bfcc66",
+      "turn_index": 5
+    },
+    {
+      "contribution": "User asks whether the hotel has a \"mini fridge and coffeemaker,\" showing the coffeemaker is a checked amenity in hotel selection.",
+      "conversation_id": "dlg-bb9b9eaf-a84c-4094-b4c3-4b505b8a02aa",
+      "turn_index": 17
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "coffeemaker",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-1a5086fd-5ffa-44ea-9f3b-10c08b89afa1",
+      "habitual_language": false,
+      "instruction_id": "hotel-2",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 11,
+      "user_utterance": "I'd like to have an ocean-view, balcony, a mini refrigerator, a king bed in room, coffeemaker and flat screen TV."
+    },
+    {
+      "annotated_segment": "coffeemaker",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-bc62cac3-277c-4121-9f0a-3d3a56a3b63c",
+      "habitual_language": false,
+      "instruction_id": "hotel-16",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 9,
+      "user_utterance": "I want a one king bed and one sofa bed with the coffeemaker inside the room with free breakfast."
+    },
+    {
+      "annotated_segment": "coffeemaker",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-c96a9011-6d06-43ae-91d4-5a44d3c8767b",
+      "habitual_language": false,
+      "instruction_id": "hotel-14",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 6,
+      "user_utterance": "I'm looking for a room that has a balcony, a queen-size bed and a coffeemaker as well as the hotel being a four-stars rated and above."
+    },
+    {
+      "annotated_segment": "coffeemaker",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-e269e871-d186-4947-a455-d0d919bfcc66",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "I'd like to have a wet bar and coffeemaker."
+    },
+    {
+      "annotated_segment": "coffeemaker",
+      "annotation": "hotel_search.amenity",
+      "conversation_id": "dlg-bb9b9eaf-a84c-4094-b4c3-4b505b8a02aa",
+      "habitual_language": false,
+      "instruction_id": "hotel-1b",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 17,
+      "user_utterance": "Okay. And does it have mini fridge and coffeemaker? How can you tell me?"
+    }
+  ]
+}

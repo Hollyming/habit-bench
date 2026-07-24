@@ -1,0 +1,174 @@
+{
+  "cache_fingerprint": "4216cc8b05bf1d9c07ee6a7ee141cd9cb2d1e73a9d3e02e5481ac8edddf47d6a",
+  "profile": {
+    "communication_style": {
+      "planning_behaviors": [
+        "Asks for options to be grouped by practicality, not just lowest price.",
+        "Appreciates explicit notes when a hotel is missing an expected room or recovery amenity.",
+        "Wants booking caveats stated plainly before she commits."
+      ],
+      "preferred_detail_level": "Likes compact shortlists with the deciding trade-offs called out clearly rather than long narrative descriptions.",
+      "tone": "Direct, friendly, and comparison-oriented."
+    },
+    "generated_by": {
+      "model": "gpt-5.5",
+      "reasoning_effort": "xhigh"
+    },
+    "generation_method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+    "habit_interactions": [
+      "Hotel reliability and in-room routine usually matter more than decorative room features, especially before teaching days.",
+      "Recovery amenities are most salient on multi-night work trips and active leisure weekends, but she will consider close matches if the schedule or location is better.",
+      "Return-flight timing is evaluated around whether she can finish a course, get to the airport without rushing, and still be functional the next day.",
+      "Seat preference is independent of carrier choice; she has no stable airline default because Tampa routings vary by destination and price.",
+      "She does not show a stable recurring preference for hotel breakfast, restaurant access, or balconies; those arise only when a specific trip calls for them."
+    ],
+    "habits": [
+      {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v04_user_004_h00",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Flights Kara books for herself for seminars, clinic visits, conferences, or solo positioning legs when she is not coordinating adjacent seats with someone else.",
+        "scope_key": "solo_flight_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004"
+      },
+      {
+        "alternative_group_key": "flight_return_departure_time_preference",
+        "boundary_condition": "Treat as a soft default; if true afternoon return departures are unavailable, limited, or unattractive, consider options close to afternoon.",
+        "condition": "When booking or comparing round-trip flights and selecting the return-leg departure time.",
+        "default_action": "Search for return-flight options departing in the afternoon and present those first when available.",
+        "exception_condition": "Do not apply as a universal outbound-leg rule; one supporting dialogue separately used a morning outbound while still preferring an afternoon return.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_004_h01",
+        "name": "afternoon_return_departure_preference",
+        "preference_value": "Prefer the return flight to depart in the afternoon.",
+        "scope_condition": "Round-trip itineraries returning to Tampa after work trips, conferences, or partner weekends when the current trip does not specify a different return window.",
+        "scope_key": "return_home_after_teaching_or_weekend",
+        "source_bundle_id": "tm_v04_e2e_bundle_26cf0aa15c48",
+        "source_habit_instance_id": "tm_v04_e2e_habit_26cf0aa15c48",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004"
+      },
+      {
+        "alternative_group_key": "hotel_quality_threshold_customer_rating_floor",
+        "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+        "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+        "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+        "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v04_user_004_h02",
+        "name": "hotel_four_star_customer_rating_floor",
+        "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+        "scope_condition": "Hotel searches for teaching trips, conferences, clinic visits, and personal stays where customer-facing ratings are available.",
+        "scope_key": "rated_multi_night_hotel_searches",
+        "source_bundle_id": "tm_v04_e2e_bundle_704f0266b376",
+        "source_habit_instance_id": "tm_v04_e2e_habit_704f0266b376",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004"
+      },
+      {
+        "alternative_group_key": "",
+        "boundary_condition": "Treat this as a reusable hotel-amenity preference, not a destination, date, price, restaurant/bar, or indoor/outdoor pool preference. Use it as soft unless the current request makes the amenities mandatory.",
+        "condition": "When selecting or evaluating hotel options.",
+        "default_action": "Prioritize or verify hotels that offer all three amenities: a pool, a hot tub, and fitness or exercise access; clearly note if one is missing.",
+        "exception_condition": "If otherwise suitable hotels do not offer all three amenities, present close matches while explicitly noting which of pool, hot tub, or fitness/exercise access is absent.",
+        "family": "hotel_included_services",
+        "habit_id": "tm_pd_v04_user_004_h03",
+        "name": "prefer_hotel_pool_hot_tub_fitness",
+        "preference_value": "Prefer hotels with a pool, hot tub, and fitness or exercise access.",
+        "scope_condition": "Hotel choices for multi-night work stays after long teaching days and for active leisure weekends where recovery facilities affect the stay.",
+        "scope_key": "recovery_or_active_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_fd8a73454935",
+        "source_habit_instance_id": "tm_v04_e2e_habit_fd8a73454935",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004"
+      },
+      {
+        "alternative_group_key": "hotel_room_bed_type_single_large_bed",
+        "boundary_condition": "Evidence supports queen-size beds as the recurring preference. A king bed may be acceptable when explicitly offered or requested, but the evidence does not establish a reusable preference to upgrade to king whenever possible.",
+        "condition": "When booking a standard hotel room where a single larger/shared bed is appropriate and no separate-bed setup has been requested.",
+        "default_action": "Filter for or request a queen-size bed when bed type is selectable; if the listing only shows double, twin, or unspecified bedding, confirm the bed setup before booking.",
+        "exception_condition": "Honor explicit requests for twin beds, multiple separate beds, multiple rooms with different bedding, accessibility-related bedding, or any other trip-specific bed arrangement.",
+        "family": "hotel_room_bed_policy",
+        "habit_id": "tm_pd_v04_user_004_h04",
+        "name": "queen_bed_for_single_bed_hotel_rooms",
+        "preference_value": "Prefer a queen-size bed for hotel rooms intended to have one larger/shared bed.",
+        "scope_condition": "Standard hotel rooms for Kara alone or with her partner when no separate-bed arrangement, accessibility bedding need, or alternate setup has been requested.",
+        "scope_key": "single_shared_bed_room",
+        "source_bundle_id": "tm_v04_e2e_bundle_90a7ff1f51d8",
+        "source_habit_instance_id": "tm_v04_e2e_habit_90a7ff1f51d8",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004"
+      },
+      {
+        "alternative_group_key": "trip_context_hotel_in_room_amenity_bundle",
+        "boundary_condition": "Do not generalize this to other amenities such as microwave, balcony, bar, fireplace, room size, location, dates, or price.",
+        "condition": "When selecting or comparing hotel rooms and in-room amenities are being considered.",
+        "default_action": "Use an in-room coffee maker and refrigerator or mini-fridge as soft amenity criteria, and confirm availability when relevant.",
+        "exception_condition": "If a hotel otherwise strongly matches the current trip, treat a missing coffee maker or refrigerator/mini-fridge as a point to confirm with the user rather than an automatic rejection.",
+        "family": "trip_context_hotel_policy",
+        "habit_id": "tm_pd_v04_user_004_h05",
+        "name": "hotel_room_coffee_maker_and_fridge_preference",
+        "preference_value": "Prefers a hotel room with both a coffee maker and a refrigerator or mini-fridge.",
+        "scope_condition": "Hotel room comparisons for seminar, clinic-training, and conference stays where she needs an easy morning routine and simple food or drink storage.",
+        "scope_key": "early_morning_work_hotel_rooms",
+        "source_bundle_id": "tm_v04_e2e_bundle_12de0f7be5d5",
+        "source_habit_instance_id": "tm_v04_e2e_habit_12de0f7be5d5",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_004"
+      }
+    ],
+    "longitudinal_plan": {
+      "target_history_characters": 318000,
+      "target_sessions": 121,
+      "travel_tempo": "Moderately frequent: roughly 9 to 11 work-related trips per year, 2 larger conferences, and 2 to 4 personal or partner trips, with heavier planning in spring and fall seminar seasons.",
+      "typical_episode_shape": "Most travel episodes span 2 to 4 sessions: initial dates and constraints, flight and hotel shortlist, trade-off refinement, then booking or pre-trip verification. Longer conference or partner-weekend episodes may add sessions for hotel block comparisons, room amenity checks, or return-flight adjustments."
+    },
+    "persona": {
+      "age_range": "late 30s",
+      "decision_posture": "Comfort-practical rather than luxury-first. She cares about reliable hotels, room routines, and physical recovery after long teaching days, while accepting trade-offs when class schedules, conference blocks, or airfare availability dominate.",
+      "home_base": "Tampa, Florida",
+      "name": "Kara Bennett",
+      "occupation": "continuing-education instructor for pediatric physical therapists",
+      "travel_identity": "Self-booking domestic traveler who plans seminar weekends, clinic-training visits, professional conferences, and a few active recovery trips with her partner each year.",
+      "user_id": "tm_pd_v04_user_004"
+    },
+    "travel_contexts": [
+      {
+        "context_key": "seminar_weekends",
+        "description": "Recurring Friday-to-Monday or Saturday-to-Monday trips to teach continuing-education courses at hospitals, therapy practices, and university facilities.",
+        "planning_pattern": "Compares flights first around teaching times, then narrows hotels near the host site with attention to room amenities and recovery facilities."
+      },
+      {
+        "context_key": "clinic_training_visits",
+        "description": "Short solo work trips for on-site demonstrations, staff training, and follow-up coaching.",
+        "planning_pattern": "Often needs efficient return travel and dependable hotel basics because mornings start early."
+      },
+      {
+        "context_key": "professional_conferences",
+        "description": "A few larger annual conferences where she may use conference hotels but still checks ratings and room setup before committing.",
+        "planning_pattern": "Balances official room blocks against her usual comfort criteria."
+      },
+      {
+        "context_key": "partner_active_weekends",
+        "description": "Occasional hiking, beach, spa, or race-support weekends with her partner.",
+        "planning_pattern": "More willing to spend time comparing hotel amenities, but still treats preferences as soft unless the trip itself makes them central."
+      }
+    ],
+    "user_id": "tm_pd_v04_user_004"
+  }
+}

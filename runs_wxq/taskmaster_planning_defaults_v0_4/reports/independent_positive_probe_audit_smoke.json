@@ -1,0 +1,105 @@
+{
+  "audit_revision": "independent_positive_probe_audit_v1",
+  "call_failures": [],
+  "completed_call_count": 4,
+  "failed_call_count": 0,
+  "history_aware_error_counts": {
+    "gold_disagreement": 2
+  },
+  "history_aware_pass_count": 0,
+  "items": [
+    {
+      "gold_choice_id": "C",
+      "habit_id": "tm_pd_v04_user_002_h00",
+      "history_aware_errors": [
+        "gold_disagreement"
+      ],
+      "history_aware_pass": false,
+      "history_aware_verdict": {
+        "ambiguous": false,
+        "choice_id": "A",
+        "difficulty": "medium",
+        "evidence_session_ids": [
+          "tm_pd_v04_user_002_s0034",
+          "tm_pd_v04_user_002_s0063",
+          "tm_pd_v04_user_002_s0102"
+        ],
+        "rationale": "American is the best working plan: it is a nonstop from ORD, arrives early enough for a downtown hotel transfer without a car, and its 3:05 p.m. Friday departure provides more post-close cushion than United's 2:50 p.m. option while still getting back to Chicago early. It is also cheaper than United. The excerpts repeatedly support paying modestly more to avoid connections and overly late returns, but do not establish a categorical United-carrier preference; therefore American's schedule and fare advantages should control here.",
+        "unsupported_assumptions": []
+      },
+      "probe_id": "tm_pd_v04_user_002_h00_p00",
+      "probe_type": "conflict_resolution",
+      "query_only_errors": [
+        "gold_not_query_only_plausible"
+      ],
+      "query_only_pass": false,
+      "query_only_verdict": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Chicago origin airport preference (ORD versus MDW)",
+          "Desired Friday return timing and tolerance for a later evening arrival",
+          "Potential airline-specific preferences not stated in the query"
+        ],
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "A and B are both reasonable nonstop economy working plans. B is less expensive, arrives earlier in Charlotte, and offers a later Friday departure, while A uses ORD rather than MDW and returns substantially earlier, which may be preferable after a midday close. The query gives no Chicago-airport preference or desired Friday arrival time, so neither clearly dominates. C is more expensive than A with a later outbound and earlier return, and D adds a connection despite no compensating advantage over the plausible nonstop options."
+      },
+      "status": "reject",
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "gold_choice_id": "A",
+      "habit_id": "tm_pd_v04_user_003_h01",
+      "history_aware_errors": [
+        "gold_disagreement"
+      ],
+      "history_aware_pass": false,
+      "history_aware_verdict": {
+        "ambiguous": false,
+        "choice_id": "B",
+        "difficulty": "medium",
+        "evidence_session_ids": [
+          "tm_pd_v04_user_003_s0007",
+          "tm_pd_v04_user_003_s0022",
+          "tm_pd_v04_user_003_s0074"
+        ],
+        "rationale": "Propose the 8:40 a.m. nonstop first. The $19 premium over the cheapest option is small for a nonstop that arrives at a normal afternoon hour. Across the history, Tessa repeatedly favors cleaner, more reliable routing and rejects connections when a suitably timed nonstop is close in price. The late-night nonstop is less aligned with her stated preference to avoid hotel arrivals after 11 when possible, even though the hotel can accommodate a late-arrival note. The two one-stop choices add connection risk without enough savings to outrank the morning nonstop.",
+        "unsupported_assumptions": []
+      },
+      "probe_id": "tm_pd_v04_user_003_h01_p01",
+      "probe_type": "evidence_disambiguation",
+      "query_only_errors": [],
+      "query_only_pass": true,
+      "query_only_verdict": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [],
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The options require unstated tradeoffs among fare, nonstop service, arrival time, and departure time. C is cheapest and arrives relatively early, D is a low-premium nonstop but arrives very late, B is a nonstop with the earliest arrival, and A has the latest departure despite a higher fare and later arrival. No stated criterion ranks those tradeoffs, so no single flight is clearly dominant."
+      },
+      "status": "reject",
+      "user_id": "tm_pd_v04_user_003"
+    }
+  ],
+  "model": "gpt-5.6-terra",
+  "probe_count": 2,
+  "query_only_error_counts": {
+    "gold_not_query_only_plausible": 1
+  },
+  "query_only_pass_count": 1,
+  "reasoning_effort": "xhigh",
+  "status": "reject",
+  "status_counts": {
+    "reject": 2
+  }
+}

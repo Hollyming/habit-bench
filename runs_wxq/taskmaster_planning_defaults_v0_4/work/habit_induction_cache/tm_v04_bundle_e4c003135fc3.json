@@ -1,0 +1,76 @@
+{
+  "boundary_condition": "Applies to hotel searches and hotel amenity follow-up questions; it should not be generalized to choosing destinations, flights, or non-hotel activities.",
+  "bundle_id": "tm_v04_bundle_e4c003135fc3",
+  "condition": "When the synthetic user is evaluating hotel options and hotel services or amenities are being considered.",
+  "confidence": 0.76,
+  "decision": "accept",
+  "default_action": "Ask whether the hotel offers a tour and, when otherwise suitable, favor hotel options that offer a tour.",
+  "exception_condition": "If the user gives higher-priority constraints such as a specific required property or location and the hotel does not offer a tour, report the tour status rather than rejecting the option solely for lacking a tour.",
+  "family": "hotel_feature",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_e4c003135fc3",
+  "induced_at": "2026-07-15T12:31:00.105337+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Checks for hotel tour offerings",
+  "preference_value": "hotels that offer a tour",
+  "rationale": "Across three independent hotel dialogues, the user asks whether a hotel offers a tour or says they are looking for one that may offer a tour. The evidence supports a reusable synthetic preference to check for and favor hotels with tour offerings, while keeping one-off details such as Downtown out of the habit value.",
+  "seed_value": "offer_a_tour",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "User asks, 'Do they offer a tour?' indicating tour availability is a hotel feature to check.",
+      "conversation_id": "dlg-d6db59a6-be69-4e8c-bbde-76182bdf935f",
+      "turn_index": 17
+    },
+    {
+      "contribution": "User says they would look into the hotel more and asks, 'Do they offer a tour?' supporting tour offerings as a decision-relevant hotel detail.",
+      "conversation_id": "dlg-5b727494-5cb4-4c54-b06f-dba69ce046c0",
+      "turn_index": 15
+    },
+    {
+      "contribution": "User says they are looking for a hotel that 'may offer a tour,' directly supporting a preference for hotels with tour offerings.",
+      "conversation_id": "dlg-1768acf7-6ee8-4fb9-b379-f4e8f138a412",
+      "turn_index": 6
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "offer a tour",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-d6db59a6-be69-4e8c-bbde-76182bdf935f",
+      "habitual_language": false,
+      "instruction_id": "hotel-10",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 17,
+      "user_utterance": "Do they offer a tour?"
+    },
+    {
+      "annotated_segment": "offer a tour",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-5b727494-5cb4-4c54-b06f-dba69ce046c0",
+      "habitual_language": false,
+      "instruction_id": "hotel-11",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 15,
+      "user_utterance": "Awesome. Actually I'd actually look into that one more. Do they offer a tour?"
+    },
+    {
+      "annotated_segment": "offer a tour",
+      "annotation": "hotel_search.other_request",
+      "conversation_id": "dlg-1768acf7-6ee8-4fb9-b379-f4e8f138a412",
+      "habitual_language": false,
+      "instruction_id": "hotel-9",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 6,
+      "user_utterance": "I'm looking for one that is located in Downtown and may offer a tour."
+    }
+  ]
+}

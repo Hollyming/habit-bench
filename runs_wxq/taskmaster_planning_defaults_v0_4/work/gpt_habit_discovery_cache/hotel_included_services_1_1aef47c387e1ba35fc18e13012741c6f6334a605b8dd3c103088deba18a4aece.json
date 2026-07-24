@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "1aef47c387e1ba35fc18e13012741c6f6334a605b8dd3c103088deba18a4aece",
+  "habits": [
+    {
+      "boundary_condition": "Do not infer that the pool or hot tub must be indoor or outdoor; the indoor preference appears in only one dialogue. Do not treat unrelated one-off trip details such as destination, dates, price, or beach proximity as part of this habit.",
+      "bundle_id": "tm_v04_e2e_bundle_fd8a73454935",
+      "condition": "When choosing or evaluating a hotel for a leisure stay.",
+      "confidence": 0.82,
+      "decision": "accept",
+      "default_action": "Prioritize or ask about hotels that offer the full pool-plus-hot-tub-plus-fitness/exercise amenity bundle, and call out clearly if one element is missing.",
+      "exception_condition": "If otherwise suitable hotels do not offer all three amenities, present close matches while explicitly noting which of pool, hot tub, or fitness/exercise facility is absent.",
+      "family": "hotel_included_services",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_fd8a73454935",
+      "induced_at": "2026-07-16T08:07:33.431665+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_recreation_and_exercise_amenities",
+      "preference_value": "Prefers hotels with a pool, hot tub, and fitness/exercise facility.",
+      "rationale": "Across three distinct hotel conversations and instruction IDs, the user independently requests the same recreation-plus-exercise amenity pattern. Because only one dialogue uses hard requirement wording, this should be modeled as a strong preference rather than an absolute rule.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports the default preference for a hotel pool, hot tub, and fitness center.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "a pool with a hot tub and a fitness center at the hotel.",
+          "instruction_id": "hotel-2",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Independently repeats the same pool, hot tub, and fitness center bundle, with hard wording in this instance.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "The hotel must have a pool with a hot tub and a fitness center.",
+          "instruction_id": "hotel-3",
+          "turn_index": 28
+        },
+        {
+          "contribution": "Independently supports seeking a pool, hot tub, and exercise facility while showing the indoor/outdoor detail should remain a boundary rather than the core habit.",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "exact_user_quote": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "instruction_id": "hotel-1c",
+          "turn_index": 16
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "a pool with a hot tub and a fitness center at the hotel.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "a pool with a hot tub and a fitness center at the hotel."
+        },
+        {
+          "annotated_segment": "The hotel must have a pool with a hot tub and a fitness center.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 28,
+          "user_utterance": "The hotel must have a pool with a hot tub and a fitness center."
+        },
+        {
+          "annotated_segment": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 16,
+          "user_utterance": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+    "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+    "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+  ]
+}

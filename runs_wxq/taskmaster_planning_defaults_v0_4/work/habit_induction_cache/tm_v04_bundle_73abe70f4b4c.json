@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Do not carry over any quoted dollar amount as a universal ceiling; if no current-trip nightly budget is supplied, ask for one or present price ranges instead of inventing a number.",
+  "bundle_id": "tm_v04_bundle_73abe70f4b4c",
+  "condition": "When choosing a hotel for a trip and price is being balanced with location, amenities, or availability.",
+  "confidence": 0.78,
+  "decision": "accept",
+  "default_action": "Use or ask for a current-trip nightly price band, then filter or rank hotels that fit within or near that band and avoid options materially above it unless the user confirms a tradeoff.",
+  "exception_condition": "If no hotel satisfies the current price band together with hard location, date, or amenity constraints, ask whether to expand the budget or relax another constraint.",
+  "family": "hotel_price_tradeoff",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_73abe70f4b4c",
+  "induced_at": "2026-07-15T12:34:20.566741+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "Use a current-trip nightly budget band for hotels",
+  "preference_value": "price-bounded, budget-sensitive hotel selection",
+  "rationale": "The examples give different one-off dollar amounts and one qualitative low-cost request, so they do not support a reusable numeric budget. They do support a controlled synthetic default that hotel choices should be price-bounded and budget-aware for the current trip.",
+  "seed_value": "stated_price_band",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "hotel-12 source: says the hotel should not be more than a stated nightly amount, supporting use of a current-trip price limit.",
+      "conversation_id": "dlg-a9e0c62b-7fd4-41bf-b7c2-41881555910e",
+      "turn_index": 10
+    },
+    {
+      "contribution": "hotel-7 source: asks for something around a stated nightly amount, supporting a price band rather than open-ended pricing.",
+      "conversation_id": "dlg-624b309f-238d-4c0b-bc5c-c013b194e088",
+      "turn_index": 5
+    },
+    {
+      "contribution": "hotel-4 source: includes a stated nightly price along with room and amenity constraints, supporting price as a selection filter.",
+      "conversation_id": "dlg-d65e48cc-e5f6-4dd2-8fee-b7619f4aebf8",
+      "turn_index": 3
+    },
+    {
+      "contribution": "hotel-5 source: asks for something not expensive, supporting budget-sensitive hotel selection without a reusable numeric ceiling.",
+      "conversation_id": "dlg-81f24a53-51e9-4c39-93c7-563609638356",
+      "turn_index": 5
+    },
+    {
+      "contribution": "hotel-1 source: gives a one-off dollar amount for the hotel request, supporting explicit current-trip price bounding while not implying a universal low budget.",
+      "conversation_id": "dlg-9f05d8df-2057-4d85-b0a5-891a6478d1d5",
+      "turn_index": 19
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "more than $200 a night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-a9e0c62b-7fd4-41bf-b7c2-41881555910e",
+      "habitual_language": false,
+      "instruction_id": "hotel-12",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 10,
+      "user_utterance": "I don't want the hotel to be anything more than $200 a night."
+    },
+    {
+      "annotated_segment": "around $300 a night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-624b309f-238d-4c0b-bc5c-c013b194e088",
+      "habitual_language": false,
+      "instruction_id": "hotel-7",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "You would like something around $300 a night."
+    },
+    {
+      "annotated_segment": "$250 a night",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-d65e48cc-e5f6-4dd2-8fee-b7619f4aebf8",
+      "habitual_language": false,
+      "instruction_id": "hotel-4",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 3,
+      "user_utterance": "The dates of June 4th 2017, I need a price $250 a night I'd like a room with a balcony a coffee maker and a flat screen TV & it should have restaurant."
+    },
+    {
+      "annotated_segment": "not expensive",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-81f24a53-51e9-4c39-93c7-563609638356",
+      "habitual_language": false,
+      "instruction_id": "hotel-5",
+      "preference_language": true,
+      "source_domain": "hotels",
+      "turn_index": 5,
+      "user_utterance": "I would like something that is not expensive."
+    },
+    {
+      "annotated_segment": "a $600",
+      "annotation": "hotel_search.price_range",
+      "conversation_id": "dlg-9f05d8df-2057-4d85-b0a5-891a6478d1d5",
+      "habitual_language": false,
+      "instruction_id": "hotel-1",
+      "preference_language": false,
+      "source_domain": "hotels",
+      "turn_index": 19,
+      "user_utterance": "Like a $600 and we have a Sunday weekend."
+    }
+  ]
+}

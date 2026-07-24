@@ -1,0 +1,292 @@
+{
+  "cache_fingerprint": "e31ad48c379b94ce89a8eb8591af80379d67699e99b72011c97b28550f5cbf80",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya chose the nonstop Delta itinerary despite a modest price premium because schedule reliability and avoiding a connection mattered more than the cheapest fare. She also specified no paid seat upgrade and asked for a window only if available in standard seating.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Window if possible, but no paid upgrade.",
+            "habit_id": "tm_pd_v04_user_000_h01",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Client confirmed the Cary office: 3001 Weston Parkway, and the first meeting is 8:30 a.m. Tuesday. I need to route the flights for approval today. Is the nonstop worth it over the cheaper one-stop?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I’d submit the nonstop.\n\nTradeoff:\n- Delta nonstop: ATL-RDU Mon May 5, 5:25-6:45 p.m.; RDU-ATL Fri May 9, 4:50-6:12 p.m.; about $352. Best buffer, no connection risk; return seat map is limited.\n- Cheaper one-stop via CLT: about $289, arrives closer to 9:20 p.m. and adds a misconnect risk for only about $63 saved.\n- Earlier Friday nonstop around 2:15 p.m.: slightly cheaper, but tight if the wrap-up slips past lunch.\n\nFor an 8:30 Tuesday start and uncertain Friday timing, the nonstop with the 4:50 return is the safer approval choice.",
+          "role": "assistant"
+        },
+        {
+          "content": "That’s enough of a difference to justify in the approval note?",
+          "role": "user"
+        },
+        {
+          "content": "I think so. Phrase it as: “Lowest practical itinerary is $63 above the cheapest fare, but avoids a connection, prevents a late arrival before an 8:30 a.m. client start, and preserves Friday return buffer.”",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you check seats before I send it? Window if possible, but no paid upgrade.",
+          "role": "user"
+        },
+        {
+          "content": "Outbound has standard window seats available, so choose one there. On the 4:50 p.m. return, standard seats are mostly aisle or middle; the only window showing is in a paid section. Since you do not want a paid upgrade, take a standard seat now and recheck at check-in.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. Give me the exact itinerary wording for approval.",
+          "role": "user"
+        },
+        {
+          "content": "Submit this:\n\nDelta Main Cabin, ATL to RDU, Monday May 5, depart 5:25 p.m., arrive 6:45 p.m. Return RDU to ATL, Friday May 9, depart 4:50 p.m., arrive 6:12 p.m. Approximate fare: $352 before corporate booking fees.\n\nSeat note: select a standard window outbound; hold any standard return seat and recheck for a window later.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0009",
+      "session_index": 9,
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The hotel-night count mismatch was flagged and corrected to four nights. Maya prioritized a quiet business stay, 4+ customer rating, nearby or on-site dinner without a rental car, and breakfast as useful but not decisive. DoubleTree was chosen as primary; Homewood remained the backup.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "customer rating around 4 or better",
+            "habit_id": "tm_pd_v04_user_000_h04",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.95,
+            "evidence_quote": "I don’t want to be hunting for dinner after 7.",
+            "habit_id": "tm_pd_v04_user_000_h06",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Flights are in the approval queue. Now I need the hotel near 3001 Weston Parkway. I wrote three nights in my notes, but the flights are Monday to Friday—can you sanity check that before we compare?",
+          "role": "user"
+        },
+        {
+          "content": "Good catch: with a Monday arrival and Friday return, that is four hotel nights—Monday, Tuesday, Wednesday, and Thursday—unless the travel dates changed. I’ll compare four-night cancellable options unless you tell me the arrival moved.",
+          "role": "assistant"
+        },
+        {
+          "content": "Right, four nights. Sorry. I need quiet enough for evening work, customer rating around 4 or better, breakfast if practical, and dinner without renting a car.",
+          "role": "user"
+        },
+        {
+          "content": "Best fit shortlist:\n\n1. DoubleTree by Hilton Raleigh-Cary — about 8-10 minutes to the office, Google rating around 4.2, on-site restaurant/bar, standard work desk, usually reliable for a quiet business stay. Weak point: breakfast looks paid or not clearly included. Approx. $169/night cancellable.\n\n2. Homewood Suites Raleigh-Cary I-40 — about 13-16 minutes by rideshare, Google rating around 4.3, suite-style room with desk/kitchenette, free breakfast listed. Weak point: dinner is nearby but less automatic; likely a short rideshare rather than easy on-site dining. Approx. $158/night cancellable.\n\n3. Courtyard Raleigh Cary/Crossroads — rating around 4.1, workable location, Bistro for paid breakfast/dinner, but it does not beat the first two on either commute or included breakfast.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is DoubleTree the best because it’s closer?",
+          "role": "user"
+        },
+        {
+          "content": "For this trip, yes. The closer ride and on-site dinner matter because you will be working after client days and not renting a car. The only real drawback is breakfast not being clearly included. If included breakfast becomes a must, Homewood becomes the stronger option.",
+          "role": "assistant"
+        },
+        {
+          "content": "How ugly is the restaurant situation at Homewood?",
+          "role": "user"
+        },
+        {
+          "content": "Not ugly, just less frictionless. There are restaurants in nearby shopping areas, but I would not count on a pleasant walk after dark without checking the exact sidewalks and lighting. Realistically, plan on a short rideshare for dinner unless you stock the suite.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then I don’t want that as first choice. I don’t want to be hunting for dinner after 7.",
+          "role": "user"
+        },
+        {
+          "content": "Then I’d put DoubleTree first. Request a quiet room away from the elevator, ice machine, and highway-facing side if available. Keep Homewood as the backup if the DoubleTree rate jumps by more than about $30 per night or only a nonrefundable rate remains.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do we need to verify breakfast before approval?",
+          "role": "user"
+        },
+        {
+          "content": "Only if free breakfast is required for approval. I would not assume it is included at DoubleTree. Flag it as “breakfast likely paid; verify at booking,” but do not let that block the choice if the rate and location work.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please write the hotel submission note and the backup line.",
+          "role": "user"
+        },
+        {
+          "content": "Use this:\n\nPrimary hotel: DoubleTree by Hilton Raleigh-Cary, four nights, Mon May 5-Fri May 9. Selected for proximity to 3001 Weston Parkway, customer rating around 4.2, on-site restaurant, and business-friendly room setup. Request quiet room away from elevator/ice machine/highway side. Breakfast inclusion not confirmed; verify during booking.\n\nBackup: Homewood Suites Raleigh-Cary I-40 if DoubleTree rate changes materially or cancellation terms worsen. Homewood has free breakfast and suite-style rooms, but requires a longer rideshare and dinner is less convenient.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0010",
+      "session_index": 10,
+      "user_id": "tm_pd_v04_user_000"
+    },
+    {
+      "domain": "flights_and_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For the late Raleigh agenda change, the fare difference and hotel impact were separated. The recommended safe plan was to wait for the 3 p.m. agenda if possible, then move to the later Friday nonstop if timing remained uncertain. Saturday was kept as a backup only if Friday obligations extended late.",
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.5",
+          "reasoning_effort": "xhigh"
+        },
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.92,
+            "evidence_quote": "Now Friday wrap-up may slide too, and my 4:50 p.m. RDU-ATL return is making me nervous.",
+            "habit_id": "tm_pd_v04_user_000_h02",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Raleigh leaves tomorrow and the client just added a late Thursday stakeholder session. Now Friday wrap-up may slide too, and my 4:50 p.m. RDU-ATL return is making me nervous.",
+          "role": "user"
+        },
+        {
+          "content": "The risk is really Friday timing. If wrap-up ends by about 12:30 or 1:00, the 4:50 return is fine. If they push past 1:30, it gets tight once you include rideshare to RDU, airport buffer, and any delays.\n\nOptions:\n- Keep 4:50 Friday: $0 change, no hotel impact, but schedule risk.\n- Move to later Friday nonstop around 7:35 p.m.: fare difference only, no hotel change, much safer.\n- Add one hotel night and return Saturday morning: least rushed, but adds hotel cost plus another night away.",
+          "role": "assistant"
+        },
+        {
+          "content": "They say the final agenda will be out by 3. Fare difference to the 7:35 is $96. Saturday morning is only $42 more, but the extra DoubleTree night is $181 before taxes.",
+          "role": "user"
+        },
+        {
+          "content": "Separated out:\n- Later Friday: +$96 flight, $0 hotel.\n- Saturday: +$42 flight, +$181 hotel before taxes, so at least +$223 total.\n- Current flight: $0, but only safe if Friday ends early.\n\nI’d wait until 3 if the later fare is still available. If the agenda shows anything after 1:00-1:30 Friday, switch to the 7:35 p.m. Saturday is only worth it if they add Friday late-afternoon obligations.",
+          "role": "assistant"
+        },
+        {
+          "content": "What should I do with the hotel in the meantime?",
+          "role": "user"
+        },
+        {
+          "content": "No hotel change yet. Call or message DoubleTree now and ask for a Friday late checkout request, plus luggage storage after checkout if late checkout is not available. Also ask whether there is a lobby workspace you can use for an hour or two after checkout.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you give me the exact hotel question?",
+          "role": "user"
+        },
+        {
+          "content": "Send: “I’m arriving Monday May 5 for a business stay. Could you please add a request for late checkout on Friday May 9, ideally 1:00 p.m.? If that is not available, can the front desk store my luggage after checkout until I leave for the airport, and is there a lobby workspace I can use briefly?”",
+          "role": "assistant"
+        },
+        {
+          "content": "If the client still hasn’t committed by 3, would you proactively switch to 7:35?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. If the agenda is still uncertain by 3, I’d switch to the 7:35 p.m. Friday nonstop before end of day. It is much cheaper than adding a hotel night and avoids betting the whole return on a tight wrap-up. Take any standard seat available and recheck later rather than paying extra just for a window.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v04_user_000_s0011",
+      "session_index": 11,
+      "user_id": "tm_pd_v04_user_000"
+    }
+  ],
+  "updated_continuity_summary": "DC family spring break remains set around the convenience-focused ATL-DCA nonstop and Residence Inn Capitol/Navy Yard plan, with only late-arrival hold, breakfast hours, and Tuesday bag storage still worth confirming. Raleigh/Cary rollout is now in active pre-trip adjustment: flight approval was submitted for Delta Main Cabin ATL-RDU Monday May 5, 5:25-6:45 p.m., returning RDU-ATL Friday May 9, originally 4:50-6:12 p.m.; outbound standard window should be selected, while return seating may need to be rechecked later without paying for an upgrade. Hotel plan is DoubleTree by Hilton Raleigh-Cary for four nights, Monday through Thursday, chosen for proximity to 3001 Weston Parkway, on-site dinner, and solid customer rating; Homewood Suites Raleigh-Cary I-40 is the backup if the DoubleTree rate or terms worsen. Because the client added late agenda items, Maya should wait for the final agenda by 3 p.m.; if Friday timing is still uncertain or runs after about 1:00-1:30 p.m., switch to the later 7:35 p.m. Friday nonstop. Adding Friday night and returning Saturday is a backup only if the client confirms late Friday obligations. DoubleTree should be asked for Friday late checkout, luggage storage, and lobby workspace, and breakfast inclusion should be verified rather than assumed.",
+  "verification": {
+    "10": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "customer rating around 4 or better",
+          "habit_id": "tm_pd_v04_user_000_h04",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.95,
+          "evidence_quote": "I don’t want to be hunting for dinner after 7.",
+          "habit_id": "tm_pd_v04_user_000_h06",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User directly requested a roughly 4-or-better customer rating and convenient dinner access without a rental car. Breakfast was not labeled because the user did not specify free or included breakfast."
+    },
+    "11": {
+      "habit_signals": [
+        {
+          "confidence": 0.92,
+          "evidence_quote": "Now Friday wrap-up may slide too, and my 4:50 p.m. RDU-ATL return is making me nervous.",
+          "habit_id": "tm_pd_v04_user_000_h02",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User established a current-trip scheduling boundary around the afternoon return, but did not explicitly choose or endorse the 7:35 switch in user words. No other candidate habit was directly established."
+    },
+    "9": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Window if possible, but no paid upgrade.",
+          "habit_id": "tm_pd_v04_user_000_h01",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.5",
+        "reasoning_effort": "xhigh"
+      },
+      "verifier_notes": "User directly requested a window seat if possible and set a no-paid-upgrade constraint. Delta, nonstop, layover, and return-time preferences were not directly established by user wording in this session."
+    }
+  }
+}

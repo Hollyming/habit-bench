@@ -1,0 +1,528 @@
+{
+  "cache_fingerprint": "408587681cf0ba0826371eb96c8be28f0beee8333b0ddf1c666e83c3b1531469",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "American has a real generic case on price and outbound buffer, while United has a small return-time edge. The query alone does not identify a unique best option; the hidden carrier weighting resolves the balanced tradeoff.",
+      "gold_action": "Enter the United ORD-CLT nonstop as the working airfare plan.",
+      "gold_choice_id": "D",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0034",
+        "tm_pd_v04_user_002_s0063",
+        "tm_pd_v04_user_002_s0102"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v04_user_002_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_002_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies when Marisol is choosing commercial flights from Chicago for grant site visits, board meetings, conferences, or solo domestic trips where no stronger current carrier instruction overrides the choice.",
+        "scope_key": "domestic_work_and_solo_flights_from_chicago",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "American is $14 cheaper and gives 15 more minutes before the Friday return, so it is tempting. But the timing difference is minor, and United is her usual working choice when the fare is close and the schedule remains workable.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Use the United nonstop because the fare and timings are comparable to the American option, it gets her home well before dinner, and the small premium is consistent with her repeated pattern of using United when close while not chasing modest savings that worsen timing.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The American and United choices are both suitable ORD nonstops with similar timing and ordinary economy products. American is modestly cheaper and arrives a little earlier outbound; United returns a little earlier and remains very close overall. In this no-contract close case, Marisol's durable soft United preference supplies the deciding weight.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_002_h00_p00",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Unstated ORD-vs-MDW preference",
+          "Unstated carrier/fare-product preference",
+          "No stated cost-versus-time policy"
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "C"
+        ],
+        "rationale": "A and C are both nonstop itineraries that satisfy the stated Tuesday/Friday retreat timing. C is cheaper, while A costs $28 more but returns more than two hours earlier and uses a different Chicago airport/carrier. The query gives no rule for valuing fare savings versus return-day convenience or origin airport.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A query-only planner could prefer United for the lower fare, earlier arrival, and earlier Chicago return, or American for the safer post-session margin. The longitudinal boundary pattern is needed to know that this timing improvement can override the soft United weight.",
+      "gold_action": "Recommend the American ORD-MSY nonstop with the stronger post-session return margin.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0025",
+        "tm_pd_v04_user_002_s0070",
+        "tm_pd_v04_user_002_s0094"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v04_user_002_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_002_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies when Marisol is choosing commercial flights from Chicago for grant site visits, board meetings, conferences, or solo domestic trips where no stronger current carrier instruction overrides the choice.",
+        "scope_key": "domestic_work_and_solo_flights_from_chicago",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "United is cheaper and preferred when comparable, and its outbound buffer is good. It loses because a 2:05 p.m. departure after a 12:15 p.m. closeout is the kind of rushed return she repeatedly tries to avoid.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Choose the American nonstop because the 3:05 p.m. return gives a safer buffer after a 12:15 close plus hallway closeout while still getting her home before dinner. The United 2:05 return is too tight for her usual post-meeting margin, and she has said timing matters more than airline.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "United is not an exclusive carrier rule. Here the United nonstop is cheaper and has a slightly stronger arrival-day buffer, but its 2:05 p.m. return is tight after a 12:15 close plus possible hallway wrap-up. The American nonstop stays in the desired fare class, remains within a modest premium, and gives a cleaner end-of-conference margin, consistent with Marisol's history of using better-timed non-United options in trip-specific exceptions.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_002_h00_p01",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Unstated ORD-vs-MDW preference",
+          "Unstated Southwest/Wanna Get Away Plus versus main-cabin preference",
+          "No stated rule for trading lower fare and larger buffers against a shorter travel day"
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "B",
+          "C"
+        ],
+        "rationale": "B and C are both credible nonstops under the stated panel and closeout timing. B is cheaper and provides larger buffers, while C has a more efficient schedule with a much earlier return and still appears to leave workable meeting buffers. Choosing between fare/buffer and schedule efficiency is not specified.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "Delta and United have nearly identical route quality, fare, and timing, with small offsetting advantages. A planner without Marisol's longitudinal preference would have no reliable basis for selecting United over the near-identical Delta option.",
+      "gold_action": "Buy the United ORD-DTW nonstop for the solo Detroit trip.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0055",
+        "tm_pd_v04_user_002_s0066",
+        "tm_pd_v04_user_002_s0102"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v04_user_002_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_002_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies when Marisol is choosing commercial flights from Chicago for grant site visits, board meetings, conferences, or solo domestic trips where no stronger current carrier instruction overrides the choice.",
+        "scope_key": "domestic_work_and_solo_flights_from_chicago",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "Delta is $3 cheaper and has very slightly more destination time. But the differences are marginal, and the United itinerary better fits her close-comparable United preference without a meaningful timing penalty.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Pick the United nonstop as the default: the price is essentially tied with Delta, the schedule is a normal Friday-evening departure with a midday Monday return, and United is her usual choice when timing and fare are close.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The soft United preference applies not only to work travel but also to Marisol's solo domestic commercial flights from Chicago when no stronger current instruction overrides it. Delta is a very close ORD nonstop and slightly cheaper, while United has a somewhat cleaner after-work Friday departure and remains essentially comparable. The hidden cross-context carrier weighting gives United the edge.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_002_h00_p02",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Unstated Friday work-end/airport-access constraint",
+          "Unstated ORD-vs-MDW preference",
+          "Unstated airline preference"
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rationale": "A, B, and C all fit the broad leisure request better than D: each is nonstop with a Friday after-work-ish departure and a Monday midday-ish return. The exact pick depends on unstated work-end time, airport convenience, and how to value a few dollars or minutes of timing difference.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "United nonstop versus Delta nonstop is a genuine tradeoff: fare and earlier arrival back in Chicago versus post-close margin. A query-only planner could reasonably value either side; Marisol's history identifies when timing is strong enough to override the carrier weight.",
+      "gold_action": "Choose the Delta ORD-SLC nonstop with the midafternoon return.",
+      "gold_choice_id": "D",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0025",
+        "tm_pd_v04_user_002_s0070",
+        "tm_pd_v04_user_002_s0082",
+        "tm_pd_v04_user_002_s0094"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v04_user_002_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_002_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies when Marisol is choosing commercial flights from Chicago for grant site visits, board meetings, conferences, or solo domestic trips where no stronger current carrier instruction overrides the choice.",
+        "scope_key": "domestic_work_and_solo_flights_from_chicago",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "United is cheaper, preferred, nonstop, and gets her home earlier. It loses because the 2:05 p.m. return is too tight after a 12:15 close if the organizer lunch is to remain possible.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Choose the Delta nonstop because the 3:00 p.m. return gives a usable buffer after the 12:15 close and leaves room for the brief organizer lunch. Her history supports not forcing United when another nonstop has materially better event-end timing.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "This is a boundary case for the soft United preference. The United nonstop is cheaper and gets back earlier, but its 2:05 p.m. return leaves little room for the organizer lunch after a 12:15 close. The United connection restores some timing margin but gives up nonstop simplicity and returns later. Delta is the cleaner nonstop for the primary end-of-trip timing, so history supports using the better non-United alternative rather than forcing United.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_002_h00_p03",
+      "probe_type": "boundary",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Conditional lunch cue leaves objective ambiguous",
+          "Unstated willingness to pay for nonstop service",
+          "Unstated carrier preference",
+          "No stated cost-versus-time policy"
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The organizer lunch is conditional rather than mandatory, and no nonstop-versus-price rule is stated. A is the cheapest nonstop but likely skips the lunch, B and C are cheaper one-stop options with more lunch room, and D is the nonstop that preserves lunch at a higher fare. The query does not specify how much to pay for lunch, nonstop routing, or shorter travel time.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_002"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "American and United are close one-stop itineraries with offsetting small advantages in fare, connection pattern, and return arrival. Without Marisol's longitudinal carrier preference, the current trip details do not uniquely select one over the other.",
+      "gold_action": "Ticket the United via Denver itinerary to Boise.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_002_s0064",
+        "tm_pd_v04_user_002_s0088",
+        "tm_pd_v04_user_002_s0110"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v04_user_002_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_002_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies when Marisol is choosing commercial flights from Chicago for grant site visits, board meetings, conferences, or solo domestic trips where no stronger current carrier instruction overrides the choice.",
+        "scope_key": "domestic_work_and_solo_flights_from_chicago",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "American is $14 cheaper with slightly longer connections and a return 10 minutes later, so it is very close. It loses because the schedule is otherwise comparable, it gets her back 30 minutes later, and the small fare gap is not enough to override her United preference.",
+        "difficulty": "hard",
+        "model": "gpt-5.5",
+        "rationale": "Ticket the United via Denver itinerary. With no nonstop available, it has acceptable connection times, a workable arrival before the 4:00 p.m. prep meeting, and a return after the noon debrief that is not as tight as Delta’s. The small premium over American is within her usual United-if-comparable pattern.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The United preference transfers to connecting domestic markets when no nonstop is available and United is otherwise comparable. American is slightly cheaper and leaves ten more minutes before the return departure, while United arrives a few minutes earlier outbound, gets back to Chicago earlier, and has similar connection buffers. The fare and timing differences are not material enough to override the soft United weighting.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_002_h00_p04",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Unstated buffer tolerance for the 4:00 p.m. prep meeting",
+          "Unstated MDW/Southwest versus ORD/legacy-carrier preference",
+          "Unstated cost-versus-routing/time policy"
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "C",
+          "D"
+        ],
+        "rationale": "B is too tight for a normal departure after a noon debrief, but A, C, and D remain defensible. A has slightly better post-debrief margin and a lower fare than C, C has a shorter/more direct Denver routing and earlier home arrival for $14 more, and D is cheapest with a later return but a tighter arrival-day buffer. The query does not state how to trade cost, buffer, routing, and airport/fare-product differences.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_002"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "American ORD-CLT nonstop, 9:00-11:55 a.m. outbound and 3:05-4:20 p.m. return, main cabin, $334."
+        },
+        {
+          "choice_id": "B",
+          "text": "Delta via ATL, 9:35 a.m.-1:35 p.m. outbound and 3:45-6:55 p.m. return, main cabin, $312."
+        },
+        {
+          "choice_id": "C",
+          "text": "Southwest MDW-CLT nonstop, 8:05-11:00 a.m. outbound and 5:15-6:30 p.m. return, Wanna Get Away Plus, $306."
+        },
+        {
+          "choice_id": "D",
+          "text": "United ORD-CLT nonstop, 9:25 a.m.-12:18 p.m. outbound and 2:50-4:05 p.m. return, standard economy, $348."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "conflict_resolution",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_002_h00_p00",
+      "query": "For a Charlotte board retreat, Marisol has a downtown hotel hold and no rental car planned. She will depart Chicago Tuesday, return Friday after a midday close, and travel economy/main cabin with a carry-on. The board office has not specified a carrier. Which airfare should be entered as the working plan?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_002",
+      "visible_history_scope": {
+        "max_session_index": 111
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "United ORD-MSY nonstop, 9:55 a.m.-12:25 p.m. outbound and 2:05-4:40 p.m. return, regular economy, $414."
+        },
+        {
+          "choice_id": "B",
+          "text": "Southwest MDW-MSY nonstop, 8:25-10:55 a.m. outbound and 4:45-7:15 p.m. return, Wanna Get Away Plus, $399."
+        },
+        {
+          "choice_id": "C",
+          "text": "American ORD-MSY nonstop, 10:15 a.m.-12:45 p.m. outbound and 3:05-5:42 p.m. return, main cabin, $438."
+        },
+        {
+          "choice_id": "D",
+          "text": "Delta via ATL, 8:50 a.m.-1:10 p.m. outbound and 3:25-6:55 p.m. return, main cabin, $386."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "exception",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_002_h00_p01",
+      "query": "Marisol is choosing flights for a New Orleans philanthropy conference. She will travel from Chicago with only a carry-on, stay near the meeting hotel, and needs a workable buffer before a 3:30 p.m. arrival-day panel. The final session is scheduled to end around 12:15 p.m., with a short hallway closeout possible before airport departure. Regular economy or main cabin is the worksheet product. What should the planner recommend?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_002",
+      "visible_history_scope": {
+        "max_session_index": 111
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Delta ORD-DTW nonstop, Friday 4:55-7:10 p.m. and Monday 12:50-1:10 p.m., main cabin, $216."
+        },
+        {
+          "choice_id": "B",
+          "text": "United ORD-DTW nonstop, Friday 5:20-7:35 p.m. and Monday 12:35-12:55 p.m., standard economy, $219."
+        },
+        {
+          "choice_id": "C",
+          "text": "Southwest MDW-DTW nonstop, Friday 5:50-8:05 p.m. and Monday 1:25-1:45 p.m., Wanna Get Away Plus, $224."
+        },
+        {
+          "choice_id": "D",
+          "text": "American ORD-DTW nonstop, Friday 7:15-9:30 p.m. and Monday 10:55-11:15 a.m., main cabin, $207."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "cross_context_transfer",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_002_h00_p02",
+      "query": "Marisol is booking a solo long-weekend museum trip from Chicago to Detroit. She can use either Chicago airport, will travel with only a carry-on, and is looking for a normal Friday-after-work departure with a midday Monday return. Which flight is the best default pick?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_002",
+      "visible_history_scope": {
+        "max_session_index": 111
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "United ORD-SLC nonstop, 8:20-10:55 a.m. outbound and 2:05-6:20 p.m. return, standard economy, $398."
+        },
+        {
+          "choice_id": "B",
+          "text": "American via DFW, 7:45 a.m.-12:45 p.m. outbound and 2:55-8:30 p.m. return, main cabin, $356."
+        },
+        {
+          "choice_id": "C",
+          "text": "United via DEN, 9:10 a.m.-1:10 p.m. outbound and 3:15-8:05 p.m. return, standard economy, $374."
+        },
+        {
+          "choice_id": "D",
+          "text": "Delta ORD-SLC nonstop, 8:45-11:20 a.m. outbound and 3:00-7:15 p.m. return, main cabin, $432."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "boundary",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_002_h00_p03",
+      "query": "Marisol is picking a Salt Lake City retreat itinerary from Chicago. She will travel with a carry-on, stay downtown, and the Thursday program has a formal 12:15 p.m. close with a brief organizer lunch penciled in if the flight plan leaves enough room. Which itinerary should she choose?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_002",
+      "visible_history_scope": {
+        "max_session_index": 111
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "American via Dallas, ORD-DFW-BOI 8:05 a.m.-12:40 p.m. outbound and BOI-DFW-ORD 2:05-7:35 p.m. return, 70- to 85-minute connections, main cabin, $452."
+        },
+        {
+          "choice_id": "B",
+          "text": "Delta via Salt Lake City, ORD-SLC-BOI 7:20 a.m.-11:55 a.m. outbound and BOI-SLC-ORD 1:05-6:50 p.m. return, 55- to 70-minute connections, main cabin, $431."
+        },
+        {
+          "choice_id": "C",
+          "text": "United via Denver, ORD-DEN-BOI 8:25 a.m.-12:35 p.m. outbound and BOI-DEN-ORD 1:55-7:05 p.m. return, 65- to 80-minute connections, standard economy, $466."
+        },
+        {
+          "choice_id": "D",
+          "text": "Southwest via Denver from MDW, 9:00 a.m.-2:05 p.m. outbound and 3:20-9:40 p.m. return, Wanna Get Away Plus, $408."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "cross_context_transfer",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_002_h00_p04",
+      "query": "Marisol needs a Chicago-Boise ticket for a cultural-coalition site visit. No nonstop option is available, one connection is acceptable, Tuesday prep meeting is at 4:00 p.m., and Thursday debrief is scheduled for noon. She will travel regular economy with carry-on only. Which itinerary should be ticketed?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_002",
+      "visible_history_scope": {
+        "max_session_index": 111
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 5,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 1,
+      "gold_disagreement_or_unresolved": 1
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 5,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "boundary": 1,
+      "conflict_resolution": 1,
+      "cross_context_transfer": 2,
+      "exception": 1
+    }
+  }
+}

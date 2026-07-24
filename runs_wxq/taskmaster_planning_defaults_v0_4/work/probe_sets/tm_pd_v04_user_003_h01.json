@@ -1,0 +1,418 @@
+{
+  "cache_fingerprint": "4851449d95acb99320be016e91f1b3c4c37b012f036c2db5f4e5b65388f20151",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "Choice A is a strong generic contender because it is nonstop, arrives earlier, and costs only slightly more. Selecting B requires first recognizing that this is in the applicable departure-time scope, then letting the user's history break an otherwise reasonable nonstop-versus-timing tradeoff.",
+      "gold_action": "List the 1:15 p.m. one-stop as the primary option.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0002",
+        "tm_pd_v04_user_003_s0022",
+        "tm_pd_v04_user_003_s0039"
+      ],
+      "habit_family": "flight_departure_arrival_timing",
+      "habit_id": "tm_pd_v04_user_003_h01",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_departure_time_of_day_preference",
+        "boundary_condition": "Applies only to flight departure time-of-day. Do not infer it for arrival times, dates, routes, every leg automatically, or earliest-afternoon departures as a recurring rule.",
+        "condition": "When selecting or comparing flight departure times.",
+        "default_action": "Look first for departure options in the afternoon; follow any current explicit request for another time window or exact time.",
+        "exception_condition": "If acceptable afternoon departures are unavailable or conflict with other stated constraints, ask before broadening to nearby time windows.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_003_h01",
+        "name": "prefers_afternoon_departures",
+        "preference_value": "Prefers flight departures in the afternoon when no different departure-time constraint is specified.",
+        "scope_condition": "Applies when choosing flight departure times for trips without a fixed competing time constraint, especially after morning school visits, campus meetings, or office handoffs.",
+        "scope_key": "afternoon_departures_after_morning_work_blocks",
+        "source_bundle_id": "tm_v04_e2e_bundle_ff9a7f3c433c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ff9a7f3c433c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "C is tempting because it is cheaper and has an acceptable 85-minute connection, but it pushes arrival close to 9 p.m.; her history treats later/finance-driven options more as backups when a close early-afternoon plan is available.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Tessa repeatedly favors after-lunch/afternoon travel after a morning handoff, avoids unnecessary morning departures, and accepts a comfortable one-stop around 75-80 minutes. B matches that pattern: 1:15 p.m. departure, 78-minute connection, and early-evening arrival. A leaves before lunch without a same-day need; C and D trade too much arrival comfort for savings.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The decision is specifically about a flight departure time after a morning work block, with no current instruction to use a different time window. The cited Inland Northwest, Puget Sound, and North Texas episodes show repeated selection of early or mid-afternoon departures under comparable open constraints. The later 3:55 p.m. option also fits part of the pattern but gives a worse arrival; the 11:10 a.m. nonstop has generic appeal but misses the user's longitudinal timing default. Documented morning exceptions were tied to fixed trip needs, not a permanent revision.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_003_h01_p00",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Implicit unstated ranking preference needed: fare versus nonstop/arrival-time convenience."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All four options appear feasible after the 9:30 a.m. handoff, and the one-stop choices have connections over an hour. The query does not state how to trade fare against nonstop service, later departure, or earlier arrival, so more than one ordering is defensible.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A planner without memory could favor A for the nonstop and earlier arrival, or D for price. The correct choice requires distinguishing Tessa's recurring departure-time pattern from generic arrival-time or fare optimization.",
+      "gold_action": "Propose the 1:05 p.m. departure first.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0022",
+        "tm_pd_v04_user_003_s0074"
+      ],
+      "habit_family": "flight_departure_arrival_timing",
+      "habit_id": "tm_pd_v04_user_003_h01",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_departure_time_of_day_preference",
+        "boundary_condition": "Applies only to flight departure time-of-day. Do not infer it for arrival times, dates, routes, every leg automatically, or earliest-afternoon departures as a recurring rule.",
+        "condition": "When selecting or comparing flight departure times.",
+        "default_action": "Look first for departure options in the afternoon; follow any current explicit request for another time window or exact time.",
+        "exception_condition": "If acceptable afternoon departures are unavailable or conflict with other stated constraints, ask before broadening to nearby time windows.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_003_h01",
+        "name": "prefers_afternoon_departures",
+        "preference_value": "Prefers flight departures in the afternoon when no different departure-time constraint is specified.",
+        "scope_condition": "Applies when choosing flight departure times for trips without a fixed competing time constraint, especially after morning school visits, campus meetings, or office handoffs.",
+        "scope_key": "afternoon_departures_after_morning_work_blocks",
+        "source_bundle_id": "tm_v04_e2e_bundle_ff9a7f3c433c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ff9a7f3c433c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "D is tempting because it is the cheapest reasonable itinerary and has a 90-minute connection, but it leaves before lunch; the small savings do not outweigh her repeated after-lunch preference.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Even without a stated Salt Lake departure window, her default pattern is not to leave in the morning when there is no need, and she is comfortable with an early-afternoon one-stop with an 80-minute connection. B avoids both the morning departure and the late-arrival-note scenario while arriving at a reasonable hour.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The stored signal is about departure time, not arrival time. Choice A is a near miss because it arrives in the afternoon but departs in the morning; the cited Upper Midwest, Puget Sound, and Pacific Northwest episodes support starting with an afternoon departure when no current departure-time constraint overrides it.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_003_h01_p01",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The late-arrival-note language and the statement that no Salt Lake departure window is set may cue a late-departure preference, but they only make C feasible, not uniquely best."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "C",
+          "D"
+        ],
+        "rationale": "The stated constraints make multiple priorities reasonable. A gives the best daytime nonstop arrival, C is the cheapest nonstop and is feasible with a late-arrival note, and D is the lowest fare with a not-too-late arrival. The query does not state how to trade off fare, nonstop routing, departure time, and late arrival, so selecting one would infer Tessa's preferences.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "Choice A is a strong non-memory answer because it leaves soon after breakfast, has a comfortable connection, and arrives earlier. The gold depends on remembering that Tessa tends to start with afternoon departures rather than simply the earliest feasible post-event flight.",
+      "gold_action": "Put the 2:20 p.m. return first.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0007",
+        "tm_pd_v04_user_003_s0022",
+        "tm_pd_v04_user_003_s0048"
+      ],
+      "habit_family": "flight_departure_arrival_timing",
+      "habit_id": "tm_pd_v04_user_003_h01",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_departure_time_of_day_preference",
+        "boundary_condition": "Applies only to flight departure time-of-day. Do not infer it for arrival times, dates, routes, every leg automatically, or earliest-afternoon departures as a recurring rule.",
+        "condition": "When selecting or comparing flight departure times.",
+        "default_action": "Look first for departure options in the afternoon; follow any current explicit request for another time window or exact time.",
+        "exception_condition": "If acceptable afternoon departures are unavailable or conflict with other stated constraints, ask before broadening to nearby time windows.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_003_h01",
+        "name": "prefers_afternoon_departures",
+        "preference_value": "Prefers flight departures in the afternoon when no different departure-time constraint is specified.",
+        "scope_condition": "Applies when choosing flight departure times for trips without a fixed competing time constraint, especially after morning school visits, campus meetings, or office handoffs.",
+        "scope_key": "afternoon_departures_after_morning_work_blocks",
+        "source_bundle_id": "tm_v04_e2e_bundle_ff9a7f3c433c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ff9a7f3c433c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "A is tempting because it gets her home earlier and the connection itself is long enough, but the 11:25 departure compresses the post-breakfast airport/rental-car buffer and is not the afternoon-return pattern she usually asks for.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "After a morning event, Tessa’s history favors an afternoon return with a comfortable airport buffer rather than a sprint. B gives ample time after a 9:30 a.m. breakfast, has a 76-minute connection consistent with her acceptable-connection pattern, and avoids waiting until evening for the nonstop.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "This is a direct use of the stored policy after a morning work block with no competing evening constraint. The cited sessions show Tessa repeatedly favoring afternoon or midafternoon departures in similar return-planning situations, so B should lead even though A and D are viable generic alternatives.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_003_h01_p02",
+      "probe_type": "direct_use",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The note that there is no fixed Salt Lake evening commitment may cue tolerance for a later nonstop, but it does not make C uniquely best."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rationale": "A, B, and C each have defensible stated advantages: A is the earlier reasonable post-breakfast return, B is cheaper and gives more buffer after the campus breakfast, and C is nonstop with no fixed evening commitment in Salt Lake. D is too tight to assume after a 9:30 a.m. campus breakfast. The query does not specify whether to prioritize fare, buffer, earlier arrival, or nonstop routing.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "Choice A has strong generic appeal because it is cheaper, nonstop, and arrives much earlier. The judge must resolve the optional-lunch tradeoff using the user's longitudinal departure-time behavior while also rejecting the tight-connection near miss.",
+      "gold_action": "Recommend the 3:50 p.m. nonstop.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_003_s0010",
+        "tm_pd_v04_user_003_s0026",
+        "tm_pd_v04_user_003_s0096"
+      ],
+      "habit_family": "flight_departure_arrival_timing",
+      "habit_id": "tm_pd_v04_user_003_h01",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_departure_time_of_day_preference",
+        "boundary_condition": "Applies only to flight departure time-of-day. Do not infer it for arrival times, dates, routes, every leg automatically, or earliest-afternoon departures as a recurring rule.",
+        "condition": "When selecting or comparing flight departure times.",
+        "default_action": "Look first for departure options in the afternoon; follow any current explicit request for another time window or exact time.",
+        "exception_condition": "If acceptable afternoon departures are unavailable or conflict with other stated constraints, ask before broadening to nearby time windows.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v04_user_003_h01",
+        "name": "prefers_afternoon_departures",
+        "preference_value": "Prefers flight departures in the afternoon when no different departure-time constraint is specified.",
+        "scope_condition": "Applies when choosing flight departure times for trips without a fixed competing time constraint, especially after morning school visits, campus meetings, or office handoffs.",
+        "scope_key": "afternoon_departures_after_morning_work_blocks",
+        "source_bundle_id": "tm_v04_e2e_bundle_ff9a7f3c433c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ff9a7f3c433c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "A is tempting because it is cheaper and nonstop, but it requires leaving the donor lunch early even though the destination event is only flexible dinner; that is not clearly better under her history.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "With only a flexible dinner in Tucson, there is no strong reason to skip the Salt Lake donor lunch. C preserves the noon commitment, is nonstop, avoids rushed/sub-hour connections, and arrives before late night. B violates the short-connection boundary, while D is cheaper but late and connecting.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The current trip has a morning local commitment but no fixed need to arrive in Tucson early. The user's history supports selecting a later departure after such blocks when feasible. Choice B follows the time pattern but violates the connection-comfort constraint; choice A is cheaper and nonstop but requires cutting the lunch short. Prior early departures were tied to fixed meetings or agenda changes, not a general preference shift.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_003_h01_p03",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Explicit private-history cue: \"best fits her history\".",
+          "Unstated preference needed between preserving the lunch, paying more for nonstop, and accepting a late cheaper one-stop."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "C",
+          "D"
+        ],
+        "rationale": "B conflicts with the stated desire to avoid connections under an hour. Among the remaining options, A is a cheaper nonstop but disrupts the donor lunch, C preserves the lunch and is nonstop but costs more, and D is cheapest with an acceptable connection but arrives very late. The query explicitly asks what fits her history, and the stated facts do not resolve these tradeoffs.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_003"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "11:10 a.m. nonstop, arriving 3:10 p.m., $326."
+        },
+        {
+          "choice_id": "B",
+          "text": "1:15 p.m. one-stop with a 78-minute connection, arriving 6:10 p.m., $319."
+        },
+        {
+          "choice_id": "C",
+          "text": "3:55 p.m. one-stop with an 85-minute connection, arriving 8:50 p.m., $289."
+        },
+        {
+          "choice_id": "D",
+          "text": "6:20 p.m. nonstop, arriving 10:25 p.m., $297."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "conflict_resolution",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_003_h01_p00",
+      "query": "Tessa is building a first airfare shortlist for a new April recruiting trip from Salt Lake City to Nashville. She has an office handoff ending at 9:30 a.m., no same-day event in Nashville, and will accept one connection if it is comfortably over an hour. All fares include comparable seat selection. Which option should be listed first?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_003",
+      "visible_history_scope": {
+        "max_session_index": 141
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "8:40 a.m. nonstop, arriving 2:35 p.m., $368."
+        },
+        {
+          "choice_id": "B",
+          "text": "1:05 p.m. one-stop with an 80-minute connection, arriving 6:35 p.m., $361."
+        },
+        {
+          "choice_id": "C",
+          "text": "6:10 p.m. nonstop, arriving 11:55 p.m., $354; add a late-arrival note."
+        },
+        {
+          "choice_id": "D",
+          "text": "11:20 a.m. one-stop with a 90-minute connection, arriving 5:50 p.m., $349."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "evidence_disambiguation",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_003_h01_p01",
+      "query": "Tessa is choosing an outbound for a new Charlotte workshop. All four options fit the next-morning start, are refundable, and have seat selection. Her hotel can accept a late-arrival note if needed, and the current request does not set a Salt Lake departure window. Which flight should be proposed first?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_003",
+      "visible_history_scope": {
+        "max_session_index": 141
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "11:25 a.m. one-stop with an 82-minute connection, arriving 3:55 p.m., $309."
+        },
+        {
+          "choice_id": "B",
+          "text": "2:20 p.m. one-stop with a 76-minute connection, arriving 6:50 p.m., $301."
+        },
+        {
+          "choice_id": "C",
+          "text": "6:40 p.m. nonstop, arriving 8:55 p.m., $318."
+        },
+        {
+          "choice_id": "D",
+          "text": "10:50 a.m. nonstop, arriving 1:15 p.m., $326."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "direct_use",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_003_h01_p02",
+      "query": "A new Pittsburgh alumni workshop ends with a campus breakfast expected to wrap up by 9:30 a.m. The return can be same day, Tessa has no fixed Salt Lake commitment that evening, and all listed fares are refundable Main Cabin. Which return should be put first on the approval form?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_003",
+      "visible_history_scope": {
+        "max_session_index": 141
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "11:10 a.m. nonstop, arriving 12:45 p.m., $267; she would leave the donor lunch early."
+        },
+        {
+          "choice_id": "B",
+          "text": "1:35 p.m. one-stop with a 44-minute connection, arriving 5:40 p.m., $253."
+        },
+        {
+          "choice_id": "C",
+          "text": "3:50 p.m. nonstop, arriving 5:25 p.m., $291."
+        },
+        {
+          "choice_id": "D",
+          "text": "6:25 p.m. one-stop with an 83-minute connection, arriving 10:15 p.m., $229."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "conflict_resolution",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_003_h01_p03",
+      "query": "Tessa is pricing flights for a new Tucson visit. A donor lunch in Salt Lake is scheduled until noon but can be skipped if the flight plan is clearly better; Tucson has only a flexible dinner that night. She wants to avoid rushed transfers and connections under an hour. Which outbound recommendation best fits her history?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_003",
+      "visible_history_scope": {
+        "max_session_index": 141
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 2,
+      "direct_use": 1,
+      "evidence_disambiguation": 1
+    }
+  }
+}

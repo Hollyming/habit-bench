@@ -1,0 +1,108 @@
+{
+  "boundary_condition": "Apply only within the set of flights that meet stated transaction constraints such as route, date, nonstop requirement, or schedule window; do not override those constraints just to find a lower fare.",
+  "bundle_id": "tm_v04_bundle_e34f3f137618",
+  "condition": "When comparing flight options that already satisfy the current trip's explicit requirements, the controlled synthetic user defaults to cost as the deciding factor.",
+  "confidence": 0.9,
+  "decision": "accept",
+  "default_action": "Select or ask for the cheapest acceptable flight option, and use fare limits qualitatively rather than paying more for convenience by default.",
+  "exception_condition": "If the user explicitly prioritizes another factor, such as a premium cabin, a specific time, shortest duration, or convenience over price, follow that stated priority instead of choosing the cheapest option.",
+  "family": "flight_price_tradeoff",
+  "grounding_contract": {
+    "minimum_distinct_source_instructions": 3,
+    "minimum_independent_source_conversations": 3,
+    "not_claimed_as_original_speaker_longitudinal_habit": true,
+    "synthetic_user_habit": true
+  },
+  "habit_instance_id": "tm_v04_habit_e34f3f137618",
+  "induced_at": "2026-07-15T12:31:24.402976+00:00",
+  "induced_by": "gpt-5.5",
+  "name": "lowest-fare-first flight choice",
+  "preference_value": "budget_sensitive",
+  "rationale": "Across five independent flight task instructions, users repeatedly asked for the cheapest flight, cheapest nonstop, cheapest time, or a price cap. These examples support a reusable synthetic default of being budget-sensitive for flights, without converting the one-off $2000 quote into a universal numeric ceiling.",
+  "seed_value": "budget_sensitive",
+  "source_dataset": "google-research-datasets/Taskmaster-2",
+  "source_evidence": [
+    {
+      "contribution": "The user asks, \"Which one's cheapest?\", directly supporting lowest-price comparison among flight options.",
+      "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+      "turn_index": 52
+    },
+    {
+      "contribution": "The user says, \"Tell me the cheapest nonstop,\" showing price minimization within a stated flight constraint.",
+      "conversation_id": "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+      "turn_index": 38
+    },
+    {
+      "contribution": "The user says, \"No more than $2000, please,\" supporting budget sensitivity as a qualitative constraint without making that amount a general habit.",
+      "conversation_id": "dlg-f9252639-3860-4f19-b4a9-08b7530735cf",
+      "turn_index": 16
+    },
+    {
+      "contribution": "The user says, \"Just the cheapest flight,\" supporting a default to the lowest acceptable fare.",
+      "conversation_id": "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+      "turn_index": 5
+    },
+    {
+      "contribution": "The user says, \"Go for the cheapest time,\" supporting choosing the lower-cost timing option when schedule is flexible.",
+      "conversation_id": "dlg-e11de364-0a20-46dc-9ee7-fcf9aa4ca5b8",
+      "turn_index": 35
+    }
+  ],
+  "source_examples": [
+    {
+      "annotated_segment": "cheapest",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+      "habitual_language": false,
+      "instruction_id": "flight-8",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 52,
+      "user_utterance": "Which one's cheapest?"
+    },
+    {
+      "annotated_segment": "the cheapest",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+      "habitual_language": false,
+      "instruction_id": "flight-4",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 38,
+      "user_utterance": "Okay. Tell me the cheapest nonstop."
+    },
+    {
+      "annotated_segment": "No more than $2000",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-f9252639-3860-4f19-b4a9-08b7530735cf",
+      "habitual_language": false,
+      "instruction_id": "flight-12",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 16,
+      "user_utterance": "No more than $2000, please."
+    },
+    {
+      "annotated_segment": "the cheapest flight",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+      "habitual_language": false,
+      "instruction_id": "flight-14",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 5,
+      "user_utterance": "Ah, no, Just the cheapest flight."
+    },
+    {
+      "annotated_segment": "the cheapest",
+      "annotation": "flight_search.price_range",
+      "conversation_id": "dlg-e11de364-0a20-46dc-9ee7-fcf9aa4ca5b8",
+      "habitual_language": false,
+      "instruction_id": "flight-3",
+      "preference_language": true,
+      "source_domain": "flights",
+      "turn_index": 35,
+      "user_utterance": "Go for the cheapest time. How much are the times?"
+    }
+  ]
+}

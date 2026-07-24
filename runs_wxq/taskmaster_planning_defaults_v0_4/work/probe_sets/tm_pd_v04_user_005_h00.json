@@ -1,0 +1,540 @@
+{
+  "cache_fingerprint": "9fe48117813c64411f3a0f2d3c30d2f53ced5a1238410f69665d8b033f51a711",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "Without the longitudinal preference, American is defensible because it is cheaper and arrives a few minutes earlier. The required memory step is to recognize the flight as in scope and use the soft United weighting only to break a close tie, not to eliminate the backup.",
+      "gold_action": "Make the United SFO-DEN-AUS itinerary the lead option while retaining American as a realistic backup.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0004",
+        "tm_pd_v04_user_005_s0005",
+        "tm_pd_v04_user_005_s0030",
+        "tm_pd_v04_user_005_s0059"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v04_user_005_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_005_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies to Jonah's self-booked commercial flights from Bay Area airports for client visits, distributor meetings, conferences, and comparable personal trips.",
+        "scope_key": "soft_united_preferred_carrier_for_bay_area_self_booked_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "American is slightly cheaper and five minutes earlier, but the savings are small and it gives up connection buffer while United is still close and clean.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "Jonah has a mild United preference when it is close, but only if the routing is clean and not worse. Here United is only $24 more than American, arrives essentially the same time, and has the safer 84-minute connection. The Oakland/Southwest savings are not large enough to be worth leading with.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "This is Jonah's self-booked commercial flight from a Bay Area airport for a client trip, with no current-trip carrier instruction overriding his durable pattern. His history supports giving United positive ranking weight when options are otherwise close, without excluding alternatives. Here United and American are comparable on timing, routing, fare, and cabin; the small American fare and arrival-time edge is not enough to displace United as lead.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h00_p00",
+      "probe_type": "direct_use",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The query says no hotel or rental decision depends on the flight, which weakens any need to prioritize the earliest arrival.",
+          "Choices A and B contain 'closest backup' wording that seems to steer attention to those two, but it is not sufficient to eliminate the cheaper Delta or Southwest options.",
+          "D is flagged as Oakland, making airport preference a possible hidden-history dependency."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All listed flights leave after the noon call and arrive in the acceptable early-evening window. B is a strong SFO balance, D is the lowest fare, C is the lowest SFO fare, and A has the longest listed connection buffer. Choosing among fare, airport, airline, and connection-buffer tradeoffs would require an unstated preference.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A generic planner could reasonably choose the cheaper, earlier United itinerary because the query does not state a connection-buffer rule. The hidden longitudinal pattern is needed to treat the demo-trip connection risk as strong enough to override the soft United preference.",
+      "gold_action": "Recommend the Delta SFO-ATL-MSY itinerary because its connection is safer for the next-morning demo schedule, despite United being cheaper and earlier.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0005",
+        "tm_pd_v04_user_005_s0021",
+        "tm_pd_v04_user_005_s0022",
+        "tm_pd_v04_user_005_s0041",
+        "tm_pd_v04_user_005_s0109"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v04_user_005_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_005_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies to Jonah's self-booked commercial flights from Bay Area airports for client visits, distributor meetings, conferences, and comparable personal trips.",
+        "scope_key": "soft_united_preferred_carrier_for_bay_area_self_booked_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "United is tempting because it is earliest, lowest among SFO fares, and on his preferred carrier, but the 52-minute connection is the kind of reliability tradeoff he has pushed back on.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "He has explicitly avoided roughly 50-minute connections and does not chase United when another carrier makes the trip less rushed. Since any midafternoon arrival works, Delta's 79-minute connection is the cleaner lead for a modest $28 premium over the short-connection United option.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Jonah's history shows that United should not be forced when a current work trip is better protected by another carrier's routing. He has repeatedly prioritized arrival reliability and avoided worse or tight connections for fixed site or demo commitments. The United option is tempting on price and arrival time, but the Delta connection is materially safer for this context.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h00_p01",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Choice A explicitly advertises 'earliest arrival and lowest SFO fare,' which is a strong cue but depends on treating SFO as preferred.",
+          "Choice D is cheaper from Oakland, so an unstated Bay Area airport preference could determine the answer.",
+          "The query states a broad acceptable arrival window, so earliest arrival is not by itself decisive."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All choices satisfy the departure and arrival window. A is earliest and the lowest SFO fare, B has the largest connection buffer, D is the lowest overall fare from Oakland, and C remains a standard SFO option with an intermediate fare. The query does not state how to weigh airport, fare, arrival time, or connection buffer.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "The United option is a plausible near miss because it arrives almost an hour earlier and fits the itinerary. The hidden history is needed to know that Jonah's United weighting should not absorb this level of fare premium when a standard one-stop alternative still meets the trip needs.",
+      "gold_action": "Recommend the American SFO-DFW-CLT itinerary, treating United as the earlier but materially higher-priced alternative.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0030",
+        "tm_pd_v04_user_005_s0049",
+        "tm_pd_v04_user_005_s0025",
+        "tm_pd_v04_user_005_s0005"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v04_user_005_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_005_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies to Jonah's self-booked commercial flights from Bay Area airports for client visits, distributor meetings, conferences, and comparable personal trips.",
+        "scope_key": "soft_united_preferred_carrier_for_bay_area_self_booked_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "Delta is cheaper and still acceptable, but for only $16 more American gives a better connection buffer and gets him in 30 minutes earlier.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "United is not close here: it is over $100 more than the American option, and the evening arrival is already acceptable. American gives a clean SFO itinerary with a 74-minute connection and earlier arrival than the lower-fare Delta/Southwest alternatives, without forcing a costly United premium or an Oakland departure.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Jonah's United preference is not an exclusive carrier rule and yields when United is materially less attractive. His history includes keeping United as best only if pricing is reasonable, asking before airfare jumps of roughly this scale, and selecting non-United packages when they better fit trip value or logistics. Here United arrives earlier, but the premium is large for a Monday evening arrival that is already workable on American.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h00_p02",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The query only says evening arrival is acceptable, not that earliest arrival is required.",
+          "The inclusion of both SFO and Oakland options creates a possible hidden airport-preference dependency.",
+          "Carrier choice could matter only through unstated user history."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All options leave after the late-morning call and arrive Monday evening, which the query says is acceptable. A is earliest with the largest buffer but much more expensive, D is cheapest from Oakland, and B/C are lower-cost SFO alternatives with later arrivals. No stated objective resolves the price, airport, airline, and arrival-time tradeoffs.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "From the query alone, United is defensible because it is the lowest fare among the SFO options and still arrives Monday evening, while American costs more for only a modest timing and connection improvement. The hidden longitudinal pattern is needed to know that Jonah gives plant-start reliability priority over staying with United when the United plan is less clean.",
+      "gold_action": "Recommend the American SFO-DFW-SAT itinerary because its slightly earlier arrival and longer connection are a better fit before the early plant start than the cheaper United option.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0041",
+        "tm_pd_v04_user_005_s0109",
+        "tm_pd_v04_user_005_s0021",
+        "tm_pd_v04_user_005_s0005",
+        "tm_pd_v04_user_005_s0129"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v04_user_005_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_005_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies to Jonah's self-booked commercial flights from Bay Area airports for client visits, distributor meetings, conferences, and comparable personal trips.",
+        "scope_key": "soft_united_preferred_carrier_for_bay_area_self_booked_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "Delta is cheaper and has a reasonable 69-minute connection, but American buys a materially safer buffer and a slightly earlier arrival for only $18 more.",
+        "difficulty": "medium",
+        "model": "gpt-5.5",
+        "rationale": "For a 7:00 a.m. badge-in after a late arrival, reliable arrival and not feeling rushed matter more than carrier. The American routing has the best connection buffer, the earliest arrival, and costs only modestly more, while the cheaper United option has a 54-minute connection that is too close to the kind of risk he avoids.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "Jonah's history shows that United should not be forced when a plant-start itinerary becomes more rushed or less robust. The United option is cheaper and still feasible, but it has the shortest connection and arrives later than the American itinerary before a 7:00 a.m. badge-in. The American option's modest reliability and evening-arrival advantages are enough to trigger the exception to the soft United preference.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h00_p03",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Connection-buffer versus fare tradeoff",
+          "SFO versus OAK airport choice",
+          "Carrier and Southwest open-seating cues could invoke private preferences, but no stated cue is sufficient to choose one."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All options satisfy the stated constraints: they leave after the 11:00 a.m. call, arrive the night before the 7:00 a.m. badge-in, have one connection, and work with the hotel. A is cheapest but has the shortest connection; B has the latest departure, earliest arrival, and longest connection but costs the most; C and D are defensible intermediate tradeoffs. Selecting one would require an unstated weighting of fare, connection risk, airport, carrier, or seating style.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "C",
+      "generator_difficulty_rationale": "Choice C captures the non-United outbound exception but misses the soft United weighting on the comparable return. Choice B over-applies the United preference to the tighter outbound. The query alone leaves these tradeoffs balanced; resolving them requires remembering Jonah's pattern of not chasing United when schedule robustness is at stake, while still favoring United on comparable flight pieces.",
+      "gold_action": "Recommend the mixed plan: Delta outbound for the more robust Monday connection, then United return where the return choices are otherwise comparable.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v04_user_005_s0021",
+        "tm_pd_v04_user_005_s0022",
+        "tm_pd_v04_user_005_s0118",
+        "tm_pd_v04_user_005_s0119",
+        "tm_pd_v04_user_005_s0005",
+        "tm_pd_v04_user_005_s0032"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v04_user_005_h00",
+      "hidden_habit_graph": {
+        "alternative_group_key": "",
+        "boundary_condition": "Applies only as a non-exclusive airline preference; United is favored only among otherwise suitable options and may coexist with other acceptable preferred carriers.",
+        "condition": "When searching for commercial flights and no stronger current-trip carrier instruction overrides this preference.",
+        "default_action": "Give United positive ranking weight and include United among preferred carrier options when otherwise comparable, while still considering other suitable airlines.",
+        "exception_condition": "If United is unavailable, worse on primary itinerary constraints such as nonstop/timing/class, materially less attractive, or the user explicitly requests another carrier for the current trip, use or present the better alternative.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v04_user_005_h00",
+        "name": "soft_united_preferred_carrier",
+        "preference_value": "United is a soft preferred/acceptable airline, not an exclusive carrier requirement.",
+        "scope_condition": "Applies to Jonah's self-booked commercial flights from Bay Area airports for client visits, distributor meetings, conferences, and comparable personal trips.",
+        "scope_key": "soft_united_preferred_carrier_for_bay_area_self_booked_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v04_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "The Delta-outbound/American-return plan has the same safer outbound and is $8 cheaper with a slightly earlier home arrival, but it gives up return-departure cushion and connection buffer for savings too small to matter under his reliability preference.",
+        "difficulty": "hard",
+        "model": "gpt-5.5",
+        "rationale": "The Tuesday morning plant test makes the outbound reliability important, so the 52-minute United outbound should not lead. The Delta outbound has the clean 84-minute connection, and the United return gives a later post-debrief departure plus a larger return buffer for only a negligible premium over the American return. Mixed carriers are acceptable when the schedule is better.",
+        "reasoning_effort": "xhigh"
+      },
+      "label_rationale": "The correct application is segment-level. Jonah's history supports avoiding a weaker United connection on an outbound that protects a plant commitment, so the Delta outbound should beat the all-United option despite the one-carrier and fare advantages. Once the outbound is set, the United and American returns are close enough that the soft United preference breaks the return-leg tie in favor of the United return.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v04_user_005_h00_p04",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "One-carrier versus split-ticket framing",
+          "Connection-length tradeoffs",
+          "Carrier/routing preferences could reflect private history, and the query does not state enough to resolve them."
+        ],
+        "model": "gpt-5.5",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "All plans meet the stated timing, debrief, hotel, and rental-car constraints. B is cheapest and one-carrier but has a short 52-minute outbound connection; A and C offer the longer Delta/MSP outbound connection but involve mixed or split arrangements; D is one-carrier with moderate connections and slightly earlier arrivals but is most expensive and leaves earlier. A recommendation would require unstated preferences about fare, one-carrier simplicity, split-ticket tolerance, connection buffer, and schedule convenience.",
+        "reasoning_effort": "xhigh"
+      },
+      "user_id": "tm_pd_v04_user_005"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "United SFO-DEN-AUS: 12:55 p.m.–6:50 p.m., 84-minute Denver connection, standard economy, $456; keep the American routing as the closest backup."
+        },
+        {
+          "choice_id": "B",
+          "text": "American SFO-DFW-AUS: 1:10 p.m.–6:45 p.m., 68-minute Dallas connection, standard economy, $432; keep the United routing as the closest backup."
+        },
+        {
+          "choice_id": "C",
+          "text": "Delta SFO-SLC-AUS: 1:25 p.m.–7:15 p.m., 62-minute Salt Lake City connection, standard economy, $421; lower fare but a later arrival."
+        },
+        {
+          "choice_id": "D",
+          "text": "Southwest OAK-PHX-AUS: 12:50 p.m.–7:05 p.m., 75-minute Phoenix connection, $409; lowest listed fare from Oakland."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "direct_use",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h00_p00",
+      "query": "Jonah is booking his own Bay Area-to-Austin flight for a Tuesday client controls review. He can leave after a noon internal call, and an early-evening Austin arrival is fine. No hotel or rental decision depends on the flight. Which flight recommendation should be the lead option?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "United SFO-IAH-MSY: 7:35 a.m.–2:55 p.m., 52-minute Houston connection, standard economy, $398; earliest arrival and lowest SFO fare."
+        },
+        {
+          "choice_id": "B",
+          "text": "Delta SFO-ATL-MSY: 7:05 a.m.–3:25 p.m., 79-minute Atlanta connection, standard economy, $426; later arrival with the larger connection buffer."
+        },
+        {
+          "choice_id": "C",
+          "text": "American SFO-DFW-MSY: 7:45 a.m.–3:50 p.m., 59-minute Dallas connection, standard economy, $412; moderate fare with a later arrival."
+        },
+        {
+          "choice_id": "D",
+          "text": "Southwest OAK-DEN-MSY: 8:15 a.m.–4:05 p.m., 66-minute Denver connection, $389; lower fare from Oakland with a longer travel day."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "exception",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h00_p01",
+      "query": "Jonah is arranging his own Monday Bay Area-to-New Orleans travel for a Tuesday morning equipment demo. He can leave after 7 a.m., and any midafternoon-to-early-evening arrival works for the hotel. Which lead should you recommend?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "United SFO-DEN-CLT: depart 12:35 p.m., arrive 8:25 p.m., 82-minute Denver connection, standard economy, $584."
+        },
+        {
+          "choice_id": "B",
+          "text": "American SFO-DFW-CLT: depart 12:55 p.m., arrive 9:20 p.m., 74-minute Dallas connection, standard economy, $478."
+        },
+        {
+          "choice_id": "C",
+          "text": "Delta SFO-ATL-CLT: depart 1:15 p.m., arrive 9:50 p.m., 64-minute Atlanta connection, standard economy, $462."
+        },
+        {
+          "choice_id": "D",
+          "text": "Southwest OAK-MDW-CLT: depart 12:25 p.m., arrive 9:40 p.m., 67-minute Midway connection, $448."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "exception",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h00_p02",
+      "query": "Jonah needs a self-booked Bay Area-to-Charlotte itinerary for a distributor pricing workshop. He can leave after a late-morning internal call, and a Monday evening arrival is acceptable for the next-morning workshop. Which flight should you put forward?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "United SFO-DEN-SAT: depart 12:15 p.m. and arrive 9:40 p.m.; 54-minute Denver connection; standard economy; $352."
+        },
+        {
+          "choice_id": "B",
+          "text": "American SFO-DFW-SAT: depart 12:50 p.m. and arrive 9:25 p.m.; 82-minute Dallas connection; standard economy; $389."
+        },
+        {
+          "choice_id": "C",
+          "text": "Delta SFO-SLC-SAT: depart 12:35 p.m. and arrive 9:35 p.m.; 69-minute Salt Lake City connection; standard economy; $371."
+        },
+        {
+          "choice_id": "D",
+          "text": "Southwest OAK-PHX-SAT: depart 12:20 p.m. and arrive 9:50 p.m.; 76-minute Phoenix connection; economy-style open seating; $363."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "exception",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h00_p03",
+      "query": "Jonah is booking his own Bay Area-to-San Antonio flight for a plant kickoff with a 7:00 a.m. badge-in the next morning. He can leave after an 11:00 a.m. Pacific call. The hotel works with any listed arrival, and each option is a single connection. Which flight should be the lead?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Use Delta SFO-MSP-DSM outbound, 12:10 p.m.–8:35 p.m. with an 84-minute MSP connection, then United DSM-DEN-SFO return, 4:25 p.m.–8:35 p.m. with a 78-minute DEN connection; coordinated multi-city or split-ticket pricing about $502."
+        },
+        {
+          "choice_id": "B",
+          "text": "Use United SFO-DEN-DSM outbound, 12:25 p.m.–8:25 p.m. with a 52-minute DEN connection, and the United DSM-DEN-SFO return, 4:25 p.m.–8:35 p.m.; one-carrier pricing about $486."
+        },
+        {
+          "choice_id": "C",
+          "text": "Use the same Delta SFO-MSP-DSM outbound, then American DSM-DFW-SFO return, 4:10 p.m.–8:25 p.m. with a 66-minute DFW connection; coordinated multi-city or split-ticket pricing about $494."
+        },
+        {
+          "choice_id": "D",
+          "text": "Use American SFO-DFW-DSM round trip, outbound 11:55 a.m.–8:20 p.m. with a 64-minute DFW connection and return 3:55 p.m.–8:20 p.m. with a 61-minute DFW connection; one-carrier pricing about $508."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "dataset_version": "taskmaster_planning_defaults_v0_4",
+        "generated_by": "gpt-5.5",
+        "probe_type": "conflict_resolution",
+        "recovery_gate": "exploratory_drift_accepted"
+      },
+      "probe_id": "tm_pd_v04_user_005_h00_p04",
+      "query": "Jonah is putting together Bay Area-to-Des Moines travel for a Monday arrival, a Tuesday morning plant acceptance test, and a Thursday afternoon trip home after the debrief. He can leave Monday around midday, and all listed return departures are after the expected debrief window. Hotel and rental-car choices are unchanged across the flight plans. Which flight plan should you recommend before booking?",
+      "split": "test",
+      "user_id": "tm_pd_v04_user_005",
+      "visible_history_scope": {
+        "max_session_index": 132
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 5,
+    "candidate_count": 10,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 1,
+      "gold_disagreement_or_unresolved": 1
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 5,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "direct_use": 1,
+      "exception": 3
+    }
+  }
+}
