@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HABIT-Bench Memory Context Row",
+  "type": "object",
+  "required": ["probe_id", "memory_context"],
+  "not": {
+    "anyOf": [
+      {"required": ["choice_id"]},
+      {"required": ["scores"]},
+      {"required": ["gold_choice_id"]}
+    ]
+  },
+  "properties": {
+    "probe_id": {"type": "string", "minLength": 1},
+    "memory_context": {"type": "string"},
+    "evidence_session_ids": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "debug": {"type": "object"},
+    "cost": {"type": "object"}
+  }
+}

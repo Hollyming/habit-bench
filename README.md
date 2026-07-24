@@ -1,147 +1,166 @@
 # HABIT-Bench
 
-HABIT-Bench is a real-prompt-seeded benchmark for long-horizon agent memory.
-It tests whether memory systems can infer scoped user habits from many
-user-agent interactions, apply them in the right context, and avoid false
-personalization under boundary, exception, drift, and privacy cases.
+HABIT-Bench evaluates whether a longitudinal assistant memory system can learn
+and apply user habits over long interaction histories. The active evaluator is
+an end-to-end multiple-choice protocol. Retrieval similarity is never used to
+select an answer.
 
-## Current Dataset Contract
+## Active Datasets
 
-- Real prompt seed source: `allenai/WildChat`.
-- Release framing: real-prompt-seeded, domain-grounded, synthetic longitudinal benchmark.
-- Family/domain contract: 9 habit families mapped to 9 unique representative WildChat domain buckets.
-- Synthetic controlled components: hidden habit graphs, assistant feedback, counterfactual probes, answer choices, gold labels, and evidence links.
-- Claim to avoid: the 9 families are not drawn from 9 separate external datasets.
+| dataset | domains | users | sessions | probes | public lifeline format |
+| --- | --- | ---: | ---: | ---: | --- |
+| `domain/food/food_habit_lifelines_stress` | food | 30 | 1,410 | 1,260 | one session per JSONL row |
+| `domain/finance-software/habit_bench_multidogo_finance_software_long_hard_diverse_v0_5` | finance, software | 45 | 14,400 | 810 | one user with nested sessions per JSONL row |
+
+Both formats are normalized by `eval/core/dataset.py`. A memory method receives
+only public sessions, public probe text and choices, and the history cutoff.
+Gold labels and hidden habit annotations are loaded only by the scorer.
+
+## Evaluation Contract
+
+For each user and probe, the formal pipeline is:
+
+1. Feed visible sessions to the memory method in chronological order.
+2. Let the method update its native memory state.
+3. Query the method through its native retrieval interface.
+4. Return `memory_context` to the shared evaluator.
+5. Ask Qwen3-8B to select one `choice_id` from `memory_context + query + choices`.
+6. Score exact-choice Accuracy against `private/probe_key.jsonl`.
+
+Memory adapters are forbidden from returning `choice_id` or choice `scores`.
+The primary metric is Accuracy. Reports also include Wilson 95% confidence
+intervals and breakdowns by domain, probe type, capability group, habit family,
+stress variant, and split when those annotations are available.
+
+The fixed base model is:
+
+```text
+/data1/public/hf/Qwen/Qwen3-8B
+served model name: habitbench-qwen3-8b
+context length: 40960
+thinking mode: disabled
+temperature: 0
+```
+
+Methods that require an LLM for memory construction also use this served model.
+E5 or another embedding model may be used inside a method for retrieval, but an
+embedding model never chooses the final answer.
+
+## Methods
+
+Active adapters and pinned upstream revisions are recorded in
+`eval/methods.json`.
+
+| method | source path | status |
+| --- | --- | --- |
+| Mem0 | official `Memory.add(infer=True)` and `Memory.search` | official API integration |
+| A-MEM | official `AgenticMemorySystem` | official-code integration |
+| Graphiti | official `add_episode` and `search_` | official API with documented Kuzu retrieval adaptation |
+| SeCom | official segmentation, compression, retrieval modules | official code adapted to online session ingestion |
+| O-Mem | official `SimpleMemory` lifecycle | official code with documented local-backend compatibility patches |
+| no-memory / full-history | HABIT-Bench controls | not memory methods |
+
+These are controlled HABIT-Bench integrations, not claims that every original
+paper configuration has been exactly reproduced.
+
+## Quick Start On Lumia
+
+Allocate a Slurm compute node before running tests or model evaluation:
+
+```bash
+srun -p debug --gres=gpu:1 --cpus-per-task=8 --mem=64G --pty bash
+cd /home/jmzhang/Workspace/habit-bench
+source scripts/lumia/lumia_env_example.sh
+```
+
+Start Qwen3-8B on the allocated node:
+
+```bash
+bash scripts/lumia/start_vllm_openai_server.sh
+```
+
+In another shell attached to the same node, validate both datasets:
+
+```bash
+python -m eval.validate \
+  domain/food/food_habit_lifelines_stress \
+  domain/finance-software/habit_bench_multidogo_finance_software_long_hard_diverse_v0_5
+```
+
+Run a small end-to-end check:
+
+```bash
+bash scripts/run_method.sh no_memory \
+  domain/food/food_habit_lifelines_stress \
+  results/dev/food_no_memory \
+  --max-users 1 --max-probes 4
+```
+
+Run one method on both domains:
+
+```bash
+bash scripts/run_two_domains.sh mem0
+```
+
+For full multi-GPU evaluation, create a user-sharded plan and explicitly select
+the methods to run. This example runs Mem0 only and skips both controls:
+
+```bash
+bash scripts/slurm/submit_sharded_suite.sh \
+  --methods mem0 \
+  --shards 8 \
+  --max-concurrent 8 \
+  --partition GPU_PARTITION \
+  --env-file /path/to/habitbench-cluster-env.sh \
+  --output-root results/mem0_full
+```
+
+See `docs/multigpu_evaluation.md` for Slurm, single-node multi-GPU, resume, and
+strict shard-merge instructions. `no_memory` and `full_history` are never added
+implicitly; include them in `--methods` only when those controls should run.
+
+Hugging Face access must be used with HTTP/HTTPS proxy variables unset. The
+current Qwen3-8B model is already in `/data1/public/hf`, so no download is
+needed.
+
+## Output Layout
+
+Each run writes:
+
+```text
+run_manifest.json
+method_input.json
+memory_contexts.jsonl
+predictions.jsonl
+scored_predictions.jsonl
+metrics.json
+metrics_by_group.csv
+adapter.stdout.log
+adapter.stderr.log
+```
+
+`method_input.json` is safe for evaluated methods and contains no gold labels.
+`memory_contexts.jsonl` is the method boundary. `predictions.jsonl` is produced
+only after the shared Qwen3-8B answer stage.
 
 ## Project Layout
 
 | path | purpose |
 | --- | --- |
-| `README.md` | project overview and common commands |
-| `docs/` | paper-facing taxonomy, unified 9-family table, Lumia runbook, completion checklist |
-| `schema/` | JSON schemas for public sessions and probes |
-| `scripts/` | dataset construction, curation, subset building, provenance audit, and method-run launchers |
-| `scripts/lumia/` | Lumia packaging, remote launch, model download, vLLM serving, preflight, import, and audit helpers |
-| `eval/` | scoring, baseline execution, official-result collection, and official adapter code |
-| `eval/official_adapters/` | adapters for Mem0, Graphiti, A-MEM, SeCom, O-Mem, and related official-code paths |
-| `runs/` | generated datasets, final experiment results, manifests, and audit summaries |
-| `dist/` | generated release bundles and handoff sidecars |
-| `third_party/official-baselines/` | optional local official baseline repositories |
-| `research/research-runs/` | literature survey, gap map, idea bank, experiment plan, and research memo |
-| `archive/2026-06-transient-smoke/` | archived smoke-test scripts, dry-run plans, returned debug payloads, and other transient development artifacts |
+| `domain/` | current domain datasets |
+| `eval/core/` | normalization, Qwen answering, scoring, and I/O |
+| `eval/official_adapters/` | official-code memory context adapters |
+| `eval/run.py` | one complete memory-to-answer-to-Accuracy run |
+| `eval/score.py` | strict scoring of existing predictions |
+| `eval/validate.py` | public/private dataset contract validation |
+| `schema/` | normalized session, probe, and memory-context schemas |
+| `scripts/run_method.sh` | method launcher |
+| `scripts/run_two_domains.sh` | two-domain launcher |
+| `scripts/create_shard_plan.py` | deterministic user-shard task planner |
+| `scripts/slurm/submit_sharded_suite.sh` | selectable Slurm multi-GPU suite |
+| `tests/evaluation/` | evaluator unit tests |
+| `third_party/official-baselines/` | pinned official repositories |
+| `docs/evaluation_protocol.md` | formal protocol and leakage boundary |
 
-The root `habit-bench/` directory is now the project root. Run commands below
-from this directory unless a command says otherwise.
-
-## Key Dataset Artifacts
-
-| artifact | status |
-| --- | --- |
-| `runs/habit_bench_balanced_v0_3` | balanced v0.3 candidate: 174 users, 9,924 sessions, 270 habits, 2,010 probes |
-| `runs/habit_bench_balanced_v0_3_official_subset_90` | official subset: 67 users, 3,815 sessions, 90 probes |
-| `runs/habit_bench_balanced_v0_3_official_subset_90/full_official_results` | Lumia full official subset results |
-| `runs/goal_status.json` | objective-level completion ledger |
-
-## Common Commands
-
-Check that the official subset and Lumia scripts are structurally ready:
-
-```bash
-python scripts/lumia/check_lumia_readiness.py
-```
-
-Audit the completed full official subset results:
-
-```bash
-python eval/audit_full_official_results.py \
-  --dataset-dir runs/habit_bench_balanced_v0_3_official_subset_90 \
-  --results-dir runs/habit_bench_balanced_v0_3_official_subset_90/full_official_results \
-  --model-manifest runs/lumia_manifests/model_download_manifest.json
-```
-
-Collect result summaries:
-
-```bash
-python eval/collect_official_results.py \
-  --dataset-dir runs/habit_bench_balanced_v0_3_official_subset_90 \
-  --results-dir runs/habit_bench_balanced_v0_3_official_subset_90/full_official_results
-```
-
-Build and verify a clean Lumia bundle:
-
-```bash
-python scripts/lumia/make_lumia_bundle.py
-python scripts/lumia/write_lumia_handoff.py --host-placeholder lumia --remote-dir /home/jmzhang/habitbench-lumia
-python scripts/lumia/verify_lumia_bundle.py
-```
-
-Run the full official suite on a machine that already has an OpenAI-compatible
-LLM endpoint available:
-
-```bash
-source scripts/lumia/lumia_env_example.sh
-bash scripts/run_full_official_subset_suite.sh
-```
-
-## Lumia Notes
-
-The current Lumia path uses vLLM plus an OpenAI-compatible local endpoint.
-`scripts/lumia/lumia_env_example.sh` sets the default dataset and serving
-environment. On the known Lumia account, Hugging Face download requires proxy
-to be off:
-
-```bash
-proxy_off
-bash scripts/lumia/download_open_models.sh
-```
-
-`proxy_on` restores the `192.168.102.101:7890` proxy if needed for other
-network paths.
-
-## Smoke-Test Cleanup Policy
-
-Smoke-test scripts and dry-run outputs were useful during development, but they
-are not part of the normal project surface. They have been moved under:
-
-```text
-archive/2026-06-transient-smoke/
-```
-
-The main project keeps only release-oriented checks:
-
-- `scripts/lumia/check_lumia_readiness.py`
-- `scripts/lumia/verify_lumia_bundle.py`
-- `eval/audit_full_official_results.py`
-- `eval/collect_official_results.py`
-
-## Rebuilding Core Data
-
-The main data-generation pipeline is:
-
-```bash
-python scripts/build_habit_bench_pilot.py \
-  --out-dir runs/habit_bench_pilot_v0 \
-  --n-users 200 \
-  --sessions-per-user 60 \
-  --seed-prompts 5000 \
-  --source auto \
-  --seed 20260612
-
-python scripts/build_balanced_v03_dataset.py \
-  --input-dir runs/habit_bench_pilot_v0 \
-  --output-dir runs/habit_bench_balanced_v0_3 \
-  --target-habits-per-family 30 \
-  --review-sample-rate 0.10 \
-  --seed 20260612
-
-python scripts/make_official_subset.py \
-  --input-dir runs/habit_bench_balanced_v0_3 \
-  --output-dir runs/habit_bench_balanced_v0_3_official_subset_90 \
-  --total-probes 90 \
-  --min-per-capability 8 \
-  --include-variants all \
-  --seed 20260612
-```
-
-Before paper-scale claims, run the provenance checks and human audit described
-in `docs/9_family_taxonomy.md` and `docs/full_official_subset_completion_checklist.md`.
+Historical experiments under `runs/` are not part of the active evaluation
+contract and should not be mixed with new `results/` outputs.

@@ -1,53 +1,33 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "HABIT-Bench Session",
+  "title": "HABIT-Bench Normalized Public Session",
   "type": "object",
+  "additionalProperties": false,
   "required": [
     "session_id",
     "user_id",
     "session_index",
     "timestamp",
     "domain",
-    "messages",
-    "source_seed",
-    "memory_annotations"
+    "messages"
   ],
   "properties": {
-    "session_id": { "type": "string" },
-    "user_id": { "type": "string" },
-    "session_index": { "type": "integer" },
-    "timestamp": { "type": "string" },
-    "domain": { "type": "string" },
+    "session_id": {"type": "string", "minLength": 1},
+    "user_id": {"type": "string", "minLength": 1},
+    "session_index": {"type": "integer", "minimum": 0},
+    "timestamp": {"type": ["string", "null"]},
+    "domain": {"type": "string", "minLength": 1},
     "messages": {
       "type": "array",
-      "minItems": 2,
+      "minItems": 1,
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "required": ["role", "content"],
         "properties": {
-          "role": { "type": "string", "enum": ["user", "assistant"] },
-          "content": { "type": "string" }
+          "role": {"type": "string", "enum": ["user", "assistant", "system", "tool"]},
+          "content": {"type": "string"}
         }
-      }
-    },
-    "source_seed": {
-      "type": "object",
-      "required": ["source_dataset", "seed_id", "domain"],
-      "properties": {
-        "source_dataset": { "type": "string" },
-        "seed_id": { "type": "string" },
-        "domain": { "type": "string" }
-      }
-    },
-    "memory_annotations": {
-      "type": "object",
-      "required": ["linked_habit_ids", "signal_type"],
-      "properties": {
-        "linked_habit_ids": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "signal_type": { "type": "string" }
       }
     }
   }

@@ -1,67 +1,45 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "HABIT-Bench Probe",
+  "title": "HABIT-Bench Normalized Public Probe",
   "type": "object",
+  "additionalProperties": false,
   "required": [
     "probe_id",
     "user_id",
-    "split",
-    "probe_type",
-    "habit_family",
+    "domain",
     "query",
     "choices",
-    "validator",
-    "visible_history_scope",
-    "metadata"
+    "visible_history_scope"
   ],
   "properties": {
-    "probe_id": { "type": "string" },
-    "user_id": { "type": "string" },
-    "split": { "type": "string", "enum": ["dev", "test", "stress"] },
-    "probe_type": {
-      "type": "string",
-      "enum": [
-        "direct_use",
-        "boundary",
-        "exception",
-        "drift",
-        "evidence",
-        "ask_act",
-        "privacy"
-      ]
-    },
-    "habit_id": { "type": ["string", "null"] },
-    "habit_family": { "type": "string" },
-    "query": { "type": "string", "minLength": 10 },
+    "probe_id": {"type": "string", "minLength": 1},
+    "user_id": {"type": "string", "minLength": 1},
+    "domain": {"type": "string", "minLength": 1},
+    "timestamp": {"type": ["string", "null"]},
+    "query": {"type": "string", "minLength": 1},
     "choices": {
       "type": "array",
       "minItems": 2,
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "required": ["choice_id", "text"],
         "properties": {
-          "choice_id": { "type": "string" },
-          "text": { "type": "string" }
+          "choice_id": {"type": "string", "minLength": 1},
+          "text": {"type": "string", "minLength": 1}
         }
-      }
-    },
-    "validator": {
-      "type": "object",
-      "required": ["type"],
-      "properties": {
-        "type": { "type": "string" },
-        "gold_choice_id": { "type": "string" },
-        "gold_action": { "type": "string" }
       }
     },
     "visible_history_scope": {
       "type": "object",
+      "additionalProperties": false,
       "required": ["user_id", "max_session_index"],
       "properties": {
-        "user_id": { "type": "string" },
-        "max_session_index": { "type": "integer" }
+        "user_id": {"type": "string", "minLength": 1},
+        "max_session_index": {"type": "integer", "minimum": 0}
       }
     },
-    "metadata": { "type": "object" }
+    "split": {"type": "string"},
+    "metadata": {"type": "object"}
   }
 }
