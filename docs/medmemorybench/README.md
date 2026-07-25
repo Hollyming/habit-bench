@@ -1,123 +1,99 @@
-# MedMemoryBench 接入与复现
+# MedMemoryBench 方法接入
 
-本目录记录 HABIT-Bench 对 MedMemoryBench 中 7 种结构化记忆方法的源码级接入方式。该实现直接使用仓库内的 Mem0、A-MEM 等方法源码，不调用托管的完整记忆工作流 API。
+## 当前结构
 
-## 仓库布局
-
-请将两个仓库克隆为同级目录：
+本项目现在是单一 Git 仓库。MedMemoryBench 固定源码位于：
 
 ```text
-workspace/
-├── habit-bench/
-└── MedMemoryBench/
+third_party/medmemorybench
 ```
 
-两个仓库均使用 `wjr` 分支。HABIT-Bench 的方法注册表固定到 MedMemoryBench commit：
+该目录不包含 `.git`，来源 commit、LightMem revision 和本地补丁记录在
+`third_party/medmemorybench/VENDOR_INFO.md`。
+
+活动方法为：
 
 ```text
-6591eb3251402f26535846ea4a95f5b4478ae35a
+mem0
+amem
+memos
+memrl
+lightmem
+letta
+mirix
 ```
 
-初始化 MedMemoryBench 子模块，并应用已经记录的 LightMem 兼容补丁：
+这些名称直接表示 MedMemoryBench 源码版本，不再使用
+`medmemorybench_mem0` 一类重复前缀，也不与另一套同名 adapter 并存。
 
-```bash
-cd MedMemoryBench
-git submodule update --init --recursive
-bash scripts/apply_lightmem_patch.sh
-```
+## 统一执行链路
 
-补丁脚本可重复执行。Mem0、A-MEM、MemOS、MemRL、Letta 和 MIRIX 的修改均已直接提交在 MedMemoryBench 的 `wjr` 分支中；LightMem 因为是外部子模块，使用固定 revision 加显式 patch 的方式复现。
+`eval.medmemorybench_adapters.structured_memory` 对每个 HABIT 用户创建独立
+的 MedMemoryBench `AgentManager`，按 probe cutoff 增量写入 public
+sessions。写入调用方法的 `memorize()`，检索调用方法的 `retrieve()`。
 
-## 环境
-
-集群上已经验证过的环境如下：
+`retrieve()` 只返回原生 memory context，不调用方法自己的 reader。随后由
+HABIT 的固定 Qwen3-8B answerer 根据：
 
 ```text
-核心环境：/plm-shared/wangjiarui/anaconda3/envs/habit_medmemorybench
-Letta：   /plm-shared/wangjiarui/anaconda3/envs/habit_medmemory_letta
-MIRIX：   /plm-shared/wangjiarui/anaconda3/envs/habit_medmemory_mirix
+memory_context + current request + choices
 ```
 
-这些路径仅是当前集群的已验证配置，不是跨机器的默认值。在其他机器上应创建等价环境，并通过 `PYTHON_BIN` 指定 Python。
+生成一个 `choice_id`，最后由 private scorer 计算 Accuracy。
 
-## 轻量验证
+## 用户级并发
 
-运行 MedMemoryBench 测试：
+并发单位是完整用户，而不是 session。正式配置按 WJR 完整 lifeline
+结果冻结：
 
-```bash
-cd MedMemoryBench
-python -m pytest -q tests
-```
+| 方法 | 最大用户 workers |
+| --- | ---: |
+| Mem0 / MemOS / MemRL / Letta | 7 |
+| A-MEM | 5 |
+| LightMem / MIRIX | 1 |
 
-运行 HABIT adapter 测试：
+food 每分片最多 4 个用户，所以前五种方法的有效 worker 数会自动降到
+3–4；finance-software 每分片最多 7 个用户。WJR 在 6-user shard 上验证
+的 6 workers 在这里扩展为 7，避免第七个用户形成完整 540-session 的
+串行尾部；A-MEM 仍保留其 finance 完整实验验证过的 5 workers。运行约束如下：
 
-```bash
-cd habit-bench
-python -m pytest -q tests/evaluation/test_medmemorybench_adapter.py
-```
+- 同一用户的 session 和 probe cutoff 始终按时间顺序执行；
+- 不同用户由独立 spawn 进程并行；
+- 每个用户拥有独立的 storage root、persistence root 和 runtime HOME；
+- 输出最终按原始 probe 顺序重排；
+- vLLM 使用 batch-invariant，避免请求批次组成改变结构化 memory action。
 
-查看可用配置：
+这只改变调度，不改变七种方法的 `memorize()`、`retrieve()`、memory
+表示、top-k 或 prompt。`medmemorybench_adapter_runtime.json` 记录请求/
+有效 worker 数、每个用户的 elapsed/CPU/max-RSS、聚合 user time 和
+sessions/s。
 
-```bash
-cd MedMemoryBench
-python main.py --list-methods
-python main.py --list-datasets
-```
+## 方法与配置
 
-## MedMemoryBench smoke
+七个方法共享以下实验口径：
 
-smoke 数据配置只使用一个 persona 和一个 evaluation unit：
+- memory/answer backbone：本地 Qwen3-8B；
+- embedding：本地 BGE-M3（1024 维，固定 revision
+  `5617a9f61b028005a4858fdac845db406aefb181`）；
+- nominal retrieval：top-k 5；
+- 用户级状态隔离；
+- memory build partial failure 直接失败；
+- gold label、habit graph 和 gold evidence 不进入方法输入。
 
-```bash
-cd MedMemoryBench
-python main.py \
-  --method mem0_qwen3-8b_smoke \
-  --dataset medmemorybench_smoke_efficient \
-  --output-dir outputs/mem0-smoke
-```
+各方法保留不同的原生 memory 表示和检索长度，因此主表是端到端
+method-native retrieval 比较，不是等 evidence-token ablation。
 
-其他方法可替换为 `amem`、`memos`、`memrl`、`lightmem`、`letta` 或 `mirix` 对应的 `*_qwen3-8b_smoke` 配置。
+## 验收要求
 
-## HABIT-Bench smoke
+正式结果必须同时包含：
 
-两个仓库应保持同级；如果目录布局不同，则显式设置 `HABITBENCH_MEDMEMORYBENCH_ROOT`：
+- 仓库、vendor、模型和数据 revision/hash；
+- 完整 user/probe coverage；
+- 逐题 `memory_context`、prediction 和 score；
+- strict shard merge；
+- 失败扫描和资源记录；
+- 对本地模型兼容修改的明确说明。
 
-```bash
-cd habit-bench
-export HABITBENCH_MEDMEMORYBENCH_ROOT=../MedMemoryBench
-export PYTHON_BIN=/path/to/the/method/environment/bin/python
-
-bash scripts/run_method.sh \
-  medmemorybench_mem0 \
-  domain/food/food_habit_lifelines_stress \
-  results/dev/food-medmemorybench-mem0 \
-  --max-users 1 \
-  --max-probes 4
-```
-
-支持的方法名：
-
-```text
-medmemorybench_mem0
-medmemorybench_amem
-medmemorybench_memos
-medmemorybench_memrl
-medmemorybench_lightmem
-medmemorybench_letta
-medmemorybench_mirix
-```
-
-adapter 按时间顺序增量写入 public sessions，只调用方法的原生 retrieval 路径，再将 `memory_context` 交给 HABIT 的统一 answerer。private label、gold habit graph 和 gold evidence 不会传给记忆方法。
-
-## 正式结果的验收要求
-
-正式结果至少应包含：
-
-- 两个仓库的精确 commit 与子模块 revision；
-- 数据、模型、prompt 和 metric hash；
-- 完整的 user/persona 与 query/probe coverage；
-- 逐题 prediction 和 retrieved context；
-- strict shard merge 及失败扫描证据；
-- method-native、common-reader 与 adapted 口径的明确标签。
-
-实现修改见 [changes.md](changes.md)，精简实验记录见 [experiment_notes.md](experiment_notes.md)。
+历史 v0.5 实验结果保留在 `experiment_notes.md`，但不属于当前
+finance-software v1.2.1 和扩充版 food active dataset 的正式结果，不能与
+新运行直接合并。

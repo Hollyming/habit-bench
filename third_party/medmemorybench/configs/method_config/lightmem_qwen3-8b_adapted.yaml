@@ -1,0 +1,24 @@
+method_name: "lightmem"
+method_type: "agentic_memory"
+description: "HABIT profile: vendored LightMem, local Qwen3-8B, BGE-M3, top-k 5, chunk 4096"
+model: {provider: "openai", name: "Qwen3-8B", temperature: 0.0, max_completion_tokens: 2048}
+embedding:
+  provider: "local"
+  model: "BAAI/bge-m3"
+  revision: "5617a9f61b028005a4858fdac845db406aefb181"
+  model_path: "/plm-shared/zhangjunming/Workspace/models/bge-m3"
+  dim: 1024
+agent_params:
+  retrieve_num: 5
+  pre_compress: false
+  topic_segment: true
+  topic_segmenter_model_path: "/plm-shared/zhangjunming/Workspace/models/llmlingua-2-xlm-roberta-large-meetingbank"
+  index_strategy: "embedding"
+  retrieve_strategy: "embedding"
+  update_mode: "offline"
+  extraction_mode: "event"
+  messages_use: "hybrid"
+  lightmem_temperature: 0.0
+  lightmem_max_tokens: 2048
+  lightmem_top_p: 0.1
+  max_context_tokens: 32768

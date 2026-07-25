@@ -1,0 +1,24 @@
+diff --git a/src/lightmem/memory/lightmem.py b/src/lightmem/memory/lightmem.py
+index f0ea388..6030e72 100644
+--- a/src/lightmem/memory/lightmem.py
++++ b/src/lightmem/memory/lightmem.py
+@@ -163,2 +163,7 @@ class LightMemory:
+         self.config = config
++        # The topic segmenter accepts an optional compressor.  Keep the
++        # attribute defined when pre-compression is disabled (the configuration
++        # used by MedMemoryBench), otherwise construction fails before the
++        # segmenter's own model can be initialized.
++        self.compressor = None
+         if self.config.pre_compress:
+diff --git a/src/lightmem/memory/utils.py b/src/lightmem/memory/utils.py
+index b29539b..215310a 100644
+--- a/src/lightmem/memory/utils.py
++++ b/src/lightmem/memory/utils.py
+@@ -269,4 +269,6 @@ def convert_extraction_results_to_memory_entries(
++                normalized_fact_entry = dict(fact_entry)
++                normalized_fact_entry["source_id"] = sid
+                 mem_obj = _create_memory_entry_from_fact(
+-                    fact_entry,
++                    normalized_fact_entry,
+                     timestamps_list,
+                     weekday_list,

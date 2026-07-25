@@ -1,0 +1,19 @@
+method_name: "mem0"
+method_type: "agentic_memory"
+description: "HABIT profile: vendored Mem0, local Qwen3-8B, BGE-M3, top-k 5, chunk 4096"
+model: {provider: "openai", name: "Qwen3-8B", temperature: 0.0, max_completion_tokens: 10000}
+embedding:
+  provider: "local"
+  model: "BAAI/bge-m3"
+  revision: "5617a9f61b028005a4858fdac845db406aefb181"
+  model_path: "/plm-shared/zhangjunming/Workspace/models/bge-m3"
+  dim: 1024
+agent_params:
+  retrieve_num: 5
+  chunk_size_tokens: 4096
+  max_context_tokens: 32768
+  storage_root: null
+  compact_local_prompts: true
+  strict_json_schema: true
+  action_generation_attempts: 5
+  normalize_unknown_mutations: true

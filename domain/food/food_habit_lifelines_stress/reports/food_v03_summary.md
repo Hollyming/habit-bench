@@ -1,53 +1,49 @@
 # Food Content Constraints v0.3 Candidate Summary
 
-- Created: 2026-07-20T02:51:03.993943+00:00
+- Created: 2026-07-23T06:16:11.779238+00:00
 - Status: food_v03_candidate_auto_validated_pending_human_review
 - Users: 30
-- Sessions: 1410
-- Selected habits: 180
-- Probes: 1260
-- Review sample rows: 140
+- Sessions: 3600
+- Selected habits: 210
+- Probes: 1470
+- Review sample rows: 147
 - Validation: pass
 
 ## Probe Counts
 
-- boundary: 360
-- direct_use: 360
-- exception: 360
-- explicit_retrieval: 180
+- boundary: 420
+- direct_use: 420
+- exception: 420
+- explicit_retrieval: 210
 
 ## Stress Variants
 
-- original_food_v03: 720
-- unseen_paraphrase: 540
+- original_food_v03: 840
+- unseen_paraphrase: 630
 
 ## Template Counts
 
-- avoid_deep_frying_weeknight: 56
-- budget_pantry_substitutions: 35
-- dairy_free_weeknight: 84
-- egg_free_baking: 91
-- fruit_forward_everyday_sweets: 77
-- gluten_free_when_possible: 70
-- indoor_grill_or_broiler_default: 56
-- leftover_friendly_meal_prep: 42
-- low_sodium_family_meals: 35
-- lower_sugar_everyday_dessert: 70
-- metric_measurements_default: 63
-- mild_spice_for_kids: 56
-- no_alcohol_family_meals: 91
-- no_raw_or_undercooked_egg: 28
-- nut_free_family_baking: 70
-- one_pot_low_cleanup: 63
-- pescatarian_no_red_meat: 63
-- vegetable_forward_family_meals: 56
-- vegetarian_weeknight_family: 91
-- weeknight_time_saving_prep: 63
+- allium_timing_shape: 56
+- briny_accent_form: 105
+- browning_distribution_style: 56
+- cheese_shape_temperature: 70
+- chili_marking_style: 56
+- component_layout_pattern: 77
+- creamy_sauce_thickness: 84
+- crumb_topping_moment: 77
+- crunch_topping_grain: 56
+- flexible_heat_route: 49
+- fruit_spice_signature: 98
+- fruit_top_sweetness_pattern: 84
+- garnish_selection_rule: 91
+- herb_stem_role: 84
+- raw_veg_cut_pattern: 84
+- salad_dressing_layout: 56
+- sauce_marking_style: 42
+- soft_herb_cut_style: 98
+- soup_garnish_geometry: 84
+- starch_liquid_finish: 63
 
 ## Human Review Status
 
 Human review has not been completed. Use the review queues in `review/`.
-
-## Audit Files
-
-- `reports/lifeline_distractor_pool.jsonl`

@@ -1,0 +1,37 @@
+method_name: "memrl"
+method_type: "agentic_memory"
+description: "Executable pipeline smoke config; not a paper-score reproduction"
+model: {provider: "openai", name: "Qwen3-8B", temperature: 0.0, max_completion_tokens: 2048}
+embedding:
+  provider: "local"
+  model: "BAAI/bge-small-zh-v1.5"
+  model_path: "/plm-dhw/wangjiarui/models/bge-small-zh-v1.5"
+  dim: 512
+agent_params:
+  retrieve_num: 5
+  candidate_top_k: 12
+  similarity_threshold: 0.2
+  max_new_items_per_memorize: 8
+  max_experience_tokens: 700
+  memorize_chunk_tokens: 4096
+  memorize_chunk_overlap_tokens: 200
+  query_memory_item_tokens: 300
+  query_memory_context_tokens: 1800
+  max_concurrent_api_calls: 4
+  build_strategy: "proceduralization"
+  retrieve_strategy: "query"
+  update_strategy: "adjustment"
+  epsilon: 0.1
+  gamma: 0.0
+  learning_rate: 0.2
+  initial_q: 0.5
+  q_init_pos: 0.5
+  q_init_neg: 0.0
+  success_reward: 1.0
+  failure_reward: -1.0
+  weight_sim: 0.5
+  weight_q: 0.5
+  utility_mix_lambda: 0.6
+  max_input_tokens: 4096
+  max_context_tokens: 32768
+  max_question_tokens: 4096

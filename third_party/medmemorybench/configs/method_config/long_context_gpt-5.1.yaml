@@ -1,0 +1,15 @@
+# Long Context Agent Configuration
+
+method_name: "long_context"
+method_type: "baseline"
+description: "Long Context Agent - Directly concatenates context, leverages LLM long context capability"
+
+model:
+  provider: "openai"
+  name: "gpt-5.1"
+  temperature: 0.3
+  max_completion_tokens: 128000
+
+agent_params:
+  max_context_tokens: 128000
+  truncation_strategy: "oldest_first"  # oldest_first / sliding_window

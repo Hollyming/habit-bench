@@ -1,0 +1,19 @@
+method_name: "amem"
+method_type: "agentic_memory"
+description: "HABIT profile: MedMemoryBench A-MEM, local Qwen3-8B, BGE-M3, top-k 5, chunk 4096"
+model: {provider: "openai", name: "Qwen3-8B", temperature: 0.0, max_completion_tokens: 2048}
+embedding:
+  provider: "local"
+  model: "BAAI/bge-m3"
+  revision: "5617a9f61b028005a4858fdac845db406aefb181"
+  model_path: "/plm-shared/zhangjunming/Workspace/models/bge-m3"
+  dim: 1024
+agent_params:
+  retrieve_num: 5
+  amem_backend: "openai"
+  amem_model: "Qwen3-8B"
+  amem_embedding_model: "/plm-shared/zhangjunming/Workspace/models/bge-m3"
+  amem_evo_threshold: 100
+  amem_max_tokens: 2048
+  amem_max_context_tokens: 32768
+  amem_chunk_size_tokens: 4096

@@ -1,0 +1,21 @@
+method_name: "embedding_rag"
+method_type: "rag"
+description: "LoCoMo adapted baseline: local Qwen3-8B and BGE-small, top-k 5"
+
+model:
+  provider: "openai"
+  name: "Qwen3-8B"
+  temperature: 0.0
+  max_completion_tokens: 2048
+
+embedding:
+  provider: "local"
+  model: "BAAI/bge-small-zh-v1.5"
+  model_path: "/plm-dhw/wangjiarui/models/bge-small-zh-v1.5"
+  dim: 512
+
+agent_params:
+  top_k: 5
+  chunk_size: 4096
+  chunk_overlap: 0
+  max_context_tokens: 32768

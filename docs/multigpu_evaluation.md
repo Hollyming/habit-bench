@@ -1,175 +1,167 @@
-# Multi-GPU Full Evaluation
+# Multi-GPU evaluation with ClusterX
 
-This runbook executes memory methods over every user while preserving complete
-per-user lifelines. It supports a single multi-GPU host and Slurm job arrays.
+HABIT-Bench parallelizes by user. A shard owns complete user lifelines, so
+method state never crosses workers and DDP synchronization is unnecessary.
 
-## Execution Unit
+## Active execution model
 
-HABIT-Bench shards by sorted `user_id`, never by session or probe. For shard
-index `i` of `N`, the evaluator selects `users[i::N]`. Every selected user's
-complete visible lifeline is ingested chronologically by the memory method.
+On one ClusterX node:
 
-Each GPU task owns:
+1. `create_shard_plan.py` creates deterministic user shards for every selected
+   method/domain pair.
+2. `run_multigpu_plan.py` starts one persistent Qwen3-8B vLLM server per GPU.
+3. One method/domain group runs at a time; its user shards run concurrently
+   across the persistent GPU workers.
+4. Every GPU is reserved for its vLLM process. Adapter processes receive
+   `CUDA_VISIBLE_DEVICES=""`; BGE-M3 runs on CPU and cannot contend with Qwen.
+5. MedMemoryBench shards preserve chronological execution inside one user but
+   process independent users concurrently. Frozen method profiles use up to 7
+   workers for Mem0/MemOS/MemRL/Letta, 5 for A-MEM, and 1 for
+   LightMem/MIRIX.
+6. `merge_shard_plan.py` checks shard coverage and dataset/config consistency,
+   merges predictions, rescoring the complete domain.
 
-- one user shard;
-- one method and one dataset;
-- one local Qwen3-8B vLLM server;
-- one independent method-native memory store;
-- one result directory named `shard_XXX_of_NNN`.
+Running groups sequentially makes method/domain wall-clock measurements
+interpretable and avoids repeatedly starting vLLM for every shard.
 
-The Mem0 adapter also assigns a shard-local `MEM0_DIR`. Mem0 1.0.2 otherwise
-creates a shared telemetry migration store under `~/.mem0`, which is unsafe
-when multiple GPU workers initialize concurrently.
+## Environment
 
-The merger requires all shard indices, validates dataset hashes and probe
-coverage, rejects duplicate predictions, and rescores the combined predictions
-against the complete private key.
-
-## Install On A New Cluster
-
-```bash
-git clone --recurse-submodules https://github.com/Hollyming/habit-bench.git
-cd habit-bench
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-Use shared model storage where possible. Adapt
-`scripts/cluster/env.example.sh` to the cluster paths. Qwen3-8B, E5, and the
-SeCom compressor should be local before an offline run. Hugging Face downloads
-must be performed without HTTP/HTTPS proxy variables on Lumia.
-
-## Select Methods Explicitly
-
-The plan has no implicit controls. This command creates only Mem0 tasks:
-
-```bash
-python scripts/create_shard_plan.py \
-  --methods mem0 \
-  --datasets food,finance_software \
-  --shards 8 \
-  --output-root results/mem0_full \
-  --plan results/mem0_full/shard_plan.tsv
-```
-
-To run several memory methods without controls:
-
-```bash
---methods mem0,amem,graphiti,secom,omem
-```
-
-`no_memory` and `full_history` run only when their names are explicitly present
-in `--methods`. The active raw-context control is named `full_history`; there is
-no method named `full_memory`.
-
-The task count is:
+The job uses these Conda environments:
 
 ```text
-number of methods x number of datasets x number of user shards
+/plm-shared/zhangjunming/miniconda3/envs/habitbenchmark
+/plm-shared/zhangjunming/miniconda3/envs/habitbenchmark-vllm
+/plm-shared/zhangjunming/miniconda3/envs/clusterx
 ```
 
-Do not request more shards than users: food has 30 users and
-finance/software has 45.
-
-## Slurm Job Array
-
-The submitter creates the plan, submits one-GPU array tasks, and submits a CPU
-merge job with an `afterok` dependency:
-
-```bash
-bash scripts/slurm/submit_sharded_suite.sh \
-  --methods mem0 \
-  --datasets food,finance_software \
-  --shards 8 \
-  --max-concurrent 8 \
-  --partition GPU_PARTITION \
-  --time 16:00:00 \
-  --cpus 12 \
-  --mem 96G \
-  --port-base 8100 \
-  --env-file /path/to/habitbench-cluster-env.sh \
-  --output-root results/mem0_full
-```
-
-Choose a different `--port-base` for concurrent experiment arrays that may
-share a node.
-
-Use `--dry-run` to inspect the plan and `sbatch` commands. Use
-`--no-merge-job` when the target cluster does not permit dependent CPU jobs;
-merge manually after every shard succeeds:
-
-```bash
-python scripts/merge_shard_plan.py \
-  --plan results/mem0_full/shard_plan.tsv
-```
-
-Completed shards are skipped when `metrics.json` exists. Set
-`HABITBENCH_FORCE_RERUN=1` to replace a completed shard. Failed or preempted
-array indices can therefore be resubmitted without repeating successful work.
-
-## One Multi-GPU Node Without Slurm
-
-Create the same plan, then launch one sequential worker per GPU:
-
-```bash
-python scripts/run_multigpu_plan.py \
-  --plan results/mem0_full/shard_plan.tsv \
-  --gpus 0,1,2,3,4,5,6,7 \
-  --env-file /path/to/habitbench-cluster-env.sh \
-  --port-base 8100
-
-python scripts/merge_shard_plan.py \
-  --plan results/mem0_full/shard_plan.tsv
-```
-
-Each worker processes its assigned task ids sequentially, so two vLLM servers
-never share one GPU. Different workers use different localhost ports.
-
-## Output Layout
+`habitbenchmark` runs adapters and scoring. `habitbenchmark-vllm` is a
+dedicated WJR-aligned serving runtime and is checked before GPU allocation is
+used:
 
 ```text
-results/mem0_full/
-  shard_plan.tsv
-  food/mem0/
-    shard_000_of_008/
-    ...
-    shard_007_of_008/
-    merged/
-      merge_manifest.json
-      memory_contexts.jsonl
-      predictions.jsonl
-      scored_predictions.jsonl
-      metrics.json
-      metrics_by_group.csv
-  finance_software/mem0/
-    ...
+Python 3.10.20
+vLLM 0.17.1
+PyTorch 2.10.0+cu128
+Triton 3.6.0
+Transformers 4.57.6
+FlashInfer 0.6.4
+xgrammar 0.1.29
 ```
 
-Only `merged/metrics.json` is the complete-dataset score. A shard's `overall`
-metric covers only that shard's users.
+Default model paths are recorded in `scripts/cluster/env.example.sh`:
 
-## Observed Mem0 Cost
+```text
+Qwen3-8B: /plm-shared/zhangjunming/Workspace/models/Qwen3-8B
+BGE-M3:   /plm-shared/zhangjunming/Workspace/models/bge-m3
+```
 
-On Lumia with one RTX 6000 Ada and Qwen3-8B:
+The environment also pins offline Hugging Face mode and
+`TIKTOKEN_CACHE_DIR=/plm-shared/zhangjunming/.cache/tiktoken`. The latter
+contains the `o200k_base` fallback used by the vendored base class for the
+Qwen model name; the submit preflight rejects a missing cache instead of
+allowing an evaluation job to attempt a network download.
 
-| dataset | one-user lifeline | Mem0 write time |
-| --- | ---: | ---: |
-| food | 47 sessions | about 17 minutes |
-| finance/software | 320 sessions | about 93 minutes |
+The current ClusterX image exposes a CUDA 13.2 system `ptxas`, whereas the
+dedicated vLLM environment uses PyTorch cu128 and Triton 3.6.
+`TRITON_PTXAS_PATH` therefore pins that environment's bundled CUDA 12.8
+assembler; this path is checked before the eight servers are started.
 
-These are pilot measurements, not guaranteed throughput. A sequential full
-finance run would take roughly 70 GPU-hours. With eight balanced user shards,
-the expected wall time is approximately 8-10 hours plus queue and server
-startup time. Use at least a 12-16 hour per-shard limit and preserve logs.
+`HABITBENCH_CHAT_TEMPLATE` points vLLM to
+`configs/chat_templates/qwen3_no_thinking.jinja`. This makes non-thinking the
+default for all MedMemoryBench method clients, including clients that cannot
+send Qwen-specific `chat_template_kwargs`, and avoids truncated structured
+memory writes without changing the native memory algorithms.
 
-## Fairness And Reporting
+`VLLM_BATCH_INVARIANT=1` and `--attention-backend FLASH_ATTN` keep outputs
+stable when several user workers share one endpoint. After startup, every
+server runs one single-stream sample plus a representative four-request
+sample. The job records both rates and refuses to begin a
+method group when aggregate decode throughput is below
+`HABITBENCH_VLLM_MIN_TOKENS_PER_SEC` (60 by default).
 
-- Keep the Qwen model, thinking mode, temperature, retrieval budget, and method
-  revision fixed across shards.
-- Report total GPU-hours, per-user write latency, storage size, retrieved
-  context tokens, and answer Accuracy.
-- A-MEM, Graphiti, SeCom, O-Mem, and Mem0 are `official_adapted` integrations;
-  do not describe them as unchanged paper configurations.
-- Do not compare an individual shard or one-user pilot with a full-domain
-  no-memory score.
+## Submit
+
+The single supported submit entry is:
+
+```bash
+cd /plm-shared/zhangjunming/Workspace/HABIT-bench
+
+bash scripts/submit_clusterx.sh \
+  --methods mem0,amem,memos,memrl,lightmem,letta,mirix,graphiti,secom,omem \
+  --datasets food,finance_software \
+  --shards 8 \
+  --gpus 8 \
+  --output-root results/habit_bge_m3_v1
+```
+
+This submits through `clusterx run` to `cluster-t` /
+`queue-t-reserved-plm`. Use `--dry-run` to create the plan and inspect the exact
+submission without creating a ClusterX job.
+
+Controls are never added implicitly:
+
+```bash
+bash scripts/submit_clusterx.sh \
+  --methods no_memory,full_memory \
+  --shards 8 \
+  --gpus 8 \
+  --output-root results/controls_bge_m3_v1
+```
+
+`full_history` is accepted as a backward-compatible alias of `full_memory`.
+The long-context control defaults to
+`HABITBENCH_CONTEXT_WINDOW_TIER=auto`, which selects the largest standard
+8k/16k/32k/40k/64k/128k tier supported by `HABITBENCH_MAX_MODEL_LEN`. Each tier
+reserves prompt space and uses the remainder for history. Use
+`HABITBENCH_CONTEXT_WINDOW_TIER=custom` with
+`HABITBENCH_MAX_INPUT_TOKENS` for a non-standard model window.
+`HABITBENCH_FULL_MEMORY_MAX_TOKENS` remains an explicit history-budget
+override for ablations.
+Prefix caching is enabled by default (`HABITBENCH_ENABLE_PREFIX_CACHING=1`) so
+repeated probes for the same user can reuse their identical history prefix.
+
+After preemption, resubmit the same output root. Completed shards are skipped.
+Use `--force-plan` only when intentionally replacing the plan and
+`HABITBENCH_FORCE_RERUN=1` only when intentionally replacing completed shard
+outputs.
+
+## Output and timing
+
+```text
+results/habit_bge_m3_v1/
+├── shard_plan.tsv
+├── shard_plan.manifest.json
+├── clusterx_submit.log
+├── suite_runtime.json
+├── evaluation_summary.json
+├── vllm_logs/
+├── food/<method>/
+│   ├── shard_000_of_008/
+│   │   ├── run_manifest.json
+│   │   ├── worker_runtime.json
+│   │   └── ...
+│   └── merged/
+│       ├── merge_manifest.json
+│       ├── metrics.json
+│       └── ...
+└── finance_software/<method>/
+```
+
+Timing fields have distinct meanings:
+
+- `run_manifest.execution.wall_clock_sec`: evaluator wall time for one shard;
+- `worker_runtime.wall_clock_sec`: outer task wall time on its GPU worker;
+- `merge_manifest.timing.shard_wall_clock_sum_sec`: total shard compute;
+- `merge_manifest.timing.shard_wall_clock_max_sec`: ideal concurrent lower
+  bound;
+- `suite_runtime.groups[].wall_clock_sec`: observed end-to-end wall time for a
+  method/domain group;
+- `suite_runtime.servers[].throughput_gate`: single-stream and concurrent
+  aggregate decode rate for each GPU;
+- `suite_runtime.wall_clock_sec`: complete node job runtime, including one-time
+  vLLM startup;
+- `evaluation_summary.json`: score, shard count, config snapshot and timing for
+  every method/domain pair.
+
+Only `merged/metrics.json` is a complete-domain score. Partial shard metrics
+must not be compared with complete-domain results.

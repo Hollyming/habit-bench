@@ -1,0 +1,30 @@
+dataset_name: "medmemorybench"
+description: "One-persona, first-evaluation-unit smoke test; not a paper result"
+language: "zh"
+
+data:
+  root_dir: "/plm-dhw/wangjiarui/datasets/MedMemoryBench/7227bc1/data/MedMemoryBench"
+  personas_file: null
+  sessions_pattern: "persona_{id}/eval/generated_dialogues.json"
+  queries_pattern: "persona_{id}/eval/generated_queries.json"
+  noise_file: "persona_{id}/eval/generated_dialogues_with_noise.json"
+
+evaluation:
+  mode: "independent"
+  persona_ids: [1]
+  max_personas: 1
+  max_sessions_per_persona: 10
+  evaluation_interval: 10
+  inject_noise: false
+
+query_types:
+  - {name: "entity_exact_match", abbr: "EEM", metric: "string_contain"}
+  - {name: "temporal_localization", abbr: "TLA", metric: "llm_judge"}
+  - {name: "state_update", abbr: "SUA", metric: "llm_judge"}
+  - {name: "multiple_choice", abbr: "MQ", metric: "option_match"}
+  - {name: "inference_generation", abbr: "IG", metric: "llm_judge"}
+  - {name: "multi_hop_clinical_deduction", abbr: "MCD", metric: "llm_judge_mcd"}
+
+output:
+  save_intermediate: true
+  save_retrieved_context: true

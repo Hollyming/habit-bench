@@ -188,7 +188,13 @@ def extract_session_ids(text: str) -> List[str]:
 
 
 def default_repo_path() -> Path:
-    return Path(__file__).resolve().parents[2] / "third_party" / "official-baselines" / "repos" / "O-Mem"
+    return (
+        Path(__file__).resolve().parents[2]
+        / "third_party"
+        / "official-baselines"
+        / "vendor"
+        / "O-Mem"
+    )
 
 
 def import_omem(repo_path: Path):
@@ -348,7 +354,11 @@ def stored_item_count(memory) -> int:
 
 async def run(args: argparse.Namespace) -> None:
     payload = read_json(args.input)
-    repo_path = args.repo_path
+    repo_path = (
+        Path(os.environ["HABITBENCH_OMEM_REPO"])
+        if os.environ.get("HABITBENCH_OMEM_REPO")
+        else args.repo_path
+    )
     config_record = {
         "adapter": "omem_official_code_compatibility",
         "repo_path": str(repo_path),
@@ -517,10 +527,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--repo-path", type=Path, default=default_repo_path())
-    parser.add_argument("--embedding-model-name", default=os.getenv("HABITBENCH_EMBED_MODEL", "/home/jmzhang/models/e5-base-v2"))
+    parser.add_argument(
+        "--embedding-model-name",
+        default=os.getenv(
+            "HABITBENCH_EMBED_MODEL",
+            "/plm-shared/zhangjunming/Workspace/models/bge-m3",
+        ),
+    )
     parser.add_argument("--topn", type=int, default=12)
     parser.add_argument("--drop-threshold", type=float, default=0.0)
-    parser.add_argument("--llm-model", default=os.getenv("HABITBENCH_SERVED_MODEL", "habitbench-qwen3-8b"))
+    parser.add_argument(
+        "--llm-model",
+        default=os.getenv("HABITBENCH_SERVED_MODEL", "Qwen3-8B"),
+    )
     parser.add_argument("--openai-base-url", default=os.getenv("OPENAI_BASE_URL", "http://127.0.0.1:8000/v1"))
     parser.add_argument("--openai-api-key", default=os.getenv("OPENAI_API_KEY", "dummy"))
     parser.add_argument("--message-timeout-sec", type=float, default=300.0)

@@ -1,0 +1,18 @@
+method_name: "mem0"
+method_type: "agentic_memory"
+description: "Paper-near run: vendored Mem0 and pinned Qwen3-235B-A22B-Instruct-2507 without local-8B prompt/schema adaptations"
+model:
+  provider: "openai"
+  name: "Qwen3-235B-A22B-Instruct-2507"
+  temperature: 0.3
+  max_completion_tokens: 10000
+embedding:
+  provider: "local"
+  model: "BAAI/bge-small-zh-v1.5"
+  model_path: "/plm-dhw/wangjiarui/models/bge-small-zh-v1.5"
+  dim: 512
+agent_params:
+  retrieve_num: 5
+  chunk_size_tokens: 10240
+  max_context_tokens: 20480
+  storage_root: "/plm-dhw/wangjiarui/outputs/HABIT-bench/medmemorybench-state-qwen235b"

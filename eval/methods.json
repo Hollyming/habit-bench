@@ -1,100 +1,93 @@
 {
   "amem": {
-    "implementation_kind": "official_adapted",
-    "source": "https://github.com/agiresearch/a-mem",
-    "revision": "ceffb860f0712bbae97b184d440df62bc910ca8d",
-    "adapter": "eval/official_adapters/amem.py",
-    "note": "Official AgenticMemorySystem add_note/search_agentic path; one HABIT-Bench session is one note."
+    "implementation_kind": "benchmark_reproduction",
+    "source": "third_party/medmemorybench",
+    "revision": "6591eb3251402f26535846ea4a95f5b4478ae35a",
+    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
+    "note": "MedMemoryBench vendored A-MEM source via add_note/find_related_memories; retrieval-only output is passed to the shared HABIT answerer."
   },
   "full_history": {
     "implementation_kind": "control",
     "source": "HABIT-Bench",
-    "revision": "memory_context.v1",
-    "adapter": "eval/official_adapters/controls.py",
-    "note": "Recent full-history window bounded by the Qwen3-8B context limit; not a learned memory method."
+    "revision": "memory_context.v3",
+    "adapter": "eval/controls.py",
+    "note": "Backward-compatible alias of full_memory: capacity-aware window tiers, all visible history if it fits, otherwise recent complete sessions."
+  },
+  "full_memory": {
+    "implementation_kind": "control",
+    "source": "HABIT-Bench",
+    "revision": "memory_context.v3",
+    "adapter": "eval/controls.py",
+    "note": "Capacity-aware long-context control with auto/8k/16k/32k/40k/64k/128k/custom tiers and recent-session truncation on overflow."
   },
   "graphiti": {
     "implementation_kind": "official_adapted",
     "source": "https://github.com/getzep/graphiti",
     "revision": "graphiti-core==0.29.2",
-    "adapter": "eval/official_adapters/graphiti_sharded.py",
-    "note": "Official add_episode/search_ APIs with a local Kuzu backend and edge-cosine retrieval because Kuzu BM25 is unavailable."
+    "adapter": "eval/official_adapters/graphiti.py",
+    "note": "Official add_episode/search_ APIs with local Kuzu and documented edge-cosine/RRF retrieval because Kuzu BM25 is unavailable."
+  },
+  "letta": {
+    "implementation_kind": "benchmark_reproduction",
+    "source": "third_party/medmemorybench",
+    "revision": "6591eb3251402f26535846ea4a95f5b4478ae35a",
+    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
+    "note": "MedMemoryBench vendored Letta source; archival passage retrieval is exposed without a Letta answer turn."
+  },
+  "lightmem": {
+    "implementation_kind": "benchmark_reproduction",
+    "source": "third_party/medmemorybench",
+    "revision": "6591eb3251402f26535846ea4a95f5b4478ae35a",
+    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
+    "note": "MedMemoryBench LightMem source with the recorded compatibility patch; native retrieve output is passed to the shared HABIT answerer."
   },
   "mem0": {
-    "implementation_kind": "official_adapted",
-    "source": "https://github.com/mem0ai/mem0",
-    "revision": "mem0ai==1.0.2",
-    "adapter": "eval/official_adapters/mem0.py",
-    "note": "Official Memory.add(infer=True) and Memory.search APIs without benchmark-specific extraction instructions; Qwen3 thinking is disabled through the OpenAI request body."
-  },
-  "medmemorybench_amem": {
     "implementation_kind": "benchmark_reproduction",
-    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
+    "source": "third_party/medmemorybench",
     "revision": "6591eb3251402f26535846ea4a95f5b4478ae35a",
     "adapter": "eval/medmemorybench_adapters/structured_memory.py",
-    "note": "MedMemoryBench vendored A-MEM source via add_note/find_related_memories; retrieval-only output is passed to the shared HABIT answerer."
+    "note": "MedMemoryBench vendored Mem0 source via Memory.add/Memory.search; no external hosted memory workflow or method-specific answer call."
   },
-  "medmemorybench_letta": {
+  "memos": {
     "implementation_kind": "benchmark_reproduction",
-    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
-    "revision": "6591eb3251402f26535846ea4a95f5b4478ae35a",
-    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
-    "note": "MedMemoryBench vendored Letta source; archival passage vector search is exposed without a Letta answer turn."
-  },
-  "medmemorybench_lightmem": {
-    "implementation_kind": "benchmark_reproduction",
-    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
-    "revision": "6591eb3251402f26535846ea4a95f5b4478ae35a",
-    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
-    "note": "MedMemoryBench LightMem source; native retrieve output is passed to the shared HABIT answerer."
-  },
-  "medmemorybench_mem0": {
-    "implementation_kind": "benchmark_reproduction",
-    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
-    "revision": "6591eb3251402f26535846ea4a95f5b4478ae35a",
-    "adapter": "eval/medmemorybench_adapters/structured_memory.py",
-    "note": "MedMemoryBench vendored Mem0 source via Memory.add/Memory.search; no external mem0ai package or method-specific answer call."
-  },
-  "medmemorybench_memos": {
-    "implementation_kind": "benchmark_reproduction",
-    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
+    "source": "third_party/medmemorybench",
     "revision": "6591eb3251402f26535846ea4a95f5b4478ae35a",
     "adapter": "eval/medmemorybench_adapters/structured_memory.py",
     "note": "MedMemoryBench MemOS source; native text-memory search is exposed without reader generation."
   },
-  "medmemorybench_memrl": {
+  "memrl": {
     "implementation_kind": "benchmark_reproduction",
-    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
+    "source": "third_party/medmemorybench",
     "revision": "6591eb3251402f26535846ea4a95f5b4478ae35a",
     "adapter": "eval/medmemorybench_adapters/structured_memory.py",
     "note": "MedMemoryBench MemRL source; value-aware selected memories are exposed without reader generation."
   },
-  "medmemorybench_mirix": {
+  "mirix": {
     "implementation_kind": "benchmark_reproduction",
-    "source": "https://github.com/AQ-MedAI/MedMemoryBench",
+    "source": "third_party/medmemorybench",
     "revision": "6591eb3251402f26535846ea4a95f5b4478ae35a",
     "adapter": "eval/medmemorybench_adapters/structured_memory.py",
     "note": "MedMemoryBench MIRIX source; multi-store retrieval is exposed without native send_message answering."
-  },
-  "no_memory": {
-    "implementation_kind": "control",
-    "source": "HABIT-Bench",
-    "revision": "memory_context.v1",
-    "adapter": "eval/official_adapters/controls.py",
-    "note": "Qwen3-8B receives only the current request and choices; not a learned memory method."
   },
   "omem": {
     "implementation_kind": "official_adapted",
     "source": "https://github.com/OPPO-PersonalAI/O-Mem",
     "revision": "46e131ac39af55d456304c61dfb881717044528e",
-    "adapter": "eval/official_adapters/omem_sharded.py",
+    "adapter": "eval/official_adapters/omem.py",
     "note": "Official SimpleMemory lifecycle with documented JSON-output compatibility patches for the local OpenAI-compatible backend."
+  },
+  "no_memory": {
+    "implementation_kind": "control",
+    "source": "HABIT-Bench",
+    "revision": "memory_context.v1",
+    "adapter": "eval/controls.py",
+    "note": "Qwen3-8B receives only the current request and choices; not a learned memory method."
   },
   "secom": {
     "implementation_kind": "official_adapted",
     "source": "https://github.com/microsoft/SeCom",
     "revision": "1738e563b5dc7c51df762247e3d0379f1132ad23",
     "adapter": "eval/official_adapters/secom.py",
-    "note": "Official segmentation, compression, and retrieval modules adapted to chronological per-session ingestion."
+    "note": "Official segmentation, LLMLingua compression and FAISS retrieval adapted to chronological online session ingestion."
   }
 }

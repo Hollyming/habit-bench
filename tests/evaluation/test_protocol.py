@@ -1,32 +1,79 @@
 from __future__ import annotations
 
+import json
 import unittest
+from pathlib import Path
 
+import yaml
+
+from eval.core.answering import DEFAULT_SERVED_MODEL
 from eval.core.dataset import DatasetContractError
-from eval.official_adapters.mem0 import configure_qwen_non_thinking
 from eval.run import validate_memory_contexts
 
 
 class ProtocolTest(unittest.TestCase):
-    def test_mem0_qwen_requests_disable_thinking(self) -> None:
-        class FakeLLM:
-            def __init__(self) -> None:
-                self.kwargs = None
+    METHODS = ("mem0", "amem", "memos", "memrl", "lightmem", "letta", "mirix")
+    OFFICIAL_METHODS = {
+        "graphiti": "eval/official_adapters/graphiti.py",
+        "secom": "eval/official_adapters/secom.py",
+        "omem": "eval/official_adapters/omem.py",
+    }
 
-            def generate_response(self, *args, **kwargs):
-                self.kwargs = kwargs
-                return "{}"
+    def test_canonical_methods_use_medmemorybench_adapter(self) -> None:
+        registry_path = Path(__file__).resolve().parents[2] / "eval" / "methods.json"
+        registry = json.loads(registry_path.read_text(encoding="utf-8"))
+        for method in self.METHODS:
+            self.assertEqual(
+                registry[method]["adapter"],
+                "eval/medmemorybench_adapters/structured_memory.py",
+            )
 
-        class FakeMemory:
-            def __init__(self) -> None:
-                self.llm = FakeLLM()
-
-        memory = FakeMemory()
-        configure_qwen_non_thinking(memory)
-        memory.llm.generate_response(messages=[])
-        self.assertFalse(
-            memory.llm.kwargs["extra_body"]["chat_template_kwargs"]["enable_thinking"]
+    def test_official_adapted_methods_are_registered(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        registry = json.loads(
+            (project_root / "eval/methods.json").read_text(encoding="utf-8")
         )
+        for method, adapter in self.OFFICIAL_METHODS.items():
+            self.assertEqual(registry[method]["implementation_kind"], "official_adapted")
+            self.assertEqual(registry[method]["adapter"], adapter)
+            self.assertTrue((project_root / adapter).is_file())
+
+    def test_full_memory_control_is_registered(self) -> None:
+        registry_path = Path(__file__).resolve().parents[2] / "eval" / "methods.json"
+        registry = json.loads(registry_path.read_text(encoding="utf-8"))
+        self.assertEqual(registry["full_memory"]["implementation_kind"], "control")
+        self.assertEqual(registry["full_memory"]["revision"], "memory_context.v3")
+
+    def test_official_source_snapshots_are_plain_directories(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        vendor_root = project_root / "third_party/official-baselines/vendor"
+        expected = {
+            "SeCom": "secom/secom.py",
+            "O-Mem": "example_usage.py",
+        }
+        for source, marker in expected.items():
+            source_root = vendor_root / source
+            self.assertTrue((source_root / marker).is_file())
+            self.assertFalse((source_root / ".git").exists())
+
+    def test_active_method_configs_pin_bge_m3(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        config_root = (
+            project_root / "third_party/medmemorybench/configs/method_config"
+        )
+        expected = {
+            "provider": "local",
+            "model": "BAAI/bge-m3",
+            "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+            "model_path": "/plm-shared/zhangjunming/Workspace/models/bge-m3",
+            "dim": 1024,
+        }
+        for method in self.METHODS:
+            path = config_root / f"{method}_qwen3-8b_adapted.yaml"
+            config = yaml.safe_load(path.read_text(encoding="utf-8"))
+            self.assertEqual(config["embedding"], expected, method)
+            self.assertEqual(config["model"]["name"], DEFAULT_SERVED_MODEL, method)
+            self.assertNotIn("e5", path.read_text(encoding="utf-8").lower(), method)
 
     def test_memory_adapter_cannot_select_choices(self) -> None:
         with self.assertRaises(DatasetContractError):
@@ -34,6 +81,18 @@ class ProtocolTest(unittest.TestCase):
                 [{"probe_id": "p1", "memory_context": "x", "choice_id": "A"}],
                 ["p1"],
             )
+
+    def test_qwen3_server_template_defaults_to_non_thinking(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        template_path = (
+            project_root / "configs/chat_templates/qwen3_no_thinking.jinja"
+        )
+        template = template_path.read_text(encoding="utf-8")
+        self.assertIn(
+            "set enable_thinking = enable_thinking | default(false)",
+            template,
+        )
+        self.assertIn("<think>\\n\\n</think>", template)
 
     def test_context_coverage(self) -> None:
         rows = [{"probe_id": "p1", "memory_context": "context"}]

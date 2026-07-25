@@ -1,0 +1,22 @@
+method_name: "amem"
+method_type: "agentic_memory"
+description: "Paper-near run: vendored A-MEM and pinned Qwen3-235B-A22B-Instruct-2507"
+model:
+  provider: "openai"
+  name: "Qwen3-235B-A22B-Instruct-2507"
+  temperature: 0.3
+  max_completion_tokens: 10000
+embedding:
+  provider: "local"
+  model: "BAAI/bge-small-zh-v1.5"
+  model_path: "/plm-dhw/wangjiarui/models/bge-small-zh-v1.5"
+  dim: 512
+agent_params:
+  retrieve_num: 5
+  amem_backend: "openai"
+  amem_model: "Qwen3-235B-A22B-Instruct-2507"
+  amem_embedding_model: "/plm-dhw/wangjiarui/models/bge-small-zh-v1.5"
+  amem_evo_threshold: 100
+  amem_max_tokens: 10000
+  amem_max_context_tokens: 40000
+  amem_chunk_size_tokens: 10240

@@ -1,0 +1,128 @@
+# Mirix Configuration File
+# Configuration for memory server and MetaAgent
+
+# =============================================================================
+# LLM Configuration (optional)
+# =============================================================================
+# If not specified, defaults to gpt-4o-mini from OpenAI
+# You can configure different providers:
+
+llm_config:
+  # --- Option 1: OpenAI (default) ---
+  model: "gpt-4o-mini"
+  model_endpoint_type: "openai"
+  model_endpoint: "https://api.openai.com/v1"
+  context_window: 128000
+  # api_key: "your-api-key-here"  # Optional, can use environment variable OPENAI_API_KEY
+
+  # --- Option 2: Azure OpenAI ---
+  # model: "gpt-4o-mini"
+  # model_endpoint_type: "azure_openai"
+  # model_endpoint: "https://your-resource.openai.azure.com/"
+  # azure_endpoint: "https://your-resource.openai.azure.com/"
+  # azure_deployment: "gpt-4o-mini"
+  # api_version: "2024-10-01-preview"
+  # context_window: 128000
+  # api_key: "your-azure-key-here"  # Optional, can use environment variable AZURE_OPENAI_API_KEY
+
+  # --- Option 3: Google Gemini ---
+  # model: "gemini-2.0-flash"
+  # model_endpoint_type: "google_ai"
+  # model_endpoint: "https://generativelanguage.googleapis.com"
+  # context_window: 1000000
+  # api_key: "your-gemini-key-here"  # Optional, can use environment variable GEMINI_API_KEY
+
+  # --- Option 4: Anthropic Claude ---
+  # model: "claude-3-5-sonnet-20241022"
+  # model_endpoint_type: "anthropic"
+  # model_endpoint: "https://api.anthropic.com/v1"
+  # context_window: 200000
+  # api_key: "your-anthropic-key-here"  # Optional, can use environment variable ANTHROPIC_API_KEY
+
+  # --- Option 5: Custom OpenAI-compatible endpoint ---
+  # model: "custom-model-name"
+  # model_endpoint_type: "openai"
+  # model_endpoint: "https://your-custom-endpoint.com/v1"
+  # context_window: 128000
+  # api_key: "your-custom-key-here"
+
+  # --- Option 6: Custom OpenAI-compatible with dynamic auth provider ---
+  # Use this for endpoints requiring dynamic, short-lived authentication tokens
+  # (e.g., claims-based tickets). The auth provider must be registered programmatically
+  # in your server code before use. See examples/custom_auth_example.py
+  # model: "custom-model-name"
+  # model_endpoint_type: "openai"
+  # model_endpoint: "https://your-custom-endpoint.com/v1"
+  # auth_provider: "my_claims_provider"  # Name of registered auth provider
+  # context_window: 128000
+
+# =============================================================================
+# Embedding Configuration (optional)
+# =============================================================================
+# If not specified, defaults to text-embedding-004 from Google
+
+embedding_config:
+  # --- Option 1: Google Embedding (default) ---
+  embedding_model: "text-embedding-004"
+  embedding_endpoint_type: "google_ai"
+  embedding_dim: 768
+
+  # --- Option 2: OpenAI Embeddings ---
+  # embedding_model: "text-embedding-3-small"
+  # embedding_endpoint_type: "openai"
+  # embedding_dim: 1536
+
+  # --- Option 3: OpenAI Large Embeddings ---
+  # embedding_model: "text-embedding-3-large"
+  # embedding_endpoint_type: "openai"
+  # embedding_dim: 3072
+
+  # --- Option 4: Azure OpenAI Embeddings ---
+  # embedding_model: "text-embedding-3-small"
+  # embedding_endpoint_type: "azure_openai"
+  # azure_endpoint: "https://your-resource.openai.azure.com/"
+  # azure_deployment: "text-embedding-3-small"
+  # api_version: "2024-10-01-preview"
+
+# =============================================================================
+# System Prompts Configuration (optional)
+# =============================================================================
+# Custom folder path for system prompts
+# If not specified, uses default prompts from mirix/prompts/system/base/
+# 
+# To use custom prompts:
+# 1. Create a folder with .txt files for each agent
+# 2. Name files: {agent_name}.txt (e.g., episodic_memory_agent.txt)
+# 3. Set the path here
+#
+# Example structure:
+#   custom_prompts/
+#     ├── episodic_memory_agent.txt
+#     ├── semantic_memory_agent.txt
+#     ├── procedural_memory_agent.txt
+#     └── ... (other agents)
+
+system_prompts_folder: 
+# system_prompts_folder: "path/to/custom_prompts"
+
+# =============================================================================
+# MetaAgent Configuration
+# =============================================================================
+# Configuration for memory agents managed by MetaAgent
+# The memory server will initialize all specified agents on startup
+
+meta_agent_config:
+  # List of memory agents to initialize
+  # All agents are initialized by default
+  # Comment out any agents you don't want to use
+  agents:
+    - core_memory_agent          # Manages core memory blocks (persona, human info)
+    - resource_memory_agent       # Stores resource-related information
+    - semantic_memory_agent       # Handles conceptual and factual knowledge
+    - episodic_memory_agent       # Stores event-based memories with time context
+    - procedural_memory_agent     # Manages step-by-step procedures
+    - knowledge_vault_memory_agent       # Securely stores sensitive information
+    - meta_memory_agent           # Coordinates high-level memory operations
+    - reflexion_agent             # Analyzes and optimizes memory organization
+    - background_agent            # Performs ongoing memory maintenance tasks
+

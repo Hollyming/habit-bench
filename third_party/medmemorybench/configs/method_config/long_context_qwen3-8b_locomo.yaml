@@ -1,0 +1,13 @@
+method_name: "long_context"
+method_type: "baseline"
+description: "LoCoMo adapted full-context baseline capped for a 32K local Qwen server"
+
+model:
+  provider: "openai"
+  name: "Qwen3-8B"
+  temperature: 0.0
+  max_completion_tokens: 2048
+
+agent_params:
+  max_context_tokens: 28672
+  truncation_strategy: "oldest_first"

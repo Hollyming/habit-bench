@@ -1,0 +1,19 @@
+method_name: "amem"
+method_type: "agentic_memory"
+description: "Paper-reproduction candidate: MedMemoryBench A-MEM, GPT-5.1, BGE-small, top-k 5"
+
+model:
+  provider: "openai"
+  name: "gpt-5.1"
+  temperature: 0.3
+  max_completion_tokens: 10000
+
+agent_params:
+  retrieve_num: 5
+  amem_backend: "openai"
+  amem_model: "gpt-5.1"
+  amem_embedding_model: "/plm-dhw/wangjiarui/models/bge-small-zh-v1.5"
+  amem_evo_threshold: 100
+  amem_max_tokens: 10000
+  amem_max_context_tokens: 200000
+  amem_chunk_size_tokens: 4096

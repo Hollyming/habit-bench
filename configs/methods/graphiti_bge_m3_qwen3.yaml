@@ -1,0 +1,24 @@
+method_name: graphiti
+kind: official_adapted
+source: https://github.com/getzep/graphiti
+revision: graphiti-core==0.29.2
+ingestion:
+  api: Graphiti.add_episode
+  unit: one HABIT session
+backend:
+  graph_store: Kuzu
+retrieval:
+  api: Graphiti.search_
+  search: edge_cosine
+  reranker: reciprocal_rank_fusion
+  topk: 5
+embedding:
+  provider: local
+  model: BAAI/bge-m3
+  revision: 5617a9f61b028005a4858fdac845db406aefb181
+  model_path: /plm-shared/zhangjunming/Workspace/models/bge-m3
+  dim: 1024
+model:
+  name: Qwen3-8B
+  temperature: 0.0
+  thinking: false

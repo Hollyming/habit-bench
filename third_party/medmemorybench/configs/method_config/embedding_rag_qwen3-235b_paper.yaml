@@ -1,0 +1,18 @@
+method_name: "embedding_rag"
+method_type: "rag"
+description: "Paper-near run: pinned Qwen3-235B-A22B-Instruct-2507 and repository dense-RAG settings"
+model:
+  provider: "openai"
+  name: "Qwen3-235B-A22B-Instruct-2507"
+  temperature: 0.3
+  max_completion_tokens: 10000
+embedding:
+  provider: "local"
+  model: "BAAI/bge-small-zh-v1.5"
+  model_path: "/plm-dhw/wangjiarui/models/bge-small-zh-v1.5"
+  dim: 512
+agent_params:
+  top_k: 5
+  chunk_size: 1024
+  chunk_overlap: 50
+  max_context_tokens: 40960

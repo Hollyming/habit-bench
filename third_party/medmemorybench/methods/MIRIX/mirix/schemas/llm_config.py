@@ -1,0 +1,173 @@
+from typing import Literal, Optional
+
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+from mirix.log import get_logger
+
+logger = get_logger(__name__)
+
+
+class LLMConfig(BaseModel):
+    """
+    Configuration for a Language Model (LLM) model. This object specifies all the information necessary to access an LLM model to usage with Letta, except for secret keys.
+
+    Attributes:
+        model (str): The name of the LLM model.
+        model_endpoint_type (str): The endpoint type for the model (openai, anthropic, azure_openai, etc.).
+        model_endpoint (str): The endpoint for the model.
+        model_wrapper (str): The wrapper for the model. This is used to wrap additional text around the input/output of the model. This is useful for text-to-text completions, such as the Completions API in OpenAI.
+        context_window (int): The context window size for the model.
+        temperature (float): The temperature to use when generating text with the model. A higher temperature will result in more random text.
+        max_tokens (int): The maximum number of tokens to generate.
+        api_key (str, optional): Custom API key for this specific model configuration.
+        api_version (str, optional): The API version for Azure OpenAI (e.g., '2024-10-01-preview').
+        azure_endpoint (str, optional): The Azure endpoint for the model (e.g., 'https://your-resource.openai.azure.com/').
+        azure_deployment (str, optional): The Azure deployment name for the model.
+    """
+
+    # TODO: 🤮 don't default to a vendor! bug city!
+    model: str = Field(..., description="LLM model name. ")
+    model_endpoint_type: Literal[
+        "openai",
+        "anthropic",
+        "cohere",
+        "google_ai",
+        "google_vertex",
+        "azure_openai",
+        "groq",
+        "ollama",
+        "webui",
+        "webui-legacy",
+        "lmstudio",
+        "lmstudio-legacy",
+        "lmstudio-chatcompletions",
+        "llamacpp",
+        "koboldcpp",
+        "vllm",
+        "hugging-face",
+        "mistral",
+        "together",
+        "bedrock",
+        "deepseek",
+        "xai",
+    ] = Field(..., description="The endpoint type for the model.")
+    model_endpoint: Optional[str] = Field(None, description="The endpoint for the model.")
+    model_wrapper: Optional[str] = Field(None, description="The wrapper for the model.")
+    context_window: int = Field(..., description="The context window size for the model.")
+    handle: Optional[str] = Field(
+        None,
+        description="The handle for this config, in the format provider/model-name.",
+    )
+    temperature: float = Field(
+        0.7,
+        description="The temperature to use when generating text with the model. A higher temperature will result in more random text.",
+    )
+    max_tokens: Optional[int] = Field(
+        4096,
+        description="The maximum number of tokens to generate. If not set, the model will use its default value.",
+    )
+    enable_reasoner: bool = Field(
+        False,
+        description="Whether or not the model should use extended thinking if it is a 'reasoning' style model",
+    )
+    reasoning_effort: Optional[Literal["low", "medium", "high"]] = Field(
+        None,
+        description="The reasoning effort to use when generating text reasoning models",
+    )
+    max_reasoning_tokens: int = Field(
+        0,
+        description="Configurable thinking budget for extended thinking, only used if enable_reasoner is True. Minimum value is 1024.",
+    )
+    put_inner_thoughts_in_kwargs: Optional[bool] = Field(
+        None,
+        description="Whether to put inner thoughts/thinking inside tool call kwargs instead of as separate content",
+    )
+    api_key: Optional[str] = Field(
+        None,
+        description="Custom API key for this specific model configuration (used for custom models)",
+    )
+    auth_provider: Optional[str] = Field(
+        None,
+        description="Name of registered auth provider for dynamic header injection (e.g., for claims-based tickets)",
+    )
+
+    # Langfuse observability
+    langfuse_model: Optional[str] = Field(
+        None,
+        description="Model name to report to Langfuse for cost tracking (overrides 'model' if set). Use standard model names like 'gpt-4.1', 'gpt-4o', etc.",
+    )
+
+    # Azure-specific fields (Azure OpenAI only)
+    api_version: Optional[str] = Field(
+        None,
+        description="The API version for Azure OpenAI (e.g., '2024-10-01-preview')",
+    )
+    azure_endpoint: Optional[str] = Field(
+        None,
+        description="The Azure endpoint for the model (e.g., 'https://your-resource.openai.azure.com/')",
+    )
+    azure_deployment: Optional[str] = Field(None, description="The Azure deployment name for the model")
+
+    # FIXME hack to silence pydantic protected namespace warning
+    model_config = ConfigDict(protected_namespaces=())
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_enable_reasoner(cls, values):
+        if any(openai_reasoner_model in values.get("model", "") for openai_reasoner_model in ["o3-mini", "o1"]):
+            values["enable_reasoner"] = True
+        return values
+
+    @model_validator(mode="after")
+    def issue_warning_for_reasoning_constraints(self) -> "LLMConfig":
+        if self.enable_reasoner:
+            if self.max_reasoning_tokens is None:
+                logger.warning("max_reasoning_tokens must be set when enable_reasoner is True")
+            if self.max_tokens is not None and self.max_reasoning_tokens >= self.max_tokens:
+                logger.warning("max_tokens must be greater than max_reasoning_tokens (thinking budget)")
+        elif self.max_reasoning_tokens and not self.enable_reasoner:
+            logger.warning("model will not use reasoning unless enable_reasoner is set to True")
+
+        return self
+
+    @classmethod
+    def default_config(cls, model_name: str):
+        """
+        Convenience function to generate a default `LLMConfig` from a model name. Only some models are supported in this function.
+
+        Args:
+            model_name (str): The name of the model (gpt-4, gpt-4o-mini, letta).
+        """
+        if model_name == "gpt-4":
+            return cls(
+                model="gpt-4",
+                model_endpoint_type="openai",
+                model_endpoint="https://api.openai.com/v1",
+                model_wrapper=None,
+                context_window=8192,
+            )
+        elif model_name == "gpt-4o-mini":
+            return cls(
+                model="gpt-4o-mini",
+                model_endpoint_type="openai",
+                model_endpoint="https://api.openai.com/v1",
+                model_wrapper=None,
+                context_window=128000,
+            )
+        elif model_name == "gpt-4o":
+            return cls(
+                model="gpt-4o",
+                model_endpoint_type="openai",
+                model_endpoint="https://api.openai.com/v1",
+                model_wrapper=None,
+                context_window=128000,
+            )
+        else:
+            raise ValueError(f"Model {model_name} not supported.")
+
+    def pretty_print(self) -> str:
+        return (
+            f"{self.model}"
+            + (f" [type={self.model_endpoint_type}]" if self.model_endpoint_type else "")
+            + (f" [ip={self.model_endpoint}]" if self.model_endpoint else "")
+        )

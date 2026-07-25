@@ -1,0 +1,25 @@
+method_name: secom
+kind: official_adapted
+source: https://github.com/microsoft/SeCom
+revision: 1738e563b5dc7c51df762247e3d0379f1132ad23
+ingestion:
+  unit: one newly visible HABIT session
+  order: chronological
+memory:
+  granularity: segment
+  segmentor: official
+  compressor: LLMLingua2
+  compressor_model_path: /plm-shared/zhangjunming/Workspace/models/llmlingua-2-xlm-roberta-large-meetingbank
+  compression_rate: 0.9
+retrieval:
+  storage: FAISS
+  topk: 5
+embedding:
+  provider: local
+  model: BAAI/bge-m3
+  revision: 5617a9f61b028005a4858fdac845db406aefb181
+  model_path: /plm-shared/zhangjunming/Workspace/models/bge-m3
+  dim: 1024
+model:
+  name: Qwen3-8B
+  thinking: false

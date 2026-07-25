@@ -1,0 +1,34 @@
+method_name: "mirix"
+method_type: "agentic_memory"
+description: "Executable pipeline smoke config; not a paper-score reproduction"
+# The top-level reader retains 10k tokens; memory-writing children use the
+# same bounded adapted contract as formal local-model runs.
+model: {provider: "openai", name: "Qwen3-8B", temperature: 0.0, max_completion_tokens: 10000}
+embedding:
+  provider: "local"
+  model: "BAAI/bge-small-zh-v1.5"
+  model_path: "/plm-dhw/wangjiarui/models/bge-small-zh-v1.5"
+  dim: 512
+agent_params:
+  retrieve_num: 2
+  memorize_chunk_tokens: 4096
+  memorize_chunk_overlap_tokens: 200
+  query_memory_item_tokens: 512
+  query_memory_context_tokens: 4096
+  max_input_tokens: 4096
+  max_context_tokens: 32768
+  max_question_tokens: 4096
+  use_native_query: false
+  enforce_single_meta_update: true
+  strict_internal_errors: true
+  bounded_memory_tool_schema: true
+  required_tool_choice: true
+  core_json_tool_bridge: true
+  memory_tool_max_items: 2
+  memory_tool_max_string_chars: 512
+  core_memory_tool_max_string_chars: 256
+  core_memory_max_tokens: 1024
+  memory_agent_max_tokens: 2048
+  core_memory_input_max_chars: 256
+  memory_agent_input_max_chars: 2048
+  embedding_device: "cpu"

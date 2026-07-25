@@ -14,11 +14,11 @@ pilot; human review is still required before release claims.
 ## Contents
 
 - Users: 30
-- Sessions: 1410
-- Hidden habits: 180
-- Probes: 1260
+- Sessions: 3600
+- Hidden habits: 210
+- Probes: 1470
 - Probe types: direct_use, boundary, exception, explicit_retrieval.
-- Stress variants: original_food_v03 and unseen_paraphrase.
+- Stress variants: original_food_v03, unseen_paraphrase.
 
 ## Important Boundary
 
@@ -33,5 +33,4 @@ graphs, gold labels, evidence ids, and memory annotations.
 - `private/probe_key.jsonl`
 - `private/habit_graphs.jsonl`
 - `reports/food_v03_manifest.json`
-- `reports/lifeline_distractor_pool.jsonl`
 - `review/food_v03_review_queue_sample.csv`

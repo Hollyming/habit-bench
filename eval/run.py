@@ -4,13 +4,18 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import shlex
+import socket
 import subprocess
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+import yaml
 
 from eval.core.answering import QwenChoiceAnswerer, add_answer_args, answer_config_from_args
 from eval.core.dataset import DatasetContractError, load_dataset
@@ -19,6 +24,30 @@ from eval.core.scoring import score_predictions, write_score_outputs
 
 
 FORBIDDEN_CONTEXT_FIELDS = {"choice_id", "gold_choice_id", "scores"}
+
+
+def _utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def _method_config_snapshot(
+    config_name: str | None, config_path: Path | None
+) -> dict[str, Any] | None:
+    if config_path is None:
+        return None
+    resolved = config_path.expanduser().resolve()
+    if not resolved.is_file():
+        raise FileNotFoundError(f"Method config was not found: {resolved}")
+    raw = resolved.read_bytes()
+    parsed = yaml.safe_load(raw) or {}
+    if not isinstance(parsed, dict):
+        raise DatasetContractError(f"Method config must contain a YAML object: {resolved}")
+    return {
+        "name": config_name or resolved.stem,
+        "path": str(resolved),
+        "sha256": hashlib.sha256(raw).hexdigest(),
+        "config": parsed,
+    }
 
 
 def validate_memory_contexts(
@@ -87,6 +116,8 @@ def _run_adapter(args: argparse.Namespace, input_path: Path, output_path: Path) 
 
 
 def run(args: argparse.Namespace) -> None:
+    run_started = time.perf_counter()
+    started_at = _utc_now()
     args.output_dir.mkdir(parents=True, exist_ok=True)
     bundle = load_dataset(
         args.dataset_dir,
@@ -103,7 +134,7 @@ def run(args: argparse.Namespace) -> None:
 
     answer_config = answer_config_from_args(args)
     manifest: dict[str, Any] = {
-        "contract_version": "habitbench.e2e_run.v1",
+        "contract_version": "habitbench.e2e_run.v2",
         "method_name": args.method_name,
         "implementation": {
             "kind": args.implementation_kind,
@@ -113,6 +144,20 @@ def run(args: argparse.Namespace) -> None:
         },
         "dataset": bundle.manifest,
         "base_model": answer_config.public_dict(),
+        "method_config": _method_config_snapshot(
+            args.method_config_name, args.method_config_path
+        ),
+        "execution": {
+            "status": "running",
+            "started_at": started_at,
+            "wall_clock_sec": None,
+            "host": socket.gethostname(),
+            "pid": os.getpid(),
+            "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
+            "shard_index": args.user_shard_index,
+            "shard_count": args.user_shard_count or 1,
+            "timeout_sec": args.timeout_sec,
+        },
         "files": {
             "method_input": str(input_path),
             "memory_contexts": str(contexts_path),
@@ -121,51 +166,80 @@ def run(args: argparse.Namespace) -> None:
     }
     write_json(args.output_dir / "run_manifest.json", manifest)
     if args.prepare_only:
+        manifest["execution"].update(
+            {
+                "status": "prepared",
+                "finished_at": _utc_now(),
+                "wall_clock_sec": round(time.perf_counter() - run_started, 3),
+            }
+        )
+        write_json(args.output_dir / "run_manifest.json", manifest)
         print(json.dumps({"status": "prepared", **bundle.manifest}, indent=2))
         return
     if not args.adapter_command:
         raise DatasetContractError("--adapter-command is required unless --prepare-only is used")
 
-    manifest["adapter_runtime"] = _run_adapter(args, input_path, contexts_path)
-    context_rows = read_jsonl(contexts_path)
-    probe_order = [probe["probe_id"] for probe in bundle.probes]
-    contexts = validate_memory_contexts(context_rows, probe_order)
+    try:
+        manifest["adapter_runtime"] = _run_adapter(args, input_path, contexts_path)
+        context_rows = read_jsonl(contexts_path)
+        probe_order = [probe["probe_id"] for probe in bundle.probes]
+        contexts = validate_memory_contexts(context_rows, probe_order)
 
-    answerer = QwenChoiceAnswerer(answer_config)
-    predictions: list[dict[str, Any]] = []
-    answer_started = time.time()
-    for index, probe in enumerate(bundle.probes, start=1):
-        context_row = contexts[probe["probe_id"]]
-        answer = answerer.answer(probe, context_row["memory_context"])
-        predictions.append(
+        answerer = QwenChoiceAnswerer(answer_config)
+        predictions: list[dict[str, Any]] = []
+        answer_started = time.time()
+        for index, probe in enumerate(bundle.probes, start=1):
+            context_row = contexts[probe["probe_id"]]
+            answer = answerer.answer(probe, context_row["memory_context"])
+            predictions.append(
+                {
+                    "probe_id": probe["probe_id"],
+                    "choice_id": answer["choice_id"],
+                    "evidence_session_ids": context_row.get("evidence_session_ids", []),
+                    "answer": answer,
+                    "memory_debug": context_row.get("debug", {}),
+                    "memory_cost": context_row.get("cost", {}),
+                }
+            )
+            if args.progress_every and (index == 1 or index % args.progress_every == 0):
+                print(
+                    f"answer_progress completed={index} total={len(bundle.probes)} "
+                    f"elapsed_sec={time.time() - answer_started:.1f}",
+                    flush=True,
+                )
+        write_jsonl(predictions_path, predictions)
+
+        detailed, metrics, metric_rows = score_predictions(
+            predictions, bundle, args.method_name
+        )
+        write_score_outputs(args.output_dir, detailed, metrics, metric_rows)
+        manifest["answer_runtime"] = {
+            "elapsed_sec": round(time.time() - answer_started, 3),
+            "predictions": len(predictions),
+        }
+        manifest["result"] = metrics["overall"]
+    except BaseException as exc:
+        manifest["execution"].update(
             {
-                "probe_id": probe["probe_id"],
-                "choice_id": answer["choice_id"],
-                "evidence_session_ids": context_row.get("evidence_session_ids", []),
-                "answer": answer,
-                "memory_debug": context_row.get("debug", {}),
-                "memory_cost": context_row.get("cost", {}),
+                "status": "failed",
+                "finished_at": _utc_now(),
+                "wall_clock_sec": round(time.perf_counter() - run_started, 3),
+                "error_type": type(exc).__name__,
+                "error": str(exc),
             }
         )
-        if args.progress_every and (index == 1 or index % args.progress_every == 0):
-            print(
-                f"answer_progress completed={index} total={len(bundle.probes)} "
-                f"elapsed_sec={time.time() - answer_started:.1f}",
-                flush=True,
-            )
-    write_jsonl(predictions_path, predictions)
-
-    detailed, metrics, metric_rows = score_predictions(
-        predictions, bundle, args.method_name
-    )
-    write_score_outputs(args.output_dir, detailed, metrics, metric_rows)
-    manifest["answer_runtime"] = {
-        "elapsed_sec": round(time.time() - answer_started, 3),
-        "predictions": len(predictions),
-    }
-    manifest["result"] = metrics["overall"]
-    write_json(args.output_dir / "run_manifest.json", manifest)
-    print(json.dumps(metrics["overall"], indent=2, sort_keys=True))
+        write_json(args.output_dir / "run_manifest.json", manifest)
+        raise
+    else:
+        manifest["execution"].update(
+            {
+                "status": "succeeded",
+                "finished_at": _utc_now(),
+                "wall_clock_sec": round(time.perf_counter() - run_started, 3),
+            }
+        )
+        write_json(args.output_dir / "run_manifest.json", manifest)
+        print(json.dumps(metrics["overall"], indent=2, sort_keys=True))
 
 
 def parse_args() -> argparse.Namespace:
@@ -178,12 +252,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--timeout-sec", type=int, default=172_800)
     parser.add_argument(
         "--implementation-kind",
-        choices=["official", "official_adapted", "benchmark_reproduction", "control"],
+        choices=["benchmark_reproduction", "official_adapted", "control"],
         required=True,
     )
     parser.add_argument("--implementation-source", required=True)
     parser.add_argument("--implementation-revision", required=True)
     parser.add_argument("--adapter-note", default="")
+    parser.add_argument("--method-config-name")
+    parser.add_argument("--method-config-path", type=Path)
     parser.add_argument("--max-users", type=int)
     parser.add_argument("--max-probes", type=int)
     parser.add_argument("--user-shard-index", type=int)

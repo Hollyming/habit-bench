@@ -1,0 +1,26 @@
+dataset_name: "locomo"
+description: "Frozen local LoCoMo Efficient set from MedMemoryBench revision 7227bc1"
+language: "en"
+
+data:
+  root_dir: "/plm-dhw/wangjiarui/datasets/MedMemoryBench/7227bc1/data/locomo/data"
+  data_file: "locomo10.json"
+
+evaluation:
+  mode: "independent"
+  sample_ids: null
+  max_samples: null
+  include_images: true
+  category_filter: null
+  memory_chunk_size: 10240
+
+query_types:
+  - {name: "single_hop", category: 4, abbr: "SH", metric: "locomo_f1"}
+  - {name: "multi_hop", category: 1, abbr: "MH", metric: "locomo_f1"}
+  - {name: "temporal", category: 2, abbr: "TMP", metric: "locomo_f1"}
+  - {name: "open_domain", category: 3, abbr: "OD", metric: "locomo_f1"}
+  - {name: "adversarial", category: 5, abbr: "ADV", metric: "locomo_adversarial"}
+
+output:
+  save_intermediate: true
+  save_retrieved_context: true

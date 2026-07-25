@@ -1,0 +1,23 @@
+method_name: "lightmem"
+method_type: "agentic_memory"
+description: "Executable pipeline smoke config; not a paper-score reproduction"
+model: {provider: "openai", name: "Qwen3-8B", temperature: 0.0, max_completion_tokens: 2048}
+embedding:
+  provider: "local"
+  model: "BAAI/bge-small-zh-v1.5"
+  model_path: "/plm-dhw/wangjiarui/models/bge-small-zh-v1.5"
+  dim: 512
+agent_params:
+  retrieve_num: 5
+  pre_compress: false
+  topic_segment: true
+  topic_segmenter_model_path: "/plm-dhw/wangjiarui/models/llmlingua-2-bert-base-multilingual-cased-meetingbank"
+  index_strategy: "embedding"
+  retrieve_strategy: "embedding"
+  update_mode: "offline"
+  extraction_mode: "event"
+  messages_use: "hybrid"
+  lightmem_temperature: 0.0
+  lightmem_max_tokens: 2048
+  lightmem_top_p: 0.1
+  max_context_tokens: 32768

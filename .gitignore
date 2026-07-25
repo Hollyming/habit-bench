@@ -1,22 +1,44 @@
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 .venv/
 venv/
 .env
 .env.*
 *.log
+*.pid
+*.tmp
 .DS_Store
 results/
-runs/**/full_e2e_results/
+runs/
+logs/
+outputs/
+checkpoints/
+models/
 
 # Development/debug leftovers kept outside the normal project surface.
 archive/
 
-# Large local stores produced by some memory backends.
-runs/**/omem_store/
-runs/**/graphiti_store/
-runs/**/kuzu_store/
-runs/**/qdrant_store/
-
 # Local state produced by vendored memory backends.
 .memos/
+**/.mem0/
+**/.letta/
+**/.mirix/
+**/omem_store/
+**/graphiti_store/
+**/graphiti_kuzu_store/
+**/kuzu_store/
+**/qdrant_store/
+
+# Vendored MedMemoryBench runtime state. The source itself is versioned by the
+# outer HABIT-Bench repository.
+third_party/medmemorybench/.memos/
+third_party/medmemorybench/data/
+third_party/medmemorybench/logs/
+third_party/medmemorybench/outputs/
+third_party/medmemorybench/results/
+**/medmemorybench_state/

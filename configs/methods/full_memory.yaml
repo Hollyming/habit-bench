@@ -1,0 +1,25 @@
+method_name: full_memory
+kind: control
+source: HABIT-Bench
+revision: memory_context.v3
+history:
+  policy: all_if_fit_else_recent_complete_sessions
+  order_presented_to_model: chronological
+  tokenizer_path: /plm-shared/zhangjunming/Workspace/models/Qwen3-8B
+  context_window_tier: auto
+  auto_selection: largest_tier_not_exceeding_model_context_tokens
+  tiers:
+    8k: {max_input_tokens: 8000, reserved_prompt_tokens: 2000, history_token_budget: 6000}
+    16k: {max_input_tokens: 16000, reserved_prompt_tokens: 2000, history_token_budget: 14000}
+    32k: {max_input_tokens: 32000, reserved_prompt_tokens: 2000, history_token_budget: 30000}
+    40k: {max_input_tokens: 40000, reserved_prompt_tokens: 2000, history_token_budget: 38000}
+    64k: {max_input_tokens: 64000, reserved_prompt_tokens: 4000, history_token_budget: 60000}
+    128k: {max_input_tokens: 128000, reserved_prompt_tokens: 8000, history_token_budget: 120000}
+  custom_tier_supported: true
+  explicit_history_budget_override_supported: true
+  partial_session_policy: only_if_newest_session_alone_exceeds_budget
+answer_model:
+  name: Qwen3-8B
+  max_input_tokens: resolved_from_context_window_tier
+  model_context_tokens_env: HABITBENCH_MAX_MODEL_LEN
+  thinking: false

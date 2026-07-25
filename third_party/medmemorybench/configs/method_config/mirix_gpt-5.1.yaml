@@ -1,0 +1,43 @@
+# MIRIX Agent Configuration
+# Multi-agent memory system with six-component memory architecture
+
+method_name: "mirix"
+method_type: "agentic_memory"
+description: "MIRIX - multi-agent memory system with Episodic, Semantic, Procedural, Resource, Core, and Knowledge Vault memories"
+
+model:
+  provider: "openai"
+  name: "gpt-5.1"
+  temperature: 0.3
+  max_completion_tokens: 10000
+
+agent_params:
+  # Memory retrieval configuration
+  retrieve_num: 2                        # Number of memories to retrieve per memory type
+
+  # Chunking configuration
+  memorize_chunk_tokens: 10240           # Chunk size for memorization (tokens)
+  memorize_chunk_overlap_tokens: 200     # Overlap between chunks
+  query_memory_item_tokens: 4096         # Max tokens per memory item in query
+  query_memory_context_tokens: 10240     # Max total tokens for memory context
+
+  # Context limits
+  max_input_tokens: 20000                # Max input tokens for memorization
+  max_context_tokens: 120000             # Max context window tokens
+  max_question_tokens: 4096              # Max question tokens
+
+  # Query mode:
+  # - true: Use MIRIX native send_message (for memory management tasks)
+  # - false: Use manual retrieval + external LLM (recommended for Q&A evaluation)
+  # NOTE: For MedMemoryBench Q&A evaluation, use false to ensure proper responses
+  use_native_query: false
+
+  # Local embedding device (only used when embedding.provider = "local")
+  # Options: "cuda", "cpu", "mps", or null for auto-detection
+  embedding_device: null
+
+embedding:
+  provider: "local"
+  model: "bge-small-zh-v1.5"
+  model_path: "models/bge-small-zh-v1.5"
+  dim: 512

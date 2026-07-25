@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -26,6 +27,20 @@ def _read_json(path: Path) -> dict[str, Any]:
 
 def _comparable_base_model(config: dict[str, Any]) -> dict[str, Any]:
     return {key: value for key, value in config.items() if key != "base_url"}
+
+
+def _sum_present(values: list[float | int | None]) -> float:
+    return round(sum(float(value) for value in values if value is not None), 3)
+
+
+def _observed_window_sec(shards: list[dict[str, Any]]) -> float | None:
+    starts = [row.get("started_at") for row in shards if row.get("started_at")]
+    finishes = [row.get("finished_at") for row in shards if row.get("finished_at")]
+    if not starts or not finishes:
+        return None
+    started = min(datetime.fromisoformat(value) for value in starts)
+    finished = max(datetime.fromisoformat(value) for value in finishes)
+    return round((finished - started).total_seconds(), 3)
 
 
 def _discover_shards(shard_root: Path, expected_shards: int) -> list[tuple[int, Path]]:
@@ -81,6 +96,7 @@ def merge_shards(
     shard_records: list[dict[str, Any]] = []
     reference_implementation: dict[str, Any] | None = None
     reference_base_model: dict[str, Any] | None = None
+    reference_method_config: dict[str, Any] | None = None
 
     for index, shard_dir in shards:
         manifest = _read_json(shard_dir / "run_manifest.json")
@@ -107,18 +123,23 @@ def merge_shards(
 
         implementation = manifest.get("implementation") or {}
         base_model = manifest.get("base_model") or {}
+        method_config = manifest.get("method_config")
         if reference_implementation is None:
             reference_implementation = implementation
             reference_base_model = base_model
+            reference_method_config = method_config
         elif implementation != reference_implementation or _comparable_base_model(
             base_model
         ) != _comparable_base_model(reference_base_model or {}):
             raise DatasetContractError(f"Implementation/base-model mismatch in {shard_dir}")
+        elif method_config != reference_method_config:
+            raise DatasetContractError(f"Method-config mismatch in {shard_dir}")
 
         shard_predictions = read_jsonl(shard_dir / "predictions.jsonl")
         shard_contexts = read_jsonl(shard_dir / "memory_contexts.jsonl")
         predictions.extend(shard_predictions)
         contexts.extend(shard_contexts)
+        execution = manifest.get("execution") or {}
         shard_records.append(
             {
                 "index": index,
@@ -132,6 +153,11 @@ def merge_shards(
                 "answer_elapsed_sec": (manifest.get("answer_runtime") or {}).get(
                     "elapsed_sec"
                 ),
+                "wall_clock_sec": execution.get("wall_clock_sec"),
+                "started_at": execution.get("started_at"),
+                "finished_at": execution.get("finished_at"),
+                "host": execution.get("host"),
+                "cuda_visible_devices": execution.get("cuda_visible_devices"),
             }
         )
 
@@ -148,10 +174,28 @@ def merge_shards(
     write_jsonl(output_dir / "predictions.jsonl", ordered_predictions)
     write_score_outputs(output_dir, detailed, metrics, metric_rows)
 
+    wall_times = [row.get("wall_clock_sec") for row in shard_records]
+    timing = {
+        "shard_count": expected_shards,
+        "shard_wall_clock_sum_sec": _sum_present(wall_times),
+        "shard_wall_clock_max_sec": (
+            round(max(float(value) for value in wall_times if value is not None), 3)
+            if any(value is not None for value in wall_times)
+            else None
+        ),
+        "observed_window_sec": _observed_window_sec(shard_records),
+        "adapter_compute_sum_sec": _sum_present(
+            [row.get("adapter_elapsed_sec") for row in shard_records]
+        ),
+        "answer_compute_sum_sec": _sum_present(
+            [row.get("answer_elapsed_sec") for row in shard_records]
+        ),
+    }
     merge_manifest = {
-        "contract_version": "habitbench.shard_merge.v1",
+        "contract_version": "habitbench.shard_merge.v2",
         "method_name": method_name,
         "implementation": reference_implementation,
+        "method_config": reference_method_config,
         "base_model": {
             **(reference_base_model or {}),
             "base_url": "<per-shard-local-endpoint>",
@@ -160,6 +204,7 @@ def merge_shards(
         "expected_shards": expected_shards,
         "shard_root": str(shard_root),
         "shards": shard_records,
+        "timing": timing,
         "result": metrics["overall"],
     }
     write_json(output_dir / "merge_manifest.json", merge_manifest)

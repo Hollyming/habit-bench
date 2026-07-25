@@ -26,10 +26,19 @@ q8a18、q8a19 和 q8a20 是运行源码快照，不是长期源码分支。q8a20
 
 本次接入增加：
 
-- `eval/methods.json` 中的 7 个 `medmemorybench_*` 方法；
+- `eval/methods.json` 中的 7 个规范方法名：
+  `mem0`、`amem`、`memos`、`memrl`、`lightmem`、`letta`、`mirix`；
 - `eval.medmemorybench_adapters.structured_memory` 增量写入与 retrieval-only adapter；
 - 对非法、partial 或 `success=false` memory write 的严格拒绝；
-- `scripts/run_method.sh` 中的七方法命令映射；
+- `scripts/run_eval.sh` 中的七方法命令映射；
 - session marker、dry-run contract 和失败传播测试。
 
+早期 `medmemorybench_*` 重复前缀与另一套 HABIT adapter 已退出活动仓库，
+历史文件保存在仓库外的只读式迁移归档中。
+
 该结果属于跨 Benchmark 源码接入。如果 backbone、answer reader、judge 或 evidence budget 与论文不同，不应描述为论文 exact reproduction。
+
+当前 HABIT 正式配置统一使用本地 BGE-M3（1024 维）替代早期 E5-base-v2
+配置。改动位于七个 `*_qwen3-8b_adapted.yaml`，不改变方法的 memory
+construction/retrieval 算法。BGE-M3 revision、完整 YAML 和 YAML SHA256 会写入
+每个 shard 的 `run_manifest.json`。

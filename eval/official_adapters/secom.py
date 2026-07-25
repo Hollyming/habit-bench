@@ -100,7 +100,13 @@ def visible_sessions(probe: Dict[str, Any], sessions_by_user: Dict[str, List[Dic
 
 
 def default_repo_path() -> Path:
-    return Path(__file__).resolve().parents[2] / "third_party" / "official-baselines" / "repos" / "SeCom"
+    return (
+        Path(__file__).resolve().parents[2]
+        / "third_party"
+        / "official-baselines"
+        / "vendor"
+        / "SeCom"
+    )
 
 
 def install_unused_vllm_stub() -> bool:
@@ -156,7 +162,11 @@ def ingest_session(memory_manager, session: Dict[str, Any], compress_rate: float
 
 def run(args: argparse.Namespace) -> None:
     payload = read_json(args.input)
-    repo_path = Path(os.environ.get("SECOM_REPO", "")) if os.environ.get("SECOM_REPO") else args.repo_path
+    repo_path = (
+        Path(os.environ["HABITBENCH_SECOM_REPO"])
+        if os.environ.get("HABITBENCH_SECOM_REPO")
+        else args.repo_path
+    )
     os.environ["OPENAI_API_BASE"] = args.openai_base_url
     os.environ["OPENAI_BASE_URL"] = args.openai_base_url
     os.environ["OPENAI_API_KEY"] = args.openai_api_key
@@ -285,14 +295,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--repo-path", type=Path, default=default_repo_path())
     parser.add_argument("--topk", type=int, default=5)
-    parser.add_argument("--llm-model", default=os.getenv("HABITBENCH_SERVED_MODEL", "habitbench-qwen3-8b"))
+    parser.add_argument(
+        "--llm-model",
+        default=os.getenv("HABITBENCH_SERVED_MODEL", "Qwen3-8B"),
+    )
     parser.add_argument("--openai-base-url", default=os.getenv("OPENAI_BASE_URL", "http://127.0.0.1:8000/v1"))
     parser.add_argument("--openai-api-key", default=os.getenv("OPENAI_API_KEY", "dummy"))
     parser.add_argument(
         "--compressor-model",
         default=os.getenv(
             "HABITBENCH_SECOM_COMPRESSOR",
-            "/home/jmzhang/models/llmlingua-2-xlm-roberta-large-meetingbank",
+            "/plm-shared/zhangjunming/Workspace/models/"
+            "llmlingua-2-xlm-roberta-large-meetingbank",
         ),
     )
     parser.add_argument("--compress-rate", type=float, default=0.9)
@@ -300,7 +314,10 @@ def parse_args() -> argparse.Namespace:
         "--embedding-model",
         default=os.getenv(
             "HABITBENCH_SECOM_EMBED_MODEL",
-            os.getenv("HABITBENCH_EMBED_MODEL", "/home/jmzhang/models/e5-base-v2"),
+            os.getenv(
+                "HABITBENCH_EMBED_MODEL",
+                "/plm-shared/zhangjunming/Workspace/models/bge-m3",
+            ),
         ),
     )
     parser.add_argument("--embedding-device", default=os.getenv("HABITBENCH_EMBED_DEVICE", "cuda"))

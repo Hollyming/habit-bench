@@ -1,0 +1,33 @@
+# Mirix Configuration - Azure OpenAI Setup
+# Configuration for Azure OpenAI deployments
+
+llm_config:
+  model: "gpt-4o-mini"
+  model_endpoint_type: "azure_openai"
+  model_endpoint: "https://your-resource.openai.azure.com/"
+  azure_endpoint: "https://your-resource.openai.azure.com/"
+  azure_deployment: "gpt-4o-mini"  # Your deployment name
+  api_version: "2024-10-01-preview"
+  context_window: 128000
+  # api_key: "your-azure-key"  # Or use AZURE_OPENAI_API_KEY env var
+
+embedding_config:
+  embedding_model: "text-embedding-3-small"
+  embedding_endpoint_type: "azure_openai"
+  azure_endpoint: "https://your-resource.openai.azure.com/"
+  azure_deployment: "text-embedding-3-small"  # Your embedding deployment name
+  api_version: "2024-10-01-preview"
+  embedding_dim: 1536
+
+meta_agent_config:
+  agents:
+    - core_memory_agent
+    - resource_memory_agent
+    - semantic_memory_agent
+    - episodic_memory_agent
+    - procedural_memory_agent
+    - knowledge_vault_memory_agent
+    - meta_memory_agent
+    - reflexion_agent
+    - background_agent
+

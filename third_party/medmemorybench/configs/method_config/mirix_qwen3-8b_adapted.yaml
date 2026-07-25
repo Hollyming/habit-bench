@@ -1,0 +1,57 @@
+method_name: "mirix"
+method_type: "agentic_memory"
+description: "HABIT profile: vendored MIRIX, local Qwen3-8B, BGE-M3, top-k 5, chunk 4096"
+# The top-level reader retains the benchmark's 10k completion budget. Adapted
+# memory-writing children use smaller per-agent caps below.
+model: {provider: "openai", name: "Qwen3-8B", temperature: 0.0, max_completion_tokens: 10000}
+embedding:
+  provider: "local"
+  model: "BAAI/bge-m3"
+  revision: "5617a9f61b028005a4858fdac845db406aefb181"
+  model_path: "/plm-shared/zhangjunming/Workspace/models/bge-m3"
+  dim: 1024
+agent_params:
+  retrieve_num: 5
+  memorize_chunk_tokens: 4096
+  memorize_chunk_overlap_tokens: 200
+  query_memory_item_tokens: 512
+  query_memory_context_tokens: 4096
+  max_input_tokens: 4096
+  max_context_tokens: 32768
+  max_question_tokens: 4096
+  use_native_query: false
+  enforce_single_meta_update: true
+  # Formal adapted runs must never turn an exhausted child-agent request into
+  # a synthetic finish_memory_update.  Bound array/string output as well so
+  # local tool JSON cannot grow past the completion budget on long timelines.
+  strict_internal_errors: true
+  bounded_memory_tool_schema: true
+  required_tool_choice: true
+  # vLLM may reject a malformed native core tool-call before MIRIX can apply
+  # runtime bounds. Constrain one JSON object, then bridge it back into the
+  # vendored core tool executor; other memory children remain native calls.
+  core_json_tool_bridge: true
+  # Local Qwen can occasionally emit a descriptive/name-like stale ID for an
+  # update.  Preserve the new items but ignore nonexistent delete targets so an
+  # update against no prior row becomes an insert instead of a partial failure.
+  normalize_missing_update_ids: true
+  memory_tool_max_items: 2
+  memory_tool_max_string_chars: 512
+  core_memory_tool_max_string_chars: 256
+  # Qwen can ignore JSON-schema length advice before the runtime validator.
+  # Keep enough room to close the tool envelope even when Qwen ignores the
+  # 256-char content schema; input/schema/runtime still enforce the payload.
+  core_memory_max_tokens: 1024
+  # The bounded semantic update schema can legally contain two records with
+  # four 512-character fields plus two old IDs.  A 2,048-token cap therefore
+  # admitted schema-valid outputs that were truncated before the JSON envelope
+  # could close (observed at Med persona 17/session 51).  8,192 covers the
+  # schema's finite worst case while remaining well inside the 32K context.
+  memory_agent_max_tokens: 8192
+  # Qwen can replay its input or emit unbounded whitespace until the tool-call
+  # parser rejects a truncated JSON object. Give every child a deterministic
+  # head/tail view; core gets the tighter view because it only maintains two
+  # compact profile blocks. This is an explicit local-model adaptation.
+  core_memory_input_max_chars: 256
+  memory_agent_input_max_chars: 2048
+  embedding_device: "cuda"

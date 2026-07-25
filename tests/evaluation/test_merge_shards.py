@@ -61,10 +61,18 @@ def _write_shard(dataset: Path, shard_root: Path, index: int, count: int) -> Non
         {
             "method_name": "no_memory",
             "implementation": implementation,
+            "method_config": None,
             "base_model": base_model,
             "dataset": bundle.manifest,
             "adapter_runtime": {"elapsed_sec": 1},
             "answer_runtime": {"elapsed_sec": 1},
+            "execution": {
+                "started_at": f"2026-01-01T00:00:0{index}+00:00",
+                "finished_at": f"2026-01-01T00:00:{10 + index:02d}+00:00",
+                "wall_clock_sec": 10 + (2 * index),
+                "host": "test-host",
+                "cuda_visible_devices": str(index),
+            },
             "result": {"accuracy": 1.0},
         },
     )
@@ -98,6 +106,10 @@ class MergeShardsTest(unittest.TestCase):
             )
             self.assertEqual(manifest["result"]["accuracy"], 1.0)
             self.assertEqual(manifest["result"]["total"], 2)
+            self.assertEqual(manifest["timing"]["shard_count"], 2)
+            self.assertEqual(manifest["timing"]["shard_wall_clock_sum_sec"], 22.0)
+            self.assertEqual(manifest["timing"]["shard_wall_clock_max_sec"], 12.0)
+            self.assertEqual(manifest["timing"]["observed_window_sec"], 11.0)
 
     def test_merge_rejects_missing_shard(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

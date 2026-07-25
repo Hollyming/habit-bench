@@ -1,5 +1,11 @@
 # 实验记录
 
+> 历史结果说明：本页记录的是整理仓库前的冻结实验，其中
+> finance-software 为 45-user v0.5，food 也不是当前扩充版。当前活动数据为
+> 54-user finance-software v1.2.1（29,160 sessions / 2,048 probes）和
+> 30-user food（3,600 sessions / 1,470 probes）；下表不能作为当前仓库
+> 结构、当前数据版本或 BGE-M3 配置已完成复跑的证据。
+
 ## 冻结范围
 
 - MedMemoryBench 上游基线：`7227bc105b84a1a9f7a75861eb9e1be3ea502882`

@@ -1,0 +1,84 @@
+# Include the README and LICENSE
+include README.md
+include LICENSE
+
+# Include configuration files
+recursive-include configs *.yaml *.yml
+recursive-include mirix/configs *.yaml *.yml
+
+# Include prompt templates
+recursive-include mirix/prompts *.txt *.yaml *.yml
+
+# Include any schema files
+recursive-include mirix/schemas *.json *.yaml *.yml
+
+# Include assets for the package
+recursive-include assets *.png *.jpg *.jpeg *.gif *.ico
+
+# Exclude development and build files
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude __pycache__
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude .git*
+
+# Exclude frontend and other non-Python directories
+prune frontend
+prune public_evaluations
+prune scripts
+prune mirix_env
+prune test_mirix_env
+prune dashboard
+prune .git
+
+# Drop any remaining content from pruned directories in sdist
+recursive-exclude dashboard *
+recursive-exclude test_mirix_env *
+recursive-exclude scripts *
+recursive-exclude frontend *
+recursive-exclude public_evaluations *
+recursive-exclude tmp *
+recursive-exclude samples *
+recursive-exclude assets *
+recursive-exclude debug *
+
+# Exclude server-side Python packages from sdist
+prune mirix/agent
+prune mirix/server
+prune mirix/services
+prune mirix/queue
+prune mirix/llm_api
+prune mirix/orm
+prune mirix/local_client
+prune mirix/functions
+prune mirix/prompts
+prune mirix/database
+prune mirix/temporal
+prune mirix/security
+
+# Safety: drop any remaining files under these paths
+recursive-exclude mirix/agent *
+recursive-exclude mirix/server *
+recursive-exclude mirix/services *
+recursive-exclude mirix/queue *
+recursive-exclude mirix/llm_api *
+recursive-exclude mirix/orm *
+recursive-exclude mirix/local_client *
+recursive-exclude mirix/functions *
+recursive-exclude mirix/prompts *
+recursive-exclude mirix/database *
+recursive-exclude mirix/temporal *
+recursive-exclude mirix/security *
+recursive-exclude mirix/configs *
+
+# Exclude test files
+prune tests
+global-exclude test_*.py
+global-exclude *_test.py
+
+# Exclude build artifacts
+prune build
+prune dist
+prune *.egg-info

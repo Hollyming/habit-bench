@@ -1,0 +1,19 @@
+method_name: "amem"
+method_type: "agentic_memory"
+description: "Executable pipeline smoke config; not a paper-score reproduction"
+
+model:
+  provider: "openai"
+  name: "Qwen3-8B"
+  temperature: 0.0
+  max_completion_tokens: 2048
+
+agent_params:
+  retrieve_num: 5
+  amem_backend: "openai"
+  amem_model: "Qwen3-8B"
+  amem_embedding_model: "/plm-dhw/wangjiarui/models/bge-small-zh-v1.5"
+  amem_evo_threshold: 100
+  amem_max_tokens: 2048
+  amem_max_context_tokens: 32768
+  amem_chunk_size_tokens: 4096

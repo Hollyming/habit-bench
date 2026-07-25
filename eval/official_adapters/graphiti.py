@@ -516,9 +516,21 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--topk", type=int, default=5)
-    parser.add_argument("--embedding-model-name", default=os.getenv("HABITBENCH_EMBED_MODEL", "/home/jmzhang/models/e5-base-v2"))
-    parser.add_argument("--embedding-device", default=os.getenv("HABITBENCH_EMBED_DEVICE", "cpu"))
-    parser.add_argument("--llm-model", default=os.getenv("HABITBENCH_SERVED_MODEL", "habitbench-qwen3-8b"))
+    parser.add_argument(
+        "--embedding-model-name",
+        default=os.getenv(
+            "HABITBENCH_EMBED_MODEL",
+            "/plm-shared/zhangjunming/Workspace/models/bge-m3",
+        ),
+    )
+    parser.add_argument(
+        "--embedding-device",
+        default=os.getenv("HABITBENCH_EMBED_DEVICE", "cuda"),
+    )
+    parser.add_argument(
+        "--llm-model",
+        default=os.getenv("HABITBENCH_SERVED_MODEL", "Qwen3-8B"),
+    )
     parser.add_argument("--small-model", default=os.getenv("HABITBENCH_SMALL_MODEL", None))
     parser.add_argument("--openai-base-url", default=os.getenv("OPENAI_BASE_URL", "http://127.0.0.1:8000/v1"))
     parser.add_argument("--openai-api-key", default=os.getenv("OPENAI_API_KEY", "dummy"))
