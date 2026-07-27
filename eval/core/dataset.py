@@ -276,6 +276,59 @@ def _select_subset(
     )
 
 
+def _select_domain(
+    sessions_by_user: dict[str, list[dict[str, Any]]],
+    probes: list[dict[str, Any]],
+    keys: dict[str, dict[str, Any]],
+    domain_filter: str | None,
+) -> tuple[
+    dict[str, list[dict[str, Any]]],
+    list[dict[str, Any]],
+    dict[str, dict[str, Any]],
+    str | None,
+]:
+    if domain_filter is None:
+        return sessions_by_user, probes, keys, None
+    selected_domain = domain_filter.strip().lower()
+    if not selected_domain:
+        raise DatasetContractError("domain_filter cannot be empty")
+
+    available_domains = sorted(
+        {str(probe.get("domain", "")).strip().lower() for probe in probes}
+    )
+    selected_probes = [
+        probe
+        for probe in probes
+        if str(probe.get("domain", "")).strip().lower() == selected_domain
+    ]
+    if not selected_probes:
+        raise DatasetContractError(
+            f"Domain {selected_domain!r} has no probes; available={available_domains}"
+        )
+
+    selected_users = {probe["user_id"] for probe in selected_probes}
+    selected_sessions: dict[str, list[dict[str, Any]]] = {}
+    for user_id in sorted(selected_users):
+        matching = [
+            session
+            for session in sessions_by_user[user_id]
+            if str(session.get("domain", "")).strip().lower() == selected_domain
+        ]
+        if not matching:
+            raise DatasetContractError(
+                f"Domain {selected_domain!r} probe user {user_id} has no matching sessions"
+            )
+        selected_sessions[user_id] = matching
+
+    selected_probe_ids = {probe["probe_id"] for probe in selected_probes}
+    return (
+        selected_sessions,
+        selected_probes,
+        {probe_id: keys[probe_id] for probe_id in selected_probe_ids},
+        selected_domain,
+    )
+
+
 def _find_private_fields(value: Any, path: str = "$") -> list[str]:
     found: list[str] = []
     if isinstance(value, dict):
@@ -299,6 +352,7 @@ def assert_no_private_fields(payload: dict[str, Any]) -> None:
 def load_dataset(
     dataset_dir: Path,
     *,
+    domain_filter: str | None = None,
     max_users: int | None = None,
     max_probes: int | None = None,
     user_shard_index: int | None = None,
@@ -314,6 +368,12 @@ def load_dataset(
 
     sessions_by_user, source_format = _normalize_sessions(public_lifelines)
     probes, keys = _normalize_probes(public_probes, private_keys, sessions_by_user)
+    sessions_by_user, probes, keys, selected_domain = _select_domain(
+        sessions_by_user,
+        probes,
+        keys,
+        domain_filter,
+    )
     sessions_by_user, probes, keys = _select_subset(
         sessions_by_user,
         probes,
@@ -327,7 +387,13 @@ def load_dataset(
         raise DatasetContractError("Dataset selection contains no probes")
 
     manifest = {
-        "name": dataset_dir.name,
+        "name": (
+            f"{dataset_dir.name}:{selected_domain}"
+            if selected_domain is not None
+            else dataset_dir.name
+        ),
+        "source_name": dataset_dir.name,
+        "domain_filter": selected_domain,
         "source_format": source_format,
         "users": len(sessions_by_user),
         "sessions": sum(len(rows) for rows in sessions_by_user.values()),
@@ -336,6 +402,7 @@ def load_dataset(
         "public_probes_sha256": sha256_file(public_probes),
         "private_probe_key_sha256": sha256_file(private_keys),
         "subset": {
+            "domain_filter": selected_domain,
             "max_users": max_users,
             "max_probes": max_probes,
             "user_shard_index": user_shard_index,

@@ -213,6 +213,8 @@ def build_config_record(args: argparse.Namespace, store_dir: Path) -> Dict[str, 
             "structured_output_mode": args.structured_output_mode,
             "schema_max_items": args.schema_max_items,
             "schema_max_string_chars": args.schema_max_string_chars,
+            "request_timeout_sec": args.request_timeout_sec,
+            "request_max_retries": args.request_max_retries,
         },
         "embedder": {
             "client": "local_sentence_transformers",
@@ -425,6 +427,7 @@ async def async_run(args: argparse.Namespace) -> None:
     from graphiti_core.driver.kuzu_driver import KuzuDriver
     from graphiti_core.llm_client.config import LLMConfig
     from graphiti_core.llm_client.openai_generic_client import OpenAIGenericClient
+    from openai import AsyncOpenAI
 
     patch_graphiti_kuzu_search_defaults()
     SentenceTransformerEmbedder = make_sentence_transformer_embedder_class()
@@ -434,6 +437,12 @@ async def async_run(args: argparse.Namespace) -> None:
         warnings.simplefilter("ignore", DeprecationWarning)
         driver = KuzuDriver(str(store_dir / "db"))
 
+    openai_client = AsyncOpenAI(
+        api_key=args.openai_api_key,
+        base_url=args.openai_base_url,
+        timeout=args.request_timeout_sec,
+        max_retries=args.request_max_retries,
+    )
     llm_client = OpenAIGenericClient(
         LLMConfig(
             api_key=args.openai_api_key,
@@ -443,6 +452,7 @@ async def async_run(args: argparse.Namespace) -> None:
             temperature=args.temperature,
             max_tokens=args.max_tokens,
         ),
+        client=openai_client,
         max_tokens=args.max_tokens,
         structured_output_mode=args.structured_output_mode,
     )
@@ -617,21 +627,31 @@ def parse_args() -> argparse.Namespace:
         default=int(
             os.getenv(
                 "HABITBENCH_GRAPHITI_LLM_MAX_TOKENS",
-                "16384",
+                "4096",
             )
         ),
     )
     parser.add_argument(
         "--schema-max-items",
         type=int,
-        default=int(os.getenv("HABITBENCH_GRAPHITI_SCHEMA_MAX_ITEMS", "64")),
+        default=int(os.getenv("HABITBENCH_GRAPHITI_SCHEMA_MAX_ITEMS", "16")),
     )
     parser.add_argument(
         "--schema-max-string-chars",
         type=int,
         default=int(
-            os.getenv("HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS", "1000")
+            os.getenv("HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS", "512")
         ),
+    )
+    parser.add_argument(
+        "--request-timeout-sec",
+        type=float,
+        default=float(os.getenv("HABITBENCH_GRAPHITI_REQUEST_TIMEOUT_SEC", "300")),
+    )
+    parser.add_argument(
+        "--request-max-retries",
+        type=int,
+        default=int(os.getenv("HABITBENCH_GRAPHITI_REQUEST_MAX_RETRIES", "2")),
     )
     parser.add_argument("--structured-output-mode", choices=["json_schema", "json_object"], default=os.getenv("HABITBENCH_STRUCTURED_OUTPUT_MODE", "json_schema"))
     parser.add_argument("--progress-every", type=int, default=int(os.getenv("HABITBENCH_PROGRESS_EVERY", "100")))

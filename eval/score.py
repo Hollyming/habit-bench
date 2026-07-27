@@ -18,12 +18,16 @@ def main() -> None:
     parser.add_argument("--predictions", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--method-name", required=True)
+    parser.add_argument("--domain-filter")
     parser.add_argument("--max-users", type=int)
     parser.add_argument("--max-probes", type=int)
     args = parser.parse_args()
 
     bundle = load_dataset(
-        args.dataset_dir, max_users=args.max_users, max_probes=args.max_probes
+        args.dataset_dir,
+        domain_filter=args.domain_filter,
+        max_users=args.max_users,
+        max_probes=args.max_probes,
     )
     detailed, metrics, rows = score_predictions(
         read_jsonl(args.predictions), bundle, args.method_name

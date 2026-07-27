@@ -23,7 +23,7 @@
   随机后缀，避免多 shard 的局部 context ID 在 7-worker 并发初始化时撞 SQLite
   唯一键。这两项只修复本地 backend 配置与身份隔离，不改变 proceduralization、
   retrieval 或 Q-learning 策略。
-- MIRIX：补充 SQLite cosine、embedding 维度处理、engine reset、bounded local JSON tool schema、canonical tool conversion、stale replace-ID 归一化，以及 bounded memory update 所需的 completion budget。
+- MIRIX：补充 SQLite cosine、embedding 维度处理、engine reset、bounded local JSON tool schema、canonical tool conversion、stale replace-ID 归一化，以及 bounded memory update 所需的 completion budget。JSON bridge 保留官方通用 `finish_memory_update` 工具，避免在无新 delta 时强迫子代理虚构写入。
 
 q8a18、q8a19 和 q8a20 是运行源码快照，不是长期源码分支。q8a20 是累计验证版本；最终只把有意义的文件级差异合并进 `wjr` 历史。运行日志、cache、数据库、build 目录和复制的 `.git` 元数据不会进入 Git。
 

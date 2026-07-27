@@ -13,12 +13,16 @@ from eval.core.dataset import load_dataset
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("dataset_dirs", nargs="+", type=Path)
+    parser.add_argument("--domain-filter")
     parser.add_argument("--max-users", type=int)
     parser.add_argument("--max-probes", type=int)
     args = parser.parse_args()
     reports = [
         load_dataset(
-            path, max_users=args.max_users, max_probes=args.max_probes
+            path,
+            domain_filter=args.domain_filter,
+            max_users=args.max_users,
+            max_probes=args.max_probes,
         ).manifest
         for path in args.dataset_dirs
     ]

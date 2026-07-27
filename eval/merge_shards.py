@@ -76,11 +76,12 @@ def merge_shards(
     output_dir: Path,
     method_name: str,
     expected_shards: int,
+    domain_filter: str | None = None,
 ) -> dict[str, Any]:
     if expected_shards < 1:
         raise DatasetContractError("expected_shards must be positive")
 
-    bundle = load_dataset(dataset_dir)
+    bundle = load_dataset(dataset_dir, domain_filter=domain_filter)
     shards = _discover_shards(shard_root, expected_shards)
     expected_hashes = {
         field: bundle.manifest[field]
@@ -108,6 +109,13 @@ def merge_shards(
             raise DatasetContractError(f"Shard run is incomplete: {shard_dir}")
 
         dataset_manifest = manifest.get("dataset") or {}
+        if dataset_manifest.get("domain_filter") != bundle.manifest.get(
+            "domain_filter"
+        ):
+            raise DatasetContractError(
+                f"Dataset domain filter mismatch in {shard_dir}: "
+                f"{dataset_manifest.get('domain_filter')!r}"
+            )
         for field, expected_value in expected_hashes.items():
             if dataset_manifest.get(field) != expected_value:
                 raise DatasetContractError(f"Dataset hash mismatch for {field} in {shard_dir}")
@@ -218,6 +226,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--method-name", required=True)
     parser.add_argument("--expected-shards", type=int, required=True)
+    parser.add_argument("--domain-filter")
     return parser.parse_args()
 
 
@@ -229,5 +238,6 @@ if __name__ == "__main__":
         args.output_dir,
         args.method_name,
         args.expected_shards,
+        args.domain_filter,
     )
     print(json.dumps(result["result"], indent=2, sort_keys=True))

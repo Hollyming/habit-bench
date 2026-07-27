@@ -27,9 +27,10 @@ agent_params:
   strict_internal_errors: true
   bounded_memory_tool_schema: true
   required_tool_choice: true
-  # vLLM may reject a malformed native core tool-call before MIRIX can apply
-  # runtime bounds. Constrain one JSON object, then bridge it back into the
-  # vendored core tool executor; other memory children remain native calls.
+  # vLLM may reject a malformed native memory-child tool call before MIRIX can
+  # apply runtime bounds. Constrain one JSON object, retain the native
+  # finish_memory_update option, then bridge it back into the vendored tool
+  # executor. The historical option name is kept for config compatibility.
   core_json_tool_bridge: true
   # Local Qwen can occasionally emit a descriptive/name-like stale ID for an
   # update.  Preserve the new items but ignore nonexistent delete targets so an
@@ -42,12 +43,10 @@ agent_params:
   # Keep enough room to close the tool envelope even when Qwen ignores the
   # 256-char content schema; input/schema/runtime still enforce the payload.
   core_memory_max_tokens: 1024
-  # The bounded semantic update schema can legally contain two records with
-  # four 512-character fields plus two old IDs.  A 2,048-token cap therefore
-  # admitted schema-valid outputs that were truncated before the JSON envelope
-  # could close (observed at Med persona 17/session 51).  8,192 covers the
-  # schema's finite worst case while remaining well inside the 32K context.
-  memory_agent_max_tokens: 8192
+  # The JSON bridge retains MIRIX's native finish_memory_update path, so a
+  # child is not forced to invent a write. Four thousand tokens cover the
+  # finite two-item schema while bounding pathological local decoding.
+  memory_agent_max_tokens: 4096
   # Qwen can replay its input or emit unbounded whitespace until the tool-call
   # parser rejects a truncated JSON object. Give every child a deterministic
   # head/tail view; core gets the tighter view because it only maintains two

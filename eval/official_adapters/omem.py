@@ -220,6 +220,7 @@ def import_omem(repo_path: Path):
 
 def install_omem_json_output_contract(args: argparse.Namespace) -> Dict[str, int]:
     """Make O-Mem's JSON-parsing calls explicit at the OpenAI API boundary."""
+    from openai import APITimeoutError
     from openai.resources.chat.completions.completions import AsyncCompletions
 
     original_create = AsyncCompletions.create
@@ -235,6 +236,7 @@ def install_omem_json_output_contract(args: argparse.Namespace) -> Dict[str, int
         "topic_merge_calls": 0,
         "topic_merge_repairs": 0,
         "topic_merge_parse_fallbacks": 0,
+        "topic_merge_timeout_fallbacks": 0,
         "topic_merge_unresolved": 0,
     }
 
@@ -272,15 +274,45 @@ def install_omem_json_output_contract(args: argparse.Namespace) -> Dict[str, int
             stats["json_object_calls"] += 1
         call_kwargs.setdefault("temperature", args.memory_llm_temperature)
         if contract_name == "topic_merge":
-            call_kwargs["max_tokens"] = max(
-                int(call_kwargs.get("max_tokens") or 0), args.topic_merge_max_tokens
+            requested_max_tokens = int(call_kwargs.get("max_tokens") or 0)
+            call_kwargs["max_tokens"] = (
+                min(requested_max_tokens, args.topic_merge_max_tokens)
+                if requested_max_tokens > 0
+                else args.topic_merge_max_tokens
             )
             stats["topic_merge_calls"] += 1
         else:
+            # Preserve explicit upstream budgets (including persona calls);
+            # only supply a bounded default to calls that omit max_tokens.
             call_kwargs.setdefault("max_tokens", args.memory_llm_max_tokens)
         call_kwargs.setdefault("seed", args.memory_llm_seed)
         try:
-            response = await original_create(self, *call_args, **call_kwargs)
+            response = await asyncio.wait_for(
+                original_create(self, *call_args, **call_kwargs),
+                timeout=args.request_timeout_sec,
+            )
+        except (APITimeoutError, asyncio.TimeoutError):
+            stats["transport_failures"] += 1
+            if contract_name != "topic_merge":
+                raise
+            # O-Mem's official topic evolution retries forever when this call
+            # times out. Retaining each source topic as its own group is a
+            # lossless conservative result: it drops no evidence and invents
+            # no unsupported merge.
+            payload, _, unresolved = normalize_topic_merge_payload({}, prompt_text)
+            if unresolved:
+                stats["topic_merge_unresolved"] += 1
+                raise
+            stats["topic_merge_timeout_fallbacks"] += 1
+            response = types.SimpleNamespace(
+                choices=[
+                    types.SimpleNamespace(
+                        message=types.SimpleNamespace(
+                            content=json.dumps(payload, ensure_ascii=False)
+                        )
+                    )
+                ]
+            )
         except Exception:
             stats["transport_failures"] += 1
             raise
@@ -369,10 +401,12 @@ async def run(args: argparse.Namespace) -> None:
             "api_key": "<redacted>" if args.openai_api_key else None,
             "message_understanding_enabled": True,
             "persona_update_enabled": True,
-            "response_format": "json_object",
+            "response_format": "json_schema_for_known_contracts_else_json_object",
             "temperature_default": args.memory_llm_temperature,
             "max_tokens_default": args.memory_llm_max_tokens,
             "topic_merge_max_tokens": args.topic_merge_max_tokens,
+            "request_timeout_sec": args.request_timeout_sec,
+            "topic_merge_timeout_fallback": "retain_each_input_topic_without_merge",
             "seed_default": args.memory_llm_seed,
         },
         "topn": args.topn,
@@ -552,7 +586,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--memory-llm-max-tokens",
         type=int,
-        default=int(os.getenv("HABITBENCH_MEMORY_LLM_MAX_TOKENS", "1024")),
+        default=int(os.getenv("HABITBENCH_OMEM_LLM_MAX_TOKENS", "1024")),
     )
     parser.add_argument(
         "--memory-llm-seed",
@@ -562,7 +596,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--topic-merge-max-tokens",
         type=int,
-        default=int(os.getenv("HABITBENCH_OMEM_TOPIC_MERGE_MAX_TOKENS", "4096")),
+        default=int(os.getenv("HABITBENCH_OMEM_TOPIC_MERGE_MAX_TOKENS", "2048")),
+    )
+    parser.add_argument(
+        "--request-timeout-sec",
+        type=float,
+        default=float(os.getenv("HABITBENCH_OMEM_REQUEST_TIMEOUT_SEC", "180")),
     )
     parser.add_argument("--progress-every", type=int, default=int(os.getenv("HABITBENCH_PROGRESS_EVERY", "100")))
     parser.add_argument("--dry-run-config", action="store_true")

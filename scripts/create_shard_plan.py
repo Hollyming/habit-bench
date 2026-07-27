@@ -22,8 +22,19 @@ from eval.core.io import sha256_file, write_json
 
 DEFAULT_DATASETS = {
     "food": PROJECT_ROOT / "domain/food/food_habit_lifelines_stress_v2",
+    "finance": PROJECT_ROOT
+    / "domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3",
+    "software": PROJECT_ROOT
+    / "domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3",
+    # Backward-compatible combined view; no longer part of the default suite.
     "finance_software": PROJECT_ROOT
     / "domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3",
+}
+DEFAULT_DATASET_DOMAINS = {
+    "food": None,
+    "finance": "finance",
+    "software": "software",
+    "finance_software": None,
 }
 METHOD_CONFIGS = {
     method: f"{method}_qwen3-8b_adapted"
@@ -46,6 +57,9 @@ PLAN_FIELDS = (
     "method",
     "dataset_name",
     "dataset_dir",
+    "domain_filter",
+    "max_users",
+    "max_probes",
     "method_output_root",
     "shard_index",
     "shard_count",
@@ -64,6 +78,18 @@ def _dataset_overrides(values: list[str]) -> dict[str, Path]:
         name, raw_path = value.split("=", 1)
         datasets[name.strip()] = Path(raw_path).expanduser().resolve()
     return datasets
+
+
+def _dataset_domain_overrides(values: list[str]) -> dict[str, str | None]:
+    domains = dict(DEFAULT_DATASET_DOMAINS)
+    for value in values:
+        if "=" not in value:
+            raise ValueError(f"--dataset-domain must be NAME=DOMAIN, got {value!r}")
+        name, domain = value.split("=", 1)
+        if not name.strip() or not domain.strip():
+            raise ValueError("--dataset-domain requires nonempty NAME and DOMAIN")
+        domains[name.strip()] = domain.strip().lower()
+    return domains
 
 
 def _metadata(values: list[str]) -> dict[str, str]:
@@ -86,6 +112,7 @@ def create_plan(args: argparse.Namespace) -> list[dict[str, str | int]]:
         raise ValueError(f"Unknown or empty methods: {sorted(unknown_methods)}")
 
     datasets = _dataset_overrides(args.dataset)
+    dataset_domains = _dataset_domain_overrides(args.dataset_domain)
     selected_datasets = _split_csv(args.datasets)
     unknown_datasets = set(selected_datasets) - set(datasets)
     if not selected_datasets or unknown_datasets:
@@ -96,12 +123,20 @@ def create_plan(args: argparse.Namespace) -> list[dict[str, str | int]]:
     output_root = args.output_root.expanduser().resolve()
     rows: list[dict[str, str | int]] = []
     dataset_user_counts = {
-        dataset_name: int(load_dataset(datasets[dataset_name]).manifest["users"])
+        dataset_name: int(
+            load_dataset(
+                datasets[dataset_name],
+                domain_filter=dataset_domains.get(dataset_name),
+                max_users=args.max_users,
+                max_probes=args.max_probes,
+            ).manifest["users"]
+        )
         for dataset_name in selected_datasets
     }
     for method in methods:
         for dataset_name in selected_datasets:
             dataset_dir = datasets[dataset_name]
+            domain_filter = dataset_domains.get(dataset_name)
             user_count = dataset_user_counts[dataset_name]
             if args.shards > user_count:
                 raise ValueError(
@@ -116,6 +151,9 @@ def create_plan(args: argparse.Namespace) -> list[dict[str, str | int]]:
                         "method": method,
                         "dataset_name": dataset_name,
                         "dataset_dir": str(dataset_dir),
+                        "domain_filter": domain_filter or "",
+                        "max_users": args.max_users or "",
+                        "max_probes": args.max_probes or "",
                         "method_output_root": str(method_output_root),
                         "shard_index": shard_index,
                         "shard_count": args.shards,
@@ -133,7 +171,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--datasets",
-        default="food,finance_software",
+        default="food,finance,software",
         help="Comma-separated dataset aliases.",
     )
     parser.add_argument(
@@ -143,7 +181,24 @@ def parse_args() -> argparse.Namespace:
         metavar="NAME=PATH",
         help="Add or override a dataset alias; may be repeated.",
     )
+    parser.add_argument(
+        "--dataset-domain",
+        action="append",
+        default=[],
+        metavar="NAME=DOMAIN",
+        help="Attach a public domain filter to a dataset alias; may be repeated.",
+    )
     parser.add_argument("--shards", type=int, required=True)
+    parser.add_argument(
+        "--max-users",
+        type=int,
+        help="Optional smoke-test subset; omit for formal full-dataset plans.",
+    )
+    parser.add_argument(
+        "--max-probes",
+        type=int,
+        help="Optional smoke-test subset; omit for formal full-dataset plans.",
+    )
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--plan", type=Path, required=True)
     parser.add_argument(
@@ -292,11 +347,19 @@ def main() -> None:
         writer.writeheader()
         writer.writerows(rows)
     methods = list(dict.fromkeys(str(row["method"]) for row in rows))
-    dataset_dirs = list(dict.fromkeys(str(row["dataset_dir"]) for row in rows))
+    dataset_records = {
+        str(row["dataset_name"]): {
+            "dataset_dir": str(row["dataset_dir"]),
+            "domain_filter": str(row.get("domain_filter") or "") or None,
+            "max_users": int(row["max_users"]) if row.get("max_users") else None,
+            "max_probes": int(row["max_probes"]) if row.get("max_probes") else None,
+        }
+        for row in rows
+    }
     method_configs = _method_configs(methods)
     manifest_path = args.manifest or args.plan.with_suffix(".manifest.json")
     manifest = {
-        "contract_version": "habitbench.shard_plan.v1",
+        "contract_version": "habitbench.shard_plan.v2",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "plan": str(args.plan.resolve()),
         "plan_sha256": sha256_file(args.plan),
@@ -312,8 +375,16 @@ def main() -> None:
             )
         },
         "datasets": {
-            str(Path(path).resolve()): load_dataset(Path(path)).manifest
-            for path in dataset_dirs
+            dataset_name: {
+                **record,
+                "manifest": load_dataset(
+                    Path(record["dataset_dir"]),
+                    domain_filter=record["domain_filter"],
+                    max_users=record["max_users"],
+                    max_probes=record["max_probes"],
+                ).manifest,
+            }
+            for dataset_name, record in dataset_records.items()
         },
         "project": {
             "root": str(PROJECT_ROOT),

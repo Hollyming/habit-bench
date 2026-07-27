@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Build a deterministic two-domain shard plan and submit one multi-GPU
+# Build a deterministic three-domain shard plan and submit one multi-GPU
 # HABIT-Bench evaluation job through ClusterX.
 
 PROJECT_ROOT="${HABITBENCH_PROJECT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
@@ -9,7 +9,7 @@ PYTHON_BIN="${PYTHON_BIN:-/plm-shared/zhangjunming/miniconda3/envs/habitbenchmar
 CLUSTERX_BIN="${CLUSTERX_BIN:-/plm-shared/zhangjunming/miniconda3/envs/clusterx/bin/clusterx}"
 ENV_FILE="${HABITBENCH_ENV_FILE:-$PROJECT_ROOT/scripts/cluster/env.example.sh}"
 METHODS="mem0,amem,memos,memrl,lightmem,letta,mirix,graphiti,secom,omem"
-DATASETS="food,finance_software"
+DATASETS="food,finance,software"
 SHARDS=8
 GPUS=8
 OUTPUT_ROOT=""
@@ -24,15 +24,18 @@ SHM_GIB=""
 PORT_BASE=8100
 DRY_RUN=0
 FORCE_PLAN=0
+CONTINUE_ON_GROUP_ERROR=0
 
 usage() {
   echo "Usage: scripts/submit_clusterx.sh [options]"
   echo "  --methods CSV       default: all ten memory methods; controls are explicit"
-  echo "  --datasets CSV      default: food,finance_software"
+  echo "  --datasets CSV      default: food,finance,software"
   echo "  --shards N          user shards per method/domain, default: 8"
   echo "  --gpus N            GPUs on one ClusterX node, default: 8"
   echo "  --output-root PATH  default: results/bge_m3_<UTC timestamp>"
   echo "  --job-name NAME     default: habit-bge-m3-<UTC timestamp>"
+  echo "  --continue-on-group-error"
+  echo "                      record failed groups and keep running the remaining plan"
   echo "  --dry-run           create and print the submission without submitting"
 }
 
@@ -54,6 +57,7 @@ while [[ $# -gt 0 ]]; do
     --port-base) PORT_BASE="${2:?missing value for --port-base}"; shift 2 ;;
     --env-file) ENV_FILE="${2:?missing value for --env-file}"; shift 2 ;;
     --force-plan) FORCE_PLAN=1; shift ;;
+    --continue-on-group-error) CONTINUE_ON_GROUP_ERROR=1; shift ;;
     --dry-run) DRY_RUN=1; shift ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unknown option: $1" >&2; usage >&2; exit 2 ;;
@@ -137,6 +141,14 @@ printf -v NODE_COMMAND \
   "$PYTHON_BIN" "$PROJECT_ROOT/scripts/run_multigpu_plan.py" \
   "$PLAN" "$GPU_LIST" "$ENV_FILE" "$PORT_BASE" \
   "$PYTHON_BIN" "$PROJECT_ROOT/scripts/merge_shard_plan.py" "$PLAN"
+if [[ "$CONTINUE_ON_GROUP_ERROR" == "1" ]]; then
+  printf -v NODE_COMMAND \
+    'set -euo pipefail; cd %q; %q %q --plan %q --gpus %q --env-file %q --port-base %q --continue-on-group-error; %q %q --plan %q' \
+    "$PROJECT_ROOT" \
+    "$PYTHON_BIN" "$PROJECT_ROOT/scripts/run_multigpu_plan.py" \
+    "$PLAN" "$GPU_LIST" "$ENV_FILE" "$PORT_BASE" \
+    "$PYTHON_BIN" "$PROJECT_ROOT/scripts/merge_shard_plan.py" "$PLAN"
+fi
 
 CLUSTER_COMMAND=(
   "$CLUSTERX_BIN" run

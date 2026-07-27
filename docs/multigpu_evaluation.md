@@ -12,11 +12,13 @@ On one ClusterX node:
 2. `run_multigpu_plan.py` starts one persistent Qwen3-8B vLLM server per GPU.
 3. One method/domain group runs at a time; its user shards run concurrently
    across the persistent GPU workers.
-4. Every GPU is reserved for its vLLM process. Adapter processes receive
-   `CUDA_VISIBLE_DEVICES=""`; BGE-M3 runs on CPU and cannot contend with Qwen.
+4. GPUs are primarily reserved for persistent vLLM processes. Most adapter
+   processes receive `CUDA_VISIBLE_DEVICES=""` and run BGE-M3 on CPU; MIRIX
+   and SeCom retain their native CUDA paths and are explicitly bound to the
+   same worker GPU.
 5. MedMemoryBench shards preserve chronological execution inside one user but
    process independent users concurrently. Frozen method profiles use up to 7
-   workers for Mem0/MemOS/MemRL/Letta, 5 for A-MEM, and 1 for
+   workers for Mem0/A-MEM/MemOS/MemRL/Letta, and 1 for
    LightMem/MIRIX.
 6. `merge_shard_plan.py` checks shard coverage and dataset/config consistency,
    merges predictions, rescoring the complete domain.
@@ -88,7 +90,7 @@ cd /plm-shared/zhangjunming/Workspace/HABIT-bench
 
 bash scripts/submit_clusterx.sh \
   --methods mem0,amem,memos,memrl,lightmem,letta,mirix,graphiti,secom,omem \
-  --datasets food,finance_software \
+  --datasets food,finance,software \
   --shards 8 \
   --gpus 8 \
   --output-root results/habit_bge_m3_v1
@@ -144,7 +146,8 @@ results/habit_bge_m3_v1/
 │       ├── merge_manifest.json
 │       ├── metrics.json
 │       └── ...
-└── finance_software/<method>/
+├── finance/<method>/
+└── software/<method>/
 ```
 
 Timing fields have distinct meanings:

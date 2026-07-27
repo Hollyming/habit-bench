@@ -10,11 +10,12 @@ from eval.core.io import write_json, write_jsonl
 from eval.merge_shards import merge_shards
 
 
-def _session(user_id: str) -> dict:
+def _session(user_id: str, domain: str = "unknown") -> dict:
     return {
         "session_id": f"{user_id}-s0",
         "user_id": user_id,
         "session_index": 0,
+        "domain": domain,
         "messages": [
             {"role": "user", "content": "request"},
             {"role": "assistant", "content": "response"},
@@ -22,16 +23,20 @@ def _session(user_id: str) -> dict:
     }
 
 
-def _write_fixture(root: Path) -> Path:
+def _write_fixture(root: Path, domain: str = "unknown") -> Path:
     dataset = root / "dataset"
     users = ["u0", "u1"]
-    write_jsonl(dataset / "public/lifelines.jsonl", [_session(user) for user in users])
+    write_jsonl(
+        dataset / "public/lifelines.jsonl",
+        [_session(user, domain) for user in users],
+    )
     write_jsonl(
         dataset / "public/probes.jsonl",
         [
             {
                 "probe_id": f"p-{user}",
                 "user_id": user,
+                "domain": domain,
                 "query": "q",
                 "choices": [
                     {"choice_id": "A", "text": "a"},
@@ -51,8 +56,19 @@ def _write_fixture(root: Path) -> Path:
     return dataset
 
 
-def _write_shard(dataset: Path, shard_root: Path, index: int, count: int) -> None:
-    bundle = load_dataset(dataset, user_shard_index=index, user_shard_count=count)
+def _write_shard(
+    dataset: Path,
+    shard_root: Path,
+    index: int,
+    count: int,
+    domain_filter: str | None = None,
+) -> None:
+    bundle = load_dataset(
+        dataset,
+        domain_filter=domain_filter,
+        user_shard_index=index,
+        user_shard_count=count,
+    )
     shard_dir = shard_root / f"shard_{index:03d}_of_{count:03d}"
     implementation = {"kind": "control", "source": "test", "revision": "1"}
     base_model = {"model": "test-model"}
@@ -120,6 +136,40 @@ class MergeShardsTest(unittest.TestCase):
 
             with self.assertRaisesRegex(DatasetContractError, "Shard coverage mismatch"):
                 merge_shards(dataset, shard_root, root / "merged", "no_memory", 2)
+
+    def test_merge_validates_domain_filtered_view(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            dataset = _write_fixture(root, domain="finance")
+            shard_root = root / "shards"
+            for index in range(2):
+                _write_shard(
+                    dataset,
+                    shard_root,
+                    index,
+                    2,
+                    domain_filter="finance",
+                )
+
+            manifest = merge_shards(
+                dataset,
+                shard_root,
+                root / "merged",
+                "no_memory",
+                2,
+                domain_filter="finance",
+            )
+            self.assertEqual(manifest["dataset"]["domain_filter"], "finance")
+            with self.assertRaisesRegex(
+                DatasetContractError, "domain filter mismatch"
+            ):
+                merge_shards(
+                    dataset,
+                    shard_root,
+                    root / "wrong-domain",
+                    "no_memory",
+                    2,
+                )
 
 
 if __name__ == "__main__":

@@ -121,6 +121,7 @@ def run(args: argparse.Namespace) -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     bundle = load_dataset(
         args.dataset_dir,
+        domain_filter=args.domain_filter,
         max_users=args.max_users,
         max_probes=args.max_probes,
         user_shard_index=args.user_shard_index,
@@ -260,6 +261,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--adapter-note", default="")
     parser.add_argument("--method-config-name")
     parser.add_argument("--method-config-path", type=Path)
+    parser.add_argument(
+        "--domain-filter",
+        help="Evaluate only this public domain while retaining the source dataset files.",
+    )
     parser.add_argument("--max-users", type=int)
     parser.add_argument("--max-probes", type=int)
     parser.add_argument("--user-shard-index", type=int)

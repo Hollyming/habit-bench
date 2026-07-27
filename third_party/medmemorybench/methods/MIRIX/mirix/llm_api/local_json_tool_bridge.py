@@ -60,6 +60,7 @@ NON_CORE_MEMORY_TOOL_NAMES = frozenset(
     }
 )
 ALL_MEMORY_CHILD_TOOL_NAMES = frozenset().union(*MEMORY_TOOL_FAMILIES.values())
+MEMORY_CHILD_TERMINAL_TOOL_NAMES = frozenset({"finish_memory_update"})
 
 
 def identify_memory_tool_family(
@@ -101,10 +102,15 @@ def build_memory_json_tool_bridge(
         raise ValueError("JSON tool bridge requires exactly one memory-tool family")
     family_names = MEMORY_TOOL_FAMILIES[family]
 
+    # ``finish_memory_update`` is a universal native MIRIX child tool. It must
+    # remain available beside the family-specific tools: filtering it out
+    # forces a child to invent a write even when the official lifecycle would
+    # terminate without a delta.
     functions = [
         deepcopy(tool["function"])
         for tool in tools
-        if str(tool.get("function", {}).get("name", "")) in family_names
+        if str(tool.get("function", {}).get("name", ""))
+        in family_names | MEMORY_CHILD_TERMINAL_TOOL_NAMES
     ]
     if force_tool_call is not None:
         functions = [item for item in functions if item.get("name") == force_tool_call]

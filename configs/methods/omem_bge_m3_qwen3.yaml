@@ -10,6 +10,10 @@ ingestion:
 memory:
   persona_update: true
   json_output_compatibility: evaluator_api_boundary
+  default_max_completion_tokens: 1024
+  topic_merge_max_completion_tokens: 2048
+  request_timeout_sec: 180
+  topic_merge_timeout_fallback: retain_each_input_topic_without_merge
 retrieval:
   api: MemoryManager.retrieve_from_memory_soft_segmentation
   topn: 12

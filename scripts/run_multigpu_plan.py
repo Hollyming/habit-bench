@@ -148,6 +148,11 @@ def _safe_config(env: dict[str, str]) -> dict[str, Any]:
         "HABITBENCH_GRAPHITI_LLM_MAX_TOKENS",
         "HABITBENCH_GRAPHITI_SCHEMA_MAX_ITEMS",
         "HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS",
+        "HABITBENCH_GRAPHITI_REQUEST_TIMEOUT_SEC",
+        "HABITBENCH_GRAPHITI_REQUEST_MAX_RETRIES",
+        "HABITBENCH_OMEM_LLM_MAX_TOKENS",
+        "HABITBENCH_OMEM_TOPIC_MERGE_MAX_TOKENS",
+        "HABITBENCH_OMEM_REQUEST_TIMEOUT_SEC",
         "HABITBENCH_PROGRESS_EVERY",
         "HABITBENCH_OFFICIAL_TIMEOUT_SEC",
         "HABITBENCH_STRUCTURED_OUTPUT_MODE",
@@ -822,6 +827,12 @@ def _run_task(
         "--progress-every",
         base_env.get("HABITBENCH_PROGRESS_EVERY", "25"),
     ]
+    if row.get("domain_filter"):
+        command.extend(["--domain-filter", row["domain_filter"]])
+    if row.get("max_users"):
+        command.extend(["--max-users", row["max_users"]])
+    if row.get("max_probes"):
+        command.extend(["--max-probes", row["max_probes"]])
     stdout_path = output_dir / "task.stdout.log"
     stderr_path = output_dir / "task.stderr.log"
     started_at = _utc_now()
@@ -853,6 +864,9 @@ def _run_task(
             "method": row["method"],
             "dataset_name": row["dataset_name"],
             "dataset_dir": row["dataset_dir"],
+            "domain_filter": row.get("domain_filter") or None,
+            "max_users": int(row["max_users"]) if row.get("max_users") else None,
+            "max_probes": int(row["max_probes"]) if row.get("max_probes") else None,
             "output_dir": str(output_dir),
             "shard_index": shard_index,
             "shard_count": shard_count,
@@ -906,6 +920,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--env-file", type=Path)
     parser.add_argument("--port-base", type=int, default=8100)
     parser.add_argument("--runtime-output", type=Path)
+    parser.add_argument(
+        "--continue-on-group-error",
+        action="store_true",
+        help=(
+            "Record a failed method/dataset group and continue with the remaining "
+            "groups. The suite still exits nonzero after every group has run."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -1038,6 +1060,7 @@ def main() -> None:
         for worker in workers:
             worker_pool.put(worker)
 
+        group_errors: list[str] = []
         for group in groups:
             first = group[0]
             group_started = time.perf_counter()
@@ -1045,6 +1068,13 @@ def main() -> None:
                 "method": first["method"],
                 "dataset_name": first["dataset_name"],
                 "dataset_dir": first["dataset_dir"],
+                "domain_filter": first.get("domain_filter") or None,
+                "max_users": (
+                    int(first["max_users"]) if first.get("max_users") else None
+                ),
+                "max_probes": (
+                    int(first["max_probes"]) if first.get("max_probes") else None
+                ),
                 "method_output_root": first["method_output_root"],
                 "shard_count": int(first["shard_count"]),
                 "started_at": _utc_now(),
@@ -1073,9 +1103,14 @@ def main() -> None:
                         f"{type(exc).__name__}: {exc}" for exc in task_errors
                     ]
                     raise task_errors[0]
-            except BaseException:
+            except BaseException as exc:
                 group_record["status"] = "failed"
-                raise
+                group_errors.append(
+                    f"{first['method']}/{first['dataset_name']}: "
+                    f"{type(exc).__name__}: {exc}"
+                )
+                if not args.continue_on_group_error:
+                    raise
             else:
                 group_record["status"] = "succeeded"
             finally:
@@ -1084,6 +1119,12 @@ def main() -> None:
                     time.perf_counter() - group_started, 3
                 )
                 _write_json(runtime_path, manifest)
+        if group_errors:
+            manifest["group_errors"] = group_errors
+            raise RuntimeError(
+                f"{len(group_errors)} method/dataset group(s) failed after all "
+                "planned groups were attempted"
+            )
     except BaseException as exc:
         manifest["status"] = "failed"
         manifest["error_type"] = type(exc).__name__

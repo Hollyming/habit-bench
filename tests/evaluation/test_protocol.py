@@ -109,7 +109,7 @@ class ProtocolTest(unittest.TestCase):
     def test_native_cuda_adapters_are_bound_to_their_worker_gpu(self) -> None:
         self.assertEqual(CUDA_REQUIRED_ADAPTER_METHODS, {"mirix", "secom"})
 
-    def test_graphiti_uses_official_extraction_completion_budget(self) -> None:
+    def test_graphiti_local_extraction_budget_is_bounded(self) -> None:
         argv = ["graphiti", "--input", "input.json", "--output", "output.jsonl"]
         environment = dict(os.environ)
         environment.pop("HABITBENCH_GRAPHITI_LLM_MAX_TOKENS", None)
@@ -117,9 +117,11 @@ class ProtocolTest(unittest.TestCase):
             sys, "argv", argv
         ):
             args = parse_graphiti_args()
-            self.assertEqual(args.max_tokens, 16384)
-            self.assertEqual(args.schema_max_items, 64)
-            self.assertEqual(args.schema_max_string_chars, 1000)
+            self.assertEqual(args.max_tokens, 4096)
+            self.assertEqual(args.schema_max_items, 16)
+            self.assertEqual(args.schema_max_string_chars, 512)
+            self.assertEqual(args.request_timeout_sec, 300)
+            self.assertEqual(args.request_max_retries, 2)
 
     def test_graphiti_local_schema_bounds_are_recursive(self) -> None:
         schema = {

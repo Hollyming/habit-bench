@@ -76,6 +76,12 @@ uses the official `SimpleMemory` lifecycle plus documented JSON-output
 compatibility handling at the local API boundary. Their pinned provenance is
 in `third_party/official-baselines/README.md`.
 
+Finance and Software share the v1.3 source package but are separate evaluation
+views. The plan records `domain_filter=finance` or `domain_filter=software`;
+the loader applies that filter before user sharding and merge validates it
+again. Results must therefore be reported as three domains: Food, Finance, and
+Software, rather than one combined Finance–Software score.
+
 `no_memory` and `full_memory` are evaluator controls, not memory methods.
 `full_memory` performs no training, learned summarization, retrieval, or
 embedding. The deterministic recent-session truncation makes the context-window

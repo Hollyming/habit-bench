@@ -41,12 +41,13 @@ def main() -> None:
     with args.plan.open("r", encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
 
-    groups: dict[tuple[str, str, str, str, int], None] = {}
+    groups: dict[tuple[str, str, str, str, str, int], None] = {}
     for row in rows:
         key = (
             row["method"],
             row["dataset_name"],
             row["dataset_dir"],
+            row.get("domain_filter", ""),
             row["method_output_root"],
             int(row["shard_count"]),
         )
@@ -87,7 +88,14 @@ def main() -> None:
     }
 
     results = []
-    for method, dataset_name, dataset_dir, method_output_root, shard_count in groups:
+    for (
+        method,
+        dataset_name,
+        dataset_dir,
+        domain_filter,
+        method_output_root,
+        shard_count,
+    ) in groups:
         output_root = Path(method_output_root)
         manifest = merge_shards(
             Path(dataset_dir),
@@ -95,6 +103,7 @@ def main() -> None:
             output_root / "merged",
             method,
             shard_count,
+            domain_filter or None,
         )
         observed = observed_groups.get(
             (method, dataset_name, str(output_root.resolve()))
@@ -103,6 +112,7 @@ def main() -> None:
             {
                 "method": method,
                 "dataset_alias": dataset_name,
+                "domain_filter": domain_filter or None,
                 "dataset": manifest["dataset"]["name"],
                 "dataset_manifest": manifest["dataset"],
                 "output": str(output_root / "merged"),

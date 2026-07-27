@@ -23,7 +23,14 @@ memory_context + current request + response choices
 | 数据集别名 | 领域 | 用户 | sessions | probes | 路径 |
 | --- | --- | ---: | ---: | ---: | --- |
 | `food` | food | 30 | 3,600 | 1,470 | `domain/food/food_habit_lifelines_stress_v2` |
-| `finance_software` | finance、software | 54 | 29,160 | 2,048 | `domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3` |
+| `finance` | finance | 36 | 19,440 | 1,368 | `domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3` |
+| `software` | software | 18 | 9,720 | 680 | `domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3` |
+
+Finance 和 Software 在 v1.3 中共用同一个物理数据包，但正式评测把它们视为两个独立
+dataset alias。`shard_plan.tsv` 分别写入 `domain_filter=finance` 和
+`domain_filter=software`；loader 在用户分片之前过滤 sessions、probes 和 private
+keys，合并时再次核验 domain filter。旧的 `finance_software` 无过滤别名仅为兼容已有
+plan 保留，不属于默认正式 suite。
 
 每个数据包主要包含：
 
@@ -37,7 +44,7 @@ review/...                 # 人工复核队列
 source/...                 # 数据来源与构建溯源（若该数据包提供）
 ```
 
-`eval/core/dataset.py` 会把两个领域不同的 public lifeline 组织形式归一化为统一
+`eval/core/dataset.py` 会把不同数据包的 public lifeline 组织形式归一化为统一
 session/probe contract。Gold answer、gold evidence、habit graph、persona profile 和
 policy label 不会进入 memory 方法输入。
 
@@ -57,15 +64,15 @@ Food 的正向检索 gold 是 `private/probe_key.jsonl` 中的
 
 Finance/Software v1.3 更强调多证据链、漂移、scope 和 provenance：
 
-| Probe type | 数量 | 设计目标 |
-| --- | ---: | --- |
-| `dual_asof_reversal` | 384 | 两个习惯在不同 as-of 状态下的反转 |
-| `triple_asof_interleaved` | 512 | 三习惯、跨时序的交错证据归纳 |
-| `scope_temporal_pair` | 64 | scope 与时间边界联合校准 |
-| `surface_decoy_pair` | 384 | 拒绝表面相似但不具约束力的记忆 |
-| `suggestion_rejection_pair` | 256 | 区分用户采纳与 assistant 单方面建议 |
-| `provenance_weighted_triple` | 128 | 三习惯证据 provenance 加权 |
-| `reference_case_reconstruction` | 320 | 重建历史未完成状态和适用 policy |
+| Probe type | Finance | Software | 总数 | 设计目标 |
+| --- | ---: | ---: | ---: | --- |
+| `dual_asof_reversal` | 255 | 129 | 384 | 两个习惯在不同 as-of 状态下的反转 |
+| `triple_asof_interleaved` | 333 | 179 | 512 | 三习惯、跨时序的交错证据归纳 |
+| `scope_temporal_pair` | 40 | 24 | 64 | scope 与时间边界联合校准 |
+| `surface_decoy_pair` | 266 | 118 | 384 | 拒绝表面相似但不具约束力的记忆 |
+| `suggestion_rejection_pair` | 163 | 93 | 256 | 区分用户采纳与 assistant 单方面建议 |
+| `provenance_weighted_triple` | 91 | 37 | 128 | 三习惯证据 provenance 加权 |
+| `reference_case_reconstruction` | 220 | 100 | 320 | 重建历史未完成状态和适用 policy |
 
 该域把证据明确拆成：
 
@@ -193,7 +200,7 @@ memory writer 明确配置 `embedding_device=cuda`，SeCom 的官方 LLMLingua2 
 | `memrl` | `memrl_qwen3-8b_adapted.yaml` | candidate top-k 12；similarity threshold 0.2；返回 context 1,800 tokens；Q-value/similarity 混合选择 |
 | `lightmem` | `lightmem_qwen3-8b_adapted.yaml` | topic segmentation；event extraction；embedding index/retrieval；offline update；formal profile 中 pre-compress=false |
 | `letta` | `letta_qwen3-8b_adapted.yaml` | top-k 5；4,096 embedding chunk；32,768 context；archival passage retrieval；用户级 persistence |
-| `mirix` | `mirix_qwen3-8b_adapted.yaml` | top-k 5；multi-store memory；4,096 retrieval context；严格工具 schema、单次 meta update 和本地 JSON tool bridge |
+| `mirix` | `mirix_qwen3-8b_adapted.yaml` | top-k 5；multi-store memory；4,096 retrieval context；严格工具 schema、单次 meta update；本地 JSON bridge 保留官方 `finish_memory_update` 终止路径 |
 
 实际 YAML 路径：
 
@@ -215,9 +222,9 @@ third_party/medmemorybench/configs/method_config/
 
 | 方法 | 构建接口 | 检索接口 | 主要配置 |
 | --- | --- | --- | --- |
-| `graphiti` | 官方 `Graphiti.add_episode`，每个 HABIT session 一个 episode | 官方 `Graphiti.search_` | Kuzu；edge cosine；RRF；top-k 5；BGE-M3；16,384-token 官方 extraction completion 上限；本地 schema 最多 64 items/1,000 chars |
+| `graphiti` | 官方 `Graphiti.add_episode`，每个 HABIT session 一个 episode | 官方 `Graphiti.search_` | Kuzu；edge cosine；RRF；top-k 5；BGE-M3；本地 extraction 上限 4,096 tokens、16 items/512 chars；请求 timeout 300 秒、最多 2 次 client retry |
 | `secom` | 官方 segmentation + LLMLingua2 compression，按 session 增量写入 | 官方 FAISS retriever | segment granularity；compression rate 0.9；top-k 5；BGE-M3 |
-| `omem` | 官方 `SimpleMemory.add_message`、working/episodic/persona lifecycle | `retrieve_from_memory_soft_segmentation` | top-n 12；drop threshold 0；BGE-M3；本地 JSON-output compatibility |
+| `omem` | 官方 `SimpleMemory.add_message`、working/episodic/persona lifecycle | `retrieve_from_memory_soft_segmentation` | top-n 12；drop threshold 0；BGE-M3；未显式设置预算的 JSON 默认 1,024 tokens、topic merge 上限 2,048；请求 timeout 180 秒 |
 
 对应配置：
 
@@ -237,6 +244,10 @@ third_party/official-baselines/vendor/O-Mem
 ```
 
 固定 revision 和兼容边界见 `third_party/official-baselines/README.md`。
+
+O-Mem 官方 `evolve_topic_episodic_memory` 在 topic-merge 请求超时后会无限重试。本地
+兼容层仅在该请求超时时返回保守的 no-merge 结果：每个输入 topic 单独保留，不删除
+证据、不虚构合并；触发次数写入 `omem_runtime.json`。其他请求超时仍使 shard 失败。
 
 ### 3.4 `no_memory`
 
@@ -306,7 +317,7 @@ summary LLM，从而避免把“长上下文对照”变成新的 memory 方法�
 HABITBENCH_CONTEXT_WINDOW_TIER=32k \
 bash scripts/submit_clusterx.sh \
   --methods full_memory \
-  --datasets food,finance_software \
+  --datasets food,finance,software \
   --shards 8 --gpus 8 \
   --output-root results/full_memory_32k
 ```
@@ -318,7 +329,7 @@ HABITBENCH_CONTEXT_WINDOW_TIER=64k \
 HABITBENCH_MAX_MODEL_LEN=65536 \
 bash scripts/submit_clusterx.sh \
   --methods full_memory \
-  --datasets food,finance_software \
+  --datasets food,finance,software \
   --shards 8 --gpus 8 \
   --output-root results/full_memory_64k
 ```
@@ -502,9 +513,13 @@ Vendored Letta 和 MIRIX 的 Python import graph 会在创建本地数据库时�
 | `HABITBENCH_<METHOD>_USER_WORKERS` | 方法级用户并发：Mem0/A-MEM/MemOS/MemRL/Letta=7、LightMem/MIRIX=1 |
 | `HABITBENCH_ADAPTER_CPU_THREADS` | 每个 adapter 进程的 BLAS/OpenMP 线程数，默认 2 |
 | `HABITBENCH_LIGHTMEM_MODEL` | LightMem/LLMLingua2 模型路径 |
-| `HABITBENCH_GRAPHITI_LLM_MAX_TOKENS` | Graphiti entity/edge extraction completion 上限，默认对齐官方 16,384 |
-| `HABITBENCH_GRAPHITI_SCHEMA_MAX_ITEMS` | 本地 constrained decoding 的单数组上限，默认 64，防止重复枚举 |
-| `HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS` | Graphiti schema 单字符串上限，默认对齐官方 summary 的 1,000 chars |
+| `HABITBENCH_GRAPHITI_LLM_MAX_TOKENS` | Graphiti 本地 entity/edge extraction completion 上限，默认 4,096 |
+| `HABITBENCH_GRAPHITI_SCHEMA_MAX_ITEMS` | 本地 constrained decoding 的单数组上限，默认 16 |
+| `HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS` | Graphiti schema 单字符串上限，默认 512 chars |
+| `HABITBENCH_GRAPHITI_REQUEST_TIMEOUT_SEC` | Graphiti 单次 OpenAI-compatible 请求 timeout，默认 300 秒 |
+| `HABITBENCH_OMEM_LLM_MAX_TOKENS` | O-Mem 普通 JSON 调用上限，默认 1,024 |
+| `HABITBENCH_OMEM_TOPIC_MERGE_MAX_TOKENS` | O-Mem topic merge 上限，默认 2,048 |
+| `HABITBENCH_OMEM_REQUEST_TIMEOUT_SEC` | O-Mem API 边界 timeout，默认 180 秒 |
 | `HABITBENCH_GPU_MEMORY_UTIL` | vLLM GPU memory utilization |
 | `HABITBENCH_ENABLE_PREFIX_CACHING` | 默认 1；复用同用户长历史 prompt prefix |
 | `HABITBENCH_VLLM_MIN_TOKENS_PER_SEC` | 启动后并发聚合 decode 吞吐门槛，默认 60 |
@@ -545,7 +560,7 @@ bash scripts/run_eval.sh mem0 \
 
 ```bash
 bash scripts/submit_clusterx.sh \
-  --datasets food,finance_software \
+  --datasets food,finance,software \
   --shards 8 \
   --gpus 8 \
   --output-root results/habit_all_methods_v1
@@ -556,7 +571,7 @@ bash scripts/submit_clusterx.sh \
 ```bash
 bash scripts/submit_clusterx.sh \
   --methods mem0,amem,memos,memrl,lightmem,letta,mirix \
-  --datasets food,finance_software \
+  --datasets food,finance,software \
   --shards 8 --gpus 8 \
   --output-root results/habit_medmemorybench_v1
 ```
@@ -566,7 +581,7 @@ bash scripts/submit_clusterx.sh \
 ```bash
 bash scripts/submit_clusterx.sh \
   --methods no_memory,full_memory \
-  --datasets food,finance_software \
+  --datasets food,finance,software \
   --shards 8 --gpus 8 \
   --output-root results/habit_controls_v1
 ```
@@ -576,7 +591,7 @@ bash scripts/submit_clusterx.sh \
 ```bash
 bash scripts/submit_clusterx.sh \
   --methods graphiti,secom,omem \
-  --datasets food,finance_software \
+  --datasets food,finance,software \
   --shards 8 --gpus 8 \
   --output-root results/habit_official_extra_v1
 ```
@@ -613,7 +628,12 @@ results/<run_name>/
 │       ├── ...
 │       ├── shard_007_of_008/
 │       └── merged/
-└── finance_software/
+├── finance/
+│   └── <method>/
+│       ├── shard_000_of_008/
+│       ├── ...
+│       └── merged/
+└── software/
     └── <method>/
         ├── shard_000_of_008/
         ├── ...

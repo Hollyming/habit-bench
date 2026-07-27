@@ -154,6 +154,83 @@ class DatasetTest(unittest.TestCase):
             self.assertEqual(shard_users[0].union(shard_users[1]), set(users))
             self.assertEqual(shards[0].manifest["subset"]["user_shard_count"], 2)
 
+    def test_domain_filter_creates_disjoint_public_views(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            finance_session = session("finance-u1", 0)
+            finance_session["domain"] = "finance"
+            software_session = session("software-u1", 0)
+            software_session["domain"] = "software"
+            write_jsonl(
+                root / "public/lifelines.jsonl",
+                [finance_session, software_session],
+            )
+            write_jsonl(
+                root / "public/probes.jsonl",
+                [
+                    {
+                        "probe_id": f"{domain}-p1",
+                        "user_id": f"{domain}-u1",
+                        "domain": domain,
+                        "query": "q",
+                        "choices": [
+                            {"choice_id": "A", "text": "a"},
+                            {"choice_id": "B", "text": "b"},
+                        ],
+                    }
+                    for domain in ("finance", "software")
+                ],
+            )
+            write_jsonl(
+                root / "private/probe_key.jsonl",
+                [
+                    {"probe_id": f"{domain}-p1", "gold_choice_id": "A"}
+                    for domain in ("finance", "software")
+                ],
+            )
+
+            finance = load_dataset(root, domain_filter="finance")
+            software = load_dataset(root, domain_filter="software")
+            self.assertEqual(set(finance.sessions_by_user), {"finance-u1"})
+            self.assertEqual(set(software.sessions_by_user), {"software-u1"})
+            self.assertEqual(
+                {probe["probe_id"] for probe in finance.probes}, {"finance-p1"}
+            )
+            self.assertEqual(finance.manifest["domain_filter"], "finance")
+            self.assertEqual(
+                finance.manifest["subset"]["domain_filter"], "finance"
+            )
+            self.assertTrue(
+                set(finance.keys).isdisjoint(set(software.keys))
+            )
+
+    def test_domain_filter_rejects_unknown_domain(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_jsonl(root / "public/lifelines.jsonl", [session("u1", 0)])
+            write_jsonl(
+                root / "public/probes.jsonl",
+                [
+                    {
+                        "probe_id": "p1",
+                        "user_id": "u1",
+                        "domain": "test",
+                        "query": "q",
+                        "choices": [
+                            {"choice_id": "A", "text": "a"},
+                            {"choice_id": "B", "text": "b"},
+                        ],
+                    }
+                ],
+            )
+            write_jsonl(
+                root / "private/probe_key.jsonl",
+                [{"probe_id": "p1", "gold_choice_id": "A"}],
+            )
+
+            with self.assertRaisesRegex(ValueError, "has no probes"):
+                load_dataset(root, domain_filter="finance")
+
     def test_user_shard_arguments_must_be_paired(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
