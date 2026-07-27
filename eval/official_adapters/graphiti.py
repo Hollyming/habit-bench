@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import copy
 import contextlib
 import io
 import json
@@ -210,6 +211,8 @@ def build_config_record(args: argparse.Namespace, store_dir: Path) -> Dict[str, 
             "temperature": args.temperature,
             "max_tokens": args.max_tokens,
             "structured_output_mode": args.structured_output_mode,
+            "schema_max_items": args.schema_max_items,
+            "schema_max_string_chars": args.schema_max_string_chars,
         },
         "embedder": {
             "client": "local_sentence_transformers",
@@ -260,6 +263,74 @@ def cap_llm_generate_response(llm_client: Any, max_tokens: int) -> None:
     max_tokens_cap = max_tokens
     llm_client.max_tokens = max_tokens_cap
     llm_client.generate_response = capped_generate_response
+
+
+def apply_json_schema_bounds(
+    schema: Dict[str, Any],
+    *,
+    max_items: int,
+    max_string_chars: int,
+) -> Dict[str, Any]:
+    """Bound otherwise-unbounded Graphiti extraction schemas for local decoding.
+
+    graphiti-core's Pydantic response models intentionally leave collection and
+    string sizes open. Qwen can repeat valid entity objects indefinitely under
+    constrained decoding, then reach the completion limit with an unclosed JSON
+    document. These bounds only restrict degenerate output size; the returned
+    object is still validated and consumed by graphiti-core unchanged.
+    """
+    if max_items <= 0 or max_string_chars <= 0:
+        raise ValueError("Graphiti schema bounds must be positive")
+    bounded = copy.deepcopy(schema)
+
+    def visit(node: Any) -> None:
+        if isinstance(node, dict):
+            node_type = node.get("type")
+            if node_type == "array":
+                node["maxItems"] = min(
+                    int(node.get("maxItems", max_items)),
+                    max_items,
+                )
+            elif node_type == "string":
+                node["maxLength"] = min(
+                    int(node.get("maxLength", max_string_chars)),
+                    max_string_chars,
+                )
+            for value in node.values():
+                visit(value)
+        elif isinstance(node, list):
+            for value in node:
+                visit(value)
+
+    visit(bounded)
+    return bounded
+
+
+def bound_llm_response_schema(
+    llm_client: Any,
+    *,
+    max_items: int,
+    max_string_chars: int,
+) -> None:
+    original_build_response_format = llm_client._build_response_format
+
+    def bounded_response_format(response_model):
+        response_format = original_build_response_format(response_model)
+        if response_format.get("type") != "json_schema":
+            return response_format
+        schema_record = response_format.get("json_schema")
+        if not isinstance(schema_record, dict):
+            return response_format
+        schema = schema_record.get("schema")
+        if isinstance(schema, dict):
+            schema_record["schema"] = apply_json_schema_bounds(
+                schema,
+                max_items=max_items,
+                max_string_chars=max_string_chars,
+            )
+        return response_format
+
+    llm_client._build_response_format = bounded_response_format
 
 
 def patch_graphiti_kuzu_search_defaults() -> None:
@@ -376,6 +447,11 @@ async def async_run(args: argparse.Namespace) -> None:
         structured_output_mode=args.structured_output_mode,
     )
     cap_llm_generate_response(llm_client, args.max_tokens)
+    bound_llm_response_schema(
+        llm_client,
+        max_items=args.schema_max_items,
+        max_string_chars=args.schema_max_string_chars,
+    )
     graph = Graphiti(
         graph_driver=driver,
         llm_client=llm_client,
@@ -535,7 +611,28 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--openai-base-url", default=os.getenv("OPENAI_BASE_URL", "http://127.0.0.1:8000/v1"))
     parser.add_argument("--openai-api-key", default=os.getenv("OPENAI_API_KEY", "dummy"))
     parser.add_argument("--temperature", type=float, default=0.0)
-    parser.add_argument("--max-tokens", type=int, default=int(os.getenv("HABITBENCH_MEMORY_LLM_MAX_TOKENS", "1024")))
+    parser.add_argument(
+        "--max-tokens",
+        type=int,
+        default=int(
+            os.getenv(
+                "HABITBENCH_GRAPHITI_LLM_MAX_TOKENS",
+                "16384",
+            )
+        ),
+    )
+    parser.add_argument(
+        "--schema-max-items",
+        type=int,
+        default=int(os.getenv("HABITBENCH_GRAPHITI_SCHEMA_MAX_ITEMS", "64")),
+    )
+    parser.add_argument(
+        "--schema-max-string-chars",
+        type=int,
+        default=int(
+            os.getenv("HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS", "1000")
+        ),
+    )
     parser.add_argument("--structured-output-mode", choices=["json_schema", "json_object"], default=os.getenv("HABITBENCH_STRUCTURED_OUTPUT_MODE", "json_schema"))
     parser.add_argument("--progress-every", type=int, default=int(os.getenv("HABITBENCH_PROGRESS_EVERY", "100")))
     parser.add_argument("--shard-index", type=int, default=int(os.getenv("HABITBENCH_SHARD_INDEX", "0")))

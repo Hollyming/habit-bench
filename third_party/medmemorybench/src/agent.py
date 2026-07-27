@@ -343,6 +343,8 @@ class AgentManager:
                 params["embedding_provider"] = self.method_config.embedding.provider
                 if self.method_config.embedding.model_path:
                     params["embedding_model_path"] = self.method_config.embedding.model_path
+                if self.method_config.embedding.dim:
+                    params["embedding_dim"] = self.method_config.embedding.dim
 
         elif method_key == "zep":
             params.update({

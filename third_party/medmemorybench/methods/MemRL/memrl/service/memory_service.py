@@ -10,6 +10,7 @@ import random
 import time
 import math
 import statistics
+import uuid
 from datetime import datetime, timezone
 
 from collections import defaultdict
@@ -335,7 +336,14 @@ class MemoryService:
             )
             os.makedirs(base_root, exist_ok=True)
             # timestamped cube dir for historical isolation
-            ts_str = datetime.now().strftime("%Y%m%d_%H%M%S")
+            # Second-resolution identifiers collide when several benchmark
+            # workers initialize the same context number concurrently. Keep
+            # the lifecycle unchanged while making this local-backend storage
+            # identity process-safe.
+            ts_str = (
+                datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+                + f"_{uuid.uuid4().hex[:8]}"
+            )
             self._base_root = base_root
             self._cube_timestamp = ts_str
             cube_dir = os.path.join(base_root, self.user_id, ts_str)
@@ -404,6 +412,18 @@ class MemoryService:
                         getattr(self.embedding_provider, "model", None)
                         or "text-embedding-3-large"
                     )
+
+            # Local model names are not a reliable source of dimensionality
+            # (for example, BGE-M3 does not contain "bge-large" in its path).
+            # Prefer the dimension declared by the benchmark method config.
+            configured_dimension = kwargs.get("embedding_dim")
+            if configured_dimension is not None:
+                configured_dimension = int(configured_dimension)
+                if configured_dimension <= 0:
+                    raise ValueError(
+                        f"embedding_dim must be positive: {configured_dimension}"
+                    )
+                vector_dimension = configured_dimension
 
             # Build embedder config based on backend type
             if embedder_backend == "sentence_transformer":

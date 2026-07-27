@@ -50,6 +50,155 @@ def extract_session_ids(text: str) -> list[str]:
     )
 
 
+def _record_dict(value: Any) -> dict[str, Any]:
+    if isinstance(value, dict):
+        return value
+    if hasattr(value, "model_dump"):
+        dumped = value.model_dump()
+        return dumped if isinstance(dumped, dict) else {}
+    if hasattr(value, "__dict__"):
+        return {
+            key: item
+            for key, item in vars(value).items()
+            if not key.startswith("_")
+        }
+    return {}
+
+
+def _append_lineage(mapping: dict[str, list[str]], key: str, session_id: str) -> None:
+    if not key:
+        return
+    values = mapping.setdefault(key, [])
+    if session_id not in values:
+        values.append(session_id)
+
+
+def record_memory_lineage(
+    build_result: Any,
+    session_id: str,
+    id_lineage: dict[str, list[str]],
+    text_lineage: dict[str, list[str]],
+) -> None:
+    """Attribute adapter-visible memory records to the session that created them.
+
+    This does not change a memory method's storage or retrieval behavior. It records
+    provenance only when the method's native build result exposes a stable memory ID
+    or exact memory text.
+    """
+    collections = []
+    for attribute in ("memory_entries", "all_passages"):
+        value = getattr(build_result, attribute, None)
+        if isinstance(value, list):
+            collections.extend(value)
+    for value in collections:
+        if isinstance(value, str):
+            _append_lineage(text_lineage, value.strip(), session_id)
+            continue
+        record = _record_dict(value)
+        if not record:
+            continue
+        metadata = _record_dict(record.get("metadata"))
+        event = str(record.get("event", "")).upper()
+        identifiers = [
+            str(candidate)
+            for candidate in (
+                record.get("id"),
+                record.get("memory_id"),
+                record.get("note_id"),
+                metadata.get("id"),
+                metadata.get("memory_id"),
+                metadata.get("session_id"),
+            )
+            if candidate
+        ]
+        if event == "DELETE":
+            for identifier in identifiers:
+                id_lineage.pop(identifier, None)
+            continue
+        for identifier in identifiers:
+            _append_lineage(id_lineage, identifier, session_id)
+        for field in ("memory", "text", "content"):
+            text = record.get(field)
+            if isinstance(text, str) and text.strip():
+                _append_lineage(text_lineage, text.strip(), session_id)
+
+
+def attribute_retrieved_sessions(
+    memory_context: str,
+    retrieved_memories: Any,
+    id_lineage: dict[str, list[str]],
+    text_lineage: dict[str, list[str]],
+) -> tuple[list[str], dict[str, int]]:
+    """Resolve ranked source-session provenance without altering method outputs."""
+    evidence: list[str] = []
+    methods = {
+        "direct_marker": 0,
+        "native_metadata": 0,
+        "memory_id_lineage": 0,
+        "exact_text_lineage": 0,
+    }
+
+    def add(values: Iterable[str], source: str) -> None:
+        before = len(evidence)
+        for value in values:
+            session_id = str(value)
+            if session_id and session_id not in evidence:
+                evidence.append(session_id)
+        methods[source] += len(evidence) - before
+
+    records = retrieved_memories if isinstance(retrieved_memories, list) else []
+    for value in records:
+        if isinstance(value, str):
+            markers = extract_session_ids(value)
+            if markers:
+                add(markers, "direct_marker")
+            elif value.strip() in text_lineage:
+                add(text_lineage[value.strip()], "exact_text_lineage")
+            continue
+        record = _record_dict(value)
+        if not record:
+            continue
+        text = next(
+            (
+                record[field].strip()
+                for field in ("memory", "text", "content")
+                if isinstance(record.get(field), str) and record[field].strip()
+            ),
+            "",
+        )
+        markers = extract_session_ids(text)
+        if markers:
+            add(markers, "direct_marker")
+        metadata = _record_dict(record.get("metadata"))
+        native_session_ids = []
+        for candidate in (
+            record.get("session_id"),
+            metadata.get("session_id"),
+            metadata.get("source_session_id"),
+        ):
+            if isinstance(candidate, str) and candidate:
+                native_session_ids.append(candidate)
+            elif isinstance(candidate, list):
+                native_session_ids.extend(str(item) for item in candidate if item)
+        add(native_session_ids, "native_metadata")
+        for identifier in (
+            record.get("id"),
+            record.get("memory_id"),
+            record.get("note_id"),
+            metadata.get("id"),
+            metadata.get("memory_id"),
+        ):
+            if identifier and str(identifier) in id_lineage:
+                add(id_lineage[str(identifier)], "memory_id_lineage")
+        if text and text in text_lineage:
+            add(text_lineage[text], "exact_text_lineage")
+
+    # Some methods expose only the rendered context rather than structured retrieval
+    # records. Preserve its native rank order as a final direct-provenance source.
+    add(extract_session_ids(memory_context), "direct_marker")
+    return evidence, methods
+
+
 def require_successful_memory_build(result: Any, *, session_id: str) -> None:
     """Reject silent or partial memory-build failures from source adapters."""
     if result is None or not hasattr(result, "success"):
@@ -160,6 +309,8 @@ def process_user_job(
     next_session = 0
     retrieval_elapsed_total = 0.0
     reset_elapsed = 0.0
+    id_lineage: dict[str, list[str]] = {}
+    text_lineage: dict[str, list[str]] = {}
     try:
         for probe in probes:
             cutoff = probe["visible_history_scope"]["max_session_index"]
@@ -177,6 +328,12 @@ def process_user_job(
                     build_result,
                     session_id=session["session_id"],
                 )
+                record_memory_lineage(
+                    build_result,
+                    session["session_id"],
+                    id_lineage,
+                    text_lineage,
+                )
                 next_session += 1
                 if progress_every and next_session % progress_every == 0:
                     print(
@@ -193,7 +350,12 @@ def process_user_job(
             retrieval_elapsed = time.time() - retrieval_started
             retrieval_elapsed_total += retrieval_elapsed
             memory_context = retrieval["memory_context"]
-            evidence = extract_session_ids(memory_context)
+            evidence, attribution = attribute_retrieved_sessions(
+                memory_context,
+                retrieval["retrieved_memories"],
+                id_lineage,
+                text_lineage,
+            )
             predictions[probe["probe_id"]] = {
                 "probe_id": probe["probe_id"],
                 "memory_context": memory_context,
@@ -204,6 +366,7 @@ def process_user_job(
                     "method_name": method_config.method_name,
                     "retrieved_count": retrieval["retrieved_count"],
                     "retrieved_memories": retrieval["retrieved_memories"],
+                    "evidence_attribution": attribution,
                     "added_until_session_index": cutoff,
                 },
                 "cost": {

@@ -21,9 +21,9 @@ from eval.core.io import sha256_file, write_json
 
 
 DEFAULT_DATASETS = {
-    "food": PROJECT_ROOT / "domain/food/food_habit_lifelines_stress",
+    "food": PROJECT_ROOT / "domain/food/food_habit_lifelines_stress_v2",
     "finance_software": PROJECT_ROOT
-    / "domain/finance-software/habit_bench_multidogo_finance_software_evidence_chained_v1.2.1",
+    / "domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3",
 }
 METHOD_CONFIGS = {
     method: f"{method}_qwen3-8b_adapted"

@@ -282,6 +282,7 @@ class MemRLAgent(BaseAgent):
         embedding_model: str = "all-MiniLM-L6-v2",
         embedding_provider: str = "local",
         embedding_model_path: Optional[str] = None,
+        embedding_dim: Optional[int] = None,
         storage_root: Optional[str] = None,
         # Strategy configuration
         build_strategy: str = "proceduralization",
@@ -324,6 +325,7 @@ class MemRLAgent(BaseAgent):
         self.embedding_model = embedding_model
         self.embedding_provider = embedding_provider
         self.embedding_model_path = embedding_model_path
+        self.embedding_dim = int(embedding_dim) if embedding_dim is not None else None
         self.storage_root = str(Path(storage_root).resolve()) if storage_root else None
 
         # Strategy configuration
@@ -542,6 +544,7 @@ class MemRLAgent(BaseAgent):
             rl_config=rl_config,
             add_similarity_threshold=0.9,
             storage_root=self.storage_root,
+            embedding_dim=self.embedding_dim,
         )
 
         logger.info(f"[MemRLAgent] MemRL initialized successfully")

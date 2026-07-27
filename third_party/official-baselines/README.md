@@ -13,7 +13,13 @@ Graphiti is consumed from the installed official `graphiti-core==0.29.2`
 package. Its adapter uses the official `Graphiti.add_episode` and
 `Graphiti.search_` APIs. The local Kuzu backend cannot provide Graphiti's BM25
 path, so the adapter selects the documented edge-cosine search plus reciprocal
-rank fusion configuration.
+rank fusion configuration. Entity/edge extraction retains graphiti-core's
+official 16,384-token completion default; applying the smaller generic
+memory-method cap can truncate schema-constrained extraction JSON. For the
+local Qwen backend, the adapter adds `maxItems=64` and `maxLength=1000` to
+otherwise-unbounded response schemas. This prevents repetitive constrained
+decoding from exhausting that budget; the resulting objects still pass through
+graphiti-core's native validation and `add_episode` lifecycle unchanged.
 
 Compatibility code is isolated in `eval/official_adapters`:
 

@@ -35,3 +35,13 @@ snapshots to Hugging Face revision
 Method source should remain close to this frozen snapshot. New HABIT behavior
 belongs in the outer adapter unless an upstream compatibility defect makes a
 source patch unavoidable; every such patch must be documented here.
+
+The vendored MemRL bridge has two local-backend compatibility patches:
+
+- the profile's explicit embedding dimension is forwarded to its Qdrant
+  collection instead of inferring the dimension from a model-path substring;
+- generated local MemOS cube identities include microseconds and a random
+  suffix so independent shard processes cannot register the same SQLite key.
+
+Neither patch changes MemRL's memory construction, retrieval, update, scoring,
+or Q-learning logic.

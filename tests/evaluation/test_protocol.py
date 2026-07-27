@@ -1,14 +1,22 @@
 from __future__ import annotations
 
 import json
+import os
+import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import yaml
 
 from eval.core.answering import DEFAULT_SERVED_MODEL
 from eval.core.dataset import DatasetContractError
+from eval.official_adapters.graphiti import (
+    apply_json_schema_bounds,
+    parse_args as parse_graphiti_args,
+)
 from eval.run import validate_memory_contexts
+from scripts.run_multigpu_plan import CUDA_REQUIRED_ADAPTER_METHODS
 
 
 class ProtocolTest(unittest.TestCase):
@@ -97,6 +105,47 @@ class ProtocolTest(unittest.TestCase):
     def test_context_coverage(self) -> None:
         rows = [{"probe_id": "p1", "memory_context": "context"}]
         self.assertEqual(validate_memory_contexts(rows, ["p1"])["p1"]["memory_context"], "context")
+
+    def test_native_cuda_adapters_are_bound_to_their_worker_gpu(self) -> None:
+        self.assertEqual(CUDA_REQUIRED_ADAPTER_METHODS, {"mirix", "secom"})
+
+    def test_graphiti_uses_official_extraction_completion_budget(self) -> None:
+        argv = ["graphiti", "--input", "input.json", "--output", "output.jsonl"]
+        environment = dict(os.environ)
+        environment.pop("HABITBENCH_GRAPHITI_LLM_MAX_TOKENS", None)
+        with patch.dict(os.environ, environment, clear=True), patch.object(
+            sys, "argv", argv
+        ):
+            args = parse_graphiti_args()
+            self.assertEqual(args.max_tokens, 16384)
+            self.assertEqual(args.schema_max_items, 64)
+            self.assertEqual(args.schema_max_string_chars, 1000)
+
+    def test_graphiti_local_schema_bounds_are_recursive(self) -> None:
+        schema = {
+            "type": "object",
+            "properties": {
+                "entities": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {"name": {"type": "string"}},
+                    },
+                }
+            },
+        }
+        bounded = apply_json_schema_bounds(
+            schema,
+            max_items=64,
+            max_string_chars=1000,
+        )
+        entities = bounded["properties"]["entities"]
+        self.assertEqual(entities["maxItems"], 64)
+        self.assertEqual(
+            entities["items"]["properties"]["name"]["maxLength"],
+            1000,
+        )
+        self.assertNotIn("maxItems", schema["properties"]["entities"])
 
 
 if __name__ == "__main__":

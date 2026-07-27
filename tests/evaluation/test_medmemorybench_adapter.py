@@ -6,10 +6,12 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from eval.medmemorybench_adapters.structured_memory import (
+    attribute_retrieved_sessions,
     default_med_repo,
     empty_contexts,
     extract_session_ids,
     group_user_jobs,
+    record_memory_lineage,
     resolve_user_state_root,
     require_successful_memory_build,
     render_session,
@@ -62,6 +64,37 @@ class MedMemoryBenchAdapterTest(unittest.TestCase):
     def test_invalid_memory_build_result_is_rejected(self):
         with self.assertRaises(TypeError):
             require_successful_memory_build(None, session_id="food-u1-s2")
+
+    def test_native_memory_lineage_recovers_source_session_ids(self):
+        id_lineage = {}
+        text_lineage = {}
+        record_memory_lineage(
+            SimpleNamespace(
+                memory_entries=[
+                    {
+                        "id": "memory-1",
+                        "memory": "The user prefers a narrow-ribbon sauce.",
+                    }
+                ],
+                all_passages=[],
+            ),
+            "food-u1-s2",
+            id_lineage,
+            text_lineage,
+        )
+        evidence, attribution = attribute_retrieved_sessions(
+            "- The user prefers a narrow-ribbon sauce.",
+            [
+                {
+                    "id": "memory-1",
+                    "memory": "The user prefers a narrow-ribbon sauce.",
+                }
+            ],
+            id_lineage,
+            text_lineage,
+        )
+        self.assertEqual(evidence, ["food-u1-s2"])
+        self.assertEqual(attribution["memory_id_lineage"], 1)
 
     def test_user_jobs_are_deterministic_and_chronological(self):
         jobs = group_user_jobs(

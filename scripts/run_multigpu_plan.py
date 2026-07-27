@@ -30,6 +30,10 @@ from eval.context_windows import resolve_context_window
 
 
 O200K_CACHE_KEY = "fb374d419588a4632f3f557e76b4b70aebbca790"
+GPT2_CACHE_KEYS = {
+    "gpt2_vocab_bpe": "6d1cbeee0f20b3d9449abfede4726ed8212e3aee",
+    "gpt2_encoder_json": "6c7ea1a7e38e3a7f062df639a5b80947f075ffe6",
+}
 EMBEDDING_METHODS = {
     "mem0",
     "amem",
@@ -51,6 +55,10 @@ MEDMEMORY_METHODS = {
     "letta",
     "mirix",
 }
+# These adapters load native local encoders/compressors on CUDA. They must see
+# only the GPU paired with their vLLM worker; an empty global adapter setting
+# is the normal CPU-isolation policy for the other methods.
+CUDA_REQUIRED_ADAPTER_METHODS = {"mirix", "secom"}
 
 
 def _utc_now() -> str:
@@ -137,6 +145,9 @@ def _safe_config(env: dict[str, str]) -> dict[str, Any]:
         "HABITBENCH_VLLM_BENCHMARK_TIMEOUT_SEC",
         "HABITBENCH_VLLM_BENCHMARK_CONCURRENCY",
         "HABITBENCH_MEMORY_LLM_MAX_TOKENS",
+        "HABITBENCH_GRAPHITI_LLM_MAX_TOKENS",
+        "HABITBENCH_GRAPHITI_SCHEMA_MAX_ITEMS",
+        "HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS",
         "HABITBENCH_PROGRESS_EVERY",
         "HABITBENCH_OFFICIAL_TIMEOUT_SEC",
         "HABITBENCH_STRUCTURED_OUTPUT_MODE",
@@ -195,6 +206,36 @@ def _inspect_vllm_runtime(python_bin: Path, env: dict[str, str]) -> dict[str, st
     if mismatches:
         raise ValueError(f"Dedicated vLLM runtime mismatch: {mismatches}")
     return versions
+
+
+def _require_package_set(
+    installed_versions: dict[str, str],
+    requirements: dict[str, tuple[str, str]],
+    *,
+    runtime_name: str,
+) -> None:
+    """Fail before GPU startup when a method's import-time dependencies drift."""
+    missing: list[str] = []
+    mismatches: dict[str, dict[str, str]] = {}
+    for distribution, (module, expected_version) in requirements.items():
+        if importlib.util.find_spec(module) is None:
+            missing.append(f"{distribution}=={expected_version}")
+            continue
+        actual_version = package_version(distribution)
+        installed_versions[distribution] = actual_version
+        if actual_version != expected_version:
+            mismatches[distribution] = {
+                "expected": expected_version,
+                "actual": actual_version,
+            }
+    if missing:
+        raise ModuleNotFoundError(
+            f"{runtime_name} runtime dependencies are missing: {', '.join(missing)}"
+        )
+    if mismatches:
+        raise ValueError(
+            f"{runtime_name} runtime dependency mismatch: {mismatches}"
+        )
 
 
 def _preflight_runtime(
@@ -303,6 +344,65 @@ def _preflight_runtime(
                 "Graphiti runtime revision mismatch: expected graphiti-core "
                 f"0.29.2, got {packages['graphiti-core']}"
             )
+    if methods and "memrl" in methods:
+        if importlib.util.find_spec("chonkie") is None:
+            raise ModuleNotFoundError(
+                "chonkie==1.2.1 is required when memrl is selected"
+            )
+        packages["chonkie"] = package_version("chonkie")
+        if packages["chonkie"] != "1.2.1":
+            raise ValueError(
+                "MemRL runtime dependency mismatch: expected chonkie 1.2.1, "
+                f"got {packages['chonkie']}"
+            )
+        required.update(
+            {
+                name: tiktoken_root / cache_key
+                for name, cache_key in GPT2_CACHE_KEYS.items()
+            }
+        )
+    if methods and "letta" in methods:
+        _require_package_set(
+            packages,
+            {
+                "anthropic": ("anthropic", "0.49.0"),
+                "APScheduler": ("apscheduler", "3.11.0"),
+                "composio_core": ("composio", "0.7.15"),
+                "datamodel-code-generator": (
+                    "datamodel_code_generator",
+                    "0.25.9",
+                ),
+                "demjson3": ("demjson3", "3.0.6"),
+                "docstring-parser": ("docstring_parser", "0.16"),
+                "mcp": ("mcp", "1.6.0"),
+                "llama-index-core": ("llama_index.core", "0.12.30"),
+                "opentelemetry-instrumentation-requests": (
+                    "opentelemetry.instrumentation.requests",
+                    "0.65b0",
+                ),
+                "pathvalidate": ("pathvalidate", "3.2.3"),
+                "pyhumps": ("humps", "3.8.0"),
+                "SQLAlchemy-Utils": ("sqlalchemy_utils", "0.41.2"),
+                "sqlalchemy-json": ("sqlalchemy_json", "0.7.0"),
+                "sqlmodel": ("sqlmodel", "0.0.16"),
+            },
+            runtime_name="Letta",
+        )
+    if methods and "mirix" in methods:
+        _require_package_set(
+            packages,
+            {
+                "aiosqlite": ("aiosqlite", "0.22.1"),
+                "langfuse": ("langfuse", "3.15.0"),
+                "pydub": ("pydub", "0.25.1"),
+                "RapidFuzz": ("rapidfuzz", "3.14.5"),
+                "SpeechRecognition": (
+                    "speech_recognition",
+                    "3.17.0",
+                ),
+            },
+            runtime_name="MIRIX",
+        )
     if methods and ({"full_memory", "full_history"} & methods):
         full_memory_window = resolve_context_window(
             env.get("HABITBENCH_CONTEXT_WINDOW_TIER", "auto"),
@@ -674,14 +774,16 @@ def _run_task(
     )
 
     task_env = dict(base_env)
-    if "HABITBENCH_ADAPTER_CUDA_VISIBLE_DEVICES" in base_env:
+    method = row["method"]
+    if method in CUDA_REQUIRED_ADAPTER_METHODS:
+        adapter_cuda = worker["gpu"]
+    elif "HABITBENCH_ADAPTER_CUDA_VISIBLE_DEVICES" in base_env:
         adapter_cuda = base_env["HABITBENCH_ADAPTER_CUDA_VISIBLE_DEVICES"]
     elif base_env.get("HABITBENCH_EMBED_DEVICE", "cpu").lower() == "cpu":
         adapter_cuda = ""
     else:
         adapter_cuda = worker["gpu"]
     task_env["CUDA_VISIBLE_DEVICES"] = adapter_cuda
-    method = row["method"]
     method_workers: int | None = None
     if method in MEDMEMORY_METHODS:
         worker_variable = f"HABITBENCH_{method.upper()}_USER_WORKERS"

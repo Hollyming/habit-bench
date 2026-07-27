@@ -18,6 +18,11 @@
 - A-MEM：保留调用方指定的本地 embedding 路径，并暴露原生 note retrieval。
 - LightMem：在关闭 pre-compression 时初始化可选 compressor；裁正越界 source ID 后再查询 timestamp 和 speaker。LightMem 是外部子模块，因此两处修改记录在 `patches/lightmem-medmemorybench.patch`。
 - MemOS、MemRL、Letta：隔离持久状态，并停止隐藏写入或检索错误。
+- MemRL：把方法 YAML 声明的 BGE-M3 `embedding.dim=1024` 显式传到原生
+  MemOS/Qdrant reader，避免用模型路径字符串误猜为 768；本地 cube ID 增加微秒与
+  随机后缀，避免多 shard 的局部 context ID 在 7-worker 并发初始化时撞 SQLite
+  唯一键。这两项只修复本地 backend 配置与身份隔离，不改变 proceduralization、
+  retrieval 或 Q-learning 策略。
 - MIRIX：补充 SQLite cosine、embedding 维度处理、engine reset、bounded local JSON tool schema、canonical tool conversion、stale replace-ID 归一化，以及 bounded memory update 所需的 completion budget。
 
 q8a18、q8a19 和 q8a20 是运行源码快照，不是长期源码分支。q8a20 是累计验证版本；最终只把有意义的文件级差异合并进 `wjr` 历史。运行日志、cache、数据库、build 目录和复制的 `.git` 元数据不会进入 Git。

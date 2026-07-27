@@ -6,14 +6,15 @@ HABIT-Bench 用于评估 memory agent 能否从超长用户—助手交互历史
 核心假设是：在显式用户记忆基准上表现较好的方法，不一定能够处理需要跨多次弱证据
 归纳的习惯，也可能在边界、异常、漂移或证据不足时产生错误个性化。
 
-本仓库的正式评测不是 embedding 相似度测试。每个 memory 方法只负责构建和检索
-`memory_context`；固定的 base model 根据：
+本仓库的正式评测不是单纯的 embedding 相似度测试。每个 memory 方法只负责构建和
+检索 `memory_context`；固定的 base model 根据：
 
 ```text
 memory_context + current request + response choices
 ```
 
-选择一个 `choice_id`，最后由私有答案文件计算 Accuracy。
+选择一个 `choice_id`。私有 scorer 同时评估最终答案、证据检索、证据链完整性、
+干扰抑制和可追溯性，避免把“依靠模型先验碰巧答对”误当成 memory 能力。
 
 ## 1. 当前实验范围
 
@@ -21,8 +22,8 @@ memory_context + current request + response choices
 
 | 数据集别名 | 领域 | 用户 | sessions | probes | 路径 |
 | --- | --- | ---: | ---: | ---: | --- |
-| `food` | food | 30 | 3,600 | 1,470 | `domain/food/food_habit_lifelines_stress` |
-| `finance_software` | finance、software | 54 | 29,160 | 2,048 | `domain/finance-software/habit_bench_multidogo_finance_software_evidence_chained_v1.2.1` |
+| `food` | food | 30 | 3,600 | 1,470 | `domain/food/food_habit_lifelines_stress_v2` |
+| `finance_software` | finance、software | 54 | 29,160 | 2,048 | `domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3` |
 
 每个数据包主要包含：
 
@@ -39,6 +40,46 @@ source/...                 # 数据来源与构建溯源（若该数据包提供
 `eval/core/dataset.py` 会把两个领域不同的 public lifeline 组织形式归一化为统一
 session/probe contract。Gold answer、gold evidence、habit graph、persona profile 和
 policy label 不会进入 memory 方法输入。
+
+Food v2 是 content-constraint 习惯域，包含 210 个受控习惯：
+
+| Probe type | 数量 | 设计目标 | 私有正向证据 |
+| --- | ---: | --- | --- |
+| `direct_use` | 420 | 从重复弱证据归纳习惯并应用 | 5 个 sessions |
+| `explicit_retrieval` | 210 | 显式询问历史行为，测基础检索能力 | 5 个 sessions |
+| `boundary` | 420 | 情境超出习惯适用范围时避免错误套用 | 1 个 boundary session |
+| `exception` | 420 | 保留并应用用户明确给出的局部例外 | 1 个 exception session |
+
+其中 630 个 probe 使用 `unseen_paraphrase`，用于区分真正的习惯归纳和表面模板匹配。
+Food 的正向检索 gold 是 `private/probe_key.jsonl` 中的
+`gold_evidence_session_ids`。所有 1,470 个 probe 都有有效、同用户、早于 cutoff 的
+证据链接。
+
+Finance/Software v1.3 更强调多证据链、漂移、scope 和 provenance：
+
+| Probe type | 数量 | 设计目标 |
+| --- | ---: | --- |
+| `dual_asof_reversal` | 384 | 两个习惯在不同 as-of 状态下的反转 |
+| `triple_asof_interleaved` | 512 | 三习惯、跨时序的交错证据归纳 |
+| `scope_temporal_pair` | 64 | scope 与时间边界联合校准 |
+| `surface_decoy_pair` | 384 | 拒绝表面相似但不具约束力的记忆 |
+| `suggestion_rejection_pair` | 256 | 区分用户采纳与 assistant 单方面建议 |
+| `provenance_weighted_triple` | 128 | 三习惯证据 provenance 加权 |
+| `reference_case_reconstruction` | 320 | 重建历史未完成状态和适用 policy |
+
+该域把证据明确拆成：
+
+```text
+decision_evidence_session_ids    # 能推出最终习惯/决策的决定性证据
+temporal_context_session_ids     # 单独评估的时序上下文
+nonbinding_evidence_session_ids  # 局部例外或未获用户采纳的干扰证据
+required_component_groups        # 每个目标习惯必须组合的弱证据组件
+decision_unit_ids                # 去除重复潜在决策带来的计权偏差
+```
+
+`gold_evidence_session_ids` 是上述相关上下文的并集，包含 nonbinding 干扰项，因此绝不能
+直接作为 Finance 的正向 Recall gold。正式 scorer 使用
+`decision_evidence_session_ids`，并把 temporal 与 nonbinding 分别报告。
 
 ### 1.2 方法集合
 
@@ -89,7 +130,7 @@ public lifeline + public probe
          choice_id
               │
               ▼
- private scorer → Accuracy + grouped metrics
+ private scorer → answer + retrieval + chain/provenance metrics
 ```
 
 对同一用户，probe 按 `visible_history_scope.max_session_index` 排序。每次只向方法补充
@@ -124,10 +165,19 @@ memory adapter 不允许输出 `choice_id` 或 choice score。`eval/run.py` 会�
 | revision | `5617a9f61b028005a4858fdac845db406aefb181` |
 | local path | `/plm-shared/zhangjunming/Workspace/models/bge-m3` |
 | dense dimension | 1024 |
-| default device | CUDA |
+| default device | CPU；MIRIX 与 SeCom 的原生 CUDA 路径例外，见下文 |
 
 Embedding 只参与方法内部索引或检索，不直接选择最终答案。完整 YAML 和 SHA-256 会保存
 到 shard plan 与每个 run manifest 中。
+
+大多数方法把 BGE-M3 放在 CPU，GPU 专用于每卡一个持久 vLLM server。MIRIX 的原生
+memory writer 明确配置 `embedding_device=cuda`，SeCom 的官方 LLMLingua2 compressor
+也默认要求 CUDA；launcher 因此只向这两个 adapter 暴露其所配对的单张 GPU，并把
+实际 `adapter_cuda_visible_devices` 写入 `worker_runtime.json`。它们不会看到其他
+分片的 GPU。MemRL 则显式从 YAML 传递 `embedding.dim=1024` 给本地 Qdrant，避免依赖
+模型路径字符串猜测维度；并发 worker 的本地 cube identity 使用微秒级唯一后缀，防止
+不同 shard 重复局部 context ID 时发生 SQLite 唯一键冲突。这些都是本地运行时兼容，
+不改变方法的构建、检索或更新策略。
 
 ### 3.2 MedMemoryBench-source 方法
 
@@ -165,7 +215,7 @@ third_party/medmemorybench/configs/method_config/
 
 | 方法 | 构建接口 | 检索接口 | 主要配置 |
 | --- | --- | --- | --- |
-| `graphiti` | 官方 `Graphiti.add_episode`，每个 HABIT session 一个 episode | 官方 `Graphiti.search_` | Kuzu；edge cosine；RRF；top-k 5；BGE-M3 |
+| `graphiti` | 官方 `Graphiti.add_episode`，每个 HABIT session 一个 episode | 官方 `Graphiti.search_` | Kuzu；edge cosine；RRF；top-k 5；BGE-M3；16,384-token 官方 extraction completion 上限；本地 schema 最多 64 items/1,000 chars |
 | `secom` | 官方 segmentation + LLMLingua2 compression，按 session 增量写入 | 官方 FAISS retriever | segment granularity；compression rate 0.9；top-k 5；BGE-M3 |
 | `omem` | 官方 `SimpleMemory.add_message`、working/episodic/persona lifecycle | `retrieve_from_memory_soft_segmentation` | top-n 12；drop threshold 0；BGE-M3；本地 JSON-output compatibility |
 
@@ -312,9 +362,9 @@ HABIT-bench/
 │       └── omem_bge_m3_qwen3.yaml
 ├── domain/
 │   ├── food/
-│   │   └── food_habit_lifelines_stress/
+│   │   └── food_habit_lifelines_stress_v2/
 │   └── finance-software/
-│       └── habit_bench_multidogo_finance_software_evidence_chained_v1.2.1/
+│       └── habit_bench_multidogo_finance_software_scope_consistent_v1.3/
 ├── eval/
 │   ├── context_windows.py
 │   ├── controls.py
@@ -327,6 +377,7 @@ HABIT-bench/
 │   │   ├── dataset.py
 │   │   ├── answering.py
 │   │   ├── scoring.py
+│   │   ├── retrieval_scoring.py
 │   │   └── io.py
 │   ├── medmemorybench_adapters/
 │   │   └── structured_memory.py
@@ -370,7 +421,8 @@ HABIT-bench/
 | `eval/context_windows.py` | 长上下文档位解析与验证 |
 | `eval/core/answering.py` | 固定 Qwen answer prompt、token hard bound、choice JSON 解析 |
 | `eval/run.py` | 单方法/单数据集/单分片端到端运行 |
-| `eval/core/scoring.py` | Accuracy、Wilson CI 和分组指标 |
+| `eval/core/scoring.py` | Accuracy、Wilson CI、能力分组和统一结果输出 |
+| `eval/core/retrieval_scoring.py` | 分域 evidence、chain、decoy、provenance 和 decision-unit 指标 |
 | `eval/merge_shards.py` | 严格验证并合并某个方法/领域的全部分片 |
 | `scripts/create_shard_plan.py` | 生成确定性 method × dataset × shard 任务表及配置快照 |
 | `scripts/run_multigpu_plan.py` | 每 GPU 一个持久 vLLM worker，调度分片任务并记录 wall-clock |
@@ -424,6 +476,17 @@ Torch/Triton 版本互相覆盖：
 环境变量模板位于 `scripts/cluster/env.example.sh`。模型 checkpoint 不属于
 Python requirements，也不会提交到 Git。
 
+MemRL 经由其原生 MemOS reader 使用 `chonkie==1.2.1` 和 GPT-2 tokenizer。正式
+launcher 会在启动 vLLM 和执行长任务之前检查该包版本，以及
+`TIKTOKEN_CACHE_DIR` 中 GPT-2 的 vocab/encoder 缓存；缺失时 preflight 立即失败，
+不会等到运行数小时后才在 MemRL shard 初始化时暴露。
+
+Vendored Letta 和 MIRIX 的 Python import graph 会在创建本地数据库时加载一批即使
+文本评测路径不直接调用、但仍属于必需的运行时依赖。`requirements.txt` 已固定当前
+验证通过的 Letta/MIRIX 兼容版本；launcher 会在占用 GPU 前检查这些关键包。当前环境
+已实际完成 Letta SQLite 与 MIRIX SQLite 的 `AgentManager` 初始化，而不只做静态
+`import` 检查。
+
 常用环境变量：
 
 | 变量 | 默认值/用途 |
@@ -435,10 +498,13 @@ Python requirements，也不会提交到 Git。
 | `HABITBENCH_CONTEXT_WINDOW_TIER` | `full_memory` 的 `auto` 或显式档位 |
 | `HABITBENCH_MAX_INPUT_TOKENS` | `custom` 档位的 answer 输入上限 |
 | `HABITBENCH_EMBED_MODEL` | BGE-M3 本地路径 |
-| `HABITBENCH_EMBED_DEVICE` | embedding 设备，默认 CPU，避免与 vLLM 争抢 GPU |
-| `HABITBENCH_<METHOD>_USER_WORKERS` | 方法级用户并发：Mem0/MemOS/MemRL/Letta=7、A-MEM=5、LightMem/MIRIX=1 |
+| `HABITBENCH_EMBED_DEVICE` | embedding 默认设备为 CPU；MIRIX/SeCom 按原生配置强制绑定其 worker GPU |
+| `HABITBENCH_<METHOD>_USER_WORKERS` | 方法级用户并发：Mem0/A-MEM/MemOS/MemRL/Letta=7、LightMem/MIRIX=1 |
 | `HABITBENCH_ADAPTER_CPU_THREADS` | 每个 adapter 进程的 BLAS/OpenMP 线程数，默认 2 |
 | `HABITBENCH_LIGHTMEM_MODEL` | LightMem/LLMLingua2 模型路径 |
+| `HABITBENCH_GRAPHITI_LLM_MAX_TOKENS` | Graphiti entity/edge extraction completion 上限，默认对齐官方 16,384 |
+| `HABITBENCH_GRAPHITI_SCHEMA_MAX_ITEMS` | 本地 constrained decoding 的单数组上限，默认 64，防止重复枚举 |
+| `HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS` | Graphiti schema 单字符串上限，默认对齐官方 summary 的 1,000 chars |
 | `HABITBENCH_GPU_MEMORY_UTIL` | vLLM GPU memory utilization |
 | `HABITBENCH_ENABLE_PREFIX_CACHING` | 默认 1；复用同用户长历史 prompt prefix |
 | `HABITBENCH_VLLM_MIN_TOKENS_PER_SEC` | 启动后并发聚合 decode 吞吐门槛，默认 60 |
@@ -454,8 +520,8 @@ cd /plm-shared/zhangjunming/Workspace/HABIT-bench
 
 /plm-shared/zhangjunming/miniconda3/envs/habitbenchmark/bin/python \
   -m eval.validate \
-  domain/food/food_habit_lifelines_stress \
-  domain/finance-software/habit_bench_multidogo_finance_software_evidence_chained_v1.2.1
+  domain/food/food_habit_lifelines_stress_v2 \
+  domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3
 
 PYTHONDONTWRITEBYTECODE=1 \
 /plm-shared/zhangjunming/miniconda3/envs/habitbenchmark/bin/python \
@@ -468,8 +534,8 @@ Prepare-only 验证数据加载、配置 snapshot 和 manifest，不调用 memor
 
 ```bash
 bash scripts/run_eval.sh mem0 \
-  domain/food/food_habit_lifelines_stress \
-  /tmp/habit_mem0_prepare \
+  domain/food/food_habit_lifelines_stress_v2 \
+  /plm-shared/zhangjunming/tmp/habit_mem0_prepare \
   --max-users 1 --max-probes 4 --prepare-only
 ```
 
@@ -521,7 +587,7 @@ bash scripts/submit_clusterx.sh \
 bash scripts/submit_clusterx.sh \
   --dry-run \
   --methods no_memory,full_memory \
-  --output-root /tmp/habit_clusterx_dry
+  --output-root /plm-shared/zhangjunming/tmp/habit_clusterx_dry
 ```
 
 相同 `output-root` 可用于断点恢复；已有 `metrics.json` 的 shard 会跳过。
@@ -577,6 +643,8 @@ shard_000_of_008/
 ├── scored_predictions.jsonl
 ├── metrics.json
 ├── metrics_by_group.csv
+├── retrieval_metrics.json
+├── retrieval_metrics_by_group.csv
 ├── adapter.stdout.log
 ├── adapter.stderr.log
 ├── task.stdout.log
@@ -591,9 +659,11 @@ shard_000_of_008/
 | `method_input.json` | 发送给 adapter 的无 gold payload；可用于复现 adapter |
 | `memory_contexts.jsonl` | 每个 probe 的 `memory_context`、evidence IDs、debug 和 cost |
 | `predictions.jsonl` | Qwen 选择结果、模型 usage/latency、实际使用的 memory token 数 |
-| `scored_predictions.jsonl` | scorer 加入 correctness 和私有分组标签后的逐题记录 |
-| `metrics.json` | shard 范围 Accuracy、Wilson 95% CI 和各分组统计 |
+| `scored_predictions.jsonl` | scorer 加入 correctness、逐题 retrieval/chain 诊断和私有分组标签后的记录 |
+| `metrics.json` | answer、retrieval、能力 panel、decision-unit 平衡聚合的完整 JSON |
 | `metrics_by_group.csv` | `metrics.json` 中 grouped metrics 的扁平 CSV |
+| `retrieval_metrics.json` | 只保留 retrieval/provenance 指标、定义和分域能力 panel 的视图 |
+| `retrieval_metrics_by_group.csv` | retrieval 指标按 domain/probe/capability/stress 分组的 CSV |
 | `adapter.*.log` | memory adapter 子进程日志 |
 | `task.*.log` | ClusterX GPU worker 外层任务日志 |
 
@@ -616,7 +686,9 @@ merged/
 ├── predictions.jsonl
 ├── scored_predictions.jsonl
 ├── metrics.json
-└── metrics_by_group.csv
+├── metrics_by_group.csv
+├── retrieval_metrics.json
+└── retrieval_metrics_by_group.csv
 ```
 
 `merged/metrics.json` 才是完整领域结果。单个 shard 的 `metrics.json` 只覆盖部分用户，
@@ -633,13 +705,92 @@ merged/
 
 ## 8. 指标和 timing
 
-主指标：
+Answer 主指标仍是严格 choice accuracy：
 
 ```text
 Accuracy = correct choice_id / all probes
 ```
 
-同时报告 Wilson 95% confidence interval。若数据提供对应标签，还会按照以下字段分组：
+同时报告 Wilson 95% confidence interval。Retrieval 不是用来取代 Accuracy，而是用来
+回答三个 Accuracy 单独无法回答的问题：
+
+1. 模型是否真正找到了能支持习惯判断的历史证据；
+2. 多条弱证据是否形成了完整组件，而不是只命中一条表面相似记录；
+3. 正确答案是否伴随可靠 provenance，且没有把局部例外或 assistant 建议当成用户习惯。
+
+对有序 `evidence_session_ids` 去重后取前 5 个，公共指标定义为：
+
+```text
+Evidence Recall@5
+  = |Top5 ∩ positive gold| / |positive gold|
+
+Evidence Precision@5
+  = |Top5 ∩ positive gold| / 5
+
+Evidence Coverage Efficiency@5
+  = |Top5 ∩ positive gold| / min(5, |positive gold|)
+
+Joint Answer-Evidence Hit@5
+  = 1[answer correct ∧ Top5 至少命中一条 positive gold]
+```
+
+其中 Food 的 positive gold 是 `gold_evidence_session_ids`，Finance/Software 的
+positive gold 是 `decision_evidence_session_ids`。还统一报告：
+
+| 指标 | 解决的问题 |
+| --- | --- |
+| `evidence_recall_at_5_macro/micro` | 每题和全局的决定性证据找回率 |
+| `evidence_precision_at_5` | 有限 context slot 是否被真正证据占用 |
+| `evidence_coverage_efficiency_at_5` | Finance 有 6 条 gold 时消除 Recall@5 的不可达上限影响 |
+| `evidence_hit_rate_at_5` | 至少找到一条支持证据的 probe 比例 |
+| `evidence_mrr_at_5` | 第一条决定性证据出现得是否足够靠前 |
+| `evidence_ndcg_at_5` | 整个 Top5 排序质量 |
+| `full_evidence_rate_at_5` | Top5 是否覆盖全部决定性证据 |
+| `source_attribution_probe_coverage` | 有多少 probe 能追溯到至少一个合法可见 source session |
+| `invalid/duplicate_attribution_rate` | provenance 是否包含未知、越界或重复 ID |
+| `answer_accuracy_when_evidence_hit/miss` | 答对是否依赖检索，还是可能依靠 shortcut |
+| `joint_answer_evidence_hit_rate_at_5` | 答案正确且有历史证据支持的端到端成功率 |
+
+MedMemoryBench adapter 优先使用方法保留的 `[SESSION_ID=...]`，其次使用原生 metadata、
+稳定 memory ID lineage 或 exact-memory-text lineage 恢复 source session。这些只记录
+provenance，不改变方法的 memory 写入、检索排序或传给 answer model 的内容。若某方法
+压缩后完全丢失来源，Recall@5 按 0 计入端到端可审计结果，同时另报
+`attribution_conditional_evidence_recall_at_5`，避免把“无法归因”和“归因后检索错误”
+混为一谈。
+
+Food v2 的能力 panel：
+
+| Panel | 主要指标 |
+| --- | --- |
+| `habit_induction` | `direct_use` Accuracy、5 条弱证据 Recall/nDCG、grounded joint success |
+| `explicit_history_retrieval` | 显式检索 Accuracy 和 evidence Recall@5 |
+| `boundary_calibration` | Accuracy、`false_personalization_cost = 1 - Accuracy`、boundary evidence Hit@5 |
+| `exception_retention` | Accuracy、`exception_failure_rate`、exception evidence Hit@5 |
+| `unseen_paraphrase_robustness` | 未见表达下的 Accuracy 与 evidence metrics |
+
+Finance/Software v1.3 额外报告：
+
+| 指标 | 含义 |
+| --- | --- |
+| `component_hit_coverage_at_5` | 每个目标习惯组件是否至少有一条决定性证据 |
+| `component_complete_coverage_at_5` | 每个组件所需的弱证据是否全部找齐 |
+| `complete_chain_rate_at_5` | 整个多习惯证据链是否完整 |
+| `temporal_context_recall_at_5` | 独立的时序/as-of 上下文找回率 |
+| `contextual_evidence_ndcg_at_5` | 决定性证据优先、时序上下文次之的分级排序 |
+| `nonbinding_intrusion_rate_at_5` | Top5 被局部例外/未采纳建议占据的比例，越低越好 |
+| `decisive_decoy_discrimination_at_5` | 决定性 Precision 减 nonbinding intrusion |
+| `clean_grounded_answer_rate_at_5` | 答案正确、命中决定性证据且 Top5 无 nonbinding 干扰 |
+| `decision_unit_macro_accuracy` | 449 个潜在决策等权的答案准确率 |
+| `decision_unit_macro_evidence_recall_at_5` | 449 个潜在决策等权的组件证据 Recall@5 |
+| `decision_bundle_macro_*` | 多习惯 decision bundle 等权结果 |
+
+Finance 的 640 个 probe 有 6 条决定性证据，因此原始 Recall@5 理论上限为 5/6；
+`Coverage Efficiency@5` 用于比较有限五个槽位是否全部有效，但不会替换原始 Recall@5。
+两者必须同时报告。
+
+Finance 能力 panel 聚合为 `temporal_and_drift_resolution`、
+`provenance_and_decoy_rejection` 和 `reference_case_reconstruction`，并继续保留原始
+`probe_type`、`capability_group`、`domain` 分组。所有数据还按以下字段输出：
 
 ```text
 domain
@@ -650,8 +801,9 @@ stress_variant
 split
 ```
 
-常见 probe type 包括 `direct_use`、`boundary`、`exception`、
-`explicit_retrieval`，以及数据中实际提供的 drift/privacy 等类型。
+`no_memory` 没有 retrieval，Top5 指标标记为不适用。`full_memory` 不是有序检索器，
+只报告所选长上下文窗口中的 `context_evidence_recall`、完整证据覆盖和 nonbinding
+暴露，不把 history 的前五个 session 伪装成 Recall@5。
 
 Timing 字段：
 
