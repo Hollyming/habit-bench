@@ -16,13 +16,16 @@ from eval.official_adapters.graphiti import (
     parse_args as parse_graphiti_args,
 )
 from eval.run import validate_memory_contexts
-from scripts.run_multigpu_plan import CUDA_REQUIRED_ADAPTER_METHODS
+from scripts.run_multigpu_plan import (
+    CUDA_REQUIRED_ADAPTER_METHODS,
+    _validate_mirix_vllm_profile,
+)
 
 
 class ProtocolTest(unittest.TestCase):
     METHODS = ("mem0", "amem", "memos", "memrl", "lightmem", "letta", "mirix")
     OFFICIAL_METHODS = {
-        "graphiti": "eval/official_adapters/graphiti.py",
+        "graphiti": "eval/official_adapters/graphiti_parallel.py",
         "secom": "eval/official_adapters/secom.py",
         "omem": "eval/official_adapters/omem.py",
     }
@@ -101,6 +104,33 @@ class ProtocolTest(unittest.TestCase):
             template,
         )
         self.assertIn("<think>\\n\\n</think>", template)
+
+    def test_cluster_structured_output_disallows_unbounded_whitespace(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        environment_profile = (
+            project_root / "scripts/cluster/env.example.sh"
+        ).read_text(encoding="utf-8")
+        self.assertIn("--structured-outputs-config", environment_profile)
+        self.assertIn(
+            '\\"backend\\":\\"xgrammar\\",'
+            '\\"disable_any_whitespace\\":true',
+            environment_profile,
+        )
+
+    def test_mirix_preflight_requires_compact_xgrammar(self) -> None:
+        profile = _validate_mirix_vllm_profile(
+            {
+                "HABITBENCH_VLLM_EXTRA_ARGS": (
+                    "--dtype bfloat16 --structured-outputs-config "
+                    '\'{"backend":"xgrammar","disable_any_whitespace":true}\''
+                )
+            }
+        )
+        self.assertEqual(profile["backend"], "xgrammar")
+        with self.assertRaisesRegex(ValueError, "MIRIX requires"):
+            _validate_mirix_vllm_profile(
+                {"HABITBENCH_VLLM_EXTRA_ARGS": "--dtype bfloat16"}
+            )
 
     def test_context_coverage(self) -> None:
         rows = [{"probe_id": "p1", "memory_context": "context"}]

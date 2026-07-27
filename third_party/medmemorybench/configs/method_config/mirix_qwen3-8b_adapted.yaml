@@ -43,14 +43,17 @@ agent_params:
   # Keep enough room to close the tool envelope even when Qwen ignores the
   # 256-char content schema; input/schema/runtime still enforce the payload.
   core_memory_max_tokens: 1024
-  # The JSON bridge retains MIRIX's native finish_memory_update path, so a
-  # child is not forced to invent a write. Four thousand tokens cover the
-  # finite two-item schema while bounding pathological local decoding.
-  memory_agent_max_tokens: 4096
-  # Qwen can replay its input or emit unbounded whitespace until the tool-call
-  # parser rejects a truncated JSON object. Give every child a deterministic
-  # head/tail view; core gets the tighter view because it only maintains two
-  # compact profile blocks. This is an explicit local-model adaptation.
+  # Match the WJR q8a20 frozen/accepted profile. The bounded semantic-update
+  # schema can legally contain two records with four 512-character fields plus
+  # old IDs; observed payloads require more than 4,096 model tokens to close
+  # the JSON envelope. The paired cluster vLLM profile uses xgrammar
+  # disable_any_whitespace=true, so the finite semantic schema also guarantees
+  # a finite serialized response instead of allowing whitespace-only runaway.
+  memory_agent_max_tokens: 8192
+  # Qwen can also replay long input into a bounded field. Give every child a
+  # deterministic head/tail view; core gets the tighter view because it only
+  # maintains two compact profile blocks. This is an explicit local-model
+  # adaptation independent of the compact-whitespace launch setting above.
   core_memory_input_max_chars: 256
   memory_agent_input_max_chars: 2048
   embedding_device: "cuda"

@@ -59,6 +59,7 @@ MEDMEMORY_METHODS = {
 # only the GPU paired with their vLLM worker; an empty global adapter setting
 # is the normal CPU-isolation policy for the other methods.
 CUDA_REQUIRED_ADAPTER_METHODS = {"mirix", "secom"}
+ORACLE_METHODS = {"oracle_evidence", "oracle_habit_state"}
 
 
 def _utc_now() -> str:
@@ -67,6 +68,34 @@ def _utc_now() -> str:
 
 def _split_csv(value: str) -> list[str]:
     return [item.strip() for item in value.split(",") if item.strip()]
+
+
+def _validate_mirix_vllm_profile(env: dict[str, str]) -> dict[str, Any]:
+    """Require the compact xgrammar profile used by the local MIRIX bridge."""
+    arguments = shlex.split(env.get("HABITBENCH_VLLM_EXTRA_ARGS", ""))
+    option = "--structured-outputs-config"
+    if option not in arguments:
+        raise ValueError(
+            "MIRIX requires --structured-outputs-config with compact xgrammar; "
+            "source scripts/cluster/env.example.sh or restore the matching "
+            "HABITBENCH_VLLM_EXTRA_ARGS value"
+        )
+    index = arguments.index(option)
+    if index + 1 >= len(arguments):
+        raise ValueError(f"{option} is missing its JSON value")
+    try:
+        profile = json.loads(arguments[index + 1])
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"{option} is not valid JSON: {exc}") from exc
+    if (
+        profile.get("backend") != "xgrammar"
+        or profile.get("disable_any_whitespace") is not True
+    ):
+        raise ValueError(
+            "MIRIX requires structured output backend=xgrammar and "
+            "disable_any_whitespace=true to keep bounded tool JSON finite"
+        )
+    return profile
 
 
 def _write_json(path: Path, payload: Any) -> None:
@@ -150,6 +179,7 @@ def _safe_config(env: dict[str, str]) -> dict[str, Any]:
         "HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS",
         "HABITBENCH_GRAPHITI_REQUEST_TIMEOUT_SEC",
         "HABITBENCH_GRAPHITI_REQUEST_MAX_RETRIES",
+        "HABITBENCH_GRAPHITI_USER_WORKERS",
         "HABITBENCH_OMEM_LLM_MAX_TOKENS",
         "HABITBENCH_OMEM_TOPIC_MERGE_MAX_TOKENS",
         "HABITBENCH_OMEM_REQUEST_TIMEOUT_SEC",
@@ -393,7 +423,9 @@ def _preflight_runtime(
             },
             runtime_name="Letta",
         )
+    mirix_vllm_profile = None
     if methods and "mirix" in methods:
+        mirix_vllm_profile = _validate_mirix_vllm_profile(env)
         _require_package_set(
             packages,
             {
@@ -475,6 +507,7 @@ def _preflight_runtime(
         "embedding_identity": identity,
         "packages": packages,
         "vllm_runtime": vllm_versions,
+        "mirix_vllm_profile": mirix_vllm_profile,
         "full_memory_window": full_memory_window,
     }
 
@@ -801,6 +834,16 @@ def _run_task(
         if method_workers <= 0:
             raise ValueError(f"{worker_variable} must be positive")
         task_env["HABITBENCH_MED_USER_WORKERS"] = str(method_workers)
+    graphiti_user_workers: int | None = None
+    if method == "graphiti":
+        graphiti_user_workers = int(
+            base_env.get("HABITBENCH_GRAPHITI_USER_WORKERS", "4")
+        )
+        if graphiti_user_workers <= 0:
+            raise ValueError("HABITBENCH_GRAPHITI_USER_WORKERS must be positive")
+        task_env["HABITBENCH_GRAPHITI_USER_WORKERS"] = str(
+            graphiti_user_workers
+        )
     cpu_threads = base_env.get("HABITBENCH_ADAPTER_CPU_THREADS", "2")
     if method_workers is not None and method_workers >= 5:
         cpu_threads = "1"
@@ -812,21 +855,49 @@ def _run_task(
     ):
         task_env[name] = cpu_threads
     task_env["OPENAI_BASE_URL"] = worker["base_url"]
-    command = [
-        "bash",
-        str(PROJECT_ROOT / "scripts/run_eval.sh"),
-        row["method"],
-        row["dataset_dir"],
-        str(output_dir),
-        "--user-shard-index",
-        str(shard_index),
-        "--user-shard-count",
-        str(shard_count),
-        "--base-url",
-        worker["base_url"],
-        "--progress-every",
-        base_env.get("HABITBENCH_PROGRESS_EVERY", "25"),
-    ]
+    if method in ORACLE_METHODS:
+        command = [
+            sys.executable,
+            "-m",
+            "eval.supplementary.oracle_controls",
+            "--dataset-dir",
+            row["dataset_dir"],
+            "--output-dir",
+            str(output_dir),
+            "--mode",
+            method,
+            "--user-shard-index",
+            str(shard_index),
+            "--user-shard-count",
+            str(shard_count),
+            "--base-model",
+            base_env.get("HABITBENCH_SERVED_MODEL", "Qwen3-8B"),
+            "--base-model-path",
+            base_env.get(
+                "HABITBENCH_LLM_MODEL",
+                "/plm-shared/zhangjunming/Workspace/models/Qwen3-8B",
+            ),
+            "--base-url",
+            worker["base_url"],
+            "--progress-every",
+            base_env.get("HABITBENCH_PROGRESS_EVERY", "25"),
+        ]
+    else:
+        command = [
+            "bash",
+            str(PROJECT_ROOT / "scripts/run_eval.sh"),
+            row["method"],
+            row["dataset_dir"],
+            str(output_dir),
+            "--user-shard-index",
+            str(shard_index),
+            "--user-shard-count",
+            str(shard_count),
+            "--base-url",
+            worker["base_url"],
+            "--progress-every",
+            base_env.get("HABITBENCH_PROGRESS_EVERY", "25"),
+        ]
     if row.get("domain_filter"):
         command.extend(["--domain-filter", row["domain_filter"]])
     if row.get("max_users"):
@@ -875,6 +946,7 @@ def _run_task(
             "adapter_cuda_visible_devices": adapter_cuda,
             "adapter_cpu_threads": int(cpu_threads),
             "med_user_workers": method_workers,
+            "graphiti_user_workers": graphiti_user_workers,
             "vllm_port": worker["port"],
             "vllm_log": worker["log"],
             "started_at": started_at,

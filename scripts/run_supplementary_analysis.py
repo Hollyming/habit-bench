@@ -1,0 +1,219 @@
+#!/usr/bin/env python
+"""Batch supplementary analyses over a completed three-domain result suite."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from eval.core.dataset import DatasetContractError, load_dataset
+from eval.core.io import read_jsonl, write_csv, write_json, write_jsonl
+from eval.supplementary.analyze import (
+    build_supplementary_analysis,
+    validate_scored_rows,
+)
+from eval.supplementary.compare import compare_runs
+
+
+DATASETS = {
+    "food": (
+        PROJECT_ROOT / "domain/food/food_habit_lifelines_stress_v4",
+        None,
+    ),
+    "finance": (
+        PROJECT_ROOT
+        / "domain/finance-software"
+        / "habit_bench_multidogo_finance_software_scope_consistent_v1.3",
+        "finance",
+    ),
+    "software": (
+        PROJECT_ROOT
+        / "domain/finance-software"
+        / "habit_bench_multidogo_finance_software_scope_consistent_v1.3",
+        "software",
+    ),
+}
+
+
+def _split(value: str | None) -> set[str] | None:
+    if value is None:
+        return None
+    selected = {item.strip() for item in value.split(",") if item.strip()}
+    if not selected:
+        raise DatasetContractError("Comma-separated selection cannot be empty")
+    return selected
+
+
+def _discover_runs(
+    suite_root: Path, domain: str, selected_methods: set[str] | None
+) -> dict[str, Path]:
+    domain_root = suite_root / domain
+    runs: dict[str, Path] = {}
+    if domain_root.is_dir():
+        for method_dir in sorted(domain_root.iterdir()):
+            if not method_dir.is_dir():
+                continue
+            method = method_dir.name
+            if selected_methods is not None and method not in selected_methods:
+                continue
+            scored = method_dir / "merged" / "scored_predictions.jsonl"
+            if scored.is_file():
+                runs[method] = scored
+
+    # Compatibility with the older method/domain/method/merged suite layout.
+    for method_root in sorted(suite_root.iterdir()):
+        if not method_root.is_dir():
+            continue
+        method = method_root.name
+        if selected_methods is not None and method not in selected_methods:
+            continue
+        scored = (
+            method_root
+            / domain
+            / method
+            / "merged"
+            / "scored_predictions.jsonl"
+        )
+        if scored.is_file():
+            runs.setdefault(method, scored)
+    if selected_methods is not None:
+        missing = selected_methods - set(runs)
+        if missing:
+            raise DatasetContractError(
+                f"Missing completed {domain} merged results for {sorted(missing)}"
+            )
+    return runs
+
+
+def run(args: argparse.Namespace) -> None:
+    suite_root = args.suite_root.expanduser().resolve()
+    if not suite_root.is_dir():
+        raise FileNotFoundError(f"Suite root not found: {suite_root}")
+    output_root = (
+        args.output_root.expanduser().resolve()
+        if args.output_root is not None
+        else suite_root / "supplementary"
+    )
+    selected_domains = _split(args.domains) or set(DATASETS)
+    unknown_domains = selected_domains - set(DATASETS)
+    if unknown_domains:
+        raise DatasetContractError(f"Unknown domains: {sorted(unknown_domains)}")
+    selected_methods = _split(args.methods)
+    records: list[dict[str, object]] = []
+
+    for domain in sorted(selected_domains):
+        dataset_dir, domain_filter = DATASETS[domain]
+        bundle = load_dataset(dataset_dir, domain_filter=domain_filter)
+        paths = _discover_runs(suite_root, domain, selected_methods)
+        if not paths:
+            raise DatasetContractError(
+                f"No completed merged runs were found for {domain}"
+            )
+        loaded: dict[str, list[dict]] = {}
+        for method, scored_path in sorted(paths.items()):
+            rows = read_jsonl(scored_path)
+            validate_scored_rows(rows, bundle)
+            loaded[method] = rows
+            analysis, slices, diagnostics, per_user = build_supplementary_analysis(
+                rows,
+                bundle,
+                bootstrap_samples=args.bootstrap_samples,
+                seed=args.seed,
+                artifact_root=scored_path.parent,
+                utility_lambdas=args.utility_lambda,
+            )
+            method_output = output_root / domain / method
+            write_json(method_output / "supplementary_metrics.json", analysis)
+            write_csv(
+                method_output / "supplementary_metrics_by_slice.csv", slices
+            )
+            write_jsonl(
+                method_output / "supplementary_probe_diagnostics.jsonl",
+                diagnostics,
+            )
+            write_csv(
+                method_output / "supplementary_metrics_by_user.csv", per_user
+            )
+            records.append(
+                {
+                    "domain": domain,
+                    "method": method,
+                    "scored_predictions": str(scored_path),
+                    "probes": len(rows),
+                    "users": analysis["accuracy"]["users"],
+                    "micro_accuracy": analysis["accuracy"]["micro_accuracy"],
+                    "user_macro_accuracy": analysis["accuracy"][
+                        "user_macro_accuracy"
+                    ],
+                    "output_dir": str(method_output),
+                }
+            )
+
+        if len(loaded) >= 2:
+            comparison, methods, pairs = compare_runs(
+                loaded,
+                bundle,
+                bootstrap_samples=args.bootstrap_samples,
+                seed=args.seed,
+                allow_partial=False,
+            )
+            comparison_output = output_root / domain / "comparison"
+            write_json(
+                comparison_output / "supplementary_comparison.json",
+                comparison,
+            )
+            write_csv(
+                comparison_output / "supplementary_comparison_methods.csv",
+                methods,
+            )
+            write_csv(
+                comparison_output / "supplementary_comparison_pairs.csv", pairs
+            )
+
+    output_root.mkdir(parents=True, exist_ok=True)
+    write_csv(output_root / "supplementary_summary.csv", records)
+    write_json(
+        output_root / "supplementary_manifest.json",
+        {
+            "contract_version": "habitbench.supplementary_batch.v1",
+            "created_at": datetime.now(timezone.utc).isoformat(),
+            "source_suite": str(suite_root),
+            "output_root": str(output_root),
+            "bootstrap_samples": args.bootstrap_samples,
+            "seed": args.seed,
+            "domains": sorted(selected_domains),
+            "methods": sorted({str(row["method"]) for row in records}),
+            "runs": records,
+        },
+    )
+    print(
+        json.dumps(
+            {"output_root": str(output_root), "runs": len(records)},
+            indent=2,
+            sort_keys=True,
+        )
+    )
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--suite-root", type=Path, required=True)
+    parser.add_argument("--output-root", type=Path)
+    parser.add_argument("--domains", help="Comma-separated; default food,finance,software.")
+    parser.add_argument("--methods", help="Comma-separated; default discovers completed methods.")
+    parser.add_argument("--bootstrap-samples", type=int, default=10_000)
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument(
+        "--utility-lambda", type=float, action="append", default=None
+    )
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    run(parse_args())

@@ -23,7 +23,13 @@
   随机后缀，避免多 shard 的局部 context ID 在 7-worker 并发初始化时撞 SQLite
   唯一键。这两项只修复本地 backend 配置与身份隔离，不改变 proceduralization、
   retrieval 或 Q-learning 策略。
-- MIRIX：补充 SQLite cosine、embedding 维度处理、engine reset、bounded local JSON tool schema、canonical tool conversion、stale replace-ID 归一化，以及 bounded memory update 所需的 completion budget。JSON bridge 保留官方通用 `finish_memory_update` 工具，避免在无新 delta 时强迫子代理虚构写入。
+- MIRIX：补充 SQLite cosine、embedding 维度处理、engine reset、bounded local JSON tool schema、canonical tool conversion、stale replace-ID 归一化，以及 bounded memory update 所需的 completion budget。JSON bridge 保留官方通用 `finish_memory_update` 工具，避免在无新 delta 时强迫子代理虚构写入。正式配置使用 WJR q8a20 的 `memory_agent_max_tokens=8192`，并对齐其 vLLM xgrammar `disable_any_whitespace=true` 启动模式；前者容纳合法 payload，后者禁止 bounded JSON 字段间的无界空白。两项都不改变 MIRIX tool validator、executor 或 memory lifecycle。
+
+2026-07-27 的 Food-v2 定点回归复现了旧 profile 的第 38 条
+`apple butter spice cake`：旧 episodic child 运行 341 秒后
+`finish_reason=length`；compact xgrammar profile 的同一 child 在 8 秒内闭合，
+整个 lifecycle 14 秒完成。该点之前 38 个 lifecycle 均为 0 retry、0 error。
+此 gate 是运行时正确性验收，不作为 benchmark 效果结果。
 
 q8a18、q8a19 和 q8a20 是运行源码快照，不是长期源码分支。q8a20 是累计验证版本；最终只把有意义的文件级差异合并进 `wjr` 历史。运行日志、cache、数据库、build 目录和复制的 `.git` 元数据不会进入 Git。
 

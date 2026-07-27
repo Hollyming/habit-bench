@@ -102,13 +102,13 @@ case "$METHOD" in
     KIND="official_adapted"
     SOURCE="https://github.com/getzep/graphiti"
     REVISION="graphiti-core==0.29.2"
-    COMMAND="$PYTHON_BIN -m eval.official_adapters.graphiti --input {input} --output {output}"
+    COMMAND="$PYTHON_BIN -m eval.official_adapters.graphiti_parallel --input {input} --output {output} --user-workers ${HABITBENCH_GRAPHITI_USER_WORKERS:-4}"
     CONFIG_PATH="$PROJECT_ROOT/configs/methods/graphiti_bge_m3_qwen3.yaml"
     CONFIG_ARGS=(
       --method-config-name "graphiti_bge_m3_qwen3"
       --method-config-path "$CONFIG_PATH"
     )
-    NOTE="Official Graphiti add_episode/search_ lifecycle with a local Kuzu backend and documented edge-cosine/RRF retrieval adaptation."
+    NOTE="Official chronological Graphiti add_episode/search_ lifecycle with isolated per-user Kuzu stores; independent users run concurrently against one dynamically batched vLLM endpoint."
     ;;
   secom)
     KIND="official_adapted"

@@ -22,6 +22,8 @@ CPUS=""
 MEMORY_GIB=""
 SHM_GIB=""
 PORT_BASE=8100
+MAX_USERS=""
+MAX_PROBES=""
 DRY_RUN=0
 FORCE_PLAN=0
 CONTINUE_ON_GROUP_ERROR=0
@@ -34,6 +36,8 @@ usage() {
   echo "  --gpus N            GPUs on one ClusterX node, default: 8"
   echo "  --output-root PATH  default: results/bge_m3_<UTC timestamp>"
   echo "  --job-name NAME     default: habit-bge-m3-<UTC timestamp>"
+  echo "  --max-users N       optional smoke-test user prefix"
+  echo "  --max-probes N      optional smoke-test probe prefix"
   echo "  --continue-on-group-error"
   echo "                      record failed groups and keep running the remaining plan"
   echo "  --dry-run           create and print the submission without submitting"
@@ -55,6 +59,8 @@ while [[ $# -gt 0 ]]; do
     --memory-gib) MEMORY_GIB="${2:?missing value for --memory-gib}"; shift 2 ;;
     --shm-gib) SHM_GIB="${2:?missing value for --shm-gib}"; shift 2 ;;
     --port-base) PORT_BASE="${2:?missing value for --port-base}"; shift 2 ;;
+    --max-users) MAX_USERS="${2:?missing value for --max-users}"; shift 2 ;;
+    --max-probes) MAX_PROBES="${2:?missing value for --max-probes}"; shift 2 ;;
     --env-file) ENV_FILE="${2:?missing value for --env-file}"; shift 2 ;;
     --force-plan) FORCE_PLAN=1; shift ;;
     --continue-on-group-error) CONTINUE_ON_GROUP_ERROR=1; shift ;;
@@ -68,6 +74,12 @@ if ! [[ "$SHARDS" =~ ^[1-9][0-9]*$ && "$GPUS" =~ ^[1-9][0-9]*$ ]]; then
   echo "--shards and --gpus must be positive integers" >&2
   exit 2
 fi
+for smoke_value in "$MAX_USERS" "$MAX_PROBES"; do
+  if [[ -n "$smoke_value" && ! "$smoke_value" =~ ^[1-9][0-9]*$ ]]; then
+    echo "--max-users and --max-probes must be positive integers" >&2
+    exit 2
+  fi
+done
 
 STAMP=$(date -u +%Y%m%dT%H%M%SZ)
 OUTPUT_ROOT="${OUTPUT_ROOT:-$PROJECT_ROOT/results/bge_m3_$STAMP}"
@@ -124,6 +136,12 @@ PLAN_ARGS=(
 )
 if [[ "$FORCE_PLAN" == "1" ]]; then
   PLAN_ARGS+=(--force)
+fi
+if [[ -n "$MAX_USERS" ]]; then
+  PLAN_ARGS+=(--max-users "$MAX_USERS")
+fi
+if [[ -n "$MAX_PROBES" ]]; then
+  PLAN_ARGS+=(--max-probes "$MAX_PROBES")
 fi
 "${PLAN_ARGS[@]}"
 

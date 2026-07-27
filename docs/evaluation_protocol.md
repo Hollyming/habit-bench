@@ -69,8 +69,10 @@ Additional official-source adaptations are:
 graphiti, secom, omem
 ```
 
-Graphiti uses official `add_episode`/`search_` with local Kuzu
-edge-cosine/RRF retrieval. SeCom uses official segmentation, LLMLingua
+Graphiti uses official chronological `add_episode`/`search_` with local Kuzu
+edge-cosine/RRF retrieval. Independent users run concurrently against one
+dynamically batched vLLM endpoint, with an isolated Kuzu store per worker;
+same-user or bulk ingestion is not used. SeCom uses official segmentation, LLMLingua
 compression and FAISS retrieval with chronological online ingestion. O-Mem
 uses the official `SimpleMemory` lifecycle plus documented JSON-output
 compatibility handling at the local API boundary. Their pinned provenance is

@@ -32,6 +32,9 @@ export HABITBENCH_MEMRL_USER_WORKERS="${HABITBENCH_MEMRL_USER_WORKERS:-7}"
 export HABITBENCH_LETTA_USER_WORKERS="${HABITBENCH_LETTA_USER_WORKERS:-7}"
 export HABITBENCH_LIGHTMEM_USER_WORKERS="${HABITBENCH_LIGHTMEM_USER_WORKERS:-1}"
 export HABITBENCH_MIRIX_USER_WORKERS="${HABITBENCH_MIRIX_USER_WORKERS:-1}"
+# Graphiti keeps each user's add_episode chain chronological and only runs
+# independent, isolated user/Kuzu stores concurrently against the same vLLM.
+export HABITBENCH_GRAPHITI_USER_WORKERS="${HABITBENCH_GRAPHITI_USER_WORKERS:-4}"
 export HABITBENCH_LIGHTMEM_MODEL="${HABITBENCH_LIGHTMEM_MODEL:-/plm-shared/zhangjunming/Workspace/models/llmlingua-2-xlm-roberta-large-meetingbank}"
 export HABITBENCH_SECOM_COMPRESSOR="${HABITBENCH_SECOM_COMPRESSOR:-$HABITBENCH_LIGHTMEM_MODEL}"
 # full_memory selects the largest standard tier supported by MAX_MODEL_LEN.
@@ -43,7 +46,12 @@ export HABITBENCH_CONTEXT_WINDOW_TIER="${HABITBENCH_CONTEXT_WINDOW_TIER:-auto}"
 export HABITBENCH_GPU_MEMORY_UTIL="${HABITBENCH_GPU_MEMORY_UTIL:-0.85}"
 export HABITBENCH_MAX_MODEL_LEN="${HABITBENCH_MAX_MODEL_LEN:-40960}"
 export HABITBENCH_ENABLE_PREFIX_CACHING="${HABITBENCH_ENABLE_PREFIX_CACHING:-1}"
-export HABITBENCH_VLLM_EXTRA_ARGS="${HABITBENCH_VLLM_EXTRA_ARGS:---dtype bfloat16 --max-num-seqs 32 --reasoning-parser qwen3 --generation-config vllm --enable-auto-tool-choice --tool-call-parser hermes --default-chat-template-kwargs '{\"enable_thinking\": false}' --attention-backend FLASH_ATTN}"
+# MIRIX's local JSON-schema bridge requires compact structured output. Without
+# disable_any_whitespace, xgrammar permits unbounded whitespace between bounded
+# JSON fields and Qwen can waste the full completion budget before closing the
+# object. The option is harmless for requests without response_format and also
+# keeps other schema-constrained adapters finite.
+export HABITBENCH_VLLM_EXTRA_ARGS="${HABITBENCH_VLLM_EXTRA_ARGS:---dtype bfloat16 --max-num-seqs 32 --reasoning-parser qwen3 --generation-config vllm --enable-auto-tool-choice --tool-call-parser hermes --default-chat-template-kwargs '{\"enable_thinking\": false}' --structured-outputs-config '{\"backend\":\"xgrammar\",\"disable_any_whitespace\":true}' --attention-backend FLASH_ATTN}"
 export VLLM_BATCH_INVARIANT="${VLLM_BATCH_INVARIANT:-1}"
 # Gate on aggregate decode throughput at MED_USER_WORKERS concurrent requests.
 export HABITBENCH_VLLM_MIN_TOKENS_PER_SEC="${HABITBENCH_VLLM_MIN_TOKENS_PER_SEC:-60}"

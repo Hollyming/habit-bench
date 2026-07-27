@@ -5,6 +5,12 @@ revision: graphiti-core==0.29.2
 ingestion:
   api: Graphiti.add_episode
   unit: one HABIT session
+  order: chronological within user
+parallelism:
+  unit: independent users
+  user_workers: 4
+  isolation: one Kuzu store per worker
+  llm_endpoint: shared vLLM dynamic batching
 backend:
   graph_store: Kuzu
 retrieval:

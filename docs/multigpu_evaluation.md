@@ -20,8 +20,20 @@ On one ClusterX node:
    process independent users concurrently. Frozen method profiles use up to 7
    workers for Mem0/A-MEM/MemOS/MemRL/Letta, and 1 for
    LightMem/MIRIX.
-6. `merge_shard_plan.py` checks shard coverage and dataset/config consistency,
+6. Graphiti uses the same safe boundary: up to 4 independent user processes
+   per GPU, one isolated Kuzu store per process, and one shared vLLM endpoint.
+   Each user's official `add_episode` chain remains chronological; bulk or
+   concurrent same-user ingestion is not used.
+7. `merge_shard_plan.py` checks shard coverage and dataset/config consistency,
    merges predictions, rescoring the complete domain.
+
+The Graphiti concurrency profile passed a real Food-v2 acceptance gate on
+2026-07-27. Four workers each completed 25 episodes in at most 2,021.2 seconds,
+with no fatal/add failure. The previous serial implementation required
+7,175.4–7,538.3 seconds for the same aggregate 100-episode milestone across
+six comparable shards (mean 7,361.9 seconds), giving a measured 3.64x mean
+wall-clock speedup on one A800. The gate was stopped after this fixed-work
+milestone; it is an efficiency validation, not a benchmark result.
 
 Running groups sequentially makes method/domain wall-clock measurements
 interpretable and avoids repeatedly starting vLLM for every shard.
@@ -74,6 +86,12 @@ default for all MedMemoryBench method clients, including clients that cannot
 send Qwen-specific `chat_template_kwargs`, and avoids truncated structured
 memory writes without changing the native memory algorithms.
 
+The default structured-output backend is xgrammar with
+`disable_any_whitespace=true`. MIRIX's JSON-tool bridge already bounds fields
+and arrays; this matching WJR launch option prevents unbounded whitespace
+between those fields from consuming the complete 8,192-token child budget.
+Requests without a structured response format are unaffected.
+
 `VLLM_BATCH_INVARIANT=1` and `--attention-backend FLASH_ATTN` keep outputs
 stable when several user workers share one endpoint. After startup, every
 server runs one single-stream sample plus a representative four-request
@@ -99,6 +117,8 @@ bash scripts/submit_clusterx.sh \
 This submits through `clusterx run` to `cluster-t` /
 `queue-t-reserved-plm`. Use `--dry-run` to create the plan and inspect the exact
 submission without creating a ClusterX job.
+For endpoint gates only, `--max-users N --max-probes N` creates an explicitly
+recorded smoke subset; those outputs are not formal full-dataset results.
 
 Controls are never added implicitly:
 

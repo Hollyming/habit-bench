@@ -16,6 +16,10 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from eval.merge_shards import merge_shards
 from eval.core.io import sha256_file, write_json
+from eval.supplementary.merge_oracle import merge_oracle_shards
+
+
+ORACLE_METHODS = {"oracle_evidence", "oracle_habit_state"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -97,14 +101,24 @@ def main() -> None:
         shard_count,
     ) in groups:
         output_root = Path(method_output_root)
-        manifest = merge_shards(
-            Path(dataset_dir),
-            output_root,
-            output_root / "merged",
-            method,
-            shard_count,
-            domain_filter or None,
-        )
+        if method in ORACLE_METHODS:
+            manifest = merge_oracle_shards(
+                dataset_dir=Path(dataset_dir),
+                shard_root=output_root,
+                output_dir=output_root / "merged",
+                mode=method,
+                expected_shards=shard_count,
+                domain_filter=domain_filter or None,
+            )
+        else:
+            manifest = merge_shards(
+                Path(dataset_dir),
+                output_root,
+                output_root / "merged",
+                method,
+                shard_count,
+                domain_filter or None,
+            )
         observed = observed_groups.get(
             (method, dataset_name, str(output_root.resolve()))
         )
@@ -118,6 +132,7 @@ def main() -> None:
                 "output": str(output_root / "merged"),
                 "shard_count": shard_count,
                 "method_config": manifest.get("method_config"),
+                "experiment_role": manifest.get("experiment_role"),
                 "timing": {
                     **manifest["timing"],
                     "cluster_group_wall_clock_sec": (

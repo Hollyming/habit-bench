@@ -141,9 +141,9 @@ class PriorityRetrievalTests(unittest.TestCase):
             }
             for name in ("core_memory_append", "core_memory_rewrite")
         ]
-        # This mirrors the real MIRIX core child: three universal memory tools
-        # are attached in addition to the two core mutation tools.  They must
-        # enable core-request detection but must not enter the bridge schema.
+        # This mirrors the real MIRIX core child: universal helpers are attached
+        # in addition to the two core mutation tools. Only the native terminal
+        # finish tool remains in the bridge; read/message helpers stay excluded.
         universal_parameters = {
             "type": "object",
             "properties": {"query": {"type": "string"}},
@@ -182,16 +182,23 @@ class PriorityRetrievalTests(unittest.TestCase):
         response_format, metadata = module.build_core_json_tool_bridge(tools)
         schema = response_format["json_schema"]["schema"]
         self.assertEqual(response_format["type"], "json_schema")
-        self.assertEqual(
-            schema["properties"]["name"]["enum"],
-            ["core_memory_append", "core_memory_rewrite"],
-        )
+        variants = schema["anyOf"]
+        variants_by_name = {
+            variant["properties"]["name"]["enum"][0]: variant
+            for variant in variants
+        }
         self.assertEqual(
             metadata["allowed_names"],
-            ["core_memory_append", "core_memory_rewrite"],
+            [
+                "core_memory_append",
+                "core_memory_rewrite",
+                "finish_memory_update",
+            ],
         )
         self.assertEqual(
-            schema["properties"]["arguments"]["properties"]["content"]["maxLength"],
+            variants_by_name["core_memory_append"]["properties"]["arguments"][
+                "properties"
+            ]["content"]["maxLength"],
             256,
         )
 

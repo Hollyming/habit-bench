@@ -52,6 +52,9 @@ memory_context + current request + choices
 | A-MEM | 5 |
 | LightMem / MIRIX | 1 |
 
+MIRIX 的低并发不代表缩小 completion budget：memory-child 固定使用 WJR
+q8a20 已验证的 8,192 tokens，并继续严格传播内部写入失败。
+
 food 每分片最多 4 个用户，所以前五种方法的有效 worker 数会自动降到
 3–4；finance-software 每分片最多 7 个用户。WJR 在 6-user shard 上验证
 的 6 workers 在这里扩展为 7，避免第七个用户形成完整 540-session 的

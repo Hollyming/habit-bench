@@ -6,6 +6,9 @@ HABIT-Bench 用于评估 memory agent 能否从超长用户—助手交互历史
 核心假设是：在显式用户记忆基准上表现较好的方法，不一定能够处理需要跨多次弱证据
 归纳的习惯，也可能在边界、异常、漂移或证据不足时产生错误个性化。
 
+AAAI 2027 补充实验、Oracle 对照、用户级统计和人工盲审协议见
+[`docs/AAAI27_supplementary_experiments.md`](docs/AAAI27_supplementary_experiments.md)。
+
 本仓库的正式评测不是单纯的 embedding 相似度测试。每个 memory 方法只负责构建和
 检索 `memory_context`；固定的 base model 根据：
 
@@ -22,7 +25,7 @@ memory_context + current request + response choices
 
 | 数据集别名 | 领域 | 用户 | sessions | probes | 路径 |
 | --- | --- | ---: | ---: | ---: | --- |
-| `food` | food | 30 | 3,600 | 1,470 | `domain/food/food_habit_lifelines_stress_v2` |
+| `food` | food | 30 | 4,500 | 1,470 | `domain/food/food_habit_lifelines_stress_v4` |
 | `finance` | finance | 36 | 19,440 | 1,368 | `domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3` |
 | `software` | software | 18 | 9,720 | 680 | `domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3` |
 
@@ -48,7 +51,7 @@ source/...                 # 数据来源与构建溯源（若该数据包提供
 session/probe contract。Gold answer、gold evidence、habit graph、persona profile 和
 policy label 不会进入 memory 方法输入。
 
-Food v2 是 content-constraint 习惯域，包含 210 个受控习惯：
+Food v4 是当前正式的 content-constraint 习惯域，包含 210 个受控习惯：
 
 | Probe type | 数量 | 设计目标 | 私有正向证据 |
 | --- | ---: | --- | --- |
@@ -200,7 +203,7 @@ memory writer 明确配置 `embedding_device=cuda`，SeCom 的官方 LLMLingua2 
 | `memrl` | `memrl_qwen3-8b_adapted.yaml` | candidate top-k 12；similarity threshold 0.2；返回 context 1,800 tokens；Q-value/similarity 混合选择 |
 | `lightmem` | `lightmem_qwen3-8b_adapted.yaml` | topic segmentation；event extraction；embedding index/retrieval；offline update；formal profile 中 pre-compress=false |
 | `letta` | `letta_qwen3-8b_adapted.yaml` | top-k 5；4,096 embedding chunk；32,768 context；archival passage retrieval；用户级 persistence |
-| `mirix` | `mirix_qwen3-8b_adapted.yaml` | top-k 5；multi-store memory；4,096 retrieval context；严格工具 schema、单次 meta update；本地 JSON bridge 保留官方 `finish_memory_update` 终止路径 |
+| `mirix` | `mirix_qwen3-8b_adapted.yaml` | top-k 5；multi-store memory；4,096 retrieval context；严格工具 schema、单次 meta update；本地 JSON bridge 保留官方 `finish_memory_update`；memory-child completion 上限 8,192；vLLM xgrammar 禁止 schema 字段间的任意空白，与 WJR q8a20 的 acceptance 运行模式一致 |
 
 实际 YAML 路径：
 
@@ -222,7 +225,7 @@ third_party/medmemorybench/configs/method_config/
 
 | 方法 | 构建接口 | 检索接口 | 主要配置 |
 | --- | --- | --- | --- |
-| `graphiti` | 官方 `Graphiti.add_episode`，每个 HABIT session 一个 episode | 官方 `Graphiti.search_` | Kuzu；edge cosine；RRF；top-k 5；BGE-M3；本地 extraction 上限 4,096 tokens、16 items/512 chars；请求 timeout 300 秒、最多 2 次 client retry |
+| `graphiti` | 官方 `Graphiti.add_episode`，每个 HABIT session 一个 episode；同一用户严格按时间串行 | 官方 `Graphiti.search_` | 每卡最多 4 个独立用户并发、每 worker 隔离 Kuzu、共享 vLLM 动态批处理；edge cosine；RRF；top-k 5；BGE-M3；本地 extraction 上限 4,096 tokens、16 items/512 chars；请求 timeout 300 秒、最多 2 次 client retry |
 | `secom` | 官方 segmentation + LLMLingua2 compression，按 session 增量写入 | 官方 FAISS retriever | segment granularity；compression rate 0.9；top-k 5；BGE-M3 |
 | `omem` | 官方 `SimpleMemory.add_message`、working/episodic/persona lifecycle | `retrieve_from_memory_soft_segmentation` | top-n 12；drop threshold 0；BGE-M3；未显式设置预算的 JSON 默认 1,024 tokens、topic merge 上限 2,048；请求 timeout 180 秒 |
 
@@ -235,7 +238,12 @@ configs/methods/
 └── omem_bge_m3_qwen3.yaml
 ```
 
-Graphiti 使用环境中固定的 `graphiti-core==0.29.2`。SeCom 和 O-Mem 是普通源码
+Graphiti 使用环境中固定的 `graphiti-core==0.29.2`。并行只发生在互相独立的用户
+之间，不并发同一用户的 episode、不使用 bulk ingestion，也不改变官方 graph
+构建顺序；每个进程拥有独立 Kuzu store，但共享同一卡的 vLLM endpoint，从而让
+服务端批处理原本的单请求空洞。Food-v2 固定 100-episode gate 在单张 A800 上由
+旧串行平均 7,361.9 秒降至 4-worker 的 2,021.2 秒（3.64x）；该 gate 仅用于效率
+验收，不作为论文效果结果。SeCom 和 O-Mem 是普通源码
 快照，不是 Git submodule，也不含嵌套 `.git`：
 
 ```text
@@ -373,7 +381,7 @@ HABIT-bench/
 │       └── omem_bge_m3_qwen3.yaml
 ├── domain/
 │   ├── food/
-│   │   └── food_habit_lifelines_stress_v2/
+│   │   └── food_habit_lifelines_stress_v4/
 │   └── finance-software/
 │       └── habit_bench_multidogo_finance_software_scope_consistent_v1.3/
 ├── eval/
@@ -394,6 +402,7 @@ HABIT-bench/
 │   │   └── structured_memory.py
 │   └── official_adapters/
 │       ├── graphiti.py
+│       ├── graphiti_parallel.py
 │       ├── secom.py
 │       └── omem.py
 ├── schema/
@@ -427,7 +436,9 @@ HABIT-bench/
 | --- | --- |
 | `eval/core/dataset.py` | 归一化两种数据格式、应用用户分片、构建无 gold 的 method payload |
 | `eval/medmemorybench_adapters/structured_memory.py` | 七个 MedMemoryBench-source 方法的统一增量 ingestion/retrieval 入口 |
-| `eval/official_adapters/*.py` | Graphiti、SeCom、O-Mem 的薄适配层 |
+| `eval/official_adapters/graphiti.py` | 单用户官方 Graphiti `add_episode/search_`、Kuzu 检索适配 |
+| `eval/official_adapters/graphiti_parallel.py` | 按独立用户启动隔离 Kuzu worker 并合并结果；不改变用户内时序 |
+| `eval/official_adapters/secom.py` / `omem.py` | SeCom、O-Mem 的官方源码薄适配层 |
 | `eval/controls.py` | `no_memory`、`full_memory` 和 `full_history` |
 | `eval/context_windows.py` | 长上下文档位解析与验证 |
 | `eval/core/answering.py` | 固定 Qwen answer prompt、token hard bound、choice JSON 解析 |
@@ -511,6 +522,7 @@ Vendored Letta 和 MIRIX 的 Python import graph 会在创建本地数据库时�
 | `HABITBENCH_EMBED_MODEL` | BGE-M3 本地路径 |
 | `HABITBENCH_EMBED_DEVICE` | embedding 默认设备为 CPU；MIRIX/SeCom 按原生配置强制绑定其 worker GPU |
 | `HABITBENCH_<METHOD>_USER_WORKERS` | 方法级用户并发：Mem0/A-MEM/MemOS/MemRL/Letta=7、LightMem/MIRIX=1 |
+| `HABITBENCH_GRAPHITI_USER_WORKERS` | 每个 GPU shard 的独立 Graphiti 用户进程数，默认 4；每进程隔离 Kuzu、共享 vLLM |
 | `HABITBENCH_ADAPTER_CPU_THREADS` | 每个 adapter 进程的 BLAS/OpenMP 线程数，默认 2 |
 | `HABITBENCH_LIGHTMEM_MODEL` | LightMem/LLMLingua2 模型路径 |
 | `HABITBENCH_GRAPHITI_LLM_MAX_TOKENS` | Graphiti 本地 entity/edge extraction completion 上限，默认 4,096 |
@@ -535,7 +547,7 @@ cd /plm-shared/zhangjunming/Workspace/HABIT-bench
 
 /plm-shared/zhangjunming/miniconda3/envs/habitbenchmark/bin/python \
   -m eval.validate \
-  domain/food/food_habit_lifelines_stress_v2 \
+  domain/food/food_habit_lifelines_stress_v4 \
   domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3
 
 PYTHONDONTWRITEBYTECODE=1 \
@@ -549,7 +561,7 @@ Prepare-only 验证数据加载、配置 snapshot 和 manifest，不调用 memor
 
 ```bash
 bash scripts/run_eval.sh mem0 \
-  domain/food/food_habit_lifelines_stress_v2 \
+  domain/food/food_habit_lifelines_stress_v4 \
   /plm-shared/zhangjunming/tmp/habit_mem0_prepare \
   --max-users 1 --max-probes 4 --prepare-only
 ```
@@ -605,8 +617,27 @@ bash scripts/submit_clusterx.sh \
   --output-root /plm-shared/zhangjunming/tmp/habit_clusterx_dry
 ```
 
+真实端点 smoke 可在同一入口加 `--max-users N --max-probes N`。这两个参数会进入
+plan manifest 和 dataset subset，不能把此类结果混入正式全量表格。
+
 相同 `output-root` 可用于断点恢复；已有 `metrics.json` 的 shard 会跳过。
 只有明确希望覆盖完整 shard 时才设置 `HABITBENCH_FORCE_RERUN=1`。
+
+### 6.4 三节点 v3 正式实验
+
+固定的 v3 正式入口只写入 `results/habit_3domain_v3`，不会为单独方法创建其他
+`*v3*` 顶层目录：
+
+```bash
+bash scripts/cluster/submit_v3_three_nodes.sh
+```
+
+该入口创建三个 8×A800 ClusterX 任务。42 个 method/domain 组覆盖十个 memory
+方法、`no_memory`、`full_memory`、`oracle_evidence` 和
+`oracle_habit_state`；组间使用 LPT 估时均衡，每个节点内部按短任务到长任务排序。
+三个节点全部成功合并后，最后完成的节点会对统一结果根运行用户级 bootstrap、配对
+显著性、难度切片、policy-component、效率和 answer–retrieval supplementary
+分析。分层人工盲审只自动准备模板；没有两位真实标注员结果时不会生成虚假评分。
 
 ## 7. 结果目录结构
 
@@ -693,7 +724,7 @@ shard_000_of_008/
 | --- | --- |
 | `no_memory/full_memory` | `control_runtime.json`；resolved window、history budget、截断 probe 数 |
 | 七个 MedMemoryBench 方法 | `medmemorybench_adapter_runtime.json`（用户级耗时/CPU/RSS/并发吞吐）、`medmemorybench_state/` |
-| `graphiti` | `graphiti_config.json`、`graphiti_runtime.json`、`graphiti_kuzu_store/` |
+| `graphiti` | `graphiti_config.json`、`graphiti_runtime.json`、`graphiti_user_workers/worker_*/graphiti_kuzu_store/`；runtime 记录请求/有效 worker、aggregate worker time、parallelism ratio 和严格 add failure count |
 | `secom` | `secom_method_config.json`、`secom_config.json`、`secom_runtime.json` |
 | `omem` | `omem_config.json`、`omem_runtime.json`、`omem_store/` |
 
@@ -778,7 +809,7 @@ provenance，不改变方法的 memory 写入、检索排序或传给 answer mod
 `attribution_conditional_evidence_recall_at_5`，避免把“无法归因”和“归因后检索错误”
 混为一谈。
 
-Food v2 的能力 panel：
+Food v4 的能力 panel：
 
 | Panel | 主要指标 |
 | --- | --- |
