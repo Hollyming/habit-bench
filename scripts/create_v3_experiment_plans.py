@@ -39,8 +39,6 @@ REGULAR_METHODS = (
     "lightmem",
     "secom",
     "mirix",
-    "omem",
-    "graphiti",
 )
 ORACLE_METHODS = ("oracle_evidence", "oracle_habit_state")
 ALL_METHODS = REGULAR_METHODS + ORACLE_METHODS
@@ -75,21 +73,45 @@ ESTIMATED_HOURS = {
     "memrl": {"food": 0.70, "finance": 1.30, "software": 1.35},
     "amem": {"food": 0.80, "finance": 3.00, "software": 3.00},
     "mem0": {"food": 1.35, "finance": 2.00, "software": 2.30},
-    "memos": {"food": 1.20, "finance": 2.25, "software": 2.30},
-    "lightmem": {"food": 1.50, "finance": 2.50, "software": 2.50},
+    "memos": {"food": 1.30, "finance": 2.25, "software": 2.30},
+    "lightmem": {"food": 5.65, "finance": 25.30, "software": 15.20},
     "secom": {"food": 1.50, "finance": 4.00, "software": 3.00},
-    "mirix": {"food": 1.00, "finance": 3.00, "software": 3.00},
-    "omem": {"food": 2.00, "finance": 5.00, "software": 4.00},
-    "graphiti": {"food": 3.50, "finance": 12.00, "software": 12.00},
+    "mirix": {"food": 3.55, "finance": 15.80, "software": 9.50},
 }
 
 
-def _balanced_groups() -> list[list[dict[str, Any]]]:
+def _group_is_complete(
+    suite_root: Path,
+    method: str,
+    dataset: str,
+) -> bool:
+    method_root = suite_root / dataset / method
+    return all(
+        (method_root / f"shard_{index:03d}_of_{SHARDS:03d}" / "metrics.json").is_file()
+        for index in range(SHARDS)
+    )
+
+
+def _balanced_groups(
+    suite_root: Path,
+    *,
+    resume_existing: bool,
+) -> list[list[dict[str, Any]]]:
     groups = [
         {
             "method": method,
             "dataset": dataset,
-            "estimated_hours": ESTIMATED_HOURS[method][dataset],
+            "estimated_hours": (
+                0.0
+                if resume_existing
+                and _group_is_complete(suite_root, method, dataset)
+                else ESTIMATED_HOURS[method][dataset]
+            ),
+            "reference_estimated_hours": ESTIMATED_HOURS[method][dataset],
+            "resume_complete": (
+                resume_existing
+                and _group_is_complete(suite_root, method, dataset)
+            ),
         }
         for method in ALL_METHODS
         for dataset in DATASETS
@@ -130,6 +152,7 @@ def _write_plan(
     groups: list[dict[str, Any]],
     dataset_manifests: dict[str, dict[str, Any]],
     method_configs: dict[str, dict | None],
+    job_prefix: str,
 ) -> dict[str, Any]:
     node_name = f"node{node_index:02d}"
     node_root = suite_root / "plans" / node_name
@@ -169,7 +192,7 @@ def _write_plan(
     selected_datasets = list(
         dict.fromkeys(str(group["dataset"]) for group in groups)
     )
-    job_name = f"hb3d-v3-{node_name}"
+    job_name = f"{job_prefix}-{node_name}"
     manifest = {
         "contract_version": "habitbench.shard_plan.v3",
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -266,7 +289,10 @@ def run(args: argparse.Namespace) -> None:
         }
 
     method_configs = _method_configs(list(REGULAR_METHODS))
-    assignments = _balanced_groups()
+    assignments = _balanced_groups(
+        suite_root,
+        resume_existing=args.resume_existing,
+    )
     nodes = [
         _write_plan(
             suite_root,
@@ -274,6 +300,7 @@ def run(args: argparse.Namespace) -> None:
             groups,
             dataset_manifests,
             method_configs,
+            args.job_prefix,
         )
         for node_index, groups in enumerate(assignments, start=1)
     ]
@@ -288,6 +315,8 @@ def run(args: argparse.Namespace) -> None:
                 "method",
                 "dataset",
                 "estimated_hours",
+                "reference_estimated_hours",
+                "resume_complete",
             ),
         )
         writer.writeheader()
@@ -306,6 +335,7 @@ def run(args: argparse.Namespace) -> None:
         "experiment_name": "habit_3domain_v3",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "status": "planned",
+        "resume_existing": args.resume_existing,
         "suite_root": str(suite_root),
         "datasets": dataset_manifests,
         "methods": {
@@ -364,6 +394,15 @@ def parse_args() -> argparse.Namespace:
         "--suite-root", type=Path, default=DEFAULT_SUITE_ROOT
     )
     parser.add_argument("--force", action="store_true")
+    parser.add_argument(
+        "--resume-existing",
+        action="store_true",
+        help=(
+            "Keep all formal groups in the plans, but assign zero scheduling "
+            "weight to groups whose eight shard metrics already exist."
+        ),
+    )
+    parser.add_argument("--job-prefix", default="hb3d-v3")
     parser.add_argument("--mark-submitted", action="store_true")
     return parser.parse_args()
 

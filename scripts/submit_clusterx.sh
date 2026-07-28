@@ -8,7 +8,7 @@ PROJECT_ROOT="${HABITBENCH_PROJECT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/..
 PYTHON_BIN="${PYTHON_BIN:-/plm-shared/zhangjunming/miniconda3/envs/habitbenchmark/bin/python}"
 CLUSTERX_BIN="${CLUSTERX_BIN:-/plm-shared/zhangjunming/miniconda3/envs/clusterx/bin/clusterx}"
 ENV_FILE="${HABITBENCH_ENV_FILE:-$PROJECT_ROOT/scripts/cluster/env.example.sh}"
-METHODS="mem0,amem,memos,memrl,lightmem,letta,mirix,graphiti,secom,omem"
+METHODS="mem0,amem,memos,memrl,lightmem,letta,mirix,secom"
 DATASETS="food,finance,software"
 SHARDS=8
 GPUS=8
@@ -30,7 +30,7 @@ CONTINUE_ON_GROUP_ERROR=0
 
 usage() {
   echo "Usage: scripts/submit_clusterx.sh [options]"
-  echo "  --methods CSV       default: all ten memory methods; controls are explicit"
+  echo "  --methods CSV       default: all eight implemented memory methods; controls are explicit"
   echo "  --datasets CSV      default: food,finance,software"
   echo "  --shards N          user shards per method/domain, default: 8"
   echo "  --gpus N            GPUs on one ClusterX node, default: 8"
@@ -103,7 +103,7 @@ NEEDS_EMBED=0
 IFS=',' read -r -a METHOD_LIST <<< "$METHODS"
 for method in "${METHOD_LIST[@]}"; do
   case "$method" in
-    mem0|amem|memos|memrl|lightmem|letta|mirix|graphiti|secom|omem)
+    mem0|amem|memos|memrl|lightmem|letta|mirix|secom)
       NEEDS_EMBED=1
       ;;
   esac

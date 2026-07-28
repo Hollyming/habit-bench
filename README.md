@@ -101,10 +101,10 @@ decision_unit_ids                # 去除重复潜在决策带来的计权偏差
 mem0, amem, memos, memrl, lightmem, letta, mirix
 ```
 
-第二组是额外的官方源码/API 适配：
+第二组是额外的官方源码适配：
 
 ```text
-graphiti, secom, omem
+secom
 ```
 
 第三组是 evaluator control，不是 learned memory 方法：
@@ -221,41 +221,33 @@ third_party/medmemorybench/configs/method_config/
 源码和本地兼容修改的 provenance 见
 `third_party/medmemorybench/VENDOR_INFO.md` 与 `docs/medmemorybench/changes.md`。
 
-### 3.3 官方源码/API 适配
+### 3.3 官方源码适配与暂不实现的方法
 
 | 方法 | 构建接口 | 检索接口 | 主要配置 |
 | --- | --- | --- | --- |
-| `graphiti` | 官方 `Graphiti.add_episode`，每个 HABIT session 一个 episode；同一用户严格按时间串行 | 官方 `Graphiti.search_` | 每卡最多 4 个独立用户并发、每 worker 隔离 Kuzu、共享 vLLM 动态批处理；edge cosine；RRF；top-k 5；BGE-M3；本地 extraction 上限 4,096 tokens、16 items/512 chars；请求 timeout 300 秒、最多 2 次 client retry |
 | `secom` | 官方 segmentation + LLMLingua2 compression，按 session 增量写入 | 官方 FAISS retriever | segment granularity；compression rate 0.9；top-k 5；BGE-M3 |
-| `omem` | 官方 `SimpleMemory.add_message`、working/episodic/persona lifecycle | `retrieve_from_memory_soft_segmentation` | top-n 12；drop threshold 0；BGE-M3；未显式设置预算的 JSON 默认 1,024 tokens、topic merge 上限 2,048；请求 timeout 180 秒 |
 
 对应配置：
 
 ```text
 configs/methods/
-├── graphiti_bge_m3_qwen3.yaml
-├── secom_bge_m3_qwen3.yaml
-└── omem_bge_m3_qwen3.yaml
+└── secom_bge_m3_qwen3.yaml
 ```
 
-Graphiti 使用环境中固定的 `graphiti-core==0.29.2`。并行只发生在互相独立的用户
-之间，不并发同一用户的 episode、不使用 bulk ingestion，也不改变官方 graph
-构建顺序；每个进程拥有独立 Kuzu store，但共享同一卡的 vLLM endpoint，从而让
-服务端批处理原本的单请求空洞。Food-v2 固定 100-episode gate 在单张 A800 上由
-旧串行平均 7,361.9 秒降至 4-worker 的 2,021.2 秒（3.64x）；该 gate 仅用于效率
-验收，不作为论文效果结果。SeCom 和 O-Mem 是普通源码
-快照，不是 Git submodule，也不含嵌套 `.git`：
+SeCom 是普通源码快照，不是 Git submodule，也不含嵌套 `.git`：
 
 ```text
 third_party/official-baselines/vendor/SeCom
-third_party/official-baselines/vendor/O-Mem
 ```
 
 固定 revision 和兼容边界见 `third_party/official-baselines/README.md`。
 
-O-Mem 官方 `evolve_topic_episodic_memory` 在 topic-merge 请求超时后会无限重试。本地
-兼容层仅在该请求超时时返回保守的 no-merge 结果：每个输入 topic 单独保留，不删除
-证据、不虚构合并；触发次数写入 `omem_runtime.json`。其他请求超时仍使 shard 失败。
+Graphiti 与 O-Mem 当前标记为 `not_implemented`，不在正式 registry、默认计划、
+运行脚本或依赖中，也不应报告实验结果。Graphiti 的本地 Kuzu/API 适配尚未通过
+ultra-long lifeline 的稳定性和效率验收；O-Mem 的官方 lifecycle 会在 router JSON
+不完整时无界重试，并且逐消息调用 LLM，在 Food-v4 上运行 6 小时仅完成约 11.6%。
+问题和恢复条件记录在 `eval/unsupported_methods.json`。在实现有界、可复现且不改变
+方法语义的适配前，二者暂不实现。
 
 ### 3.4 `no_memory`
 
@@ -376,9 +368,7 @@ HABIT-bench/
 │   │   └── qwen3_no_thinking.jinja
 │   └── methods/
 │       ├── full_memory.yaml
-│       ├── graphiti_bge_m3_qwen3.yaml
-│       ├── secom_bge_m3_qwen3.yaml
-│       └── omem_bge_m3_qwen3.yaml
+│       └── secom_bge_m3_qwen3.yaml
 ├── domain/
 │   ├── food/
 │   │   └── food_habit_lifelines_stress_v4/
@@ -388,6 +378,7 @@ HABIT-bench/
 │   ├── context_windows.py
 │   ├── controls.py
 │   ├── methods.json
+│   ├── unsupported_methods.json
 │   ├── run.py
 │   ├── score.py
 │   ├── validate.py
@@ -401,10 +392,7 @@ HABIT-bench/
 │   ├── medmemorybench_adapters/
 │   │   └── structured_memory.py
 │   └── official_adapters/
-│       ├── graphiti.py
-│       ├── graphiti_parallel.py
-│       ├── secom.py
-│       └── omem.py
+│       └── secom.py
 ├── schema/
 │   ├── session.schema.json
 │   ├── probe.schema.json
@@ -436,9 +424,8 @@ HABIT-bench/
 | --- | --- |
 | `eval/core/dataset.py` | 归一化两种数据格式、应用用户分片、构建无 gold 的 method payload |
 | `eval/medmemorybench_adapters/structured_memory.py` | 七个 MedMemoryBench-source 方法的统一增量 ingestion/retrieval 入口 |
-| `eval/official_adapters/graphiti.py` | 单用户官方 Graphiti `add_episode/search_`、Kuzu 检索适配 |
-| `eval/official_adapters/graphiti_parallel.py` | 按独立用户启动隔离 Kuzu worker 并合并结果；不改变用户内时序 |
-| `eval/official_adapters/secom.py` / `omem.py` | SeCom、O-Mem 的官方源码薄适配层 |
+| `eval/official_adapters/secom.py` | SeCom 的官方源码薄适配层 |
+| `eval/unsupported_methods.json` | Graphiti、O-Mem 等暂不实现方法的问题和恢复条件 |
 | `eval/controls.py` | `no_memory`、`full_memory` 和 `full_history` |
 | `eval/context_windows.py` | 长上下文档位解析与验证 |
 | `eval/core/answering.py` | 固定 Qwen answer prompt、token hard bound、choice JSON 解析 |
@@ -522,16 +509,8 @@ Vendored Letta 和 MIRIX 的 Python import graph 会在创建本地数据库时�
 | `HABITBENCH_EMBED_MODEL` | BGE-M3 本地路径 |
 | `HABITBENCH_EMBED_DEVICE` | embedding 默认设备为 CPU；MIRIX/SeCom 按原生配置强制绑定其 worker GPU |
 | `HABITBENCH_<METHOD>_USER_WORKERS` | 方法级用户并发：Mem0/A-MEM/MemOS/MemRL/Letta=7、LightMem/MIRIX=1 |
-| `HABITBENCH_GRAPHITI_USER_WORKERS` | 每个 GPU shard 的独立 Graphiti 用户进程数，默认 4；每进程隔离 Kuzu、共享 vLLM |
 | `HABITBENCH_ADAPTER_CPU_THREADS` | 每个 adapter 进程的 BLAS/OpenMP 线程数，默认 2 |
 | `HABITBENCH_LIGHTMEM_MODEL` | LightMem/LLMLingua2 模型路径 |
-| `HABITBENCH_GRAPHITI_LLM_MAX_TOKENS` | Graphiti 本地 entity/edge extraction completion 上限，默认 4,096 |
-| `HABITBENCH_GRAPHITI_SCHEMA_MAX_ITEMS` | 本地 constrained decoding 的单数组上限，默认 16 |
-| `HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS` | Graphiti schema 单字符串上限，默认 512 chars |
-| `HABITBENCH_GRAPHITI_REQUEST_TIMEOUT_SEC` | Graphiti 单次 OpenAI-compatible 请求 timeout，默认 300 秒 |
-| `HABITBENCH_OMEM_LLM_MAX_TOKENS` | O-Mem 普通 JSON 调用上限，默认 1,024 |
-| `HABITBENCH_OMEM_TOPIC_MERGE_MAX_TOKENS` | O-Mem topic merge 上限，默认 2,048 |
-| `HABITBENCH_OMEM_REQUEST_TIMEOUT_SEC` | O-Mem API 边界 timeout，默认 180 秒 |
 | `HABITBENCH_GPU_MEMORY_UTIL` | vLLM GPU memory utilization |
 | `HABITBENCH_ENABLE_PREFIX_CACHING` | 默认 1；复用同用户长历史 prompt prefix |
 | `HABITBENCH_VLLM_MIN_TOKENS_PER_SEC` | 启动后并发聚合 decode 吞吐门槛，默认 60 |
@@ -568,7 +547,7 @@ bash scripts/run_eval.sh mem0 \
 
 ### 6.3 ClusterX 正式评测
 
-默认运行十个 memory 方法，不自动包含 control：
+默认运行八个已实现的 memory 方法，不自动包含 control：
 
 ```bash
 bash scripts/submit_clusterx.sh \
@@ -602,7 +581,7 @@ bash scripts/submit_clusterx.sh \
 
 ```bash
 bash scripts/submit_clusterx.sh \
-  --methods graphiti,secom,omem \
+  --methods secom \
   --datasets food,finance,software \
   --shards 8 --gpus 8 \
   --output-root results/habit_official_extra_v1
@@ -632,7 +611,16 @@ plan manifest 和 dataset subset，不能把此类结果混入正式全量表格
 bash scripts/cluster/submit_v3_three_nodes.sh
 ```
 
-该入口创建三个 8×A800 ClusterX 任务。42 个 method/domain 组覆盖十个 memory
+在相同 v3 结果根续跑时使用：
+
+```bash
+bash scripts/cluster/submit_v3_three_nodes.sh --resume-existing
+```
+
+续跑计划仍覆盖全部正式 method/domain group，以便最终统一 merge；已有八个完整分片的
+group 调度权重为零并快速跳过，只实际重算缺失或失败分片。
+
+该入口创建三个 8×A800 ClusterX 任务。36 个 method/domain 组覆盖八个已实现的 memory
 方法、`no_memory`、`full_memory`、`oracle_evidence` 和
 `oracle_habit_state`；组间使用 LPT 估时均衡，每个节点内部按短任务到长任务排序。
 三个节点全部成功合并后，最后完成的节点会对统一结果根运行用户级 bootstrap、配对
@@ -724,9 +712,7 @@ shard_000_of_008/
 | --- | --- |
 | `no_memory/full_memory` | `control_runtime.json`；resolved window、history budget、截断 probe 数 |
 | 七个 MedMemoryBench 方法 | `medmemorybench_adapter_runtime.json`（用户级耗时/CPU/RSS/并发吞吐）、`medmemorybench_state/` |
-| `graphiti` | `graphiti_config.json`、`graphiti_runtime.json`、`graphiti_user_workers/worker_*/graphiti_kuzu_store/`；runtime 记录请求/有效 worker、aggregate worker time、parallelism ratio 和严格 add failure count |
 | `secom` | `secom_method_config.json`、`secom_config.json`、`secom_runtime.json` |
-| `omem` | `omem_config.json`、`omem_runtime.json`、`omem_store/` |
 
 ### 7.2 合并结果
 
@@ -884,8 +870,8 @@ Timing 字段：
 - 完整 `memory_contexts`、predictions、scores 和 strict merge manifest。
 
 MedMemoryBench 方法应描述为 “MedMemoryBench-source HABIT adaptation”，不要写成所有原论文
-配置的逐项精确复现。Graphiti、SeCom、O-Mem 应描述为 “official-source/API adapted”，
-并同时说明本地 backend、embedding 和 JSON compatibility 设置。
+配置的逐项精确复现。SeCom 应描述为 “official-source adapted”，并同时说明本地
+compressor、embedding 和在线 ingestion 设置。Graphiti 与 O-Mem 不应出现在正式结果表中。
 
 更严格的 protocol 和 ClusterX 说明见：
 

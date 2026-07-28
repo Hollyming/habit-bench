@@ -12,33 +12,54 @@ QUEUE="queue-t-reserved-plm"
 CLUSTER="cluster-t"
 MACHINE_TYPE="n3ls.ii.i60a"
 IMAGE="registry.pjlab.org.cn/ccr-lepton-official-images/ngc-pytorch:26.04-cu13.2-py3.12-ubuntu24.04"
+RESUME_EXISTING=0
+JOB_PREFIX="hb3d-v3"
+
+if [[ "${1:-}" == "--resume-existing" ]]; then
+  RESUME_EXISTING=1
+  JOB_PREFIX="hb3d-v3r"
+  shift
+fi
+if [[ $# -ne 0 ]]; then
+  echo "Usage: scripts/cluster/submit_v3_three_nodes.sh [--resume-existing]" >&2
+  exit 2
+fi
 
 cd "$PROJECT_ROOT"
 
-"$PYTHON_BIN" "$PROJECT_ROOT/scripts/create_v3_experiment_plans.py" \
+PLAN_ARGS=(
+  "$PYTHON_BIN" "$PROJECT_ROOT/scripts/create_v3_experiment_plans.py"
   --suite-root "$SUITE_ROOT"
+  --job-prefix "$JOB_PREFIX"
+)
+if [[ "$RESUME_EXISTING" == "1" ]]; then
+  PLAN_ARGS+=(--force --resume-existing)
+fi
+"${PLAN_ARGS[@]}"
 
 # Human-audit scoring requires two real annotators. Prepare the blinded,
 # stratified artifacts now and leave scoring explicitly pending.
-"$PYTHON_BIN" -m eval.supplementary.human_audit prepare \
-  --dataset-dir "$FOOD_DATASET" \
-  --output-dir "$SUITE_ROOT/supplementary/human_audit/food" \
-  --per-stratum 50 --seed 42
-"$PYTHON_BIN" -m eval.supplementary.human_audit prepare \
-  --dataset-dir "$FINANCE_SOFTWARE_DATASET" \
-  --domain-filter finance \
-  --output-dir "$SUITE_ROOT/supplementary/human_audit/finance" \
-  --per-stratum 50 --seed 42
-"$PYTHON_BIN" -m eval.supplementary.human_audit prepare \
-  --dataset-dir "$FINANCE_SOFTWARE_DATASET" \
-  --domain-filter software \
-  --output-dir "$SUITE_ROOT/supplementary/human_audit/software" \
-  --per-stratum 50 --seed 42
+if [[ "$RESUME_EXISTING" == "0" ]]; then
+  "$PYTHON_BIN" -m eval.supplementary.human_audit prepare \
+    --dataset-dir "$FOOD_DATASET" \
+    --output-dir "$SUITE_ROOT/supplementary/human_audit/food" \
+    --per-stratum 50 --seed 42
+  "$PYTHON_BIN" -m eval.supplementary.human_audit prepare \
+    --dataset-dir "$FINANCE_SOFTWARE_DATASET" \
+    --domain-filter finance \
+    --output-dir "$SUITE_ROOT/supplementary/human_audit/finance" \
+    --per-stratum 50 --seed 42
+  "$PYTHON_BIN" -m eval.supplementary.human_audit prepare \
+    --dataset-dir "$FINANCE_SOFTWARE_DATASET" \
+    --domain-filter software \
+    --output-dir "$SUITE_ROOT/supplementary/human_audit/software" \
+    --per-stratum 50 --seed 42
+fi
 
 submit_node() {
   local node_name="$1"
   local port_base="$2"
-  local job_name="hb3d-v3-$node_name"
+  local job_name="$JOB_PREFIX-$node_name"
   local plan="$SUITE_ROOT/plans/$node_name/shard_plan.tsv"
   local submit_log="$SUITE_ROOT/plans/$node_name/clusterx_submit.log"
   local node_command

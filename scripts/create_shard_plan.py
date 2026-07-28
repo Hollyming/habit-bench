@@ -43,11 +43,9 @@ METHOD_CONFIGS = {
 LOCAL_METHOD_CONFIGS = {
     "full_memory": PROJECT_ROOT / "configs/methods/full_memory.yaml",
     "full_history": PROJECT_ROOT / "configs/methods/full_memory.yaml",
-    "graphiti": PROJECT_ROOT / "configs/methods/graphiti_bge_m3_qwen3.yaml",
     "secom": PROJECT_ROOT / "configs/methods/secom_bge_m3_qwen3.yaml",
-    "omem": PROJECT_ROOT / "configs/methods/omem_bge_m3_qwen3.yaml",
 }
-BGE_M3_METHODS = set(METHOD_CONFIGS) | {"graphiti", "secom", "omem"}
+BGE_M3_METHODS = set(METHOD_CONFIGS) | {"secom"}
 BGE_M3_ID = "BAAI/bge-m3"
 BGE_M3_REVISION = "5617a9f61b028005a4858fdac845db406aefb181"
 BGE_M3_PATH = Path("/plm-shared/zhangjunming/Workspace/models/bge-m3")

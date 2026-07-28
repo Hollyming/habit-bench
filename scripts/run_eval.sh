@@ -98,18 +98,6 @@ case "$METHOD" in
     )
     NOTE="Vendored MedMemoryBench memory lifecycle with shared local BGE-M3 retrieval and retrieval-only output passed to the shared HABIT answerer."
     ;;
-  graphiti)
-    KIND="official_adapted"
-    SOURCE="https://github.com/getzep/graphiti"
-    REVISION="graphiti-core==0.29.2"
-    COMMAND="$PYTHON_BIN -m eval.official_adapters.graphiti_parallel --input {input} --output {output} --user-workers ${HABITBENCH_GRAPHITI_USER_WORKERS:-4}"
-    CONFIG_PATH="$PROJECT_ROOT/configs/methods/graphiti_bge_m3_qwen3.yaml"
-    CONFIG_ARGS=(
-      --method-config-name "graphiti_bge_m3_qwen3"
-      --method-config-path "$CONFIG_PATH"
-    )
-    NOTE="Official chronological Graphiti add_episode/search_ lifecycle with isolated per-user Kuzu stores; independent users run concurrently against one dynamically batched vLLM endpoint."
-    ;;
   secom)
     KIND="official_adapted"
     SOURCE="https://github.com/microsoft/SeCom"
@@ -122,21 +110,10 @@ case "$METHOD" in
     )
     NOTE="Official SeCom segmentation, LLMLingua compression and FAISS retrieval adapted to online chronological session ingestion."
     ;;
-  omem)
-    KIND="official_adapted"
-    SOURCE="https://github.com/OPPO-PersonalAI/O-Mem"
-    REVISION="46e131ac39af55d456304c61dfb881717044528e"
-    COMMAND="$PYTHON_BIN -m eval.official_adapters.omem --input {input} --output {output}"
-    CONFIG_PATH="$PROJECT_ROOT/configs/methods/omem_bge_m3_qwen3.yaml"
-    CONFIG_ARGS=(
-      --method-config-name "omem_bge_m3_qwen3"
-      --method-config-path "$CONFIG_PATH"
-    )
-    NOTE="Official O-Mem SimpleMemory lifecycle with documented local JSON-output compatibility handling."
-    ;;
   *)
     echo "Unknown method: $METHOD" >&2
-    echo "Available: no_memory full_memory full_history mem0 amem memos memrl lightmem letta mirix graphiti secom omem" >&2
+    echo "Available: no_memory full_memory full_history mem0 amem memos memrl lightmem letta mirix secom" >&2
+    echo "Graphiti and O-Mem are recorded in eval/unsupported_methods.json and are not currently implemented." >&2
     exit 2
     ;;
 esac

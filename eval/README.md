@@ -22,8 +22,10 @@ The primary seven methods are `mem0`, `amem`, `memos`, `memrl`, `lightmem`,
 `letta`, and `mirix`. They all enter through
 `medmemorybench_adapters/structured_memory.py`, which calls the method-native
 memory-build and retrieval lifecycle in `third_party/medmemorybench`.
-Graphiti, SeCom and O-Mem enter through thin adapters in
-`official_adapters/`. `controls.py` implements `no_memory` and the
+SeCom enters through a thin adapter in `official_adapters/`. Graphiti and
+O-Mem are explicitly excluded pending bounded, full-domain implementations;
+their blockers are recorded in `unsupported_methods.json`. `controls.py`
+implements `no_memory` and the
 capacity-aware, token-bounded `full_memory` long-context control;
 `context_windows.py` resolves its standard/custom window tier, and
 `full_history` is its compatibility alias.

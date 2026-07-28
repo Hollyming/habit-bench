@@ -1,33 +1,26 @@
 from __future__ import annotations
 
 import json
-import os
-import sys
+import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
 
 import yaml
 
 from eval.core.answering import DEFAULT_SERVED_MODEL
 from eval.core.dataset import DatasetContractError
-from eval.official_adapters.graphiti import (
-    apply_json_schema_bounds,
-    parse_args as parse_graphiti_args,
-)
 from eval.run import validate_memory_contexts
 from scripts.run_multigpu_plan import (
     CUDA_REQUIRED_ADAPTER_METHODS,
     _validate_mirix_vllm_profile,
 )
+from scripts.create_v3_experiment_plans import SHARDS, _group_is_complete
 
 
 class ProtocolTest(unittest.TestCase):
     METHODS = ("mem0", "amem", "memos", "memrl", "lightmem", "letta", "mirix")
     OFFICIAL_METHODS = {
-        "graphiti": "eval/official_adapters/graphiti_parallel.py",
         "secom": "eval/official_adapters/secom.py",
-        "omem": "eval/official_adapters/omem.py",
     }
 
     def test_canonical_methods_use_medmemorybench_adapter(self) -> None:
@@ -58,14 +51,40 @@ class ProtocolTest(unittest.TestCase):
     def test_official_source_snapshots_are_plain_directories(self) -> None:
         project_root = Path(__file__).resolve().parents[2]
         vendor_root = project_root / "third_party/official-baselines/vendor"
-        expected = {
-            "SeCom": "secom/secom.py",
-            "O-Mem": "example_usage.py",
-        }
+        expected = {"SeCom": "secom/secom.py"}
         for source, marker in expected.items():
             source_root = vendor_root / source
             self.assertTrue((source_root / marker).is_file())
             self.assertFalse((source_root / ".git").exists())
+
+    def test_problematic_methods_are_explicitly_unsupported(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        registry = json.loads(
+            (project_root / "eval/methods.json").read_text(encoding="utf-8")
+        )
+        unsupported = json.loads(
+            (project_root / "eval/unsupported_methods.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        for method in ("graphiti", "omem"):
+            self.assertNotIn(method, registry)
+            self.assertEqual(unsupported[method]["status"], "not_implemented")
+            self.assertIn("reason", unsupported[method])
+
+    def test_v3_resume_requires_all_shards_to_be_complete(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            suite_root = Path(temporary)
+            method_root = suite_root / "food" / "mem0"
+            for index in range(SHARDS - 1):
+                shard = method_root / f"shard_{index:03d}_of_{SHARDS:03d}"
+                shard.mkdir(parents=True)
+                (shard / "metrics.json").write_text("{}\n", encoding="utf-8")
+            self.assertFalse(_group_is_complete(suite_root, "mem0", "food"))
+            last = method_root / f"shard_{SHARDS - 1:03d}_of_{SHARDS:03d}"
+            last.mkdir(parents=True)
+            (last / "metrics.json").write_text("{}\n", encoding="utf-8")
+            self.assertTrue(_group_is_complete(suite_root, "mem0", "food"))
 
     def test_active_method_configs_pin_bge_m3(self) -> None:
         project_root = Path(__file__).resolve().parents[2]
@@ -138,47 +157,6 @@ class ProtocolTest(unittest.TestCase):
 
     def test_native_cuda_adapters_are_bound_to_their_worker_gpu(self) -> None:
         self.assertEqual(CUDA_REQUIRED_ADAPTER_METHODS, {"mirix", "secom"})
-
-    def test_graphiti_local_extraction_budget_is_bounded(self) -> None:
-        argv = ["graphiti", "--input", "input.json", "--output", "output.jsonl"]
-        environment = dict(os.environ)
-        environment.pop("HABITBENCH_GRAPHITI_LLM_MAX_TOKENS", None)
-        with patch.dict(os.environ, environment, clear=True), patch.object(
-            sys, "argv", argv
-        ):
-            args = parse_graphiti_args()
-            self.assertEqual(args.max_tokens, 4096)
-            self.assertEqual(args.schema_max_items, 16)
-            self.assertEqual(args.schema_max_string_chars, 512)
-            self.assertEqual(args.request_timeout_sec, 300)
-            self.assertEqual(args.request_max_retries, 2)
-
-    def test_graphiti_local_schema_bounds_are_recursive(self) -> None:
-        schema = {
-            "type": "object",
-            "properties": {
-                "entities": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {"name": {"type": "string"}},
-                    },
-                }
-            },
-        }
-        bounded = apply_json_schema_bounds(
-            schema,
-            max_items=64,
-            max_string_chars=1000,
-        )
-        entities = bounded["properties"]["entities"]
-        self.assertEqual(entities["maxItems"], 64)
-        self.assertEqual(
-            entities["items"]["properties"]["name"]["maxLength"],
-            1000,
-        )
-        self.assertNotIn("maxItems", schema["properties"]["entities"])
-
 
 if __name__ == "__main__":
     unittest.main()

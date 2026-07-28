@@ -63,20 +63,22 @@ and passes retrieval-only output to the shared answer model.
 These integrations are recorded as `benchmark_reproduction`. They use native
 MedMemoryBench method code, but local model/back-end compatibility settings
 mean they are not exact reproductions of every original paper configuration.
-Additional official-source adaptations are:
+The additional official-source adaptation is:
 
 ```text
-graphiti, secom, omem
+secom
 ```
 
-Graphiti uses official chronological `add_episode`/`search_` with local Kuzu
-edge-cosine/RRF retrieval. Independent users run concurrently against one
-dynamically batched vLLM endpoint, with an isolated Kuzu store per worker;
-same-user or bulk ingestion is not used. SeCom uses official segmentation, LLMLingua
-compression and FAISS retrieval with chronological online ingestion. O-Mem
-uses the official `SimpleMemory` lifecycle plus documented JSON-output
-compatibility handling at the local API boundary. Their pinned provenance is
-in `third_party/official-baselines/README.md`.
+SeCom uses official segmentation, LLMLingua compression and FAISS retrieval
+with chronological online ingestion. Its pinned provenance is in
+`third_party/official-baselines/README.md`.
+
+Graphiti and O-Mem are explicitly `not_implemented`. They are absent from the
+active registry and formal plans because the current Graphiti local
+Kuzu/API adaptation has not passed full-lifeline reliability/efficiency
+acceptance, while O-Mem exposes unbounded malformed-JSON retry loops and
+message-level runtime that exceeds the formal shard timeout. The machine-readable
+record is `eval/unsupported_methods.json`.
 
 Finance and Software share the v1.3 source package but are separate evaluation
 views. The plan records `domain_filter=finance` or `domain_filter=software`;

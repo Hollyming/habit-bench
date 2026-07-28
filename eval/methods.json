@@ -20,13 +20,6 @@
     "adapter": "eval/controls.py",
     "note": "Capacity-aware long-context control with auto/8k/16k/32k/40k/64k/128k/custom tiers and recent-session truncation on overflow."
   },
-  "graphiti": {
-    "implementation_kind": "official_adapted",
-    "source": "https://github.com/getzep/graphiti",
-    "revision": "graphiti-core==0.29.2",
-    "adapter": "eval/official_adapters/graphiti_parallel.py",
-    "note": "Official chronological add_episode/search_ APIs; isolated per-user Kuzu stores run concurrently against one vLLM endpoint, with documented edge-cosine/RRF retrieval because Kuzu BM25 is unavailable."
-  },
   "letta": {
     "implementation_kind": "benchmark_reproduction",
     "source": "third_party/medmemorybench",
@@ -68,13 +61,6 @@
     "revision": "6591eb3251402f26535846ea4a95f5b4478ae35a",
     "adapter": "eval/medmemorybench_adapters/structured_memory.py",
     "note": "MedMemoryBench MIRIX source; multi-store retrieval is exposed without native send_message answering."
-  },
-  "omem": {
-    "implementation_kind": "official_adapted",
-    "source": "https://github.com/OPPO-PersonalAI/O-Mem",
-    "revision": "46e131ac39af55d456304c61dfb881717044528e",
-    "adapter": "eval/official_adapters/omem.py",
-    "note": "Official SimpleMemory lifecycle with documented JSON-output compatibility patches for the local OpenAI-compatible backend."
   },
   "no_memory": {
     "implementation_kind": "control",

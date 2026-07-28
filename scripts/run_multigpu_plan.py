@@ -42,9 +42,7 @@ EMBEDDING_METHODS = {
     "lightmem",
     "letta",
     "mirix",
-    "graphiti",
     "secom",
-    "omem",
 }
 MEDMEMORY_METHODS = {
     "mem0",
@@ -355,30 +353,6 @@ def _preflight_runtime(
         ).expanduser().resolve()
         required["secom_source"] = secom_path / "secom/secom.py"
         required["secom_license"] = secom_path / "LICENSE"
-    if methods and "omem" in methods:
-        omem_path = Path(
-            env.get(
-                "HABITBENCH_OMEM_REPO",
-                str(
-                    PROJECT_ROOT
-                    / "third_party/official-baselines/vendor/O-Mem"
-                ),
-            )
-        ).expanduser().resolve()
-        required["omem_source"] = omem_path / "example_usage.py"
-        required["omem_license"] = omem_path / "LICENSE"
-    if methods and "graphiti" in methods:
-        if importlib.util.find_spec("graphiti_core") is None:
-            raise ModuleNotFoundError(
-                "graphiti-core is required when graphiti is selected"
-            )
-        packages["graphiti-core"] = package_version("graphiti-core")
-        packages["kuzu"] = package_version("kuzu")
-        if packages["graphiti-core"] != "0.29.2":
-            raise ValueError(
-                "Graphiti runtime revision mismatch: expected graphiti-core "
-                f"0.29.2, got {packages['graphiti-core']}"
-            )
     if methods and "memrl" in methods:
         if importlib.util.find_spec("chonkie") is None:
             raise ModuleNotFoundError(
@@ -834,16 +808,6 @@ def _run_task(
         if method_workers <= 0:
             raise ValueError(f"{worker_variable} must be positive")
         task_env["HABITBENCH_MED_USER_WORKERS"] = str(method_workers)
-    graphiti_user_workers: int | None = None
-    if method == "graphiti":
-        graphiti_user_workers = int(
-            base_env.get("HABITBENCH_GRAPHITI_USER_WORKERS", "4")
-        )
-        if graphiti_user_workers <= 0:
-            raise ValueError("HABITBENCH_GRAPHITI_USER_WORKERS must be positive")
-        task_env["HABITBENCH_GRAPHITI_USER_WORKERS"] = str(
-            graphiti_user_workers
-        )
     cpu_threads = base_env.get("HABITBENCH_ADAPTER_CPU_THREADS", "2")
     if method_workers is not None and method_workers >= 5:
         cpu_threads = "1"
@@ -946,7 +910,6 @@ def _run_task(
             "adapter_cuda_visible_devices": adapter_cuda,
             "adapter_cpu_threads": int(cpu_threads),
             "med_user_workers": method_workers,
-            "graphiti_user_workers": graphiti_user_workers,
             "vllm_port": worker["port"],
             "vllm_log": worker["log"],
             "started_at": started_at,
