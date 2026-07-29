@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "000b4abc99ad80aacae27425eed00ac7dc13cbb7c67eff95aa0e56f6a9d8a8f7",
+  "habits": [
+    {
+      "boundary_condition": "if the user specifies a different seat preference, override this default",
+      "bundle_id": "tm_v04_e2e_bundle_ce27ac096917",
+      "condition": "when the user requests a seat near or next to the window",
+      "confidence": 0.8,
+      "decision": "accept",
+      "default_action": "assign window seat",
+      "exception_condition": "if the flight does not have window seats available",
+      "family": "flight_seat_preference",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_ce27ac096917",
+      "induced_at": "2026-07-25T08:16:28.052062+00:00",
+      "induced_by": "habitbench-qwen3-8b",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "flight_seat_preference",
+      "preference_value": "window seat",
+      "rationale": "The user explicitly requested a seat near or next to the window in two different dialogues, indicating a consistent preference for window seats.",
+      "reasoning_effort": "",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "User explicitly requested a window seat.",
+          "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+          "exact_user_quote": "I'd like it to be in business class, and I'd like a seat near the window or next to the window.",
+          "instruction_id": "flight-8",
+          "turn_index": 9
+        },
+        {
+          "contribution": "User mentioned time of day, but no direct seat preference.",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "exact_user_quote": "I want to leave in the morning and come back in at night after 6:00 p.m.",
+          "instruction_id": "flight-7",
+          "turn_index": 8
+        },
+        {
+          "contribution": "No direct seat preference mentioned.",
+          "conversation_id": "dlg-b391bbe3-dc9b-4efd-b7f0-45c46dd052ea",
+          "exact_user_quote": "We're thinking of leaving after the kids are out of school. So it'll be in the summer. We're thinking July 10th to August 1st.",
+          "instruction_id": "flight-5",
+          "turn_index": 11
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I'd like it to be in business class, and I'd like a seat near the window or next to the window.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+          "habitual_language": false,
+          "instruction_id": "flight-8",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 9,
+          "user_utterance": "I'd like it to be in business class, and I'd like a seat near the window or next to the window."
+        },
+        {
+          "annotated_segment": "I want to leave in the morning and come back in at night after 6:00 p.m.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "habitual_language": false,
+          "instruction_id": "flight-7",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 8,
+          "user_utterance": "I want to leave in the morning and come back in at night after 6:00 p.m."
+        },
+        {
+          "annotated_segment": "We're thinking of leaving after the kids are out of school. So it'll be in the summer. We're thinking July 10th to August 1st.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-b391bbe3-dc9b-4efd-b7f0-45c46dd052ea",
+          "habitual_language": false,
+          "instruction_id": "flight-5",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 11,
+          "user_utterance": "We're thinking of leaving after the kids are out of school. So it'll be in the summer. We're thinking July 10th to August 1st."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-b391bbe3-dc9b-4efd-b7f0-45c46dd052ea",
+    "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+    "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc"
+  ]
+}

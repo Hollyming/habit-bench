@@ -1,0 +1,147 @@
+{
+  "cache_fingerprint": "8d79e466307bdf0ce607fcd12a7cd434df5a9d8aa2142e112697f3a349eac100",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session addresses only the Nashville trip’s dates, meeting schedule, transfer risk, and airfare limit. No recurring travel preference or durable policy is established.",
+        "evidence_topology": {
+          "episode_id": "client-nashville-004",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 19,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly states a current-trip preference for nonstop service with a connection fallback and endorses the cheapest acceptable mixed-carrier itinerary after timing constraints are satisfied. The return timing is driven by the meeting schedule rather than a recurring afternoon-return preference. Delta is selected for its stronger outbound timing, not endorsed as a general carrier preference. No hotel habits are evidenced.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "A nonstop is preferable, but show a connection if it materially improves the timing or price.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.95,
+            "evidence_quote": "That sounds strongest. Keep the all-Delta itinerary as the backup and give me the exact comparison for approval. Do not ticket anything.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h03",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to sort out a Nashville trip for an integration review. Meetings downtown run Tuesday, September 15 at 9:00 a.m. through Thursday, September 17 at 5:00 p.m. I can leave Minneapolis after 2:30 Monday, and airfare needs to stay within $625 in economy.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll compare Monday, September 14 departures from MSP with Thursday returns from BNA, allowing enough time to get from downtown Nashville to the airport after the 5:00 p.m. finish. Is a nonstop important for this trip, and will you be checking a bag?",
+          "role": "assistant"
+        },
+        {
+          "content": "A nonstop is preferable, but show a connection if it materially improves the timing or price. Carry-on only.",
+          "role": "user"
+        },
+        {
+          "content": "The Monday nonstops split into an earlier departure with a comfortable evening arrival and a later one that leaves little margin before Tuesday morning. The strongest outbound is Delta at 3:35 p.m., arriving BNA at 5:42 p.m. Southwest has a 5:20 p.m. departure arriving at 7:28 p.m. A one-stop American itinerary leaves at 4:05 p.m. but does not arrive until 8:31 p.m., so its $41 savings does not compensate for the connection.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. What are the realistic Thursday returns after I leave the client office?",
+          "role": "user"
+        },
+        {
+          "content": "BNA is often 20-30 minutes from downtown, but Thursday traffic can push that toward 45 minutes. Leaving the office around 5:10 p.m., I would exclude departures before 7:15 p.m. The practical choices are Delta nonstop at 7:50 p.m., arriving MSP at 10:03 p.m.; Southwest nonstop at 8:40 p.m., arriving at 10:52 p.m.; and American via Charlotte at 7:35 p.m., arriving at 11:46 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "How tight is the 7:50 Delta if the meeting actually runs to 5:15?",
+          "role": "user"
+        },
+        {
+          "content": "If you are in the car by 5:25, a 45-minute drive puts you at BNA around 6:10, leaving about 1 hour 40 minutes before departure. With carry-on only, that is workable. A serious traffic delay could reduce the margin, while the 8:40 Southwest gives another 50 minutes of protection.",
+          "role": "assistant"
+        },
+        {
+          "content": "Build me the two best round trips. Include the total and explain what I give up with each.",
+          "role": "user"
+        },
+        {
+          "content": "Option 1 pairs Delta’s Monday 3:35 p.m. nonstop with its Thursday 7:50 p.m. nonstop for $574 round trip. It gets you to Nashville early enough for dinner and keeps Thursday reasonably efficient. The tradeoff is that the return depends on leaving downtown promptly after the meeting.\n\nOption 2 uses Southwest’s Monday 5:20 p.m. nonstop and Thursday 8:40 p.m. nonstop for $493 round trip. It costs $81 less and gives you a safer airport-transfer window Thursday, but Monday arrival is nearly two hours later.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does either fare have a restriction that could push it over the allowance? I do not need checked baggage or a seat upgrade.",
+          "role": "user"
+        },
+        {
+          "content": "Both quoted totals include mandatory taxes and fees and remain below the $625 allowance. Delta’s total is $51 under the cap; its basic-economy conditions limit changes and advance seat selection. The Southwest total is $132 under the cap and includes standard carry-on allowance. Optional seats, priority services, and travel insurance are excluded from both totals.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Monday margin matters more than getting home 50 minutes earlier Thursday. Is there a mixed-carrier combination with Delta outbound and the later Southwest return?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Booking separate one-way tickets, Delta’s Monday 3:35 p.m. flight is $286 and Southwest’s Thursday 8:40 p.m. flight is $241, totaling $527. That is $47 less than the all-Delta trip, preserves the early Monday arrival, and gives you the larger Thursday transfer margin. The drawback is managing two reservations, and a change to one ticket would not automatically adjust the other.",
+          "role": "assistant"
+        },
+        {
+          "content": "That sounds strongest. Keep the all-Delta itinerary as the backup and give me the exact comparison for approval. Do not ticket anything.",
+          "role": "user"
+        },
+        {
+          "content": "Primary for approval: separate one-way tickets totaling $527. Delta departs MSP Monday, September 14 at 3:35 p.m. and arrives BNA at 5:42 p.m.; Southwest departs BNA Thursday, September 17 at 8:40 p.m. and arrives MSP at 10:52 p.m. This leaves about 2 hours 30 minutes from the scheduled meeting end to departure and is $98 below the allowance.\n\nBackup: Delta round trip at $574, using the same Monday outbound and a Thursday 7:50 p.m. return arriving MSP at 10:03 p.m. It is $51 below the allowance but provides 50 minutes less transfer time after the client meeting.\n\nNo flights have been ticketed or charged. Fares and inventory should be rechecked at approval time.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0019",
+      "session_index": 19,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya’s Denver trip remains ticketed for June 16-19, 2026; the revised Friday departure still needs confirmation. The Philadelphia return was exchanged to Friday, July 31, 2026 at 8:10 a.m., and the Hyatt House stay was extended through Friday morning; those changes added $348.56. The Sonesta deposit release remains pending, and Hyatt shuttle details remain unconfirmed. The coastal Georgia trip remains unbooked at a working total of $3,647. For Nashville, meetings run September 15-17, 2026. No transportation is booked; approval options are a $527 mixed-carrier itinerary and a $574 all-Delta backup.",
+  "verification": {
+    "19": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "A nonstop is preferable, but show a connection if it materially improves the timing or price.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.95,
+          "evidence_quote": "That sounds strongest. Keep the all-Delta itinerary as the backup and give me the exact comparison for approval. Do not ticket anything.",
+          "habit_id": "tm_pd_v05_user_000_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly states a current-trip preference for nonstop service with a connection fallback and endorses the cheapest acceptable mixed-carrier itinerary after timing constraints are satisfied. The return timing is driven by the meeting schedule rather than a recurring afternoon-return preference. Delta is selected for its stronger outbound timing, not endorsed as a general carrier preference. No hotel habits are evidenced."
+    }
+  }
+}

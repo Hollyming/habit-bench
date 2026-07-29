@@ -1,0 +1,145 @@
+{
+  "habit_id": "tm_pd_v05_user_003_h00",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c02",
+        "c04",
+        "c06"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c04",
+        "c06"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Select Thursday's 7:05 p.m. nonstop, arriving at 8:40 p.m., for $405."
+              },
+              {
+                "choice_id": "B",
+                "text": "Select Friday's 8:00 a.m. nonstop, arriving at 9:35 a.m., for $335."
+              },
+              {
+                "choice_id": "C",
+                "text": "Select Thursday's 4:35 p.m. one-stop, arriving at 10:10 p.m., for $330."
+              },
+              {
+                "choice_id": "D",
+                "text": "Select Friday's 6:50 a.m. one-stop, arriving at 11:15 a.m., for $290."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A offers the earliest home arrival but costs more; B is cheaper, nonstop, and follows the durable default. The query does not reveal the content of the referenced exception, so only the history identifies which side of the tradeoff controls.",
+            "gold_action": "Apply the referenced one-trip exception by choosing the itinerary that gets the traveler home sooner, even though it departs later in the day, and keep that exception local to this engagement.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_003_s0092",
+              "tm_pd_v05_user_003_s0081"
+            ],
+            "label_rationale": "The referenced prior exception prioritized getting home sooner over the usual departure-period default. A arrives home before every alternative, while the user's wording explicitly prevents this repeated exception from becoming a permanent revision.",
+            "probe_type": "exception",
+            "query": "A new Chicago engagement ends Thursday at 3:00 p.m. The traveler says, 'For this engagement only, use the same limited return-flight priority from my prior audit exception, and do not carry it into later trips.' Which return should the planner select?"
+          },
+          "candidate_id": "c03",
+          "failure": "invalid_evidence_citations"
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with the 12:15 p.m. nonstop because it is the earliest remaining departure."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with the 3:40 p.m. one-stop because it has the lowest fare."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with the 6:10 p.m. nonstop because it preserves more of the daytime."
+              },
+              {
+                "choice_id": "D",
+                "text": "Present the three tradeoffs without asserting a time-based first choice and ask which factor should govern."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is a strong near miss because it extrapolates the known time-of-day preference into an unsupported 'earliest available' rule. Price, duration, and schedule make A, B, and C independently plausible, while the history specifically rules out claiming any of those as the user's standing fallback.",
+            "gold_action": "Do not invent an earliest, cheapest, or latest fallback when no morning option exists; present the viable tradeoffs and request a trip-specific choice.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_003_s0030",
+              "tm_pd_v05_user_003_s0081",
+              "tm_pd_v05_user_003_s0092"
+            ],
+            "label_rationale": "The history establishes what to do when the preferred period is available and how explicit one-trip exceptions work, but it establishes no reusable replacement rule when that period is unavailable. D preserves that boundary.",
+            "probe_type": "exception",
+            "query": "For a San Diego flight search, every morning departure is sold out. The remaining shortlist is a 12:15 p.m. nonstop for $348, a 3:40 p.m. one-stop for $288, and a 6:10 p.m. nonstop for $328. There is no event or same-day obligation, and the traveler has never stated what should replace the usual ordering when its favored inventory is unavailable. How should the planner present the shortlist?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrase 'usual ordering' hints at a private default, but the query explicitly says no replacement preference has been stated; that wording is sufficient to select D without history."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c05",
+            "rationale": "The query explicitly says no fallback rule exists for the unavailable favored inventory. Presenting the tradeoffs and asking which factor governs is therefore the uniquely supported planning action."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c03",
+        "c05"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c05",
+        "c06"
+      ],
+      "failed": [],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "cross_context_transfer": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 1,
+      "exception": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v05_user_003"
+}

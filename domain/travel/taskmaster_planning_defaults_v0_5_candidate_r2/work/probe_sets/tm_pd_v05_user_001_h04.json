@@ -1,0 +1,420 @@
+{
+  "cache_fingerprint": "040cc55c8c30324aa66c74bd86b9e4c1dceff01128054e9217e64f9f44fdb632",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "The copied note makes B look like cautious continuity, and the current query alone does not establish whether that note was temporary or durable. Resolving it requires combining the one-trip exception evidence with later statements of the continuing default.",
+      "gold_action": "Book the queen room and do not carry the old two-bed note into this stay.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_001_s0066",
+        "tm_pd_v05_user_001_s0078",
+        "tm_pd_v05_user_001_s0093"
+      ],
+      "habit_family": "hotel_room_bed_policy",
+      "habit_id": "tm_pd_v05_user_001_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_room_bed_configuration",
+        "boundary_condition": "Apply this per room and do not infer it from the number of travelers or requested rooms.",
+        "condition": "When selecting a shared hotel room without an explicit request for separate beds.",
+        "default_action": "Prefer a room with a queen-size bed; a king-size bed may be accepted when offered as a larger alternative.",
+        "exception_condition": "Honor explicit twin-bed, separate-bed, or other room-specific sleeping arrangements instead.",
+        "family": "hotel_room_bed_policy",
+        "habit_id": "tm_pd_v05_user_001_h04",
+        "name": "queen_bed_for_shared_hotel_room",
+        "preference_value": "Prefer a queen-size bed for a shared hotel room when no separate-bed arrangement is requested.",
+        "scope_condition": "Personal trips where Elena and her spouse will share one hotel room and have not requested separate beds or another sleeping arrangement.",
+        "scope_key": "spouse_shared_hotel_room",
+        "source_bundle_id": "tm_v04_e2e_bundle_90a7ff1f51d8",
+        "source_habit_instance_id": "tm_v04_e2e_habit_90a7ff1f51d8",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "The copied two-bed note looks like an actionable request, but its source was a completed trip whose instruction was expressly limited to that trip.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "The two-bed instruction came from a work trip explicitly scoped to that Atlanta trip only. With no current exception, Elena's general queen preference for personal travel with her spouse applies.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The historical two-bed choice was explicitly limited to one trip, so it is not a permanent profile revision. With no current room-specific request, the durable shared-room policy controls and selects the queen room.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_001_h04_p00",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The stale copied note 'two beds' suspiciously cues B but is explicitly not reliable current-trip evidence.",
+          "The phrase 'selected hotel' anchors toward A, B, or C without resolving room type."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The copied 'two beds' note is explicitly unresolved, comes from a completed work trip, and is unsupported by the current travelers' intake forms. It therefore cannot establish a current preference. The selected hotel's three room types remain defensible, while the nearby hotel presents an unresolved price-versus-transit tradeoff.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "Choices A and D use the same queen and king inventory for two couples, with identical price, terms, room quality, convenience, and occupancy. Either allocation is defensible from the current query alone; only Elena's longitudinal preference for a queen in the room she shares with her spouse distinguishes D from the near-miss allocation A.",
+      "gold_action": "Assign the standard queen room to Elena and her spouse and the standard king room to the other bed-flexible couple.",
+      "gold_choice_id": "D",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_001_s0037",
+        "tm_pd_v05_user_001_s0078",
+        "tm_pd_v05_user_001_s0093"
+      ],
+      "habit_family": "hotel_room_bed_policy",
+      "habit_id": "tm_pd_v05_user_001_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_room_bed_configuration",
+        "boundary_condition": "Apply this per room and do not infer it from the number of travelers or requested rooms.",
+        "condition": "When selecting a shared hotel room without an explicit request for separate beds.",
+        "default_action": "Prefer a room with a queen-size bed; a king-size bed may be accepted when offered as a larger alternative.",
+        "exception_condition": "Honor explicit twin-bed, separate-bed, or other room-specific sleeping arrangements instead.",
+        "family": "hotel_room_bed_policy",
+        "habit_id": "tm_pd_v05_user_001_h04",
+        "name": "queen_bed_for_shared_hotel_room",
+        "preference_value": "Prefer a queen-size bed for a shared hotel room when no separate-bed arrangement is requested.",
+        "scope_condition": "Personal trips where Elena and her spouse will share one hotel room and have not requested separate beds or another sleeping arrangement.",
+        "scope_key": "spouse_shared_hotel_room",
+        "source_bundle_id": "tm_v04_e2e_bundle_90a7ff1f51d8",
+        "source_habit_instance_id": "tm_v04_e2e_habit_90a7ff1f51d8",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "A king is acceptable for Elena and would also keep both couples in one-bed rooms, but it needlessly gives away the available queen that her history identifies as the preferred option.",
+        "difficulty": "hard",
+        "model": "gpt-5.6-sol",
+        "rationale": "The known preference applies specifically to Elena and her spouse, so they should receive the sole queen. No evidence establishes a bed preference for the cousin and spouse, making the remaining king the allocation that preserves Elena's stated default without assigning either couple twin beds.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Across three separate episodes, Elena established a room-specific policy for stays shared with her spouse: prefer a queen bed when no different sleeping arrangement is requested, while accepting a king as a larger alternative. Both Room 1 and Room 2 will be shared by two adults, and the queen and king rooms are otherwise equivalent, so generic occupancy considerations do not determine which couple should receive which room. Elena's longitudinal preference assigns the queen to her room and leaves the equally suitable king to the other couple.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_001_h04_p01",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Elena is named as the primary traveler and assigned Room 1, which could weakly cue giving her the king room, but that cue is not sufficient to establish a genuine planning preference."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "D"
+        ],
+        "rationale": "Both couples can be assigned the two non-twin rooms, but the query gives no bed preference or other stated basis for deciding which couple should receive the king rather than the queen. A and D are therefore equally defensible. B and C are dominated because each assigns a twin room to one couple while the otherwise equivalent queen room remains available.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A offers more space and a harbor view, while B offers a quieter exposure; neither generically dominates the other. The king is also historically acceptable, making A credible, but the prior sessions show that acceptability is a fallback rather than a reversal of the queen-first ordering when a queen remains available.",
+      "gold_action": "Confirm the queen room with the quiet courtyard exposure and limited view.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_001_s0037",
+        "tm_pd_v05_user_001_s0078",
+        "tm_pd_v05_user_001_s0093"
+      ],
+      "habit_family": "hotel_room_bed_policy",
+      "habit_id": "tm_pd_v05_user_001_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_room_bed_configuration",
+        "boundary_condition": "Apply this per room and do not infer it from the number of travelers or requested rooms.",
+        "condition": "When selecting a shared hotel room without an explicit request for separate beds.",
+        "default_action": "Prefer a room with a queen-size bed; a king-size bed may be accepted when offered as a larger alternative.",
+        "exception_condition": "Honor explicit twin-bed, separate-bed, or other room-specific sleeping arrangements instead.",
+        "family": "hotel_room_bed_policy",
+        "habit_id": "tm_pd_v05_user_001_h04",
+        "name": "queen_bed_for_shared_hotel_room",
+        "preference_value": "Prefer a queen-size bed for a shared hotel room when no separate-bed arrangement is requested.",
+        "scope_condition": "Personal trips where Elena and her spouse will share one hotel room and have not requested separate beds or another sleeping arrangement.",
+        "scope_key": "spouse_shared_hotel_room",
+        "source_bundle_id": "tm_v04_e2e_bundle_90a7ff1f51d8",
+        "source_habit_instance_id": "tm_v04_e2e_habit_90a7ff1f51d8",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "The king is an acceptable larger-bed alternative and adds size and a harbor view, but it is not preferred over an available queen and introduces evening street noise.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "The queen is Elena's default for a room shared with her spouse. Its quiet courtyard exposure also avoids the king room's stated evening-noise drawback, while no evidence indicates that size or harbor view should override the bed preference.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The cited history consistently orders the configurations for a room Elena shares with her spouse: a queen is the default, a king is acceptable as a larger alternative, and separate-bed configurations require an explicit request. The queen and king each offer a different but broadly comparable room benefit, so the current trip details do not resolve the choice without that longitudinal policy.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_001_h04_p02",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The alternatives encode preference-sensitive tradeoffs involving noise, view, room size, bed arrangement, early check-in, and late checkout, but no query wording is sufficient to rank those preferences."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "Each option offers a different defensible tradeoff, and the query states no preference or schedule constraint that resolves them: space and harbor view versus noise, quiet versus limited view, early check-in versus bed configuration and no harbor view, or late checkout versus twin beds and a smaller bathroom. Selecting one would require an unstated preference or trip need.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A honors the explicit request but incorrectly propagates it to another room and stay. The query alone leaves the second hotel’s equal-cost configurations unresolved; history is needed both to restore the default and to understand that documented separate-bed arrangements are room-specific exceptions rather than permanent revisions.",
+      "gold_action": "Honor the lodge-specific twin request, then use a queen room at the city hotel.",
+      "gold_choice_id": "C",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_001_s0037",
+        "tm_pd_v05_user_001_s0066",
+        "tm_pd_v05_user_001_s0078"
+      ],
+      "habit_family": "hotel_room_bed_policy",
+      "habit_id": "tm_pd_v05_user_001_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_room_bed_configuration",
+        "boundary_condition": "Apply this per room and do not infer it from the number of travelers or requested rooms.",
+        "condition": "When selecting a shared hotel room without an explicit request for separate beds.",
+        "default_action": "Prefer a room with a queen-size bed; a king-size bed may be accepted when offered as a larger alternative.",
+        "exception_condition": "Honor explicit twin-bed, separate-bed, or other room-specific sleeping arrangements instead.",
+        "family": "hotel_room_bed_policy",
+        "habit_id": "tm_pd_v05_user_001_h04",
+        "name": "queen_bed_for_shared_hotel_room",
+        "preference_value": "Prefer a queen-size bed for a shared hotel room when no separate-bed arrangement is requested.",
+        "scope_condition": "Personal trips where Elena and her spouse will share one hotel room and have not requested separate beds or another sleeping arrangement.",
+        "scope_key": "spouse_shared_hotel_room",
+        "source_bundle_id": "tm_v04_e2e_bundle_90a7ff1f51d8",
+        "source_habit_instance_id": "tm_v04_e2e_habit_90a7ff1f51d8",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "It correctly honors the lodge-specific twin request, and a king is generally acceptable, but the city hotel has an available queen, which remains the preferred default.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "The explicit twin-bed requirement governs only the first stay. The second stay has no exception, so Elena's general queen preference resumes there.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The explicit twin request governs the lodge room, while its wording limits it to that stay. The second property must be evaluated independently; with no separate-bed request there, the usual shared-room configuration applies.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_001_h04_p03",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The first stay's explicit twin-bed requirement may be improperly transferred to the second stay, cueing A.",
+          "The wording 'for this stay' and the portal's separate selections explicitly prevent treating the lodge requirement as a general preference."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "C",
+          "D"
+        ],
+        "rationale": "The lodge must have twin beds, eliminating B. The requirement is explicitly limited to the first stay, and the second stay has no sleeping-arrangement note. Twin, queen, and king choices for the city hotel therefore remain reasonably defensible at identical rates and terms.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the king room at the selected hotel for $219."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book the two-queen room at the selected hotel for $219."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book the queen room at the selected hotel for $219."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book a queen room at a nearby hotel for $211 with a longer tram ride."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "evidence_disambiguation"
+      },
+      "probe_id": "tm_pd_v05_user_001_h04_p00",
+      "query": "For an upcoming personal theater weekend in Quebec City, Elena and her spouse will occupy one room. The booking platform has copied an unresolved note reading ‘two beds’ from a completed work-trip reservation into the new draft, but neither traveler’s current intake form mentions a sleeping arrangement. The selected hotel offers queen, king, and two-queen rooms at the same $219 rate with identical terms, and the rate expires before either traveler can be reached. What should the planner book?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_001",
+      "visible_history_scope": {
+        "max_session_index": 123
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Assign the standard king room to Elena and her spouse, and assign the standard queen room to the cousin and the cousin's spouse."
+        },
+        {
+          "choice_id": "B",
+          "text": "Assign the standard king room to Elena and her spouse, and assign a standard twin room to the cousin and the cousin's spouse."
+        },
+        {
+          "choice_id": "C",
+          "text": "Assign a standard twin room to Elena and her spouse, and assign the standard king room to the cousin and the cousin's spouse."
+        },
+        {
+          "choice_id": "D",
+          "text": "Assign the standard queen room to Elena and her spouse, and assign the standard king room to the cousin and the cousin's spouse."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "cross_context_transfer"
+      },
+      "probe_id": "tm_pd_v05_user_001_h04_p01",
+      "query": "For a personal trip to Lisbon, Elena and her spouse will share Room 1, while Elena's adult cousin and the cousin's spouse will share Room 2. Neither couple has stated a bed request for this trip. The selected hotel has exactly one standard queen room, one standard king room, and several standard twin rooms. All available rooms have the same rate, cancellation terms, floor, view category, room size, and check-in availability. Which allocation should the planner make?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_001",
+      "visible_history_scope": {
+        "max_session_index": 123
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Confirm the larger king room with the harbor view and some evening street noise."
+        },
+        {
+          "choice_id": "B",
+          "text": "Confirm the queen room with the quiet courtyard exposure and limited view."
+        },
+        {
+          "choice_id": "C",
+          "text": "Confirm the two-double room with early check-in and no harbor view."
+        },
+        {
+          "choice_id": "D",
+          "text": "Confirm the twin room with late checkout and the smaller bathroom."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "evidence_disambiguation"
+      },
+      "probe_id": "tm_pd_v05_user_001_h04_p02",
+      "query": "For a personal stay in Copenhagen, Elena and her spouse are sharing one room and have not specified a sleeping arrangement for this trip. At the booked rate, the hotel offers either a queen room facing a quiet interior courtyard with a limited view or a larger king room facing the harbor with some evening street noise. A two-double room with early check-in but no harbor view and a twin room with late checkout but a smaller bathroom are also available. All four choices have the same cancellation terms, floor, status benefits, and total price. What should the planner confirm?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_001",
+      "visible_history_scope": {
+        "max_session_index": 123
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Choose twin beds at the lodge and twin beds at the city hotel."
+        },
+        {
+          "choice_id": "B",
+          "text": "Choose queen beds at the lodge and queen beds at the city hotel."
+        },
+        {
+          "choice_id": "C",
+          "text": "Choose twin beds at the lodge and a queen bed at the city hotel."
+        },
+        {
+          "choice_id": "D",
+          "text": "Choose twin beds at the lodge and a king bed at the city hotel."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "exception"
+      },
+      "probe_id": "tm_pd_v05_user_001_h04_p03",
+      "query": "A personal itinerary has two consecutive hotel stays for Elena and her spouse, with one shared room at each property. The lodge request form for the first stay records ‘twin beds required for this stay’ because their schedules will conflict. The city-hotel request for the second stay contains no sleeping-arrangement note. Both hotels have queen, king, and twin inventory at identical rates and terms, and the package portal permits a separate selection for each property. Which pair should the planner choose?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_001",
+      "visible_history_scope": {
+        "max_session_index": 123
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 6,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "cross_context_transfer": 1,
+      "evidence_disambiguation": 2,
+      "exception": 1
+    }
+  }
+}

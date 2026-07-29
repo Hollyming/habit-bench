@@ -1,0 +1,139 @@
+{
+  "cache_fingerprint": "154aa5571b9a6c11821840af7c8aafa6f9c13bf03484d4b070324ee850e2db95",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya established only trip-specific constraints and choices: economy airfare capped at $690, immediate Friday departure from a site near Union Station, carry-on travel, rejection of the tight early return, and a request to retain two nonstop candidates without booking. No recurring preference was introduced.",
+        "evidence_topology": {
+          "episode_id": "client-denver-009",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 46,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly excludes the afternoon return for this trip because the airport margin is too tight, and explicitly retains nonstop itineraries over the cheaper connecting option. Neither statement establishes a durable cross-trip default.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Then take the 2:05 flight out of consideration. What do the combinations with the evening return cost?",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "That savings is not worth risking the first morning. Keep the two nonstops.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to sort out flights for a Denver rollout review. The first meeting is Wednesday at 10:30 a.m., and we finish Friday at noon. I can leave Minneapolis after 4:00 p.m. Tuesday, and airfare needs to stay at or below $690 in economy.",
+          "role": "user"
+        },
+        {
+          "content": "What part of Denver is the client site in, and can you leave for the airport immediately when the Friday meeting ends? That will determine whether the early-afternoon return is realistic.",
+          "role": "assistant"
+        },
+        {
+          "content": "The meetings are at their office two blocks from Union Station. I can leave right at noon Friday. I’ll have only a carry-on.",
+          "role": "user"
+        },
+        {
+          "content": "I found three relevant Tuesday departures. Two are nonstop: one arrives DEN at 7:15 p.m. and the other at 10:05 p.m. The less expensive itinerary arrives at 8:40 p.m. but connects in Chicago with only 42 minutes between flights. Friday has a 2:05 p.m. nonstop and a 6:35 p.m. nonstop. I’m checking the airport margins and the round-trip combinations now.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please include the actual travel time from the office, not just the flight schedule. The 2:05 return sounds questionable.",
+          "role": "user"
+        },
+        {
+          "content": "It is tight. From the office, allow about 8 to 12 minutes to walk to Union Station, up to 15 minutes for the next A Line train, and 37 minutes on the train. With the terminal walk, that puts you at airline security around 1:00 to 1:10 p.m. if the meeting ends exactly on time. That is only 55 to 65 minutes before departure. A rideshare can take 35 to 55 minutes in Friday traffic, so it does not create a dependable cushion.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then take the 2:05 flight out of consideration. What do the combinations with the evening return cost?",
+          "role": "user"
+        },
+        {
+          "content": "With the 6:35 p.m. Friday return, the Tuesday nonstop arriving at 7:15 p.m. is $648 round trip, and the nonstop arriving at 10:05 p.m. is $612. The connecting outbound paired with that return is $558. All three are economy fares and fit the $690 allowance.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the connection protected on one ticket? And how much time would it really save me in Denver compared with the late nonstop?",
+          "role": "user"
+        },
+        {
+          "content": "It is on one ticket, so the airline would rebook you after a missed connection, but 42 minutes leaves little recovery room if the first segment is late. Its scheduled Denver arrival is 8:40 p.m., 1 hour 25 minutes after the earlier nonstop and 1 hour 25 minutes before the late nonstop. The connection makes the total trip roughly two hours longer than either nonstop despite its middle arrival time.",
+          "role": "assistant"
+        },
+        {
+          "content": "That savings is not worth risking the first morning. Keep the two nonstops. How should I think about the Friday gap before 6:35?",
+          "role": "user"
+        },
+        {
+          "content": "You would have a comfortable buffer. After the noon finish, you could remain near Union Station for lunch or follow-up work and board the A Line around 3:45 to 4:00 p.m. That should put you at DEN around 4:35 to 4:50, about 1 hour 45 minutes before departure. Even leaving downtown at 4:15 would ordinarily preserve a workable carry-on margin, though the earlier train gives better protection against service delays.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Narrow it to those two round trips and don’t book yet. I need to decide whether arriving earlier Tuesday is worth the extra $36.",
+          "role": "user"
+        },
+        {
+          "content": "The shortlist is now limited to two nonstop round trips, both returning Friday at 6:35 p.m. Option one arrives Denver Tuesday at 7:15 p.m. and costs $648. Option two arrives at 10:05 p.m. and costs $612. Both are within the $690 allowance; the earlier arrival buys 2 hours 50 minutes for $36. The 2:05 p.m. Friday return and the 42-minute connecting itinerary are excluded. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0046",
+      "session_index": 46,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Nashville client workshop trip for April 12-15, 2027 remains booked at a projected $1,498. The central Oregon coast trip for September 7-13, 2027 remains booked at $3,470; its revised outbound, Budget pickup, paved detour, Salem stop, and overnight inn access plan remain confirmed, with a working 4:00 a.m. arrival September 8. A new Denver rollout-review trip remains unbooked: two feasible nonstop round trips are shortlisted at $648 and $612, both within the $690 airfare allowance, and Maya is deciding whether the earlier Tuesday arrival warrants the $36 difference. The Raleigh breakfast refund and corrected folio remain pending. The coastal Georgia trip and the separate January 2027 Denver client trip remain unbooked. The San Diego November 2026 trip remains booked. Philadelphia deposit-release and shuttle details, plus an earlier Nashville refund reconciliation, remain unresolved.",
+  "verification": {
+    "46": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Then take the 2:05 flight out of consideration. What do the combinations with the evening return cost?",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "That savings is not worth risking the first morning. Keep the two nonstops.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly excludes the afternoon return for this trip because the airport margin is too tight, and explicitly retains nonstop itineraries over the cheaper connecting option. Neither statement establishes a durable cross-trip default."
+    }
+  }
+}

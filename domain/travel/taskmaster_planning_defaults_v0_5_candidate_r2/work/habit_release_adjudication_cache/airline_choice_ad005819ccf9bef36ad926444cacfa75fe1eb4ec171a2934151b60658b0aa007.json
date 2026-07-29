@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "ad005819ccf9bef36ad926444cacfa75fe1eb4ec171a2934151b60658b0aa007",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "airline_choice.nonexclusive_preferred_carrier.jetblue",
+      "boundary_condition": "Apply only to flight airline choice; do not infer loyalty status, route, schedule, cabin class, fare type, or an exclusive-carrier requirement.",
+      "canonical_value": "include_jetblue_as_nonexclusive_preferred_flight_carrier",
+      "condition": "When searching for flights and the user has not specified a conflicting airline requirement.",
+      "default_action": "Include JetBlue among preferred carrier options and surface viable JetBlue flights, but do not require JetBlue or rank it above other explicitly acceptable airlines without current-trip support.",
+      "exception_condition": "If JetBlue is unavailable, materially worse on required constraints, or the current request specifies a different carrier requirement that excludes JetBlue, use the current request instead.",
+      "input_ids": [
+        "tm_v04_habit_0b70e091b8ab"
+      ],
+      "name": "Include JetBlue among preferred flight carriers",
+      "preference_value": "JetBlue as a non-exclusive preferred or acceptable airline",
+      "rationale": "Supported by multiple longitudinal examples where JetBlue is preferred or acceptable. The evidence is non-exclusive and sometimes lists JetBlue alongside other acceptable airlines, so the policy should remain a soft carrier-inclusion preference rather than an exclusive or top-ranked requirement.",
+      "representative_id": "tm_v04_habit_0b70e091b8ab"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "airline_choice.nonexclusive_preferred_carrier.delta",
+      "boundary_condition": "Applies only to flight carrier selection; do not apply to hotels, ground transport, destinations, dates, routes, cabin class, or stopover requirements.",
+      "canonical_value": "include_delta_as_nonexclusive_preferred_flight_carrier",
+      "condition": "When searching for or selecting flights and carrier choice is open after required schedule, cabin, stop, and availability constraints are considered.",
+      "default_action": "Surface and favor feasible Delta options when available, while still allowing comparable major-carrier options such as United or American when they satisfy the stated trip needs.",
+      "exception_condition": "If the current request names a different carrier, includes Delta only as one of several acceptable carriers, or Delta options fail required timing, cabin, stop, availability, or itinerary constraints, use the suitable non-Delta option.",
+      "input_ids": [
+        "tm_v04_habit_4808ee3cd2cf"
+      ],
+      "name": "Include Delta among preferred flight carriers",
+      "preference_value": "Delta as a non-exclusive preferred or acceptable airline",
+      "rationale": "Supported by multiple examples where Delta is preferred, acceptable, or specifically queried. The evidence also includes Delta as one option among several, so the policy should be retained only as a non-exclusive soft preference subject to itinerary constraints.",
+      "representative_id": "tm_v04_habit_4808ee3cd2cf"
+    }
+  ]
+}

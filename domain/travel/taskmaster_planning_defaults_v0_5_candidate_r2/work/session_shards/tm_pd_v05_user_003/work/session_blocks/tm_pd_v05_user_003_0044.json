@@ -1,0 +1,187 @@
+{
+  "cache_fingerprint": "ab8782cca1f73dc5f9ccc622687ae0a75b402ee7d1c5b9e81d656249cb4664ef",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip planning only. Priya chose a trip-specific flight and split-hotel structure, separated business and personal costs, and requested confirmation of late-arrival handling; no recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "professional-boston-extension-01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 44,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user selected the offered 8:10 a.m. departure for this trip, supporting the morning-departure habit, and explicitly accepted economy as a one-trip override to the business-class preference. No user utterance establishes the carrier, hotel-rating, room-amenity, or wellness-amenity habits, and the dialogue contains no durable preference revision.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.94,
+            "evidence_quote": "Use the earlier Tuesday flight for me.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Economy is fine for both of us.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h03",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to sketch out Boston for the quality-systems symposium. It starts Wednesday, September 16 at 8:30 a.m. and ends Friday the 18th at 3:00 p.m. My employer will cover Tuesday travel and the symposium hotel through Friday checkout. My spouse may fly in Friday evening, and we would stay through Sunday for a museum reservation on Saturday.",
+          "role": "user"
+        },
+        {
+          "content": "I can separate the work and personal portions. Which Bay Area airport should I check, and does the symposium have a host hotel or contracted rate? I also need the Saturday museum time because it may affect where you stay Friday and Saturday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check SFO. The host is the Westin Copley Place at $329 before tax, and the symposium dinner is there Thursday from 6:30 to 9:00. Our Isabella Stewart Gardner Museum entry is Saturday at 10:30 a.m.",
+          "role": "user"
+        },
+        {
+          "content": "For Tuesday, two workable nonstop outlines are an 8:10 a.m. SFO departure reaching Boston at 4:45 p.m. for about $447 round trip, or an 11:35 a.m. departure arriving at 8:10 p.m. for about $398. The earlier flight leaves time for dinner and handles a delay better before the 8:30 Wednesday start. A Sunday return around 5:40 p.m. would land at SFO near 9:15 p.m.; pricing depends on whether your spouse uses the same flights or only joins for the return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the earlier Tuesday flight for me. My spouse can leave SFO after work Friday, ideally not before 4:30 p.m., and then we should return together Sunday. Economy is fine for both of us.",
+          "role": "user"
+        },
+        {
+          "content": "A Friday 5:25 p.m. nonstop reaches BOS at 1:55 a.m. Saturday, which is late but avoids leaving work early. A 4:45 p.m. departure arrives at 1:15 a.m. There is also a 2:20 p.m. departure arriving at 10:50 p.m., but that conflicts with the after-work requirement. For Sunday, the 5:40 p.m. nonstop works for both travelers. Your open-jaw-like ticket structure is actually two round trips with different outbound dates: Tuesday-Sunday for you and Friday-Sunday for your spouse.",
+          "role": "assistant"
+        },
+        {
+          "content": "The 5:25 Friday is too late on arrival. Check one-stop options if they get in earlier without leaving before 4:30.",
+          "role": "user"
+        },
+        {
+          "content": "Connections do not improve the arrival: the reasonable ones reach Boston after 6:00 a.m. Saturday. Because of the time difference and flight duration, a post-4:30 p.m. departure from SFO cannot reach Boston much before 1:00 a.m. The 4:45 p.m. nonstop is the best fit, arriving at 1:15 a.m. If arrival time matters more, the practical change is for your spouse to leave work earlier for the 2:20 p.m. nonstop.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep 4:45 as the working choice. Now compare keeping the Westin Friday and Saturday against moving after I check out Friday. I do not want employer and personal nights blended on one folio.",
+          "role": "user"
+        },
+        {
+          "content": "The Westin can split the stay into a work reservation for Tuesday through Friday checkout and a separate personal reservation for Friday and Saturday, subject to linking the bookings so you can remain in the room. At the public flexible rate, the personal stay is about $786 including tax for two nights. A Back Bay alternative near Copley is about $612 including tax, while a hotel near the Gardner Museum is about $548. Moving saves $174 to $238 but means storing bags after Friday checkout and transferring after the symposium ends.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would the museum-area hotel make the airport arrival difficult at 1:15 Saturday morning? Also, I will have the symposium dinner Thursday, so I am not moving before Friday.",
+          "role": "user"
+        },
+        {
+          "content": "At that hour, ground transportation from BOS to either Copley or the museum area is primarily taxi or rideshare. Allow roughly 20 to 30 minutes to Copley and 25 to 35 minutes to the museum area, depending on tunnel and road work. The difference is minor late at night. Your Friday sequence would be checkout and bag storage at the Westin, symposium sessions until 3:00, then retrieve the bags and move before your spouse arrives.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the actual hotel near the museum, and does it have a staffed desk overnight? My spouse needs to be able to check in even if the flight slips.",
+          "role": "user"
+        },
+        {
+          "content": "The quoted option is The Verb Hotel, about a 15-minute walk from the Gardner Museum. Its front desk is staffed 24 hours, but a post-midnight arrival should be noted because the reservation begins Friday even though check-in occurs early Saturday. The flexible two-night estimate is $548 including tax. The room should be guaranteed with a card, and your spouse's full name should be added so either of you can receive the key.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare that with simply staying at the Westin in terms of Saturday, not just price.",
+          "role": "user"
+        },
+        {
+          "content": "Staying at the Westin avoids a Friday move and lets you keep one physical room if the work and personal reservations are linked. Saturday morning, allow about 20 minutes by car or roughly 35 minutes on transit to the Gardner. At The Verb, you can walk to the 10:30 entry in about 15 minutes and have less risk from traffic. The tradeoff is a Friday transfer after the symposium and a very late independent check-in for your spouse. The Westin costs about $238 more for the weekend.",
+          "role": "assistant"
+        },
+        {
+          "content": "Could I move to The Verb at 3:15 Friday, check in, and leave my spouse as the late arrival? I would rather settle the room before going back out.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Assuming standard 3:00 p.m. check-in, you could collect your bags after the 3:00 symposium close, take a car around 3:20, and reach The Verb near 3:40. Check in under your name, add your spouse as an authorized guest, and tell the desk to expect arrival around 1:45 a.m. That removes most late-arrival risk. Your spouse can take a taxi or rideshare directly from BOS while you remain at the hotel.",
+          "role": "assistant"
+        },
+        {
+          "content": "That sounds cleaner. Before we settle it, price the flights separately enough that I can see what goes to work and what is personal.",
+          "role": "user"
+        },
+        {
+          "content": "Current estimates are $447 for your Tuesday-Sunday economy ticket and $526 for your spouse's Friday-Sunday economy ticket, both using the shared 5:40 p.m. Sunday return. Your employer would receive your $447 airfare and the Westin work reservation for Tuesday, Wednesday, and Thursday nights. Personal expenses would be your spouse's $526 airfare, The Verb for Friday and Saturday at about $548 including tax, and weekend ground transportation. Any fare difference caused by extending your return to Sunday may need separate documentation under your employer's reimbursement rules.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good point. Show me what my ticket would cost if I returned Friday after the symposium, so I have the comparison for reimbursement.",
+          "role": "user"
+        },
+        {
+          "content": "A Tuesday-Friday itinerary using the same Tuesday outbound and a 6:10 p.m. Friday nonstop is currently about $409. Your Tuesday-Sunday ticket is about $447, so the leisure extension adds approximately $38 at today's fares. The Friday flight leaves three hours after the symposium ends, making it a credible business-only comparison. Save a dated fare screenshot or quote when booking because the comparison can change quickly.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use that split: work gets $409 and I will treat the additional $38 as personal, subject to what our expense team accepts. What is the total personal estimate now, including reasonable local transportation but not meals or museum tickets?",
+          "role": "user"
+        },
+        {
+          "content": "The personal estimate is $1,242: $38 for your extension, $526 for your spouse's flight, $548 for The Verb, and about $130 for local transportation. The transportation allowance covers your Friday move, your spouse's overnight airport ride, Saturday local travel if needed, and a Sunday ride to BOS. Actual rides, tolls, and gratuities may vary. The employer side is about $1,546: $409 business airfare plus approximately $1,137 for three Westin nights with estimated tax.",
+          "role": "assistant"
+        },
+        {
+          "content": "I am comfortable with The Verb. Give me the bookable structure and flag anything that still needs confirmation. Do not book yet.",
+          "role": "user"
+        },
+        {
+          "content": "Bookable structure: reserve your economy ticket SFO-BOS Tuesday, September 15 at 8:10 a.m., returning BOS-SFO Sunday, September 20 at 5:40 p.m., currently about $447. Retain the $409 Tuesday-Friday comparison and classify the estimated $38 extension difference as personal pending expense-team approval. Reserve your spouse on the Friday 4:45 p.m. nonstop to BOS, arriving 1:15 a.m. Saturday, with the same Sunday 5:40 p.m. return, currently about $526. For work, use a separate Westin Copley Place reservation for Tuesday through Friday checkout at the symposium rate, estimated at $1,137 with tax. For personal lodging, reserve The Verb Friday through Sunday at the flexible rate, about $548 with tax. On Friday, store bags at the Westin, attend through 3:00 p.m., transfer around 3:20, check in, and authorize your spouse for the late arrival. Personal travel is estimated at $1,242 before meals and museum tickets. Still confirm the final taxed Westin total, linked name access and overnight-arrival notation at The Verb, fare rules and baggage charges, and whether the employer accepts the contemporaneous $409 comparison for reimbursement.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0044",
+      "session_index": 44,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh audit travel is complete except for the pending Cedar Park Wednesday refund and unconfirmed rental documentation; retain confirmations, charge and refund records, final folios, and the United receipt. Washington forum travel is booked, including Tuesday luggage service; retain authorization, tracking, and delivery records. Fairmont Sonoma is booked, with written confirmation of the Sunday facial outstanding. Bothell, Chicago, and Carlsbad are booked, with noted confirmations and reimbursement records pending. Scottsdale November 6-10 remains selected but unbooked. Palm Springs November 14-18 is paid; corrected resort documentation remains outstanding. Cypress Spa Lodge remains booked for May 28-June 1 under CYP-52841, with revised spa confirmation SPA-53026 and expected total $2,479.08; room and spa cancellation deadlines remain May 21 and May 28 respectively. Indianapolis supplier-audit flights are complete. The nearby business hotel is booked for July 6-9 under NBH-76428 for $504 including taxes, with the audit-site shuttle charge waived. Prior hotel bookings were canceled under HX-39017 and AC-11864. Thursday transportation is reserved under CAR-70941; add the driver's full name to the hotel authorization by 2:30 p.m. and retain all final records. Boston September 15-20 is outlined but unbooked: Priya would fly Tuesday and return with her spouse Sunday; the spouse would fly Friday evening. Work lodging would be at the Westin Copley Place through Friday checkout, followed by a personal two-night stay at The Verb. Retain a contemporaneous business-only airfare comparison and confirm reimbursement treatment, final hotel totals, fare terms, baggage charges, spouse access, and the overnight-arrival note before booking.",
+  "verification": {
+    "44": {
+      "habit_signals": [
+        {
+          "confidence": 0.94,
+          "evidence_quote": "Use the earlier Tuesday flight for me.",
+          "habit_id": "tm_pd_v05_user_003_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Economy is fine for both of us.",
+          "habit_id": "tm_pd_v05_user_003_h03",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user selected the offered 8:10 a.m. departure for this trip, supporting the morning-departure habit, and explicitly accepted economy as a one-trip override to the business-class preference. No user utterance establishes the carrier, hotel-rating, room-amenity, or wellness-amenity habits, and the dialogue contains no durable preference revision."
+    }
+  }
+}

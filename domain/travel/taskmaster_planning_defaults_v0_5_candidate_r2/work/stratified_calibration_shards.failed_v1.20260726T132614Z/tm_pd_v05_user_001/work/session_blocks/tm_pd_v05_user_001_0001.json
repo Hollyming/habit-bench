@@ -1,0 +1,142 @@
+{
+  "cache_fingerprint": "df849f9500f82b65f957d2d4120d3a1db5d2affad3b452de0f28f2c50753b8bb",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Elena made a trip-specific exception by explicitly excluding United from this Chicago itinerary because its lower fare came with insufficient margin before the fixed Friday dinner; she chose workable nonstops on other carriers without expressing a broader carrier rule.",
+        "evidence_topology": {
+          "episode_id": "ep_016_chicago_family_wedding",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 61,
+          "target_habit_id": "tm_pd_v05_user_001_h02",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly overrides the established afternoon-departure preference for this trip by selecting Friday morning to protect the welcome-dinner schedule, and explicitly excludes United only for this trip. The assistant's earlier presentation of United as one concrete option was neutral option listing, not leakage. No user utterance evidences the connection, seat, hotel-bed, or room-amenity habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Good. Select the Friday morning American nonstop and the Sunday evening Southwest nonstop for both of us.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 1.0,
+            "evidence_quote": "For this trip, leave United out.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_001_h02",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Can we settle the Chicago flights now? I want the two-ticket totals side by side, but also the actual transfer timeline. Friday's welcome dinner is at 6:30 p.m., the ceremony is Saturday, and Sunday brunch should finish close to noon.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. For Friday, the morning nonstop is American from Denver at 8:35 a.m., arriving at O'Hare at 11:58 a.m. The less expensive option is United at 1:05 p.m., arriving at O'Hare at 4:28 p.m. For Sunday, American leaves O'Hare at 2:15 p.m., while Southwest leaves Midway at 6:05 p.m. All four are nonstop. Which hotel are you using so I can calculate the bag stops accurately?",
+          "role": "assistant"
+        },
+        {
+          "content": "The hotel is in River North, near State and Grand. We cannot bring suitcases to brunch, so we need to return to the hotel afterward.",
+          "role": "user"
+        },
+        {
+          "content": "With that hotel, the Friday morning flight should put you at the property around 1:10 p.m. after deplaning, collecting bags, and taking the Blue Line plus a short walk or cab connection. That leaves over five hours for bag drop, lunch, and changing. The afternoon flight would likely reach the hotel around 5:40 p.m.; a modest delay or longer baggage wait could push that past 6:00, leaving little margin before dinner.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Sunday? Assume brunch ends at noon, not earlier.",
+          "role": "user"
+        },
+        {
+          "content": "For the 2:15 p.m. O'Hare departure, you would need to be at the airport by about 12:45 p.m. Returning from brunch to River North, retrieving luggage, and then traveling to O'Hare would take roughly 75 to 100 minutes. It does not work if brunch ends at noon. The 6:05 p.m. Midway flight lets you leave brunch at noon, reach the hotel around 12:30, collect the bags, and depart for Midway around 3:15. You should arrive near 4:00, about two hours before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please give me the totals for both people using the realistic Sunday flight, once with Friday morning and once with Friday afternoon.",
+          "role": "user"
+        },
+        {
+          "content": "Using the Sunday 6:05 p.m. Midway nonstop, the total for two adults is $646 with Friday's 8:35 a.m. American flight. Pairing the same return with Friday's 1:05 p.m. United flight is $520 for two. The morning departure costs $126 more in total.",
+          "role": "assistant"
+        },
+        {
+          "content": "For this trip, leave United out. The $126 savings is not worth risking the welcome dinner. Does the morning itinerary involve changing airports during the trip?",
+          "role": "user"
+        },
+        {
+          "content": "Only in the sense that you arrive Friday at O'Hare and depart Sunday from Midway; there is no same-day airport transfer or connection. You will go from O'Hare to the River North hotel on Friday, then from the hotel to Midway on Sunday.",
+          "role": "assistant"
+        },
+        {
+          "content": "That's fine. What Denver arrival time does the later Sunday flight give us?",
+          "role": "user"
+        },
+        {
+          "content": "The Southwest nonstop is scheduled to arrive in Denver at 7:45 p.m. Mountain Time. Allowing for deplaning and checked bags, you would likely be leaving the airport around 8:20 to 8:40 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Select the Friday morning American nonstop and the Sunday evening Southwest nonstop for both of us. We will check bags. Lay out the hotel and luggage schedule once more before I confirm.",
+          "role": "user"
+        },
+        {
+          "content": "Selected for two adults, pending payment: Friday American nonstop from Denver at 8:35 a.m., arriving O'Hare at 11:58 a.m.; Sunday Southwest nonstop from Midway at 6:05 p.m., arriving Denver at 7:45 p.m. The airfare total is $646 for both travelers. Friday, plan to collect checked bags and reach the River North hotel around 1:10 p.m., leaving ample time for bag drop, check-in if available, and changing before the 6:30 p.m. dinner. Sunday, finish brunch near noon, return to the hotel around 12:30 p.m., retrieve the stored luggage, and leave for Midway at about 3:15 p.m. for an estimated 4:00 p.m. airport arrival. Nothing has been charged yet.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0061",
+      "session_index": 61,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena and her spouse have a Chicago family wedding trip with a Friday 6:30 p.m. welcome dinner, Saturday ceremony, and Sunday brunch ending near noon. Flights are selected for two adults pending payment: a Friday morning nonstop to Chicago and a Sunday evening nonstop back to Denver, totaling $646. They will check bags, reach their River North hotel around early afternoon Friday, return there after Sunday brunch to retrieve stored luggage, and leave for the airport in midafternoon. The previously selected four-night San Diego getaway remains pending payment, with the Saturday evening performance fixed.",
+  "verification": {
+    "61": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Good. Select the Friday morning American nonstop and the Sunday evening Southwest nonstop for both of us.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 1.0,
+          "evidence_quote": "For this trip, leave United out.",
+          "habit_id": "tm_pd_v05_user_001_h02",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly overrides the established afternoon-departure preference for this trip by selecting Friday morning to protect the welcome-dinner schedule, and explicitly excludes United only for this trip. The assistant's earlier presentation of United as one concrete option was neutral option listing, not leakage. No user utterance evidences the connection, seat, hotel-bed, or room-amenity habits."
+    }
+  }
+}

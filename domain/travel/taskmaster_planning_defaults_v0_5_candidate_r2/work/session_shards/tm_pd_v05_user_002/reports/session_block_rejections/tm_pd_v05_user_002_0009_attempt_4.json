@@ -1,0 +1,128 @@
+{
+  "reason": "unnatural_habit_leakage_session_9:The user establishes a trip-specific evening outbound requirement that overrides morning departure selection and explicitly requests a later-day return. Neither statement is presented as a recurring preference. Before any user evidence for a nonstop preference, the assistant filters the outbound and return options to nonstops, so the routing habit leaks; the user's later choices are driven by timing and do not independently establish a general nonstop preference.",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marcus selected two trip-specific Minneapolis combinations pending confirmation of the Thursday meeting end time. No recurring travel preference was established.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "The organizer moved the first Minneapolis meeting to 8:45 Thursday morning, so the same-day flight is out. Compare Wednesday evening flights with one downtown hotel night. I still need a flight home after 4:00 Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll replace the same-day plan with a Wednesday arrival and compare the trip as a whole. What is the downtown office location, and is the hotel reimbursement limit measured before tax or all-in?",
+          "role": "assistant"
+        },
+        {
+          "content": "The office is at Fifth and Nicollet. Hotel reimbursement is up to $300 including tax. Don’t book anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "I found three useful Wednesday nonstops from O’Hare. The 5:35 p.m. departure arrives at 7:07 p.m. and produces a $358 round trip with the 6:20 p.m. Thursday return. The 7:10 p.m. departure arrives at 8:42 p.m. and keeps the previously quoted $329 round trip. There is also an 8:25 p.m. flight arriving at 9:57 p.m.; paired with that return it is $316. All three are currently standard economy fares.",
+          "role": "assistant"
+        },
+        {
+          "content": "Drop the 8:25. Saving $13 isn’t worth getting downtown that late. How practical are the other two from the airport?",
+          "role": "user"
+        },
+        {
+          "content": "The 5:35 flight should put you at a downtown hotel around 7:50 by taxi or rideshare, allowing roughly 25 minutes from landing to curb and another 18 to 25 minutes into downtown. The 7:10 flight points to a hotel arrival around 9:25. Light rail is cheaper at about $2.50, but it takes roughly 35 to 40 minutes to Nicollet Mall plus the walk, so it adds time on this one-night trip.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use car service costs in the totals. I don’t want the comparison depending on perfect train timing. What hotels are actually close to the office?",
+          "role": "user"
+        },
+        {
+          "content": "Three refundable options fit the cap. The Westin Minneapolis is about a four-minute walk from Fifth and Nicollet at $278.40 including tax; cancellation is free until 11:59 p.m. Monday, May 11. Hyatt Centric Downtown is about a six-minute walk at $296.10 all-in; cancellation is free until 6:00 p.m. Wednesday, May 13. Hampton Inn & Suites Downtown is about a nine-minute walk at $251.70 all-in; cancellation is free until 11:59 p.m. Tuesday, May 12.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the Hampton really nine minutes? I thought that was farther up near the theater district.",
+          "role": "user"
+        },
+        {
+          "content": "You’re right to question it. I measured from the hotel’s south entrance to the Nicollet side of the office block; the realistic walk is closer to 11 to 13 minutes depending on the entrance used. The Westin remains about four minutes, and Hyatt Centric is about six minutes.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then compare Westin and Hyatt. Include the airport ride Wednesday and the ride back Thursday. Assume $35 each way unless current estimates are materially different.",
+          "role": "user"
+        },
+        {
+          "content": "Current estimates are $32 to $40 from MSP to either hotel Wednesday evening and $30 to $38 from the office area back to MSP Thursday afternoon. Using your $35 each-way assumption gives $70 in ground transportation. With the 7:10 p.m. outbound and 6:20 p.m. return, total trip cost is $677.40 at the Westin or $695.10 at Hyatt Centric. With the 5:35 p.m. outbound, those totals are $706.40 and $724.10.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the Hyatt costs $17.70 more but gives me until Wednesday evening to cancel?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The Hyatt is $17.70 more than the Westin and allows free cancellation until 6:00 p.m. Wednesday. The Westin’s free-cancellation deadline is Monday night, more than two days before arrival. Both remain within the $300 hotel reimbursement limit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the Thursday flights again. The review may end at 3:30, but they haven’t committed. Is there anything between the 4:00 cutoff and the 6:20 flight?",
+          "role": "user"
+        },
+        {
+          "content": "There is a 4:45 p.m. nonstop from MSP to O’Hare arriving at 6:17 p.m. Paired with the 7:10 p.m. Wednesday outbound, the round trip is $307. Paired with the 5:35 p.m. outbound, it is $336. The next nonstop is the 6:20 p.m. departure arriving at 7:52 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "How late could I leave the office for the 4:45? No checked bag.",
+          "role": "user"
+        },
+        {
+          "content": "For a 4:45 departure, leaving Fifth and Nicollet at 3:15 gives about 90 minutes before takeoff. A typical car ride is 20 to 30 minutes at that hour, leaving roughly an hour at the airport. Departing at 3:30 could work when traffic and security are light, but it has little recovery time. If the meeting truly runs to 3:30, the 6:20 flight is the practical choice.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. The 5:35 Wednesday flight seems unnecessary now. The 7:10 gets me there early enough to sleep, and the morning is straightforward from either hotel.",
+          "role": "user"
+        },
+        {
+          "content": "That narrows the outbound to Wednesday’s 7:10 p.m. nonstop, arriving at 8:42 p.m. The remaining decisions are Westin versus Hyatt Centric and the 4:45 versus 6:20 Thursday return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the Hyatt. The cancellation window is worth the small difference while the organizer is still changing things. Give me one combination if they confirm a 3:15 finish and one if they say 3:30 or later.",
+          "role": "user"
+        },
+        {
+          "content": "For a confirmed 3:15 finish: Wednesday 7:10 to 8:42 p.m., Hyatt Centric at $296.10, and Thursday 4:45 to 6:17 p.m. The flight is $307 and estimated ground transportation is $70, for a total of $673.10. Leaving the office at 3:15 would be necessary.\n\nFor a 3:30 or later finish: the same Wednesday flight and hotel, with Thursday’s 6:20 to 7:52 p.m. return. The flight is $329, producing a $695.10 total. That leaves a much more comfortable airport transfer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do those airfare numbers include the normal taxes and fees? And neither fare is being held, correct?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, both airfare figures include mandatory taxes and carrier fees. Optional seat charges and checked baggage are excluded. Neither itinerary nor the hotel is being held, and prices and availability can change until ticketing and confirmation.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep those two complete combinations. I’ll finalize after the organizer confirms Thursday’s ending time.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll retain both unbooked combinations: $673.10 with the 4:45 p.m. return if the review ends at 3:15, and $695.10 with the 6:20 p.m. return if it ends at 3:30 or later. Both use the Wednesday 7:10 p.m. ORD-MSP flight, one night at Hyatt Centric Downtown, and $70 estimated ground transportation. The hotel is $296.10 including tax with free cancellation through 6:00 p.m. Wednesday, May 13. Nothing has been booked or held.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0009",
+      "session_index": 9,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Marcus's Atlanta regional leadership trip is confirmed for April 13-14. Nonstop flights total $438.20, and the April 13 Embassy Suites stay is confirmed at an estimated $296. Tuesday's meeting ends at 4:30 p.m.; the planned transfer allows sufficient time for the evening flight home. No Atlanta decisions remain unresolved.\n\nThe San Diego family vacation is confirmed for July 18-26 for Marcus Lee, Daniel Lee, and 12-year-old Owen Lee. Flights are booked under confirmation H7K3QP for $1,947. Glorietta Bay Inn is booked under confirmation GBI-847261 for eight nights in a Deluxe Room with Two Queen Beds, with all three travelers correctly listed. Lodging is $4,420 including taxes and mandatory charges; estimated parking is $240 payable at the property. Confirmed airfare and lodging total $6,367, and the projected trip total including parking and the current rental estimate is $7,219. Rental car, checked bags, and seat assignments remain unbooked.\n\nFor the Minneapolis operations review on Thursday, May 14, the 8:45 a.m. start now requires arrival Wednesday, May 13. Two complete unbooked combinations are retained, both using the 7:10-8:42 p.m. ORD-MSP flight, one night at Hyatt Centric Downtown for $296.10 including tax, and $70 estimated ground transportation. If the review ends at 3:15 p.m., the 4:45-6:17 p.m. MSP-ORD return produces a $673.10 trip total. If it ends at 3:30 p.m. or later, the 6:20-7:52 p.m. return produces a $695.10 total. The hotel permits free cancellation through 6:00 p.m. Wednesday, May 13. Nothing is booked or held; final selection awaits the organizer's confirmation of the Thursday ending time."
+}

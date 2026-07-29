@@ -1,0 +1,88 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h02', 'exception') actual=[('tm_pd_v05_user_000_h02', 'support')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Exception evidence: Maya explicitly keeps Delta in the comparison but says that, for this trip, she is open to the SJC carrier because the savings are substantial. The final shortlist therefore retains both the Delta SFO option and the materially cheaper non-Delta SJC option without treating Delta as exclusive.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "Now compare the flights and rentals as complete packages for the Monterey stay. We’re using one hotel base, so I want the airport choice to account for the actual drive and what we lose on the first and last days.",
+          "role": "user"
+        },
+        {
+          "content": "I have the flight anchors: MSP-SFO nonstop at $612 per person, arriving 11:20 a.m., and MSP-SJC with one connection at $498 per person, arriving 2:45 p.m. What are the return times and the rental totals you’re seeing? Also, should I use the $1,700 ceiling for flights plus one car?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, $1,700 total for two tickets and the car. SFO round trip returns at 6:10 p.m. and the rental is $438 all-in. SJC returns at 2:25 p.m. and the rental is $352. Both rentals are for the full trip.",
+          "role": "user"
+        },
+        {
+          "content": "That puts the basic totals at $1,662 through SFO and $1,348 through SJC. I’ll add realistic airport processing and Monterey driving time. Do you also want the mixed-airport versions checked?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. The open-jaw airfare is $570 each for SFO in and SJC out, or $548 each for SJC in and SFO out. The car base is $389 either way, but there’s a $175 different-airport drop fee.",
+          "role": "user"
+        },
+        {
+          "content": "Then SFO-in/SJC-out totals $1,704, and SJC-in/SFO-out totals $1,660. The first misses the ceiling by $4; the second fits, but it combines the later first-day arrival with the longer drive required for the SFO departure. I’ll work out door-to-door timing before narrowing it.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please do. Assume we’ll check one bag, and don’t make the final day depend on unusually light traffic.",
+          "role": "user"
+        },
+        {
+          "content": "For SFO arrival, I’d allow about 50 minutes from landing to reaching the rental-car exit, then 2 hours 15 minutes to Monterey with normal summer traffic. An 11:20 landing therefore gets you to the hotel around 2:25 p.m., with a prudent range of 2:10-3:00.\n\nFor SJC, allow about 40 minutes for the bag and rental pickup, then 1 hour 20 minutes to Monterey. The 2:45 arrival reaches the hotel around 4:45 p.m., with a range of roughly 4:30-5:20.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the departure side? I’d rather not count a 6:10 flight as giving us the whole day if we have to leave Monterey early anyway.",
+          "role": "user"
+        },
+        {
+          "content": "For the 6:10 p.m. SFO flight, I’d leave Monterey by 12:30 p.m. That allows up to 2 hours 45 minutes for traffic, 30 minutes to refuel and return the car, and arrival at the terminal about 2 hours before departure.\n\nFor the 2:25 p.m. SJC flight, leaving at 10:15 a.m. is reasonable: up to 1 hour 40 minutes driving, 30 minutes for fuel and return, and about 2 hours at the terminal. So SFO preserves lunch at most, while SJC effectively makes the final day a departure morning.",
+          "role": "assistant"
+        },
+        {
+          "content": "Delta is the SFO nonstop. I do like having it in the comparison, but for this trip I’m open to the SJC carrier because the difference is substantial. Which two combinations survive?",
+          "role": "user"
+        },
+        {
+          "content": "The two strongest combinations are the same-airport round trips.\n\nSFO round trip: Delta nonstop both ways, $1,224 for two tickets plus $438 car, or $1,662 total. Likely hotel arrival is about 2:25 p.m.; leave Monterey around 12:30 p.m. on the final day. It is under the ceiling by $38 and gives you the most usable first day, but only a modest final-day advantage once the longer drive and airport buffer are included.\n\nSJC round trip: one connection each way, $996 for two tickets plus $352 car, or $1,348 total. Likely hotel arrival is about 4:45 p.m.; leave around 10:15 a.m. on the final day. It saves $314, though you give up roughly 2 hours 20 minutes on arrival day and accept connection risk.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the mixed versions aren’t worth retaining?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. SFO-in/SJC-out costs $1,704, just over the ceiling, because the $175 drop fee erases the open-jaw benefit. SJC-in/SFO-out fits at $1,660, but it produces the weakest schedule combination: the late arrival associated with SJC plus a 12:30 p.m. departure from Monterey for SFO. It costs only $2 less than the SFO round trip while losing the nonstop outbound and the earlier arrival.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the SFO round trip and SJC round trip as the two finalists. Don’t book either yet.",
+          "role": "user"
+        },
+        {
+          "content": "Retained, not booked:\n\nSFO round trip: $1,662 total for two Delta nonstop tickets and the rental car. Estimated Monterey arrival is 2:10-3:00 p.m.; plan to leave for SFO at 12:30 p.m. on the final day.\n\nSJC round trip: $1,348 total for two connecting tickets and the rental car. Estimated Monterey arrival is 4:30-5:20 p.m.; plan to leave for SJC at 10:15 a.m. on the final day.\n\nBoth stay within the $1,700 transportation ceiling. The practical choice is $314 more for the earlier, nonstop SFO arrival versus the lower-cost SJC package with less usable time on both travel days.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0056",
+      "session_index": 56,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya’s Carolinas client-trip transportation is set, including a one-way rental picked up Tuesday evening and returned at Richmond airport Friday. Hotel selections remain unbooked: Queen City SouthPark for Tuesday at an estimated complete cost of $276.40 and West Broad Suites in Richmond for Wednesday and Thursday at $519.83, or $796.23 combined. The Richmond stay is refundable until 6 p.m. Wednesday. The earlier Aurora trip still has two unbooked flight finalists at $676 and $622. For the one-base Monterey leisure stay, two unbooked transportation finalists remain: SFO round trip at $1,662 total with an estimated 2:10-3:00 p.m. hotel arrival and a 12:30 p.m. final-day departure from Monterey, or SJC round trip at $1,348 with an estimated 4:30-5:20 p.m. hotel arrival and a 10:15 a.m. final-day departure. Both include two tickets and one rental car and fit the $1,700 ceiling; mixed-airport combinations were eliminated."
+}

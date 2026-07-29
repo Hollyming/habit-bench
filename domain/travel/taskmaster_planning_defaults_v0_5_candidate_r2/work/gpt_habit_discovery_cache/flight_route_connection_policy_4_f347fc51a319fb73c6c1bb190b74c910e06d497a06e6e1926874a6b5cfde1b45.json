@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "f347fc51a319fb73c6c1bb190b74c910e06d497a06e6e1926874a6b5cfde1b45",
+  "habits": [
+    {
+      "boundary_condition": "Use the one-stop fallback when no nonstop itinerary exists or the nonstop fare exceeds the travel budget.",
+      "bundle_id": "tm_v04_e2e_bundle_f8c25764b8d8",
+      "condition": "When searching for flights, prioritize nonstop options.",
+      "confidence": 0.96,
+      "decision": "accept",
+      "default_action": "Search for nonstop flights first; if they are unavailable or unaffordable, offer one-stop options and favor a manageable, shorter layover.",
+      "exception_condition": "Do not treat long or multiple layovers as equivalent fallbacks; surface layover duration and avoid extended airport time when alternatives exist.",
+      "family": "flight_route_connection_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_f8c25764b8d8",
+      "induced_at": "2026-07-25T10:16:37.566441+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer nonstop flights with a one-stop fallback",
+      "preference_value": "nonstop preferred; one stop acceptable when nonstop is unavailable or impractical",
+      "rationale": "Across three independent flight-planning conversations, the user consistently prefers nonstop service but accepts one stop when availability or price rules out nonstop travel, with attention to layover quality.",
+      "reasoning_effort": "high",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Establishes nonstop as the preferred default; the later acceptance of one stop after nonstop is unavailable supplies the fallback context.",
+          "conversation_id": "dlg-b5d5dbe3-c1fe-4d40-83d0-86d6ee3d347e",
+          "exact_user_quote": "I would like to go in business class and I would like to go nonstop if possible.",
+          "instruction_id": "flight-13",
+          "turn_index": 11
+        },
+        {
+          "contribution": "Explicitly states a reusable nonstop preference and permits connections when nonstop exceeds budget, while preferring limited airport time.",
+          "conversation_id": "dlg-78de9237-4c9a-4923-a509-25c657c48f63",
+          "exact_user_quote": "You know nonstop is always a preference of mine but I don't want to pay more than $1,600 roundtrip. So if you can't find it nonstop under $1,600 I'd say I'm willing to have a stopover or maybe two, but I don't want to spend to much time in other airports.",
+          "instruction_id": "flight-5",
+          "turn_index": 8
+        },
+        {
+          "contribution": "Directly confirms nonstop as the default and one layover as the acceptable connection limit.",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "exact_user_quote": "I'd prefer non-stop but I'm okay with at most one layover.",
+          "instruction_id": "flight-7",
+          "turn_index": 12
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I would like to go in business class and I would like to go nonstop if possible.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-b5d5dbe3-c1fe-4d40-83d0-86d6ee3d347e",
+          "habitual_language": false,
+          "instruction_id": "flight-13",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 11,
+          "user_utterance": "I would like to go in business class and I would like to go nonstop if possible."
+        },
+        {
+          "annotated_segment": "You know nonstop is always a preference of mine but I don't want to pay more than $1,600 roundtrip. So if you can't find it nonstop under $1,600 I'd say I'm willing to have a stopover or maybe two, but I don't want to spend to much time in other airports.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-78de9237-4c9a-4923-a509-25c657c48f63",
+          "habitual_language": false,
+          "instruction_id": "flight-5",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 8,
+          "user_utterance": "You know nonstop is always a preference of mine but I don't want to pay more than $1,600 roundtrip. So if you can't find it nonstop under $1,600 I'd say I'm willing to have a stopover or maybe two, but I don't want to spend to much time in other airports."
+        },
+        {
+          "annotated_segment": "I'd prefer non-stop but I'm okay with at most one layover.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "habitual_language": false,
+          "instruction_id": "flight-7",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 12,
+          "user_utterance": "I'd prefer non-stop but I'm okay with at most one layover."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-b5d5dbe3-c1fe-4d40-83d0-86d6ee3d347e",
+    "dlg-78de9237-4c9a-4923-a509-25c657c48f63",
+    "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc"
+  ]
+}

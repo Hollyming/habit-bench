@@ -1,0 +1,166 @@
+{
+  "cache_fingerprint": "4f4d670a11dba0ba2771fc5fd4dfb6eb197b3a26d77a78912077bd1bf5d71a42",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Planned a new solo Atlanta workshop trip using trip-specific comparisons of two Monday nonstop arrivals, two Wednesday nonstop returns, three Midtown hotels, airport transportation, checked baggage, and schedule-overrun margins. Elena selected the earlier Monday arrival, the Courtyard Atlanta Midtown for two nights, and the 7:55 p.m. Wednesday nonstop to Denver, subject to fare, hotel-total, luggage-storage, and operating-detail verification.",
+        "evidence_topology": {
+          "episode_id": "ep_012_atlanta_rights_workshop",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 43,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selects the 9:05 a.m. Monday departure for this trip, overriding the established afternoon-departure default because the morning option provides a safer margin before the hosted dinner. No user utterance evidences the connection, carrier, seat, bed, or room-amenity habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Then choose Combination B: earlier Monday flight, Courtyard for two nights, and the 7:55 Wednesday nonstop.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to plan a quick Atlanta trip for a rights workshop. The hosted dinner is Monday at 6:30 p.m., sessions start Tuesday at 8:30, and everything ends Wednesday at 4:00. I need two hotel nights and I would like to get back to Denver Wednesday night if the timing is sensible.",
+          "role": "user"
+        },
+        {
+          "content": "What dates are the Monday through Wednesday, and where in Atlanta are the dinner and workshop? That will determine whether a Midtown hotel and MARTA are practical.",
+          "role": "assistant"
+        },
+        {
+          "content": "Monday, April 20, through Wednesday, April 22. Both are in Midtown near Peachtree and 14th. The dinner is at the hotel where the workshop is being held, but I do not have to stay there.",
+          "role": "user"
+        },
+        {
+          "content": "I found two useful Monday nonstop patterns from Denver. One leaves at 9:05 a.m. and is scheduled into Atlanta at 2:05 p.m.; the other leaves at 10:10 a.m. and arrives at 3:12 p.m. With the two-hour time change, both preserve the morning departure from Denver. The earlier flight gives about four hours twenty-five minutes before dinner, while the later one gives three hours eighteen minutes before dinner, before allowing for deplaning and the trip to Midtown. Do you want me to price both or eliminate the later arrival?",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep both for now. Three hours sounds adequate on paper, but show me what it looks like if traffic or baggage slows things down. I will have one checked suitcase.",
+          "role": "user"
+        },
+        {
+          "content": "For the 2:05 arrival, a reasonable sequence is baggage claim by about 2:45, MARTA from the airport around 3:00, and arrival near Arts Center around 3:30, followed by a short walk or ride to the hotel. That leaves roughly two and a half hours before dinner. A rideshare could take 25 minutes in light traffic but 45 to 70 minutes during the afternoon. For the 3:12 arrival, baggage and a MARTA transfer put you in Midtown around 4:40, leaving about an hour fifty minutes. A delayed bag or flight could reduce that quickly, so the earlier flight is materially safer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. What are the fares, and what can I take home after the 4:00 finish Wednesday?",
+          "role": "user"
+        },
+        {
+          "content": "The earlier outbound paired with a Wednesday 7:55 p.m. nonstop back to Denver is quoting at $487 round trip in regular economy. The later outbound paired with that same return is $431. There is also an 8:35 p.m. nonstop return at $458 with the earlier outbound. The 7:55 flight is scheduled into Denver at 9:18 p.m.; the 8:35 flight arrives at 10:04 p.m. These are working quotes, so the operating carrier, fare rules, bag charge, and schedules need verification before purchase.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is 7:55 actually comfortable after a 4:00 closing session, or does that depend on leaving early?",
+          "role": "user"
+        },
+        {
+          "content": "It should not require leaving early if the session ends on time. From Peachtree and 14th, you could leave at 4:10, reach Arts Center station around 4:20, and take a southbound train to the airport in roughly 30 minutes. Even allowing for a wait and station walking, airport arrival around 5:05 to 5:20 is realistic. That gives more than two and a half hours before departure. A rideshare at that hour is less predictable, so MARTA is the stronger timing plan unless service is disrupted.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Now compare the workshop hotel with two nearby alternatives. I need the full two-night figure, not just the room rate.",
+          "role": "user"
+        },
+        {
+          "content": "The workshop hotel, the Hyatt Centric Midtown, is showing $612 total for Monday and Tuesday nights, including estimated taxes, with a standard king room. The Courtyard Atlanta Midtown, about a seven-minute walk away, is $528 total. The Georgian Terrace is $566 total but is closer to a twenty-minute walk, or a short ride. None of those working totals includes parking, which you will not need. I still need confirmation of any destination or facility charge and each cancellation deadline.",
+          "role": "assistant"
+        },
+        {
+          "content": "How do the three compare for getting in from the airport and leaving Wednesday with the suitcase? Checkout will be well before 4:00.",
+          "role": "user"
+        },
+        {
+          "content": "The Hyatt Centric and Courtyard are both convenient to Arts Center MARTA, with the Courtyard slightly closer to the station and the Hyatt directly at the workshop. The Georgian Terrace is nearer North Avenue station but farther from the sessions. All three advertise bell-desk luggage storage, but post-checkout storage should be confirmed directly. At the Hyatt, you could retrieve the suitcase immediately after the closing session. From the Courtyard, allow about 15 minutes to walk over and collect it. From the Georgian Terrace, allow 25 to 35 minutes for the return trip and retrieval.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please build complete combinations with airfare, hotel, airport transportation, and the real Wednesday margin. Use MARTA where it makes sense.",
+          "role": "user"
+        },
+        {
+          "content": "Combination A is the 9:05 a.m. outbound, 7:55 p.m. return, and Hyatt Centric: $487 airfare plus $612 lodging and about $5 for two MARTA airport trips, for a working total of $1,104 before the checked-bag fee. Monday arrival near the hotel would be around 3:35, and Wednesday airport arrival around 5:00 after retrieving the bag on site. Combination B uses the same flights and the Courtyard: about $1,020 before the bag fee. Monday timing is similar, and Wednesday airport arrival is closer to 5:15 after the walk and luggage retrieval. Combination C uses the same flights and Georgian Terrace: about $1,058 before the bag fee, with more local walking or two short rides; a conservative Wednesday airport arrival is 5:30.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the cheaper later flight? I want to see whether the $56 savings survives the risk and ground costs.",
+          "role": "user"
+        },
+        {
+          "content": "With the 10:10 a.m. outbound and 7:55 p.m. return, the totals fall to about $1,048 at the Hyatt, $964 at the Courtyard, and $1,002 at the Georgian Terrace, before the checked bag. Ground costs do not change if you use MARTA. The tradeoff is entirely Monday's margin: a scheduled 3:12 arrival probably gets you to Midtown around 4:40, but a 45-minute flight delay would put hotel arrival near 5:25. That still permits check-in and dinner at the Hyatt; it becomes tighter at either off-site property.",
+          "role": "assistant"
+        },
+        {
+          "content": "Take the Georgian Terrace out. The extra movement is not worth a modest difference. Between the other two, is there any reason not to use the Courtyard with the earlier flight?",
+          "role": "user"
+        },
+        {
+          "content": "The Courtyard with the earlier flight is the best cost-and-margin balance. It saves $84 against staying at the workshop hotel while preserving the safer Monday arrival. The disadvantages are the walk to the dinner and sessions, plus the need to return for the suitcase Wednesday. Even with those steps, the projected 5:15 airport arrival leaves about two hours forty minutes before the 7:55 departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "What happens if the closing session runs fifteen minutes over? I do not want an itinerary that only works if everything is exact.",
+          "role": "user"
+        },
+        {
+          "content": "A 4:15 finish would likely mean reaching the Courtyard around 4:25, collecting the bag by 4:40, and boarding MARTA around 4:50 to 5:00. Airport arrival would be approximately 5:25 to 5:40, still more than two hours before departure. Even a 4:30 release remains workable, though the margin would drop to roughly one hour fifty minutes at the terminal after the train ride.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then choose Combination B: earlier Monday flight, Courtyard for two nights, and the 7:55 Wednesday nonstop. Include the checked bag in the estimate if you can, and tell me exactly what still needs confirmation.",
+          "role": "user"
+        },
+        {
+          "content": "Selected working itinerary: Monday, April 20, nonstop Denver-Atlanta scheduled 9:05 a.m.-2:05 p.m.; two nights at the Courtyard Atlanta Midtown; Wednesday, April 22, nonstop Atlanta-Denver scheduled 7:55-9:18 p.m. The current base is $487 airfare, $528 lodging, and about $5 for round-trip MARTA, totaling $1,020. If the airline's first checked bag is $35 each way, the planning total becomes $1,090. Before booking, verify the flight numbers and operating carriers, current schedules, fare and change terms, seat selection cost, and exact checked-bag charge. For the hotel, confirm an itemized $528 total with no mandatory fee omitted, the room type, cancellation deadline, and complimentary luggage storage after Wednesday checkout. The practical plan is MARTA to Midtown Monday, then on Wednesday retrieve the suitcase immediately after the 4:00 session and target Arts Center station by 4:45, checking service status before departure.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0043",
+      "session_index": 43,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "The March 12-15 Chicago conference trip remains confirmed with Thursday arrival on United 234, a three-night downtown hotel stay, and Sunday return on United 611 at 5:30 p.m.; complimentary post-checkout luggage storage is confirmed, with the suitcase to be left before the final appointment and retrieved afterward before the planned 2:00 p.m. departure for the Monroe Blue Line. For the April 20-22 Atlanta rights workshop, the working selection is a Monday nonstop scheduled 9:05 a.m.-2:05 p.m., two nights at the Courtyard Atlanta Midtown, and a Wednesday nonstop scheduled 7:55-9:18 p.m. after the 4:00 p.m. finish. The planning total is $1,020 before baggage or $1,090 if the quoted bag estimate applies. Flight identifiers, operating carriers, schedules, fare terms, seat and bag charges, the hotel's itemized total and cancellation deadline, and complimentary Wednesday luggage storage remain to be verified. The May Raleigh-area wedding trip and June Seattle work trip remain booked with their noted local details unresolved. The July Philadelphia, September Portland and Bar Harbor, October Atlanta, November Carlsbad, January Phoenix, April Boston, and August Santa Fe arrangements retain their previously confirmed plans and outstanding follow-ups.",
+  "verification": {
+    "43": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Then choose Combination B: earlier Monday flight, Courtyard for two nights, and the 7:55 Wednesday nonstop.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selects the 9:05 a.m. Monday departure for this trip, overriding the established afternoon-departure default because the morning option provides a safer margin before the hosted dinner. No user utterance evidences the connection, carrier, seat, bed, or room-amenity habits."
+    }
+  }
+}

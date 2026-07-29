@@ -1,0 +1,369 @@
+{
+  "cache_fingerprint": "254a344ebba5eced11bfaf0a0a72bee84aee5626f938889bb93502da853c875c",
+  "rows": [
+    {
+      "boundary_condition": "Treat this as a preference rather than an absolute requirement unless the user explicitly says no layovers for the current trip.",
+      "bundle_id": "tm_v04_e2e_bundle_ca360da1d426",
+      "canonical_value": "nonstop_preferred",
+      "condition": "When searching for outbound or return flights, prioritize nonstop options.",
+      "confidence": 0.85,
+      "decision": "keep",
+      "default_action": "Search for and present a nonstop itinerary first.",
+      "exception_condition": "If no suitable nonstop flight is available, a one-stop option may be acceptable, but confirm the tradeoff before booking.",
+      "family": "flight_route_connection_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_ca360da1d426",
+      "induced_at": "2026-07-25T08:46:59.615645+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer nonstop flights",
+      "preference_value": "Nonstop flights are generally preferred.",
+      "rationale": "Across three independent flight requests, the user asks for nonstop service. Two dialogues also show that one stop can be accepted when a nonstop option is unavailable or when stated as the maximum.",
+      "reasoning_effort": "high",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.97,
+        "reason": "Three distinct instruction_id values support a recurring preference for nonstop flights. The wording correctly treats nonstop as the default while preserving one stop as a possible fallback, which matches the least strict source.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Directly supports prioritizing nonstop flights, including for a return itinerary.",
+          "conversation_id": "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+          "exact_user_quote": "Just leave in the morning and no layovers non-stop.",
+          "instruction_id": "flight-14",
+          "turn_index": 19
+        },
+        {
+          "contribution": "Directly states the nonstop preference; later acceptance of the offered one-stop flight shows it can be relaxed when nonstop is unavailable.",
+          "conversation_id": "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748",
+          "exact_user_quote": "Economy and I'd like to have a non-stop flight.",
+          "instruction_id": "flight-11",
+          "turn_index": 14
+        },
+        {
+          "contribution": "Supports nonstop as the default and explicitly bounds the acceptable fallback at one stop.",
+          "conversation_id": "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+          "exact_user_quote": "I would like a non-stop flight or if at the most one stop in coach.",
+          "instruction_id": "flight-8",
+          "turn_index": 9
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Just leave in the morning and no layovers non-stop.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+          "habitual_language": false,
+          "instruction_id": "flight-14",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 19,
+          "user_utterance": "Just leave in the morning and no layovers non-stop."
+        },
+        {
+          "annotated_segment": "Economy and I'd like to have a non-stop flight.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 14,
+          "user_utterance": "Economy and I'd like to have a non-stop flight."
+        },
+        {
+          "annotated_segment": "I would like a non-stop flight or if at the most one stop in coach.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+          "habitual_language": false,
+          "instruction_id": "flight-8",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 9,
+          "user_utterance": "I would like a non-stop flight or if at the most one stop in coach."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Treat nonstop as a preference, not an absolute requirement; the sources support at most one stop as an acceptable alternative.",
+      "bundle_id": "tm_v04_e2e_bundle_d8a9d59a5c4e",
+      "canonical_value": "nonstop_preferred",
+      "condition": "When searching for flights and the user has not specified a different connection policy.",
+      "confidence": 0.85,
+      "decision": "revise",
+      "default_action": "Prioritize and present suitable nonstop itineraries first.",
+      "exception_condition": "If no suitable nonstop option is available, consider a one-stop itinerary and confirm the tradeoff before booking.",
+      "family": "flight_route_connection_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_d8a9d59a5c4e",
+      "induced_at": "2026-07-25T08:16:51.807971+00:00",
+      "induced_by": "habitbench-qwen3-8b",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer nonstop flights",
+      "preference_value": "Nonstop flights are generally preferred.",
+      "rationale": "users consistently prioritize nonstop flights unless forced to accept connections, with a clear preference for morning departures and economy class. multiple dialogues show users rejecting layovers and preferring direct routes, even when cheaper options exist with stops.",
+      "reasoning_effort": "",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.94,
+        "reason": "Three distinct instruction_id values support a reusable preference for nonstop flights, but the candidate is framed as a response only when the user explicitly repeats the request and includes an unsupported airline exception. Revise it into a general scoped default with a one-stop fallback.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "user explicitly requests nonstop and morning departure",
+          "conversation_id": "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+          "exact_user_quote": "Just leave in the morning and no layovers non-stop.",
+          "instruction_id": "flight-14",
+          "turn_index": 19
+        },
+        {
+          "contribution": "user explicitly requests nonstop",
+          "conversation_id": "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748",
+          "exact_user_quote": "I'd like to have a non-stop flight.",
+          "instruction_id": "flight-11",
+          "turn_index": 14
+        },
+        {
+          "contribution": "user explicitly requests nonstop or one stop",
+          "conversation_id": "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+          "exact_user_quote": "I would like a non-stop flight or if at the most one stop in coach.",
+          "instruction_id": "flight-8",
+          "turn_index": 9
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Just leave in the morning and no layovers non-stop.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+          "habitual_language": false,
+          "instruction_id": "flight-14",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 19,
+          "user_utterance": "Just leave in the morning and no layovers non-stop."
+        },
+        {
+          "annotated_segment": "I'd like to have a non-stop flight.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 14,
+          "user_utterance": "I'd like to have a non-stop flight."
+        },
+        {
+          "annotated_segment": "I would like a non-stop flight or if at the most one stop in coach.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+          "habitual_language": false,
+          "instruction_id": "flight-8",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 9,
+          "user_utterance": "I would like a non-stop flight or if at the most one stop in coach."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Do not infer the same daypart for every trip or leg; the desired window is trip-specific, and explicit boundaries such as after 6 p.m. or no red-eye should be preserved.",
+      "bundle_id": "tm_v04_e2e_bundle_0dae3e1ac146",
+      "canonical_value": "",
+      "condition": "When searching or comparing flight options and no hard appointment requires an exact departure or arrival time.",
+      "confidence": 0.68,
+      "decision": "reject",
+      "default_action": "Search within the user’s stated daypart window for each leg and offer available times inside that window instead of defaulting to one fixed departure time.",
+      "exception_condition": "If availability, price, or a hard commitment makes the stated window impractical, ask before moving outside the window or treating another time as acceptable.",
+      "family": "flight_schedule_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_0dae3e1ac146",
+      "induced_at": "2026-07-16T08:01:56.336223+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Uses soft daypart windows for flight timing",
+      "preference_value": "Tends to prefer flight departure timing expressed as broad dayparts or thresholds, rather than a single exact clock time.",
+      "rationale": "Across three independent flight dialogues, the user gives schedule preferences as morning/afternoon/evening-style windows or thresholds, indicating a reusable soft scheduling style without supporting one universal preferred time of day.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "reject",
+        "quality_score": 0.16,
+        "reason": "The three sources contain trip-specific timing constraints with different dayparts. They do not establish a reusable preference for broad timing windows over exact clock times; the candidate converts a shared request format into an unsupported longitudinal habit.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows flight timing requested as broad daypart windows and a threshold rather than an exact departure time.",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "exact_user_quote": "I want to leave in the morning and come back in at night after 6:00 p.m.",
+          "instruction_id": "flight-7",
+          "turn_index": 8
+        },
+        {
+          "contribution": "Uses a daypart preference with excluded time windows, supporting soft schedule boundaries.",
+          "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+          "exact_user_quote": "I'd prefer to fly in the afternoon. No early-morning or red-eye flights.",
+          "instruction_id": "flight-6",
+          "turn_index": 10
+        },
+        {
+          "contribution": "Specifies different flight legs by daypart windows rather than fixed clock times.",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "exact_user_quote": "I would like to depart San Francisco in the morning and depart Orlando in the afternoon.",
+          "instruction_id": "flight-3",
+          "turn_index": 16
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I want to leave in the morning and come back in at night after 6:00 p.m.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "habitual_language": false,
+          "instruction_id": "flight-7",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 8,
+          "user_utterance": "I want to leave in the morning and come back in at night after 6:00 p.m."
+        },
+        {
+          "annotated_segment": "I'd prefer to fly in the afternoon. No early-morning or red-eye flights.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+          "habitual_language": false,
+          "instruction_id": "flight-6",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 10,
+          "user_utterance": "I'd prefer to fly in the afternoon. No early-morning or red-eye flights."
+        },
+        {
+          "annotated_segment": "I would like to depart San Francisco in the morning and depart Orlando in the afternoon.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "habitual_language": false,
+          "instruction_id": "flight-3",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 16,
+          "user_utterance": "I would like to depart San Francisco in the morning and depart Orlando in the afternoon."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "The exact preferred time may range from afternoon to after 6:00 p.m.; treat this as a time-of-day preference rather than a fixed cutoff",
+      "bundle_id": "tm_v04_e2e_bundle_4ea52517321d",
+      "canonical_value": "",
+      "condition": "When selecting a return flight and multiple departure times are available",
+      "confidence": 0.86,
+      "decision": "reject",
+      "default_action": "Prioritize return options departing in the afternoon or evening",
+      "exception_condition": "Use another departure period when the traveler explicitly requests it for the current trip or no later-day option is workable",
+      "family": "flight_schedule_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_4ea52517321d",
+      "induced_at": "2026-07-25T08:46:59.622314+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer later-day return flights",
+      "preference_value": "Afternoon or evening return departures",
+      "rationale": "Across three independent flight-booking conversations, the user requests return travel in the afternoon, evening, or after 6:00 p.m., supporting a soft reusable preference for later-day returns.",
+      "reasoning_effort": "high",
+      "semantic_review": {
+        "decision": "reject",
+        "quality_score": 0.31,
+        "reason": "Only two source examples clearly describe return timing. The flight-14 example does not establish that the requested afternoon or evening flight is a return, so the return-flight preference is not supported across three distinct instruction_id values.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Explicitly places the return flight in the evening after 6:00 p.m.",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "exact_user_quote": "I want to leave in the morning and come back in at night after 6:00 p.m.",
+          "instruction_id": "flight-7",
+          "turn_index": 8
+        },
+        {
+          "contribution": "Explicitly states an afternoon-or-evening preference when asked about the return flight.",
+          "conversation_id": "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+          "exact_user_quote": "I'd prefer a afternoon or evening flight.",
+          "instruction_id": "flight-14",
+          "turn_index": 11
+        },
+        {
+          "contribution": "Explicitly schedules the return flight for the afternoon.",
+          "conversation_id": "dlg-7dd08d76-05f0-4121-aecb-1c9501512eee",
+          "exact_user_quote": "Yeah. I will return 7th February afternoon.",
+          "instruction_id": "flight-3",
+          "turn_index": 28
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I want to leave in the morning and come back in at night after 6:00 p.m.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "habitual_language": false,
+          "instruction_id": "flight-7",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 8,
+          "user_utterance": "I want to leave in the morning and come back in at night after 6:00 p.m."
+        },
+        {
+          "annotated_segment": "I'd prefer a afternoon or evening flight.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+          "habitual_language": false,
+          "instruction_id": "flight-14",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 11,
+          "user_utterance": "I'd prefer a afternoon or evening flight."
+        },
+        {
+          "annotated_segment": "Yeah. I will return 7th February afternoon.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-7dd08d76-05f0-4121-aecb-1c9501512eee",
+          "habitual_language": false,
+          "instruction_id": "flight-3",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 28,
+          "user_utterance": "Yeah. I will return 7th February afternoon."
+        }
+      ]
+    }
+  ]
+}

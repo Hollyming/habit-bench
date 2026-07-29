@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "b23167d694a40b320127cad086a54a103caedae2d442e3b889ce0cd9a7c7e293",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "return_departure_time_of_day",
+      "boundary_condition": "Treat afternoon as a soft time-of-day preference; consider nearby departures when true afternoon options are limited or otherwise unattractive.",
+      "canonical_value": "Prefer afternoon departures for the return leg, with nearby times acceptable when afternoon options are limited or unattractive.",
+      "condition": "When booking or comparing a round trip and selecting the return-leg departure time.",
+      "default_action": "Prioritize return flights departing in the afternoon and present those options first.",
+      "exception_condition": "Do not apply this return-leg preference to the outbound leg, and follow any explicit trip-specific timing requirement instead.",
+      "input_ids": [
+        "tm_v04_e2e_habit_26cf0aa15c48"
+      ],
+      "name": "afternoon_return_departure_preference",
+      "preference_value": "Prefer the return flight to depart in the afternoon.",
+      "rationale": "Multiple examples support a recurring, return-leg-specific preference for afternoon departures, including explicit requests for afternoon returns alongside a morning outbound. The evidence supports a soft preference rather than a strict cutoff.",
+      "representative_id": "tm_v04_e2e_habit_26cf0aa15c48"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "general_departure_time_of_day",
+      "boundary_condition": "Apply this to departure time rather than arrival time, without inferring a strict after-6:00-p.m. threshold.",
+      "canonical_value": "When departure timing is flexible, softly prefer afternoon or evening departures.",
+      "condition": "When choosing a flight departure time and no explicit trip-specific timing requirement takes precedence.",
+      "default_action": "Present afternoon and evening departure options first.",
+      "exception_condition": "Follow an explicitly requested morning departure or any other trip-specific timing constraint instead.",
+      "input_ids": [
+        "tm_v04_e2e_habit_65f6cf011815"
+      ],
+      "name": "prefer_afternoon_or_evening_departures",
+      "preference_value": "Prefer flight departures in the afternoon or evening when timing is flexible.",
+      "rationale": "The examples provide recurring support for later departure choices, including an explicit afternoon-or-evening preference and an after-6:00-p.m. request. Mixed leg-specific evidence warrants retaining this only as a soft general default that yields to explicit timing constraints.",
+      "representative_id": "tm_v04_e2e_habit_65f6cf011815"
+    }
+  ]
+}

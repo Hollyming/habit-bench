@@ -1,0 +1,180 @@
+{
+  "cache_fingerprint": "52f428536e621c07f626649c8bef367f33fd19be9102dc46a02362ee89ff76b4",
+  "profile": {
+    "communication_style": {
+      "decision_pattern": "Often responds by tightening one constraint or selecting from a shortlist rather than restarting the search; expects uncertain amenities or seat availability to be identified rather than assumed.",
+      "information_preferences": "Prefers two or three viable options with the important tradeoffs stated explicitly, especially timing, stops, cabin, and what hotel services are actually included.",
+      "tone": "Direct, concise, and decision-oriented."
+    },
+    "generated_by": {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high"
+    },
+    "generation_method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+    "habit_interactions": [
+      "On outbound work legs, morning timing and nonstop routing usually shape the acceptable set before cabin and seat preferences are applied.",
+      "A later-day return is a return-leg default and therefore does not conflict with the morning preference scoped to outbound work travel; together they preserve productive time on both ends of a short trip.",
+      "Business class remains a soft cabin preference with coach as its built-in fallback, so it can coexist with schedule and routing constraints without creating a separate tolerance habit.",
+      "For family leisure hotels, included breakfast is more consistently useful than a balcony. The balcony remains a background differentiator for coastal stays and should not displace a better overall hotel.",
+      "Window seating recurs across trip types, but family seating needs or unavailable seat selection can supersede it for a particular itinerary."
+    ],
+    "habits": [
+      {
+        "alternative_group_key": "general_flight_departure_time_of_day",
+        "boundary_condition": "Apply only as a general time-of-day preference without inferring a route, date, or leg-specific requirement.",
+        "condition": "When choosing a flight departure time and no trip-specific timing constraint overrides the preference.",
+        "default_action": "Present morning departure options first.",
+        "exception_condition": "Follow an explicitly stated timing requirement for the current trip; no reusable fallback is established when morning options are unavailable.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v05_user_002_h00",
+        "name": "prefer_morning_flight_departures",
+        "preference_value": "Prefer morning flight departures.",
+        "scope_condition": "Applies when Marcus chooses the outbound leg for a solo work trip and the meeting schedule does not impose a different departure period.",
+        "scope_key": "outbound_work_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_30d15d26d331",
+        "source_habit_instance_id": "tm_v04_e2e_habit_30d15d26d331",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_002"
+      },
+      {
+        "alternative_group_key": "return_flight_departure_time_of_day",
+        "boundary_condition": "Treat the preference as a flexible later-day window ranging from afternoon to after 6:00 p.m., not as a fixed cutoff",
+        "condition": "When selecting a return flight and multiple departure times are available",
+        "default_action": "Prioritize return options departing in the afternoon or evening",
+        "exception_condition": "Use another departure period when the traveler explicitly requests it for the current trip or no later-day option is workable",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v05_user_002_h01",
+        "name": "Prefer later-day return flights",
+        "preference_value": "Afternoon or evening return departures",
+        "scope_condition": "Applies when Marcus compares return legs for work or family trips with enough schedule flexibility to preserve part of the final day.",
+        "scope_key": "return_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_4ea52517321d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_4ea52517321d",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_002"
+      },
+      {
+        "alternative_group_key": "flight_cabin_class_preference",
+        "boundary_condition": "Treat business class as a soft preference, not a requirement, and do not infer an independent standing budget or price threshold.",
+        "condition": "When comparing flight cabin options.",
+        "default_action": "Prefer or surface business-class options first.",
+        "exception_condition": "Use coach when business class is unavailable, infeasible under explicit current-trip constraints, or declined by the user.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v05_user_002_h02",
+        "name": "prefer_business_class_with_coach_fallback",
+        "preference_value": "Prefer business class when available and feasible, with coach acceptable as a fallback.",
+        "scope_condition": "Applies when cabin options are compared for Marcus's flights, most often on solo work travel and longer family itineraries.",
+        "scope_key": "cabin_choice",
+        "source_bundle_id": "tm_v04_e2e_bundle_dab7e9145814",
+        "source_habit_instance_id": "tm_v04_e2e_habit_dab7e9145814",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_002"
+      },
+      {
+        "alternative_group_key": "flight_route_connection_policy",
+        "boundary_condition": "Treat this as a preference rather than an absolute requirement unless the user explicitly says no layovers for the current trip.",
+        "condition": "When searching for outbound or return flights, prioritize nonstop options.",
+        "default_action": "Search for and present a nonstop itinerary first.",
+        "exception_condition": "If no suitable nonstop flight is available, a one-stop option may be acceptable, but confirm the tradeoff before booking.",
+        "family": "flight_route_connection_policy",
+        "habit_id": "tm_pd_v05_user_002_h03",
+        "name": "Prefer nonstop flights",
+        "preference_value": "Nonstop flights are generally preferred.",
+        "scope_condition": "Applies across Marcus's domestic work and family flight searches when the current trip does not establish a different routing requirement.",
+        "scope_key": "shared_flight_routing",
+        "source_bundle_id": "tm_v04_e2e_bundle_ca360da1d426",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ca360da1d426",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_002"
+      },
+      {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v05_user_002_h04",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Applies when selecting Marcus's own seat on work trips or on family itineraries after the family's seating arrangement is accounted for.",
+        "scope_key": "marcus_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_002"
+      },
+      {
+        "alternative_group_key": "hotel_breakfast_inclusion_preference",
+        "boundary_condition": "Treat this as a soft preference because the evidence ranges from tentative interest to a direct requirement.",
+        "condition": "When evaluating or booking a hotel.",
+        "default_action": "Prioritize hotels with free breakfast when available, and verify whether breakfast is included if the listing is unclear.",
+        "exception_condition": "Do not reject an otherwise suitable hotel solely because free breakfast is unavailable unless the user makes it mandatory for the current booking; do not infer requirements about breakfast type or quality.",
+        "family": "hotel_included_services",
+        "habit_id": "tm_pd_v05_user_002_h05",
+        "name": "prefer_included_hotel_breakfast",
+        "preference_value": "Prefer hotels that include free breakfast.",
+        "scope_condition": "Applies when Marcus compares hotels for trips with his husband and son, particularly multi-night stays where breakfast simplifies the morning routine.",
+        "scope_key": "family_leisure_hotels",
+        "source_bundle_id": "tm_v04_e2e_bundle_4159e7bcd6b1",
+        "source_habit_instance_id": "tm_v04_e2e_habit_4159e7bcd6b1",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_002"
+      },
+      {
+        "alternative_group_key": "hotel_room_balcony_preference",
+        "boundary_condition": "Treat the balcony as a soft preference rather than a strict requirement; a first-floor room can be acceptable without one",
+        "condition": "When selecting a hotel room",
+        "default_action": "Prioritize rooms with a balcony when available",
+        "exception_condition": "Do not reject an otherwise suitable hotel solely because a balcony is unavailable",
+        "family": "hotel_view_balcony_flexibility",
+        "habit_id": "tm_pd_v05_user_002_h06",
+        "name": "hotel_room_balcony_preference",
+        "preference_value": "Prefer a room with a balcony",
+        "scope_condition": "Applies when Marcus compares room types for the family's recurring coastal vacation or a similar leisure stay.",
+        "scope_key": "coastal_family_stays",
+        "source_bundle_id": "tm_v04_e2e_bundle_c407a334b298",
+        "source_habit_instance_id": "tm_v04_e2e_habit_c407a334b298",
+        "strength": "background",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_002"
+      }
+    ],
+    "longitudinal_plan": {
+      "target_history_characters": 336000,
+      "target_sessions": 141,
+      "travel_tempo": "Approximately 16 to 21 trips per year: frequent short domestic work trips, several family visits or city breaks, and one longer coastal vacation. Planning unfolds through searches, revisions, confirmations, disruptions, and occasional post-booking changes across multiple years.",
+      "typical_episode_shape": "Most work episodes span two to four sessions: initial constraint capture, a compact flight-and-hotel comparison, then booking or a schedule-driven revision. Family trips more often span four to seven sessions, including destination or date refinement, flight tradeoffs, deeper hotel comparison, room verification, and later seat or itinerary follow-up. Some sessions should be unrelated one-off questions or sparse confirmations so the history does not probe every habit uniformly."
+    },
+    "persona": {
+      "age": 43,
+      "home_base": "Chicago, Illinois",
+      "household": "Lives with his husband and their 12-year-old son; they take one substantial coastal vacation and several shorter family trips most years.",
+      "name": "Marcus Lee",
+      "occupation": "Regional operations director for a national restaurant group",
+      "planning_behavior": "He normally anchors a trip around fixed meetings, school dates, or family activities, then compares flight shape and timing before choosing seats and lodging. For work, he decides quickly from a compact shortlist and treats upgraded cabins as desirable but negotiable. For leisure, he spends more time comparing room features and included services.",
+      "travel_pattern": "Marcus travels once or twice most months to restaurant openings, supplier reviews, and regional leadership meetings, usually for two to three nights. He also plans family city breaks and an annual beach-oriented vacation. His work schedule rewards efficient outbound travel and preserving time on the final day, while his leisure stays bring out a few comfort preferences that rarely matter on short business visits."
+    },
+    "travel_contexts": [
+      {
+        "description": "Frequent domestic trips for openings, operational reviews, and supplier meetings, typically booked around fixed commitments and lasting two to three nights.",
+        "scope_key": "solo_work_travel"
+      },
+      {
+        "description": "School-break city trips and a recurring longer coastal vacation with his husband and son, with more attention to hotel comfort and usable time at the destination.",
+        "scope_key": "family_leisure"
+      },
+      {
+        "description": "Flight-selection defaults that recur across work and leisure unless a trip-specific schedule, routing need, or family arrangement takes precedence.",
+        "scope_key": "shared_flight_defaults"
+      }
+    ],
+    "user_id": "tm_pd_v05_user_002"
+  }
+}

@@ -1,0 +1,519 @@
+{
+  "cache_fingerprint": "6f07af2cba41505aa85a216f125fabc238a9f8e8bd92800f2894e12c9bb61e35",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B have identical timing and routing, while B costs substantially less and A provides the user's historically preferred cabin. Generic travel utility cannot determine how to value that tradeoff; the longitudinal work-travel policy resolves it.",
+      "gold_action": "Lead with the business-class seat on the practical nonstop itinerary.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_003_s0015",
+        "tm_pd_v05_user_003_s0050",
+        "tm_pd_v05_user_003_s0122"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v05_user_003_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_cabin_class_preference",
+        "boundary_condition": "Treat business class as a soft preference, not a requirement, and do not infer an independent standing budget or price threshold.",
+        "condition": "When comparing flight cabin options.",
+        "default_action": "Prefer or surface business-class options first.",
+        "exception_condition": "Use coach when business class is unavailable, infeasible under explicit current-trip constraints, or declined by the user.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v05_user_003_h03",
+        "name": "prefer_business_class_with_coach_fallback",
+        "preference_value": "Prefer business class when available and feasible, with coach acceptable as a fallback.",
+        "scope_condition": "Cabin comparisons for employer-funded audit, supplier, and professional-event travel where an upgraded cabin can reasonably be considered.",
+        "scope_key": "work_cabin_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_dab7e9145814",
+        "source_habit_instance_id": "tm_v04_e2e_habit_dab7e9145814",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "It has the identical practical schedule at much lower cost, but no fare cap is stated and Priya's demonstrated employer-funded-travel preference puts business first.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "Across employer-funded audits and conference travel, Priya consistently asks for business class first when the itinerary is workable, while her coach choice is explicitly limited to a short leisure trip. The 8:20 a.m. business nonstop meets the deadline and is equally practical, so it should lead.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "An employer-funded supplier review falls within the user's work-travel cabin policy. Because the same-flight business and coach choices are both feasible and no current-trip spending constraint disqualifies either, the business option should be surfaced first without inventing a fare threshold.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_003_h03_p00",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Employer payment and procurement approval neutralize authorization as a selector.",
+          "The statement that both departure times are equally practical removes a schedule-based tie-breaker.",
+          "The absence of a fare cap appears designed to force reliance on an unstated cabin-versus-cost preference."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rationale": "The two stated departure times are equally practical, and the approved nonstop options trade cabin quality against price without a stated preference or spending objective. The one-stop option has less schedule margin and no compensating trip-specific advantage.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A and B present a genuine personal tradeoff. A is less expensive and departs later while retaining substantial site margin; B provides greater comfort and an additional 35 minutes of buffer but requires an earlier departure. Generic itinerary reasoning can defend either choice, so Priya's recurring business-first policy is needed to choose B.",
+      "gold_action": "Book the feasible business-class nonstop, surfacing Priya's established soft cabin preference when the work itinerary supports it.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_003_s0015",
+        "tm_pd_v05_user_003_s0050",
+        "tm_pd_v05_user_003_s0122"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v05_user_003_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_cabin_class_preference",
+        "boundary_condition": "Treat business class as a soft preference, not a requirement, and do not infer an independent standing budget or price threshold.",
+        "condition": "When comparing flight cabin options.",
+        "default_action": "Prefer or surface business-class options first.",
+        "exception_condition": "Use coach when business class is unavailable, infeasible under explicit current-trip constraints, or declined by the user.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v05_user_003_h03",
+        "name": "prefer_business_class_with_coach_fallback",
+        "preference_value": "Prefer business class when available and feasible, with coach acceptable as a fallback.",
+        "scope_condition": "Cabin comparisons for employer-funded audit, supplier, and professional-event travel where an upgraded cabin can reasonably be considered.",
+        "scope_key": "work_cabin_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_dab7e9145814",
+        "source_habit_instance_id": "tm_v04_e2e_habit_dab7e9145814",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "The later departure still leaves ample transfer time and is cheaper, but coach is only Priya's fallback when it makes the schedule work materially better; here it does not.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "This is employer-funded audit travel, the clearest established scope for Priya's business-first preference. The business nonstop is authorized, workable, and provides additional site margin, so it should be booked.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Across three separate work-travel episodes, Priya asked to see business class first when it was available and the itinerary remained workable, while treating coach as a fallback rather than the default. Both A and B comfortably satisfy the stated audit timing: A offers a later departure and lower fare, while B offers the preferred cabin and more arrival margin. Because both fares are authorized and neither schedule is infeasible, her longitudinal cabin policy selects B without implying a separate budget threshold.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_003_h03_p01",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Choice A is framed with favorable terms such as 'later departure' and 'ample transfer time.'",
+          "Choice B's much higher price and business-class cabin may cue a generic cost-conscious answer, but employer funding and explicit authorization prevent that cue from conclusively resolving Priya's established preference."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "The query asks for consistency with Priya's prior travel decisions, but those decisions are not provided. A is cheaper, departs later, and still provides ample transfer time; B provides additional schedule margin and cabin comfort and is also explicitly authorized. Neither dominates across all stated dimensions, so choosing between them requires an unstated preference or employer policy. C and D are not among the two authorized itineraries described in the query and add a connection or unnecessary overnight stay.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "The query does not name certification travel in the historical categories, so the solver must first infer scope from its employer-funded professional purpose and then resolve the same-flight price-versus-cabin tradeoff. Without memory, A and B remain comparably defensible.",
+      "gold_action": "Present business on the practical evening nonstop as the primary booking.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_003_s0015",
+        "tm_pd_v05_user_003_s0050",
+        "tm_pd_v05_user_003_s0122"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v05_user_003_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_cabin_class_preference",
+        "boundary_condition": "Treat business class as a soft preference, not a requirement, and do not infer an independent standing budget or price threshold.",
+        "condition": "When comparing flight cabin options.",
+        "default_action": "Prefer or surface business-class options first.",
+        "exception_condition": "Use coach when business class is unavailable, infeasible under explicit current-trip constraints, or declined by the user.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v05_user_003_h03",
+        "name": "prefer_business_class_with_coach_fallback",
+        "preference_value": "Prefer business class when available and feasible, with coach acceptable as a fallback.",
+        "scope_condition": "Cabin comparisons for employer-funded audit, supplier, and professional-event travel where an upgraded cabin can reasonably be considered.",
+        "scope_key": "work_cabin_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_dab7e9145814",
+        "source_habit_instance_id": "tm_v04_e2e_habit_dab7e9145814",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "It is the same workable nonstop at lower cost and is tempting because the history names audits and a conference rather than certification labs. It loses because the repeated distinguishing rationale is employer-funded work travel, contrasted with the explicit leisure exception.",
+        "difficulty": "hard",
+        "model": "gpt-5.6-sol",
+        "rationale": "The full history supports a broader work-versus-leisure distinction: Priya leads with business on employer-funded role travel and explicitly chooses coach for a short leisure trip. The certification lab is employer-funded role travel, and the business nonstop is fully workable.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Employer-directed certification is professional travel where an upgraded cabin can reasonably be considered, so it transfers into the same work-cabin scope as audits and conferences. With the itinerary workable and no current constraint against it, the history favors A.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_003_h03_p02",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The unusual clarification that the trip is neither an audit nor a conference suggests a hidden history-based trip-category rule.",
+          "Company payment of any compliant fare removes authorization as a tie-breaker while leaving cabin preference unstated."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "The 6:30 p.m. nonstop is the clearly suitable itinerary, but business and coach have identical timing and both are compliant. No stated objective resolves the cabin-quality-versus-price tradeoff.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B share the only clearly practical itinerary, leaving a pure cabin-versus-cost tradeoff that the query does not resolve. C superficially follows the cabin pattern but fails the required debrief constraint, making it a strong near-miss rather than the closest same-itinerary rival.",
+      "gold_action": "Choose business on the practical post-debrief nonstop.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_003_s0015",
+        "tm_pd_v05_user_003_s0050",
+        "tm_pd_v05_user_003_s0122"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v05_user_003_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_cabin_class_preference",
+        "boundary_condition": "Treat business class as a soft preference, not a requirement, and do not infer an independent standing budget or price threshold.",
+        "condition": "When comparing flight cabin options.",
+        "default_action": "Prefer or surface business-class options first.",
+        "exception_condition": "Use coach when business class is unavailable, infeasible under explicit current-trip constraints, or declined by the user.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v05_user_003_h03",
+        "name": "prefer_business_class_with_coach_fallback",
+        "preference_value": "Prefer business class when available and feasible, with coach acceptable as a fallback.",
+        "scope_condition": "Cabin comparisons for employer-funded audit, supplier, and professional-event travel where an upgraded cabin can reasonably be considered.",
+        "scope_key": "work_cabin_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_dab7e9145814",
+        "source_habit_instance_id": "tm_v04_e2e_habit_dab7e9145814",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Coach on the same flight meets every timing requirement at lower cost, but price alone has not displaced Priya's business-first preference on employer-funded trips without a stated cap.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "The 7:10 p.m. nonstop is the practical flight after the required debrief, and Priya's established pattern is business first for authorized employer-funded work travel. The business seat therefore best matches both schedule and cabin preference.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The supplier review is in scope, and the 7:10 p.m. nonstop satisfies the higher-priority work schedule. Since its business seat is available and authorized, the user's recurring policy selects it over coach on the same flight.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_003_h03_p03",
+      "probe_type": "direct_use",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Calling the 7:10 p.m. flight 'practical' steers toward A or B but does not resolve cabin choice.",
+          "Explicit authorization of either 7:10 p.m. seat removes policy as a selector.",
+          "The later nonstop is expressly described as possible, preserving a time-versus-cost tradeoff."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "D"
+        ],
+        "rationale": "The 7:10 p.m. nonstop is the most convenient itinerary, but its business and coach seats present an unresolved quality-versus-price tradeoff. The later coach nonstop is also explicitly feasible and modestly cheaper, so it remains defensible for a cost-sensitive planner. The earlier connection is infeasible because it requires cutting the required debrief short.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "The query does not state a cabin preference, a price ceiling, or a condition requiring the earliest arrival. A is generically attractive because it is cheaper and later yet still feasible, while B is generically attractive because it is more comfortable and provides a larger buffer. Choosing B requires transferring Priya's repeated work-cabin preference from the supplied audit and conference episodes to a supplier-review context.",
+      "gold_action": "Transfer Priya's established work-travel cabin policy to the supplier trip and book the feasible business-class nonstop.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_003_s0015",
+        "tm_pd_v05_user_003_s0050",
+        "tm_pd_v05_user_003_s0122"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v05_user_003_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_cabin_class_preference",
+        "boundary_condition": "Treat business class as a soft preference, not a requirement, and do not infer an independent standing budget or price threshold.",
+        "condition": "When comparing flight cabin options.",
+        "default_action": "Prefer or surface business-class options first.",
+        "exception_condition": "Use coach when business class is unavailable, infeasible under explicit current-trip constraints, or declined by the user.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v05_user_003_h03",
+        "name": "prefer_business_class_with_coach_fallback",
+        "preference_value": "Prefer business class when available and feasible, with coach acceptable as a fallback.",
+        "scope_condition": "Cabin comparisons for employer-funded audit, supplier, and professional-event travel where an upgraded cabin can reasonably be considered.",
+        "scope_key": "work_cabin_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_dab7e9145814",
+        "source_habit_instance_id": "tm_v04_e2e_habit_dab7e9145814",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "The later coach nonstop still provides sufficient margin and costs less, but it offers no material scheduling advantage that would trigger Priya's stated coach fallback.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "For authorized employer-funded work travel, Priya's history favors business when feasible, with coach serving as a schedule-driven fallback. The 7:50 a.m. business nonstop is workable and adds transfer margin before the supplier review.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Priya's audit and conference decisions consistently establish business class as a soft first choice for employer-funded professional travel when the complete itinerary is workable, with coach retained as a fallback. The supplier review is another professional context in which an upgraded cabin can reasonably be considered. A and B both meet all explicit timing constraints; A favors a later departure and lower cost, while B favors cabin comfort and additional arrival margin. Her longitudinal policy therefore breaks the tie in favor of B.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_003_h03_p04",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Choice A is positively framed as having a 'later departure' and 'sufficient review-day margin.'",
+          "Choice B's large price premium and business-class cabin may suggest A under ordinary cost-conscious planning, but the explicit authorization of both options and the request to match personal history leave the choice unresolved."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "Priya's established travel choices are not supplied. A costs less, leaves later, and retains sufficient time before the review; B offers more ground-transfer margin and greater cabin comfort and is also within the approved authorization. These tradeoffs remain reasonably defensible without knowing Priya's prior choices or a stated cost-versus-comfort rule. C and D fall outside the two authorized nonstop itineraries and introduce a connection or avoidable overnight stay.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the 8:20 a.m. nonstop in business for $1,430, arriving at 10:05 a.m."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book the same 8:20 a.m. nonstop in coach for $680, arriving at 10:05 a.m."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book the 7:15 a.m. nonstop in premium economy for $980, arriving at 9:00 a.m."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book the 9:00 a.m. one-stop itinerary in business for $1,180, arriving at 12:10 p.m."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "cross_context_transfer"
+      },
+      "probe_id": "tm_pd_v05_user_003_h03_p00",
+      "query": "Priya is traveling to Milwaukee for a two-day supplier quality review paid by her employer. She needs to arrive by 1:00 p.m., and procurement has cleared all four options. The 7:15 a.m. and 8:20 a.m. departures are equally practical for her, and no trip-specific fare cap has been stated. Which option should the planner lead with?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_003",
+      "visible_history_scope": {
+        "max_session_index": 145
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the 8:20 a.m. coach nonstop for $640, arriving at 10:25 a.m. with a later departure and ample transfer time."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book the 7:45 a.m. business-class nonstop for $1,320, arriving at 9:50 a.m. with additional site margin and cabin comfort."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book the 8:00 a.m. premium-economy one-stop for $910, arriving at 10:35 a.m. after a 70-minute connection."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book the prior-evening coach nonstop for $590 and a $210 airport hotel, leaving the full morning open before the audit."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "conflict_resolution"
+      },
+      "probe_id": "tm_pd_v05_user_003_h03_p01",
+      "query": "Priya is traveling for an employer-funded audit in Columbus with a 1:00 p.m. site start. Typical airport-to-site travel takes 30 to 45 minutes. Two refundable nonstop fares are authorized: one leaves at 8:20 a.m. and arrives at 10:25 a.m., while the other leaves at 7:45 a.m. and arrives at 9:50 a.m. No work is scheduled before the site visit, and normal operations are forecast. Based on Priya's prior travel decisions, which itinerary should be booked?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_003",
+      "visible_history_scope": {
+        "max_session_index": 145
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Business on the 6:30 p.m. nonstop for $1,660, arriving at 8:45 p.m."
+        },
+        {
+          "choice_id": "B",
+          "text": "Coach on the same 6:30 p.m. nonstop for $690, arriving at 8:45 p.m."
+        },
+        {
+          "choice_id": "C",
+          "text": "Coach on a 4:45 p.m. nonstop for $640, requiring departure before the final office meeting ends."
+        },
+        {
+          "choice_id": "D",
+          "text": "Business on a 5:15 p.m. connecting itinerary for $1,390, arriving at 9:40 p.m."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "cross_context_transfer"
+      },
+      "probe_id": "tm_pd_v05_user_003_h03_p02",
+      "query": "Priya's employer is sending her to a three-day certification lab run by an industry association. The lab is not an audit or conference, but attendance is part of her role and the company will pay any of the listed compliant fares. A Monday evening nonstop reaches the venue with ample rest before Tuesday's 9:00 a.m. start. Which option should be presented as the primary booking?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_003",
+      "visible_history_scope": {
+        "max_session_index": 145
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Business on the 7:10 p.m. nonstop for $980."
+        },
+        {
+          "choice_id": "B",
+          "text": "Coach on the same 7:10 p.m. nonstop for $390."
+        },
+        {
+          "choice_id": "C",
+          "text": "Business on the 5:30 p.m. connection for $850, arriving at 9:00 p.m."
+        },
+        {
+          "choice_id": "D",
+          "text": "Coach on the 8:20 p.m. nonstop for $340, arriving at 10:35 p.m."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "direct_use"
+      },
+      "probe_id": "tm_pd_v05_user_003_h03_p03",
+      "query": "After a supplier review in Detroit, Priya's required debrief ends at 5:30 p.m. Two seats remain on the practical 7:10 p.m. nonstop home, arriving at 9:25 p.m.; the employer has authorized either. A later nonstop is also possible, and an earlier connection would require cutting the debrief short. What should the planner choose?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_003",
+      "visible_history_scope": {
+        "max_session_index": 145
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book the 8:30 a.m. coach nonstop for $610, arriving at 10:45 a.m. with a later departure and sufficient review-day margin."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book the 7:50 a.m. business-class nonstop for $1,280, arriving at 10:05 a.m. with more ground-transfer margin and cabin comfort."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book the 8:05 a.m. premium-economy itinerary for $900, connecting for 75 minutes and arriving at 11:00 a.m."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book the prior-evening coach nonstop for $560 and a $220 airport hotel, allowing arrival at the supplier site early the next day."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "cross_context_transfer"
+      },
+      "probe_id": "tm_pd_v05_user_003_h03_p04",
+      "query": "Priya is making an employer-funded trip to Boise for a supplier quality review that begins at 1:30 p.m. The drive from the airport usually takes 30 to 45 minutes. Two refundable nonstop itineraries are within the approved travel authorization: one leaves at 8:30 a.m. and arrives at 10:45 a.m., and the other leaves at 7:50 a.m. and arrives at 10:05 a.m. Forecasts and airport operations are normal, and there are no morning obligations. Which itinerary best matches Priya's established travel choices?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_003",
+      "visible_history_scope": {
+        "max_session_index": 145
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 5,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 5,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "cross_context_transfer": 3,
+      "direct_use": 1
+    }
+  }
+}

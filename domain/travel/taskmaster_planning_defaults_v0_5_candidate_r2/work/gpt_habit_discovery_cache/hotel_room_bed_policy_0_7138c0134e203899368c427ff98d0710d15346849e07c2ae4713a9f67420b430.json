@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "7138c0134e203899368c427ff98d0710d15346849e07c2ae4713a9f67420b430",
+  "habits": [
+    {
+      "boundary_condition": "The exact room count and bed mix should scale with the trip context; evidence includes two rooms/bedrooms for some group trips and three rooms for a larger group trip.",
+      "bundle_id": "tm_v04_e2e_bundle_13b88a816b01",
+      "condition": "When booking a hotel for a family or small group where several people need sleeping space.",
+      "confidence": 0.74,
+      "decision": "accept",
+      "default_action": "Search for hotels offering at least two separate rooms or bedrooms, and confirm the bed setup in each room before treating an option as suitable.",
+      "exception_condition": "Do not apply to solo, couple-only, or otherwise small-party stays unless the user again requests separate rooms or specific beds.",
+      "family": "hotel_room_bed_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_13b88a816b01",
+      "induced_at": "2026-07-16T08:06:21.799569+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "multi_room_sleeping_space_for_group_hotel_stays",
+      "preference_value": "For group or family hotel stays, the traveler tends to prefer multiple separate rooms/bedrooms with explicit bed arrangements, rather than a single standard room.",
+      "rationale": "Across three independent hotel dialogues, the user repeatedly avoids assuming a single room is enough and instead asks for multiple rooms or bedrooms plus sleeping-space/bed details.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports the multi-bedroom default for family travel and frames it as needed sleeping space rather than a generic hotel slot.",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "exact_user_quote": "We have four children. I'm going to need a hotel that offers at least two bedrooms.",
+          "instruction_id": "hotel-11",
+          "turn_index": 5
+        },
+        {
+          "contribution": "Independently supports a preference for multiple rooms with explicit bed configuration.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "Looking for two rooms. One room needs to have two twin beds and the other room a queen-size bed.",
+          "instruction_id": "hotel-8",
+          "turn_index": 9
+        },
+        {
+          "contribution": "Independently supports not defaulting to a single room for group hotel stays; the user asks for multiple rooms.",
+          "conversation_id": "dlg-47d6c8f5-da3a-4f4f-bb14-c10f5cacb7d7",
+          "exact_user_quote": "Well, first there will be five of us and we'll need three rooms.",
+          "instruction_id": "hotel-10",
+          "turn_index": 6
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "We have four children. I'm going to need a hotel that offers at least two bedrooms.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 5,
+          "user_utterance": "We have four children. I'm going to need a hotel that offers at least two bedrooms."
+        },
+        {
+          "annotated_segment": "Looking for two rooms. One room needs to have two twin beds and the other room a queen-size bed.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 9,
+          "user_utterance": "Looking for two rooms. One room needs to have two twin beds and the other room a queen-size bed."
+        },
+        {
+          "annotated_segment": "Well, first there will be five of us and we'll need three rooms.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-47d6c8f5-da3a-4f4f-bb14-c10f5cacb7d7",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 6,
+          "user_utterance": "Well, first there will be five of us and we'll need three rooms."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+    "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+    "dlg-47d6c8f5-da3a-4f4f-bb14-c10f5cacb7d7"
+  ]
+}

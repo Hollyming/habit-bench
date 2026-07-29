@@ -1,0 +1,21 @@
+{
+  "cache_fingerprint": "da09b4cd3db07026eb882a8536f86d2ef7e0d5b58f2e02b069b530b7391950bf",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_departure_time_preference",
+      "boundary_condition": "Apply this only to departure timing; do not infer flexibility across all time-of-day windows or assume the same timing for every leg.",
+      "canonical_value": "Prefer afternoon flight departures when no different timing is specified for the current leg.",
+      "condition": "When searching for flights and no different departure-time preference is specified for the current leg.",
+      "default_action": "Prioritize flights departing in the afternoon, including the earliest suitable afternoon option when relevant.",
+      "exception_condition": "Follow any explicitly stated timing for the current leg, and confirm before broadening beyond afternoon when availability or other constraints require it.",
+      "input_ids": [
+        "tm_v04_e2e_habit_ff9a7f3c433c"
+      ],
+      "name": "Prefers afternoon flight departures",
+      "preference_value": "afternoon departures",
+      "rationale": "Repeated requests across multiple flight conversations consistently favor afternoon departures, supporting a reusable soft default while preserving explicit per-leg timing and availability exceptions.",
+      "representative_id": "tm_v04_e2e_habit_ff9a7f3c433c"
+    }
+  ]
+}

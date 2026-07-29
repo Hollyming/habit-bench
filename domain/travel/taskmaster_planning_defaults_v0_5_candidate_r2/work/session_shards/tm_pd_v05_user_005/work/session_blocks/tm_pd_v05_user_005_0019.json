@@ -1,0 +1,134 @@
+{
+  "cache_fingerprint": "3bd7a46aca63b43a5f7d72bb4c48935f2975dd9c79cd8afaf99e6ee31630084c",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Avery compared Tuesday and early-Wednesday outbound flights for the June 10 Dallas pickup and chose to keep Thursday morning as the return because the crate departure time makes Wednesday-night service unreliable. No recurring travel preference was established, and nothing was booked or held.",
+        "evidence_topology": {
+          "episode_id": "atlanta_dallas_collection_pickup_01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 19,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requests evaluation of a Wednesday-night return, directly supporting a later-day return for this trip. The later choice of Thursday morning is driven by the lack of a dependable Wednesday-night option and does not establish a durable timing revision. No user utterance strongly establishes the nonstop, Delta, window-seat, beach-proximity, rating-floor, or bed-configuration habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "check whether I can reasonably get home Wednesday night.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to sort out Dallas for the collection pickup. The museum appointment is Wednesday, June 10 at 10:00 a.m. I have to stay until the sealed crates actually leave, probably around 5:00 or 5:30. Compare going out Tuesday with leaving very early Wednesday, and check whether I can reasonably get home Wednesday night.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare Atlanta-to-Dallas departures on Tuesday, June 9 and early Wednesday, June 10, then look at both the last Wednesday returns and practical Thursday options. Are you willing to use either DFW or Love Field, and what is the earliest you could leave Atlanta Tuesday?",
+          "role": "assistant"
+        },
+        {
+          "content": "Either airport is fine. Tuesday I can leave after 3:00 p.m. If I go Wednesday morning, it needs to get me to the museum with a real cushion, not at 9:50.",
+          "role": "user"
+        },
+        {
+          "content": "For Tuesday, the strongest nonstop choices are a 4:20 p.m. Atlanta departure arriving DFW at 5:45 p.m. for $428 round trip with a Thursday return, or a 6:05 p.m. departure arriving Love Field at 7:20 p.m. for $451. Both require a Tuesday hotel night but leave Wednesday morning uncomplicated. The viable same-day option departs Atlanta at 6:10 a.m. Wednesday and reaches DFW at 7:32 a.m. At typical weekday traffic, that should put you at the museum around 8:30 to 8:50 a.m. A later 7:15 a.m. flight is too exposed; its scheduled 8:38 arrival leaves little recovery time for a delay or slow baggage delivery.",
+          "role": "assistant"
+        },
+        {
+          "content": "The crates are checked equipment, so include baggage-claim time. What are the actual Wednesday-night flights back?",
+          "role": "user"
+        },
+        {
+          "content": "The latest nonstop from Love Field leaves at 7:35 p.m. and arrives Atlanta at 10:40 p.m. The latest DFW nonstop leaves at 8:25 p.m. and arrives at 11:36 p.m. There is also a 9:10 p.m. DFW departure connecting in Houston, but it does not reach Atlanta until 1:18 a.m. Thursday and adds another failure point. If the truck leaves at 5:30 p.m., the 7:35 from Love Field is not responsible. The 8:25 from DFW is possible only if you leave the museum promptly and traffic is cooperative; checked equipment makes the margin tighter because the airline’s bag cutoff is 45 minutes before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "So show me the combinations, including Thursday. I don’t want a fare that assumes I can abandon the loading dock at five.",
+          "role": "user"
+        },
+        {
+          "content": "Three combinations merit consideration. First: Tuesday 4:20 p.m. to DFW, then Wednesday 8:25 p.m. back to Atlanta, $486. This gives you a settled start but only a conditional Wednesday return; you would need the crates gone by about 5:30 and should leave for DFW no later than 5:45. Second: Tuesday 4:20 p.m. to DFW, then Thursday 7:10 a.m. back, arriving Atlanta at 10:17 a.m., $428. This adds a second hotel night and gives the loading process room to run late. Third: Wednesday 6:10 a.m. to DFW, then Thursday 7:10 a.m. back, $397. It saves one hotel night, but any meaningful outbound delay threatens the 10:00 appointment, especially with checked equipment. The Wednesday outbound paired with the Wednesday-night return is $455, but it concentrates both timing risks into one day.",
+          "role": "assistant"
+        },
+        {
+          "content": "What if the truck is still there at six? Is there any Wednesday flight I could make without gambling on bag cutoff?",
+          "role": "user"
+        },
+        {
+          "content": "No nonstop would remain comfortable. Leaving the museum at 6:00 p.m. could get you to DFW around 6:40 to 7:10, depending on traffic. That might technically make the 8:25 departure, but a traffic disruption or equipment check-in delay could cause a miss. The 9:10 connection offers more airport margin, yet it is still vulnerable if loading runs beyond 6:30 and it gets you home after 1:00 a.m. The operationally sound plan is to treat Thursday morning as the return and avoid tying crate departure to an airline deadline.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed on Thursday. Now compare Tuesday afternoon plus Thursday morning against Wednesday early plus Thursday morning, including hotel nights and transport. I need the tradeoff, not a booking.",
+          "role": "user"
+        },
+        {
+          "content": "Tuesday-to-Thursday: the 4:20 p.m. nonstop to DFW and Thursday 7:10 a.m. nonstop to Atlanta cost $428. Two nearby hotel nights are about $384 including taxes, and estimated airport and museum transport is $105, for roughly $917 total. You arrive Tuesday evening, can retrieve the equipment without time pressure, and have more than an hour of planned cushion before Wednesday’s appointment. Wednesday-to-Thursday: the 6:10 a.m. nonstop outbound with the same Thursday return costs $397. One hotel night is about $192, with transport around $105, for roughly $694 total. It saves approximately $223, but the schedule depends on the first flight operating close to time; a delay of about an hour would substantially erode the appointment cushion.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does the Tuesday flight still work if the equipment takes 45 minutes to come out? And what time would I need to leave the hotel Thursday?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. With the Tuesday flight scheduled into DFW at 5:45 p.m., allowing 45 minutes for equipment claim puts you out of the terminal around 6:30. Even with evening traffic, you should reach the museum-area hotel around 7:15 to 7:45, with no Wednesday commitment affected. For the 7:10 a.m. Thursday departure, plan to leave the hotel at 4:55 a.m. That allows roughly 40 minutes to DFW, arrival near 5:35, and about 95 minutes for equipment check-in and security.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put the Tuesday-out, Thursday-back option first, then the cheaper Wednesday option. Make clear why the Wednesday-night return is off the table. Nothing should be held.",
+          "role": "user"
+        },
+        {
+          "content": "Option 1: Fly nonstop Atlanta to DFW Tuesday, June 9 at 4:20 p.m., arriving 5:45 p.m.; return nonstop Thursday, June 11 at 7:10 a.m., arriving Atlanta at 10:17 a.m. Airfare is currently $428. Two hotel nights are estimated at $384 including taxes, and local transportation at $105, for an estimated total of $917. This gives ample time to collect the checked equipment Tuesday and reach the museum well before Wednesday’s 10:00 a.m. appointment. Leave the hotel around 4:55 a.m. Thursday. Option 2: Fly nonstop Wednesday at 6:10 a.m., arriving DFW at 7:32 a.m.; take the same Thursday return. Airfare is $397, with one hotel night estimated at $192 and transportation at $105, for an estimated total of $694. It saves about $223 but exposes the appointment to an outbound delay and baggage-claim time. A Wednesday-night return is excluded because the last nonstop leaves DFW at 8:25 p.m.; if the crates depart at 5:30 or later, traffic and the checked-equipment cutoff leave insufficient dependable margin. Nothing has been held or booked, and prices and schedules can change.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0019",
+      "session_index": 19,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "Avery's Atlanta-Chicago museum trip was completed as arranged for October 14-18. The Atlanta-Raleigh family trip for Avery and her wife is confirmed for November 14-16 at a combined total of $864, with hotel cancellation available through 11:59 p.m. November 12. For the December 9-13 museum assignment, Club Quarters Hotel Faneuil Hall remains the proposed Boston replacement, bringing the quoted trip total to $1,236.18 before local transportation and airline bag fees; registrar approval is pending and nothing has been booked or held. Avery and her wife will drive from Atlanta to St. George Island for September 20-27. St. George Inn confirmation SGI-927416 is for one deluxe king room for two adults for seven nights at $1,968.24 total; a $263.18 deposit is applied, $1,705.06 is due at check-in, and cancellation remains free through 3:00 p.m. local hotel time September 13, after which the full stay is nonrefundable. For the Denver gallery installation, Delta confirmation H7Q4LM and Catbird confirmation CB-481730 remain in place for August 18-21; the expected total is $1,273.22, which is $23.22 above prior employer approval and may require follow-up. For the Minneapolis graduation trip, American confirmation K6R9PT and Graduate by Hilton Minneapolis confirmation GM-583214 remain confirmed for two travelers for May 15-18. The hotel has recorded the late arrival and Saturday dinner remains workable. For the Dallas collection pickup on Wednesday, June 10 at 10:00 a.m., Avery is comparing a Tuesday, June 9 arrival with an early-Wednesday arrival. A Thursday, June 11 morning return is the workable plan because crate departure may run too late for the final Wednesday nonstop. The Tuesday-to-Thursday option is estimated at $917 and the Wednesday-to-Thursday option at $694. Nothing has been held or booked.",
+  "verification": {
+    "19": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "check whether I can reasonably get home Wednesday night.",
+          "habit_id": "tm_pd_v05_user_005_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requests evaluation of a Wednesday-night return, directly supporting a later-day return for this trip. The later choice of Thursday morning is driven by the lack of a dependable Wednesday-night option and does not establish a durable timing revision. No user utterance strongly establishes the nonstop, Delta, window-seat, beach-proximity, rating-floor, or bed-configuration habits."
+    }
+  }
+}

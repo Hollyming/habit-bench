@@ -1,0 +1,119 @@
+{
+  "cache_fingerprint": "e7c33294bf35e78d08845c85fcc67d41a0198707e3702375f353f8d0e39cf5c5",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya compared three hotels for the current Denver client trip and selected the walkable Hotel Indigo option based on its total cost, included breakfast, short office walk, and cancellation terms. No durable travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "client-denver-006",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 29,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user selected Hotel Indigo for this specific stay based on office walkability, included breakfast, price, and cancellation timing. None of the candidate habits is directly evidenced by the user's utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I confirmed the Denver office is right by Union Station. Can you compare the three hotel options for Tuesday through Friday, including taxes, what is included, the morning trip, and the cancellation cutoff?",
+          "role": "user"
+        },
+        {
+          "content": "For January 12-15, three nights, the current comparison is:\n\nHotel Indigo Denver Downtown: $255 per night, $765 room charge, $120.49 tax, and $885.49 total. The breakfast rate includes breakfast for one and Wi-Fi. It is about a five-minute walk to the client office. Cancellation is free until 6:00 p.m. local time on January 10.\n\nHilton Garden Inn Union Station: $224 per night, $672 room charge, $105.84 tax, and $777.84 total. Wi-Fi is included, but breakfast is not. The office is an 11-minute walk. Free cancellation ends at 6:00 p.m. local time on January 8.\n\nHyatt Place Denver Downtown: $198 per night, $594 room charge, $93.56 tax, and $687.56 total. Breakfast and Wi-Fi are included. Reaching the office takes roughly 20 minutes each morning using light rail and walking. Free cancellation runs until 6:00 p.m. local time on January 11.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Indigo is exactly at the $255 room limit, correct? Taxes don't count against that cap?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Its base rate is exactly $255 per night, so it meets the stated limit before tax. The $120.49 in tax is added afterward, bringing the three-night charge to $885.49.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does the rail add for the Hyatt, and is that 20 minutes door to door or just time on the train?",
+          "role": "user"
+        },
+        {
+          "content": "The 20 minutes is the estimated door-to-door morning trip: about six minutes walking to the stop, eight minutes on rail, and another six minutes walking and waiting. Three local day passes would add about $16.50, making the stay plus morning transit approximately $704.06. That still leaves it $73.78 below the Hilton and $181.43 below the Indigo.",
+          "role": "assistant"
+        },
+        {
+          "content": "Only count the three morning trips, since I may not use rail otherwise. Also, what would breakfast at the Hilton likely add?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, the $16.50 estimate covers only one local fare product for each of the three mornings. The Hilton lists breakfast at about $18 per day before tax. Using $54 as the three-day estimate, its practical total becomes roughly $831.84, though the restaurant charge could vary slightly.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the Hilton saves only about $54 compared with Indigo once breakfast is included, but has the earliest cancellation deadline and a longer walk.",
+          "role": "user"
+        },
+        {
+          "content": "That's right. On the comparable totals, Hilton is about $53.65 less than Indigo. In return, it has no included breakfast, adds roughly six minutes to each morning walk, and requires a decision two days earlier: January 8 instead of January 10.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there any reservation fee or destination fee hiding in one of these totals?",
+          "role": "user"
+        },
+        {
+          "content": "No separate destination or resort fee is shown for any of the three rates. The totals include the room charges and currently displayed lodging taxes. Parking and incidental charges are excluded, but neither is needed for the client schedule as outlined.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Hyatt is meaningfully cheaper, but I don't want three mornings dependent on the train when we're starting in the client office. Between the two walkable choices, which is stronger?",
+          "role": "user"
+        },
+        {
+          "content": "Hotel Indigo is the stronger fit for this schedule. It costs about $53.65 more than the Hilton after allowing for breakfast, but it is closest to the office, includes breakfast in the quoted rate, and keeps cancellation open until January 10. The Hilton's lower room rate does not buy much savings once breakfast is added.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. Keep the Indigo as the hotel choice, but don't reserve it until I settle the Friday flight. Give me the exact cancellation point one more time.",
+          "role": "user"
+        },
+        {
+          "content": "Hotel Indigo Denver Downtown is now the selected but unbooked hotel for January 12-15. The quoted total is $885.49 for three nights, including tax and breakfast for one. Free cancellation ends at 6:00 p.m. Denver time on Sunday, January 10, 2027; after that, the listed penalty is one night's room and tax. The rate and terms should be rechecked when the Friday return flight is chosen.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0029",
+      "session_index": 29,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya's Denver trip remains ticketed for June 16-19, 2026; the revised Friday departure still needs confirmation. The Philadelphia return was exchanged to Friday, July 31, 2026 at 8:10 a.m., and the Hyatt House stay was extended through Friday morning; those changes added $348.56. The Sonesta deposit release remains pending, and Hyatt shuttle details remain unconfirmed. The coastal Georgia trip remains unbooked at a working total of $3,647. For Nashville, the replacement outbound adds a net $168 after the canceled-segment refund; the hotel and Thursday return remain unchanged, and the revised total still needs reconciliation after the refund posts. The two-person San Diego trip for November 8-13, 2026 remains booked at a reconciled estimate of $3,284. The November 13 return is confirmed on the 5:00 p.m. Alaska nonstop arriving MSP at 10:37 p.m., at no additional fare; the outbound, shared checked bag, Wayfarer reservation, and 2:35 p.m. airport ride are unchanged. The hotel remains refundable through 6:00 p.m. local time on November 3. The Denver client trip for January 12-15, 2027 remains unbooked. Two airfare finalists remain: an all-United itinerary at $486 with a Friday 6:35 p.m. departure, and a mixed United/Delta itinerary at $579 with a Friday 8:05 p.m. departure. Maya still needs to confirm whether Friday client obligations end firmly at 3:30 p.m. Hotel Indigo Denver Downtown is the selected but unbooked lodging option at $885.49 including tax and breakfast for one; free cancellation ends at 6:00 p.m. Denver time on January 10, with a one-night room-and-tax penalty afterward. Airfare, hotel rate, availability, and terms require rechecking before purchase.",
+  "verification": {
+    "29": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user selected Hotel Indigo for this specific stay based on office walkability, included breakfast, price, and cancellation timing. None of the candidate habits is directly evidenced by the user's utterances."
+    }
+  }
+}

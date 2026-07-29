@@ -1,0 +1,286 @@
+{
+  "habit_id": "tm_pd_v05_user_005_h06",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c02",
+        "c03",
+        "c06"
+      ],
+      "accepted_total": [
+        "c00",
+        "c02",
+        "c03",
+        "c06"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Remove Maple Inn from consideration and keep Park Hotel because Maple's Google rating is too low for the user's usual hotel screen."
+              },
+              {
+                "choice_id": "B",
+                "text": "Keep both finalists and compare the $30 nightly savings with the added drive, without excluding Maple under the coastal-stay screen."
+              },
+              {
+                "choice_id": "C",
+                "text": "Choose Park Hotel because its four-star property class makes it the stronger quality option despite the added drive and cost."
+              },
+              {
+                "choice_id": "D",
+                "text": "Pause and ask for permission to relax the user's usual rating rule before continuing to compare Maple with Park."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A query-only planner could reasonably favor either the closer, cheaper Maple or the higher-rated Park and cannot know whether a standing screen applies. The history resolves the policy question but leaves the explicit cost-and-location comparison intact, making B uniquely correct as the next action.",
+            "gold_action": "Do not transfer the coastal-leisure rating floor to this ordinary family visit; retain both hotels and decide on the trip's actual cost and location tradeoff.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0055",
+              "tm_pd_v05_user_005_s0066",
+              "tm_pd_v05_user_005_s0119"
+            ],
+            "label_rationale": "Session s0119 expressly excludes ordinary family visits from the coastal hotel rule. Session s0066 supplies the coastal default being bounded, while s0055 shows that a Raleigh family-visit exception was trip-specific rather than a basis for a broader policy. B respects the later scope boundary without pretending that the lower-rated hotel must automatically win.",
+            "probe_type": "boundary",
+            "query": "I need a hotel for an ordinary family visit in Indianapolis. Maple Inn is $168 per night, has a 3.8 Google rating, and is beside my relatives' neighborhood. Park Hotel is $198, has a 4.2 Google rating, and is an 18-minute drive away. Both are refundable, include parking, and have the requested room. What should the planner do with these finalists?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choices A, B, and D refer to a 'usual hotel screen' or 'coastal-stay screen' that is not supplied in the query; B is still selectable because it correctly declines to apply that unstated screen."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "For an ordinary family visit, the cheaper hotel beside the relatives is plainly viable, while the higher-rated hotel remains a reasonable alternative. Keeping both and comparing savings against driving time follows the stated facts without importing an unstated rating cutoff."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Sandpiper, paying $14 more and walking one block while retaining its 3.6 Google-rated option."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with Tide Motel, taking the lower price and beachfront location despite its 3.4 Google rating."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with Dunes Hotel at $158, with a 4.1 Google rating, a 15-minute beach drive, and a nonrefundable rate."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Coast Lodge at $121, rated 8.2 on Expedia and 3.3 on Google, two blocks from the beach."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A and B are deliberately tied on generic utility: Tide saves money and is beachfront, while Sandpiper has the stronger rating for a modest premium. The query does not disclose any cutoff, so only memory identifies Sandpiper as compliant; using the normal upscale floor would instead overcorrect toward C and sacrifice the stated budget framing.",
+            "gold_action": "Apply the user's lower budget-search Google-rating floor and prioritize Sandpiper over the cheaper but below-floor Tide Motel.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0023",
+              "tm_pd_v05_user_005_s0066",
+              "tm_pd_v05_user_005_s0119"
+            ],
+            "label_rationale": "The longitudinal habit uses a distinct, lower floor for an explicitly budget-focused variant while retaining the rating-metric distinction supported by s0023 and s0066; s0119 supplies the leisure-scope boundary. Sandpiper clears that budget floor without paying the larger price, location, and refundability costs of forcing the upscale floor through Dunes.",
+            "probe_type": "boundary",
+            "query": "This year's Gulf Shores trip is explicitly budget-focused. Sandpiper costs $126 per night, has a 3.6 Google rating, is one block from the beach, and is refundable. Tide Motel costs $112, has a 3.4 Google rating, is beachfront, and is refundable. Dunes Hotel and Coast Lodge also fit the dates and room needs. Which option should lead the budget shortlist?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The unusually low Google scores may be testing an unstated normal rating threshold, but the explicit budget objective is sufficient to select Tide Motel."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "The trip is explicitly budget-focused, and Tide Motel is both the least expensive listed option and directly beachfront while remaining refundable. Its lower rating is disclosed, but no minimum rating is stated."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Book Bay Access now because the accessibility and location constraints are more important than the difference in rating."
+              },
+              {
+                "choice_id": "B",
+                "text": "Hold Bay Access if possible and ask whether to proceed below the usual screen, keeping accessibility and location fixed."
+              },
+              {
+                "choice_id": "C",
+                "text": "Ask the higher-rated hotels to recheck unpublished accessible inventory before presenting any below-screen option."
+              },
+              {
+                "choice_id": "D",
+                "text": "Ask whether an accessible vacation rental with no comparable Google hotel rating would be an acceptable lodging change."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is a strong generic response because it correctly gives accessibility priority and chooses the only feasible hotel. History adds a second required step that the query alone cannot supply: the planner must seek approval before waiving the secondary rating policy, making B preferable even though both actions preserve the hard constraints.",
+            "gold_action": "Preserve the higher-priority accessibility and location constraints, but ask before relaxing the applicable hotel-rating floor because no compliant hotel remains.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0023",
+              "tm_pd_v05_user_005_s0066",
+              "tm_pd_v05_user_005_s0119"
+            ],
+            "label_rationale": "Sessions s0023 and s0066 establish the applicable Google-rating screen for a nice coastal stay, and s0119 confirms the scope. The stored policy says that when no suitable hotel clears the floor while meeting more important trip constraints, the planner must ask before relaxing it. B does exactly that without weakening accessibility or location.",
+            "probe_type": "conflict_resolution",
+            "query": "For a nice coastal stay in Key Largo, a roll-in shower and location within 20 minutes of the family event are nonnegotiable. After checking available inventory, Bay Access is the only hotel meeting both constraints; it is refundable and has a 3.8 Google rating. The nearby hotels with higher Google ratings cannot confirm an accessible room. I am reachable before anything is booked. What should the planner do next?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choice B refers to the 'usual screen,' revealing an otherwise unstated historical rating rule; the explicit availability, reachability, and pre-booking wording nevertheless makes consultation the best next step."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c05",
+            "rationale": "Bay Access is the only feasible hotel under both nonnegotiable constraints, but the traveler is reachable and no booking authorization is stated. Holding it if possible and requesting approval preserves the feasible inventory without silently applying or overriding an unstated rating rule."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c05"
+      ],
+      "accepted_total": [
+        "c00",
+        "c02",
+        "c03",
+        "c05",
+        "c06"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Remove Maple Inn and recommend Park Hotel, treating Park's stronger Google rating as sufficient to outweigh the higher price and longer family visits."
+              },
+              {
+                "choice_id": "B",
+                "text": "Keep both eligible, then compare Maple's lower price and walkable location with Park's quieter setting, breakfast, and stronger Google rating."
+              },
+              {
+                "choice_id": "C",
+                "text": "Remove Park Hotel and recommend Maple Inn, treating proximity to relatives as a standing requirement that overrides every quality difference on family visits."
+              },
+              {
+                "choice_id": "D",
+                "text": "Keep Park Hotel only because its stronger Google rating should be treated as equivalent to a higher hotel class when screening the two properties."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A and B preserve a real tradeoff: Park offers a quieter stay, breakfast, and the stronger rating, while Maple saves $30 nightly and is walkable to the family. Without longitudinal history, applying a quality screen and retaining both are both defensible interpretations of the request to use established preferences. The remembered scope boundary alone establishes that B is the correct policy treatment.",
+            "gold_action": "Do not transfer the coastal-leisure hotel-rating floor to this ordinary family visit; keep both finalists eligible and decide using the visit's actual price, proximity, noise, breakfast, and rating tradeoffs.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0055",
+              "tm_pd_v05_user_005_s0066",
+              "tm_pd_v05_user_005_s0119"
+            ],
+            "label_rationale": "Session s0119 explicitly limits the reusable rating floor to coastal vacations framed as nice or resort-style stays and excludes ordinary family visits. Session s0066 establishes the coastal Google-rating policy being bounded, while s0055 confirms that the Raleigh family-visit decision was a one-trip exception rather than a broader family-travel rule. Thus Maple must not be screened out merely for its 3.8 Google rating, but the history does not require ignoring Park's quality advantages.",
+            "probe_type": "boundary",
+            "query": "Apply my established hotel-planning preferences to an ordinary family visit in Indianapolis. Maple Inn is $168 per night, has a 3.8 Google rating, and is a four-minute walk from my relatives, but some reviews mention street noise and breakfast is not included. Park Hotel is $198 per night, has a 4.2 Google rating, is an 18-minute drive away, and includes breakfast in a quieter area. Both have the requested room, free parking, and equivalent refundable terms. How should the planner narrow these finalists?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrase 'ordinary family visit' suggests no exceptional constraint should be inferred.",
+              "Choices A, C, and D use unjustified absolute screening rules, making B identifiable from the wording alone."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "Neither hotel violates a stated requirement, and each has material advantages. A balanced finalist comparison is the only choice that preserves both eligible options without inventing a standing preference or treating Google rating as hotel class."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Lead with Sandpiper, accepting a $14 nightly premium and a one-block walk in exchange for breakfast and its stronger Google rating."
+              },
+              {
+                "choice_id": "B",
+                "text": "Lead with Tide Motel, accepting its weaker Google rating in exchange for the lowest nightly price and direct beachfront access."
+              },
+              {
+                "choice_id": "C",
+                "text": "Lead with Dunes Hotel, accepting the highest price and a beach drive in exchange for the strongest Google rating among the finalists."
+              },
+              {
+                "choice_id": "D",
+                "text": "Lead with Coast Lodge, using its kitchenette, low price, and Expedia score to offset its weaker rating on Google."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Sandpiper and Tide have comparable generic utility: Tide saves $14 and is beachfront, while Sandpiper includes breakfast and has the stronger Google rating. The query states no cutoff, so a query-only planner can reasonably lead with either one. Only the remembered budget-specific floor disqualifies Tide and makes Sandpiper the intended leader without overcorrecting to the costlier Dunes Hotel.",
+            "gold_action": "Apply the remembered budget-focused Google-rating floor and lead with Sandpiper, which clears that floor while preserving most of the price and beach-access benefits of the cheaper alternatives.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0023",
+              "tm_pd_v05_user_005_s0066",
+              "tm_pd_v05_user_005_s0119"
+            ],
+            "label_rationale": "The stored longitudinal policy uses a lower 3.5 minimum for explicitly budget-focused searches, while s0023 and s0066 establish that the relevant measure is the Google user rating rather than hotel class or a booking-site score. Session s0119 confines the reusable policy to the applicable leisure context. Sandpiper clears the budget variant; Tide and Coast do not, and Dunes imposes substantially greater cost and poorer beach access to exceed a floor that does not apply to this budget framing.",
+            "probe_type": "boundary",
+            "query": "Use my established lodging preferences for this year's explicitly budget-focused Gulf Shores trip. Sandpiper is $126 per night, has a 3.6 Google rating, includes breakfast, and is one block from the beach. Tide Motel is $112, has a 3.4 Google rating, and is beachfront, but breakfast is not included. Dunes Hotel is $149, has a 4.1 Google rating, and is a 15-minute drive from the beach. Coast Lodge is $119, has a 3.3 Google rating and an 8.2 Expedia review score, and is two blocks from the beach with a kitchenette. All four have the requested room and comparable refundable terms. Which property should lead the shortlist?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The wording 'explicitly budget-focused' directly privileges the lowest-price option.",
+              "Tide Motel also has the strongest beach location, reinforcing B without requiring private preferences."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "The trip is explicitly budget-focused, and Tide Motel has both the lowest nightly price and direct beachfront access. Its weaker rating and lack of breakfast are disclosed tradeoffs but do not outweigh its clear fit to the stated objective among these choices."
+          }
+        }
+      ],
+      "round": 1
+    }
+  ],
+  "status": "in_progress",
+  "user_id": "tm_pd_v05_user_005"
+}

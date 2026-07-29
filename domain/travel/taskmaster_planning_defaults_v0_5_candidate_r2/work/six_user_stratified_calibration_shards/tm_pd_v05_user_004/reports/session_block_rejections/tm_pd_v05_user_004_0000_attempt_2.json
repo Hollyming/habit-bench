@@ -1,0 +1,72 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_004_h02', 'exception') actual=[('tm_pd_v05_user_004_h02', 'support')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Exception evidenced locally: Danielle chooses the $374 itinerary over the $356 cheapest combination because the cheaper return would force her to leave the closing program promptly and the cheaper outbound has an unacceptably tight Monday transfer margin. The decision is explicitly limited to this St. Louis trip.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I have the St. Louis convening dates settled for Monday, May 12 through Tuesday, May 13. Can you compare the four flight combinations before I finalize the hotel? I need enough time for Monday's site visit and a workable way back after Tuesday's closing program.",
+          "role": "user"
+        },
+        {
+          "content": "I found four combinations from DFW to St. Louis using two outbound choices and two returns. The Monday morning nonstop leaves at 6:10 a.m., arrives at 7:35, and gets you to the hotel area with a comfortable ground-transfer window before the 10:30 site visit. The less expensive outbound leaves at 10:20 a.m., arrives at 11:45, and leaves roughly 35 minutes after baggage claim for the transfer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the 10:20 flight actually nonstop? And what are the prices once the fare and bag charges are included?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, both outbound flights are nonstop. The 6:10 option is $286 for the round trip when paired with the earlier return, or $302 with the later return. It is a standard economy fare with a carry-on included, one checked bag at $35 each way, and changes allowed with a fare difference. The 10:20 option is $238 with the earlier return or $254 with the later return. Its lowest fare does not include a checked bag, so adding one each way brings those totals to $308 and $324. That fare also carries a $75 change fee.",
+          "role": "assistant"
+        },
+        {
+          "content": "I will have materials for the convening, so include one checked bag. What are the two return flights in practical terms?",
+          "role": "user"
+        },
+        {
+          "content": "The Tuesday return at 3:40 p.m. departs from St. Louis at $112 when paired with the lower outbound fare. It arrives in Dallas at 5:25, but you would need to leave the closing program promptly: allowing for the airport transfer and security gives you about a 30-minute margin. The 7:15 p.m. return costs $128 with the lower outbound, arrives at 9:05, and gives you more than two hours after the program ends. Both returns are nonstop. The earlier return is the cheaper one, but it makes Tuesday's departure fairly tight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please lay out all four totals with the checked bag included, and separate the ticket restrictions from the timing issue. I want to see whether the cheaper outbound is still sensible.",
+          "role": "user"
+        },
+        {
+          "content": "Here is the comparison for one traveler, including one checked bag each way:\n\n- Early outbound plus 3:40 return: $356. The morning arrival is comfortable, but Tuesday requires leaving promptly. Standard economy; changes permitted with fare difference.\n- Early outbound plus 7:15 return: $374. Comfortable Monday arrival and a relaxed Tuesday airport transfer. Standard economy; changes permitted with fare difference.\n- 10:20 outbound plus 3:40 return: $378. The Monday transfer margin is only about 35 minutes, and Tuesday is also tight. Lowest outbound fare has a $75 change fee; the return allows changes with fare difference.\n- 10:20 outbound plus 7:15 return: $392. Monday's transfer remains tight, though Tuesday is comfortable. The outbound change fee still applies.\n\nThe cheaper outbound does not create a lower complete fare once the bag is included. More importantly, it leaves little room for a delayed bag claim or traffic before the site visit.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the $356 combination is cheapest, but it makes Tuesday rushed. How much more is the $374 option, and does it give me enough time to stay through the closing program?",
+          "role": "user"
+        },
+        {
+          "content": "The $374 option is $18 more than the cheapest combination. The closing program is scheduled to finish at 2:45 p.m.; with the 7:15 departure, you can remain through the program, collect your materials, and still have a generous transfer buffer. The 3:40 flight would require leaving before the final networking portion and heading to the airport immediately. The $374 itinerary also uses the more flexible outbound fare and keeps Monday's arrival margin intact.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose the $374 itinerary. For this trip, I would rather pay the extra $18 than risk missing part of the closing program or having the short Monday transfer cause a problem. Please restate exactly what I am booking.",
+          "role": "user"
+        },
+        {
+          "content": "I would book the early Monday nonstop from DFW at 6:10 a.m., arriving in St. Louis at 7:35 a.m., and the Tuesday nonstop at 7:15 p.m., arriving back in Dallas at 9:05 p.m. The total is $374, including one checked bag each way. The outbound is standard economy with changes allowed for the fare difference; the return has the same change treatment. This is the more expensive option than the $356 pairing, but it preserves the Monday arrival margin and lets you attend Tuesday's closing program without leaving early.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0082",
+      "session_index": 82,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Danielle is attending the St. Louis youth arts convening on May 12-13. She selected the $374 round trip from DFW: Monday 6:10 a.m. nonstop outbound and Tuesday 7:15 p.m. nonstop return, including one checked bag each way. The itinerary preserves a comfortable Monday transfer and allows her to stay through Tuesday's closing program. A hotel decision remains to be finalized."
+}

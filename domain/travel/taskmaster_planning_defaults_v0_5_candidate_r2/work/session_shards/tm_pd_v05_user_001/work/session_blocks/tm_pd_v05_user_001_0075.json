@@ -1,0 +1,87 @@
+{
+  "cache_fingerprint": "1f0f35e3e935f7c3c8201ca0a7826d4a418749f7985d771a87a4806d81d09bcc",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The Saturday dinner timing and local transportation plan were revised for this trip only; no recurring preference was introduced.",
+        "evidence_topology": {
+          "episode_id": "ep_019_san_juan_anniversary_trip",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 75,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user only requests a dinner schedule update, evaluates transfer timing, and preserves existing flights and hotel booking; none of the candidate flight or hotel preference values is evidenced by the user's utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The anniversary dinner has moved from Friday to Saturday at 7:30, same Old San Juan restaurant. Please update the trip record without touching our flights or five-night hotel booking.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll leave the confirmed May 12-17 flights and Historic King room unchanged and move only the dinner entry to Saturday at 7:30 p.m. What is currently scheduled Saturday afternoon?",
+          "role": "assistant"
+        },
+        {
+          "content": "We have the guided excursion that is supposed to finish near the hotel around 5:15. Is that enough time to shower, change, and get to dinner?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, provided 5:15 is the actual return time in Old San Juan. That leaves 2 hours 15 minutes. Allow about 15 minutes to get from the drop-off to your room, 75 minutes to get ready, and 15 minutes to walk to the restaurant, putting you there around 7:15.",
+          "role": "assistant"
+        },
+        {
+          "content": "The operator says the drop-off is Plaza Colón, not the hotel door. Does that change it much?",
+          "role": "user"
+        },
+        {
+          "content": "Only slightly. Plaza Colón should still be a short walk from the hotel, so I would treat 5:30 as the practical room-arrival time. You would still have 90 minutes to get ready and could leave at 7:05 for the roughly eight-minute walk, with a buffer before the reservation.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Confirm we do not need a car from the hotel, and note what happens if the excursion runs late.",
+          "role": "user"
+        },
+        {
+          "content": "Updated record: Saturday excursion returns at Plaza Colón at approximately 5:15 p.m.; walk back to the confirmed Old San Juan hotel and target being in the room by 5:30. Get ready from 5:30 to 7:05, then walk to the same restaurant for the rescheduled 7:30 anniversary dinner. No car is needed from the hotel under the planned timing. If the excursion has not reached Plaza Colón by 5:45, contact the restaurant to advise of possible delay and take a taxi or rideshare directly to the hotel if the operator permits an earlier drop-off. The confirmed five-night hotel stay and both travelers’ flights remain unchanged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0075",
+      "session_index": 75,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "The January 25-31 Nashville and Raleigh press circuit remains confirmed, including the January 31 Raleigh closing schedule, 3:15 p.m. luggage pickup, and confirmed 6:10-8:12 p.m. nonstop to Denver. The November 18-21 Atlanta trip remains unchanged: the Emory Inn is booked for three nights, Friday cars are recorded but unbooked, and flight details still require verification. For the May 12-17 San Juan anniversary trip, flights for Elena and her spouse and one Historic King room in Old San Juan for all five nights are confirmed. The anniversary dinner at the same Old San Juan restaurant is now scheduled for Saturday at 7:30 p.m. Saturday’s guided excursion is expected to return at Plaza Colón around 5:15 p.m.; they will walk to the hotel, target room arrival by 5:30, leave around 7:05, and walk to dinner. No hotel-to-restaurant car is planned. If the excursion has not returned by 5:45, they will notify the restaurant and use a taxi or rideshare to the hotel if an earlier drop-off is possible. Sunday remains unchanged: check out at 11:00 a.m., collect stored bags around 1:15 p.m., leave near 1:30, and target SJU around 1:50 for the 3:55 p.m. flight.",
+  "verification": {
+    "75": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user only requests a dinner schedule update, evaluates transfer timing, and preserves existing flights and hotel booking; none of the candidate flight or hotel preference values is evidenced by the user's utterances."
+    }
+  }
+}

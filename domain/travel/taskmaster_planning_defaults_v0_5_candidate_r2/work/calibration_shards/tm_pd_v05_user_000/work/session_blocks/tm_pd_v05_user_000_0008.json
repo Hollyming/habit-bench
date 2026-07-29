@@ -1,0 +1,95 @@
+{
+  "cache_fingerprint": "46466bdafd83a15edf26bba75d53cc05e76a382d21883a8726308ebf383afa81",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya chose scheduled private rides for this trip because their fixed pickup times cost only slightly more than the mixed rideshare-and-shuttle estimate. No recurring preference was established.",
+        "evidence_topology": {
+          "episode_id": "partner-coast-001",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 8,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user chose scheduled private ground transportation with fixed pickup times for this trip. None of the candidate flight or hotel habits is established by the user utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The flights and both hotels are booked now. Beachview charges $35 a night for parking, so can you compare a rental car, scheduled rides both ways, and rideshare out plus a shuttle back? We’ll leave The Drayton Saturday morning, stay in Savannah for lunch and a few hours, then go to Tybee. Our Tuesday flight leaves SAV at 6:10 p.m.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare the full cost and timing. Can The Drayton hold your bags after checkout, or would the transportation plan need to accommodate luggage during the afternoon?",
+          "role": "assistant"
+        },
+        {
+          "content": "They confirmed they’ll hold them until 3:30 p.m. We can collect them and leave directly from the hotel.",
+          "role": "user"
+        },
+        {
+          "content": "That makes all three options workable. A compact rental from Saturday through Tuesday is currently about $286 including taxes. Adding $105 for three nights of Beachview parking and roughly $15–$20 for fuel brings it to $406–$411. Pickup downtown and airport return are available, but the downtown office closes at 4 p.m., so you’d need to collect the car before sightseeing or leave The Drayton by about 3:15.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is more than I expected. What do the two no-car versions look like?",
+          "role": "user"
+        },
+        {
+          "content": "A local car service quoted $72 from The Drayton to Beachview at 3:30 Saturday and $108 from Beachview to SAV Tuesday, including reservation fees but before optional gratuity: $180 total. They have both times available. For the mixed plan, a Saturday rideshare is currently estimated at $48–$66. The Tuesday shared shuttle is $55 per person, so $110 for two, making that option $158–$176. The shuttle has a 2:15 p.m. Beachview pickup and estimates arrival at SAV between 3:15 and 3:35.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is 3:35 comfortable for a 6:10 flight, including checking our one bag?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Even at the late end, you would have 2 hours 35 minutes before departure. The shuttle requires booking by the prior evening and asks passengers to be ready 15 minutes early. Its drawback is variability from other pickups; the private car can be set for 3:15 p.m. and should reach SAV around 4:00, still leaving about 2 hours 10 minutes.",
+          "role": "assistant"
+        },
+        {
+          "content": "For a difference of only a few dollars at the top end, I’d rather have the scheduled cars and fixed pickups. Use 3:30 Saturday and 3:15 Tuesday. Don’t reserve anything yet; just give me the arrangement to carry forward.",
+          "role": "user"
+        },
+        {
+          "content": "Carry forward two scheduled private rides: Saturday pickup at The Drayton at 3:30 p.m. after collecting the stored bags, arriving at Beachview around 4:00–4:15; and Tuesday pickup at Beachview at 3:15 p.m., with expected arrival at SAV around 4:00 for the 6:10 p.m. departure. The quoted total is $180 before optional gratuity. This avoids the $105 hotel parking charge and the rental-car timing constraint. Both rides currently show availability, but neither has been reserved or charged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0008",
+      "session_index": 8,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. The April 23–28 coastal trip flights and hotels are now booked: The Drayton April 23–25, Beachview Inn & Spa April 25–28, and the MSP–SAV round trip for two. Ground transportation is resolved but unreserved: scheduled private-car pickup at The Drayton Saturday at 3:30 p.m. for Beachview, then pickup at Beachview Tuesday at 3:15 p.m. for SAV and the 6:10 p.m. flight. The quoted transportation total is $180 before optional gratuity. Both rides showed availability, but neither has been reserved or charged.",
+  "verification": {
+    "8": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user chose scheduled private ground transportation with fixed pickup times for this trip. None of the candidate flight or hotel habits is established by the user utterances."
+    }
+  }
+}

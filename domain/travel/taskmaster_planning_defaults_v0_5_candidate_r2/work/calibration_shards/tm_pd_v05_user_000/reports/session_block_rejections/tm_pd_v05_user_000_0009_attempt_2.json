@@ -1,0 +1,88 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h03', 'support') actual=[('tm_pd_v05_user_000_h01', 'support')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya chose the lower total-cost Friday itinerary after confirming that both finalists met the trip's nonstop and Wi-Fi requirements; she did not allow the cheaper airfare alone to outweigh the added hotel cost or the required transfer margin.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to sort out Denver for the client workshop. It runs Wednesday through Friday, ending at 2:00 Friday downtown. I can leave Minneapolis Tuesday after 4:30, and the airfare cap is $650. Can you compare Friday evening with Saturday morning coming back?",
+          "role": "user"
+        },
+        {
+          "content": "What dates are the workshop, and do you need nonstop service or any onboard feature such as Wi-Fi?",
+          "role": "assistant"
+        },
+        {
+          "content": "The workshop is May 27 through May 29, so outbound Tuesday May 26. Nonstop and Wi-Fi are required. Wednesday starts at 8:00 a.m., so I don't want to arrive that morning.",
+          "role": "user"
+        },
+        {
+          "content": "I found three nonstop economy combinations with Wi-Fi under the cap. The strongest outbound for all of them leaves MSP Tuesday at 5:35 p.m. and reaches DEN at 6:42 p.m. The alternatives leaving after 7:00 p.m. arrive around 8:30 or later, which still works but leaves less recovery time before the workshop. For the return, the useful choices are Friday at 5:20 p.m. for a $438 round trip, Friday at 7:05 p.m. for $472, or Saturday at 8:10 a.m. for $421.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is 5:20 actually reasonable from downtown after a 2:00 finish, or does it only work on paper?",
+          "role": "user"
+        },
+        {
+          "content": "It is possible but tight. Allowing about 10 minutes to wrap up and leave, the train typically puts you at DEN around 3:05–3:20; a car can vary more with Friday traffic. That leaves roughly two hours before departure, but only about 75–90 minutes before boarding. A late workshop finish, a delayed train, or a bag-check line would erode the margin quickly.",
+          "role": "assistant"
+        },
+        {
+          "content": "I will have a checked demo case, and I can't leave the workshop early. Rule out 5:20. How does the 7:05 compare with staying Friday night?",
+          "role": "user"
+        },
+        {
+          "content": "The 7:05 p.m. Friday flight gives you a much healthier transfer: leaving downtown around 2:20–2:30 should get you to the terminal about 3:20–3:45, with ample time to check the case. It arrives MSP at 10:02 p.m. The Saturday 8:10 a.m. flight arrives at 11:04 a.m. and costs $51 less, but it adds a hotel night and requires leaving downtown around 5:30 a.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "The project will cover Friday night if needed, but I'd prefer not to add it without a good reason. Are there any later Friday nonstops?",
+          "role": "user"
+        },
+        {
+          "content": "There is an 8:35 p.m. nonstop arriving MSP at 11:31 p.m. for $519 round trip. It provides the easiest Friday margin, though it is $47 more than the 7:05 and gets you home about ninety minutes later. All three remaining combinations include Wi-Fi and stay below the $650 airfare limit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then the real choices are 7:05 Friday or 8:10 Saturday. Does the cheaper Saturday fare still save anything once the hotel is included?",
+          "role": "user"
+        },
+        {
+          "content": "No. The fare saves $51, but even a modest downtown Friday-night hotel near $160 before tax makes the Saturday plan at least about $120 more expensive overall. Saturday is useful only if the workshop may run substantially late or you want to avoid traveling Friday evening.",
+          "role": "assistant"
+        },
+        {
+          "content": "The end time is firm. Since both choices meet the nonstop and Wi-Fi requirements, take the lower total-cost option rather than paying for an extra night.",
+          "role": "user"
+        },
+        {
+          "content": "That makes the Friday 7:05 p.m. return the better choice: MSP to DEN Tuesday May 26, 5:35–6:42 p.m.; DEN to MSP Friday May 29, 7:05–10:02 p.m.; nonstop economy with Wi-Fi, $472 round trip. The checked demo case may add a bag fee depending on the fare terms.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Keep one backup in case that return jumps in price, but don't book either one yet.",
+          "role": "user"
+        },
+        {
+          "content": "Primary itinerary: Tuesday 5:35 p.m. MSP–DEN and Friday 7:05 p.m. DEN–MSP, nonstop with Wi-Fi, currently $472 round trip. Backup: the same Tuesday outbound with the Saturday 8:10 a.m.–11:04 a.m. nonstop return, currently $421, plus a Friday hotel night and early airport transfer. The Friday 5:20 option is excluded because the checked case and fixed 2:00 p.m. workshop finish leave too little margin. Nothing has been booked or charged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0009",
+      "session_index": 9,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. The April 23–28 coastal trip flights and hotels are booked: The Drayton April 23–25, Beachview Inn & Spa April 25–28, and the MSP–SAV round trip for two. Coastal ground transportation remains unreserved: private-car pickups Saturday at 3:30 p.m. from The Drayton and Tuesday at 3:15 p.m. from Beachview, quoted at $180 before optional gratuity. For the May 27–29 Denver workshop, the primary unbooked itinerary is MSP–DEN Tuesday May 26 at 5:35 p.m. and DEN–MSP Friday May 29 at 7:05 p.m., currently $472 round trip. The backup returns Saturday May 30 at 8:10 a.m., currently $421 before the added hotel night. The Friday 5:20 p.m. return was ruled out because of the fixed workshop end and checked demo case. Nothing for Denver has been booked or charged."
+}

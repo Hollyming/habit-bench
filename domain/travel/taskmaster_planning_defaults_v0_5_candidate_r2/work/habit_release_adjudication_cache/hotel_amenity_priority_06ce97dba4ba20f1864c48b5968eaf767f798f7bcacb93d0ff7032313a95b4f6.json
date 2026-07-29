@@ -1,0 +1,53 @@
+{
+  "cache_fingerprint": "06ce97dba4ba20f1864c48b5968eaf767f798f7bcacb93d0ff7032313a95b4f6",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "",
+      "boundary_condition": "Apply only to hotel or room amenity selection after satisfying explicit trip constraints such as dates, destination, occupancy, and required amenities.",
+      "canonical_value": "in-room wet bar",
+      "condition": "When evaluating hotel room amenities and otherwise suitable lodging options are available, the user prefers a room that includes an in-room wet bar.",
+      "default_action": "Rank otherwise suitable hotel rooms higher when they include an in-room wet bar.",
+      "exception_condition": "If no otherwise suitable room with a wet bar is available, or the user explicitly prioritizes another hotel factor, proceed without the wet bar rather than blocking the booking.",
+      "input_ids": [
+        "tm_v04_habit_ca5ffc34aae2"
+      ],
+      "name": "Prefer hotel rooms with an in-room wet bar",
+      "preference_value": "in-room wet bar",
+      "rationale": "Supported by multiple hotel-search examples where the user asks for or positively values an in-room wet bar. This is a recurring hotel room amenity preference, not an alias of the coffeemaker or fireplace preferences and not a hard requirement in all cases.",
+      "representative_id": "tm_v04_habit_ca5ffc34aae2"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "",
+      "boundary_condition": "Apply only to hotel or lodging searches where room-level amenities are relevant; do not apply this to flights, car rentals, destination choice, dates, party size, or unrelated lodging constraints.",
+      "canonical_value": "hotel room with a fireplace",
+      "condition": "When searching for hotel lodging and room-level comfort amenities are being compared, the user prefers rooms that include a fireplace.",
+      "default_action": "Prioritize otherwise suitable hotel rooms that explicitly list a fireplace.",
+      "exception_condition": "If no otherwise suitable room with a fireplace is available, or explicit requirements conflict with it, surface the tradeoff and proceed or ask whether to relax the fireplace preference.",
+      "input_ids": [
+        "tm_v04_habit_0cb760f69e9d"
+      ],
+      "name": "Prefer hotel rooms with a fireplace",
+      "preference_value": "hotel room with a fireplace",
+      "rationale": "Supported by repeated hotel-room requests mentioning a fireplace as a desired amenity. The evidence supports a soft room-amenity preference, while allowing explicit trip constraints or availability to override it.",
+      "representative_id": "tm_v04_habit_0cb760f69e9d"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "",
+      "boundary_condition": "Apply only to hotel room amenity selection after satisfying explicit trip constraints; do not infer a preferred destination, view, bed type, star rating, breakfast plan, or unrelated amenity from this preference.",
+      "canonical_value": "in-room coffeemaker",
+      "condition": "When selecting a hotel room and in-room amenities are part of the lodging search, the user prefers rooms that include a coffeemaker.",
+      "default_action": "Prioritize otherwise suitable hotel rooms that include an in-room coffeemaker.",
+      "exception_condition": "If no room with a coffeemaker satisfies the explicit trip constraints, or the traveler explicitly deprioritizes the amenity for that stay, choose an otherwise suitable room without requiring a coffeemaker.",
+      "input_ids": [
+        "tm_v04_habit_4eb97daa9928"
+      ],
+      "name": "Prefer hotel rooms with a coffeemaker",
+      "preference_value": "in-room coffeemaker",
+      "rationale": "Supported by several independent hotel-room requests that include a coffeemaker. This is a recurring in-room amenity preference and is not semantically equivalent to the wet bar preference, even though they co-occur in one example.",
+      "representative_id": "tm_v04_habit_4eb97daa9928"
+    }
+  ]
+}

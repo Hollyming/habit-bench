@@ -1,0 +1,134 @@
+{
+  "cache_fingerprint": "77d6f946bf8be11d5e472def67187113972c8610e49437649e5e61a5a383231a",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Elena compared two Friday arrivals with a Thursday-evening alternative for the Raleigh wedding trip. She chose the earlier Friday nonstop because it improves the dinner margin while avoiding the extra hotel, parking, and rental-car costs of Thursday. No recurring preference evidence was introduced.",
+        "evidence_topology": {
+          "episode_id": "ep_002_raleigh_family_wedding",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 5,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selects an early-morning departure for this trip, establishing a one-trip override to the afternoon-departure default. No other candidate habit is strongly evidenced by the user’s own words.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Then let’s use the 5:45 Friday flight.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I checked the Raleigh flights again. The Friday option we discussed has gone up, and arriving at 12:30 now feels tighter than I would like for the 6:30 family dinner. Can we compare it with getting in earlier Friday or flying Thursday evening? Keep the Marriott in the calculation.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I’ll compare the airfare for both of you, the usable time before dinner, and any extra hotel, parking, and car costs caused by a Thursday arrival. Is the Raleigh Marriott City Center still available at about $271 before tax for Thursday night as well as May 2-4?",
+          "role": "assistant"
+        },
+        {
+          "content": "It shows availability Thursday through Sunday at the same base rate. The estimate is $938 after tax for three nights, versus $625 after tax for Friday through Sunday. Parking is $30 a night.",
+          "role": "user"
+        },
+        {
+          "content": "That makes the extra Thursday hotel night $313 after tax, plus another $30 for parking. The rental car would also need to begin Thursday evening, so I’ll include an estimated additional rental day rather than treating the airfare alone as the deciding number.",
+          "role": "assistant"
+        },
+        {
+          "content": "Here are the flights I see for two in regular economy. The original Friday nonstop is now $1,038 total and arrives at 12:30. An earlier Friday nonstop leaves Denver at 5:45 a.m., arrives at 11:05, and is $924 total. Thursday has a 5:20 p.m. nonstop arriving at 10:35 p.m. for $788 total.",
+          "role": "user"
+        },
+        {
+          "content": "On those figures, the earlier Friday flight is the strongest balance. It saves $114 versus the original flight and gives you another hour and 25 minutes before dinner. The Thursday flight saves $136 compared with early Friday airfare, but the extra room and parking already add $343; an additional rental day would widen that difference further.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much real breathing room does the 11:05 arrival give us? We still need the car and the hotel.",
+          "role": "user"
+        },
+        {
+          "content": "Allowing roughly 45-60 minutes to deplane, collect bags, and pick up the car, you could leave RDU around noon. The drive downtown is commonly about 25 minutes outside heavier traffic, so even with a delay you should reach the Marriott around 1:00-1:30. That leaves about five hours before dinner near Moore Square, including time for lunch and check-in or bag storage.",
+          "role": "assistant"
+        },
+        {
+          "content": "And if that flight slips by two hours?",
+          "role": "user"
+        },
+        {
+          "content": "A two-hour delay would put you downtown around 3:00-3:30, leaving about three hours before dinner. That is still workable. The 12:30 arrival under the same delay would likely put you at the hotel around 4:30-5:00, which leaves much less margin once you account for check-in and getting to dinner.",
+          "role": "assistant"
+        },
+        {
+          "content": "Thursday sounds calmer, but not $200 or $250 calmer once the car is included. Is that about the difference?",
+          "role": "user"
+        },
+        {
+          "content": "Approximately. Thursday saves $136 on airfare, then adds $313 for the room, $30 for parking, and likely $45-$70 for the extra rental period. That puts Thursday about $252-$277 above the early-Friday plan before fuel or any fare-related extras.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then let’s use the 5:45 Friday flight. Leave the hotel at Friday through Sunday. Does the Sunday return still make sense?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The Sunday nonstop around 5:35 p.m. still leaves ample time after the 10:30 brunch, while avoiding another hotel night. The working itinerary is now the 5:45 a.m. Friday outbound arriving at 11:05 a.m., the 5:35 p.m. Sunday return, and the Raleigh Marriott City Center for May 2-4.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please give me the final booking sequence and the items I need to confirm. I can purchase once those check out.",
+          "role": "user"
+        },
+        {
+          "content": "Verify the flights first: exact flight numbers and current schedules, $924 total for two round trip, baggage and seat-selection charges, and the fare’s change and cancellation rules. If those match, purchase the airfare. Then reserve one room for two adults at the Raleigh Marriott City Center for May 2-4, confirming the $625 after-tax total, room configuration, cancellation deadline, and $30 nightly parking. Finally, adjust the rental pickup to Friday after the 11:05 arrival and keep the Sunday return timed for the 5:35 flight. The Thursday night is no longer needed. Nothing has been purchased or reserved in this conversation.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0005",
+      "session_index": 5,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena’s solo Chicago rights conference trip remains March 27-30, with the booked Embassy Suites Chicago Downtown Magnificent Mile and the previously selected Midway arrival and O’Hare return. For the separate Raleigh family wedding trip, Elena and her spouse now plan to travel May 2-4 using an early Friday nonstop from Denver departing around 5:45 a.m. and arriving at RDU around 11:05 a.m., plus the Sunday nonstop departing around 5:35 p.m. They intend to stay one room for two nights at the Raleigh Marriott City Center and rent a car from Friday arrival through Sunday departure. The Thursday-arrival alternative was rejected because its lower airfare did not offset an extra hotel night, parking, and rental time. Friday family dinner is at 6:30 p.m. near Moore Square, the Saturday ceremony is at 4:00 p.m. near Cary, and Sunday brunch begins at 10:30 a.m. Nothing for Raleigh has been booked. Flight numbers and schedules, airfare total and conditions, baggage and seat fees, hotel total and cancellation deadline, room configuration, parking, and rental details still require verification.",
+  "verification": {
+    "5": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Then let’s use the 5:45 Friday flight.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selects an early-morning departure for this trip, establishing a one-trip override to the afternoon-departure default. No other candidate habit is strongly evidenced by the user’s own words."
+    }
+  }
+}

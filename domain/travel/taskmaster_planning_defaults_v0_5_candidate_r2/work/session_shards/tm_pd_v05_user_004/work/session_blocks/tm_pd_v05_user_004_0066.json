@@ -1,0 +1,86 @@
+{
+  "cache_fingerprint": "cea7c971d140091e5cf0f43219dc16b92cc012b8f63784a3534ef733b740c29f",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The replacement return was verified as fully ticketed with no additional fare, an 8:25 p.m. arrival at Dallas Love Field, and seat 14A assigned. No recurring preference was established.",
+        "evidence_topology": {
+          "episode_id": "ep_021_denver_education_forum",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 66,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_004"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user naturally reaffirms the selected 5:25 p.m. return flight, supporting the afternoon-departure preference for this trip. The fare question does not establish cheapest-option ranking, and asking what seats are available does not itself evidence a window-seat preference.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.93,
+            "evidence_quote": "Is the 5:25 p.m. Denver-to-Love Field nonstop fully ticketed",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h00",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Please do one last check on the replacement return. Is the 5:25 p.m. Denver-to-Love Field nonstop fully ticketed, and did the exchange add any fare?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The ticket status is confirmed, and the receipt shows an even exchange with $0.00 additional collection. The flight departs Denver at 5:25 p.m. Thursday and arrives at Dallas Love Field at 8:25 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "My old seat disappeared. What is available on the new flight?",
+          "role": "user"
+        },
+        {
+          "content": "Available standard seats include 14A by the window, 16C on the aisle, and several middle seats farther back. I selected 14A, and the updated confirmation now shows that assignment. The outbound, Home2 stay, panel schedule, and luggage-storage plan remain unchanged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0066",
+      "session_index": 66,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Gulf Coast unit B remains reserved for August 10-15 for three guests at $2,098; $1,468.60 is due July 11, written parking confirmation remains outstanding, and a separate $300 security authorization is scheduled for August 8. The New Orleans Cambria reservation is confirmed for December 20-23 for three guests at $929.01; use the valet entrance and call with a revised ETA if arrival will be after 9:00 p.m. Approval remains pending for the May 13-15 Indian Wells return-flight change, which would raise the trip total to $1,243.62, or $43.62 above the reimbursement ceiling. The March 10-15 beachfront hotel is booked for three guests at a mandatory total of $1,978.20; an occupancy-only correction remains needed without repricing, and cancellation is available through February 24 at 6:00 p.m. Central. The May 8-9 Denver partner visit is booked at an estimated $632.46, with a $647.46 approval amount and documented Friday luggage storage. For the June Seattle sponsor summit, select the Pine Street Inn at a mandatory $437.35 total, charged in full and refundable through 11:59 p.m. Pacific on June 14; verify live terms. The June 25-29 Chicago family trip is booked at an estimated $3,673.84; museum reservations remain outstanding. The September 16-17 Atlanta partner visit is estimated at $648.67 excluding meals, with the Hampton reservation refundable through 6:00 p.m. Eastern on September 14. For the July 26-31 Santa Barbara family trip, Inn by the Harbor is confirmed at $1,862.16; verify the exact $74 rental change and obtain written acknowledgment of the potentially midnight hotel arrival. For the October 8-9 Denver education forum, the outbound and Home2 reservation remain unchanged. The reissued Thursday return is fully ticketed under the schedule-change waiver for $0 additional collection, departing Denver at 5:25 p.m. and arriving Dallas Love Field at 8:25 p.m.; seat 14A is confirmed. Keep the airline notice and zero-dollar exchange receipt. Use Home2 luggage storage after the panel, take rail to the airport, and use a hired ride if timing or service requires it. The trip remains within the $800 allowance.",
+  "verification": {
+    "66": {
+      "habit_signals": [
+        {
+          "confidence": 0.93,
+          "evidence_quote": "Is the 5:25 p.m. Denver-to-Love Field nonstop fully ticketed",
+          "habit_id": "tm_pd_v05_user_004_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user naturally reaffirms the selected 5:25 p.m. return flight, supporting the afternoon-departure preference for this trip. The fare question does not establish cheapest-option ranking, and asking what seats are available does not itself evidence a window-seat preference."
+    }
+  }
+}

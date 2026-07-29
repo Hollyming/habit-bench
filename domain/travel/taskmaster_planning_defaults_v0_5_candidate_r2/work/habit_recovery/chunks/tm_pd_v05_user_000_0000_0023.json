@@ -1,0 +1,503 @@
+{
+  "cache_fingerprint": "64de10725b756aecabbbb31df4713144ab7cc3e76f85413af25671bd3249e34e",
+  "raw_candidates": {
+    "candidate_habits": [
+      {
+        "boundary_condition": "Include the cost categories named by the user, such as taxes, required fees, transportation, or both travelers.",
+        "default_action": "Calculate the applicable total and screen choices against the cap before recommending or purchasing.",
+        "evidence": [
+          {
+            "quote": "Let's do the flights next. We have about $1,530 left under the $3,800 cap after the estimated hotel tax, and that still has to cover getting around. What are the sensible round trips for two from Minneapolis?",
+            "session_id": "tm_pd_v05_user_000_s0006"
+          },
+          {
+            "quote": "Put the Delta round trip and Home2 Suites together and tell me whether the whole Nashville trip actually clears the $1,450 approval cap. Include taxes and the rides we would need, not just the advertised rates.",
+            "session_id": "tm_pd_v05_user_000_s0021"
+          },
+          {
+            "quote": "Yes, MSP. Use $3,600 for flights plus hotels, with taxes and required fees included. Keep meals and activities outside that number. We probably will not rent a car, but include the cost of moving between hotels if we split.",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          }
+        ],
+        "exception_condition": "A higher-cost option can remain visible for comparison, but it should not be called compliant without explicit approval.",
+        "family": "budget_compliance",
+        "local_confidence": 0.99,
+        "name": "Treat stated trip budgets and project caps as hard screening constraints",
+        "preference_value": "Keep airfare, lodging, and whole-trip totals within the stated approval ceiling and reject options that only appear compliant because costs are omitted.",
+        "scope_condition": "Trips with a stated personal budget, project allowance, nightly cap, or approval cap."
+      },
+      {
+        "boundary_condition": "Account for meeting overruns, traffic, security, connections, hotel or bag retrieval, and ground travel.",
+        "default_action": "Calculate door-to-door timing and rank options with credible buffers ahead of cheaper fragile itineraries.",
+        "evidence": [
+          {
+            "quote": "The Chicago option lands earlier than the nonstop but has more ways to go wrong. How tight is that connection?",
+            "session_id": "tm_pd_v05_user_000_s0000"
+          },
+          {
+            "quote": "How much usable time do we actually give up with the connections? The Charlotte fare is tempting, but arriving after three changes the first day.",
+            "session_id": "tm_pd_v05_user_000_s0006"
+          },
+          {
+            "quote": "The earlier return is appealing, but $72 more for a much thinner buffer doesn't make sense. Keep the American itinerary first. Is there any reason the Delta one should still be the backup?",
+            "session_id": "tm_pd_v05_user_000_s0013"
+          },
+          {
+            "quote": "Is the connection reasonable enough to save the money, or is the nonstop the stronger work choice?",
+            "session_id": "tm_pd_v05_user_000_s0022"
+          }
+        ],
+        "exception_condition": "Accept a tighter option when the user explicitly judges the remaining margin sufficient and the alternative costs materially more or arrives much later.",
+        "family": "schedule_reliability",
+        "local_confidence": 0.99,
+        "name": "Prefer schedule-feasible travel over nominally cheaper but fragile options",
+        "preference_value": "Value usable trip time and adequate arrival or departure margin more than the lowest fare.",
+        "scope_condition": "Flight choices tied to client meetings, workshops, or short leisure trips."
+      },
+      {
+        "boundary_condition": "Do not let a lower price override schedule feasibility, nonstop requirements, Wi-Fi needs, baggage needs, or fare-class restrictions.",
+        "default_action": "Filter on the hard requirements, then order the remaining itineraries by total fare.",
+        "evidence": [
+          {
+            "quote": "Then rank the $438 itinerary first. Once the flights meet the schedule, nonstop, and Wi-Fi requirements, I’d rather take the lowest fare. Keep the earlier outbound as the second choice in case the price moves.",
+            "session_id": "tm_pd_v05_user_000_s0009"
+          }
+        ],
+        "exception_condition": "Keep a more convenient qualifying itinerary as backup when prices may move.",
+        "family": "flight_ranking",
+        "local_confidence": 0.98,
+        "name": "Use the lowest fare after nonnegotiable flight requirements are met",
+        "preference_value": "Once schedule, routing, onboard, and fare-class requirements are satisfied, rank the lowest qualifying fare first.",
+        "scope_condition": "Business flight comparisons with explicit requirements."
+      },
+      {
+        "boundary_condition": "Compare the connection's savings against lost usable time and disruption risk.",
+        "default_action": "Show the best nonstop and treat connected itineraries as alternatives requiring a meaningful advantage.",
+        "evidence": [
+          {
+            "quote": "Nonstop both ways. I need Wi-Fi on the outbound because I’ll still have work to finish. The project would cover Friday night if the flight schedule makes that the sensible option.",
+            "session_id": "tm_pd_v05_user_000_s0009"
+          },
+          {
+            "quote": "A nonstop is preferable, but show a connection if it materially improves the timing or price. Carry-on only.",
+            "session_id": "tm_pd_v05_user_000_s0019"
+          },
+          {
+            "quote": "No basic economy for this trip. One stop is acceptable if it saves enough, but show me the best nonstop too. We will check one suitcase between us.",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          },
+          {
+            "quote": "Use Southwest for the hotel math. Forty-eight dollars is not enough to make the connections useful. Do not book it yet.",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          }
+        ],
+        "exception_condition": "One stop is acceptable when it saves enough without undermining the trip schedule.",
+        "family": "routing_preference",
+        "local_confidence": 0.99,
+        "name": "Prefer nonstop flights when connections do not create material savings",
+        "preference_value": "Favor nonstop itineraries and accept a connection only when it materially improves timing or price.",
+        "scope_condition": "Business and leisure flight searches."
+      },
+      {
+        "boundary_condition": "The displayed fare must remain within the allowance after required features are included.",
+        "default_action": "Verify fare class, carry-on allowance, seat-selection implications, and purchase-screen total.",
+        "evidence": [
+          {
+            "quote": "Is the nonstop basic economy, or can we choose seats?",
+            "session_id": "tm_pd_v05_user_000_s0006"
+          },
+          {
+            "quote": "Are those basic economy prices? I need a normal carry-on and don't want the approval amount to change after seat selection.",
+            "session_id": "tm_pd_v05_user_000_s0013"
+          },
+          {
+            "quote": "No basic economy for this trip. One stop is acceptable if it saves enough, but show me the best nonstop too. We will check one suitcase between us.",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          }
+        ],
+        "exception_condition": "None stated in this window.",
+        "family": "fare_conditions",
+        "local_confidence": 0.99,
+        "name": "Avoid stripped-down or basic-economy fares",
+        "preference_value": "Use a standard economy product that preserves the required carry-on and does not create a later seat-selection or approval-cost surprise.",
+        "scope_condition": "Flight searches where basic economy or unbundled pricing may be present."
+      },
+      {
+        "boundary_condition": "Do not add seat upgrades or checked baggage that the user does not need.",
+        "default_action": "Price and assess timing for one carry-on and no checked bag.",
+        "evidence": [
+          {
+            "quote": "No checked bag. Show me the realistic Monday evening and Tuesday morning choices, including total travel time and how much margin I’d have.",
+            "session_id": "tm_pd_v05_user_000_s0000"
+          },
+          {
+            "quote": "Monday, July 27 through Thursday, July 30. MSP and PHL, economy, carry-on only.",
+            "session_id": "tm_pd_v05_user_000_s0013"
+          },
+          {
+            "quote": "A nonstop is preferable, but show a connection if it materially improves the timing or price. Carry-on only.",
+            "session_id": "tm_pd_v05_user_000_s0019"
+          },
+          {
+            "quote": "No basic economy for this trip. One stop is acceptable if it saves enough, but show me the best nonstop too. We will check one suitcase between us.",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          }
+        ],
+        "exception_condition": "Leisure travel can differ; the San Diego trip explicitly includes one shared checked suitcase.",
+        "family": "baggage",
+        "local_confidence": 0.99,
+        "name": "Assume carry-on-only travel for business trips unless stated otherwise",
+        "preference_value": "Exclude checked-bag cost and logistics when the trip is explicitly carry-on only.",
+        "scope_condition": "The business trips in this window."
+      },
+      {
+        "boundary_condition": "Consider reliability, parking charges, airport timing, and the number of required rides.",
+        "default_action": "Model rideshare or private scheduled rides and include their costs in the trip total.",
+        "evidence": [
+          {
+            "quote": "Yes on the dates. The flight itself needs to leave after 5:30. I’ll use a rideshare, so no rental-car stop.",
+            "session_id": "tm_pd_v05_user_000_s0000"
+          },
+          {
+            "quote": "Assume rideshare. I don’t want to add a rental car this late.",
+            "session_id": "tm_pd_v05_user_000_s0016"
+          },
+          {
+            "quote": "Yes, MSP. Use $3,600 for flights plus hotels, with taxes and required fees included. Keep meals and activities outside that number. We probably will not rent a car, but include the cost of moving between hotels if we split.",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          }
+        ],
+        "exception_condition": "A rental car may still be compared when requested, but the user repeatedly declines adding one.",
+        "family": "ground_transport",
+        "local_confidence": 0.98,
+        "name": "Prefer rideshare or scheduled car service over rental cars",
+        "preference_value": "Use rideshare and scheduled transfers rather than renting a car when local mobility allows it.",
+        "scope_condition": "Trips where the user can walk locally or travel between a hotel, office, and airport."
+      },
+      {
+        "boundary_condition": "Shared service is unattractive when it may make several stops.",
+        "default_action": "Use rideshare outbound and a scheduled private pickup for the return when reliability matters.",
+        "evidence": [
+          {
+            "quote": "I don’t want a shared shuttle making several stops before an evening flight. Could we rideshare out and schedule a private pickup back?",
+            "session_id": "tm_pd_v05_user_000_s0008"
+          },
+          {
+            "quote": "Use that arrangement. Is 3:00 too risky for finding a ride to Tybee, and does this change the trip budget much?",
+            "session_id": "tm_pd_v05_user_000_s0008"
+          }
+        ],
+        "exception_condition": "No objection is stated to nonshared shuttle or car service.",
+        "family": "ground_transport_reliability",
+        "local_confidence": 0.96,
+        "name": "Avoid shared airport shuttles when multiple stops threaten timing",
+        "preference_value": "Prefer a private scheduled pickup over a shared shuttle for time-sensitive airport travel.",
+        "scope_condition": "Airport transfers, especially before an evening flight."
+      },
+      {
+        "boundary_condition": "Exclude meals, activities, optional parking, or optional upgrades only when the user explicitly places them outside the budget.",
+        "default_action": "Use full checkout totals where available and label estimates or unconfirmed charges clearly.",
+        "evidence": [
+          {
+            "quote": "Add those transport allowances and any likely lodging fees. I want the comparison to be conservative, not a best-case teaser.",
+            "session_id": "tm_pd_v05_user_000_s0004"
+          },
+          {
+            "quote": "That works. Show taxes and mandatory fees in the hotel totals too.",
+            "session_id": "tm_pd_v05_user_000_s0020"
+          },
+          {
+            "quote": "Can the transportation estimate be tightened using current scheduled prices, especially the airport legs? I do not want to force it under the limit with unrealistic numbers.",
+            "session_id": "tm_pd_v05_user_000_s0021"
+          },
+          {
+            "quote": "Does either total omit anything that could realistically turn into a required charge? I do not need food or optional parking included, but I do not want a fake cushion.",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          }
+        ],
+        "exception_condition": "Estimated taxes are acceptable during planning if clearly identified and verified before purchase.",
+        "family": "cost_accounting",
+        "local_confidence": 0.99,
+        "name": "Include conservative all-in costs rather than teaser rates",
+        "preference_value": "Show realistic totals including taxes, mandatory fees, required transport, baggage assumptions, and payment exposure.",
+        "scope_condition": "Flight, hotel, and whole-trip comparisons."
+      },
+      {
+        "boundary_condition": "Do not force an itinerary under budget with optimistic transportation or omitted required costs.",
+        "default_action": "State the remaining cushion and assess whether realistic cost changes could erase it.",
+        "evidence": [
+          {
+            "quote": "So we still have $156 under the $3,800 limit, but not much room for ride increases.",
+            "session_id": "tm_pd_v05_user_000_s0007"
+          },
+          {
+            "quote": "Does the small cushion survive normal price movement?",
+            "session_id": "tm_pd_v05_user_000_s0021"
+          },
+          {
+            "quote": "Can the transportation estimate be tightened using current scheduled prices, especially the airport legs? I do not want to force it under the limit with unrealistic numbers.",
+            "session_id": "tm_pd_v05_user_000_s0021"
+          }
+        ],
+        "exception_condition": "A small cushion can be accepted when all required charges are confirmed and the user knowingly accepts the exposure.",
+        "family": "budget_resilience",
+        "local_confidence": 0.98,
+        "name": "Test whether budget cushions survive ordinary price movement",
+        "preference_value": "Treat a small nominal cushion as fragile until likely fare, ride, tax, and fee movement has been considered.",
+        "scope_condition": "Trips whose working total is close to the approved cap."
+      },
+      {
+        "boundary_condition": "Separate flight rules from hotel rules and distinguish a refund from retained trip credit.",
+        "default_action": "Report deadlines with calendar dates, local times, refundability, deposit timing, and post-deadline penalty.",
+        "evidence": [
+          {
+            "quote": "I’m ready to line everything up. Can you check that the flight dates match the two hotel stays, give me one complete total, and tell me exactly when each piece becomes nonrefundable? Don’t submit payment yet.",
+            "session_id": "tm_pd_v05_user_000_s0007"
+          },
+          {
+            "quote": "Okay. What gets charged now, and what are the cancellation cutoffs? Please use dates and local times.",
+            "session_id": "tm_pd_v05_user_000_s0007"
+          },
+          {
+            "quote": "Good. What do the cancellation terms amount to in plain English? I need the flight and hotel separated.",
+            "session_id": "tm_pd_v05_user_000_s0015"
+          },
+          {
+            "quote": "That puts it where? And confirm the cancellation language on the hotel before you call it eligible.",
+            "session_id": "tm_pd_v05_user_000_s0021"
+          }
+        ],
+        "exception_condition": "None stated; terms should still be reconfirmed on the final screen.",
+        "family": "booking_terms",
+        "local_confidence": 0.99,
+        "name": "Track cancellation, refund, and charge timing precisely",
+        "preference_value": "Know exactly when each reservation is charged, when it becomes nonrefundable, and what cancellation or no-show penalty applies.",
+        "scope_condition": "Hotel and flight decisions before booking or modification."
+      },
+      {
+        "boundary_condition": "Balance payment flexibility against meaningful quality, location, and commute differences.",
+        "default_action": "Keep payment exposure explicit and favor an option that does not charge the full stay immediately.",
+        "evidence": [
+          {
+            "quote": "Then compare the cheapest one against Perry Lane plus DeSoto. Ignore the prepaid Tybee option; I don't want that much locked in before we've finalized flights.",
+            "session_id": "tm_pd_v05_user_000_s0005"
+          },
+          {
+            "quote": "The close hotel is tempting, but I don’t think four minutes versus fifteen is worth almost $90 for this project. I also don’t want the full hotel amount tied up immediately. Does that point to Sonesta?",
+            "session_id": "tm_pd_v05_user_000_s0014"
+          }
+        ],
+        "exception_condition": "Prepayment may be acceptable after the trip is finalized or if a stronger option justifies it.",
+        "family": "payment_flexibility",
+        "local_confidence": 0.98,
+        "name": "Avoid excessive prepaid hotel exposure before trip components are finalized",
+        "preference_value": "Prefer refundable or lower-deposit lodging and avoid locking in a large prepaid amount while flights remain unsettled.",
+        "scope_condition": "Leisure hotel selection and business choices where comparable hotels differ in deposit timing."
+      },
+      {
+        "boundary_condition": "Authorization must be explicit for the specific booking or change.",
+        "default_action": "Provide a final review, last-screen checks, and purchase order, then stop before payment.",
+        "evidence": [
+          {
+            "quote": "Give me the final review, including anything I would be agreeing to, but stop before the purchase step.",
+            "session_id": "tm_pd_v05_user_000_s0002"
+          },
+          {
+            "quote": "No checked bags in the calculation. Can you prepare the flight and both rooms for purchase and give me the order to do them? Still stop before any charge.",
+            "session_id": "tm_pd_v05_user_000_s0007"
+          },
+          {
+            "quote": "Put it into a final purchase-ready summary. Include the budget result, cancellation deadlines, and anything I should compare on the last screen. Don’t charge anything yet.",
+            "session_id": "tm_pd_v05_user_000_s0015"
+          },
+          {
+            "quote": "Go ahead with both.",
+            "session_id": "tm_pd_v05_user_000_s0018"
+          }
+        ],
+        "exception_condition": "When the user explicitly says to proceed, execute the approved sequence and confirm each component.",
+        "family": "purchase_control",
+        "local_confidence": 0.99,
+        "name": "Stop before purchase until explicit authorization is given",
+        "preference_value": "Prepare and verify reservations without charging the card until the user explicitly authorizes the transaction.",
+        "scope_condition": "Flight and hotel booking workflows."
+      },
+      {
+        "boundary_condition": "Pay special attention when an added night, schedule change, or split stay could shift the itinerary.",
+        "default_action": "Walk through each date and night count explicitly before purchase.",
+        "evidence": [
+          {
+            "quote": "That’s fine. Keep the Friday flight. Can you verify the hotel dates one more time? I don’t want the extra Monday night to shift checkout accidentally.",
+            "session_id": "tm_pd_v05_user_000_s0002"
+          },
+          {
+            "quote": "Good. Walk through the hotel dates carefully. I don’t want an accidental gap or an extra night.",
+            "session_id": "tm_pd_v05_user_000_s0007"
+          },
+          {
+            "quote": "And Monday is definitely July 27, not Sunday night? I don’t want the date mismatch we almost had on Denver.",
+            "session_id": "tm_pd_v05_user_000_s0015"
+          },
+          {
+            "quote": "Wait, the dates are Sunday through Friday. The move after three nights would be Wednesday morning, not Thursday.",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          }
+        ],
+        "exception_condition": "None stated.",
+        "family": "date_integrity",
+        "local_confidence": 0.99,
+        "name": "Verify reservation dates and continuity before purchase",
+        "preference_value": "Check that flight dates, hotel check-in and checkout, and split-stay transitions align without gaps, extra nights, or shifted checkout.",
+        "scope_condition": "Trips combining flights with one or more hotel stays."
+      },
+      {
+        "boundary_condition": "Small commute differences do not justify large price premiums, but risky bus connections or long daily trips can disqualify a cheaper hotel.",
+        "default_action": "Compare actual walking, transit, and rideshare timing and rank reliable access highly.",
+        "evidence": [
+          {
+            "quote": "How reliable is that light-rail trip? I don't want an inexpensive room to create a problem at 7:30 in the morning.",
+            "session_id": "tm_pd_v05_user_000_s0010"
+          },
+          {
+            "quote": "The close hotel is tempting, but I don’t think four minutes versus fifteen is worth almost $90 for this project. I also don’t want the full hotel amount tied up immediately. Does that point to Sonesta?",
+            "session_id": "tm_pd_v05_user_000_s0014"
+          },
+          {
+            "quote": "The Holiday Inn is about $20 less overall, but that bus connection before an 8:00 meeting concerns me. Is that the only meaningful tradeoff?",
+            "session_id": "tm_pd_v05_user_000_s0020"
+          },
+          {
+            "quote": "Choose the Hyatt House. The shorter daily trip is worth the small difference. Make sure I don’t end up holding both rooms.",
+            "session_id": "tm_pd_v05_user_000_s0016"
+          }
+        ],
+        "exception_condition": "A more expensive close hotel may be rejected when the time benefit is minor and payment terms are worse.",
+        "family": "hotel_location",
+        "local_confidence": 0.99,
+        "name": "Weight reliable early-morning office access heavily in hotel selection",
+        "preference_value": "Prefer a hotel with a dependable, practical morning route over a slightly cheaper property with a fragile or lengthy commute.",
+        "scope_condition": "Business trips with early onsite start times."
+      },
+      {
+        "boundary_condition": "The threshold refers to Google rating, not hotel star classification.",
+        "default_action": "Apply a Google review-rating floor of 4.0.",
+        "evidence": [
+          {
+            "quote": "Yes, nice rather than budget. For nice or upscale hotel searches, keep the Google rating at 4.0 or better. I don't mean four-star class.",
+            "session_id": "tm_pd_v05_user_000_s0005"
+          }
+        ],
+        "exception_condition": "The user did not state that this applies to budget or purely functional hotel searches.",
+        "family": "hotel_quality",
+        "local_confidence": 1.0,
+        "name": "Require at least a 4.0 Google rating for nice or upscale hotel searches",
+        "preference_value": "Filter nice or upscale hotels to a Google rating of 4.0 or better.",
+        "scope_condition": "Hotel searches explicitly framed as nice or upscale."
+      },
+      {
+        "boundary_condition": "Do not credit nominal free breakfast if it requires buying breakfast elsewhere or threatens punctuality.",
+        "default_action": "Compare breakfast hours with the time the user must leave the hotel.",
+        "evidence": [
+          {
+            "quote": "Can you compare the full room cost before tax and whether breakfast timing is realistic? I need to be walking into the office by 7:20, not arriving at 7:30.",
+            "session_id": "tm_pd_v05_user_000_s0001"
+          },
+          {
+            "quote": "Drop the Courtyard. Saving $40 isn't worth adding a breakfast purchase and the longest commute.",
+            "session_id": "tm_pd_v05_user_000_s0001"
+          }
+        ],
+        "exception_condition": "Breakfast can be ignored when it does not affect cost or schedule.",
+        "family": "hotel_amenities",
+        "local_confidence": 0.97,
+        "name": "Check breakfast timing against actual departure needs",
+        "preference_value": "Count included breakfast as useful only when service starts early enough for the required office arrival.",
+        "scope_condition": "Business hotels considered for early onsite starts."
+      },
+      {
+        "boundary_condition": "Carry-on-only status reduces airport processing time but does not eliminate hotel retrieval time.",
+        "default_action": "Model checkout, hotel storage, post-meeting retrieval, and the airport ride in the flight margin.",
+        "evidence": [
+          {
+            "quote": "Work out the timing from Cary. I need to check out that morning, attend the client session until noon, and retrieve my bag before heading to RDU.",
+            "session_id": "tm_pd_v05_user_000_s0003"
+          },
+          {
+            "quote": "I don’t want to bring luggage into the workshop or set up separate storage. Use the hotel plan. Is 6:25 the sensible choice then?",
+            "session_id": "tm_pd_v05_user_000_s0011"
+          }
+        ],
+        "exception_condition": "A direct trip from the meeting is acceptable only if it does not require bringing luggage onsite or arranging separate storage.",
+        "family": "luggage_logistics",
+        "local_confidence": 0.98,
+        "name": "Include bag-storage and retrieval logistics in departure planning",
+        "preference_value": "Avoid bringing luggage into client meetings and account for returning to the hotel to retrieve it before the airport.",
+        "scope_condition": "Checkout-day business travel when meetings precede the return flight."
+      },
+      {
+        "boundary_condition": "This requirement is trip-specific rather than stated for every flight.",
+        "default_action": "Verify Wi-Fi availability before ranking a flight as qualifying.",
+        "evidence": [
+          {
+            "quote": "Nonstop both ways. I need Wi-Fi on the outbound because I’ll still have work to finish. The project would cover Friday night if the flight schedule makes that the sensible option.",
+            "session_id": "tm_pd_v05_user_000_s0009"
+          }
+        ],
+        "exception_condition": "No broader recurring Wi-Fi requirement is established.",
+        "family": "business_flight_amenities",
+        "local_confidence": 0.93,
+        "name": "Require outbound Wi-Fi when work must continue in flight",
+        "preference_value": "Treat onboard Wi-Fi as a hard outbound requirement when unfinished work must be completed during travel.",
+        "scope_condition": "Business outbound flights where the user says they need to work onboard."
+      },
+      {
+        "boundary_condition": "The beach portion should feel central to the trip, and the transfer should not consume most of a day.",
+        "default_action": "Compare a split stay against a single base using usable city time, beach time, transfer effort, and total cost.",
+        "evidence": [
+          {
+            "quote": "Meaningful city time. Probably two nights in the city and three near the beach, but I want to know whether changing hotels wastes too much of a five-night trip.",
+            "session_id": "tm_pd_v05_user_000_s0004"
+          },
+          {
+            "quote": "Which one would you choose for only five nights? We want two good city days and then to settle in near the beach, and I don't want the budget to feel tight once taxes and fees appear.",
+            "session_id": "tm_pd_v05_user_000_s0004"
+          },
+          {
+            "quote": "Then keep the resort-view room. I would rather have the nonstop and stay within the number. How disruptive is the transfer in practice? We do not want to lose most of a day repacking and waiting for rooms.",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          }
+        ],
+        "exception_condition": "A single hotel is acceptable when it offers walkable beach and restaurant access and avoids excessive commuting or transfer cost.",
+        "family": "leisure_trip_structure",
+        "local_confidence": 0.97,
+        "name": "For short city-and-beach leisure trips, preserve meaningful time in both settings",
+        "preference_value": "Favor roughly two good city days followed by a settled beach stay, while limiting disruption from changing hotels.",
+        "scope_condition": "Five-night coastal leisure trips."
+      },
+      {
+        "boundary_condition": "A guaranteed ocean view is optional when it breaks the budget; a resort-view room can be acceptable if the overall property still delivers the intended upgrade.",
+        "default_action": "Evaluate the actual room category, beach access, and waterfront experience before accepting the split.",
+        "evidence": [
+          {
+            "quote": "For the single-hotel version, being able to walk to the beach and restaurants matters more than a guaranteed view. For the split, the last two nights need to feel like an upgrade, not just a different address with a glimpse of the bay.",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          },
+          {
+            "quote": "Would an actual ocean-view room at the Del fit, or does that blow the budget?",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          },
+          {
+            "quote": "Then keep the resort-view room. I would rather have the nonstop and stay within the number. How disruptive is the transfer in practice? We do not want to lose most of a day repacking and waiting for rooms.",
+            "session_id": "tm_pd_v05_user_000_s0023"
+          }
+        ],
+        "exception_condition": "For a single-hotel stay, walkability to the beach and restaurants matters more than a guaranteed view.",
+        "family": "leisure_lodging_value",
+        "local_confidence": 0.97,
+        "name": "Demand a genuine waterfront upgrade when splitting a beach trip",
+        "preference_value": "The final beach hotel in a split stay should feel like a real upgrade, not merely a different location or a weak water glimpse.",
+        "scope_condition": "Leisure trips that finish with a premium waterfront stay."
+      }
+    ]
+  }
+}

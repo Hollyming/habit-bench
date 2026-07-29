@@ -1,0 +1,112 @@
+{
+  "cache_fingerprint": "8a642598e92c2e57cb8bf680b23590147899f78995a2293034df4160d37ccefd",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Avery explicitly treated the Thursday morning return as a one-trip exception required by the new Friday 8:00 a.m. museum handoff, while stating that later-day returns remain her general choice when scheduling permits.",
+        "evidence_topology": {
+          "episode_id": "atlanta_st_louis_exhibition_transfer_01",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 70,
+          "target_habit_id": "tm_pd_v05_user_005_h01",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly states a general later-day return preference and identifies the morning return as a one-trip override caused by the Friday 8:00 a.m. museum obligation. No other candidate habit is directly established by the user's words.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "this morning flight is only for this trip because I need Wednesday night to reset and must be at the museum by 8:00 Friday",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_005_h01",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "A Friday-morning carrier handoff was added at the Atlanta museum, and I have to be there by 8:00 a.m. I need to change only my Thursday return from St. Louis. What are the no-cost rebooking rules?",
+          "role": "user"
+        },
+        {
+          "content": "Your outbound remains ticketed and the Cheshire reservation is unaffected. The return can be exchanged without an airline change fee; any fare difference and revised baggage charge still apply. The travel waiver currently provides two Thursday morning replacements on American, both with one stop in Charlotte.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare those two, including arrival time and what happens to the checked supply case.",
+          "role": "user"
+        },
+        {
+          "content": "Option 1 departs STL at 6:10 a.m. and arrives ATL at 10:42 a.m. There is no additional fare, and the checked supply case remains included, so the change costs $0. Option 2 departs STL at 8:05 a.m. and arrives ATL at 1:18 p.m. The fare difference is $22, and the supply case adds $35, for $57 due. Both use the same American routing through Charlotte.",
+          "role": "assistant"
+        },
+        {
+          "content": "And changing the return will not cancel Southwest on Monday or alter the hotel dates?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Southwest WN 2418 on Monday and the Cheshire booking for October 12-15 remain unchanged. Only Delta DL 1284 on Thursday would be replaced.",
+          "role": "assistant"
+        },
+        {
+          "content": "Take the 6:10 a.m. option. I generally choose an afternoon or evening return when the schedule permits, but this morning flight is only for this trip because I need Wednesday night to reset and must be at the museum by 8:00 Friday.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I will exchange only the Thursday return for the 6:10 a.m. American itinerary through Charlotte, with no added fare or baggage charge.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please complete it and give me the revised record.",
+          "role": "user"
+        },
+        {
+          "content": "Rebooked: Thursday, October 15, American AA 1847 from STL at 6:10 a.m. to CLT, connecting to AA 521 and arriving ATL at 10:42 a.m. The exchange total is $0, and the checked supply case remains included. New confirmation: K4N7PC. Southwest WN 2418 on Monday remains under L8Q2RM, and the Cheshire reservation remains October 12-15 under CHS-804621. Delta DL 1284 has been removed from the itinerary.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0070",
+      "session_index": 70,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "For the St. Louis exhibition transfer, Avery Thompson remains ticketed outbound on Southwest WN 2418 from ATL to STL Monday, October 12, under L8Q2RM. The Thursday, October 15 return was changed: American AA 1847 departs STL at 6:10 a.m., connects in Charlotte to AA 521, and arrives ATL at 10:42 a.m., confirmation K4N7PC. The exchange cost was $0 and the checked supply case remains included; Delta DL 1284 was removed. Avery must report to the Atlanta museum by 8:00 a.m. Friday for an unplanned carrier handoff. The Cheshire remains confirmed October 12-15 under CHS-804621 for $663.39, with its early-arrival and Thursday luggage-storage notes unchanged. Omni Amelia Island Resort remains confirmed for Avery Thompson and Morgan Thompson, September 12-18, under OAI-628417 for $3,214.80; the Amelia Island driving plan remains unchanged. The January 12-15 New Orleans flights remain booked under G7K4QP and 4J9LTX, and Cambria Hotel New Orleans Downtown remains confirmed under CNO-418672 with Thursday storage arranged. Midtown Lodge Raleigh remains booked under MLR-582041. Registrar approval remains pending for the proposed Boston hotel replacement. Other previously confirmed trip arrangements remain unchanged.",
+  "verification": {
+    "70": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "this morning flight is only for this trip because I need Wednesday night to reset and must be at the museum by 8:00 Friday",
+          "habit_id": "tm_pd_v05_user_005_h01",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly states a general later-day return preference and identifies the morning return as a one-trip override caused by the Friday 8:00 a.m. museum obligation. No other candidate habit is directly established by the user's words."
+    }
+  }
+}

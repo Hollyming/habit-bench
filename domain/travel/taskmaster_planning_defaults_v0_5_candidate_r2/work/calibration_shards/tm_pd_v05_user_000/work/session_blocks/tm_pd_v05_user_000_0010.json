@@ -1,0 +1,134 @@
+{
+  "cache_fingerprint": "8575f9469a2db8a704ac6c2392f322ba66d4e5d62222122181b7e80c74e23008",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya selected the Hampton king for this Denver trip because it balances a manageable morning walk, lower total cost, included breakfast, and a later cancellation deadline while the flight remains unpurchased. No recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "client-denver-002",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 10,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requires an evening return for this trip, overriding the soft afternoon-return default. No other candidate habit is established by the user's own words at the required confidence.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "use the Tuesday evening arrival and Friday evening return",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I confirmed the client will not cover Friday night, so use the Tuesday evening arrival and Friday evening return. I need a hotel for June 9 through June 12 near the downtown Denver workshop. The room has to stay at or below $225 a night before tax.",
+          "role": "user"
+        },
+        {
+          "content": "That makes it a three-night stay, checking in Tuesday and out Friday. What is the workshop address, and should I optimize mainly for the 8:00 a.m. start or for the lowest total within the cap?",
+          "role": "assistant"
+        },
+        {
+          "content": "It's at 1700 Broadway. Please compare both. I don't want a cheap room that turns the morning into a hassle, but cancellation matters while the flight is still only being held.",
+          "role": "user"
+        },
+        {
+          "content": "I found three workable refundable rates. The closest is the Grand Hyatt Denver at $219 per night, about a 7-minute walk. Its room total is $657 before tax, estimated at $755 after tax, but free cancellation ends at 6:00 p.m. on June 6. The Hampton Inn & Suites Downtown is $184 per night, about a 15-minute walk or 5–8 minutes by rideshare; total is $552 before tax and about $634 after tax, with cancellation until 11:59 p.m. on June 8. The Hilton Garden Inn Union Station is $169 per night, roughly 18–25 minutes by light rail and walking or 8–12 minutes by rideshare; total is $507 before tax and about $582 after tax, also cancellable through June 8.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does the Grand Hyatt rate include anything useful, or is the extra cost basically just the location?",
+          "role": "user"
+        },
+        {
+          "content": "The quoted rate includes Wi-Fi and access to the fitness center, but breakfast is not included. Its practical advantage is the short walk: you could leave around 7:45 and still have a modest buffer. The Hampton includes breakfast and Wi-Fi. The Hilton Garden Inn includes Wi-Fi, while breakfast costs extra.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Hampton sounds like the best value. Is that 15-minute walk realistic at that hour, or is it one of those estimates that ignores crossings?",
+          "role": "user"
+        },
+        {
+          "content": "The mapped route is about 0.7 mile and includes several downtown crossings, so I would budget 16–20 minutes in the morning. Leaving by 7:30 should put you at the venue before 7:50. A rideshare is short, but pickup and traffic could make its door-to-door time similar.",
+          "role": "assistant"
+        },
+        {
+          "content": "And no mandatory destination fee on that rate? Also compare the actual savings against the Hyatt after tax.",
+          "role": "user"
+        },
+        {
+          "content": "No destination or resort fee is listed for the Hampton rate. Its estimated after-tax total is $634 versus $755 at the Grand Hyatt, a savings of about $121 for the stay. It also gives you roughly two additional days to cancel and includes breakfast, in exchange for an extra 10–13 minutes of walking each morning.",
+          "role": "assistant"
+        },
+        {
+          "content": "What kind of room is available at $184? I only need one bed.",
+          "role": "user"
+        },
+        {
+          "content": "The $184 refundable option is a standard king room. A two-queen room is $196 per night, so there is no reason to move up unless you need the second bed.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the Hampton king as the hotel choice. Keep the Hyatt noted only as the close-in backup. Does the Hampton still fit if the taxes come in a little higher than estimated?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The reimbursement limit applies to the $184 pretax room rate, which is $41 below the $225 nightly cap. Even if the tax estimate shifts slightly, the qualifying room rate does not change. The current estimate is $552 before tax and approximately $634 after tax for all three nights.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Pair that with the Friday-return flight and leave both unbooked. Give me the cancellation cutoff in local time and the morning plan to carry forward.",
+          "role": "user"
+        },
+        {
+          "content": "Carry forward the Hampton Inn & Suites Denver-Downtown standard king for June 9–12 at $184 per night: $552 before tax and about $634 after tax. Free cancellation runs through 11:59 p.m. Mountain Time on Monday, June 8; after that, the listed penalty is one night's room and tax. For the 8:00 a.m. workshop at 1700 Broadway, plan to leave on foot by 7:30 for a 16–20 minute walk. The Grand Hyatt remains the backup at $219 per night, about a 7-minute walk, with cancellation ending June 6 at 6:00 p.m. Mountain Time. Pair the Hampton with the $412 Tuesday-evening/Friday-evening nonstop itinerary. The flight and hotel are both still unbooked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0010",
+      "session_index": 10,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. The April 23–28 coastal trip flights and hotels are booked: The Drayton April 23–25, Beachview Inn & Spa April 25–28, and the MSP–SAV round trip for two. Two scheduled private rides remain unreserved: The Drayton to Beachview Saturday at 3:30 p.m. and Beachview to SAV Tuesday at 3:15 p.m., quoted at $180 before optional gratuity. For the June 9–12 Denver workshop trip, the $412 Tuesday-evening/Friday-evening nonstop itinerary is now the leading flight because the client will not cover Friday-night lodging; it remains held and unpurchased. The selected hotel is a standard king at the Hampton Inn & Suites Denver-Downtown for June 9–12 at $184 nightly, $552 before tax and about $634 after tax, with free cancellation through 11:59 p.m. Mountain Time on June 8. The Grand Hyatt Denver remains the close-in backup at $219 nightly, with cancellation through 6:00 p.m. Mountain Time on June 6. No flight or hotel has been booked.",
+  "verification": {
+    "10": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "use the Tuesday evening arrival and Friday evening return",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requires an evening return for this trip, overriding the soft afternoon-return default. No other candidate habit is established by the user's own words at the required confidence."
+    }
+  }
+}

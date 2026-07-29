@@ -1,0 +1,304 @@
+{
+  "habit_id": "tm_pd_v05_user_004_h01",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c02",
+        "c04"
+      ],
+      "accepted_total": [
+        "c00",
+        "c02",
+        "c04"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Book the $452 nonstop, which takes 3 hours 20 minutes and arrives at 2:40 p.m."
+              },
+              {
+                "choice_id": "B",
+                "text": "Book the $374 itinerary, which takes 5 hours 25 minutes, arrives at 2:35 p.m., and has one 64-minute transfer."
+              },
+              {
+                "choice_id": "C",
+                "text": "Book the $329 itinerary, which takes 6 hours 35 minutes, arrives at 1:50 p.m., and has 50-minute and 55-minute transfers."
+              },
+              {
+                "choice_id": "D",
+                "text": "Keep the nonstop and one-transfer itinerary as the finalists and ask whether avoiding a connection is worth the $78 difference before booking."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A and B have nearly identical arrival times and trade $78 against two additional travel hours. Generic reasoning cannot uniquely resolve that exchange. A is a strong near miss because it incorrectly promotes a prior trip-specific nonstop requirement into a durable preference; B would make the opposite boundary error by treating the connecting-flight rule as a preference over nonstop service.",
+            "gold_action": "Do not infer a preference between nonstop and connecting travel; clarify the user's valuation of the fare difference.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_004_s0018",
+              "tm_pd_v05_user_004_s0063",
+              "tm_pd_v05_user_004_s0093"
+            ],
+            "label_rationale": "The history supports a rule for evaluating connecting alternatives, not a general preference for or against connections. The prior nonstop instruction was expressly limited to one work trip. B fits the connection rule and A is a reasonable nonstop, but the stored history does not decide whether A is worth $78 more, so D preserves the unresolved pair rather than overgeneralizing.",
+            "probe_type": "evidence_disambiguation",
+            "query": "For a September trip from El Paso to San Diego, the meeting begins the morning after arrival. A checked bag is included in every fare, all options are within budget, and each arrival leaves ample time for dinner and hotel check-in. The planner must decide what to do next based on the available options. Which action is best supported?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choice D is a meta-level clarification option tailored to the query's unresolved tradeoff and is sufficient to identify the answer."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c01",
+            "rationale": "The query supplies no preference that resolves the fare-versus-nonstop tradeoff. D is therefore the best-supported action because it preserves the two serious finalists and explicitly asks for the missing preference before booking."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Choose the $398 itinerary with 62-minute and 71-minute connections in St. Louis and Salt Lake City, sharing both requested segments."
+              },
+              {
+                "choice_id": "B",
+                "text": "Choose the $384 itinerary with one 69-minute connection in Salt Lake City, sharing the final segment and holding the first rehearsal remotely."
+              },
+              {
+                "choice_id": "C",
+                "text": "Choose the $346 itinerary with one 2-hour-20-minute connection in St. Louis, sharing the middle segment and holding the second rehearsal remotely."
+              },
+              {
+                "choice_id": "D",
+                "text": "Choose the $421 nonstop and hold both rehearsals remotely, avoiding any risk that a connection disrupts the dinner arrival."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A costs only $14 more than B but adds a connection in exchange for two in-person rehearsals rather than one. Without the user's history, it is unclear whether the established routing treatment should defeat or yield to this trip-specific coordination preference; the longitudinal exception evidence resolves that conflict.",
+            "gold_action": "Honor the current trip's explicit two-stop coordination request.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_004_s0018",
+              "tm_pd_v05_user_004_s0063",
+              "tm_pd_v05_user_004_s0068"
+            ],
+            "label_rationale": "The established one-short-connection rule is a default, while the history also shows that explicit needs for the current trip can supersede it without revising the durable policy. A is the only option that fulfills the stated segment-sharing request; B is the strongest near miss because it follows the usual routing pattern but only partially serves the current-trip requirement.",
+            "probe_type": "exception",
+            "query": "For a Raleigh-to-Boise site visit, two colleagues are joining en route: one in St. Louis and one in Salt Lake City. We can rehearse remotely, but for this trip I want to share the St. Louis-to-Salt Lake City segment with the first colleague and the Salt Lake City-to-Boise segment with the second. All options arrive before the evening team dinner and are within the approved budget. What should the planner recommend?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choice A uniquely and nearly verbatim fulfills both routing requirements stated in the query."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "The traveler explicitly wants to share both specified segments. Only A routes through both St. Louis and Salt Lake City and therefore satisfies both stated segment-sharing requirements."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Pay $402 for a 6-hour-25-minute itinerary with one 72-minute same-concourse transfer in Dallas."
+              },
+              {
+                "choice_id": "B",
+                "text": "Pay $356 for a 5-hour-40-minute itinerary with one 34-minute same-concourse transfer in Phoenix."
+              },
+              {
+                "choice_id": "C",
+                "text": "Pay $341 for a 6-hour-35-minute itinerary with 58-minute and 61-minute transfers in Denver and Houston."
+              },
+              {
+                "choice_id": "D",
+                "text": "Pay $377 for a 7-hour-50-minute itinerary with one 2-hour-45-minute transfer in Salt Lake City."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B beats A by $46 and 45 minutes and is formally legal, making it attractive under generic optimization. History is required to recognize that 'short' does not mean the shortest possible legal transfer; practicality and a brief break are part of the user's criterion.",
+            "gold_action": "Choose the single connection that remains short while allowing a practical transfer and brief break.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_004_s0018",
+              "tm_pd_v05_user_004_s0068",
+              "tm_pd_v05_user_004_s0093"
+            ],
+            "label_rationale": "A satisfies both parts of the durable policy: only one connection and enough time for a straightforward transfer plus a short break. B superficially follows the preference for a short connection and is cheaper and faster, but 34 minutes leaves little room for the break the user repeatedly included in the policy. The soft request to contain fare does not amount to a current-trip exception.",
+            "probe_type": "conflict_resolution",
+            "query": "I am comparing November flights from Fresno to New Orleans. All fares include the same baggage and change terms, and every arrival gives a comfortable margin before the next day's appointment. I would like to contain the fare, but there is no hard budget cap. Which option should the planner recommend?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choice B is structured as an engineered compromise: fastest overall, one connection, same-concourse transfer, and only $15 above the minimum fare."
+            ],
+            "plausible_choice_ids": [
+              "B",
+              "C"
+            ],
+            "probe_id": "c05",
+            "rationale": "B is the fastest itinerary, has only one same-concourse connection, and costs just $15 more than the cheapest option. Given the stated desire to contain fare, that small premium reasonably buys 55 minutes and one fewer connection versus C. C remains plausible for a traveler treating the lowest fare as paramount, but B is the generic best compromise."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Book the $318 itinerary arriving at 4:15 p.m., with one 72-minute transfer in New York."
+              },
+              {
+                "choice_id": "B",
+                "text": "Book the $276 itinerary arriving at 3:45 p.m., with 55-minute and 65-minute transfers in Washington and Toronto."
+              },
+              {
+                "choice_id": "C",
+                "text": "Book the $268 itinerary arriving at 2:55 p.m., with one 3-hour-15-minute transfer in Philadelphia."
+              },
+              {
+                "choice_id": "D",
+                "text": "Keep A and B as the leading tradeoff and ask how to weigh fewer connections against the $42 savings and earlier arrival on this cross-border trip."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A exactly resembles the routing that would be preferred inside the established domestic scope, while B is $42 cheaper and arrives 30 minutes earlier. Generic reasoning cannot uniquely choose between them, and only careful scope control prevents A from becoming an unsupported cross-context inference.",
+            "gold_action": "Do not silently transfer the domestic connecting-flight policy to an international itinerary; clarify the tradeoff.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_004_s0018",
+              "tm_pd_v05_user_004_s0068",
+              "tm_pd_v05_user_004_s0093"
+            ],
+            "label_rationale": "The durable evidence establishes the connection policy in domestic travel contexts. This itinerary is international, so the stored rule does not authorize choosing A over B. D correctly preserves the close tradeoff and requests current guidance rather than extending the habit beyond its supported scope.",
+            "probe_type": "cross_context_transfer",
+            "query": "For a cross-border trip from Pittsburgh to Montreal, every option arrives the day before the event, includes baggage, and remains within budget. The planner has narrowed the search to the following actions. What should the planner do?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "D",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choice D is a meta-level clarification option that explicitly names the unresolved tradeoff and is sufficient to identify the answer."
+            ],
+            "plausible_choice_ids": [
+              "D"
+            ],
+            "probe_id": "c06",
+            "rationale": "A and B present a genuine fewer-connections-versus-lower-fare tradeoff, and the query gives no preference that resolves it. D correctly identifies that missing preference and asks for clarification before booking."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c01",
+        "c03",
+        "c05"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c05"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Ask whether saving $41 and arriving 35 minutes earlier is worth adding the Toronto connection, while retaining the New York and Washington-Toronto itineraries."
+              },
+              {
+                "choice_id": "B",
+                "text": "Ask whether saving another $12 is worth the 3-hour-5-minute wait, while retaining the Washington-Toronto and Philadelphia itineraries."
+              },
+              {
+                "choice_id": "C",
+                "text": "Ask whether the 45-minute arrival spread between the New York and Philadelphia itineraries matters despite both arriving the prior afternoon."
+              },
+              {
+                "choice_id": "D",
+                "text": "Ask whether the traveler's usual domestic approach to evaluating connections should also govern this cross-border itinerary, while retaining the New York and Washington-Toronto options."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is a realistic and focused question because it presents the central observable tradeoff without favoring either itinerary. D becomes preferable only when the planner remembers that a personal connection policy exists but is supported specifically in domestic contexts; without that longitudinal scope information, A and D are comparably defensible.",
+            "gold_action": "Clarify whether the domestic connecting-flight policy should extend to this international itinerary before using it to rank the finalists.",
+            "gold_choice_id": "D",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_004_s0018",
+              "tm_pd_v05_user_004_s0068",
+              "tm_pd_v05_user_004_s0093"
+            ],
+            "label_rationale": "The supplied history establishes the one-short-layover policy across domestic trips, not cross-border travel. D asks the scope question required before using that policy here and preserves the two itineraries whose $41, 35-minute, and connection-count tradeoffs remain close. A asks for a generic price-versus-stop valuation but silently omits the more important unresolved issue of whether the known domestic policy applies in this context at all.",
+            "probe_type": "cross_context_transfer",
+            "query": "For a first cross-border trip from Pittsburgh to Montreal, every itinerary arrives the day before the event, includes the same baggage and change terms, and remains within budget. The leading options are a $322 itinerary arriving at 4:10 p.m. with one 74-minute New York transfer, a $281 itinerary arriving at 3:35 p.m. with 58-minute and 66-minute transfers in Washington and Toronto, and a $269 itinerary arriving at 2:50 p.m. with one 3-hour-5-minute Philadelphia transfer. The planner wants to ask one focused question before making the recommendation. Which question should be asked?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choice D explicitly invokes the traveler's 'usual domestic approach,' which is unavailable private-history information.",
+              "The phrase 'first cross-border trip' may draw attention to D, but it does not supply the referenced domestic habit and is not sufficient to make D preferable to the concrete tradeoff in A."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c06",
+            "rationale": "A asks a concrete, decision-relevant question about the principal tradeoff between the strongest conventional candidates: $41 in savings plus a 35-minute earlier arrival versus adding a second connection. B centers the marginal $12 saving attached to the longest wait, C isolates arrival time while ignoring larger differences, and D relies on an unspecified habitual domestic policy instead of eliciting the actual cross-border tradeoff."
+          }
+        }
+      ],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 3,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 3,
+    "selected_difficulty_counts": {
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "evidence_disambiguation": 1,
+      "exception": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v05_user_004"
+}

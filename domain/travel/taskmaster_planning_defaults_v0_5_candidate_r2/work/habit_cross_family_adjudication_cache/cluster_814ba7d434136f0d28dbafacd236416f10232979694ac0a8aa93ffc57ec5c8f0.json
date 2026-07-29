@@ -1,0 +1,35 @@
+{
+  "cache_fingerprint": "814ba7d434136f0d28dbafacd236416f10232979694ac0a8aa93ffc57ec5c8f0",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "return_leg_departure_time_preference",
+      "family": "flight_departure_arrival_timing",
+      "input_ids": [
+        "tm_v04_e2e_habit_26cf0aa15c48"
+      ],
+      "rationale": "This is a return-leg-only departure-time policy and must remain separate from general departure timing preferences because it can produce a different answer for the outbound leg.",
+      "representative_id": "tm_v04_e2e_habit_26cf0aa15c48"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "general_departure_time_preference",
+      "family": "flight_departure_arrival_timing",
+      "input_ids": [
+        "tm_v04_e2e_habit_65f6cf011815"
+      ],
+      "rationale": "This general policy permits either afternoon or evening departures, so it is not policy-equivalent to an afternoon-only preference.",
+      "representative_id": "tm_v04_e2e_habit_65f6cf011815"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "general_departure_time_preference",
+      "family": "flight_departure_arrival_timing",
+      "input_ids": [
+        "tm_v04_e2e_habit_ff9a7f3c433c"
+      ],
+      "rationale": "This is a general afternoon-only departure-time preference; it differs from the broader afternoon-or-evening policy and belongs in departure and arrival timing rather than schedule flexibility.",
+      "representative_id": "tm_v04_e2e_habit_ff9a7f3c433c"
+    }
+  ]
+}

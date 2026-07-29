@@ -1,0 +1,187 @@
+{
+  "cache_fingerprint": "f92b41cee4a84f181cc3568e1de3cc37824782a51d1113ba4f772df64d9af1a4",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip-specific planning only. Danielle selected a proposed Thursday-morning-to-Saturday-morning itinerary at the forum hotel, contingent on approval for a $20.54 allowance overage, and retained a $760.52 Union Station itinerary as the compliant fallback. Nothing was booked.",
+        "evidence_topology": {
+          "episode_id": "ep_031_denver_regional_partner_forum",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 100,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_004"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selects a morning departure for this trip, overriding the established afternoon-departure default. The user also rejects cheaper airfare when it conflicts with the required Thursday-morning timing, establishing the stated timing-over-price tradeoff boundary. No user utterance strongly evidences the connection, seat, breakfast, or balcony habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Use the Thursday morning flight when comparing one night.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "That is not worth losing another evening at home. Narrow it to Thursday morning.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h02",
+            "signal_type": "boundary"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to finish the Denver forum plan. The planning meeting is Thursday from 2:00 to 5:00, the main program runs Friday from 8:30 to 4:30, and there is an optional partner dinner Friday from 6:00 to 8:00. I can leave Dallas Wednesday evening or Thursday morning and come back late Friday or Saturday morning. Can you compare the sensible combinations against an $800 trip allowance?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Before I total them, does the $800 cover airfare, hotel, and ground transportation only, or should I include meals? Also, is the forum hotel rate available Wednesday, Thursday, and Friday nights?",
+          "role": "assistant"
+        },
+        {
+          "content": "Airfare, hotel, and local transportation. Meals are handled separately. The forum hotel is $189 before tax for any of those nights. There are also cheaper hotels near Union Station, but I do not know whether the savings survive the extra transportation.",
+          "role": "user"
+        },
+        {
+          "content": "I found workable nonstop schedules in all four patterns. The best current round-trip air totals are: Wednesday evening to Friday late, $236; Thursday morning to Friday late, $278; Wednesday evening to Saturday morning, $259; and Thursday morning to Saturday morning, $301. The Thursday flight leaves DAL at 7:10 a.m. and arrives DEN at 8:20 a.m., which leaves a substantial buffer before the 2:00 meeting. The late Friday return leaves DEN at 9:05 p.m., after the dinner, and arrives DAL at 11:55 p.m. The Saturday return leaves at 9:15 a.m. and arrives at 12:05 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Use the Thursday morning flight when comparing one night. I do not need Wednesday night just for extra cushion. For two nights, compare Thursday and Friday nights so I can attend the dinner and leave Saturday.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. With estimated lodging tax of 15.75%, the forum hotel is $218.77 per night, or $437.54 for Thursday and Friday. Airport rideshares plus the short venue transfers are estimated at $74 for the one-night plan and $82 for the two-night plan. That gives $570.77 for Thursday morning through late Friday and $820.54 for Thursday morning through Saturday morning.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Saturday version is only $20.54 over, then. What are the Union Station numbers?",
+          "role": "user"
+        },
+        {
+          "content": "The strongest Union Station option is $154 nightly before the same estimated tax, or $178.26 per night. For one night, lodging is $178.26. Using the airport train both ways and rideshares to and from the venue, local transportation is about $69, producing a $525.26 total with the $278 airfare. For Thursday and Friday nights, lodging is $356.52 and transportation is about $85, producing a $742.52 total with the $301 airfare.",
+          "role": "assistant"
+        },
+        {
+          "content": "So both Union Station versions fit, but only the one-night forum hotel version fits. Is that right?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The one-night forum hotel plan is $570.77, comfortably within the allowance. The two-night forum hotel plan is $820.54, which exceeds it by $20.54. The Union Station plans are $525.26 for one night and $742.52 for two nights, both within the $800 limit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the timing on Friday night. I do not want a plan that technically includes the dinner but requires leaving halfway through it.",
+          "role": "user"
+        },
+        {
+          "content": "The dinner ends at 8:00 p.m., while the flight departs at 9:05. That is not a viable airport margin from downtown Denver. To take the late Friday flight, you would need to leave the venue around 6:45 p.m., so it only supports a brief appearance at dinner, not the full event.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then label it honestly. The Friday return is the no-dinner itinerary. The Saturday return is the dinner itinerary.",
+          "role": "user"
+        },
+        {
+          "content": "Agreed. Revised comparison: Thursday morning to Friday night is a one-night, no-dinner trip. Thursday morning to Saturday morning is a two-night trip that includes the full dinner. The Saturday itinerary also avoids a rushed Friday airport transfer.",
+          "role": "assistant"
+        },
+        {
+          "content": "For Union Station, have you included getting from the airport to the hotel Thursday, hotel to the planning meeting, back after the meeting, both Friday venue trips, and then the airport Saturday?",
+          "role": "user"
+        },
+        {
+          "content": "Not fully. The earlier $85 estimate omitted the Thursday evening return to Union Station. The corrected two-night transportation estimate is $103: $10.75 each way on the airport train, plus approximately $81.50 for four rideshare legs between Union Station and the venue. The corrected two-night total is $760.52.",
+          "role": "assistant"
+        },
+        {
+          "content": "Thank you for catching that. What does the forum hotel transportation estimate include?",
+          "role": "user"
+        },
+        {
+          "content": "For the forum hotel, the $82 estimate includes a Thursday rideshare from DEN to the hotel and a Saturday rideshare back to DEN. No daily venue transportation is needed because the meetings and dinner are in the hotel. The estimate allows a modest variance for pickup pricing but not a severe surge.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the actual tradeoff between the two-night hotels, not just the totals.",
+          "role": "user"
+        },
+        {
+          "content": "The forum hotel costs $60.02 more overall: $820.54 versus $760.52. It keeps you on site for Thursday's meeting, Friday's program, and dinner, and removes four cross-downtown rides. The Union Station hotel stays $39.48 below the allowance, but adds roughly 70 to 100 minutes of total local travel and exposes the schedule to Friday traffic and rideshare variability. The forum hotel exceeds the allowance by $20.54 but is operationally simpler.",
+          "role": "assistant"
+        },
+        {
+          "content": "Could Wednesday evening to Friday night ever make sense? It has the cheaper airfare, although it means two hotel nights and no full dinner.",
+          "role": "user"
+        },
+        {
+          "content": "At the forum hotel, Wednesday evening through Friday night would be $236 airfare, $437.54 lodging, and about $74 transportation, totaling $747.54. It fits the allowance but buys an extra night mainly for Thursday-morning buffer and still requires leaving the dinner early. At Union Station, the same schedule totals about $695.52 after two hotel nights and corrected local transportation. Financially it works, but it is less aligned with the forum schedule than either arriving Thursday or staying through Saturday.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is not worth losing another evening at home. Narrow it to Thursday morning. I am leaning toward staying at the forum hotel and asking for approval for the $20.54 overage, but show me the complete reimbursable breakdown first.",
+          "role": "user"
+        },
+        {
+          "content": "The recommended itinerary is Thursday morning through Saturday morning: nonstop DAL-DEN, 7:10-8:20 a.m.; two nights at the forum hotel, Thursday and Friday; full attendance at the 2:00-5:00 planning meeting, Friday's 8:30-4:30 program, and the 6:00-8:00 dinner; then nonstop DEN-DAL Saturday, 9:15 a.m.-12:05 p.m. Airfare is $301. Hotel is $378 base plus $59.54 estimated tax, totaling $437.54. Airport rideshares are estimated at $82. The reimbursable trip total is $820.54, or $20.54 above the $800 allowance. Meals remain separate.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use that as the proposed itinerary. Do not book anything yet. Note the Union Station two-night option as the compliant fallback in case the overage is denied.",
+          "role": "user"
+        },
+        {
+          "content": "Proposed for approval, with nothing booked: Thursday DAL-DEN 7:10-8:20 a.m.; forum hotel Thursday and Friday nights at an estimated $437.54 including tax; full Friday dinner; Saturday DEN-DAL 9:15 a.m.-12:05 p.m.; and $82 estimated airport transportation. Total: $820.54, which is $20.54 over the allowance. The compliant fallback is the same flights and dates with the Union Station hotel: $301 airfare, $356.52 lodging, and $103 local transportation, totaling $760.52. Flight availability, hotel taxes, cancellation terms, and rideshare estimates still require live verification before purchase.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0100",
+      "session_index": 100,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Gulf Coast unit B remains reserved for August 10-15 for three at $2,098; $1,468.60 is due July 11, parking confirmation is outstanding, and a $300 security authorization is scheduled for August 8. New Orleans Cambria is confirmed for December 20-23 at $929.01; call after 9:00 p.m. with the revised ETA. Approval remains pending for the May 13-15 Indian Wells return change, $43.62 above the ceiling. The March 10-15 beachfront hotel is booked at $1,978.20; an occupancy-only correction remains needed, with cancellation through February 24 at 6:00 p.m. Central. The May 8-9 Denver visit is booked at an estimated $632.46. For the June Seattle summit, Pine Street Inn is selected at $437.35; verify live terms. The June 25-29 Chicago family trip is booked at an estimated $3,673.84; museum reservations remain outstanding. The September 16-17 Atlanta visit is estimated at $648.67 excluding meals. Inn by the Harbor is confirmed for July 26-31 at $1,862.16; verify the $74 rental change and late-arrival acknowledgment. The October 8-9 Denver forum remains within its $800 allowance; retain the reissued-return records. For November 19-20 Minneapolis, Aloft is booked and flights remain to be ticketed; total estimate $709.76. The October 10-14 New Orleans family trip is booked at $2,823.40. The Philadelphia retreat has ticketed flights and Conwell Inn reserved at $446.82. For the July coastal drive, Courtyard Birmingham Hoover, Hotel Folly, and La Quinta Atlanta Conyers are reserved; remaining lodging and parking payments total $1,845.73. Call the Courtyard before departure to confirm the late-arrival hold. The loop is estimated at roughly 2,250 miles and $275 in fuel; meals are excluded. For May 5-6 St. Louis, Southwest nonstops and the AC Hotel are booked at an estimated $591.42 before meals and Dallas transportation. For the August 21-23 Minneapolis summit, Thursday's flight and the summit block remain confirmed; Saturday's return is reissued for 7:25 p.m., and hotel pickup is set for 4:15 p.m. For January 16-19 New Orleans, the family will drive and the Hampton Inn & Suites on Carondelet is reserved for three at $791.89; payment is due at checkout, cancellation is free through January 14 at 11:59 p.m. Central, and an 8:30 p.m. arrival is noted. Activities remain unreserved. For April 6-9 Boston, the Beacon Hill hotel is reserved for one adult at $768.42, with payment due at checkout and free cancellation through April 4 at 6:00 p.m. Eastern. Monday-evening and Thursday-morning American nonstops are selected but not ticketed. Wednesday breakfast is planned at Tatte at 7:00 before a 7:30 rideshare to the school visit. The revised working total is $1,279.42. For the June 14-20 San Diego family trip, Southwest flights are booked and Mission Bay confirmation MB-61483 is updated to a larger bay-view room with a king bed, queen sleeper sofa, and furnished balcony for three. The hotel total is now $2,406.87, with the June 7 at 6:00 p.m. Pacific cancellation deadline unchanged. Estimated rideshares are $80, activities $249, and meals $630, for a revised working trip total of $4,698.87. For the regional Denver partner forum, a Thursday-morning-to-Saturday-morning itinerary with two nights at the forum hotel is proposed at $820.54, including airfare, lodging, and airport transportation; approval is needed for the $20.54 overage. A two-night Union Station fallback is estimated at $760.52. Nothing for this forum has been booked, and live fares, taxes, hotel terms, and transportation estimates remain to be verified.",
+  "verification": {
+    "100": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Use the Thursday morning flight when comparing one night.",
+          "habit_id": "tm_pd_v05_user_004_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "That is not worth losing another evening at home. Narrow it to Thursday morning.",
+          "habit_id": "tm_pd_v05_user_004_h02",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selects a morning departure for this trip, overriding the established afternoon-departure default. The user also rejects cheaper airfare when it conflicts with the required Thursday-morning timing, establishing the stated timing-over-price tradeoff boundary. No user utterance strongly evidences the connection, seat, breakfast, or balcony habits."
+    }
+  }
+}

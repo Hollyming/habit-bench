@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "5b929aa7f9511028e564a62e15ee878397b2961d638ce247e7ed1ff40ef784a3",
+  "habits": [
+    {
+      "boundary_condition": "Treat the pool and exercise facility as durable hotel-level priorities; do not infer requirements about pool location, pool type, hot tubs, or specific room amenities unless stated for the current trip.",
+      "bundle_id": "tm_v04_e2e_bundle_1a978ad43f4e",
+      "condition": "When searching for a hotel, especially when comparing amenity packages.",
+      "confidence": 0.93,
+      "decision": "accept",
+      "default_action": "Prefer hotels that offer both a pool and an on-site fitness center or gym.",
+      "exception_condition": "Relax either preference when the user explicitly waives it or when stronger current-trip constraints make a hotel without one of these amenities preferable.",
+      "family": "hotel_accessibility_amenity_priority",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_1a978ad43f4e",
+      "induced_at": "2026-07-25T08:47:35.416932+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_pool_and_fitness_priority",
+      "preference_value": "{'pool': True, 'fitness_center_or_gym': True}",
+      "rationale": "Three independent hotel dialogues repeatedly pair a pool with a place to exercise, fitness center, or gym, supporting a coherent reusable amenity preference.",
+      "reasoning_effort": "high",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Independently requests both a pool and an exercise facility while making only the indoor-pool detail a softer preference.",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "exact_user_quote": "Now, Some of the amenities of the hotel in the rooms, well, I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "instruction_id": "hotel-1c",
+          "turn_index": 16
+        },
+        {
+          "contribution": "Independently includes both a gym and a pool in the requested hotel amenity set.",
+          "conversation_id": "dlg-6bd1fd97-595a-4254-9566-fb4a1357ea0e",
+          "exact_user_quote": "Just nice hydrating three to five star and like a restaurant in the hotel with a pool bar, free breakfast if possible. A gym, a pool and cleaning services for clothes. Edge in the pool and cleaning services for clothes.",
+          "instruction_id": "hotel-10",
+          "turn_index": 10
+        },
+        {
+          "contribution": "Independently pairs a pool with a gym among the desired hotel amenities.",
+          "conversation_id": "dlg-9f05d8df-2057-4d85-b0a5-891a6478d1d5",
+          "exact_user_quote": "And I like to ask a few words about the total amount is like a pool hot tub and Swann gym. The hotel room amenities have a balcony or terrace? And also I need a mini fridge and bathtub. And also one more thing, We have a six adults and three kids. Could you tell me about the room pricing? Is it available there?",
+          "instruction_id": "hotel-1",
+          "turn_index": 17
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Now, Some of the amenities of the hotel in the rooms, well, I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 16,
+          "user_utterance": "Now, Some of the amenities of the hotel in the rooms, well, I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise."
+        },
+        {
+          "annotated_segment": "Just nice hydrating three to five star and like a restaurant in the hotel with a pool bar, free breakfast if possible. A gym, a pool and cleaning services for clothes. Edge in the pool and cleaning services for clothes.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6bd1fd97-595a-4254-9566-fb4a1357ea0e",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 10,
+          "user_utterance": "Just nice hydrating three to five star and like a restaurant in the hotel with a pool bar, free breakfast if possible. A gym, a pool and cleaning services for clothes. Edge in the pool and cleaning services for clothes."
+        },
+        {
+          "annotated_segment": "And I like to ask a few words about the total amount is like a pool hot tub and Swann gym. The hotel room amenities have a balcony or terrace? And also I need a mini fridge and bathtub. And also one more thing, We have a six adults and three kids. Could you tell me about the room pricing? Is it available there?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-9f05d8df-2057-4d85-b0a5-891a6478d1d5",
+          "habitual_language": false,
+          "instruction_id": "hotel-1",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "And I like to ask a few words about the total amount is like a pool hot tub and Swann gym. The hotel room amenities have a balcony or terrace? And also I need a mini fridge and bathtub. And also one more thing, We have a six adults and three kids. Could you tell me about the room pricing? Is it available there?"
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+    "dlg-6bd1fd97-595a-4254-9566-fb4a1357ea0e",
+    "dlg-9f05d8df-2057-4d85-b0a5-891a6478d1d5"
+  ]
+}

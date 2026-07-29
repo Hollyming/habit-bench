@@ -1,0 +1,102 @@
+{
+  "cache_fingerprint": "8c8262c37b617dfcd87cfd0c8107c53c100987317699f705a0e3af182b5c0534",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The user chose the later nonstop for this trip to avoid a compressed Monday checkout, drive, refueling, and rental-return sequence.",
+        "evidence_topology": {
+          "episode_id": "ep_007_carlsbad_family_wedding",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 26,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chose the available 4:05 p.m. departure for this trip, supporting the afternoon-departure default. This is a current-trip choice, not durable recurring language. Choosing a nonstop does not evidence the connection-limit habit, which applies only when comparing connecting itineraries.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Switch us to the 4:05 nonstop.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The November trip is booked now: four nights at Beach Terrace, the rental car, and the flights. The airline moved Monday's SAN departure from 1:20 p.m. to 12:10 p.m. Can you redo the timeline?",
+          "role": "user"
+        },
+        {
+          "content": "For a 12:10 p.m. departure, I would target the terminal by 10:10. Allow about 25 minutes to refuel, 20 minutes for rental return and the shuttle, and 75-90 minutes for the southbound drive during heavier traffic. That puts hotel departure around 7:55-8:10 a.m.; 7:45 gives useful protection. You would need to check out well before the hotel's unchanged checkout time.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is earlier than I expected. The airline also offers a 4:05 p.m. nonstop at no added fare.",
+          "role": "user"
+        },
+        {
+          "content": "The 4:05 flight is much easier. Check out at 11:00, load the car, and leave around 11:15. Even allowing 75 minutes to SAN, 25 minutes for fuel, and 20 minutes for return and shuttle, you should reach the terminal around 1:15-1:30, roughly 2.5 hours before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the practical downside of each. We do not need another beach day, but I do not want the end of the wedding weekend to feel rushed.",
+          "role": "user"
+        },
+        {
+          "content": "The 12:10 option gets you home 70 minutes earlier than planned but requires breakfast, packing, checkout, fuel, and the airport drive to start before 8:00. A traffic delay would consume the cushion quickly. The 4:05 option adds nearly three hours beyond the original schedule and gets you home later, but it preserves an ordinary checkout and leaves substantially more recovery room for traffic and rental processing.",
+          "role": "assistant"
+        },
+        {
+          "content": "Switch us to the 4:05 nonstop. After that, what else needs changing?",
+          "role": "user"
+        },
+        {
+          "content": "Accept the airline's no-fare-change option and confirm the new flight number, seats, bags, and arrival time in Denver. The four-night hotel needs no change because Monday checkout remains the same. Update the rental return time if the reservation lists a specific hour; confirm that the later return stays within the same billing period and does not add a day. For Monday, check out at 11:00, depart about 11:15, refuel near SAN, return the car, take the shuttle, and aim to be inside the terminal by 1:30 for the 4:05 departure.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0026",
+      "session_index": 26,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena's March Chicago conference arrangements remain based at the Palmer House; flight issuance and cancellation-credit handling still need confirmation. The May Raleigh-area wedding trip is confirmed, with the Saturday ride scheduled; other local transfers, seats, and bags remain unarranged. The June Seattle work trip is booked; relocated meeting details, Tuesday's venue sequence, and cancellation of the conflicting dinner remain open. The July Philadelphia board trip is confirmed, including Saturday bag storage before the evening flight. The September Portland and Bar Harbor trip is confirmed, with the Portland round-trip rental retained and the Bangor-return rental canceled. The October Atlanta trip is confirmed; Saturday luggage storage and the airline bag cutoff still need reconfirmation. For November 5-9, Elena and her spouse have confirmed Beach Terrace for four nights and an airport rental car. After the airline moved Monday's SAN departure to 12:10 p.m., Elena selected the available 4:05 p.m. nonstop at no added fare. The airline change, flight details, and any rental return-time or billing update still need confirmation; the hotel reservation is unchanged.",
+  "verification": {
+    "26": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Switch us to the 4:05 nonstop.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chose the available 4:05 p.m. departure for this trip, supporting the afternoon-departure default. This is a current-trip choice, not durable recurring language. Choosing a nonstop does not evidence the connection-limit habit, which applies only when comparing connecting itineraries."
+    }
+  }
+}

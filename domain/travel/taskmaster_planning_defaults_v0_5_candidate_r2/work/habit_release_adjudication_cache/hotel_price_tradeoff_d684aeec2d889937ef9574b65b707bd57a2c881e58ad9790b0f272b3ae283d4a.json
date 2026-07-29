@@ -1,0 +1,21 @@
+{
+  "cache_fingerprint": "d684aeec2d889937ef9574b65b707bd57a2c881e58ad9790b0f272b3ae283d4a",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_price_tradeoff",
+      "boundary_condition": "Applies only to hotel room price tradeoffs. It does not establish a fixed reusable nightly budget such as $150, and it does not automatically apply to flights, dining, activities, or other travel purchases.",
+      "canonical_value": "Prefer the lowest-priced acceptable hotel room when no higher-priority hotel requirement has been stated.",
+      "condition": "When comparing or booking hotel rooms and the user has not provided a higher-priority reason to pay more.",
+      "default_action": "Prioritize the lowest available acceptable nightly rate and respect any explicitly stated low-price constraint rather than upselling to costlier rooms.",
+      "exception_condition": "Do not choose solely by lowest price if the user explicitly requests a costlier room type, property feature, location, quality level, or says they are flexible on price to satisfy another constraint.",
+      "input_ids": [
+        "tm_v04_habit_2ccc555d5ba6"
+      ],
+      "name": "Prefer the cheapest acceptable hotel room",
+      "preference_value": "budget_sensitive_lowest_acceptable_rate",
+      "rationale": "Multiple hotel-related examples show the user selecting or asking for the cheapest available room or imposing a low nightly-rate constraint. This supports a soft hotel price-sensitivity default, but not a reusable numeric ceiling or a rule that price always overrides stated room, location, or amenity requirements.",
+      "representative_id": "tm_v04_habit_2ccc555d5ba6"
+    }
+  ]
+}

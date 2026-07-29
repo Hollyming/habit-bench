@@ -1,0 +1,110 @@
+{
+  "cache_fingerprint": "8a696377863db015f1e7cd4d9c198d1002879ecbb5befa80826278cc4c1dc80b",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Resolved a schedule disruption for the Baltimore client trip by replacing the altered return with a reachable Tuesday nonstop while preserving the outbound, hotel, workshop timing, and luggage arrangements. No recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "client-baltimore-014",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 83,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chose the nonstop return over the no-cost connecting alternative for this trip. The utterance does not establish a durable preference or strongly evidence any other candidate habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Keep the workshop as scheduled and take the $173 nonstop.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The airline says my Tuesday flight changed. Can you verify what moved and whether the replacement is workable without touching Sunday or the hotel?",
+          "role": "user"
+        },
+        {
+          "content": "The confirmed Tuesday nonstop was moved from 6:15 p.m. to 4:55 p.m. Sunday’s outbound and both hotel nights remain confirmed and unchanged. The 4:55 departure is not realistic after the workshop’s scheduled 4:30 finish, luggage retrieval, and the trip to BWI.",
+          "role": "assistant"
+        },
+        {
+          "content": "What have they offered instead?",
+          "role": "user"
+        },
+        {
+          "content": "The airline will move you at no additional cost to a 7:40 p.m. departure connecting in Detroit, arriving Minneapolis at 11:18 p.m. There is also a 6:50 p.m. nonstop on another carrier for $173 more.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much airport time would I actually have for each if the workshop ends at 4:30?",
+          "role": "user"
+        },
+        {
+          "content": "Allow about 15 minutes to return to the hotel and collect your bag, then roughly 25 minutes to BWI, putting you at the airport near 5:10 p.m. The 6:50 nonstop leaves about 1 hour 40 minutes, while the 7:40 connection leaves about 2 hours 30 minutes. Both are reachable; the connection has more cushion but gets home much later.",
+          "role": "assistant"
+        },
+        {
+          "content": "Could we make the changed 4:55 flight by moving the last workshop segment earlier?",
+          "role": "user"
+        },
+        {
+          "content": "Only if the client approves a substantially earlier finish. No approval has been obtained, and even a modest shift would not create a dependable transfer. I would not keep the 4:55 flight based on the current schedule.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the workshop as scheduled and take the $173 nonstop. Confirm that return and leave every other reservation alone.",
+          "role": "user"
+        },
+        {
+          "content": "Confirmed: Tuesday, October 2, 6:50 p.m. nonstop BWI-MSP for an additional $173. The unreachable 4:55 p.m. flight has been replaced. Sunday’s outbound, the Inner Harbor hotel, and Tuesday luggage storage remain unchanged; airport transfers are still unbooked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0083",
+      "session_index": 83,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The August 25-31, 2029 Naples trip remains fully confirmed for two travelers at $4,428 with no arrival follow-up. The Baltimore client trip September 30-October 2, 2029 remains confirmed: the airline's schedule change made the original Tuesday return unreachable after the 4:30 p.m. workshop finish, so it was replaced with a 6:50 p.m. nonstop for an additional $173. The Sunday outbound, Inner Harbor hotel for two nights at $549.78 after tax, later check-in note, refund terms, and complimentary Tuesday luggage storage until 8:00 p.m. remain intact. Airport transfers remain unbooked at an estimated $76. The August 2028 Cary client trip is confirmed; the July 2028 Columbus trip retains a separate travel credit and unresolved office bag-storage question. Earlier Monterey Peninsula, Charlotte, Richmond, Nashville, central Oregon coast, Denver, and San Diego trips remain reserved or completed. Coastal Georgia and January 2027 Denver remain unbooked. The Raleigh corrected folio, Philadelphia deposit release, and earlier Nashville refund reconciliation remain unresolved.",
+  "verification": {
+    "83": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Keep the workshop as scheduled and take the $173 nonstop.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chose the nonstop return over the no-cost connecting alternative for this trip. The utterance does not establish a durable preference or strongly evidence any other candidate habit."
+    }
+  }
+}

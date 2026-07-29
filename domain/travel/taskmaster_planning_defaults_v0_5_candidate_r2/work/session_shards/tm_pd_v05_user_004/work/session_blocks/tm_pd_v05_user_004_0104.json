@@ -1,0 +1,179 @@
+{
+  "cache_fingerprint": "c1091056040f5c98686e865f300020ae4b11026a1325b955c4fab1ad709ed8b7",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip-specific decision: Danielle compared four Atlanta schedules and selected the Sunday-evening arrival, Tuesday-evening return, and two nights at Hyatt Place because the added arrival margin was worth the cost while the Wednesday fare savings did not offset extra lodging.",
+        "evidence_topology": {
+          "episode_id": "ep_032_atlanta_sponsor_summit",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 104,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_004"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requires nonstop service for this trip, overriding the connecting-itinerary default only for the current trip. The user also rejects a lower-total itinerary because of same-day arrival risk and an extra night away, establishing a current-trip exception to lowest-price ranking. Hotel breakfast is mentioned as helpful, but the user's own words do not specify included or free breakfast. No user utterance establishes a window-seat or balcony preference, and no durable recurring/default language appears.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Nonstops only for this trip, and either Dallas airport is fine.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h01",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.97,
+            "evidence_quote": "The Monday-Wednesday total is lower than Sunday-Tuesday, but it still has the Monday arrival risk and keeps me away another night. Eliminate both Wednesday returns.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h02",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to sort out an Atlanta sponsor summit. The roundtable is Monday afternoon and I present Tuesday morning. I could fly from Dallas early Monday or go Sunday evening, and there is also a cheaper Wednesday return. Can you compare one, two, and three hotel nights instead of looking at airfare by itself?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. What time does the Monday roundtable begin, when should you be onsite, and when does the Tuesday presentation end? I also need the Midtown venue location and any reimbursement limits for lodging, meals, or the total trip.",
+          "role": "assistant"
+        },
+        {
+          "content": "The roundtable starts at 1:30 p.m., and they want speakers there by 12:45. Tuesday's presentation is 9:00 to 10:15 a.m. at the Midtown Arts Center near Peachtree and 15th. Keep the full estimate under $950 if possible. The summit provides Monday evening food and Tuesday breakfast and lunch. Hotel breakfast would still help Monday if I arrive Sunday.",
+          "role": "user"
+        },
+        {
+          "content": "That creates four useful schedules: early Monday through Tuesday evening with one hotel night; Sunday evening through Tuesday evening with two nights; early Monday through Wednesday morning with two nights; or Sunday evening through Wednesday morning with three nights. I will compare airfare, lodging with tax, ground transportation, and the meals you would need to claim.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Show me realistic flight times first. Nonstops only for this trip, and either Dallas airport is fine.",
+          "role": "user"
+        },
+        {
+          "content": "The workable Monday nonstop leaves DFW at 6:10 a.m. and reaches Atlanta at 9:15 a.m. The Sunday option leaves DFW at 6:05 p.m. and arrives at 9:12 p.m. For the return, Tuesday has a 7:40 p.m. nonstop arriving DFW at 9:05 p.m.; Wednesday has an 8:15 a.m. nonstop arriving at 9:45 a.m. Current round-trip estimates are $397 for Monday-Tuesday, $342 for Sunday-Tuesday, $331 for Monday-Wednesday, and $278 for Sunday-Wednesday. Those are standard economy estimates and are not being held.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now hotels. I care more about the actual after-tax amount and the route from the airport than the headline nightly rate.",
+          "role": "user"
+        },
+        {
+          "content": "Three Midtown choices fit. Hyatt Place Midtown is about three blocks from Arts Center MARTA and a ten-minute walk to the venue; breakfast is included, and the after-tax total is $198.91 per night. Hampton Midtown is slightly closer to the venue and also includes breakfast, totaling $210.68 per night after tax. AC Hotel is $179.05 per night after tax, but breakfast is not included and it is a longer walk from MARTA. None of these estimates includes parking, which you would not need.",
+          "role": "assistant"
+        },
+        {
+          "content": "For clarity, Sunday-Tuesday means Sunday and Monday nights. Monday-Wednesday means Monday and Tuesday nights. The three-night version is Sunday, Monday, and Tuesday. Please make sure the totals follow that.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Using Hyatt Place, lodging is $198.91 for Monday night only, $397.82 for either two-night pattern, and $596.73 for Sunday through Tuesday. I will use those exact night counts in the comparison.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much margin does the Monday morning flight really leave? I do not want a schedule that only works if the plane and MARTA are perfect.",
+          "role": "user"
+        },
+        {
+          "content": "A 9:15 a.m. arrival gives three and a half hours before the 12:45 p.m. speaker call. Allowing 25 minutes to get off the plane, 30 to 40 minutes on MARTA, and 15 minutes to walk or transfer leaves you in Midtown around 10:30 to 10:45. That is roughly two hours of usable margin. A delay of up to about 75 minutes is manageable; a cancellation or delay approaching two hours would put the roundtable at risk. Sunday arrival removes that exposure and also gives you Monday breakfast at the hotel.",
+          "role": "assistant"
+        },
+        {
+          "content": "And does staying until Wednesday create any useful summit time, or is it just a cheaper ticket attached to another hotel night?",
+          "role": "user"
+        },
+        {
+          "content": "The formal program ends Tuesday at 3:30 p.m. The Tuesday evening flight allows about three hours to leave the venue, collect a bag, ride MARTA, and clear security. Staying Tuesday night would only add an unstructured evening and a calmer Wednesday departure. Unless you schedule a Tuesday dinner or Wednesday meeting, the lower fare does not create business value.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put all four schedules side by side with a complete working total. Use the Hyatt and include Dallas airport transportation, Atlanta transportation, and reimbursable meals.",
+          "role": "user"
+        },
+        {
+          "content": "Using $72 for round-trip transportation between home and DFW, $5 for round-trip MARTA fare, and a $28 Atlanta rideshare contingency, ground transportation is $105. Meals add $66: up to $24 for Monday lunch and $42 for Tuesday dinner, with the summit or hotel covering the others. The totals are: Monday-Tuesday, one night, $766.91; Sunday-Tuesday, two nights, $910.82; Monday-Wednesday, two nights, $899.82; Sunday-Wednesday, three nights, $1,045.73. The Wednesday options save $64 or $66 in airfare but add $198.91 in lodging, so neither lowers the trip total.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Monday-Wednesday total is lower than Sunday-Tuesday, but it still has the Monday arrival risk and keeps me away another night. Eliminate both Wednesday returns.",
+          "role": "user"
+        },
+        {
+          "content": "That leaves the $766.91 one-night plan and the $910.82 two-night plan. The two-night plan costs $143.91 more. In return, it removes the same-day arrival risk, gives you a normal Monday morning near the venue, and still gets you home Tuesday night. Both remain below the $950 target.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the Hyatt and Hampton just for that Sunday-to-Tuesday schedule. Is Hampton close enough to justify paying more?",
+          "role": "user"
+        },
+        {
+          "content": "Hampton would be $421.36 for two nights, or $23.54 more than Hyatt. It trims the walk to the Arts Center by about three minutes, but Hyatt is closer to the MARTA station and has the same included-breakfast benefit. With no mobility constraint or very early venue call, Hampton does not offer enough practical advantage to offset the extra cost.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the Hyatt. Before we settle it, verify that the $910.82 really includes everything reimbursable we have discussed and no imaginary meal allowance for food the summit provides.",
+          "role": "user"
+        },
+        {
+          "content": "The $910.82 estimate consists of $342 airfare, $397.82 for Hyatt Place on Sunday and Monday nights including estimated taxes, $72 for Dallas airport transportation, $5 for Atlanta MARTA, $28 for one contingency rideshare, $24 for Monday lunch, and $42 for Tuesday dinner. It includes no charge for Sunday dinner, Monday hotel breakfast, Monday evening summit food, Tuesday hotel breakfast, or Tuesday summit lunch. It also excludes personal purchases and any checked-bag fee.",
+          "role": "assistant"
+        },
+        {
+          "content": "That works. Set out the practical schedule for the approval request, but do not claim anything is booked or ticketed.",
+          "role": "user"
+        },
+        {
+          "content": "Selected for approval: Sunday 6:05 p.m. nonstop from DFW, arriving Atlanta at 9:12 p.m.; MARTA to Midtown and check in at Hyatt Place for Sunday and Monday nights; included breakfast Monday; arrive at the Midtown Arts Center by 12:45 p.m. for the 1:30 roundtable; present Tuesday from 9:00 to 10:15 a.m. and remain through the 3:30 p.m. program close; then take MARTA to ATL for the 7:40 p.m. nonstop, arriving DFW at 9:05 p.m. The complete working estimate is $910.82, leaving $39.18 under the $950 target. No flight or hotel has been booked, held, or ticketed.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0104",
+      "session_index": 104,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Gulf Coast unit B remains reserved for August 10-15 for three at $2,098; $1,468.60 is due July 11, parking confirmation is outstanding, and a $300 security authorization is scheduled for August 8. New Orleans Cambria is confirmed for December 20-23 at $929.01; call after 9:00 p.m. with the revised ETA. Approval remains pending for the May 13-15 Indian Wells return change, $43.62 above the ceiling. The March 10-15 beachfront hotel is booked at $1,978.20; an occupancy-only correction remains needed, with cancellation through February 24 at 6:00 p.m. Central. The May 8-9 Denver visit is booked at an estimated $632.46. For the June Seattle summit, Pine Street Inn is selected at $437.35; verify live terms. The June 25-29 Chicago family trip is booked at an estimated $3,673.84; museum reservations remain outstanding. The September 16-17 Atlanta visit is estimated at $648.67 excluding meals. Inn by the Harbor is confirmed for July 26-31 at $1,862.16; verify the $74 rental change and late-arrival acknowledgment. The October 8-9 Denver forum remains within its $800 allowance; retain the reissued-return records. For November 19-20 Minneapolis, Aloft is booked and flights remain to be ticketed; total estimate $709.76. The October 10-14 New Orleans family trip is booked at $2,823.40. The Philadelphia retreat has ticketed flights and Conwell Inn reserved at $446.82. For the July coastal drive, Courtyard Birmingham Hoover, Hotel Folly, and La Quinta Atlanta Conyers are reserved; remaining lodging and parking payments total $1,845.73. Call the Courtyard before departure to confirm the late-arrival hold. The loop is estimated at roughly 2,250 miles and $275 in fuel; meals are excluded. For May 5-6 St. Louis, Southwest nonstops and the AC Hotel are booked at an estimated $591.42 before meals and Dallas transportation. For the August 21-23 Minneapolis summit, Thursday's flight and the summit block remain confirmed; Saturday's return is reissued for 7:25 p.m., and hotel pickup is set for 4:15 p.m. For January 16-19 New Orleans, the family will drive and the Hampton Inn & Suites on Carondelet is reserved for three at $791.89; payment is due at checkout, cancellation is free through January 14 at 11:59 p.m. Central, and an 8:30 p.m. arrival is noted. Activities remain unreserved. For April 6-9 Boston, the Beacon Hill hotel is reserved for one adult at $768.42; Monday-evening and Thursday-morning American nonstops are selected but not ticketed, and the working total is $1,279.42. For June 14-20 San Diego, Southwest flights and Mission Bay confirmation MB-61483 are booked for three; the revised working total is $4,698.87, and hotel cancellation remains available through June 7 at 6:00 p.m. Pacific. For the regional Denver partner forum, Union Station is reserved Thursday and Friday for $356.52 including taxes and fees; payment is due at checkout, free cancellation ends Monday at 4:00 p.m. Mountain, and Saturday luggage storage is confirmed. Friday's 6:00 p.m. RiNo dinner now calls for a 5:20 p.m. rideshare from the forum venue and a rideshare back to Union Station. Local transportation is estimated at $145, bringing the working total to $802.52. The selected Southwest flights still need to be ticketed. For the Atlanta sponsor summit, a Sunday-evening DFW-ATL nonstop, Hyatt Place for Sunday and Monday nights, and a Tuesday-evening ATL-DFW nonstop are selected for approval but not booked. The complete working estimate is $910.82, $39.18 below the trip target.",
+  "verification": {
+    "104": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Nonstops only for this trip, and either Dallas airport is fine.",
+          "habit_id": "tm_pd_v05_user_004_h01",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.97,
+          "evidence_quote": "The Monday-Wednesday total is lower than Sunday-Tuesday, but it still has the Monday arrival risk and keeps me away another night. Eliminate both Wednesday returns.",
+          "habit_id": "tm_pd_v05_user_004_h02",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requires nonstop service for this trip, overriding the connecting-itinerary default only for the current trip. The user also rejects a lower-total itinerary because of same-day arrival risk and an extra night away, establishing a current-trip exception to lowest-price ranking. Hotel breakfast is mentioned as helpful, but the user's own words do not specify included or free breakfast. No user utterance establishes a window-seat or balcony preference, and no durable recurring/default language appears."
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "cache_fingerprint": "cc7fc9d110df4a0768c94958fc9ec3702cd80d737593a778bee6a9233f0d52ee",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The Washington family flights and Embassy Suites stay were booked after Marcus verified traveler names, child occupancy, bedding, totals, cancellation terms, and airport transfers. No recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "washington-family-01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 18,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user approved specific flight and hotel reservations, but their own words did not state or unambiguously endorse any candidate habit's concrete value. Nonstop routing, later-day return timing, and included breakfast appeared only in assistant-provided details; approving the reservations by name is insufficient exact-habit evidence under the quoted-words requirement. The breakfast habit was already established before this block, so the assistant's breakfast confirmation is not leakage.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Go ahead with the Embassy Suites and the DCA flights. Before you submit, give me the combined total and make sure all three names, dates, bags, and the cancellation deadline are right.",
+          "role": "user"
+        },
+        {
+          "content": "The booking is for Marcus Lee, Daniel Lee, and Owen Lee, age 12. Flights are Thursday, October 10, ORD-DCA nonstop at 5:35 p.m., arriving 8:28 p.m., and Monday, October 14, DCA-ORD nonstop at 6:45 p.m., arriving 8:03 p.m. Airfare is $1,226 total for three travelers, including one checked bag per traveler each way. Embassy Suites Washington DC Convention Center is one two-room suite with two fixed queen beds for four nights, October 10-14, at $1,487.36 including taxes and mandatory fees. Free cancellation ends at 11:59 p.m. Washington time on October 7; afterward the penalty is one night plus tax. The combined trip total is $2,713.36.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the hotel occupancy explicitly shows two adults and one 12-year-old for every night?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The room record lists two adults and one child, age 12, for all four nights. Breakfast is included for all three registered guests, and the bedding is two fixed queen beds, not a sofa bed.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Use Marcus Lee as the lead guest and traveler. Daniel Lee and Owen Lee are the other travelers. Purchase both reservations.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’m submitting the flights for those three travelers and the hotel under Marcus Lee, with Daniel Lee and Owen Lee registered in the suite.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are they confirmed, and what is the route from DCA to the hotel Thursday night?",
+          "role": "user"
+        },
+        {
+          "content": "Both are confirmed. Flight confirmation: W6P9KT. The round-trip airfare charged is $1,226.00, with one checked bag per traveler in each direction. Hotel confirmation: ESW-481762. The Embassy Suites stay is October 10-14 for Marcus Lee, Daniel Lee, and Owen Lee, one two-room suite with two queen beds, at $1,487.36 total. Cancellation is free through 11:59 p.m. local time on October 7; after that, the charge is one night plus tax. The combined confirmed total is $2,713.36. On Thursday, use rideshare from DCA to the hotel; allow roughly 15-30 minutes depending on evening traffic. Use rideshare back to DCA on Monday and plan to leave the hotel around 4:30 p.m. for the 6:45 p.m. nonstop. I’ll keep this itinerary available for timed-entry planning and a departure-week check.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0018",
+      "session_index": 18,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Marcus's Atlanta trip and Minneapolis operations review remain confirmed with no itinerary changes. The San Diego family vacation remains confirmed for July 18-26 for Marcus Lee, Daniel Lee, and Owen Lee. American flight AA 1543 is confirmed under H7K3QP; Glorietta Bay Inn is confirmed under GBI-847261. Rental car, checked bags, and seat assignments remain unbooked. The Dallas opening-review trip is booked Monday through Wednesday: ORD-DFW Monday at 6:05 p.m., DFW-ORD Wednesday at 9:45 p.m., flight confirmation D8R4LM, airfare $487.60. NYLO Las Colinas is confirmed for two nights under NLC-593184 at $436.82 total, with cancellation until 3:00 p.m. Sunday. The Washington family trip is confirmed for October 10-14 for Marcus Lee, Daniel Lee, and Owen Lee. Nonstop ORD-DCA and DCA-ORD flights are booked under W6P9KT at $1,226 total with one checked bag per traveler each way. Embassy Suites Washington DC Convention Center is booked under ESW-481762 in a two-room suite with two queen beds at $1,487.36 total, cancelable through 11:59 p.m. local time October 7. Rideshare is planned between DCA and the hotel in both directions. The completed Washington itinerary should remain available for timed-entry planning and a departure-week review.",
+  "verification": {
+    "18": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user approved specific flight and hotel reservations, but their own words did not state or unambiguously endorse any candidate habit's concrete value. Nonstop routing, later-day return timing, and included breakfast appeared only in assistant-provided details; approving the reservations by name is insufficient exact-habit evidence under the quoted-words requirement. The breakfast habit was already established before this block, so the assistant's breakfast confirmation is not leakage."
+    }
+  }
+}

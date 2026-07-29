@@ -1,0 +1,87 @@
+{
+  "cache_fingerprint": "590fed67735d80d0b98cdb1194f83edf9e95d6536d9ce1cf278b0d36910cacd6",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Completed booking administration for the Raleigh trip: reconciled dates, times, and costs; ticketed the expiring nonstop flights; confirmed the refundable hotel with the arrival estimate; and left rideshares and checked baggage unreserved.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-015",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 89,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user approved the current $632 itinerary and refundable hotel, but their own utterances do not explicitly establish any candidate habit's concrete timing, routing, carrier, price-ranking, amenity, rating, or beach-proximity preference.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Let’s finish Raleigh today. Recheck the Tuesday-through-Thursday timing and total first, then ticket the flights before the quote expires and reserve the refundable room. Use a 7:15 p.m. Tuesday arrival estimate.",
+          "role": "user"
+        },
+        {
+          "content": "I have Tuesday, November 6: nonstop MSP-RDU, 2:40 p.m.-6:12 p.m. Thursday, November 8: nonstop RDU-MSP, 5:55 p.m.-7:48 p.m. The hotel beside the client building is $574 after tax for two nights, and estimated airport rides are $82. With the $632 airfare, that projects to $1,288. One discrepancy: the prior estimate included a separate $70 checked-bag charge, which would make the total $1,358. Should I ticket without the bag for now?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, leave the checked bag off. I can add it later if I need it. Go ahead with the $632 flights.",
+          "role": "user"
+        },
+        {
+          "content": "The nonstop round trip is now ticketed at $632. Both segments are confirmed; no checked bag is attached. I’ll move to the hotel reservation next.",
+          "role": "assistant"
+        },
+        {
+          "content": "Book the $574 refundable room and include the arrival note. What is the cancellation deadline?",
+          "role": "user"
+        },
+        {
+          "content": "The room is confirmed for Tuesday and Wednesday nights at $574 after tax, with estimated arrival at 7:15 p.m. Tuesday. It can be canceled without penalty through 11:59 p.m. local hotel time on Saturday, November 3; after that, the stated penalty is one night plus tax.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Put everything in chronological order, including what’s confirmed, what isn’t, and when I should leave for RDU Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "Tuesday, November 6: depart MSP at 2:40 p.m. on the confirmed nonstop; arrive RDU at 6:12 p.m. Take an unreserved rideshare to North Hills, with hotel arrival noted for 7:15 p.m. The refundable hotel is confirmed for November 6-8 at $574 after tax.\n\nThursday, November 8: check out, leave your suitcase with the client as arranged, and depart the client site for RDU by 3:35 p.m. That allows about 35 minutes for the ride and arrival roughly 1 hour 45 minutes before the confirmed 5:55 p.m. nonstop. Arrival at MSP is 7:48 p.m.\n\nConfirmed: both flights and the hotel. Not reserved: the two rideshares and any checked bag. Projected total is $1,288: $632 flights, $574 hotel, and $82 estimated rides. Adding a checked bag later would raise it to $1,358.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0089",
+      "session_index": 89,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The August 25-31, 2029 Naples trip remains fully confirmed for two travelers at $4,428. The Baltimore client trip September 30-October 2, 2029 is confirmed: Sunday nonstop MSP-BWI, two nights at the Inner Harbor hotel with late-arrival notation, complimentary Tuesday luggage storage, and the active 7:40 p.m. BWI-DTW-MSP return arriving 11:18 p.m.; airport transfers remain unbooked at an estimated $76. The November 6-8, 2029 Raleigh client trip is now confirmed: nonstop MSP-RDU Tuesday at 2:40 p.m., arriving 6:12 p.m., and nonstop RDU-MSP Thursday at 5:55 p.m., arriving 7:48 p.m., ticketed for $632. The hotel beside the North Hills client building is confirmed for two nights at $574 after tax with a 7:15 p.m. Tuesday arrival note; it is refundable through 11:59 p.m. local time Saturday, November 3. The client will hold Maya’s suitcase Thursday. She should leave the client site for RDU by 3:35 p.m. Airport rides remain unbooked at an estimated $82, and no checked bag is attached. Projected total is $1,288, or $1,358 if a checked bag is added. The August 2028 Cary trip is confirmed; the July 2028 Columbus trip retains a travel credit and unresolved office bag-storage question. Coastal Georgia and January 2027 Denver remain unbooked. The Raleigh corrected folio, Philadelphia deposit release, and earlier Nashville refund reconciliation remain unresolved.",
+  "verification": {
+    "89": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user approved the current $632 itinerary and refundable hotel, but their own utterances do not explicitly establish any candidate habit's concrete timing, routing, carrier, price-ranking, amenity, rating, or beach-proximity preference."
+    }
+  }
+}

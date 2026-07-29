@@ -1,0 +1,134 @@
+{
+  "cache_fingerprint": "5718da92da1fabc1f49cb2e9a0c0c932e4ead45ed1b525d2284342c9f8adc513",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip-specific planning only. Priya selected a two-flight Monday outbound shortlist and retained separate Friday return options for the two possible audit end times, with Saturday morning as a backup; no durable travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "audit-raleigh-01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 0,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly retained the Monday morning departure as the first outbound option for this trip. No user utterance establishes a recurring preference, cheapest-acceptable ranking, carrier preference, cabin preference, or any hotel habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.95,
+            "evidence_quote": "Keep the Monday morning nonstop and the 11:20 Denver connection as the outbound shortlist.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h00",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to start looking at flights for a supplier audit in Raleigh. The audit begins Tuesday, April 16 at 8:00 a.m., so I need to fly from San Francisco on Monday. It runs through Friday, but I do not yet know whether we will finish around 3:00 or closer to 6:00 that afternoon.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll compare Monday, April 15 arrivals that leave enough time before Tuesday morning, then look at Friday, April 19 returns for both possible finish times. Are you expecting access to the Raleigh site Monday evening, or do you only need to be settled at a hotel that night?",
+          "role": "assistant"
+        },
+        {
+          "content": "The host has not confirmed evening access yet. For now, assume I only need to check in and be ready to leave for the site early Tuesday. I would rather not arrive after 10:00 p.m.",
+          "role": "user"
+        },
+        {
+          "content": "There are three practical outbound patterns. A morning nonstop leaves SFO at about 8:40 a.m. and reaches RDU around 4:55 p.m. An early-afternoon one-stop through Dallas arrives around 9:15 p.m. A later one-stop through Atlanta lands just before midnight, so that one misses your arrival limit. The nonstop gives you the cleanest Monday evening and the most recovery time before the audit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the nonstop. Is there anything that leaves San Francisco later but still gets me to Raleigh by about 8:30? I may need part of Monday morning in the office.",
+          "role": "user"
+        },
+        {
+          "content": "A one-stop itinerary leaving near 11:20 a.m. connects in Denver and arrives at approximately 8:05 p.m. Its connection is about 75 minutes. Another departure around noon connects in Chicago but does not arrive until 9:45 p.m. The Denver option preserves more of your morning, though it introduces connection risk and leaves little margin if the first segment slips.",
+          "role": "assistant"
+        },
+        {
+          "content": "That Denver arrival is acceptable as a second choice. Please compare the Friday returns now. I will need at least 45 minutes to get from the site to the airport, return the rental car, and clear security.",
+          "role": "user"
+        },
+        {
+          "content": "If the audit ends at 3:00 p.m., the strongest option is a nonstop leaving RDU around 6:10 p.m. and arriving at SFO around 8:55 p.m. That gives you a little over two hours from the site, which is workable for the drive and rental return. There is also a 7:35 p.m. one-stop through Dallas that reaches San Francisco shortly after midnight. The nonstop would not be viable after a 6:00 p.m. finish.",
+          "role": "assistant"
+        },
+        {
+          "content": "What works if we finish at 6:00? I do not want to schedule something that depends on the closing meeting ending early.",
+          "role": "user"
+        },
+        {
+          "content": "For a 6:00 p.m. finish, same-day choices are thin. The latest reasonable itinerary departs around 8:35 p.m., connects in Dallas, and arrives at SFO near 12:40 a.m. You would have roughly 110 minutes from the site to departure. That is possible if traffic and the rental return go smoothly, but it is not generous. The safer alternative is to stay Friday night and take a Saturday morning nonstop around 7:20 a.m., arriving in San Francisco before 10:30 a.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "I am not ready to add a hotel night unless necessary. Could I hold the 8:35 Friday option and switch to Saturday if the agenda is finalized late?",
+          "role": "user"
+        },
+        {
+          "content": "That depends on the fare rules. The refundable economy fare allows a change without a change fee, although you would still pay any fare difference. The lower economy fare is also changeable under the current rules, but any residual value and same-day availability could complicate a late switch. Holding both itineraries would require buying two tickets and managing the cancellation deadline, so I would avoid that until the agenda is clearer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then make the Friday 6:10 nonstop the preferred return if the audit ends at 3:00, and the 8:35 connection the fallback if it ends at 6:00. I want to see the total travel times and how much margin each gives me.",
+          "role": "user"
+        },
+        {
+          "content": "The 6:10 p.m. nonstop is about 5 hours 45 minutes gate to gate. With a 3:00 p.m. finish and your 45-minute ground estimate, you would reach the terminal area around 3:45, leaving about 2 hours 25 minutes before departure. The 8:35 p.m. Dallas itinerary is about 7 hours 5 minutes total. After a 6:00 p.m. finish, your estimate puts you at the terminal near 6:45, leaving 1 hour 50 minutes. That second margin could shrink quickly with Friday traffic or a slow rental return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Do not book yet. Keep the Monday morning nonstop and the 11:20 Denver connection as the outbound shortlist. For the return, keep both Friday scenarios, and note Saturday morning as the safer backup.",
+          "role": "user"
+        },
+        {
+          "content": "Shortlist noted: Monday’s approximately 8:40 a.m. nonstop arriving around 4:55 p.m., with the 11:20 a.m. Denver connection arriving around 8:05 p.m. as the later alternative. For Friday, the 6:10 p.m. nonstop works with a 3:00 p.m. finish, while the 8:35 p.m. Dallas connection is the same-day option after a 6:00 p.m. finish; Saturday’s early nonstop remains the lower-risk backup. Nothing has been booked. Once the host confirms Monday evening access and Friday’s closing agenda, we can settle the outbound and return.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0000",
+      "session_index": 0,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Priya is planning travel from San Francisco to Raleigh for a supplier audit beginning Tuesday, April 16 at 8:00 a.m. The current Monday outbound shortlist includes a morning nonstop arriving late afternoon and an 11:20 a.m. Denver connection arriving around 8:05 p.m. Friday may end around 3:00 or 6:00 p.m.; a 6:10 p.m. nonstop is shortlisted for the earlier finish, an 8:35 p.m. Dallas connection for the later finish, and an early Saturday nonstop is retained as a safer backup. No flights are booked. Follow up after the host confirms Monday evening site access and the Friday closing agenda.",
+  "verification": {
+    "0": {
+      "habit_signals": [
+        {
+          "confidence": 0.95,
+          "evidence_quote": "Keep the Monday morning nonstop and the 11:20 Denver connection as the outbound shortlist.",
+          "habit_id": "tm_pd_v05_user_003_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly retained the Monday morning departure as the first outbound option for this trip. No user utterance establishes a recurring preference, cheapest-acceptable ranking, carrier preference, cabin preference, or any hotel habit."
+    }
+  }
+}

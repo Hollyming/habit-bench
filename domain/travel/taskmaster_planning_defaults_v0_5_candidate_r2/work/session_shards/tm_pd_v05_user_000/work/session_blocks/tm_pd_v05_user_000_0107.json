@@ -1,0 +1,163 @@
+{
+  "cache_fingerprint": "57f388b5a1606c69088daa1b86bafb049931ffc8909918b85635b639c4fe0c16",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya rejected the free 2:20 p.m. nonstop because it violated a required work commitment, then chose the no-cost 5:35 p.m. one-stop over a $184-more nonstop after confirming that both remaining choices met her meeting, hotel-arrival, and Wednesday-start requirements. This supports choosing the lowest-priced flight from the acceptable shortlist without allowing price to override explicit timing needs.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-017",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 107,
+          "target_habit_id": "tm_pd_v05_user_000_h03",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user endorses preserving the exact afternoon nonstop return and chooses the lowest-cost outbound that still meets the stated meeting and arrival constraints. These are current-trip choices, not durable preference statements.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.91,
+            "evidence_quote": "Keep the Thursday nonstop exactly as it is.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Keep the Thursday nonstop exactly as it is.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Then take the free 5:35 itinerary. Both remaining flights protect the meeting and get me there in time, so I don't want to spend another $184 just to arrive about an hour earlier.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h03",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The airline just canceled Tuesday's 4:05 nonstop to Raleigh. I need to preserve Wednesday morning, but please do not touch the Thursday return or rebuild the hotel unless we have to.",
+          "role": "user"
+        },
+        {
+          "content": "Because Thursday is confirmed on a separate flight segment, changing or refunding only the canceled outbound should leave it intact. The hotel also allows arrival until midnight, so the immediate decision is among the replacement outbound choices. I would still verify that the airline's change screen identifies only Tuesday's segment before accepting anything.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the real tradeoffs? The free 2:20 option overlaps my last internal meeting.",
+          "role": "user"
+        },
+        {
+          "content": "The 2:20 p.m. nonstop costs nothing extra and has the cleanest travel path, but it requires missing or moving that meeting. The airline's 5:35 p.m. one-stop also costs nothing extra and arrives at 10:46 p.m.; it preserves the meeting, though the connection adds disruption risk and leaves a short night before the 8:00 a.m. workshop. The other carrier's 6:10 p.m. nonstop arrives at 9:44 p.m. and preserves the meeting, but costs $184 more than the refunded value of the canceled outbound.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much time would I actually gain by paying the $184?",
+          "role": "user"
+        },
+        {
+          "content": "Scheduled arrival is 62 minutes earlier. It also removes the connection, so the practical benefit is both that hour and less exposure to a missed or delayed second flight. Assuming roughly 35 to 45 minutes to deplane, collect the suitcase, and reach North Hills, the nonstop points to hotel arrival around 10:25 p.m. The one-stop points to roughly 11:25 p.m., still before midnight if it operates on schedule.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can the airline refund only the canceled outbound even though I already flew neither direction?",
+          "role": "user"
+        },
+        {
+          "content": "The cancellation generally makes the unused outbound eligible for a refund or no-cost reaccommodation. Since the Thursday return is a separate segment, it should remain confirmed, but the decisive check is the post-change itinerary: it must still show Thursday's 5:55 p.m. RDU-MSP flight and the checked-bag arrangements associated with it. Do not accept a screen that labels the action as canceling the entire trip.",
+          "role": "assistant"
+        },
+        {
+          "content": "The 2:20 is out. I cannot move that meeting on one day's notice. Is the connection late enough that you think it is unreasonable before an 8:00 workshop?",
+          "role": "user"
+        },
+        {
+          "content": "It is tight but workable. A scheduled 11:25 p.m. hotel arrival leaves little recovery time, and even a moderate connection delay could push arrival close to or beyond midnight. The 6:10 nonstop is operationally stronger, but the one-stop still meets the stated meeting, hotel, and Wednesday start constraints on its published schedule.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then take the free 5:35 itinerary. Both remaining flights protect the meeting and get me there in time, so I don't want to spend another $184 just to arrive about an hour earlier. Keep the Thursday nonstop exactly as it is.",
+          "role": "user"
+        },
+        {
+          "content": "That makes the 5:35 p.m. one-stop the lowest-cost option among the itineraries that satisfy the meeting and arrival requirements. I would accept the no-cost reaccommodation only after the confirmation page shows Tuesday arriving RDU at 10:46 p.m. and Thursday's 5:55 p.m. nonstop still confirmed.",
+          "role": "assistant"
+        },
+        {
+          "content": "Update the hotel timing too. What should the arrival note say now?",
+          "role": "user"
+        },
+        {
+          "content": "Change the hotel note to: “Flight disruption; expected arrival approximately 11:25 p.m. Tuesday. Please hold the room for late arrival. Guest will arrive no later than midnight if flights operate on schedule.” It would also be prudent to call if the connection slips enough to put the estimated arrival after midnight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the final changed plan and what I need to inspect before I confirm it.",
+          "role": "user"
+        },
+        {
+          "content": "Changed plan: accept the airline's no-cost Tuesday 5:35 p.m. one-stop replacement, scheduled to arrive at RDU at 10:46 p.m.; expect to reach the North Hills hotel around 11:25 p.m. and update its late-arrival note accordingly. Keep the existing hotel nights, Wednesday 8:00 a.m. workshop, and Thursday 5:55 p.m. nonstop return unchanged. Before confirming, verify that the action applies only to the canceled outbound, the replacement shows the correct connection and final RDU arrival, your checked-bag handling carries through, and Thursday remains listed as confirmed. The airfare change should have zero net cost; the rejected other-carrier nonstop would have added $184.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0107",
+      "session_index": 107,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The February 5-7, 2030 Raleigh client trip remains active for Maya Lian Chen after the airline canceled the booked Tuesday outbound. Maya selected the airline's no-cost 5:35 p.m. one-stop replacement, scheduled to arrive at RDU at 10:46 p.m., with an estimated North Hills hotel arrival around 11:25 p.m.; the hotel late-arrival note must be updated. Before accepting the change, confirm that only the outbound is modified, baggage handling is intact, and the Thursday 5:55 p.m. RDU-MSP nonstop remains confirmed on its separate segment. The hotel remains reserved for Tuesday and Wednesday nights, and Wednesday's workshop begins at 8:00 a.m. The working trip total remains unchanged if the reaccommodation posts at zero net cost. Thursday luggage may remain at the hotel unless the client separately approves storage; departure must allow bag drop before 5:10 p.m. Unresolved accounting follow-ups include the Raleigh corrected folio, Philadelphia deposit release, and Nashville refund reconciliation. The September 12-16 Monterey Peninsula trip for Maya Lian Chen and Jordan Avery Lee remains confirmed at $2,849, with whale-watching booking status and exact hotel cancellation cutoffs unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2, 2029 Baltimore client trip and November 6-8, 2029 Raleigh client trip remain recorded as confirmed, with their noted ground-transportation items unresolved.",
+  "verification": {
+    "107": {
+      "habit_signals": [
+        {
+          "confidence": 0.91,
+          "evidence_quote": "Keep the Thursday nonstop exactly as it is.",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Keep the Thursday nonstop exactly as it is.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Then take the free 5:35 itinerary. Both remaining flights protect the meeting and get me there in time, so I don't want to spend another $184 just to arrive about an hour earlier.",
+          "habit_id": "tm_pd_v05_user_000_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user endorses preserving the exact afternoon nonstop return and chooses the lowest-cost outbound that still meets the stated meeting and arrival constraints. These are current-trip choices, not durable preference statements."
+    }
+  }
+}

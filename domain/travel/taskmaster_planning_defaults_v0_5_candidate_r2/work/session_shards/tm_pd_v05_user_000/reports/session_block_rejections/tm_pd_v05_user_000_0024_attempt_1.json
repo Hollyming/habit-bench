@@ -1,0 +1,88 @@
+{
+  "reason": "unnatural_habit_leakage_session_24:The user explicitly accepts morning returns for this trip, overriding the established afternoon-return default, and endorses paying more than the cheapest option when the savings do not justify losing usable arrival-day time. Leakage is present because the assistant invokes a previously known beach-area hotel before the user establishes the beach-proximity preference in this block.",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves only the current San Diego airfare comparison. Maya selects American because its earlier arrival preserves several hours of vacation time for a modest premium over United, while Alaska’s added refundability is not worth the higher cost under this trip’s fixed dates. No recurring travel preference is established.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I want to settle the flights for San Diego. Compare the three round trips for both of us with one shared checked bag, and make sure the totals are actually comparable.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll normalize the fare and bag costs. Are we still using November 8 through 13 from Minneapolis, with the $3,600 combined airfare-and-hotel limit and the single beach-area hotel estimate of $1,829?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. Those dates are fixed, and use the single hotel for this comparison. All three flights have one stop and morning returns, so focus on what is materially different.",
+          "role": "user"
+        },
+        {
+          "content": "Here are the totals for two travelers, including one shared checked bag in each direction:\n\nAmerican Main Cabin: $948 base airfare plus $80 for the bag, $1,028 total. Departs MSP at 6:20 a.m. and arrives SAN at 11:48 a.m. Changes are allowed without a change fee, but any fare difference applies. The tickets are nonrefundable to the original payment method; cancellation produces flight credit.\n\nUnited Economy: $886 base airfare plus $80 for the bag, $966 total. Departs at 9:05 a.m. and arrives at 3:42 p.m. Changes are allowed without a change fee, subject to fare difference. Cancellation yields future flight credit rather than a cash refund.\n\nAlaska Main Cabin refundable: $1,116 base airfare plus $70 for the bag, $1,186 total. Departs at 7:10 a.m. and arrives at 12:36 p.m. Changes and cancellations are allowed without a fee, and cancellation is refundable to the original payment method.\n\nAll three return November 13 between 8:00 and 9:15 a.m. and have one connection each way.",
+          "role": "assistant"
+        },
+        {
+          "content": "Add the hotel and show me the full trip amount and remaining room under the cap.",
+          "role": "user"
+        },
+        {
+          "content": "With the $1,829 hotel total:\n\nAmerican: $2,857 combined, leaving $743 under the cap.\nUnited: $2,795 combined, leaving $805.\nAlaska refundable: $3,015 combined, leaving $585.\n\nThese figures cover airfare, the shared checked bag, and lodging. They do not include meals, local transportation, parking at MSP, or optional seat charges.",
+          "role": "assistant"
+        },
+        {
+          "content": "The United savings are only $62 versus American, correct?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. United is $62 less for the two of you after baggage, but it reaches San Diego 3 hours 54 minutes later. The cancellation outcome is essentially the same: both provide airline credit rather than a refund, and both can require payment of a fare difference after a change.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Alaska is $158 more than American, not $220?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Comparing normalized totals, Alaska is $158 above American. The $220 difference applies only to the base fares before accounting for Alaska’s $10 lower round-trip bag charge. Alaska preserves most of the first afternoon and adds cash refundability.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much usable time do we really lose with United? Hotel check-in is at 4 anyway.",
+          "role": "user"
+        },
+        {
+          "content": "United lands at 3:42 p.m. Assuming roughly 35 minutes to deplane and collect the bag, then 20 to 30 minutes to the beach area, you would likely reach the hotel around 4:40 to 4:50 p.m. American would likely put you there around 12:45 to 1:00 p.m.; even if the room is not ready, the hotel can generally hold luggage. That preserves roughly four hours for lunch and time near the beach before United would arrive.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then I don’t think $62 is enough savings to give up that afternoon. Is the refundable Alaska fare worth another $158 for this trip? Our leave dates are approved, but the hotel cancellation deadline is still generous.",
+          "role": "user"
+        },
+        {
+          "content": "Probably not. With fixed approved leave and a hotel that can still be canceled, American gives you nearly the same arrival timing for $158 less. Alaska’s advantage matters mainly if you need the airfare returned to the original payment method rather than held as credit. Unless that distinction is important, American is the stronger value here.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose American, then. Give me the final numbers and terms, but don’t purchase it yet.",
+          "role": "user"
+        },
+        {
+          "content": "Selected but not booked: American Main Cabin for two travelers, MSP-SAN round trip, November 8-13, with one stop each way and a morning return. Airfare is $948, and one shared checked bag each direction adds $80, for a normalized flight total of $1,028. With the single beach-area hotel at $1,829, airfare and lodging total $2,857, leaving $743 under the $3,600 ceiling. The fare is nonrefundable; cancellation provides airline credit, and changes have no fee but remain subject to fare difference. The outbound arrives at 11:48 a.m., preserving most of the first afternoon. Recheck live airfare, baggage pricing, connection details, and the hotel’s final taxes and fees before purchase. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0024",
+      "session_index": 24,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya’s Denver trip remains ticketed for June 16-19, 2026; the revised Friday departure still needs confirmation. The Philadelphia return was exchanged to Friday, July 31, 2026 at 8:10 a.m., and the Hyatt House stay was extended through Friday morning; those changes added $348.56. The Sonesta deposit release remains pending, and Hyatt shuttle details remain unconfirmed. The coastal Georgia trip remains unbooked at a working total of $3,647. For Nashville, meetings run September 15-17, 2026. Delta canceled the booked September 14 outbound; its replacement departs MSP at 4:10 p.m. and arrives at 6:18 p.m., adding a net $168 after the canceled-segment refund. Home2 Suites remains booked September 14-17, and the Thursday 7:50 p.m. return remains unchanged. The revised trip cost still needs reconciliation after the refund posts. For the two-person San Diego trip November 8-13, 2026, the selected but unbooked American round trip is $1,028 including one shared checked bag. Combined with the unbooked single beach-area hotel at $1,829, the working airfare-and-lodging total is $2,857, leaving $743 under the $3,600 ceiling. The fare is nonrefundable to the original payment method, cancellation provides airline credit, and changes are subject to fare difference. Live airfare, baggage charges, routing, and the hotel’s taxes, fees, and cancellation terms must be rechecked before booking."
+}

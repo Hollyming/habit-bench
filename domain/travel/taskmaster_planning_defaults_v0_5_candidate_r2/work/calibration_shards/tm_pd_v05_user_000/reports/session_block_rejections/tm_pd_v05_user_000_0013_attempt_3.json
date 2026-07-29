@@ -1,0 +1,80 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h02', 'support') actual=[('tm_pd_v05_user_000_h00', 'exception'), ('tm_pd_v05_user_000_h01', 'boundary'), ('tm_pd_v05_user_000_h02', 'support'), ('tm_pd_v05_user_000_h03', 'exception')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya chose the Delta itinerary over a comparable lower-cost American option because its schedule was better, while retaining American as an acceptable backup.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to sort out Philadelphia for the next client workshop. It runs Tuesday through Thursday in Center City, and I can leave Minneapolis after 3:30 Monday.",
+          "role": "user"
+        },
+        {
+          "content": "What are the travel dates, and what time does the workshop end Thursday? I’ll use both to keep the outbound workable and leave enough time to reach PHL for the return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Monday September 14 through Thursday September 17. The workshop starts Tuesday at 8:30 a.m. and ends Thursday at 4:30 p.m. Economy airfare needs to stay at or below $700.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll compare Monday departures after 3:30 p.m. and Thursday evening returns, allowing for the trip from central Philadelphia to the airport. Are you checking a bag, and is a connection acceptable?",
+          "role": "assistant"
+        },
+        {
+          "content": "Carry-on only. A connection is acceptable if it actually helps, but I don’t want to get in extremely late Monday.",
+          "role": "user"
+        },
+        {
+          "content": "The strongest Monday choices are a Delta nonstop leaving MSP at 4:45 p.m. and reaching PHL at 8:18 p.m., or an American nonstop at 5:30 p.m., arriving at 9:04 p.m. There is a cheaper United itinerary at 4:10 p.m. through Chicago, but it does not reach Philadelphia until 10:42 p.m. and adds disruption risk before the early start.",
+          "role": "assistant"
+        },
+        {
+          "content": "Skip the Chicago option. Include Delta in the combinations if the return side and total price are competitive.",
+          "role": "user"
+        },
+        {
+          "content": "For Thursday, a 6:25 p.m. departure is technically possible but tight. From the workshop area, you would need to leave almost immediately at 4:30, collect your carry-on, and get into a car by roughly 4:40. Typical traffic could put you at PHL around 5:05–5:25, leaving little recovery time if the session runs over. Departures after 7:00 p.m. are much more comfortable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. Don’t build this around the 6:25. What are the best two complete trips after 7?",
+          "role": "user"
+        },
+        {
+          "content": "Option 1 is Delta both ways: Monday 4:45 p.m. MSP–PHL, arriving 8:18 p.m.; Thursday 7:35 p.m. PHL–MSP, arriving 9:28 p.m. The displayed standard-economy round trip is $548. Option 2 is American both ways: Monday 5:30 p.m.–9:04 p.m.; Thursday 8:10 p.m.–10:06 p.m. The displayed round trip is $486. Both are nonstop and within the $700 allowance.",
+          "role": "assistant"
+        },
+        {
+          "content": "How does the airport timing look for each return if I stay through 4:30? Assume I’m near City Hall and need five or ten minutes to wrap up.",
+          "role": "user"
+        },
+        {
+          "content": "For Delta at 7:35, leave the building around 4:40 and request a car immediately. A normal 25–40 minute ride would put you at PHL about 5:10–5:25, giving roughly two hours before departure. Even with heavier traffic taking an hour, you would arrive around 5:40 and retain nearly two hours to departure. For American at 8:10, the same plan adds another 35 minutes of margin. Carry-on only makes either one practical.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Delta schedule is worth the extra $62 and gets me home earlier. Keep American as the lower-cost backup. Nothing booked yet. Give me the two itineraries and the Thursday transfer plan in one clean summary.",
+          "role": "user"
+        },
+        {
+          "content": "Primary: Delta standard economy, nonstop round trip for $548. Depart MSP Monday, September 14 at 4:45 p.m., arrive PHL at 8:18 p.m. Return Thursday, September 17 at 7:35 p.m., arrive MSP at 9:28 p.m.\n\nBackup: American standard economy, nonstop round trip for $486. Depart MSP Monday at 5:30 p.m., arrive PHL at 9:04 p.m. Return Thursday at 8:10 p.m., arrive MSP at 10:06 p.m.\n\nThursday plan: finish near City Hall at 4:30 p.m., wrap up by 4:40, and request a car then. Expected arrival at PHL is approximately 5:10–5:25; allow as late as 5:40 in heavier traffic. That leaves solid margin for the 7:35 Delta departure and still more for the 8:10 American backup. Both options are below the $700 airfare allowance, and neither has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0013",
+      "session_index": 13,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday RDU–MSP segment with the identified earlier nonstop for an additional $86. The April 23–28 coastal trip flights and hotels are booked: The Drayton April 23–25, Beachview Inn & Spa April 25–28, and the MSP–SAV round trip for two. Two scheduled private rides remain unreserved: The Drayton to Beachview Saturday and Beachview to SAV Tuesday, quoted at $180 before optional gratuity. The June 9–12 Denver workshop trip and Hampton Inn & Suites Denver-Downtown stay are complete, including the $58 airline change. For the September 14–17 Philadelphia workshop trip, two qualifying round-trip airfare options have been identified; the primary and backup remain unbooked. Thursday ground-transfer planning from the workshop area to PHL has been established."
+}

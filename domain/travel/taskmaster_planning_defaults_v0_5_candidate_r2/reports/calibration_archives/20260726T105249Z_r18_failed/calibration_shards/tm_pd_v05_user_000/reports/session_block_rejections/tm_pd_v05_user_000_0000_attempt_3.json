@@ -1,0 +1,88 @@
+{
+  "reason": "unnatural_habit_leakage_session_0:Before the user established a routing preference, the assistant repeatedly prioritized nonstop itineraries and called the nonstop return the strongest option. The user later explicitly rejected the cheaper connection because its lower price did not justify less arrival margin and an additional failure point. No user quote independently establishes an afternoon-return habit, Delta preference, or any hotel habit.",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The conversation resolves only the active Raleigh trip constraints and narrows the flight search to two itineraries. It contains no explicit durable preference evidence.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to get from Minneapolis to Raleigh for a client go-live Tuesday through Friday. I have to be at the site in Cary by 12:30 Tuesday. Can you compare flying Monday evening with going very early Tuesday?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. What dates are you traveling, and when could you leave Minneapolis on Monday?",
+          "role": "assistant"
+        },
+        {
+          "content": "Tuesday is October 14 and Friday is October 17. I can leave Monday after 5:30 p.m. The project wraps at 3:00 Friday, and airfare needs to stay under $700 round trip in economy.",
+          "role": "user"
+        },
+        {
+          "content": "Thanks. I’ll compare schedules from MSP to RDU and account for the drive from Raleigh-Durham airport to Cary. At that time of day, allowing about 35 minutes to reach the site plus time to collect a bag or get a car would be reasonable. Are you checking a bag, and would someone meet you at RDU?",
+          "role": "assistant"
+        },
+        {
+          "content": "Carry-on only. I’ll use a rental car, so include time for that.",
+          "role": "user"
+        },
+        {
+          "content": "That makes a Tuesday arrival workable only if the flight reaches RDU by roughly 10:45 a.m.; earlier would provide a better cushion. I found three schedule patterns worth comparing: a Monday nonstop leaving around 6:45 p.m. and arriving about 10:20 p.m.; a Tuesday nonstop leaving around 6:00 a.m. and arriving about 9:35 a.m.; and a Tuesday one-stop leaving near 5:15 a.m. and arriving around 10:30 a.m. The first two take about 2 hours 35 minutes in the air, while the connection is closer to 4 hours 15 minutes total.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much margin would I actually have with the Tuesday nonstop?",
+          "role": "user"
+        },
+        {
+          "content": "With a 9:35 a.m. arrival, I’d estimate 20 minutes to get off the plane and reach the rental-car center, 25 to 35 minutes for pickup, and 25 to 35 minutes to Cary. That puts you at the site around 10:45 to 11:05 a.m., leaving approximately 85 to 105 minutes before 12:30. A moderate delay could be absorbed, but a cancellation or delay over an hour would put the onsite start at risk.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the Monday flight? I don’t want to land so late that getting the car becomes difficult.",
+          "role": "user"
+        },
+        {
+          "content": "An arrival around 10:20 p.m. should still be within the major rental counters’ operating hours, though I would verify the specific company before booking. You would likely leave the airport around 11:00 p.m. and reach a Cary hotel by about 11:30. It removes the same-day flight risk but adds one hotel night.",
+          "role": "assistant"
+        },
+        {
+          "content": "What do the round trips look like if I leave RDU after the 3:00 close on Friday? I probably can’t get to the airport before 4:15.",
+          "role": "user"
+        },
+        {
+          "content": "The strongest return is a nonstop departing around 5:35 p.m. and reaching Minneapolis near 7:25 p.m. That gives you about 80 minutes at RDU if you arrive at 4:15. A later one-stop option leaves around 6:20 p.m. and arrives near 10:15 p.m., with total travel time around 4 hours 55 minutes. The nonstop combinations are pricing in the mid-$500s, while pairing the Tuesday connection with the Friday nonstop is roughly $480, all within the $700 authorization.",
+          "role": "assistant"
+        },
+        {
+          "content": "Drop the Tuesday connection. Saving that amount isn’t worth arriving with less time and another failure point. Which two complete itineraries would you keep?",
+          "role": "user"
+        },
+        {
+          "content": "I’d keep these two: Option 1 leaves MSP Monday at about 6:45 p.m., arrives RDU around 10:20 p.m., and returns Friday on the 5:35 p.m. nonstop, arriving MSP near 7:25 p.m. Total scheduled flight time is about 5 hours 10 minutes, and the fare is approximately $560. Option 2 leaves MSP Tuesday around 6:00 a.m., arrives RDU about 9:35 a.m., then uses the same Friday nonstop. Its total scheduled flight time is also about 5 hours 10 minutes, at approximately $535. Option 1 gives you the full morning in Cary but requires Monday lodging; Option 2 avoids that extra night and should get you onsite 85 to 105 minutes early if operations are normal.",
+          "role": "assistant"
+        },
+        {
+          "content": "Those are the right two. Don’t book anything yet. I need to check whether the client will cover Monday night, then I’ll decide.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. The shortlist is the Monday-evening nonstop round trip at about $560 and the Tuesday-early nonstop round trip at about $535, both returning Friday around 5:35 p.m. The open decision is whether Monday lodging is covered; no booking has been made.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0000",
+      "session_index": 0,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya is planning an October 14-17 client go-live trip from Minneapolis to Cary, North Carolina. She must be onsite by 12:30 p.m. Tuesday, can depart after 5:30 p.m. Monday or early Tuesday, and can reach RDU around 4:15 p.m. Friday after the 3:00 p.m. close. Economy airfare is authorized up to $700. Two nonstop round trips remain under consideration: Monday evening outbound at about $560 or Tuesday early outbound at about $535, both returning Friday around 5:35 p.m. No booking has been made. Maya will confirm whether the client covers Monday lodging before choosing."
+}

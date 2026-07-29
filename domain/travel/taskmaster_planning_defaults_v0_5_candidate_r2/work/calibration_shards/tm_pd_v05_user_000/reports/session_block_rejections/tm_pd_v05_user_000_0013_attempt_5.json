@@ -1,0 +1,80 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h02', 'support') actual=[('tm_pd_v05_user_000_h01', 'boundary'), ('tm_pd_v05_user_000_h02', 'boundary')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya naturally asked for Delta to be included and selected it as the leading option when its nonstop schedule and fare were reasonably comparable, while retaining a less expensive American itinerary as the backup.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to sort out Philadelphia next. The workshop is Tuesday, July 21 through Thursday, July 23 in Center City. It starts at 8:30 Tuesday and ends at 4:30 Thursday. I can leave MSP after 3:30 Monday, and airfare needs to stay under $700.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare Monday evening departures with Thursday returns that leave enough time to get from Center City to PHL. Are you checking a bag, and should I limit this to nonstop flights?",
+          "role": "assistant"
+        },
+        {
+          "content": "Carry-on only. Nonstop is strongly preferred, but show me a connection if it creates a meaningfully better schedule or price.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. On Monday, the useful nonstop choices are a 4:45 p.m. departure arriving at 8:19 p.m. and a 5:20 p.m. departure arriving at 8:57 p.m. A 6:10 p.m. connecting itinerary does not arrive until 11:46 p.m., so it offers no practical advantage before the 8:30 start.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed, skip the connection. What does Thursday look like after 4:30? I don’t want a return that only works if everything goes perfectly.",
+          "role": "user"
+        },
+        {
+          "content": "The 6:35 p.m. nonstop is too exposed. Even with a car waiting, workshop wrap-up and traffic could leave less than an hour at the airport. The realistic returns are 7:35 p.m., arriving MSP at 9:44 p.m., or 8:05 p.m., arriving at 10:12 p.m. Recent Thursday traffic estimates put Center City to PHL at roughly 25–45 minutes.",
+          "role": "assistant"
+        },
+        {
+          "content": "Build the combinations around those two returns. Include Delta if it’s competitive; I’d lean that way when the schedule and fare are close.",
+          "role": "user"
+        },
+        {
+          "content": "Two combinations fit. Option one is Delta nonstop both ways: MSP 5:20 p.m. Monday to PHL 8:57 p.m., then PHL 8:05 p.m. Thursday to MSP 10:12 p.m., for $548 round trip in standard economy. Option two is American nonstop both ways: MSP 4:45 p.m. to PHL 8:19 p.m., then PHL 7:35 p.m. to MSP 9:44 p.m., for $512.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much usable airport time does each return give me? Assume I keep my bag with me at the workshop and can leave within ten minutes.",
+          "role": "user"
+        },
+        {
+          "content": "Leaving at 4:40 p.m., a typical arrival at PHL would be about 5:10–5:25, with 5:40 plausible in heavier traffic. That gives the 7:35 flight about 1 hour 55 minutes to 2 hours 25 minutes at the airport. The 8:05 flight gives about 2 hours 25 minutes to 2 hours 55 minutes. Both are workable with carry-on only, but the later flight has the stronger buffer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there any catch with the Delta fare versus the American one? Basic economy would explain the difference.",
+          "role": "user"
+        },
+        {
+          "content": "Neither quoted fare is basic economy. Both include advance seat selection and a standard carry-on. The Delta fare is $36 more and returns 30 minutes later; its main practical benefit here is the extra transfer margin. The American combination gets you home 28 minutes earlier and costs less, but leaves less room for a delayed workshop exit or slow traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then make Delta the leading option and American the backup. Don’t book anything yet. Give me the exact two itineraries and the Thursday departure plan to carry forward.",
+          "role": "user"
+        },
+        {
+          "content": "Carry forward these two unbooked options for July 20–23. Leading option: Delta standard economy, nonstop, departing MSP Monday at 5:20 p.m. and arriving PHL at 8:57 p.m.; returning Thursday at 8:05 p.m. and arriving MSP at 10:12 p.m.; $548 round trip. Backup: American standard economy, nonstop, departing MSP Monday at 4:45 p.m. and arriving PHL at 8:19 p.m.; returning Thursday at 7:35 p.m. and arriving MSP at 9:44 p.m.; $512 round trip. On Thursday, keep the carry-on at the workshop, leave by 4:40 p.m., and have a car staged nearby. Expect PHL around 5:10–5:25, or approximately 5:40 in heavier traffic. Both fares remain below the $700 allowance, and neither has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0013",
+      "session_index": 13,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. The April 23–28 coastal trip flights and hotels are booked: The Drayton April 23–25, Beachview Inn & Spa April 25–28, and the MSP–SAV round trip for two. Two scheduled private rides remain unreserved: The Drayton to Beachview Saturday at 3:30 p.m. and Beachview to SAV Tuesday at 3:15 p.m., quoted at $180 before optional gratuity. For the June 9–12 Denver workshop trip, the Friday return has been changed after an airline schedule adjustment to the 6:40 p.m. DEN–MSP nonstop, arriving at 9:34 p.m. The change cost $58 with no change fee, bringing the estimated flight-and-hotel total to $1,078 against the $1,100 approval. The Hampton Inn & Suites Denver-Downtown stay remains June 9–12. Friday’s plan is to check out and store the bag around 7:20 a.m., leave by 7:30 for the 8:00 workshop, retrieve the bag after the 2:00 p.m. finish, and target a car by 2:30 p.m. Expected arrival at DEN is 3:10–3:30 p.m., more than three hours before departure. For the July 20–23 Philadelphia workshop trip, two nonstop standard-economy itineraries remain unbooked: a $548 combination departing MSP at 5:20 p.m. Monday and returning from PHL at 8:05 p.m. Thursday is the leading option; a $512 combination departing MSP at 4:45 p.m. Monday and returning at 7:35 p.m. Thursday is the backup. Thursday’s workshop ends at 4:30 p.m.; Maya will keep her carry-on with her, leave by 4:40, and stage a car nearby, with expected PHL arrival around 5:10–5:25 or about 5:40 in heavier traffic."
+}

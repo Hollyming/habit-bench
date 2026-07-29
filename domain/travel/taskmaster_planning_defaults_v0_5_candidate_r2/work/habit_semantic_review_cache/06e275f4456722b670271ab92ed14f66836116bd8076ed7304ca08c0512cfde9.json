@@ -1,0 +1,369 @@
+{
+  "cache_fingerprint": "06e275f4456722b670271ab92ed14f66836116bd8076ed7304ca08c0512cfde9",
+  "rows": [
+    {
+      "boundary_condition": "This should be treated as a soft default rather than a hard requirement, and it should not override explicit trip-specific constraints such as location, rating, or budget. Do not infer a specific view type unless the user asks for it in the current trip.",
+      "bundle_id": "tm_v04_e2e_bundle_572f078bb517",
+      "canonical_value": "balcony_or_terrace",
+      "condition": "When searching for or booking a hotel room for a leisure stay.",
+      "confidence": 0.78,
+      "decision": "keep",
+      "default_action": "Include a balcony or terrace in the hotel-room amenity search and confirm availability before booking; treat a terrace as an acceptable alternative to a balcony.",
+      "exception_condition": "Skip or relax this preference if the user explicitly prioritizes other constraints, if balcony/terrace rooms are unavailable, or if the user declines that amenity for the current booking.",
+      "family": "hotel_view_balcony_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_572f078bb517",
+      "induced_at": "2026-07-16T08:10:58.977571+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_room_balcony_or_terrace_preference",
+      "preference_value": "Prefers hotel rooms that have a balcony or terrace.",
+      "rationale": "Across three independent hotel dialogues, the user repeatedly asks for or confirms a balcony/terrace as a room amenity, sometimes emphasizing it as part of the desired stay experience.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.95,
+        "reason": "Three distinct instruction_id values independently express a positive preference for a balcony or terrace. The candidate correctly treats the two amenity terms as alternatives, keeps the preference soft, and does not generalize the ocean-view detail from one source.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows the user actively wants a balcony as part of the room experience, with a view requested in this specific waterfront context.",
+          "conversation_id": "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+          "exact_user_quote": "I'd like to have a good view of the ocean and a balcony to look out over the water.",
+          "instruction_id": "hotel-13",
+          "turn_index": 9
+        },
+        {
+          "contribution": "Lists balcony or terrace as a room amenity to check, supporting terrace as an acceptable alternative to balcony.",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "exact_user_quote": "A balcony or terrace, a TV with cable, mini fridge, coffee maker, honor bar and fireplace.",
+          "instruction_id": "hotel-1b",
+          "turn_index": 14
+        },
+        {
+          "contribution": "Strongly states a preference for a balcony or terrace and explains the desired use of relaxing there.",
+          "conversation_id": "dlg-17a9410c-dbb4-47ba-a2ac-218346429404",
+          "exact_user_quote": "I would love a balcony or, you know, a terrace. I would love just to sit on the balcony and relax.",
+          "instruction_id": "hotel-4",
+          "turn_index": 7
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I'd like to have a good view of the ocean and a balcony to look out over the water.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+          "habitual_language": false,
+          "instruction_id": "hotel-13",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 9,
+          "user_utterance": "I'd like to have a good view of the ocean and a balcony to look out over the water."
+        },
+        {
+          "annotated_segment": "A balcony or terrace, a TV with cable, mini fridge, coffee maker, honor bar and fireplace.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "habitual_language": false,
+          "instruction_id": "hotel-1b",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 14,
+          "user_utterance": "A balcony or terrace, a TV with cable, mini fridge, coffee maker, honor bar and fireplace."
+        },
+        {
+          "annotated_segment": "I would love a balcony or, you know, a terrace. I would love just to sit on the balcony and relax.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-17a9410c-dbb4-47ba-a2ac-218346429404",
+          "habitual_language": false,
+          "instruction_id": "hotel-4",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 7,
+          "user_utterance": "I would love a balcony or, you know, a terrace. I would love just to sit on the balcony and relax."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Do not infer that nonstop is always preferred or that every acceptable layover must meet a specific duration.",
+      "bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+      "canonical_value": "max_one_layover",
+      "condition": "When comparing flight itineraries that may include connections.",
+      "confidence": 0.77,
+      "decision": "revise",
+      "default_action": "Limit connecting options to itineraries with at most one layover.",
+      "exception_condition": "Use a different connection pattern only when the user explicitly requests or accepts it for the current trip.",
+      "family": "trip_context_flight_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+      "induced_at": "2026-07-16T09:00:24.368127+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "flight_max_one_layover_preference",
+      "preference_value": "Prefers flight itineraries with no more than one layover.",
+      "rationale": "Across the three independent flight dialogues, the user consistently accepts or prefers only a limited layover pattern: one layover at most, and preferably short. The reason differs by trip—family cost tradeoff, visiting-family comfort, vacation flexibility—but the reusable policy is the same: avoid multiple or lengthy layovers.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.9,
+        "reason": "All three instruction_id values support limiting an itinerary to at most one layover, but only one clearly prefers nonstop and only one explicitly requires a short layover. The reusable default must therefore be narrowed to avoiding multiple connections; nonstop-first and universally short-layover behavior are not established across the sources.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports accepting a layover for a price advantage while limiting the itinerary to one layover.",
+          "conversation_id": "dlg-b391bbe3-dc9b-4efd-b7f0-45c46dd052ea",
+          "exact_user_quote": "but if it's cheaper to go layover, we'd prefer just one layover though.",
+          "instruction_id": "flight-5",
+          "turn_index": 15
+        },
+        {
+          "contribution": "Supports preferring a short, practical layover rather than a long connection.",
+          "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+          "exact_user_quote": "I prefer just a short layover. Long enough to change flights and maybe stop to get something to eat.",
+          "instruction_id": "flight-6",
+          "turn_index": 8
+        },
+        {
+          "contribution": "Supports the same nonstop-first, at-most-one-layover fallback pattern.",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "exact_user_quote": "I'd prefer non-stop but I'm okay with at most one layover.",
+          "instruction_id": "flight-7",
+          "turn_index": 12
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "but if it's cheaper to go layover, we'd prefer just one layover though.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-b391bbe3-dc9b-4efd-b7f0-45c46dd052ea",
+          "habitual_language": false,
+          "instruction_id": "flight-5",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 15,
+          "user_utterance": "but if it's cheaper to go layover, we'd prefer just one layover though."
+        },
+        {
+          "annotated_segment": "I prefer just a short layover. Long enough to change flights and maybe stop to get something to eat.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+          "habitual_language": false,
+          "instruction_id": "flight-6",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 8,
+          "user_utterance": "I prefer just a short layover. Long enough to change flights and maybe stop to get something to eat."
+        },
+        {
+          "annotated_segment": "I'd prefer non-stop but I'm okay with at most one layover.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "habitual_language": false,
+          "instruction_id": "flight-7",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 12,
+          "user_utterance": "I'd prefer non-stop but I'm okay with at most one layover."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Keep the selected fare within the stated overall flight budget",
+      "bundle_id": "tm_v04_e2e_bundle_dab7e9145814",
+      "canonical_value": "business_class",
+      "condition": "When booking flights and business class is available within the trip budget",
+      "confidence": 0.88,
+      "decision": "keep",
+      "default_action": "Search for and select business-class options first",
+      "exception_condition": "Use coach when business class is unavailable or cannot fit the budget",
+      "family": "trip_context_flight_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_dab7e9145814",
+      "induced_at": "2026-07-25T08:47:02.228705+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer business class when feasible",
+      "preference_value": "business class",
+      "rationale": "Across three independent flight-booking conversations, the user selects or requests business class while treating price and feasibility as boundaries; one conversation explicitly accepts coach as the fallback.",
+      "reasoning_effort": "high",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.91,
+        "reason": "Three distinct instruction_id values express a positive business-class preference, with feasibility or coach fallback explicitly supported. The candidate represents this as a soft cabin default rather than an unconditional requirement and does not preserve a one-off numeric budget cap.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports preferring business class subject to the trip budget.",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "exact_user_quote": "What if I upgraded to business class. Could I do that within my budget?",
+          "instruction_id": "flight-11",
+          "turn_index": 8
+        },
+        {
+          "contribution": "Directly supports business class as the preferred default and coach as the feasibility fallback.",
+          "conversation_id": "dlg-60490d01-11df-4647-b0d7-546f7a08bba8",
+          "exact_user_quote": "I'd like to be seated in business class if I can get there. Otherwise, coach is fine.",
+          "instruction_id": "flight-4",
+          "turn_index": 16
+        },
+        {
+          "contribution": "Independently supports business class as the requested cabin default.",
+          "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+          "exact_user_quote": "I'd like it to be in business class, and I'd like a seat near the window or next to the window.",
+          "instruction_id": "flight-8",
+          "turn_index": 9
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "What if I upgraded to business class. Could I do that within my budget?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 8,
+          "user_utterance": "What if I upgraded to business class. Could I do that within my budget?"
+        },
+        {
+          "annotated_segment": "I'd like to be seated in business class if I can get there. Otherwise, coach is fine.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-60490d01-11df-4647-b0d7-546f7a08bba8",
+          "habitual_language": false,
+          "instruction_id": "flight-4",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 16,
+          "user_utterance": "I'd like to be seated in business class if I can get there. Otherwise, coach is fine."
+        },
+        {
+          "annotated_segment": "I'd like it to be in business class, and I'd like a seat near the window or next to the window.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+          "habitual_language": false,
+          "instruction_id": "flight-8",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 9,
+          "user_utterance": "I'd like it to be in business class, and I'd like a seat near the window or next to the window."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Do not generalize this to unrelated amenities such as microwave, balcony, bar, fireplace, room size, location, dates, or price; those were not consistently supported across all sources.",
+      "bundle_id": "tm_v04_e2e_bundle_12de0f7be5d5",
+      "canonical_value": "coffee_maker_and_mini_fridge",
+      "condition": "When choosing hotels for leisure-oriented stays such as family, vacation, or activity trips.",
+      "confidence": 0.78,
+      "decision": "keep",
+      "default_action": "Include an in-room coffee maker and refrigerator/mini-fridge as soft default amenity criteria when searching or comparing hotels.",
+      "exception_condition": "If a hotel otherwise strongly matches the trip, treat a missing coffee maker or mini-fridge as a point to confirm with the user rather than an automatic rejection.",
+      "family": "trip_context_hotel_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_12de0f7be5d5",
+      "induced_at": "2026-07-16T08:06:20.252714+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "leisure hotel room coffee-and-fridge default",
+      "preference_value": "Prefer a hotel room with both a coffee maker and a refrigerator or mini-fridge.",
+      "rationale": "Three independent hotel dialogues each include an explicit request for both a coffee maker and a refrigerator/mini-fridge in leisure-style lodging contexts. The repeated pairing supports a reusable soft default, but not a hard universal requirement.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.97,
+        "reason": "Three distinct instruction_id values independently request both an in-room coffee maker and a refrigerator or mini-fridge. The wording is appropriately limited to those recurring amenities and treats refrigerator and mini-fridge as equivalent variants.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports the paired preference for an in-room coffee maker and refrigerator during a family hotel search.",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "exact_user_quote": "a coffee maker, a refrigerator",
+          "instruction_id": "hotel-11",
+          "turn_index": 20
+        },
+        {
+          "contribution": "Independently repeats the same paired room-amenity preference during a summer vacation hotel search.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "A mini refrigerator and coffee maker.",
+          "instruction_id": "hotel-2",
+          "turn_index": 15
+        },
+        {
+          "contribution": "Independently repeats the same paired room-amenity preference for a leisure/activity-oriented hotel stay.",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "exact_user_quote": "mini fridge, coffee maker",
+          "instruction_id": "hotel-1b",
+          "turn_index": 14
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "a coffee maker, a refrigerator",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 20,
+          "user_utterance": "a coffee maker, a refrigerator"
+        },
+        {
+          "annotated_segment": "A mini refrigerator and coffee maker.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 15,
+          "user_utterance": "A mini refrigerator and coffee maker."
+        },
+        {
+          "annotated_segment": "mini fridge, coffee maker",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "habitual_language": false,
+          "instruction_id": "hotel-1b",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 14,
+          "user_utterance": "mini fridge, coffee maker"
+        }
+      ]
+    }
+  ]
+}

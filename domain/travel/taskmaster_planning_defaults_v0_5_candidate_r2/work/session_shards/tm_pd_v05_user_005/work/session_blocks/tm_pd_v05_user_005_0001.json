@@ -1,0 +1,171 @@
+{
+  "cache_fingerprint": "ca44e7f58be1ffee329b1e04885a6a734bf65847e0744f249fcdebda0d6baffc",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Avery compared complete Atlanta-Chicago round-trip options after her Friday museum commitment was fixed at 6:30 p.m. She rejected the tighter 9:05 p.m. O’Hare return as operationally risky, verified standard checked-case charges and fare conditions, and selected the 8:15 a.m. Tuesday outbound to O’Hare with the 10:20 p.m. Friday return from Midway. No durable travel preference was established, and the itinerary has not yet been purchased.",
+        "evidence_topology": {
+          "episode_id": "atlanta_chicago_exhibition_opening_01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 1,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selected a nonstop outbound and a late-evening nonstop return for this trip. No user utterance establishes a carrier, window-seat, hotel-bed, beach-proximity, or hotel-rating habit, and the choices are trip-specific rather than recurring defaults.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Select the 8:15 outbound and the 10:20 Midway return at $402 with the case included.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.97,
+            "evidence_quote": "Select the 8:15 outbound and the 10:20 Midway return at $402 with the case included.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The museum has confirmed I have to stay through 6:30 Friday evening. Please compare the full round-trip choices now, including one checked case for installation tools. I need to know which return is actually workable.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll compare the two Tuesday outbound flights with the Friday returns, then include the checked-case charge in each total. Before I calculate it, is the tool case under 50 pounds and within standard checked-bag dimensions? Also, does it contain any batteries, compressed gas, solvents, or other restricted materials?",
+          "role": "assistant"
+        },
+        {
+          "content": "It is a normal hard-sided case, about 42 pounds. No gas or solvents. There is one cordless drill, but I carry the removable battery in my hand luggage.",
+          "role": "user"
+        },
+        {
+          "content": "That should price as one standard checked bag. Keeping the loose lithium battery in your carry-on is also the correct handling, subject to the airline’s terminal inspection. I found three sensible combinations. The leading Tuesday outbound still leaves Atlanta at 8:15 a.m. and reaches O’Hare at 9:35 a.m. The earlier backup leaves at 6:40 a.m. and arrives at 7:58 a.m. Both are nonstop economy flights.",
+          "role": "assistant"
+        },
+        {
+          "content": "And what does Friday look like now that 6:30 is fixed?",
+          "role": "user"
+        },
+        {
+          "content": "The 9:05 p.m. O’Hare departure is technically possible, but I would not treat it as dependable. From the downtown museum, you would have only 2 hours 35 minutes before departure. Friday traffic, unloading the case, checking it, and security could consume most of that window. The flight is nonstop and arrives in Atlanta just after midnight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. I do not want the museum handoff rushed just to chase that flight. What about the 10:20 from Midway?",
+          "role": "user"
+        },
+        {
+          "content": "That one is materially safer. It departs Midway at 10:20 p.m. and arrives in Atlanta at 1:15 a.m. Saturday. Leaving the museum around 6:40 p.m. would generally put you at Midway roughly between 7:10 and 7:35, depending on traffic, leaving close to three hours or more for the bag drop and security. It is also nonstop.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Now give me the actual totals, not just the base fares.",
+          "role": "user"
+        },
+        {
+          "content": "With standard economy rather than basic economy, the combinations price as follows at the moment: the 8:15 a.m. outbound paired with the 9:05 p.m. O’Hare return is $286 airfare plus $70 for the checked case round trip, totaling $356. The same outbound paired with the 10:20 p.m. Midway return is $332 plus $70, totaling $402. The 6:40 a.m. backup outbound paired with the Midway return is $406 plus $70, totaling $476.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the $70 definitely for both directions? I do not want another case fee appearing at the airport.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. It is $35 each way for one standard case up to 50 pounds, so $70 for the trip. The quoted totals include that charge in both directions. They do not include an overweight fee, which should not apply at the stated 42 pounds, or optional seat upgrades.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are these all on one ticket even though I would arrive at O’Hare and leave from Midway?",
+          "role": "user"
+        },
+        {
+          "content": "The $402 option is issued as one multi-city itinerary: Atlanta to O’Hare on Tuesday and Midway to Atlanta on Friday. The airport change does not require any transfer during travel because it occurs across your Chicago stay. The checked case is paid separately for each flight segment but included in the $402 trip total I gave you.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does using Midway create any issue with returning a rental car?",
+          "role": "user"
+        },
+        {
+          "content": "Only if you plan to rent one at O’Hare and return it at Midway; that could add a one-way location fee. No rental car is currently part of this itinerary. If you are using local transportation between the airport, hotel, and museum, the different airports do not create an additional booking obligation.",
+          "role": "assistant"
+        },
+        {
+          "content": "No rental car. The museum is arranging transportation from O’Hare on Tuesday, and I can take a car to Midway Friday. Compare the two Midway combinations directly.",
+          "role": "user"
+        },
+        {
+          "content": "Both use the same 10:20 p.m. nonstop return and include the same $70 checked-case cost. The difference is Tuesday morning: the 8:15 a.m. departure arrives at 9:35 a.m. and totals $402, while the 6:40 a.m. departure arrives at 7:58 a.m. and totals $476. The earlier flight buys another 1 hour 37 minutes in Chicago for $74 more. Either leaves enough time to reach the museum before the 1:00 p.m. crate handoff, assuming the arranged pickup proceeds as planned.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then the earlier one is not worth the extra $74. Select the 8:15 outbound and the 10:20 Midway return at $402 with the case included.",
+          "role": "user"
+        },
+        {
+          "content": "Selected itinerary: Tuesday, October 14, nonstop Atlanta to O’Hare departing at 8:15 a.m. and arriving at 9:35 a.m.; Friday, October 17, nonstop Midway to Atlanta departing at 10:20 p.m. and arriving at 1:15 a.m. Saturday. Standard economy airfare is $332, and one standard checked case at $35 each way brings the current total to $402.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before I approve purchase, confirm that standard economy allows advance seat selection and that changing the return would not mean forfeiting the whole ticket.",
+          "role": "user"
+        },
+        {
+          "content": "Confirmed. This standard economy fare allows advance selection from available regular seats. It is not a basic-economy ticket. Changes are permitted under the displayed fare rules without a separate change penalty, though you would owe any fare difference if the replacement flight costs more. Changing the return segment would not automatically forfeit the outbound after it has been flown. The itinerary is selected but not yet purchased, and the $402 total remains subject to availability until ticketing.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0001",
+      "session_index": 1,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "Avery is planning a one-person Atlanta-Chicago museum work trip for October 14-17. She must reach the downtown museum by 1:00 p.m. Tuesday for a crate handoff and remain onsite until 6:30 p.m. Friday. She selected a Tuesday nonstop arriving at O’Hare at 9:35 a.m. and a Friday nonstop departing Midway at 10:20 p.m., with one standard checked installation-tool case included in the current $402 total. The tool case is about 42 pounds; its removable drill battery will travel in hand luggage. The itinerary is selected but not purchased, pending final approval.",
+  "verification": {
+    "1": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Select the 8:15 outbound and the 10:20 Midway return at $402 with the case included.",
+          "habit_id": "tm_pd_v05_user_005_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.97,
+          "evidence_quote": "Select the 8:15 outbound and the 10:20 Midway return at $402 with the case included.",
+          "habit_id": "tm_pd_v05_user_005_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selected a nonstop outbound and a late-evening nonstop return for this trip. No user utterance establishes a carrier, window-seat, hotel-bed, beach-proximity, or hotel-rating habit, and the choices are trip-specific rather than recurring defaults."
+    }
+  }
+}

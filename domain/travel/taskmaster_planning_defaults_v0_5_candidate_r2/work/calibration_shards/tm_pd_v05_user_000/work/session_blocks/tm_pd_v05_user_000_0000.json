@@ -1,0 +1,139 @@
+{
+  "cache_fingerprint": "897c1ce840ff52c53c9d78a8fbd28dab83b9ce7db650f4f4a3361d390fae7df8",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya compared Monday-evening and early-Tuesday MSP-RDU options for this client trip, rejected a connecting Tuesday itinerary because its arrival margin was too narrow, and narrowed the search to two nonstop round trips with a Friday 5:35 p.m. return. No recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-001",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 0,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selected the 5:35 p.m. Friday return and rejected the connecting outbound in favor of the nonstop options for this trip. These are current-trip choices, not durable cross-trip preferences. The assistant's questions and comparison of nonstop versus connecting options were neutral elicitation, so they do not constitute leakage.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "That makes sense. Narrow it to the best two complete itineraries anyway, one for each outbound day, both using the 5:35 Friday return.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.94,
+            "evidence_quote": "Drop the connecting outbound. That is too little margin for a go-live, especially if the first leg slips.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to get from Minneapolis to Raleigh for a client go-live Tuesday through Friday. I have to be at the Cary site by 12:30 Tuesday. I can leave Monday after 5:30 p.m. or very early Tuesday, and I can head home after the project closes at 3:00 Friday.",
+          "role": "user"
+        },
+        {
+          "content": "I can compare both outbound approaches. Is the $700 authorization for the round trip, and should I focus on economy from MSP to RDU? Also, what time do you need to be back in Minneapolis Friday night, if any?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, $700 total in economy. No fixed Friday arrival time, but I would rather not get home after midnight. I will have a carry-on only.",
+          "role": "user"
+        },
+        {
+          "content": "The key timing issue is Tuesday ground travel. RDU to Cary is often about 20 to 30 minutes by car, but morning traffic and getting out of the airport can stretch that. I would want a flight scheduled into RDU no later than roughly 10:45 a.m., preferably earlier. Are you comfortable with one connection, or should I keep this to nonstop flights?",
+          "role": "assistant"
+        },
+        {
+          "content": "One connection is acceptable if the schedule is materially better. Please compare total travel time and tell me how much margin each option leaves.",
+          "role": "user"
+        },
+        {
+          "content": "Here are the three practical schedule patterns within the authorization based on the available economy options:\n\n1. Monday nonstop: depart MSP at 7:10 p.m., arrive RDU at 10:45 p.m. Total flight time about 2 hours 35 minutes. It requires an extra hotel night, but leaves roughly 13 hours 45 minutes before the onsite start.\n\n2. Tuesday nonstop: depart MSP at 6:05 a.m., arrive RDU at 9:40 a.m. Total flight time about 2 hours 35 minutes. Allowing 30 minutes to exit the airport and 30 to 40 minutes to Cary, you would likely reach the site around 10:40 to 10:50, leaving about 1 hour 40 minutes.\n\n3. Tuesday with a connection: depart MSP at 5:20 a.m., connect in Detroit, arrive RDU at 10:25 a.m. Total travel time about 4 hours 5 minutes. Estimated site arrival is around 11:25 to 11:35, leaving under 70 minutes.\n\nRound-trip fares paired with workable Friday returns are approximately $548, $612, and $487 respectively.",
+          "role": "assistant"
+        },
+        {
+          "content": "Drop the connecting outbound. That is too little margin for a go-live, especially if the first leg slips. What Friday returns pair with the two nonstops?",
+          "role": "user"
+        },
+        {
+          "content": "Both outbound choices can pair with these Friday nonstop returns:\n\n- Depart RDU at 5:35 p.m., arrive MSP at 7:25 p.m. That gives 2 hours 35 minutes from project close to departure. With a 25-to-35-minute drive from Cary, you should reach the airport near 3:35 to 3:45.\n- Depart RDU at 7:50 p.m., arrive MSP at 9:42 p.m. This provides substantially more protection if the close runs late.\n\nThe earlier return keeps the Monday-out itinerary near $548 and the Tuesday-out itinerary near $612. The later return adds about $36 to either pairing, still below $700.",
+          "role": "assistant"
+        },
+        {
+          "content": "The 5:35 return sounds possible, but is 2 hours 35 minutes enough once I account for leaving the client and security?",
+          "role": "user"
+        },
+        {
+          "content": "It is workable with a carry-on if the meeting ends at 3:00 as planned. A reasonable timeline is leaving Cary by 3:10, arriving at RDU around 3:40, and having about 1 hour 55 minutes before departure. Even with a 20-minute traffic delay, you would still have around 1 hour 35 minutes. The risk is an extended project close, not the normal drive or airport process.",
+          "role": "assistant"
+        },
+        {
+          "content": "Understood. I do not want the later flight just for that possibility. Between leaving Monday night and Tuesday morning, what would you choose for this project?",
+          "role": "user"
+        },
+        {
+          "content": "I would choose Monday evening. The Tuesday nonstop is viable on paper, but its margin can disappear with a cancellation, a long delay, or slow ground transportation. Monday removes flight-day risk and lets you arrive at the client rested. The tradeoff is the added hotel night and getting to Raleigh late Monday.",
+          "role": "assistant"
+        },
+        {
+          "content": "That makes sense. Narrow it to the best two complete itineraries anyway, one for each outbound day, both using the 5:35 Friday return.",
+          "role": "user"
+        },
+        {
+          "content": "The final two are:\n\nA. Lower-risk itinerary: Monday MSP 7:10 p.m. to RDU 10:45 p.m.; Friday RDU 5:35 p.m. to MSP 7:25 p.m. Nonstop both ways, about $548 round trip. It leaves an overnight buffer before the 12:30 p.m. Tuesday start.\n\nB. Same-day itinerary: Tuesday MSP 6:05 a.m. to RDU 9:40 a.m.; Friday RDU 5:35 p.m. to MSP 7:25 p.m. Nonstop both ways, about $612 round trip. Expected arrival in Cary is around 10:40 to 10:50 a.m., giving approximately 1 hour 40 minutes of margin.\n\nBoth are within the $700 economy authorization. Option A is the practical choice for protecting the go-live; Option B avoids Monday lodging but carries more disruption risk.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0000",
+      "session_index": 0,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya is planning a Tuesday-through-Friday healthcare software go-live in Cary, traveling from Minneapolis to Raleigh under a $700 economy airfare authorization. She must be onsite by 12:30 p.m. Tuesday and can leave after the 3:00 p.m. Friday close. Two nonstop itineraries remain: Monday evening outbound at about $548 or Tuesday early-morning outbound at about $612, both returning Friday at 5:35 p.m. The Monday itinerary is recommended for operational margin; booking and lodging remain unresolved.",
+  "verification": {
+    "0": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "That makes sense. Narrow it to the best two complete itineraries anyway, one for each outbound day, both using the 5:35 Friday return.",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.94,
+          "evidence_quote": "Drop the connecting outbound. That is too little margin for a go-live, especially if the first leg slips.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selected the 5:35 p.m. Friday return and rejected the connecting outbound in favor of the nonstop options for this trip. These are current-trip choices, not durable cross-trip preferences. The assistant's questions and comparison of nonstop versus connecting options were neutral elicitation, so they do not constitute leakage."
+    }
+  }
+}

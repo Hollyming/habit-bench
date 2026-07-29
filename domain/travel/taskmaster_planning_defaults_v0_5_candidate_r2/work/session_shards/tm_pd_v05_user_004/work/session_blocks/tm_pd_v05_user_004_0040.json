@@ -1,0 +1,155 @@
+{
+  "cache_fingerprint": "694add22115657a6e94e55e055dea26520fb6f4ce0d563112e46a4cd5817016d",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support for the flight price-quality policy appears in Danielle’s instruction to choose the lower-cost option after both choices satisfy the required timing and nonstop conditions; she selects the $86 Thursday change over the $269.84 Friday alternative.",
+        "evidence_topology": {
+          "episode_id": "ep_014_palm_springs_partner_retreat",
+          "mode": "evidence",
+          "phase": "early",
+          "session_index": 40,
+          "target_habit_id": "tm_pd_v05_user_004_h02",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_004"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user selected an evening departure for this trip because of the revised session timing, explicitly required nonstop service for the compared options, and directed choosing the lower-cost option after timing and nonstop constraints were met. This is current-trip language, not a durable cross-trip revision or recurring default.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Choose the Thursday 7:28 flight.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Once the choices meet the timing and nonstop requirements, use the lower-cost one.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h01",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Once the choices meet the timing and nonstop requirements, use the lower-cost one.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_004_h02",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The organizer changed Thursday's final retreat session. It now runs from 2:30 to 4:00, so I cannot make the Palm Springs flight we chose without leaving early. The Tuesday outbound and the Renaissance stay are fine. Can you compare changing to a later flight Thursday with staying one more night and flying Friday morning?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I’ll compare the options from the end of the 4:00 p.m. session, including the fare rules, airport timing, fare difference, and any added hotel cost. Is the Thursday checkout still scheduled for the morning, with the hotel holding your bag during the sessions?",
+          "role": "assistant"
+        },
+        {
+          "content": "Correct. They will hold my bag. I need to stay through the full session, and I do not want a connection that turns this into a very late trip home.",
+          "role": "user"
+        },
+        {
+          "content": "Your current American Main Cabin ticket can be changed before departure without a change fee. You would pay any fare difference; if the replacement were cheaper, the remaining value would generally become a trip credit rather than a cash refund. The same-day confirmed-change option is not useful yet because it only opens close to departure and does not guarantee the later seat.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the workable flights as of now?",
+          "role": "user"
+        },
+        {
+          "content": "The practical Thursday choice is the 7:28 p.m. nonstop from PSP to DFW, arriving at 12:14 a.m. Friday. At the current fare, exchanging your existing return would add $86. The Friday option is the 6:18 a.m. nonstop, arriving at 10:58 a.m.; its fare difference is $22.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is 7:28 actually comfortable after a 4:00 finish, or is that cutting it too close?",
+          "role": "user"
+        },
+        {
+          "content": "It is workable with a reasonable margin. If you collect your bag and leave the Renaissance around 4:20, the drive to PSP is normally about 25 to 35 minutes. That puts you at the terminal around 4:45 to 4:55, more than two hours before departure. Even allowing 20 extra minutes for meeting wrap-up or traffic, you should arrive before 5:15. PSP is compact, but I would still plan to leave the resort no later than 4:30.",
+          "role": "assistant"
+        },
+        {
+          "content": "And what does Friday cost once the extra room is included? The event rate may not extend.",
+          "role": "user"
+        },
+        {
+          "content": "It does not extend to Thursday night. The available standard room is $219 plus taxes and the resort charge, $247.84 total. Adding the $22 fare difference makes the Friday plan $269.84 more than the current booking. The airport ride is essentially unchanged, though you would need a pickup around 4:45 a.m. The later Thursday flight adds only $86 and does not require another hotel night.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the Thursday option raises the working trip total from $1,157.62 to $1,243.62, while Friday takes it to $1,427.46?",
+          "role": "user"
+        },
+        {
+          "content": "That is correct based on the amounts currently available. Both exceed the original $1,200 ceiling, but Thursday is $43.62 over it and Friday is $227.46 over. Those totals exclude optional gratuities and any personal dinner Thursday night. Because the schedule change came from the organizer, it would be sensible to document the $86 increase for reimbursement approval.",
+          "role": "assistant"
+        },
+        {
+          "content": "Once the choices meet the timing and nonstop requirements, use the lower-cost one. Choose the Thursday 7:28 flight. Do not change the ticket until I have approval for the overage.",
+          "role": "user"
+        },
+        {
+          "content": "The Thursday 7:28 p.m. PSP-DFW nonstop is the selected return. It lets you attend the complete 2:30-4:00 session, keeps the existing Thursday checkout, and adds $86 rather than $269.84. The revised working trip total is $1,243.62, or $43.62 above the reimbursement ceiling. Nothing has been changed yet; the fare and seat remain subject to availability until the exchange is completed.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0040",
+      "session_index": 40,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Gulf Coast unit B remains reserved for August 10-15 for three guests at $2,098; $1,468.60 is due July 11, written parking confirmation remains outstanding, and a separate $300 security authorization is scheduled for August 8. For New Orleans December 20-23, the Cambria reservation is confirmed for one two-queen room and three guests at a complete $929.01, including valet and parking tax. Guests should use the hotel valet entrance; if arrival will be after 9:00 p.m., Danielle should call with the confirmation details, revised ETA, and a request for a late-arrival note. The guaranteed room should be held overnight. For the May 13-15 partner retreat in Indian Wells, the Tuesday outbound, Renaissance Esmeralda stay through Thursday, and opening-day plan remain in place. Because the final Thursday session now runs from 2:30 to 4:00 p.m., the selected return is the 7:28 p.m. PSP-DFW nonstop, which adds an $86 fare difference and raises the working trip total to $1,243.62, $43.62 above the reimbursement ceiling. Danielle will seek approval for the schedule-driven overage before changing the ticket. The existing ticket has not been changed, and the replacement fare and seat remain subject to availability.",
+  "verification": {
+    "40": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Choose the Thursday 7:28 flight.",
+          "habit_id": "tm_pd_v05_user_004_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Once the choices meet the timing and nonstop requirements, use the lower-cost one.",
+          "habit_id": "tm_pd_v05_user_004_h01",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Once the choices meet the timing and nonstop requirements, use the lower-cost one.",
+          "habit_id": "tm_pd_v05_user_004_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user selected an evening departure for this trip because of the revised session timing, explicitly required nonstop service for the compared options, and directed choosing the lower-cost option after timing and nonstop constraints were met. This is current-trip language, not a durable cross-trip revision or recurring default."
+    }
+  }
+}

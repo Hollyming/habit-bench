@@ -1,0 +1,414 @@
+{
+  "cache_fingerprint": "5e7a2f1eee61dd0b805f983e6e621d1fecb5e24befe1525558f418a2263152fc",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B both comfortably satisfy the meeting constraint: A offers a later departure and simpler routing, while B saves $132 and arrives slightly earlier. Generic trip-planning considerations do not uniquely resolve that tradeoff; the longitudinal routing preference does.",
+      "gold_action": "Lead with the same-day nonstop that leaves later and still provides ample ground-time margin before the meeting.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_002_s0023",
+        "tm_pd_v05_user_002_s0066",
+        "tm_pd_v05_user_002_s0127"
+      ],
+      "habit_family": "flight_route_connection_policy",
+      "habit_id": "tm_pd_v05_user_002_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_route_connection_policy",
+        "boundary_condition": "Treat this as a preference rather than an absolute requirement unless the user explicitly says no layovers for the current trip.",
+        "condition": "When searching for outbound or return flights, prioritize nonstop options.",
+        "default_action": "Search for and present a nonstop itinerary first.",
+        "exception_condition": "If no suitable nonstop flight is available, a one-stop option may be acceptable, but confirm the tradeoff before booking.",
+        "family": "flight_route_connection_policy",
+        "habit_id": "tm_pd_v05_user_002_h03",
+        "name": "Prefer nonstop flights",
+        "preference_value": "Nonstop flights are generally preferred.",
+        "scope_condition": "Applies across Marcus's domestic work and family flight searches when the current trip does not establish a different routing requirement.",
+        "scope_key": "shared_flight_routing",
+        "source_bundle_id": "tm_v04_e2e_bundle_ca360da1d426",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ca360da1d426",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "It saves $132 and arrives ten minutes earlier, but it adds a connection before a client meeting; the history supports paying a moderate premium for nonstop travel.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "Marcus generally keeps a workable nonstop ahead of a connection unless the savings become much larger. The nonstop arrives nearly three hours before the noon meeting and costs $132 more, which is not supported by the history as large enough to displace the lower-disruption business itinerary.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "This is a domestic work flight within the established shared routing scope. The $132 savings and ten-minute earlier arrival make B a credible alternative, but Marcus's repeated choices establish that a suitable nonstop should be presented first when the connection offers no material schedule benefit.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_002_h03_p00",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The named traveler and 'planner lead with' wording could invite use of a learned routing preference, but no such preference is stated."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "A offers the simpler nonstop routing and ample pre-meeting buffer, while B is $132 cheaper, arrives 10 minutes earlier, and still leaves ample buffer. The query gives no rule for valuing nonstop convenience against savings, so neither is uniquely best without preference or policy information.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_002"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "For three travelers, B saves $216 and arrives ten minutes earlier, making it highly competitive on ordinary utility. Selecting A requires distinguishing the isolated, expressly bounded exception in session 73 from the continuing default supported in sessions 23 and 127.",
+      "gold_action": "Head the comparison with the morning nonstop rather than treating a prior trip's accepted connection as a revised default.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_002_s0023",
+        "tm_pd_v05_user_002_s0073",
+        "tm_pd_v05_user_002_s0127"
+      ],
+      "habit_family": "flight_route_connection_policy",
+      "habit_id": "tm_pd_v05_user_002_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_route_connection_policy",
+        "boundary_condition": "Treat this as a preference rather than an absolute requirement unless the user explicitly says no layovers for the current trip.",
+        "condition": "When searching for outbound or return flights, prioritize nonstop options.",
+        "default_action": "Search for and present a nonstop itinerary first.",
+        "exception_condition": "If no suitable nonstop flight is available, a one-stop option may be acceptable, but confirm the tradeoff before booking.",
+        "family": "flight_route_connection_policy",
+        "habit_id": "tm_pd_v05_user_002_h03",
+        "name": "Prefer nonstop flights",
+        "preference_value": "Nonstop flights are generally preferred.",
+        "scope_condition": "Applies across Marcus's domestic work and family flight searches when the current trip does not establish a different routing requirement.",
+        "scope_key": "shared_flight_routing",
+        "source_bundle_id": "tm_v04_e2e_bundle_ca360da1d426",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ca360da1d426",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "It reaches Madison at essentially the same time and saves $216 for three travelers, but the stated history keeps nonstop service ahead unless the price gap is much larger.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "For family travel, Marcus has repeatedly put nonstop options first when they satisfy the schedule. The $72-per-person premium over the earliest connection is moderate, while the prior-evening option adds a hotel and another travel day.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The Southern California connection was explicitly accepted only for that trip because of a much larger savings and protected backup options. It did not revise the durable policy evidenced before and after that episode. For this family search, A should therefore remain ahead of B.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_002_h03_p01",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The phrase 'either of the two earliest options' narrows the intended comparison to A and B, but does not resolve their price-versus-routing tradeoff."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "Both early options satisfy the schedule. B saves $72 per person and arrives 10 minutes earlier, while A is nonstop and leaves later, which can be materially easier for a family. The query does not state whether fare or nonstop convenience should control.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_002"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B expose the same two flights, disclose the same tradeoffs, and both defer ticketing until Marcus chooses. The one-stop saves $192 and arrives ten minutes earlier, while the nonstop leaves later and removes connection risk, so generic utility does not determine which should lead. Only the longitudinal policy establishes the nonstop-first ordering while preserving the connection as a reasonable exception.",
+      "gold_action": "Present the suitable nonstop first while treating the well-protected, substantially cheaper connection as a plausible trip-specific exception that Marcus should confirm before ticketing.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_002_s0066",
+        "tm_pd_v05_user_002_s0073",
+        "tm_pd_v05_user_002_s0127"
+      ],
+      "habit_family": "flight_route_connection_policy",
+      "habit_id": "tm_pd_v05_user_002_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_route_connection_policy",
+        "boundary_condition": "Treat this as a preference rather than an absolute requirement unless the user explicitly says no layovers for the current trip.",
+        "condition": "When searching for outbound or return flights, prioritize nonstop options.",
+        "default_action": "Search for and present a nonstop itinerary first.",
+        "exception_condition": "If no suitable nonstop flight is available, a one-stop option may be acceptable, but confirm the tradeoff before booking.",
+        "family": "flight_route_connection_policy",
+        "habit_id": "tm_pd_v05_user_002_h03",
+        "name": "Prefer nonstop flights",
+        "preference_value": "Nonstop flights are generally preferred.",
+        "scope_condition": "Applies across Marcus's domestic work and family flight searches when the current trip does not establish a different routing requirement.",
+        "scope_key": "shared_flight_routing",
+        "source_bundle_id": "tm_v04_e2e_bundle_ca360da1d426",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ca360da1d426",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "The protected connection, backups, and $192 savings make it a credible value option, but the history's baseline ordering still favors leading with the nonstop; the demonstrated connection exception involved a larger $342 premium.",
+        "difficulty": "hard",
+        "model": "gpt-5.6-sol",
+        "rationale": "The default policy is to lead with the nonstop, while the Southern California exception shows that a protected connection with later backups can become attractive when savings are substantial. A $192 difference warrants presenting that alternative and confirming the tradeoff, not ticketing either itinerary without Marcus's choice.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The Charleston and Houston episodes establish that Marcus ordinarily places suitable nonstop flights ahead of connections, even at an added cost. The Southern California episode shows that a large saving plus protected backup service can justify a connection for a particular trip, but only as a bounded exception rather than a new default. Accordingly, the planner should lead with the nonstop, surface the protected one-stop as a credible savings tradeoff, and obtain Marcus's trip-specific choice before ticketing.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_002_h03_p02",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The choices refer to 'Marcus' even though the query does not identify the traveler by name.",
+          "The distinction between A and B depends only on which unstated preference should lead: lower disruption or lower price."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "Both framing choices preserve user control and accurately present the tradeoff. The nonstop reduces routing complexity, while the protected connection saves $192, arrives slightly earlier, has backup flights, and leaves more than six hours before the visit. The query states no preference that determines which consideration should be presented first, so choosing A or B would require guessing an unstated preference.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_002"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B arrive within ten minutes of each other. B saves $145 and has recovery options, while A leaves later and avoids the connection. The prior exception makes B especially tempting, but only longitudinal disambiguation shows that it should not displace the default here.",
+      "gold_action": "Present the suitable same-evening nonstop first; do not generalize the prior protected-connection exception to this trip.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_002_s0066",
+        "tm_pd_v05_user_002_s0073",
+        "tm_pd_v05_user_002_s0127"
+      ],
+      "habit_family": "flight_route_connection_policy",
+      "habit_id": "tm_pd_v05_user_002_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_route_connection_policy",
+        "boundary_condition": "Treat this as a preference rather than an absolute requirement unless the user explicitly says no layovers for the current trip.",
+        "condition": "When searching for outbound or return flights, prioritize nonstop options.",
+        "default_action": "Search for and present a nonstop itinerary first.",
+        "exception_condition": "If no suitable nonstop flight is available, a one-stop option may be acceptable, but confirm the tradeoff before booking.",
+        "family": "flight_route_connection_policy",
+        "habit_id": "tm_pd_v05_user_002_h03",
+        "name": "Prefer nonstop flights",
+        "preference_value": "Nonstop flights are generally preferred.",
+        "scope_condition": "Applies across Marcus's domestic work and family flight searches when the current trip does not establish a different routing requirement.",
+        "scope_key": "shared_flight_routing",
+        "source_bundle_id": "tm_v04_e2e_bundle_ca360da1d426",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ca360da1d426",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_002",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "It saves $145, arrives ten minutes earlier, and has hub backups, so it is a reasonable alternative. It loses because it requires leaving the conference earlier and the savings are well below the history's clear connection-acceptance example.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "Marcus's default is to keep nonstop service first unless the premium is much larger. Here the $145 premium also preserves almost two hours at the conference; the later hub backups reduce the connection's risk but do not make this savings comparable to the $342 exception in the history.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Although backup flights make B less risky, the history shows that backup protection supported a one-trip exception when paired with a larger cost concern; it did not establish a new standing rule. A's $145 premium is consistent with amounts Marcus has accepted to preserve a suitable nonstop.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_002_h03_p03",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Mentioning hub backups favors B on disruption resilience, while the conference timing favors A; neither cue is sufficient to settle the competing benefits."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "B saves $145, arrives 10 minutes earlier, and has later hub backups. A is nonstop and preserves almost two additional conference hours. With no stated value assigned to conference time, routing simplicity, or savings, both remain reasonably defensible.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "A $418 nonstop leaving at 6:55 a.m. and arriving at 9:05 a.m."
+        },
+        {
+          "choice_id": "B",
+          "text": "A $286 one-stop leaving at 5:40 a.m. and arriving at 8:55 a.m."
+        },
+        {
+          "choice_id": "C",
+          "text": "A $334 one-stop leaving at 8:00 a.m. and arriving at 11:15 a.m."
+        },
+        {
+          "choice_id": "D",
+          "text": "A $302 nonstop the prior evening, arriving at 9:20 p.m., plus a $165 hotel night."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "cross_context_transfer"
+      },
+      "probe_id": "tm_pd_v05_user_002_h03_p00",
+      "query": "Marcus is flying from Boston to Raleigh for a domestic client visit. His first meeting is at noon, and the office is 30 minutes from the airport. Which itinerary should the planner lead with?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_002",
+      "visible_history_scope": {
+        "max_session_index": 140
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "A $364-per-person nonstop leaving at 8:00 a.m. and arriving at 10:10 a.m."
+        },
+        {
+          "choice_id": "B",
+          "text": "A $292-per-person one-stop leaving at 6:30 a.m. and arriving at 10:00 a.m."
+        },
+        {
+          "choice_id": "C",
+          "text": "A $248-per-person nonstop the prior evening, requiring a $190 airport hotel room."
+        },
+        {
+          "choice_id": "D",
+          "text": "A $260-per-person one-stop leaving at 9:15 a.m. and arriving at 1:05 p.m."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "evidence_disambiguation"
+      },
+      "probe_id": "tm_pd_v05_user_002_h03_p01",
+      "query": "Marcus is arranging a three-night family trip to Madison. Everyone can leave by 6:00 a.m., and either of the two earliest options gets them there well before the afternoon plans. Which option should head the comparison?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_002",
+      "visible_history_scope": {
+        "max_session_index": 140
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Lead with the $518 nonstop as the lower-disruption plan, present the $326 protected connection as a substantial-savings alternative, and ask Marcus which tradeoff he wants before ticketing."
+        },
+        {
+          "choice_id": "B",
+          "text": "Lead with the $326 protected connection as the value plan, present the $518 nonstop as the simpler alternative, and ask Marcus which tradeoff he wants before ticketing."
+        },
+        {
+          "choice_id": "C",
+          "text": "Ticket the $518 nonstop immediately because its simpler routing outweighs the $192 difference when both flights arrive well before the visit."
+        },
+        {
+          "choice_id": "D",
+          "text": "Ticket the $326 protected connection immediately because its lower fare and slightly earlier arrival outweigh the added intermediate stop."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "exception"
+      },
+      "probe_id": "tm_pd_v05_user_002_h03_p02",
+      "query": "For a solo family visit to Portland, Maine, nothing is scheduled before 4:30 p.m. The two practical same-day choices are a $518 nonstop leaving at 8:05 a.m. and arriving at 10:20 a.m., and a $326 itinerary leaving at 7:35 a.m. and arriving at 10:10 a.m. with one protected 50-minute connection and two later same-airline backups. Both fares are changeable. How should the planner frame the choice before ticketing?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_002",
+      "visible_history_scope": {
+        "max_session_index": 140
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "The $520 nonstop, preserving the simpler routing and two additional hours at the conference."
+        },
+        {
+          "choice_id": "B",
+          "text": "The $375 one-stop, using the hub backups to justify the connection and $145 savings."
+        },
+        {
+          "choice_id": "C",
+          "text": "A $310 nonstop the next morning, adding a $160 hotel night but avoiding an evening flight."
+        },
+        {
+          "choice_id": "D",
+          "text": "A $330 one-stop leaving at 7:15 p.m. and arriving at 11:50 p.m., preserving more conference time."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "evidence_disambiguation"
+      },
+      "probe_id": "tm_pd_v05_user_002_h03_p03",
+      "query": "After a Nashville conference, Marcus can take a $520 nonstop leaving at 6:00 p.m. and arriving at 8:05 p.m., or a $375 one-stop leaving at 4:10 p.m. and arriving at 7:55 p.m. The connecting airline has two later flights from its hub, and Marcus has no fixed commitment that evening. Which itinerary should be presented first?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_002",
+      "visible_history_scope": {
+        "max_session_index": 140
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "cross_context_transfer": 1,
+      "evidence_disambiguation": 2,
+      "exception": 1
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h05', 'boundary') actual=[('tm_pd_v05_user_000_h05', 'support')]",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya set a 4.0 minimum on the named Google guest-rating metric for the current nice-hotel search and clarified the boundary that 3.5 applies only when she explicitly frames a search as budget-focused. The 3.9 option was therefore excluded without conflating guest ratings with hotel class.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "The $632 nonstop is approved, so let’s settle Raleigh lodging. I’ll reach the hotel around 7:15 Tuesday evening and check out Thursday. Can you price the three North Hills choices for both nights, including tax and parking, and verify the route to the client office?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Using the current checkout totals for Tuesday through Thursday: the hotel beside the client building is $249 per night, $498 room subtotal, $64.74 tax, and no parking fee, for $562.74 total. The $218 hotel is $436 plus $56.68 tax and $32 for two nights of parking, totaling $524.68. The $236 hotel is $472 plus $61.36 tax with complimentary parking, totaling $533.36. I’ll check the door-to-door routes rather than relying on the hotels’ distance labels.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. The nightly cap is $250 before tax, but parking still counts when we compare the real cost. What does “beside” mean for the first one?",
+          "role": "user"
+        },
+        {
+          "content": "It is genuinely adjacent: the hotel entrance and the client building at 4242 Six Forks Road are on the same North Hills block. The practical walking route is about 0.2 mile, mostly along the internal sidewalk, and takes roughly four minutes. You do not need to cross Six Forks Road.",
+          "role": "assistant"
+        },
+        {
+          "content": "That matters. Now check the $218 option. Eleven minutes by car sounds suspiciously dependent on traffic.",
+          "role": "user"
+        },
+        {
+          "content": "It is about 3.4 miles away. The mapped route uses Wake Forest Road, then Six Forks Road into North Hills. It is approximately 11 minutes in light traffic, but closer to 16–22 minutes during the morning rush. Walking is not practical. A rideshare estimate is $13–$18 each way before surge pricing.",
+          "role": "assistant"
+        },
+        {
+          "content": "I won’t have a rental car, so remove the parking charge from my total. Compare two round-trip rideshare days instead.",
+          "role": "user"
+        },
+        {
+          "content": "With no car, the $218 hotel becomes $492.68 after tax. Four rideshare legs add an estimated $52–$72, bringing the working trip total to $544.68–$564.68. That puts it anywhere from $18.06 below to $1.94 above the adjacent hotel, while adding about 45–75 minutes of total commuting across Wednesday and Thursday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Right, so the headline room rate is not much of a savings. What is wrong with the walking route from the $236 property?",
+          "role": "user"
+        },
+        {
+          "content": "The advertised distance is short in a straight line, but the property sits across Six Forks Road from the client block. There is no direct pedestrian crossing at the point nearest the hotel. The legal route requires walking to a signalized intersection, crossing there, and doubling back. It is about 0.8 mile and 16–19 minutes each way, with several lanes of traffic; attempting the direct crossing would be unsafe.",
+          "role": "assistant"
+        },
+        {
+          "content": "Could I just rideshare from that one on Thursday with my suitcase and walk Wednesday?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Its lodging total is $533.36. Walking both directions Wednesday and taking one Thursday-morning rideshare would add about $9–$14, for $542.36–$547.36 overall. That is roughly $15–$20 less than the adjacent hotel, but Wednesday would involve about 32–38 minutes of walking along a busy-road corridor.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before choosing, confirm that all three will accept a 7:15 p.m. arrival and hold my bag after checkout Thursday. My client meetings run until about 2:30.",
+          "role": "user"
+        },
+        {
+          "content": "All three list staffed front desks through the evening, and 7:15 p.m. is within normal check-in hours. Each also confirmed complimentary luggage storage on checkout day for registered guests. For the adjacent hotel, you can check out Thursday morning, leave the bag at reception, walk to the meeting, and retrieve it around 2:40 p.m. I would still add the arrival time to the reservation notes because no room is guaranteed before check-in is completed.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do any of them require checkout before 11? I may want to work from the room for an hour first.",
+          "role": "user"
+        },
+        {
+          "content": "The adjacent and $236 properties have 11:00 a.m. checkout. The $218 property lists noon. All allow you to leave luggage earlier at the desk, so the 11:00 a.m. checkout does not interfere with the afternoon meeting. Late checkout would be request-only and should not be part of the plan.",
+          "role": "assistant"
+        },
+        {
+          "content": "And what are the actual guest ratings? This is a work trip, but I still want a well-rated, nice hotel. Use a 4.0 floor for that kind of search; the lower 3.5 cutoff is only when I explicitly ask for a budget-focused hotel.",
+          "role": "user"
+        },
+        {
+          "content": "Using Google guest ratings, the adjacent hotel is 4.4, the $218 property is 4.1, and the $236 property is 3.9. Hotel star class is separate and is not what I used for this comparison. Under the 4.0 Google-rating floor for this nice-stay search, the third property drops out even though its room price and hybrid walk/rideshare plan are workable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then compare only the first two one last time. Include Thursday luggage logistics and give me your recommendation.",
+          "role": "user"
+        },
+        {
+          "content": "The adjacent hotel is $562.74 total, stays within the $250 pretax nightly cap, has a 4.4 Google rating, and requires no local transportation for the client visit. Thursday is straightforward: leave the suitcase at reception, walk four minutes to the meeting, return around 2:40, and collect it. The $218 hotel is $492.68 for lodging and an estimated $544.68–$564.68 after four rideshare legs. It has a 4.1 Google rating, but morning traffic makes the advertised 11-minute drive unreliable, and you would need a rideshare back after retrieving your bag Thursday. I recommend the adjacent hotel. Its maximum premium over the realistic second-option total is about $18, and it may actually cost less if fares surge. The room is within the nightly limit, late arrival and luggage storage are covered, and the route avoids a commute entirely. Nothing has been booked; the final step is to recheck the $249 rate and total before purchase.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0088",
+      "session_index": 88,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "For client-raleigh-015, the $632 nonstop round trip is approved. The adjacent North Hills hotel is recommended for Tuesday through Thursday at a currently displayed $562.74 total: it is within the $250 pretax nightly cap, about a four-minute walk from the client building without crossing Six Forks Road, accepts the planned 7:15 p.m. arrival, and offers complimentary Thursday luggage storage after 11:00 a.m. checkout. The lower-rate hotel would total $492.68 for lodging and an estimated $544.68–$564.68 with four rideshare legs, with traffic adding uncertainty. The across-road property was removed from consideration. Nothing has been booked; recheck the adjacent hotel’s rate and total before purchase. Partner-coast-007 remains unbooked with SFO ranked first at $4,762 and SJC retained at $4,590; recheck flight and rental totals before purchase. Client-denver-009 remains unbooked pending project-manager approval, with two flight options awaiting fare and availability checks; lodging and local transportation remain unresolved."
+}

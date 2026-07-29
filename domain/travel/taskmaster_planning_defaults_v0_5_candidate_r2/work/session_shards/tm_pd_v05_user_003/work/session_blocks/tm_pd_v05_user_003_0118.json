@@ -1,0 +1,134 @@
+{
+  "cache_fingerprint": "bd0b2010502d5fd9aafb849ca3a9ceb14e3b2cfc199fe297a479a5b890e9775d",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The user selected the Thursday one-stop because it preserved the confirmed audit close, kept the rental-car requirement, and held the trip within the $1,400 approval. This was a trip-specific price and schedule decision; no recurring preference was established.",
+        "evidence_topology": {
+          "episode_id": "audit-raleigh-01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 118,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selected the acceptable flight version that stayed within the approved trip amount. The other candidate habits are not directly evidenced by the user's utterances in this session.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "The connection is the only version within the amount. Is the $742 fare still available, and what are the ticket terms?",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The host has confirmed we should be finished by 3:15 Thursday. Please reprice the Raleigh flights before I send the plan through. The approved trip amount is $1,400, and I still need the rental car.",
+          "role": "user"
+        },
+        {
+          "content": "I found three workable versions using the Tuesday January 19 nonstop to RDU, which is still 8:35 a.m.–4:42 p.m. The Thursday 7:40 p.m. nonstop has risen to $982 round trip, bringing the two-night hotel and compact rental plan to $1,553.08. A Thursday 8:55 p.m. one-stop through Atlanta is $742 round trip and arrives SFO at 12:38 a.m. Friday; that trip totals $1,313.08. The Friday 7:10 a.m. nonstop is $706 round trip, but another hotel night and rental day bring that version to $1,486.24.",
+          "role": "assistant"
+        },
+        {
+          "content": "Work out the Thursday timing carefully. Does a 3:15 finish actually make the nonstop realistic, or are we relying on everything going perfectly?",
+          "role": "user"
+        },
+        {
+          "content": "It is realistic, with some margin. From the Clayton site, I would plan on leaving by 3:25 p.m. after a ten-minute wrap-up. Allow 45 minutes to reach the airport area, 15 minutes to refuel, and 15 minutes for the rental return and shuttle. That puts you at the terminal around 4:40 p.m., three hours before the nonstop. Even with 30 minutes of traffic delay, you would arrive around 5:10 p.m. The practical site-departure cutoff remains about 4:15 p.m.; after that, the margin starts shrinking quickly.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the schedule supports it, but the fare does not. What does the later connection look like beyond the arrival time?",
+          "role": "user"
+        },
+        {
+          "content": "It departs RDU at 8:55 p.m., reaches Atlanta at 10:22 p.m., and has a 56-minute connection to the 11:18 p.m. flight to San Francisco, arriving at 12:38 a.m. Both segments are on the same ticket. The connection is valid but leaves limited recovery time if the first segment is delayed. Your airport timeline would be comfortable: using the same 3:25 p.m. site departure, you would reach the terminal roughly four hours before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "And compare that with staying Thursday night. Include the actual extra hotel and car costs, not just the airfare.",
+          "role": "user"
+        },
+        {
+          "content": "The Friday version adds $118.16 for Thursday night at the Comfort Suites, including tax, plus $54.00 for extending the compact rental through Friday morning. Its airfare is $36 less than the Thursday connection, so the net trip increase is $136.16: $1,486.24 versus $1,313.08. The Friday nonstop departs at 7:10 a.m. and arrives SFO at 10:28 a.m. To allow time for fuel, rental return, and security, you would need to leave the hotel around 4:35 a.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is over the approval, and the early hotel departure is not buying much. Before we choose the connection, confirm the hotel still has the two nights and that a late airport return does not change the car rate.",
+          "role": "user"
+        },
+        {
+          "content": "Confirmed. The Comfort Suites Clayton–Garner still has the king room for Tuesday and Wednesday nights at $356.42 total, cancellable without charge until 6:00 p.m. local time on January 18. The compact rental remains $214.66 for Tuesday 5:15 p.m. through Thursday 5:15 p.m. The company allows a 59-minute grace period, so returning near 4:30–5:00 p.m. fits the quoted rate. You can return the car then and wait at the terminal for the 8:55 p.m. departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "The connection is the only version within the amount. Is the $742 fare still available, and what are the ticket terms?",
+          "role": "user"
+        },
+        {
+          "content": "It is still available at $742 total. It is a standard economy round trip, not basic economy. Changes are permitted without a change fee, though any fare difference applies. The ticket is nonrefundable to the original payment method; cancellation before departure produces a carrier credit. Seat selection is included, and one checked bag would cost $35 each way.",
+          "role": "assistant"
+        },
+        {
+          "content": "Go ahead and ticket that round trip using the work card ending in 1842. Do not add a checked bag. Keep the hotel and rental prepared but unbooked until I have the flight confirmation.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll purchase only the Tuesday outbound and Thursday connecting return for $742 on the work card ending in 1842, with no checked bag. The hotel and rental will remain unbooked.",
+          "role": "assistant"
+        },
+        {
+          "content": "Proceed.",
+          "role": "user"
+        },
+        {
+          "content": "Ticketed for Priya Nair. The work card ending in 1842 was charged $742, and the airline confirmation is R7Q2LM. Outbound is Tuesday, January 19, SFO–RDU nonstop, 8:35 a.m.–4:42 p.m. Return is Thursday, January 21, RDU–ATL 8:55–10:22 p.m., then ATL–SFO 11:18 p.m.–12:38 a.m. Friday. No checked bag was added. With the still-unbooked hotel at $356.42 and rental at $214.66, the planned trip total is $1,313.08, which is $86.92 under approval. The Thursday nonstop and Friday fallback remain documented, and the hotel and rental still need to be booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0118",
+      "session_index": 118,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund and rental documentation from earlier travel remain pending. Previously recorded work, conference, wellness, and leisure trips remain unchanged. The Phoenix supplier-audit itinerary remains completed at a projected $1,459.40, with a $28.40 authorization increase required. Puerto Vallarta remains fully arranged for Priya Nair and Anil Raj Nair for November 28-December 4, 2026: flights K7M4QX, resort PV8R26, transfer TR-PV8R26, and massages SP4017, with a projected trip total of $7,098. For the Clayton, North Carolina supplier audit on January 20-21, 2027, flights are ticketed under R7Q2LM for $742: Tuesday January 19 nonstop SFO-RDU and Thursday January 21 RDU-ATL-SFO, arriving at 12:38 a.m. Friday. The confirmed 3:15 p.m. Thursday close supports a 3:25 p.m. site departure; 4:15 p.m. remains the practical cutoff. The Comfort Suites Clayton–Garner two-night stay at $356.42 and compact RDU rental at $214.66 remain available but unbooked. The planned total is $1,313.08, $86.92 below the $1,400 approval. The higher-priced Thursday nonstop and three-night Friday fallback remain documented.",
+  "verification": {
+    "118": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "The connection is the only version within the amount. Is the $742 fare still available, and what are the ticket terms?",
+          "habit_id": "tm_pd_v05_user_003_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selected the acceptable flight version that stayed within the approved trip amount. The other candidate habits are not directly evidenced by the user's utterances in this session."
+    }
+  }
+}

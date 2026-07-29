@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "20892666a4cb1096ce6e3621e49580c9fb30cd4e716c14efa9ad77dd06e25a3f",
+  "habits": [
+    {
+      "boundary_condition": "Keep the selected fare within the stated overall flight budget",
+      "bundle_id": "tm_v04_e2e_bundle_dab7e9145814",
+      "condition": "When booking flights and business class is available within the trip budget",
+      "confidence": 0.88,
+      "decision": "accept",
+      "default_action": "Search for and select business-class options first",
+      "exception_condition": "Use coach when business class is unavailable or cannot fit the budget",
+      "family": "trip_context_flight_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_dab7e9145814",
+      "induced_at": "2026-07-25T08:47:02.228705+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer business class when feasible",
+      "preference_value": "business class",
+      "rationale": "Across three independent flight-booking conversations, the user selects or requests business class while treating price and feasibility as boundaries; one conversation explicitly accepts coach as the fallback.",
+      "reasoning_effort": "high",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports preferring business class subject to the trip budget.",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "exact_user_quote": "What if I upgraded to business class. Could I do that within my budget?",
+          "instruction_id": "flight-11",
+          "turn_index": 8
+        },
+        {
+          "contribution": "Directly supports business class as the preferred default and coach as the feasibility fallback.",
+          "conversation_id": "dlg-60490d01-11df-4647-b0d7-546f7a08bba8",
+          "exact_user_quote": "I'd like to be seated in business class if I can get there. Otherwise, coach is fine.",
+          "instruction_id": "flight-4",
+          "turn_index": 16
+        },
+        {
+          "contribution": "Independently supports business class as the requested cabin default.",
+          "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+          "exact_user_quote": "I'd like it to be in business class, and I'd like a seat near the window or next to the window.",
+          "instruction_id": "flight-8",
+          "turn_index": 9
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "What if I upgraded to business class. Could I do that within my budget?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 8,
+          "user_utterance": "What if I upgraded to business class. Could I do that within my budget?"
+        },
+        {
+          "annotated_segment": "I'd like to be seated in business class if I can get there. Otherwise, coach is fine.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-60490d01-11df-4647-b0d7-546f7a08bba8",
+          "habitual_language": false,
+          "instruction_id": "flight-4",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 16,
+          "user_utterance": "I'd like to be seated in business class if I can get there. Otherwise, coach is fine."
+        },
+        {
+          "annotated_segment": "I'd like it to be in business class, and I'd like a seat near the window or next to the window.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+          "habitual_language": false,
+          "instruction_id": "flight-8",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 9,
+          "user_utterance": "I'd like it to be in business class, and I'd like a seat near the window or next to the window."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+    "dlg-60490d01-11df-4647-b0d7-546f7a08bba8",
+    "dlg-706c066c-6db6-416d-962d-eea858e726a0"
+  ]
+}

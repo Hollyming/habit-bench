@@ -1,0 +1,88 @@
+{
+  "reason": "unnatural_habit_leakage_session_19:The Thursday meeting end time creates an explicit current-trip override to the afternoon-return default. The user also requests a later nonstop and seeks a cheaper outbound while preserving arrival reasonableness and the selected return. Leakage is true because, before the user established a nonstop preference in this block, the assistant ranked nonstop outbound options as the strongest choices and framed the connecting option as inferior; nonstop was not listed as previously established. All matched language is specific to this trip rather than durable across trips.",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The Nashville search was limited to this trip’s fixed meeting schedule, Monday departure window, Thursday airport-transfer needs, and $625 economy allowance. Two qualifying round trips were identified, with no booking made and no recurring preference established.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to start on Nashville. The integration review is downtown Tuesday through Thursday, 9:00 a.m. Tuesday through 5:00 p.m. Thursday. I can leave Monday after 2:30, and airfare needs to stay within $625 in economy.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare Monday outbound and Thursday return combinations. Are you flying from MSP, and does ‘after 2:30’ mean the flight itself must depart after then?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, MSP, and the scheduled departure needs to be after 2:30. I’d also like enough time in Nashville Monday night that Tuesday morning isn’t tight.",
+          "role": "user"
+        },
+        {
+          "content": "The strongest Monday choices are a 3:20 p.m. nonstop arriving BNA at 5:28 p.m. and a 5:45 p.m. nonstop arriving at 7:53 p.m. There is a cheaper 6:10 p.m. option with a connection, but it does not arrive until 10:42 p.m. The earlier nonstop gives you the most useful margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. What can I reasonably make Thursday after the 5:00 finish?",
+          "role": "user"
+        },
+        {
+          "content": "From the downtown client office, allow about 25–40 minutes to BNA during the evening commute, then the normal airport buffer. A 6:35 p.m. departure is too exposed. The practical options are a 7:40 p.m. nonstop arriving MSP at 9:53 p.m., or an 8:55 p.m. one-stop arriving at 12:18 a.m. Friday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there anything between those, or a later nonstop?",
+          "role": "user"
+        },
+        {
+          "content": "There is an 8:20 p.m. nonstop arriving MSP at 10:34 p.m. It costs more than the 7:40, but it gives you roughly 35 additional minutes of transfer and check-in margin. The next nonstop is not until Friday morning.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please price the 3:20 outbound with both of those Thursday nonstops.",
+          "role": "user"
+        },
+        {
+          "content": "With the Monday 3:20 p.m. outbound, the round trip returning Thursday at 7:40 p.m. is $548. The combination with the 8:20 p.m. return is $603. Both are standard economy fares and remain under the $625 allowance.",
+          "role": "assistant"
+        },
+        {
+          "content": "How realistic is 7:40 if the meeting actually ends at 5:00? I won’t need to stop at a hotel, but I may have a checked bag.",
+          "role": "user"
+        },
+        {
+          "content": "It is workable but leaves limited recovery time. If you leave the office by 5:10, a 40-minute ride puts you at BNA around 5:50, about 1 hour 50 minutes before departure. A traffic delay or a meeting overrun would reduce that quickly, especially with a checked bag. The 8:20 provides about 2 hours 30 minutes on the same assumptions.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then the later return is probably the cleaner option. Is there a less expensive Monday flight that still gets in at a reasonable hour and keeps that return?",
+          "role": "user"
+        },
+        {
+          "content": "Pairing the Monday 5:45 p.m. nonstop with the Thursday 8:20 p.m. nonstop comes to $571. You would land at 7:53 Monday evening, which still leaves time to reach a downtown hotel before 9:00. The connected Monday itinerary lowers the total to $526, but its 10:42 p.m. arrival gives you little overnight margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the best two combinations, including the tradeoff, but don’t book yet.",
+          "role": "user"
+        },
+        {
+          "content": "Two workable round trips are: Monday 3:20–5:28 p.m. nonstop with Thursday 8:20–10:34 p.m. nonstop for $603; this preserves the most Monday-night and Thursday-transfer margin. Or Monday 5:45–7:53 p.m. nonstop with the same Thursday 8:20–10:34 p.m. return for $571; it saves $32 while still getting you downtown at a reasonable hour. Both fit the $625 economy allowance. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0019",
+      "session_index": 19,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. The April 23–28 coastal trip flights and hotels are booked; two quoted private rides remain unreserved. The June 9–12 Denver trip return has been changed to the Friday 6:40 p.m. nonstop, with the hotel unchanged. The August 10–14 Philadelphia workshop is complete: the return moved to Friday at 8:25 a.m., and the Sheraton Valley Forge stay was extended through Friday morning; the changes added $275.44 total. Rideshares remained the transportation plan. For the upcoming downtown Nashville integration review, Tuesday at 9:00 a.m. through Thursday at 5:00 p.m., two unbooked MSP round trips fit the $625 economy allowance: Monday 3:20 p.m. outbound with Thursday 8:20 p.m. return for $603, or Monday 5:45 p.m. outbound with the same return for $571."
+}

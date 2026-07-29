@@ -1,0 +1,110 @@
+{
+  "cache_fingerprint": "25f5f20781cb80e01d42bd62d8bc6a3b12cfd52e2fec95cb40d8892c26bd341d",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The family finalized the refundable Hampton two-queen option after verifying three-person occupancy, breakfast coverage, all mandatory charges, parking, and the cancellation cutoff. No recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "ep_002_gulf_coast_fall_break",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 4,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_004"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user verifies that breakfast is included for every registered guest before finalizing the current hotel, then keeps the rate after confirmation. This supports included hotel breakfast for this booking but does not establish a recurring default across trips.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.93,
+            "evidence_quote": "And breakfast covers all three of us, correct? Not just two vouchers?",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h04",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I’m ready to settle the Hampton. Before I enter payment, check the two-queen refundable rate for October 12 through 17. Does it definitely allow two adults and our 14-year-old?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The rate details show a maximum occupancy of four, and the guest entry is accepted as two adults and one child age 14. The room has two queen beds, so no rollaway or second room is required.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now give me every hotel charge. I don’t want the total to leave out parking or some resort fee.",
+          "role": "user"
+        },
+        {
+          "content": "For five nights, the breakdown is $1,360 for the room, $140 in lodging taxes, and $75 for self-parking at $15 per night. There is no resort or destination fee on this rate. The hotel total due is $1,575.",
+          "role": "assistant"
+        },
+        {
+          "content": "And breakfast covers all three of us, correct? Not just two vouchers?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Hot breakfast is included for all registered guests in the room, including your daughter; it is not limited to two vouchers.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the exact cancellation cutoff? I need to know whether we’ll have a meaningful tropical-weather forecast by then.",
+          "role": "user"
+        },
+        {
+          "content": "The refundable rate can be canceled without penalty through 11:59 p.m. Central Time on Thursday, October 10. From Friday, October 11 onward, the penalty is one night’s room charge plus tax. That gives you a forecast roughly two days before check-in, which should be useful for identifying a developed storm or a credible coastal threat, though not for eliminating all uncertainty.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Keep the refundable rate and state the final trip amount once, including the driving estimate we already used.",
+          "role": "user"
+        },
+        {
+          "content": "The lodging selection is the refundable two-queen room for three at Hampton Inn & Suites Orange Beach/Gulf Front, October 12–17. Hotel charges are $1,575 all-in: $1,360 room, $140 tax, $75 parking, and $0 resort fees; breakfast is included for all three. Adding the prior $270 driving estimate brings the trip’s transportation-and-hotel total to $1,845. Cancel by 11:59 p.m. Central on October 10 to avoid the one-night-plus-tax penalty.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0004",
+      "session_index": 4,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Danielle, her spouse, and their 14-year-old have selected a refundable two-queen room at Hampton Inn & Suites Orange Beach/Gulf Front for their October 12–17 Orange Beach trip and will drive from Dallas. The verified hotel total is $1,575, including taxes and five nights of parking, with no resort fee; breakfast covers all three registered guests. The combined driving-and-lodging estimate is $1,845. Cancellation is free through 11:59 p.m. Central on October 10, after which the penalty is one night plus tax. The Chicago partner-summit flight-and-hotel combination remains unbooked.",
+  "verification": {
+    "4": {
+      "habit_signals": [
+        {
+          "confidence": 0.93,
+          "evidence_quote": "And breakfast covers all three of us, correct? Not just two vouchers?",
+          "habit_id": "tm_pd_v05_user_004_h04",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user verifies that breakfast is included for every registered guest before finalizing the current hotel, then keeps the rate after confirmation. This supports included hotel breakfast for this booking but does not establish a recurring default across trips."
+    }
+  }
+}

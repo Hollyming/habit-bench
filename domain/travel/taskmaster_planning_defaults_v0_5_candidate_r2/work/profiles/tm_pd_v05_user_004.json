@@ -1,0 +1,165 @@
+{
+  "cache_fingerprint": "8953022681d28182114f78df72b9c166dd063e753646ae6776b7f68b6104c33e",
+  "profile": {
+    "communication_style": {
+      "decision_pattern": "Makes routine work decisions quickly when constraints are satisfied, but asks for side-by-side hotel tradeoffs on family trips.",
+      "information_preferences": "Prefers a short ranked list with departure time, connection duration, total price, and important hotel inclusions stated explicitly.",
+      "tone": "Direct, practical, and cordial"
+    },
+    "generated_by": {
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high"
+    },
+    "generation_method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+    "habit_interactions": [
+      "Afternoon departures are considered before price ranking, so a cheaper flight outside the preferred period does not automatically lead the shortlist when workable afternoon options exist.",
+      "For connecting itineraries, price matters only after the connection count and layover practicality are acceptable.",
+      "The window-seat preference applies across work and leisure flights but can be deferred when seat assignment is unavailable during booking.",
+      "Included breakfast has recurring value on work trips and remains a soft convenience on family stays.",
+      "A balcony becomes salient during coastal or scenic family stays but should not displace stronger requirements such as location, budget, or basic suitability."
+    ],
+    "habits": [
+      {
+        "alternative_group_key": "general_flight_departure_time_of_day",
+        "boundary_condition": "Do not apply the preference to a leg for which another time of day is explicitly requested.",
+        "condition": "When selecting a flight departure time and afternoon options are available",
+        "default_action": "Prioritize departure options in the afternoon.",
+        "exception_condition": "Use another departure period when explicitly requested or when no workable afternoon option is available.",
+        "family": "flight_departure_arrival_timing",
+        "habit_id": "tm_pd_v05_user_004_h00",
+        "name": "Prefer afternoon departures",
+        "preference_value": "Afternoon flight departures preferred",
+        "scope_condition": "Across work and family trips when Danielle has discretion over the departure period and no event, school, or same-day obligation requires another time.",
+        "scope_key": "general_flight_departure_time",
+        "source_bundle_id": "tm_v04_e2e_bundle_ff9a7f3c433c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_ff9a7f3c433c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_004"
+      },
+      {
+        "alternative_group_key": "flight_connection_count_duration_preference",
+        "boundary_condition": "Apply this only when comparing connecting itineraries; do not infer a general preference for either nonstop flights or flights with a layover.",
+        "condition": "When evaluating flight itineraries with connections.",
+        "default_action": "Prioritize itineraries with at most one layover and a short connection that permits a practical transfer and brief break.",
+        "exception_condition": "Follow explicit current-trip requirements for a different number or duration of stops.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v05_user_004_h01",
+        "name": "flight_connection_limit_preference",
+        "preference_value": "When a flight connection is needed, prefer no more than one short layover.",
+        "scope_condition": "Across domestic trips when the viable flight set includes connecting itineraries.",
+        "scope_key": "connecting_flight_evaluation",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_004"
+      },
+      {
+        "alternative_group_key": "flight_option_ranking_priority",
+        "boundary_condition": "Do not let price override explicit requirements such as Wi-Fi, acceptable layover length, nonstop service when requested, or required departure and return timing.",
+        "condition": "When comparing flights that meet the trip's required timing, connectivity, and onboard-feature needs.",
+        "default_action": "Rank acceptable options by price and choose the cheapest one.",
+        "exception_condition": "Choose a more expensive option when the cheapest violates a stated must-have or has an unacceptably long or inconvenient layover.",
+        "family": "flight_price_quality_tradeoff",
+        "habit_id": "tm_pd_v05_user_004_h02",
+        "name": "Cheapest acceptable flight",
+        "preference_value": "Prefer the lowest-priced flight that still satisfies essential itinerary and amenity constraints.",
+        "scope_condition": "Especially for nonprofit-funded work travel, and also for family travel, after current itinerary and amenity requirements have been satisfied.",
+        "scope_key": "acceptable_flight_price_ranking",
+        "source_bundle_id": "tm_v04_e2e_bundle_cfc55e51f18b",
+        "source_habit_instance_id": "tm_v04_e2e_habit_cfc55e51f18b",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_004"
+      },
+      {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v05_user_004_h03",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "When Danielle is selecting her own seat on a work or leisure flight and seat location is available for selection.",
+        "scope_key": "individual_flight_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_004"
+      },
+      {
+        "alternative_group_key": "hotel_breakfast_inclusion_preference",
+        "boundary_condition": "Treat this as a soft preference because the evidence ranges from tentative interest to a direct requirement.",
+        "condition": "When evaluating or booking a hotel.",
+        "default_action": "Prioritize hotels with free breakfast when available, and verify whether breakfast is included if the listing is unclear.",
+        "exception_condition": "Do not reject an otherwise suitable hotel solely because free breakfast is unavailable unless the user makes it mandatory for the current booking; do not infer requirements about breakfast type or quality.",
+        "family": "hotel_included_services",
+        "habit_id": "tm_pd_v05_user_004_h04",
+        "name": "prefer_included_hotel_breakfast",
+        "preference_value": "Prefer hotels that include free breakfast.",
+        "scope_condition": "When comparing hotels for work trips with early meetings or venue calls, and as a lesser convenience during family stays.",
+        "scope_key": "hotel_breakfast_inclusion",
+        "source_bundle_id": "tm_v04_e2e_bundle_4159e7bcd6b1",
+        "source_habit_instance_id": "tm_v04_e2e_habit_4159e7bcd6b1",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_004"
+      },
+      {
+        "alternative_group_key": "hotel_room_balcony_preference",
+        "boundary_condition": "Treat the balcony as a soft preference rather than a strict requirement; a first-floor room can be acceptable without one",
+        "condition": "When selecting a hotel room",
+        "default_action": "Prioritize rooms with a balcony when available",
+        "exception_condition": "Do not reject an otherwise suitable hotel solely because a balcony is unavailable",
+        "family": "hotel_view_balcony_flexibility",
+        "habit_id": "tm_pd_v05_user_004_h05",
+        "name": "hotel_room_balcony_preference",
+        "preference_value": "Prefer a room with a balcony",
+        "scope_condition": "When selecting a room for a coastal or otherwise scenic family leisure stay where Danielle expects to spend meaningful downtime at the hotel.",
+        "scope_key": "scenic_family_hotel_room",
+        "source_bundle_id": "tm_v04_e2e_bundle_c407a334b298",
+        "source_habit_instance_id": "tm_v04_e2e_habit_c407a334b298",
+        "strength": "background",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_004"
+      }
+    ],
+    "longitudinal_plan": {
+      "target_history_characters": 318000,
+      "target_sessions": 136,
+      "travel_tempo": "Roughly twelve to fourteen trips per year, with frequent short work episodes, several family-planning episodes, and occasional follow-up sessions for schedule changes, seat selection, or hotel verification.",
+      "typical_episode_shape": "Most trips unfold over two to four sessions: an initial constraint-setting request, a comparison or refinement session, a selection step, and sometimes a later adjustment. Annual coastal vacations generate longer hotel-comparison threads, while routine work trips are shorter and more repetitive."
+    },
+    "persona": {
+      "age": 39,
+      "home_base": "Dallas, Texas",
+      "household": "Lives with her spouse and their 14-year-old daughter; the family takes several school-break trips, including a coastal vacation most years.",
+      "name": "Danielle Brooks",
+      "occupation": "Corporate partnerships director for a national youth arts nonprofit",
+      "planning_behavior": "She starts with fixed event dates or school calendars, then filters flights by usable departure time and connection quality before comparing acceptable options by price. She usually handles flight details quickly but spends more time comparing hotels for family vacations, where the setting and room experience matter more. For work stays, she values included breakfast because mornings often begin with early venue calls or meetings.",
+      "travel_pattern": "Danielle travels about once a month for sponsor meetings, fundraising events, and program showcases in major U.S. cities. Work trips usually last two or three nights, while family trips are less frequent and planned farther ahead. Her routes vary enough that connections are sometimes necessary, and nonprofit travel budgets make price important once an itinerary is workable."
+    },
+    "travel_contexts": [
+      {
+        "context": "work_travel",
+        "frequency": "Eight to ten domestic trips per year",
+        "typical_needs": "Fixed event windows, practical connections, controlled airfare, a reliable seat preference, and breakfast that simplifies early work mornings"
+      },
+      {
+        "context": "family_leisure",
+        "frequency": "Three or four trips per year, usually around school breaks",
+        "typical_needs": "Flexible flight shopping and more deliberate hotel comparison, with balconies especially appealing on coastal or scenic stays"
+      },
+      {
+        "context": "coastal_vacation",
+        "frequency": "Usually one longer trip each year",
+        "typical_needs": "A comfortable hotel stay where outdoor room space contributes meaningfully to the vacation experience"
+      }
+    ],
+    "user_id": "tm_pd_v05_user_004"
+  }
+}

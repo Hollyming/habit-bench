@@ -1,0 +1,143 @@
+{
+  "cache_fingerprint": "65a7d7f626d92a5229257e963d4923f53fe68e39e035a86bc5aa1a496761f780",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves only the active Cary trip: the earlier client start requires the Monday outbound, and Maya verifies the combined cost, payment timing, and cancellation exposure before purchase. No recurring travel preference is introduced.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-001",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 2,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user makes current-trip selections and verifies a specific return itinerary, but no user utterance independently states or unambiguously endorses any candidate habit's concrete recurring preference. The afternoon return time and other itinerary details are supplied by the assistant, while the user frames timing around this trip's 3:00 p.m. meeting close rather than as a durable default.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The client moved Tuesday’s first session to 9:00 a.m., so the Tuesday morning flight is out. I’m ready to use the Monday evening flight and the Hampton in Cary for four nights. Before I buy, check the whole package and give me the real total and the restrictions.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll recheck the Monday flight against the new start, then combine it with the hotel quote. I have the selected air itinerary as Monday MSP 7:10 p.m.–RDU 10:45 p.m., returning Friday RDU 5:35 p.m.–MSP 7:25 p.m., at $548 round trip. The hotel is Hampton Inn Raleigh/Cary, Monday through Friday, four nights at $204 per night. Is the airfare checkout page showing standard economy or basic economy? That distinction changes the cancellation and credit terms.",
+          "role": "assistant"
+        },
+        {
+          "content": "It says Main Cabin, nonrefundable. The $548 includes taxes and fees.",
+          "role": "user"
+        },
+        {
+          "content": "Good. That avoids the more restrictive basic-economy conditions. The Monday arrival also works with the revised schedule: even allowing about 35 minutes to get off the plane and collect a bag, plus roughly 20–30 minutes to Cary, you should reach the hotel around 11:40 p.m. That leaves an overnight buffer before the 9:00 a.m. client session. I’ll treat $548 as the final air total.",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. The hotel page still shows $204 a night, but I want to make sure the tax isn’t getting lost in the earlier $816 number.",
+          "role": "user"
+        },
+        {
+          "content": "The $816 is room charges only: 4 × $204. At the checkout tax shown for this property, $108.12 is added, bringing the lodging total to $924.12. Combined with the $548 airfare, the trip total is $1,472.12.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does that include parking, rideshares, or any hotel hold?",
+          "role": "user"
+        },
+        {
+          "content": "No. The $1,472.12 covers only airfare and the four-night room with hotel taxes. Airport transportation, local rideshares, meals, checked-bag charges, and any temporary incidental authorization from the hotel are outside that total. The hotel is not listing a resort or destination fee on this rate.",
+          "role": "assistant"
+        },
+        {
+          "content": "Fine. Walk me through the cancellation terms for both. I don’t want “flexible” to hide something.",
+          "role": "user"
+        },
+        {
+          "content": "For the Main Cabin ticket, the fare is nonrefundable to the corporate card after the airline’s 24-hour cancellation window. If canceled after that window and before departure, the ticket value is generally retained as an airline credit in the traveler’s name, subject to the ticket’s expiration rules. Changes do not show a separate change fee, but any fare increase applies. Missing the flight without canceling beforehand can forfeit the remaining value.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the hotel? Use the local deadline, not Minneapolis time.",
+          "role": "user"
+        },
+        {
+          "content": "The selected hotel rate allows free cancellation until 6:00 p.m. Cary local time on Sunday, the day before arrival. Cary is in the Eastern time zone, so that is 5:00 p.m. in Minneapolis. After the deadline, the stated penalty is one night plus tax. At this rate, that would be $204 plus $27.03 tax, or $231.03.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the hotel charging now or at check-in?",
+          "role": "user"
+        },
+        {
+          "content": "This flexible rate is marked pay at property rather than prepaid. A card is required to guarantee the reservation, and the hotel may place an incidental hold at check-in. The cancellation penalty, if triggered, would be charged to that card.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please verify the Friday return still makes sense. The close ends at 3:00 p.m. at the Regency Parkway office.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Leaving the office around 3:10 p.m. for a 5:35 p.m. departure gives about 2 hours 25 minutes before takeoff. A typical drive to RDU is around 15–25 minutes, leaving roughly two hours at the airport under normal traffic. The return remains workable, though a major meeting overrun or severe traffic would reduce that margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "All right. Traveler name matches the ID, and the corporate card billing address is entered. I’ll have one checked bag. Does that change what is due today?",
+          "role": "user"
+        },
+        {
+          "content": "The bag is not included in the $548 fare shown. If you add and pay for it during checkout, the amount due today will increase by the airline’s displayed one-way bag fee for each direction. The hotel’s $924.12 is still due at the property, not today. Before submission, the air page should therefore show $548 plus any bag fees you elect to prepay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Leave the bag off for now. I can expense it separately. Add the late-arrival note to the hotel and make sure the room isn’t treated as a no-show Monday night.",
+          "role": "user"
+        },
+        {
+          "content": "I’ve added an expected arrival note of approximately 11:40 p.m. Monday. The reservation still begins Monday, so that night is included in the four-night stay. The note helps the property anticipate the late check-in, but it does not replace the card guarantee; keeping the guaranteed reservation is what protects the room from ordinary late-arrival release.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me one final purchase screen summary. Don’t submit either charge yet.",
+          "role": "user"
+        },
+        {
+          "content": "Final review: Main Cabin round trip, Monday MSP 7:10 p.m.–RDU 10:45 p.m. and Friday RDU 5:35 p.m.–MSP 7:25 p.m., $548 including air taxes and fees, with no checked bag prepaid. The fare is nonrefundable after the 24-hour cancellation window; later cancellation is generally for airline credit, and fare differences apply to changes. Hampton Inn Raleigh/Cary is Monday through Friday for four nights at $204 nightly: $816 room charge, $108.12 tax, $924.12 total, pay at property. Free hotel cancellation ends Sunday at 6:00 p.m. Eastern; afterward the penalty is $231.03. Late arrival around 11:40 p.m. is noted. Air plus lodging is $1,472.12, excluding transportation, meals, baggage, and incidental holds. Both selections are prepared at the final review step and neither has been purchased.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0002",
+      "session_index": 2,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "For the Cary healthcare software go-live, the client moved Tuesday’s first working session to 9:00 a.m., eliminating the same-day outbound. Maya selected the Monday-through-Friday flight and four-night Hampton Inn package. Airfare is $548 including taxes; lodging is $924.12 including tax; the combined total is $1,472.12 before ground transportation, meals, baggage, and incidental holds. The airfare is Main Cabin and nonrefundable after the 24-hour window, while the hotel remains cancellable without charge until Sunday at 6:00 p.m. Eastern, after which the penalty is $231.03. A late Monday arrival note has been added. Both items are staged for final purchase but have not been submitted.",
+  "verification": {
+    "2": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user makes current-trip selections and verifies a specific return itinerary, but no user utterance independently states or unambiguously endorses any candidate habit's concrete recurring preference. The afternoon return time and other itinerary details are supplied by the assistant, while the user frames timing around this trip's 3:00 p.m. meeting close rather than as a durable default."
+    }
+  }
+}

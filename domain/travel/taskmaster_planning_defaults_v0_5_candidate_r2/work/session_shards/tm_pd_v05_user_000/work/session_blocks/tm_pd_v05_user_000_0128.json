@@ -1,0 +1,166 @@
+{
+  "cache_fingerprint": "a7951f2ef47baad59d400518699964e2121637cc25c5c6af48a07175d26243e7",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya established only trip-specific constraints and choices: the October 17-22 window, two Savannah nights followed by three Tybee nights, no rental car during the city stay, a Tuesday MSP arrival by 9:00 p.m., and a $3,800 transportation-and-lodging cap. The SAV routing was recommended on timing, cost, and ground-transportation grounds; nothing was booked.",
+        "evidence_topology": {
+          "episode_id": "partner-savannah-019",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 128,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requests that the three Tybee nights be at the beach, supporting beach-proximate lodging for this trip. No user utterance strongly establishes the other candidate habits' exact defaults.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.93,
+            "evidence_quote": "two nights in the city and three at the beach",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h06",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "We’re looking at Savannah and Tybee Island for October 17 through 22. We can leave Minneapolis after 1:00 Thursday and have to be home by 9:00 Tuesday. Can you compare flying into Savannah with a larger nearby airport and tell me whether two nights in the city and three at the beach can fit under $3,800 for flights, rooms, and transportation for two?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Charleston is the most useful larger-airport comparison; Jacksonville is farther away and does not improve this itinerary enough to justify the drive. I’ll compare MSP-SAV and MSP-CHS, including the transfer or rental implications. For lodging, should I treat Thursday and Friday as Savannah nights, then Saturday through Monday as Tybee nights?",
+          "role": "assistant"
+        },
+        {
+          "content": "That’s the split. We don’t want a car while we’re in Savannah. Pick it up when we leave for Tybee on Saturday.",
+          "role": "user"
+        },
+        {
+          "content": "That setup strongly favors SAV operationally. A workable SAV outline is a Thursday departure around 2:30 p.m., reaching Savannah around 6:30-7:15 p.m. depending on whether the schedule is nonstop or has one short connection. Tuesday options leaving SAV around 3:30-4:30 p.m. can reach MSP between 7:15 and 8:40 p.m. Current planning fares are roughly $480-$540 per person round trip, or $960-$1,080 for two. You could rideshare from SAV to the historic district Thursday, collect a downtown rental Saturday morning, and return it at SAV Tuesday.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does Charleston look like? I’m willing to drive if the flight savings are real.",
+          "role": "user"
+        },
+        {
+          "content": "CHS has more inventory and fares around $365-$425 per person, roughly $730-$850 for two. The catch is ground transportation. Charleston airport is about two hours from Savannah without traffic. Because you do not want a city car, you would need either a Thursday private transfer to Savannah, generally $230-$300 before tip, or rent immediately and pay for two unused city days plus parking. Then Tuesday requires either a one-way rental back to CHS or another transfer. The flight savings of about $230-$300 are mostly consumed by that extra movement.",
+          "role": "assistant"
+        },
+        {
+          "content": "Could we take a late shuttle Thursday and then pick up a car in Savannah Saturday, returning it in Charleston Tuesday?",
+          "role": "user"
+        },
+        {
+          "content": "It is possible, but the timing is less comfortable. A representative CHS itinerary lands around 6:00 p.m. Thursday; after baggage and a scheduled transfer, you would likely reach Savannah around 9:00 p.m. A private ride is dependable but costly, while shared shuttle schedules are limited and may involve waiting. A Saturday downtown-Savannah to Tuesday-CHS one-way rental is currently about $390-$470 including taxes and the one-way fee, before fuel and Tybee parking. Tuesday you would need to leave Tybee around 11:00 a.m. for a roughly 3:00 p.m. CHS departure that reaches MSP near 7:00 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "So give me complete working totals for both, not just the airfare.",
+          "role": "user"
+        },
+        {
+          "content": "Using midrange refundable lodging estimates: Savannah is about $620 total for two nights, and Tybee about $1,170 for three nights. The SAV plan is $1,020 flights, $1,790 lodging, $315 for a Saturday-Tuesday rental, $45 for the arrival rideshare, and $90 for fuel and parking, totaling about $3,260. The CHS plan is $790 flights, the same $1,790 lodging, $265 for Thursday transfer, $430 for the one-way rental, and $130 for fuel and parking, totaling about $3,405. Both fit, but SAV leaves about $540 under the cap versus about $395 through CHS.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are those hotel numbers realistic for places we’d actually want to stay, or are they bargain listings?",
+          "role": "user"
+        },
+        {
+          "content": "They are realistic midrange targets, not the lowest teaser rates. In Savannah, $285-$325 per night after tax can cover a well-reviewed hotel in or near the historic district, putting two nights near $570-$650. On Tybee, a comfortable room near the beach is more variable; $350-$420 after tax per night gives a three-night range of $1,050-$1,260. Resort fees and parking matter, so the $1,790 combined estimate assumes about $620 in Savannah and $1,170 on Tybee with mandatory charges included.",
+          "role": "assistant"
+        },
+        {
+          "content": "I found a Savannah room at $278 a night before tax and a Tybee room at $344 before tax. Savannah has no extra fee. Tybee adds $35 a night for parking. Can you tighten the estimate?",
+          "role": "user"
+        },
+        {
+          "content": "Using an estimated 15% lodging tax, Savannah would be about $639 for two nights: $556 room plus roughly $83 tax. Tybee would be about $1,292 for three nights: $1,032 room, roughly $155 tax, and $105 parking. Combined lodging is therefore about $1,931, or $141 above the earlier placeholder.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then the SAV total is $3,401?",
+          "role": "user"
+        },
+        {
+          "content": "Correct using the same flight and transportation assumptions: $1,020 flights + $1,931 lodging + $315 rental + $45 arrival ride + $90 fuel and non-hotel parking = $3,401. Since the Tybee hotel parking is already in lodging, it is not counted again. That leaves $399 before reaching the $3,800 ceiling.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does the Thursday Savannah arrival actually leave time for dinner, or are we wasting the first city night?",
+          "role": "user"
+        },
+        {
+          "content": "The stronger SAV option departs MSP around 2:35 p.m. and arrives about 6:45 p.m. Allowing 20-30 minutes to exit and about 25 minutes by rideshare, you should reach the hotel around 7:40 p.m. Dinner around 8:15 is reasonable. A connecting option arriving after 8:00 would make that night much less useful, so the earlier arrival is worth protecting even if it costs modestly more.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Tuesday from Tybee? I do not want a schedule that only works if traffic is perfect.",
+          "role": "user"
+        },
+        {
+          "content": "For a SAV flight around 4:05 p.m., leave Tybee by 12:30 p.m. The drive is often 35-45 minutes, but that plan allows up to 75 minutes, then about 20 minutes for fuel and rental return, leaving close to two hours at the airport. The itinerary reaches MSP around 8:20 p.m. If the available return instead arrives MSP after 9:00, it does not meet your stated boundary and should be excluded.",
+          "role": "assistant"
+        },
+        {
+          "content": "Could we return the car Monday night and rideshare to the airport Tuesday to save a rental day?",
+          "role": "user"
+        },
+        {
+          "content": "Not conveniently. Returning it Monday would require getting back from Tybee without the car Tuesday, and a Tybee-to-SAV rideshare can be scarce or surge-priced. The Saturday-morning through Tuesday-afternoon rental is typically billed as three 24-hour periods if pickup and return times align, so returning Monday night may not reduce the charge anyway. Keeping it through the airport return is the cleaner plan.",
+          "role": "assistant"
+        },
+        {
+          "content": "All right. Recommend one route and lay out the five nights with the cost ceiling. Nothing is ready to book yet.",
+          "role": "user"
+        },
+        {
+          "content": "Use SAV in both directions. Thursday, take the post-1:00 p.m. MSP departure targeting a 6:45 p.m. SAV arrival, rideshare to Savannah, and stay downtown Thursday and Friday. Saturday morning, pick up the rental downtown and drive to Tybee for Saturday, Sunday, and Monday nights. Tuesday, leave Tybee by 12:30 p.m., refuel, return the car at SAV, and take a roughly 4:05 p.m. flight scheduled into MSP around 8:20 p.m. Working total for two is $3,401: flights $1,020, Savannah hotel $639, Tybee hotel with parking $1,292, rental $315, arrival rideshare $45, and fuel or other parking $90. That leaves $399 for fare or tax movement while staying under the $3,800 transportation-and-lodging budget. Charleston is feasible but adds transfer complexity and currently projects about $145 higher once the revised hotel costs are used. No flights, rooms, car, or transfer have been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0128",
+      "session_index": 128,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Cleveland client trip is complete and its $1,179.65 expense report is ready, with the reissued itinerary and a missing-receipt explanation required. The Pittsburgh expense report remains ready at $1,203.68, with a separate $75 hotel incidental authorization pending. The February 5-7, 2030 Raleigh trip remains confirmed at $1,459; the corrected Raleigh folio, Philadelphia deposit release, and Nashville refund reconciliation remain unresolved. The September 12-16 Monterey Peninsula trip remains confirmed at $2,849, with whale-watching status and exact hotel cancellation cutoffs unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2 Baltimore and November 6-8 Raleigh trips remain confirmed, with ground-transportation items unresolved. The October 4-9, 2030 San Diego trip remains reconciled at a projected $3,665.71. A tentative October 17-22 Savannah and Tybee Island trip for Maya and her partner is under consideration: two nights in Savannah and three on Tybee, with SAV recommended over CHS. The current estimate is $3,401 for flights, lodging, rental car, rideshare, fuel, and parking, leaving $399 under the $3,800 cap. Nothing for the Savannah-Tybee trip has been booked, and exact flight, hotel, and rental selections remain open.",
+  "verification": {
+    "128": {
+      "habit_signals": [
+        {
+          "confidence": 0.93,
+          "evidence_quote": "two nights in the city and three at the beach",
+          "habit_id": "tm_pd_v05_user_000_h06",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requests that the three Tybee nights be at the beach, supporting beach-proximate lodging for this trip. No user utterance strongly establishes the other candidate habits' exact defaults."
+    }
+  }
+}

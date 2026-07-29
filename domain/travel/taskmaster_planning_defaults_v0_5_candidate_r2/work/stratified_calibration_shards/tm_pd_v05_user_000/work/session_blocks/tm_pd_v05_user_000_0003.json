@@ -1,0 +1,191 @@
+{
+  "cache_fingerprint": "1e6db206e5df6c4f32629d8285af99fb4effc322da84463453de251525d0b99f",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya established a reusable scope boundary: hotel rating floors should not be applied to routine client-trip searches unless she explicitly frames the search as nice or upscale, or as budget-focused. The current Pittsburgh choice was instead driven by total cost, refundability, and reliable workshop access.",
+        "evidence_topology": {
+          "boundary_kind": "scope_limit",
+          "episode_id": "client-pittsburgh-019",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 119,
+          "target_habit_id": "tm_pd_v05_user_000_h05",
+          "target_signal_type": "boundary",
+          "topology_revision": "travel_sparse_evidence_topology_v2_eligibility_v2",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The booked nonstop itinerary supports the nonstop-routing habit for this trip. The explicit cross-trip instruction limits hotel rating floors to nice/upscale or budget-focused searches and excludes routine client trips. No other candidate habit is strongly evidenced by the user's words.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.91,
+            "evidence_quote": "The $612 nonstop flights are booked.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Also, don't apply a hotel rating cutoff to routine client-trip searches like this unless I specifically ask for something nice or upscale, or say I'm doing a budget-focused hotel search.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h05",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The $612 nonstop flights are booked. Can we finish the Pittsburgh hotel now? I want the full two-night cost, including tax, breakfast, and the rideshares we'd realistically need.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I have the three nightly rates as $268 beside the client site, $231 in East Liberty with breakfast included, and $218 in Shadyside. At 14% lodging tax, the two-night room totals are $611.04, $526.68, and $497.04 respectively. Before I build the transportation totals, what is the lodging limit and the overall trip ceiling?",
+          "role": "assistant"
+        },
+        {
+          "content": "The room guideline is $250 a night before tax, and I'd like the complete trip to stay under $1,300 including the flights. The workshop runs 8:30 to 4:30 Wednesday and 8:30 to 3:30 Thursday. My flight Thursday is at 6:20 p.m.",
+          "role": "user"
+        },
+        {
+          "content": "That rules out the $268 property on the nightly guideline unless its location creates enough savings to justify an exception. I’ll compare each plan using airport rides at about $38-$42 each way, morning traffic to the client site, the return needed to collect stored luggage Thursday, and breakfast where it is not included.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Also, don't apply a hotel rating cutoff to routine client-trip searches like this unless I specifically ask for something nice or upscale, or say I'm doing a budget-focused hotel search. Here, cost, refundability, and getting to the workshop reliably are what matter.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. For this search I’ll evaluate the operational fit without imposing a rating floor. Do you expect to eat breakfast at the hotel both mornings if it is not included?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. Use $18 per morning. I won't have a rental car.",
+          "role": "user"
+        },
+        {
+          "content": "Here is the first-pass comparison, including the $612 airfare. The site-adjacent hotel is $611.04 after tax, about $84 for the two airport rides, and $36 for breakfast, totaling $1,343.04. East Liberty is $526.68 after tax, breakfast included, and about $140 for five local rides, totaling $1,278.68. Shadyside is $497.04 after tax, about $146 for five rides, and $36 for breakfast, totaling $1,291.04.",
+          "role": "assistant"
+        },
+        {
+          "content": "Why five rides for the two farther hotels? Walk me through Thursday in particular.",
+          "role": "user"
+        },
+        {
+          "content": "For either farther hotel: airport to hotel Tuesday; hotel to client and client back to hotel Wednesday; hotel to client Thursday; then client to hotel to retrieve luggage and hotel to the airport. That is six rides, not five. I omitted one Thursday segment in the first pass, so those totals need correction.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please correct them. That Thursday timing sounds tight too.",
+          "role": "user"
+        },
+        {
+          "content": "Using six rides, I estimate East Liberty at $156 in transportation: $38 Tuesday, $32 round trip Wednesday, $16 Thursday morning, $16 back to the hotel, and $54 from the hotel to the airport in afternoon traffic. Its complete trip becomes $1,294.68. Shadyside comes to about $164: $40 Tuesday, $36 Wednesday, $18 Thursday morning, $18 back to the hotel, and $52 to the airport, for a complete total of $1,309.04. The site-adjacent option remains $1,343.04 because you can walk between the hotel and workshop.",
+          "role": "assistant"
+        },
+        {
+          "content": "So only East Liberty stays under $1,300, but barely. How do the morning routes compare?",
+          "role": "user"
+        },
+        {
+          "content": "From East Liberty, allow roughly 12-18 minutes by car in ordinary conditions and request the ride around 7:55 for an 8:30 start. Shadyside is closer to 15 minutes in light traffic but can run 20-25 minutes on the main approaches, so I would request it around 7:50. The adjacent hotel is a three- to five-minute walk and is the most dependable morning option, but its roughly $48 premium over the ceiling is too large to recover through transportation savings.",
+          "role": "assistant"
+        },
+        {
+          "content": "What have you confirmed about late check-in and luggage storage? My flight lands Tuesday at 8:05, so I probably won't reach the hotel until after 9.",
+          "role": "user"
+        },
+        {
+          "content": "The East Liberty property confirms a staffed front desk through the night, and a 9:00-10:00 p.m. Tuesday arrival is accepted when the reservation is marked for late arrival. It also confirms complimentary luggage storage after Thursday checkout. The Shadyside property confirms luggage storage, but its desk asks guests arriving after 10:00 p.m. to call that evening. The adjacent property offers both services without a special late-arrival procedure.",
+          "role": "assistant"
+        },
+        {
+          "content": "For East Liberty, can I leave the suitcase Thursday morning before I go, and is there any concern about getting it back quickly at 3:30?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The hotel says you can check out, tag the suitcase with the front desk Thursday morning, and retrieve it directly from the desk later. They recommend keeping the claim ticket and allowing about five minutes. The weak point is the extra trip east after the workshop: client site to hotel is likely 15-25 minutes, and hotel to PIT can take 35-50 minutes at that hour.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would it be better to take the suitcase to the client site instead?",
+          "role": "user"
+        },
+        {
+          "content": "Only if the client confirms secure storage. If they can hold it near reception, you eliminate the return to East Liberty and can leave directly at 3:30. A rideshare from the client site to PIT is about $46, reducing estimated transportation by roughly $24 and bringing the complete trip to about $1,270.68. It also gives you a much healthier airport margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "They just replied that security can hold one carry-on during the Thursday workshop. Recalculate with that and tell me which refundable room to choose.",
+          "role": "user"
+        },
+        {
+          "content": "With client-site luggage storage, East Liberty needs five rides: about $38 from PIT Tuesday, $32 round trip Wednesday, $16 Thursday morning, and $46 directly from the client site to PIT. That is $132 in rideshares. Add the $526.68 taxed room total and $612 flights, with breakfast included, for an estimated complete trip cost of $1,270.68. The refundable rate is $231 nightly and permits cancellation until 6:00 p.m. local time the day before arrival.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Shadyside under the same luggage plan? I want to be sure the lower room rate doesn't win after all.",
+          "role": "user"
+        },
+        {
+          "content": "Shadyside would be $40 Tuesday, about $36 round trip Wednesday, $18 Thursday morning, and $46 from the client site to PIT, or $140 in rides. Its room with tax is $497.04, breakfast adds $36, and flights are $612, producing $1,285.04. It is about $14.36 more than East Liberty once breakfast and transportation are included, despite the lower room rate.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose East Liberty. Give me the final booking and departure checks.",
+          "role": "user"
+        },
+        {
+          "content": "Book the refundable East Liberty room at $231 per night for Tuesday through Thursday. On the final screen, confirm the two-night subtotal is $462 before tax, the estimated total is $526.68, breakfast is included for both mornings, there is no destination or parking fee, and cancellation remains free until 6:00 p.m. local time Monday. Add the late-arrival note and save the hotel's written confirmation of overnight desk coverage. Thursday morning, check out with your suitcase, take it to client security, keep valuables with you, and request the airport ride as the workshop ends at 3:30. The working complete-trip estimate is $1,270.68, leaving about $29 for fare variation while staying under the $1,300 ceiling.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0119",
+      "session_index": 119,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "For the Columbus client trip, the canceled ticket remains as a named credit expiring one year from issuance, and the replacement-flight receipt, cancellation evidence, credit details, and hotel confirmation should be retained for expenses. For the Raleigh client trip, North Hills lodging and rideshares are provisionally settled; the selected standard-economy itinerary remains subject to final verification of ticketing, schedule, fare, seat, and baggage terms. For the Pittsburgh client trip, the $612 nonstop flights are booked and the refundable East Liberty hotel at $231 nightly has been selected for Tuesday through Thursday. The estimated complete trip is $1,270.68 with tax, included breakfast, and rideshares. Late arrival and Thursday luggage handling are confirmed: the hotel has overnight desk coverage, and client security will hold one carry-on Thursday so Maya can leave directly for the airport after the workshop. Final hotel booking checks and receipts remain to be completed.",
+  "verification": {
+    "119": {
+      "habit_signals": [
+        {
+          "confidence": 0.91,
+          "evidence_quote": "The $612 nonstop flights are booked.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Also, don't apply a hotel rating cutoff to routine client-trip searches like this unless I specifically ask for something nice or upscale, or say I'm doing a budget-focused hotel search.",
+          "habit_id": "tm_pd_v05_user_000_h05",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The booked nonstop itinerary supports the nonstop-routing habit for this trip. The explicit cross-trip instruction limits hotel rating floors to nice/upscale or budget-focused searches and excludes routine client trips. No other candidate habit is strongly evidenced by the user's words."
+    }
+  }
+}

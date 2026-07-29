@@ -1,0 +1,64 @@
+{
+  "reason": "unnatural_habit_leakage_session_3:The user supports an afternoon return departure for this trip, but does not express it as a recurring preference. The assistant recommends only nonstop Delta options before the user establishes either the nonstop-routing or Delta-carrier habit, indicating silent use of dossier-specific values. The user's budget and timing checks are current-trip constraints and do not establish the cheapest-acceptable-flight habit.",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya confirmed that the previously reviewed flight and hotel were purchased. A 2:45 p.m. Friday nonstop is available for a $92 fare increase, fits the remaining project allowance, and is feasible with checkout before work and departure from the Cary client office by about 12:30 p.m. No ticket change was submitted.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I purchased the Raleigh flight and Hampton stay we reviewed. The client just moved Friday’s end time from 3:00 to noon. Can you see whether I can switch to an earlier flight that afternoon?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I’ll compare earlier RDU-MSP options against the ticket you purchased. How much remains in the project travel allowance, and will you have your luggage with you at the client site Friday?",
+          "role": "assistant"
+        },
+        {
+          "content": "There’s $125 left. I can check out before work and bring my suitcase to the client office in Cary.",
+          "role": "user"
+        },
+        {
+          "content": "The best available nonstop is Delta departing RDU at 2:45 p.m. and arriving MSP at 4:38 p.m. The current fare is $92 more than your ticket, so it stays within the remaining allowance. Your Main Cabin ticket has no change fee, but the $92 fare difference would be charged when the exchange is completed.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there anything earlier, and what happens if the fare changes again after I switch?",
+          "role": "user"
+        },
+        {
+          "content": "There is a 1:10 p.m. nonstop, but it is $168 more and would exceed the allowance. For the 2:45 flight, the new ticket remains nonrefundable. A later voluntary change would be repriced at that time; canceling before departure would generally return the eligible ticket value as a Delta eCredit rather than cash. The quoted $92 difference is not locked until the exchange is submitted.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the timing from the client office. I don’t want to modify anything unless leaving after noon is realistic.",
+          "role": "user"
+        },
+        {
+          "content": "From Cary, a rideshare to RDU is typically about 20 to 30 minutes, with additional time possible in Friday traffic. Leaving the client office at 12:15 p.m. gives an estimated airport arrival around 12:45, about two hours before departure. Even with a 20-minute delay, you would still arrive roughly 1 hour 40 minutes ahead.",
+          "role": "assistant"
+        },
+        {
+          "content": "And checking out before the meeting won’t create a problem with the hotel?",
+          "role": "user"
+        },
+        {
+          "content": "No. The Hampton checkout is 11:00 a.m., so checking out before work and taking your suitcase is straightforward. The 2:45 p.m. flight is feasible if the session ends at noon and you leave the Cary office by about 12:30. The projected trip increase is $92, leaving $33 in the allowance. I have not modified the ticket.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0003",
+      "session_index": 3,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya purchased the Delta itinerary for October 13-17 and the Hampton Inn & Suites Raleigh/Cary-I-40 stay for the same dates. The client moved Friday’s end time from 3:00 p.m. to noon. An available 2:45 p.m. RDU-MSP nonstop would arrive at 4:38 p.m. and currently requires a $92 fare difference with no change fee, leaving $33 of the project travel allowance. Hotel checkout before Friday’s meeting is workable, and leaving the Cary office by about 12:30 p.m. provides adequate airport time. The ticket has not yet been changed, and the fare difference is not guaranteed until exchange."
+}

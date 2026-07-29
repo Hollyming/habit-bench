@@ -1,0 +1,415 @@
+{
+  "cache_fingerprint": "84bc4f24838120fbe97ffa12f2f21ce83745ee1f50f3ee0fa6db0738eaf54153",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B focus on the same well-located hotel and differ mainly over whether the ambiguity should be resolved before commitment. Waiting carries a genuine inventory risk, so verification is not generically dominant; the user's history is needed to know that inclusion is consequential enough to check.",
+      "gold_action": "Verify whether Garden Quay's selected rate includes breakfast before making the final hotel choice.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_004_s0126",
+        "tm_pd_v05_user_004_s0042",
+        "tm_pd_v05_user_004_s0072"
+      ],
+      "habit_family": "hotel_included_services",
+      "habit_id": "tm_pd_v05_user_004_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_breakfast_inclusion_preference",
+        "boundary_condition": "Treat this as a soft preference because the evidence ranges from tentative interest to a direct requirement.",
+        "condition": "When evaluating or booking a hotel.",
+        "default_action": "Prioritize hotels with free breakfast when available, and verify whether breakfast is included if the listing is unclear.",
+        "exception_condition": "Do not reject an otherwise suitable hotel solely because free breakfast is unavailable unless the user makes it mandatory for the current booking; do not infer requirements about breakfast type or quality.",
+        "family": "hotel_included_services",
+        "habit_id": "tm_pd_v05_user_004_h04",
+        "name": "prefer_included_hotel_breakfast",
+        "preference_value": "Prefer hotels that include free breakfast.",
+        "scope_condition": "When comparing hotels for work trips with early meetings or venue calls, and as a lesser convenience during family stays.",
+        "scope_key": "hotel_breakfast_inclusion",
+        "source_bundle_id": "tm_v04_e2e_bundle_4159e7bcd6b1",
+        "source_habit_instance_id": "tm_v04_e2e_habit_4159e7bcd6b1",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Booking immediately protects against a sellout, but it knowingly leaves a material rate inclusion unresolved even though the hotel normally responds within two hours and both current candidates are refundable.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "Included breakfast matters before an early client presentation, but Garden Quay's general statement that breakfast is served does not establish that the selected rate includes it. The history also shows a preference for confirming exact inclusions before booking, so asking for rate-specific confirmation is the best-supported action.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The history consistently makes inclusion relevant, particularly before early work obligations, but does not support assuming that a hotel serving breakfast means the selected rate includes it. The stored policy therefore calls for verification when the listing is ambiguous. A preserves the potentially better personal fit while conditioning the booking on the missing fact.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_004_h04_p00",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The emphasis on an ambiguous rate inclusion and a two-hour response time appears designed to test a private policy about verifying uncertain amenities, but no such policy is supplied."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rationale": "Clarifying the inclusion, securing the potentially scarce refundable room immediately, and choosing the cheaper documented room-only option are all defensible. The query does not state how much breakfast inclusion or sellout risk matters.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_004"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "Parkside has credible generic advantages and would be correct if the roadside exception had become a general rule. The challenge is temporal and contextual: the planner must distinguish a one-trip exception from the persistent default, then decide whether the modest price and drive differences are large enough to override that default.",
+      "gold_action": "Book Cedar Inn, restoring the recurring soft preference on this new family stay instead of carrying forward the earlier roadside-only exception.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_004_s0084",
+        "tm_pd_v05_user_004_s0042",
+        "tm_pd_v05_user_004_s0072"
+      ],
+      "habit_family": "hotel_included_services",
+      "habit_id": "tm_pd_v05_user_004_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_breakfast_inclusion_preference",
+        "boundary_condition": "Treat this as a soft preference because the evidence ranges from tentative interest to a direct requirement.",
+        "condition": "When evaluating or booking a hotel.",
+        "default_action": "Prioritize hotels with free breakfast when available, and verify whether breakfast is included if the listing is unclear.",
+        "exception_condition": "Do not reject an otherwise suitable hotel solely because free breakfast is unavailable unless the user makes it mandatory for the current booking; do not infer requirements about breakfast type or quality.",
+        "family": "hotel_included_services",
+        "habit_id": "tm_pd_v05_user_004_h04",
+        "name": "prefer_included_hotel_breakfast",
+        "preference_value": "Prefer hotels that include free breakfast.",
+        "scope_condition": "When comparing hotels for work trips with early meetings or venue calls, and as a lesser convenience during family stays.",
+        "scope_key": "hotel_breakfast_inclusion",
+        "source_bundle_id": "tm_v04_e2e_bundle_4159e7bcd6b1",
+        "source_habit_instance_id": "tm_v04_e2e_habit_4159e7bcd6b1",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Parkside is cheaper and slightly closer, but choosing it depends on incorrectly extending the prior driving-night exception beyond its stated scope.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "The enduring policy is to prefer included breakfast when there is a workable choice, especially when the family needs to get moving in the morning. The instruction not to eliminate a hotel without free breakfast was expressly limited to two driving nights, so it should not be generalized to this new stay. Cedar's $22 premium and four extra driving minutes remain workable.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Session 84 limits the permission to disregard free breakfast to two specific driving nights; it is not a permanent revision. Sessions 42 and 72 establish the durable family-stay preference while keeping it soft. On this separate stay, Cedar's modest premium and small location disadvantage leave room for that recurring preference to decide the close comparison.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_004_h04_p01",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The query explicitly invokes an 'enduring policy' and a 'past trip-specific instruction' that are not provided."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "Cedar trades $22 and four driving minutes for breakfast; Parkside is cheaper and closer. Neither dominates, and the enduring policy needed to resolve that tradeoff is absent.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_004"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "Boardwalk House is materially cheaper and closer to the beach, while Seaview supplies the user's remembered convenience. The rate gap is spread across four mornings for three travelers, keeping generic value judgments indeterminate; memory supplies the personal tiebreaker without implying any unsupported standard for meal type or quality.",
+      "gold_action": "Book Seaview, using its included morning service as a soft tiebreaker for the three-person family stay.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_004_s0042",
+        "tm_pd_v05_user_004_s0072",
+        "tm_pd_v05_user_004_s0084"
+      ],
+      "habit_family": "hotel_included_services",
+      "habit_id": "tm_pd_v05_user_004_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_breakfast_inclusion_preference",
+        "boundary_condition": "Treat this as a soft preference because the evidence ranges from tentative interest to a direct requirement.",
+        "condition": "When evaluating or booking a hotel.",
+        "default_action": "Prioritize hotels with free breakfast when available, and verify whether breakfast is included if the listing is unclear.",
+        "exception_condition": "Do not reject an otherwise suitable hotel solely because free breakfast is unavailable unless the user makes it mandatory for the current booking; do not infer requirements about breakfast type or quality.",
+        "family": "hotel_included_services",
+        "habit_id": "tm_pd_v05_user_004_h04",
+        "name": "prefer_included_hotel_breakfast",
+        "preference_value": "Prefer hotels that include free breakfast.",
+        "scope_condition": "When comparing hotels for work trips with early meetings or venue calls, and as a lesser convenience during family stays.",
+        "scope_key": "hotel_breakfast_inclusion",
+        "source_bundle_id": "tm_v04_e2e_bundle_4159e7bcd6b1",
+        "source_habit_instance_id": "tm_v04_e2e_habit_4159e7bcd6b1",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Boardwalk House saves $96 and is five minutes closer to the beach, but the prompt expressly says those differences are not decisive, while its nearby cafes do not provide the convenience or known inclusion the traveler prefers.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "With identical regular beds, cancellation terms, parking, and comparable ratings, the stated non-decisive price and location differences leave included breakfast as the relevant established preference, particularly for three family members. Seaview therefore fits best.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Sessions 42 and 72 both support inclusion as a recurring convenience for a family of three, especially when the alternative is not clearly superior overall. Session 84 confirms that disregarding it on two driving nights was local rather than durable. Seaview therefore gets priority, but only after recognizing that the $96 and shorter walk keep Boardwalk House genuinely competitive.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_004_h04_p02",
+      "probe_type": "direct_use",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The wording 'best fits the traveler' implies an unavailable personal preference after explicitly neutralizing the objective price and location differences."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "Once the query declares the price and location differences nondecisive, the remaining distinction is included hotel breakfast versus nearby cafes. No stated constraint establishes which morning arrangement the traveler prefers.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_004"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A five-minute covered route before a 6:50 a.m. call is a strong operational benefit, making Foundry a credible generic choice. Gallery asks the planner to recognize that a production venue call transfers the work-trip pattern even though it is not literally described as a meeting, then to apply the preference softly rather than treating either amenity as mandatory.",
+      "gold_action": "Book Gallery Hotel because this early venue-call context strengthens the recurring included-service preference enough to outweigh a modestly longer walk.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_004_s0126",
+        "tm_pd_v05_user_004_s0072",
+        "tm_pd_v05_user_004_s0042"
+      ],
+      "habit_family": "hotel_included_services",
+      "habit_id": "tm_pd_v05_user_004_h04",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_breakfast_inclusion_preference",
+        "boundary_condition": "Treat this as a soft preference because the evidence ranges from tentative interest to a direct requirement.",
+        "condition": "When evaluating or booking a hotel.",
+        "default_action": "Prioritize hotels with free breakfast when available, and verify whether breakfast is included if the listing is unclear.",
+        "exception_condition": "Do not reject an otherwise suitable hotel solely because free breakfast is unavailable unless the user makes it mandatory for the current booking; do not infer requirements about breakfast type or quality.",
+        "family": "hotel_included_services",
+        "habit_id": "tm_pd_v05_user_004_h04",
+        "name": "prefer_included_hotel_breakfast",
+        "preference_value": "Prefer hotels that include free breakfast.",
+        "scope_condition": "When comparing hotels for work trips with early meetings or venue calls, and as a lesser convenience during family stays.",
+        "scope_key": "hotel_breakfast_inclusion",
+        "source_bundle_id": "tm_v04_e2e_bundle_4159e7bcd6b1",
+        "source_habit_instance_id": "tm_v04_e2e_habit_4159e7bcd6b1",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_004",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Foundry's five-minute covered route is attractive for 6:50 a.m. calls and would become stronger if Gallery's breakfast were unavailable that early. On the supplied facts, however, the history specifically favors included breakfast for early work mornings, and the longer walk remains straightforward.",
+        "difficulty": "hard",
+        "model": "gpt-5.6-sol",
+        "rationale": "This is a work trip with very early obligations, the exact context in which the traveler prefers included breakfast. Gallery is also $16 cheaper, and its straightforward 14-minute walk is still workable, so its breakfast advantage is not displaced by the Foundry's shorter covered connection.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Session 126 directly ties the preference to work trips with early meetings, and the hidden scope extends that reasoning to venue calls. Sessions 42 and 72 establish that the preference is persistent but secondary. Gallery is also slightly cheaper, while Foundry retains a substantial access advantage, so the remembered policy resolves a real conflict rather than selecting a universally dominant option.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_004_h04_p03",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The phrase 'the traveler's policy' refers to an unstated personal decision rule."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "Foundry's shorter covered route is useful for the early calls, but Gallery remains feasible, costs less, and includes breakfast. The stated facts do not determine whether proximity or breakfast and price control the decision.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Ask Garden Quay to confirm the selected rate's inclusion, then book it if confirmed or compare Union House again if it is not."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book Garden Quay immediately to protect the room and budget separately for the morning meal if a charge appears."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book Union House immediately because its lower price and room-only terms are already documented."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Park Lane for $286, where the inclusion is confirmed but the walk to the office is 11 minutes."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "evidence_disambiguation"
+      },
+      "probe_id": "tm_pd_v05_user_004_h04_p00",
+      "query": "For a one-night stay before an 8:00 a.m. client presentation, Garden Quay is $268 and six minutes from the office. Its page says that breakfast is served daily, but the selected rate's inclusions do not mention it. Union House is $252, seven minutes from the office, and explicitly labels the same room category as room-only. Both are refundable and have comparable guest ratings. Garden Quay says it normally answers rate questions within two hours, although its current room could sell out during that time. What should the planner do?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_004",
+      "visible_history_scope": {
+        "max_session_index": 135
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book Cedar Inn, accepting the $22 difference and four additional driving minutes for the included morning service."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book Parkside, treating the lower total and shorter drive as sufficient reason to ignore the missing inclusion."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book Eastgate for $214 with breakfast included, a 22-minute drive, and a nonrefundable rate."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Museum Row for $260 with a room-only rate because it is directly across from the entrance."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "exception"
+      },
+      "probe_id": "tm_pd_v05_user_004_h04_p01",
+      "query": "For a new family overnight near a science center, the first timed entry is at 9:30 a.m. Cedar Inn is $248, includes breakfast, and is an 11-minute drive from the entrance. Parkside is $226, has a room-only rate, and is a seven-minute drive away. Both have two queen beds, free parking, equivalent cancellation terms, and similar reviews. Which action best reflects the traveler's enduring policy rather than overgeneralizing a past trip-specific instruction?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_004",
+      "visible_history_scope": {
+        "max_session_index": 135
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book Seaview for $1,520, accepting the higher total and five additional walking minutes."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book Boardwalk House for $1,424 and use the nearby cafes each morning."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book Dunes Studio for $1,460 with a kitchenette, no breakfast service, and a 12-minute walk to the beach."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Ocean Terrace for $1,550 with breakfast included and a six-minute walk, but use a king bed and sleeper sofa."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "direct_use"
+      },
+      "probe_id": "tm_pd_v05_user_004_h04_p02",
+      "query": "A family of three is choosing a four-night coastal hotel. Seaview is $1,520 total, includes breakfast, has two queen beds, and is a nine-minute walk from the beach. Boardwalk House is $1,424 total, has the same bed and cancellation setup, is a four-minute walk from the beach, and has a room-only rate with cafes nearby. Parking and ratings are comparable. Which option best fits the traveler when neither price nor location difference is decisive?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_004",
+      "visible_history_scope": {
+        "max_session_index": 135
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book Gallery Hotel for $626 and allow time for the 14-minute walk before each venue call."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book Foundry Hotel for $642 and prioritize the five-minute covered connection to the theater."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book Stage Door for $608; it is a seven-minute walk, but its breakfast status is unclear and the rate is nonrefundable."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Marquee Hotel for $670; it is a four-minute walk and includes breakfast, but the rate is nonrefundable."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "conflict_resolution"
+      },
+      "probe_id": "tm_pd_v05_user_004_h04_p03",
+      "query": "For a three-night production visit, the traveler must be at a theater by 6:50 a.m. on two mornings. Foundry Hotel is $642 total, room-only, and connected to the theater by a five-minute covered walk. Gallery Hotel is $626 total, includes breakfast, and is a straightforward 14-minute walk away. Both have refundable king rooms, secure luggage storage, and equivalent reviews. Which action best matches the traveler's policy in this context?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_004",
+      "visible_history_scope": {
+        "max_session_index": 135
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 6,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 1,
+      "exception": 1
+    }
+  }
+}

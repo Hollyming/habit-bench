@@ -1,0 +1,64 @@
+{
+  "reason": "unnatural_habit_leakage_session_3:The user explicitly requests a midafternoon return for this trip, supporting the return-timing habit only as a current-trip choice. The user does not independently establish a general nonstop, Delta, cheapest-flight, or hotel preference. Before such evidence, the assistant recommends a Delta nonstop itinerary, silently aligning with two dossier-specific preferences; this constitutes leakage. The $100 allowance is a current project constraint, not evidence of a durable cheapest-acceptable-flight policy.",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya evaluated an earlier Friday return after the client shortened the workday. She selected the 2:40 p.m. nonstop as feasible within the remaining project allowance, reviewed the fare and airport timing, and explicitly stopped before changing the ticket.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "The Raleigh flight and Hampton are booked now. The client just moved Friday’s finish from 3:00 to noon. Can you check whether I can switch from the 5:35 return to something around midafternoon? I have $100 left in the project travel allowance.",
+          "role": "user"
+        },
+        {
+          "content": "I found one useful nonstop option on Delta: RDU 2:40 p.m. to MSP 4:31 p.m. The current fare difference is $76, so the revised airfare would be $624 and would remain within the allowance. There is also a 3:50 p.m. departure, but its fare difference is $128.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would Delta charge a separate change fee on top of the $76?",
+          "role": "user"
+        },
+        {
+          "content": "No separate change fee applies to this Main Cabin ticket. You would pay only the current $76 fare difference. The original ticket remains nonrefundable, and if you later change again, the fare would be recalculated at that time.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the timing with the hotel. I’ll be at the client site in Cary until noon and will have to check out before that.",
+          "role": "user"
+        },
+        {
+          "content": "The Hampton’s standard checkout is 11:00 a.m. You can check out before leaving Friday morning and have the front desk hold your bag. From the client site, allow about 15 minutes back to the hotel, several minutes to retrieve it, and roughly 20 to 30 minutes by rideshare to RDU.",
+          "role": "assistant"
+        },
+        {
+          "content": "So what schedule would you use? I don’t want to be cutting it too close for the 2:40.",
+          "role": "user"
+        },
+        {
+          "content": "Leave the client at noon, reach the hotel around 12:15, collect your bag, and request the rideshare by 12:25. Expected airport arrival is about 12:50 to 1:05, leaving approximately 95 to 110 minutes before departure. With carry-on only, that is workable even with moderate Friday traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "That works. Confirm the exact new total and conditions, but don’t change the ticket yet.",
+          "role": "user"
+        },
+        {
+          "content": "Review only: change Friday, October 17 to Delta’s nonstop RDU 2:40 p.m. to MSP 4:31 p.m. The current additional charge is $76, making the round-trip airfare $624 and leaving $24 in the project allowance. There is no separate change fee. The ticket remains nonrefundable, future voluntary changes may require another fare difference, and the quoted fare can change until the exchange is submitted. The Hampton reservation remains unchanged through Friday checkout. No ticket modification has been made.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0003",
+      "session_index": 3,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya’s October 13-17 Raleigh/Cary flight and Hampton stay have been booked. The client now expects Friday work to end at noon. A change from the booked 5:35 p.m. return to the 2:40 p.m. nonstop is currently available for a $76 fare difference with no separate change fee, raising airfare to $624 and leaving $24 in the project travel allowance. She can check out before Friday’s client visit, leave her bag at the Hampton, retrieve it shortly after noon, and reach RDU with adequate time. The fare is not held and no ticket change has been submitted."
+}

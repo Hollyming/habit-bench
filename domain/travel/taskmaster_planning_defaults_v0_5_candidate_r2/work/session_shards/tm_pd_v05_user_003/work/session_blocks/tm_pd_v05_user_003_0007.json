@@ -1,0 +1,119 @@
+{
+  "cache_fingerprint": "96de4a4403cb15c287992f65979f4088f3d824aed873098c5248066814b459a0",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip-specific planning only: the session narrows Tuesday flights around the required Bothell arrival and distinguishes Friday returns by the two unresolved airport-transfer scenarios. No recurring preference is established.",
+        "evidence_topology": {
+          "episode_id": "audit-seattle-01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 7,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user’s flight timing, carrier, and fare decisions are specific to this audit itinerary and its transfer constraints. The user does not state a durable morning-departure, cheapest-acceptable-flight, United-carrier, business-class, hotel-rating, or hotel-amenity preference. The assistant’s carrier and schedule presentation is ordinary option elicitation rather than leakage.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I have a supplier audit in Bothell starting Wednesday, July 10. I need to be at the site by 8:30 a.m., so please look at flights from San Francisco on Tuesday and a return Friday after the closing session ends at 3:00 p.m.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll separate the Friday choices by transfer scenario because Bothell-to-SEA traffic can vary considerably. For Tuesday, is there a time by which you want to be at your hotel in Bothell?",
+          "role": "assistant"
+        },
+        {
+          "content": "I would like to be checked in by about 6:00 p.m. I do not need the earliest flight, but I also do not want an arrival that becomes risky with afternoon traffic.",
+          "role": "user"
+        },
+        {
+          "content": "The strongest nonstop Tuesday options are currently: Alaska departing SFO at 8:05 a.m. and arriving SEA at 10:18 a.m.; Delta at 9:50 a.m., arriving 12:08 p.m.; and United at 12:35 p.m., arriving 2:48 p.m. The United flight could still get you to Bothell before 6:00, but it leaves less room for a delay or a slow drive. The two morning flights are more practical.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep Alaska and Delta. Is there a meaningful fare difference, including a regular economy ticket rather than basic economy?",
+          "role": "user"
+        },
+        {
+          "content": "On the current round-trip combinations, Alaska Main is about $286 and Delta Main Cabin is about $314. Both include standard seat selection under the displayed fare rules; checked-bag charges are separate. The Alaska itinerary gives you roughly ninety additional minutes in the Seattle area Tuesday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the Alaska outbound as the leading choice. Now show me Friday returns that account for both possibilities: either the host drives us directly to the airport, or I have to arrange my own ride from the site.",
+          "role": "user"
+        },
+        {
+          "content": "With a 3:00 p.m. finish, I would treat 6:30 p.m. as the earliest sensible departure if the host provides a prompt direct transfer. If you arrange your own ride, allowing for the car’s arrival, Friday traffic, and airport processing pushes the safer threshold to about 7:30 p.m. Current nonstops include Alaska at 6:45 p.m., United at 7:25 p.m., and Delta at 8:20 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "The 7:25 United option sounds close to the boundary. Would you actually count that as workable without host transportation?",
+          "role": "user"
+        },
+        {
+          "content": "Only with favorable traffic, so I would not label it robust for the self-arranged transfer. Leaving the site around 3:15 to 3:30 could mean reaching SEA anywhere from roughly 4:30 to after 5:30. The 7:25 flight may work, but disruption at pickup or security would consume the margin. The 8:20 Delta departure is the one compatible with either transfer plan.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can the Alaska outbound be paired with that Delta return, or does the mixed-airline pricing become unreasonable?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, as separate one-way tickets. Alaska Main outbound is currently about $137, and Delta Main Cabin returning at 8:20 p.m. is about $176, for approximately $313 total. That is nearly the same as the Delta round trip and about $27 more than the lowest Alaska round trip. Separate tickets do not create a connection issue here, but changes would be handled independently with each airline.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is acceptable. Keep one earlier Friday option too, but clearly mark when it works. Also, do a quick practical check on whether the Tuesday arrival still makes sense if I stay near the audit site rather than near the airport.",
+          "role": "user"
+        },
+        {
+          "content": "The Tuesday Alaska arrival remains practical for a Bothell hotel. After landing at 10:18 a.m., baggage collection and a midday drive would likely put you in Bothell around noon to 1:00 p.m., well ahead of a typical afternoon check-in; the hotel may need to hold your bags if the room is not ready. Staying near the site also avoids relying on a long Wednesday morning drive from the airport area.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Give me the final shortlist, but do not book yet. I will ask the host tomorrow whether airport transportation is confirmed.",
+          "role": "user"
+        },
+        {
+          "content": "Shortlist held for review, with nothing booked:\n\n1. Leading flexible-transfer itinerary: Alaska Main from SFO Tuesday at 8:05 a.m., arriving SEA at 10:18 a.m.; Delta Main Cabin Friday at 8:20 p.m., arriving SFO later that evening. Current separate-ticket total is about $313. The Friday flight works whether the host provides transportation or you arrange your own ride.\n\n2. Earlier-return alternative: the same Alaska outbound paired with Alaska’s Friday 6:45 p.m. nonstop. Use this only if the host confirms a prompt direct transfer from the Bothell site after the 3:00 p.m. close. It is not a sound choice for a self-arranged pickup.\n\nThe 7:25 p.m. United return is excluded from the final shortlist because its margin is weak without host transportation. Fares and schedules should be rechecked after the host replies.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0007",
+      "session_index": 7,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Priya’s Raleigh supplier-audit itinerary remains selected but unbooked pending an audit travel authorization number, with flight and hotel details requiring a final recheck. The Fairmont Sonoma Mission Inn stay for May 31-June 3 is booked with the breakfast-and-parking package; Priya’s spouse is registered, both guests may charge eligible expenses to the room, and both spa treatments are linked to the stay. The Saturday 2:30 p.m. massage is confirmed, while written confirmation of the 2:45 p.m. facial remains outstanding before the May 10 free-cancellation deadline. For the Bothell audit beginning July 10, the leading unbooked itinerary is Alaska SFO-SEA Tuesday morning with a Delta Friday 8:20 p.m. return, which works under either airport-transfer scenario. An Alaska 6:45 p.m. Friday return remains an alternative only if the host confirms prompt direct transportation from the site; schedules and fares require rechecking after the host replies.",
+  "verification": {
+    "7": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user’s flight timing, carrier, and fare decisions are specific to this audit itinerary and its transfer constraints. The user does not state a durable morning-departure, cheapest-acceptable-flight, United-carrier, business-class, hotel-rating, or hotel-amenity preference. The assistant’s carrier and schedule presentation is ordinary option elicitation rather than leakage."
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "habit_id": "tm_pd_v05_user_002_h06",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c06"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c06"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Select Dune as the lead and keep Pier alive as the balcony-equipped alternate."
+              },
+              {
+                "choice_id": "B",
+                "text": "Select Pier as the lead and remove Dune after the room-inventory update."
+              },
+              {
+                "choice_id": "C",
+                "text": "Select Dune as the lead and remove Pier because the location already decides the trip."
+              },
+              {
+                "choice_id": "D",
+                "text": "Select Pier as the lead and keep Dune alive as the more convenient alternate."
+              }
+            ],
+            "closest_distractor_choice_id": "D",
+            "difficulty_rationale": "D is a strong near miss because it preserves both hotels and gives the balcony real weight. The hard distinction is whether that background preference should overturn an already stronger whole-trip candidate; the longitudinal boundary says it should not.",
+            "gold_action": "Keep the otherwise stronger Dune Hotel in first place despite its first-floor non-balcony room, while preserving Pier as the alternate.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_002_s0033",
+              "tm_pd_v05_user_002_s0088",
+              "tm_pd_v05_user_002_s0113"
+            ],
+            "label_rationale": "Sessions s0033, s0088, and s0113 consistently show that lack of a balcony does not disqualify an otherwise good hotel and specifically validate a first-floor room without one. Because Dune already leads on the full-trip comparison, the room detail should not reverse or eliminate it; retaining Pier still respects the positive preference.",
+            "probe_type": "exception",
+            "query": "For a new Gulf Shores family trip, Dune Hotel narrowly leads the overall comparison because of its walkable location and simpler airport transfer, but its only remaining two-queen room is on the first floor without a balcony. Pier Resort has an equally workable two-queen room with a balcony, a better pool, and a longer drive to the family's planned activities; its complete total and cancellation terms match Dune's. Marcus wants the stronger candidate selected and the other kept alive, with no booking. Which action fits?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The wording 'Dune Hotel narrowly leads the overall comparison' is a sufficient answer cue independent of private history."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c05",
+            "rationale": "The query explicitly says Dune narrowly leads the overall comparison and asks to select the stronger candidate while keeping the other alive. Choice A directly follows those constraints."
+          }
+        }
+      ],
+      "round": 0
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 3,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2,
+      "gold_disagreement_or_unresolved": 1
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 3,
+    "selected_difficulty_counts": {
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "cross_context_transfer": 1,
+      "evidence_disambiguation": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v05_user_002"
+}

@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "2ff3a285e5b710244e56d717c3901e9c04430d34519fe2c17542f8f3e3b73145",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_cabin_class_preference",
+      "boundary_condition": "Applies only to flight cabin-class selection; it does not imply preferences about seat position, airline, route, destination, travel dates, or non-flight travel products.",
+      "canonical_value": "business_class",
+      "condition": "When searching or booking flights and cabin class is open to preference selection.",
+      "default_action": "Default to searching for and selecting business-class flight fares or seats.",
+      "exception_condition": "If the user explicitly requests another cabin, states a budget that business class cannot meet, or no business-class option is available, do not silently force business class; ask for confirmation or present alternatives.",
+      "input_ids": [
+        "tm_v04_habit_9efc18d0d931"
+      ],
+      "name": "Business-class flight cabin default",
+      "preference_value": "business class",
+      "rationale": "Supported by multiple flight-booking examples where the user requests business class. This is a cabin-class preference and should not be merged with economy/coach because they are contrasting alternatives within the same preference family.",
+      "representative_id": "tm_v04_habit_9efc18d0d931"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_cabin_class_preference",
+      "boundary_condition": "Applies only to flight cabin or seating-class selection; it does not imply a preferred airline, route, travel date, departure time, seat position, or fare budget.",
+      "canonical_value": "economy_coach",
+      "condition": "When booking or searching for flights and a cabin or seating class is needed, if no trip-specific upgrade or different cabin is requested.",
+      "default_action": "Default the flight cabin search to coach/economy seating.",
+      "exception_condition": "If the user explicitly asks for or accepts a different cabin such as premium economy, business, or first class for the current trip, use that requested cabin instead of coach/economy.",
+      "input_ids": [
+        "tm_v04_habit_4d229daa065d"
+      ],
+      "name": "Coach/economy flight cabin default",
+      "preference_value": "coach/economy seating",
+      "rationale": "Supported by multiple flight-booking examples using coach/economy wording. This remains a separate alternative from business class because it is a contrasting cabin-class value, not an alias.",
+      "representative_id": "tm_v04_habit_4d229daa065d"
+    }
+  ]
+}

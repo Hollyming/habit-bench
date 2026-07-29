@@ -1,0 +1,190 @@
+{
+  "cache_fingerprint": "1fc4e63ba1a32453000ac3eee7bb2d0f617e470461e376f49616639c33fddbe2",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "{'policy_family': 'hotel_accessibility_amenity_priority', 'evidence_kind': 'exception', 'summary': 'For this Denver trip only, Maya explicitly accepts a hotel without a pool or hot tub because dependable access for 8:00 a.m. campus starts is more important, while retaining the on-site fitness room.'}",
+        "evidence_topology": {
+          "episode_id": "client-denver-009",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 47,
+          "target_habit_id": "tm_pd_v05_user_000_h04",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user makes two explicit current-trip tradeoff exceptions: paying more for the earlier flight and waiving the pool/hot-tub criteria while retaining the fitness-room consideration. Neither is stated as a durable preference change.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Also, with that settled, the earlier flight is worth the extra $36; keep that round trip as the flight choice.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h03",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For this trip, I’m willing to give up the pool because the 8:00 starts matter more. Keep the fitness room in the comparison, but don’t reject this hotel over the missing pool or hot tub.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h04",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Let’s use the earlier Tuesday arrival for the hotel comparison. I’m leaning toward paying the extra $36 for the breathing room, but I want the full three-night lodging and local-transport picture before I decide.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare the campus hotel, the lower-priced hotel with included parking, and the downtown rail option. Do you expect to rent a car, or should I price rideshare and hotel transportation where possible?",
+          "role": "assistant"
+        },
+        {
+          "content": "Price the practical setup for each. The review starts at 8:00 Wednesday through Friday, and I don’t want a fragile morning commute. The room cap is $245 per night before tax.",
+          "role": "user"
+        },
+        {
+          "content": "All three base rates fit the cap. For three nights, the nearby Medical Center Hotel is $229 nightly, the Parkside Suites is $198, and the downtown Union Station Hotel is $215. Denver lodging tax for these quotes is 15.75%. I’m checking each transportation setup against the 8:00 starts.",
+          "role": "assistant"
+        },
+        {
+          "content": "Start with the medical center one. Does the shuttle actually solve the commute?",
+          "role": "user"
+        },
+        {
+          "content": "Mostly, yes. Its client shuttle runs every 30 minutes from 6:30 to 9:00 a.m. and takes about 8 to 12 minutes to the east campus. The hotel recommends the 7:00 departure for an 8:00 meeting; the 7:30 run leaves little recovery time. Return service is on request until 6:30 p.m. Parking is $24 per night, but you would not need a car if you use rideshare from the airport.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me both totals there, with and without a rental car.",
+          "role": "user"
+        },
+        {
+          "content": "Room charges are $687. Tax is $108.20, so the complete hotel bill without parking is $795.20. Estimated airport rideshares are $52 each way, bringing lodging plus local ground transport to about $899.20. With a rental car, hotel parking raises the hotel bill to $867.20; adding the current $186 rental quote and about $20 fuel produces an estimated $1,073.20. The shuttle plus airport rideshare is the stronger setup.",
+          "role": "assistant"
+        },
+        {
+          "content": "What’s the catch besides the higher room rate?",
+          "role": "user"
+        },
+        {
+          "content": "The shuttle has limited evening service, and the hotel has a fitness room but no pool or hot tub. Its main advantage is dependable campus access without driving or arranging six peak-hour rides.",
+          "role": "assistant"
+        },
+        {
+          "content": "For this trip, I’m willing to give up the pool because the 8:00 starts matter more. Keep the fitness room in the comparison, but don’t reject this hotel over the missing pool or hot tub.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll treat that as a Denver-trip exception and keep the Medical Center Hotel in first position on access. The fitness room is open 24 hours.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now price Parkside. Included parking sounds good, but I don’t want the cheaper room hiding a lot of driving cost.",
+          "role": "user"
+        },
+        {
+          "content": "Parkside totals $594 in room charges plus $93.56 tax, or $687.56 for the three-night hotel bill; parking is included. It is 5 to 8 miles from the campus depending on the route. Morning drives are usually 18 to 30 minutes, but can exceed 35 after an incident. The practical plan is a rental car: $186 plus roughly $24 in fuel, making hotel and ground transport about $897.56.",
+          "role": "assistant"
+        },
+        {
+          "content": "So only about two dollars less than the medical center plan?",
+          "role": "user"
+        },
+        {
+          "content": "Correct: approximately $1.64 less using these estimates. Parkside saves $107.64 on the hotel bill, but the rental and fuel consume nearly all of that. It also requires driving and parking at the campus each morning. Campus visitor parking is validated for this project, so I have not added a campus fee.",
+          "role": "assistant"
+        },
+        {
+          "content": "Could I skip the rental and rideshare from Parkside?",
+          "role": "user"
+        },
+        {
+          "content": "You could, but it is weaker. Airport rideshares would total about $96, and six hotel-campus rides are estimated at $18 each, or $108. That puts the combined estimate near $891.56. It is nominally cheapest, but morning pickup and traffic variability make it less dependable than the shuttle plan.",
+          "role": "assistant"
+        },
+        {
+          "content": "And downtown? Include the airport train, since that’s the reason it made the list.",
+          "role": "user"
+        },
+        {
+          "content": "The downtown room total is $645 plus $101.59 tax, or $746.59. The airport train is $10 each way. From Union Station, campus rideshares are about $28 to $34 per trip; using $31 for six trips adds $186. The combined estimate is $952.59. Morning travel is typically 25 to 40 minutes, with more exposure to traffic than either suburban option.",
+          "role": "assistant"
+        },
+        {
+          "content": "Any reason to keep downtown in contention?",
+          "role": "user"
+        },
+        {
+          "content": "Only if you value the downtown location after meetings. It costs about $53 more than the medical center shuttle plan and about $61 more than Parkside with rideshares, while producing the longest morning commute. It offers both a pool and fitness center, but there is no hot tub. Those amenities do not offset the commute for this schedule.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then drop downtown. Between the other two, I care more about being predictably early than saving two dollars. Is there a backup if the campus shuttle is full or delayed?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The hotel front desk can call a contracted car, and ordinary rideshare pickup averages 6 to 10 minutes at 7:00 a.m. A backup ride to campus is about $14. Even adding one backup ride, the trip estimate would be about $913.20, still reasonable for the access advantage. I would request the 7:00 shuttle each evening rather than relying on walk-up space.",
+          "role": "assistant"
+        },
+        {
+          "content": "Select the Medical Center Hotel with airport rideshares and the 7:00 shuttle plan. Don’t reserve it yet. Also, with that settled, the earlier flight is worth the extra $36; keep that round trip as the flight choice.",
+          "role": "user"
+        },
+        {
+          "content": "Selected, not booked: the $648 nonstop round trip with the 7:15 p.m. Tuesday arrival and 6:35 p.m. Friday return, plus three nights at the Medical Center Hotel. The hotel bill is $795.20 including tax. Estimated airport rideshares add $104, for a working lodging-and-ground total of $899.20. The plan is to request the 7:00 a.m. client shuttle for each campus day, with an approximately $14 rideshare as backup. No rental car or hotel parking is included, and downtown has been removed from consideration.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0047",
+      "session_index": 47,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Nashville client workshop trip for April 12-15, 2027 remains booked at a projected $1,498. The central Oregon coast trip for September 7-13, 2027 remains booked at $3,470; its revised outbound, Budget pickup, paved detour, Salem stop, and overnight inn access plan remain confirmed, with a working 4:00 a.m. arrival September 8. For the new Denver rollout-review trip, Maya selected but has not booked the $648 nonstop round trip arriving Tuesday at 7:15 p.m. and returning Friday at 6:35 p.m. She also selected but has not booked three nights at the Medical Center Hotel, with an estimated hotel bill of $795.20 and a lodging-and-ground total of $899.20 using airport rideshares and the 7:00 a.m. client shuttle. The downtown and Parkside lodging plans were dropped. The Raleigh breakfast refund and corrected folio remain pending. The coastal Georgia trip and the separate January 2027 Denver client trip remain unbooked. The San Diego November 2026 trip remains booked. Philadelphia deposit-release and shuttle details, plus an earlier Nashville refund reconciliation, remain unresolved.",
+  "verification": {
+    "47": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Also, with that settled, the earlier flight is worth the extra $36; keep that round trip as the flight choice.",
+          "habit_id": "tm_pd_v05_user_000_h03",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For this trip, I’m willing to give up the pool because the 8:00 starts matter more. Keep the fitness room in the comparison, but don’t reject this hotel over the missing pool or hot tub.",
+          "habit_id": "tm_pd_v05_user_000_h04",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user makes two explicit current-trip tradeoff exceptions: paying more for the earlier flight and waiving the pool/hot-tub criteria while retaining the fitness-room consideration. Neither is stated as a durable preference change."
+    }
+  }
+}

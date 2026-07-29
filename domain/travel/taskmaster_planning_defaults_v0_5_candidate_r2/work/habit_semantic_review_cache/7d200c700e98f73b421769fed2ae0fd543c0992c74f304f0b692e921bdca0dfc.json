@@ -1,0 +1,369 @@
+{
+  "cache_fingerprint": "7d200c700e98f73b421769fed2ae0fd543c0992c74f304f0b692e921bdca0dfc",
+  "rows": [
+    {
+      "boundary_condition": "Apply this only to departure timing; do not infer flexibility across all time-of-day windows or assume the same timing for every leg.",
+      "bundle_id": "tm_v04_e2e_bundle_ff9a7f3c433c",
+      "canonical_value": "departure_time_afternoon",
+      "condition": "When searching for flights and no different departure-time preference is specified for the current leg.",
+      "confidence": 0.74,
+      "decision": "revise",
+      "default_action": "Prioritize flights departing in the afternoon, including the earliest suitable afternoon option when relevant.",
+      "exception_condition": "Follow any explicitly stated timing for the current leg, and confirm before broadening beyond afternoon when availability or other constraints require it.",
+      "family": "flight_schedule_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_ff9a7f3c433c",
+      "induced_at": "2026-07-16T07:58:35.651225+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefers afternoon flight departures",
+      "preference_value": "afternoon departures",
+      "rationale": "Across three independent flight dialogues, the user frames departure timing as dayparts and requests or accepts options within or near those windows rather than requiring a single exact departure time.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.86,
+        "reason": "Three distinct instruction IDs support an afternoon departure preference, but they do not establish a general habit of using broad or varying time-of-day windows. Narrow the default to afternoon departures and keep it subordinate to explicit trip-specific timing.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows an afternoon departure window with tolerance for nearby times rather than a fixed exact clock time.",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "exact_user_quote": "Yes. Could you find me flights that leave in the afternoon or as close to it as possible?",
+          "instruction_id": "flight-11",
+          "turn_index": 24
+        },
+        {
+          "contribution": "Requests multiple available departure times within the afternoon window, supporting flexibility among times in that period.",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "exact_user_quote": "Can you give tell me what the times are for departing in the afternoon?",
+          "instruction_id": "flight-3",
+          "turn_index": 33
+        },
+        {
+          "contribution": "Accepts an afternoon window and narrows by the earliest available option within that window after another preferred window is unavailable.",
+          "conversation_id": "dlg-f3189470-c660-4764-97e7-a1b6daa4d541",
+          "exact_user_quote": "Afternoon then, the earliest in the afternoon.",
+          "instruction_id": "flight-4",
+          "turn_index": 61
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Yes. Could you find me flights that leave in the afternoon or as close to it as possible?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 24,
+          "user_utterance": "Yes. Could you find me flights that leave in the afternoon or as close to it as possible?"
+        },
+        {
+          "annotated_segment": "Can you give tell me what the times are for departing in the afternoon?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "habitual_language": false,
+          "instruction_id": "flight-3",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 33,
+          "user_utterance": "Can you give tell me what the times are for departing in the afternoon?"
+        },
+        {
+          "annotated_segment": "Afternoon then, the earliest in the afternoon.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f3189470-c660-4764-97e7-a1b6daa4d541",
+          "habitual_language": false,
+          "instruction_id": "flight-4",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 61,
+          "user_utterance": "Afternoon then, the earliest in the afternoon."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+      "bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+      "canonical_value": "seat_location_window",
+      "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+      "confidence": 0.9,
+      "decision": "keep",
+      "default_action": "Prefer or request a window seat by default.",
+      "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+      "family": "flight_seat_preference",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+      "induced_at": "2026-07-16T07:52:05.038651+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefers_window_seat_on_flights",
+      "preference_value": "window seat",
+      "rationale": "Across three independent flight-booking dialogues, the user repeatedly states a preference for a window seat, including explicit preference language and explanations that they like the window.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.98,
+        "reason": "Three distinct instruction IDs directly and consistently express a window-seat preference, supporting a reusable seat-location default.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Explicitly states a window-seat preference during flight planning.",
+          "conversation_id": "dlg-9219cfa6-83fd-4b9f-8020-b66639ecc314",
+          "exact_user_quote": "Nonstop is one of my preferences and I prefer a window seat.",
+          "instruction_id": "flight-11",
+          "turn_index": 7
+        },
+        {
+          "contribution": "Requests a window seat and gives a stable reason for the preference.",
+          "conversation_id": "dlg-7c95ad21-12c9-410c-840f-91733226bbe8",
+          "exact_user_quote": "I'd like a window seat because I like the window.",
+          "instruction_id": "flight-13",
+          "turn_index": 6
+        },
+        {
+          "contribution": "Independently requests a window seat as part of flight seating preferences.",
+          "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+          "exact_user_quote": "Just coach seating and I'd like a window seat.",
+          "instruction_id": "flight-6",
+          "turn_index": 16
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Nonstop is one of my preferences and I prefer a window seat.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-9219cfa6-83fd-4b9f-8020-b66639ecc314",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 7,
+          "user_utterance": "Nonstop is one of my preferences and I prefer a window seat."
+        },
+        {
+          "annotated_segment": "I'd like a window seat because I like the window.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-7c95ad21-12c9-410c-840f-91733226bbe8",
+          "habitual_language": false,
+          "instruction_id": "flight-13",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 6,
+          "user_utterance": "I'd like a window seat because I like the window."
+        },
+        {
+          "annotated_segment": "Just coach seating and I'd like a window seat.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+          "habitual_language": false,
+          "instruction_id": "flight-6",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 16,
+          "user_utterance": "Just coach seating and I'd like a window seat."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Treat the window seat as a preference rather than a reason to replace an otherwise acceptable flight",
+      "bundle_id": "tm_v04_e2e_bundle_a843e2364b8b",
+      "canonical_value": "seat_location_window",
+      "condition": "When selecting seats for an outbound or return flight",
+      "confidence": 0.93,
+      "decision": "keep",
+      "default_action": "Request or reserve a window seat when one is available",
+      "exception_condition": "Skip the window-seat request if accommodating it would disrupt the selected flight",
+      "family": "flight_seat_preference",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_a843e2364b8b",
+      "induced_at": "2026-07-25T09:05:40.242341+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer window seats on flights",
+      "preference_value": "window seat",
+      "rationale": "Across three independent flight-planning conversations, the user repeatedly requests and confirms window seating; one conversation explicitly shows willingness to retain the flight without it, supporting a soft default rather than a hard requirement.",
+      "reasoning_effort": "high",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.96,
+        "reason": "Three distinct instruction IDs support a recurring window-seat preference. The conditional willingness to skip it does not reverse the preference; it establishes that the seat choice is subordinate to retaining an otherwise acceptable flight.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports a window-seat preference with an explicit fallback to keep the chosen flight if the seat request causes a conflict.",
+          "conversation_id": "dlg-7cce9150-e0b5-4648-98ed-81c0569f0c55",
+          "exact_user_quote": "Okay. Well, then I'll skip the window seat if that messes up this flight.",
+          "instruction_id": "flight-4",
+          "turn_index": 22
+        },
+        {
+          "contribution": "Supports applying the window-seat preference to the return flight as well as the outbound flight.",
+          "conversation_id": "dlg-912e8cb8-5f9b-4860-90a4-9f4e8fe4460d",
+          "exact_user_quote": "That will work, and I'd like to have a window seat with that too, please.",
+          "instruction_id": "flight-12",
+          "turn_index": 14
+        },
+        {
+          "contribution": "Independently states window seating as a flight preference during search.",
+          "conversation_id": "dlg-d72c3e14-32ed-49e3-a337-91818f908cd8",
+          "exact_user_quote": "No layovers and window seats.",
+          "instruction_id": "flight-14",
+          "turn_index": 5
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Okay. Well, then I'll skip the window seat if that messes up this flight.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-7cce9150-e0b5-4648-98ed-81c0569f0c55",
+          "habitual_language": false,
+          "instruction_id": "flight-4",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 22,
+          "user_utterance": "Okay. Well, then I'll skip the window seat if that messes up this flight."
+        },
+        {
+          "annotated_segment": "That will work, and I'd like to have a window seat with that too, please.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-912e8cb8-5f9b-4860-90a4-9f4e8fe4460d",
+          "habitual_language": false,
+          "instruction_id": "flight-12",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 14,
+          "user_utterance": "That will work, and I'd like to have a window seat with that too, please."
+        },
+        {
+          "annotated_segment": "No layovers and window seats.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-d72c3e14-32ed-49e3-a337-91818f908cd8",
+          "habitual_language": false,
+          "instruction_id": "flight-14",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 5,
+          "user_utterance": "No layovers and window seats."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Treat this as a durable amenity preference, not a destination-, date-, party-size-, or price-specific requirement. Do not infer indoor versus outdoor pool preference unless the user states it for the current trip.",
+      "bundle_id": "tm_v04_e2e_bundle_051d8fbc7334",
+      "canonical_value": "hotel_amenities_pool_hot_tub_fitness",
+      "condition": "When choosing or evaluating a hotel for a stay",
+      "confidence": 0.9,
+      "decision": "keep",
+      "default_action": "Prioritize hotel options that include all three wellness/recreation amenities: pool, hot tub, and fitness center or comparable place to exercise.",
+      "exception_condition": "Relax or ask for clarification if no suitable hotel offers all three amenities, or if the user explicitly deprioritizes recreation or exercise amenities for the current booking.",
+      "family": "hotel_accessibility_amenity_priority",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_051d8fbc7334",
+      "induced_at": "2026-07-16T08:28:58.938175+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefers_hotels_with_pool_hot_tub_and_fitness_options",
+      "preference_value": "Hotels that offer a pool, a hot tub, and a fitness or exercise facility",
+      "rationale": "Across three independent hotel dialogues, the user repeatedly asks for the same combination of hotel recreation and exercise amenities: pool, hot tub, and a fitness or exercise facility.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.98,
+        "reason": "Three distinct instruction IDs consistently request the same amenity bundle: a pool, hot tub, and fitness or exercise facility. Indoor-pool preference appears only once and is correctly excluded from the reusable default.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Directly states the full amenity combination as a hotel requirement.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "The hotel must have a pool with a hot tub and a fitness center.",
+          "instruction_id": "hotel-3",
+          "turn_index": 28
+        },
+        {
+          "contribution": "Independently requests the same pool, hot tub, and fitness center combination at the hotel.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "to be a pool with a hot tub and a fitness center at the hotel",
+          "instruction_id": "hotel-2",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Independently supports the same default by asking for a pool, hot tub, and exercise facility.",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "exact_user_quote": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "instruction_id": "hotel-1c",
+          "turn_index": 16
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "The hotel must have a pool with a hot tub and a fitness center.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 28,
+          "user_utterance": "The hotel must have a pool with a hot tub and a fitness center."
+        },
+        {
+          "annotated_segment": "to be a pool with a hot tub and a fitness center at the hotel",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "to be a pool with a hot tub and a fitness center at the hotel"
+        },
+        {
+          "annotated_segment": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 16,
+          "user_utterance": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise."
+        }
+      ]
+    }
+  ]
+}

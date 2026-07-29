@@ -1,0 +1,88 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h03', 'support') actual=[('tm_pd_v05_user_000_h01', 'boundary'), ('tm_pd_v05_user_000_h03', 'boundary')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya endorsed choosing the lower-priced flight once the workshop schedule, airport-transfer margin, and reasonable arrival time had defined the acceptable options; she rejected cheaper itineraries that violated those constraints.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I have a Denver workshop coming up. I need a round trip from Minneapolis, leaving Tuesday after 4:30 p.m. The workshop runs Wednesday through Friday and ends at 2:00 Friday, but I could come back Saturday morning if Friday is too tight.",
+          "role": "user"
+        },
+        {
+          "content": "What are the travel dates, and is the $650 project limit for economy airfare inclusive of taxes? Also, are connections acceptable, or should I focus on nonstop schedules?",
+          "role": "assistant"
+        },
+        {
+          "content": "Tuesday June 9 through Friday June 12, with Saturday June 13 as the fallback. The $650 includes taxes. Nonstop is preferred, but a short connection is fine if it saves enough and doesn't make the trip awkward.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare Tuesday departures that still leave a reasonable arrival buffer before the 8:00 a.m. Wednesday start, then test Friday flights using a realistic downtown-to-DEN transfer. Do you expect to check a bag?",
+          "role": "assistant"
+        },
+        {
+          "content": "No, carry-on only. Assume I’ll leave the client site right at 2:00 and take a rideshare to the airport.",
+          "role": "user"
+        },
+        {
+          "content": "The earliest plausible airport arrival is around 2:45–3:10 p.m., depending on traffic. Allowing time for security, I would not use the cheaper 4:05 p.m. return; it leaves too little margin. Two round trips look workable: Option A is nonstop both ways, Tuesday 5:35–6:48 p.m. and Friday 6:10–9:03 p.m., for $428. Option B uses the same Tuesday outbound and returns nonstop Saturday 7:05–10:01 a.m., for $371.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are there any cheaper Tuesday flights that still get me in at a sensible hour? I don't want to save money and then arrive after midnight before an 8:00 session.",
+          "role": "user"
+        },
+        {
+          "content": "There is a $339 round trip with a Tuesday connection: 4:55 p.m. from MSP, a 1 hour 8 minute stop in Kansas City, and arrival in Denver at 9:24 p.m. Its Saturday return is nonstop at 7:05 a.m. That gets you to a downtown hotel around 10:15–10:45 p.m. if operations are normal. A $318 itinerary arrives at 12:18 a.m. after a longer connection, so I would exclude it given the workshop start.",
+          "role": "assistant"
+        },
+        {
+          "content": "What would the comparable Friday return cost with that 4:55 outbound? And is the connection protected on one ticket?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, both segments are on one ticket, so the airline would rebook you if the inbound delay causes a missed connection. Pairing that outbound with the viable 6:10 p.m. Friday nonstop return is $396. The connection itinerary also includes a 4:05 p.m. Friday return at $352, but I still would not call that workable from a 2:00 p.m. downtown finish.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the realistic choices are $396 to come home Friday or $339 to stay over and fly Saturday. Is that right?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The $396 itinerary leaves Tuesday at 4:55 p.m., arrives at 9:24 p.m. after the protected Kansas City connection, and returns Friday at 6:10 p.m., giving you roughly three hours from workshop end to departure. The $339 itinerary has that same outbound and returns Saturday at 7:05 a.m. Both are within the airfare cap; the Saturday choice adds a hotel night and delays your return home.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before we narrow it, compare those against the nonstop outbound. I want two complete candidates, not every combination.",
+          "role": "user"
+        },
+        {
+          "content": "The cleanest two candidates are: 1. Tuesday nonstop 5:35–6:48 p.m., then Friday nonstop 6:10–9:03 p.m., $428 total. This has the simplest outbound and a workable Friday airport margin. 2. Tuesday one-stop 4:55–9:24 p.m. via Kansas City, then Saturday nonstop 7:05–10:01 a.m., $339 total. This is $89 less in airfare but requires the extra hotel night and an early Saturday departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep both for now. Among schedules that actually satisfy the workshop and transfer constraints, I’d take the cheaper flight; I just don’t want the low fare to depend on that 4:05 Friday departure or the after-midnight arrival. I need to check whether the client will cover Friday night before choosing.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll carry forward those two viable itineraries and leave the decision open: the $428 nonstop Tuesday/Friday round trip, and the $339 Tuesday-connection/Saturday-nonstop round trip. The 4:05 p.m. Friday return and the after-midnight Tuesday arrival are excluded because they do not provide acceptable margins. No flight has been selected, held, or booked; the remaining question is whether the client will cover the additional Friday hotel night.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0009",
+      "session_index": 9,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh return change remains staged but unsubmitted. The April 23–28 coastal trip flights and hotels are booked; two private rides totaling $180 before optional gratuity remain unreserved. For the June Denver workshop, two airfare candidates under the $650 limit are being held for comparison, with no flight selected or booked. Maya needs to confirm whether the client will cover an additional Friday hotel night before choosing the return day."
+}

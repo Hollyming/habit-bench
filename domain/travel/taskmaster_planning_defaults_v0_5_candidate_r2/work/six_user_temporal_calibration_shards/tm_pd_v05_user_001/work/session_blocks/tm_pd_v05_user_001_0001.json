@@ -1,0 +1,152 @@
+{
+  "cache_fingerprint": "23eb4b2e9d613d8e5b93e6f1bacf53f9b8f520f6dfab78fdba026bb6b4eba4a8",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Elena naturally stated that she favors Delta when its schedule and price are comparable, while accepting another carrier when choosing Delta would require materially worse routing. For this trip, Delta's connections and later arrival made the nonstop alternative more workable.",
+        "evidence_topology": {
+          "effective_policy_context": {
+            "boundary_condition": "This is a soft preference: the evidence supports Delta as a favored option, not as the only acceptable airline or an always-first choice over every other preferred carrier.",
+            "condition": "When choosing among flight carriers and Delta is available while also satisfying the trip's schedule, route, price, and stop constraints.",
+            "default_action": "Search for or present Delta options as part of the preferred carrier set, and favor Delta when it is otherwise comparable to alternatives.",
+            "exception_condition": "Use another acceptable carrier when Delta is unavailable, materially worse, or does not meet the current trip constraints.",
+            "family": "flight_airline_preference",
+            "preference_value": "Delta is a preferred airline to include in the flight shortlist, but not an exclusive carrier requirement.",
+            "scope_condition": "Commercial flight searches, commonly from Elena's Denver home base, when she has not named or excluded particular carriers for the current trip."
+          },
+          "episode_id": "ep_031_philadelphia_press_meetings",
+          "mode": "evidence",
+          "phase": "late",
+          "policy_version": 2,
+          "session_index": 120,
+          "target_habit_id": "tm_pd_v05_user_001_h02",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v3_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user requests the Tuesday afternoon outbound, then explicitly overrides the afternoon default for the return by choosing Friday morning due to the Thursday timing risk. The Delta statement establishes a durable soft preference conditioned on comparable schedule and price, while rejecting an added connection solely for carrier preference. No exact seat, bed, hotel-amenity, or general connection-count preference is established.",
+          "reasoning_effort": "high",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Agreed. The Thursday flight sounds too dependent on the appointment ending exactly on time. Extend the hotel and use the Friday morning nonstop.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "When its schedule and price are about as good, I would favor Delta, but I do not want to add a connection just for the airline.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_001_h02",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I have ruled out flying Wednesday morning. Even if everything runs on time, it is too close to the 10:00 sales session. Please compare the Tuesday afternoon departure with the Thursday evening and Friday morning returns, including the hotel impact.",
+          "role": "user"
+        },
+        {
+          "content": "The best Tuesday option is a nonstop leaving Denver at 2:05 p.m. and arriving in Philadelphia at 7:33 p.m. The two return combinations are:\n\nThursday: nonstop at 6:40 p.m., arriving Denver at 9:02 p.m.; round-trip airfare $486.\n\nFriday: nonstop at 8:15 a.m., arriving Denver at 10:37 a.m.; round-trip airfare $451.\n\nYour current hotel total for Tuesday and Wednesday is $552 including taxes. Extending through Thursday is available in the same reservation for another $276, so airfare plus lodging would be $1,038 with the Thursday return or $1,279 with the Friday return.",
+          "role": "assistant"
+        },
+        {
+          "content": "So Friday costs $241 more overall, despite the lower airfare.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The airfare drops by $35, but the additional hotel night adds $276, producing a net increase of $241.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before deciding, calculate the Thursday margin carefully. My last rights appointment ends at 4:30 at 18th and Market.",
+          "role": "user"
+        },
+        {
+          "content": "For the 6:40 p.m. departure, you would ideally be at PHL around 5:10 p.m., allowing 90 minutes before departure. A car from 18th and Market commonly takes 30 to 50 minutes at that hour.\n\nLeaving at 4:35 could put you at the terminal between 5:05 and 5:25, giving 75 to 95 minutes. If the appointment runs 15 minutes late and traffic takes 50 minutes, arrival slips to about 5:40, leaving only 60 minutes before departure. That is possible with mobile check-in and no checked bag, but it leaves little protection against traffic or a delayed meeting.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there a later nonstop Thursday that would give me a real cushion?",
+          "role": "user"
+        },
+        {
+          "content": "No later nonstop is operating that evening. There is an 8:05 p.m. one-stop itinerary, but it arrives in Denver after midnight and costs $94 more. It avoids the immediate airport rush but is not an attractive overall return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please include Delta in the comparison. When its schedule and price are about as good, I would favor Delta, but I do not want to add a connection just for the airline.",
+          "role": "user"
+        },
+        {
+          "content": "Delta's relevant Tuesday itinerary connects in Atlanta and reaches Philadelphia at 8:36 p.m. Its Friday return also has one stop and reaches Denver at 12:48 p.m. The fare is $468. Compared with the nonstop combination, it costs $17 more, adds two connections across the trip, and gets you back more than two hours later Friday. It is not comparable on this route, so the nonstop remains the stronger choice.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. The Thursday flight sounds too dependent on the appointment ending exactly on time. Extend the hotel and use the Friday morning nonstop.",
+          "role": "user"
+        },
+        {
+          "content": "That gives you three hotel nights, Tuesday through Thursday, with checkout Friday. The combined airfare and lodging total is $1,279. Your Wednesday sales session, Wednesday hosted dinner near Rittenhouse Square, and Thursday rights appointments remain unchanged.",
+          "role": "assistant"
+        },
+        {
+          "content": "Go ahead and book the Tuesday outbound and Friday return using the traveler and payment information already attached to this trip.",
+          "role": "user"
+        },
+        {
+          "content": "Booked. Your itinerary is the Tuesday nonstop from Denver at 2:05 p.m., arriving Philadelphia at 7:33 p.m., and the Friday nonstop at 8:15 a.m., arriving Denver at 10:37 a.m. Round-trip airfare is $451. The hotel has been extended through Thursday for a three-night total of $828, making airfare plus lodging $1,279. Plan to leave the hotel for PHL at about 5:45 a.m. Friday; the flight and updated hotel confirmations are attached to the trip record.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0120",
+      "session_index": 120,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena and her spouse's San Diego family-anniversary trip remains set for three hotel nights, with Monday luggage storage still needing hotel confirmation. For Elena's solo Philadelphia trip, airfare and lodging are booked for Tuesday through Friday at a combined cost of $1,279. The Wednesday 10:00 a.m. sales session, Wednesday hosted dinner near Rittenhouse Square, and Thursday rights appointments remain fixed; she chose the Friday return to avoid a rushed transfer after the 4:30 p.m. final appointment.",
+  "verification": {
+    "120": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Agreed. The Thursday flight sounds too dependent on the appointment ending exactly on time. Extend the hotel and use the Friday morning nonstop.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "When its schedule and price are about as good, I would favor Delta, but I do not want to add a connection just for the airline.",
+          "habit_id": "tm_pd_v05_user_001_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "verifier_notes": "The user requests the Tuesday afternoon outbound, then explicitly overrides the afternoon default for the return by choosing Friday morning due to the Thursday timing risk. The Delta statement establishes a durable soft preference conditioned on comparable schedule and price, while rejecting an added connection solely for carrier preference. No exact seat, bed, hotel-amenity, or general connection-count preference is established."
+    }
+  }
+}

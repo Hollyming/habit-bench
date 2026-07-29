@@ -1,0 +1,134 @@
+{
+  "cache_fingerprint": "faffd6e7d711eaf2589c6767046fe4b5e01145f2491e24e55f6cb57446af2186",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves the current Carlsbad trip's flight comparison without establishing a recurring travel preference. Elena selects the 9:10 a.m. Thursday outbound and 1:20 p.m. Monday return for two travelers, with no booking authorized.",
+        "evidence_topology": {
+          "episode_id": "ep_007_carlsbad_family_wedding",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 24,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selects a morning outbound for this trip, establishing a one-trip exception to the afternoon-departure default, not a durable revision. No other candidate habit is strongly evidenced by the user's utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.97,
+            "evidence_quote": "Keep the 9:10 Thursday and 1:20 Monday pairing as the choice.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I want to settle the San Diego flights before we go any further. Can you compare all four pairings for the two of us, including the airport-to-Carlsbad drive?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I have the Thursday choices as 9:10 a.m.-10:35 a.m. and 5:40 p.m.-7:05 p.m., both nonstop Denver to San Diego. The Monday returns are 10:35 a.m.-1:55 p.m. and 1:20 p.m.-4:40 p.m., also nonstop. Are those still the four flights you are seeing?",
+          "role": "assistant"
+        },
+        {
+          "content": "Those are right. The fare pieces are $169 and $121 per person going out, then $126 and $129 per person coming back. I need the totals stated clearly because the cheaper-looking pieces are getting confusing.",
+          "role": "user"
+        },
+        {
+          "content": "For two travelers, before bags or seat fees: early Thursday plus early Monday is $590 round trip; early Thursday plus 1:20 Monday is $596; late Thursday plus early Monday is $494; late Thursday plus 1:20 Monday is $500. The spread from the least to most expensive pairing is $102 total.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now put realistic ground time around those. I do not want to treat landing time as arrival in Carlsbad.",
+          "role": "user"
+        },
+        {
+          "content": "For the 10:35 a.m. Thursday arrival, allow about 35-45 minutes to get off the plane and collect bags, then 20-30 minutes for the rental-car pickup. The drive to Beach Terrace is commonly 40-55 minutes at that hour. A reasonable hotel arrival is noon to 12:25 p.m., though the room may not be ready. The 7:05 p.m. arrival likely means leaving the rental facility around 7:50 and reaching Carlsbad around 8:40-9:10 p.m., depending on traffic and rental delays.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the late flight effectively gives away Thursday evening. What about Monday morning traffic going south?",
+          "role": "user"
+        },
+        {
+          "content": "The 10:35 a.m. return is the difficult one. To allow for a 60-80 minute drive in weekday traffic, fuel, rental return and shuttle time, I would leave Beach Terrace around 6:35 a.m. That should put you at the terminal near 8:30, about two hours before departure. For the 1:20 p.m. return, leaving around 9:30 a.m. remains sensible; traffic should be easing, and there is enough time for the same return process.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the usable time for each actual pair, not just each flight separately.",
+          "role": "user"
+        },
+        {
+          "content": "Early Thursday/early Monday, $590: you reach Carlsbad around noon Thursday and retain most of that day, but Monday is essentially a 6:35 a.m. checkout and airport transfer. Early Thursday/1:20 Monday, $596: the same useful Thursday afternoon plus time for breakfast and a normal 9:30 departure Monday. Late Thursday/early Monday, $494: arrival after dinner Thursday and a pre-breakfast departure Monday, so it sacrifices meaningful time at both ends. Late Thursday/1:20 Monday, $500: Thursday is still mostly lost, but Monday morning is usable. Friday's rehearsal dinner, Saturday's wedding and the full coastal Sunday work with every pairing.",
+          "role": "assistant"
+        },
+        {
+          "content": "And all of those still correspond to four hotel nights, Thursday through Monday?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Each pairing uses check-in Thursday, November 5, and checkout Monday, November 9: four nights. The flight times change how much of the arrival and departure days you can use, not the hotel dates.",
+          "role": "assistant"
+        },
+        {
+          "content": "The $6 difference between the Monday flights is trivial. It sounds like the real decision is whether the earlier Thursday arrival is worth $96 more for both of us.",
+          "role": "user"
+        },
+        {
+          "content": "That is the meaningful tradeoff. The earlier outbound buys roughly eight additional hours in Carlsbad and avoids a late rental pickup and hotel arrival. Combined with the 1:20 p.m. return, it costs $596 total, only $6 more than pairing that outbound with the disruptive morning return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the 9:10 Thursday and 1:20 Monday pairing as the choice. Do not book it yet. Tell me exactly what remains uncertain.",
+          "role": "user"
+        },
+        {
+          "content": "Selected flight plan: Thursday, November 5, nonstop Denver-San Diego from 9:10 a.m. to 10:35 a.m., returning Monday, November 9, nonstop from 1:20 p.m. to 4:40 p.m., for two adults. The current airfare calculation is $596 round trip before optional bags and seats. Plan on reaching Beach Terrace around noon Thursday and leaving the hotel around 9:30 a.m. Monday. This preserves Friday's rehearsal dinner, Saturday's wedding and Sunday near the coast while fitting the four Thursday-through-Monday hotel nights. Nothing has been booked or held. Reconfirm flight numbers and schedules, the final fare, baggage and seat charges, fare-change and cancellation terms, rental-counter timing, expected traffic, and the hotel's luggage or early-arrival options before purchase.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0024",
+      "session_index": 24,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena's March 26-29 Chicago conference arrangements remain based at the Palmer House; flight issuance and cancellation-credit handling still need confirmation. The May 1-3 Raleigh-area wedding trip for Elena and her spouse remains confirmed, including the scheduled Saturday ride to the Matthews House; other local transfers, seats, and bags remain unarranged. The June 14-17 Seattle work trip remains booked; Elena still needs to update the relocated rights-meeting details, confirm Tuesday's sequence with the venue contact, and cancel the conflicting dinner. The July 23-25 Philadelphia board trip remains confirmed, with Saturday checkout and bag storage planned before the unchanged evening return flight. For September 12-18, Elena and her spouse retain two nights in Portland followed by four nights in Bar Harbor. Their Friday return from Portland and $619 Portland round-trip rental are confirmed; the Bangor-return rental was canceled. Both hotels remain unchanged, and the final day includes roughly 3 hours 10 minutes of driving from Bar Harbor. For October 14-17, the Denver-Atlanta flights and three-night Courtyard Atlanta Downtown stay are confirmed. Saturday's roundtable has moved to the Omni and ends at 1:15 p.m.; same-day luggage storage and the airline's checked-bag cutoff still need reconfirmation. For November 5-9, Elena and her spouse have selected, but not booked, the nonstop flights leaving Denver Thursday at 9:10 a.m. and leaving San Diego Monday at 1:20 p.m., currently calculated at $596 total before optional extras. The four-night Beach Terrace stay and compact rental remain the leading ground plan for the Friday rehearsal dinner, Saturday wedding and open coastal Sunday. Flight details and terms, room availability and total, parking, rental details, traffic, luggage or early-arrival handling, and wedding transportation instructions still require verification.",
+  "verification": {
+    "24": {
+      "habit_signals": [
+        {
+          "confidence": 0.97,
+          "evidence_quote": "Keep the 9:10 Thursday and 1:20 Monday pairing as the choice.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selects a morning outbound for this trip, establishing a one-trip exception to the afternoon-departure default, not a durable revision. No other candidate habit is strongly evidenced by the user's utterances."
+    }
+  }
+}

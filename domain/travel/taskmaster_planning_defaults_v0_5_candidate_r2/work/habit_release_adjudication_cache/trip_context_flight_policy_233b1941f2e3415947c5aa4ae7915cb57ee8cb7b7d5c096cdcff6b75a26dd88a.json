@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "233b1941f2e3415947c5aa4ae7915cb57ee8cb7b7d5c096cdcff6b75a26dd88a",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_connection_count_duration_preference",
+      "boundary_condition": "Apply this only when comparing connecting itineraries; do not infer a general preference for either nonstop flights or flights with a layover.",
+      "canonical_value": "For connecting itineraries, prefer at most one short, practical layover.",
+      "condition": "When evaluating flight itineraries with connections.",
+      "default_action": "Prioritize itineraries with at most one layover and a short connection that permits a practical transfer and brief break.",
+      "exception_condition": "Follow explicit current-trip requirements for a different number or duration of stops.",
+      "input_ids": [
+        "tm_v04_e2e_habit_a7725793148c"
+      ],
+      "name": "flight_connection_limit_preference",
+      "preference_value": "When a flight connection is needed, prefer no more than one short layover.",
+      "rationale": "Multiple examples support a soft limit of at most one layover and a preference for a short, practical connection when a connecting itinerary is considered. The evidence does not justify inferring that a connection is preferred over nonstop service.",
+      "representative_id": "tm_v04_e2e_habit_a7725793148c"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_cabin_class_preference",
+      "boundary_condition": "Treat business class as a soft preference, not a requirement, and do not infer an independent standing budget or price threshold.",
+      "canonical_value": "Prefer business class when feasible, with coach as the fallback.",
+      "condition": "When comparing flight cabin options.",
+      "default_action": "Prefer or surface business-class options first.",
+      "exception_condition": "Use coach when business class is unavailable, infeasible under explicit current-trip constraints, or declined by the user.",
+      "input_ids": [
+        "tm_v04_e2e_habit_dab7e9145814"
+      ],
+      "name": "prefer_business_class_with_coach_fallback",
+      "preference_value": "Prefer business class when available and feasible, with coach acceptable as a fallback.",
+      "rationale": "Repeated examples support business class as a soft cabin preference, while one example explicitly establishes coach as the fallback. Budget feasibility remains a current-trip constraint rather than a persistent price rule.",
+      "representative_id": "tm_v04_e2e_habit_dab7e9145814"
+    }
+  ]
+}

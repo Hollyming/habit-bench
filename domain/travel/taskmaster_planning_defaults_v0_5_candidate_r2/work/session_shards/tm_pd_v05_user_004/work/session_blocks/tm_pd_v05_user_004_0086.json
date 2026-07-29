@@ -1,0 +1,166 @@
+{
+  "cache_fingerprint": "2a4a3ab62be71247274c55cbf8345095f8d8f1b1bd2e8ad9ca7ac7169ce72ee3",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Danielle compared four flight-and-hotel combinations for the August 21-23 Minneapolis summit and narrowed the choice to an early nonstop paired with either the summit block or a less expensive Downtown East hotel. No durable travel preference was established, and no reservation was made.",
+        "evidence_topology": {
+          "episode_id": "ep_027_minneapolis_arts_funder_summit",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 86,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_004"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly establishes a current-trip obligation that requires an earlier departure, overriding the general afternoon-departure preference. The dialogue does not provide sufficiently strong user-originated evidence for the other candidate habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "I am expected for introductions at 6:00, so I do not want to build a plan around slipping in at 6:30.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to work out Minneapolis for the arts-funder summit. The reception is Thursday at 6:00 p.m., Friday starts at 8:30 near the riverfront, and the partnership roundtable ends Saturday at 11:30. I can leave Dallas Thursday and come home Saturday. My reimbursable ceiling is $1,050 before meals.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare the realistic flight and hotel pairings against that ceiling. Which Thursday and Saturday are these, and is the reception at the same riverfront venue as Friday’s program?",
+          "role": "assistant"
+        },
+        {
+          "content": "August 21 through 23. The reception is at a gallery in the North Loop, about a mile from Friday’s venue. The Saturday roundtable is at the same riverfront hotel hosting the room block.",
+          "role": "user"
+        },
+        {
+          "content": "There are two useful nonstop departures from DFW on Thursday. The earlier one leaves at 8:10 a.m. and reaches MSP at 10:35 a.m.; paired with a 2:10 p.m. Saturday return arriving at 4:42 p.m., it is $356 round trip. The later outbound leaves at 1:05 p.m. and arrives at 3:28 p.m.; with that same return, it is $294. Both fares include a carry-on but no checked bag. Is the 6:00 reception one where arriving after the opening would be a problem?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. I am expected for introductions at 6:00, so I do not want to build a plan around slipping in at 6:30. But quantify the later flight rather than throwing it out.",
+          "role": "user"
+        },
+        {
+          "content": "The later flight is possible on paper but has little resilience. Allowing 15 minutes to deplane, 25 to 40 minutes for a rideshare into Minneapolis, and hotel check-in puts you at the hotel around 4:20 to 4:45 if the flight is on time. You would need to leave for the gallery around 5:20. That gives roughly 35 to 60 minutes of usable margin, and a delay of an hour would likely make you late.",
+          "role": "assistant"
+        },
+        {
+          "content": "Understood. Now compare the room block with something less expensive. The block is limited, but I have not claimed a room.",
+          "role": "user"
+        },
+        {
+          "content": "The summit block is $229 per night for Thursday and Friday. With taxes, the two-night total is $528.10. It is at the Saturday venue and about a 12-minute walk from Friday’s program. A comparable hotel near Downtown East is $179 per night and $413.28 total, but it is about 1.7 miles from Friday’s venue and 2.3 miles from the Saturday hotel. The cheaper hotel saves $114.82 before additional transportation.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please put actual transfer estimates against both. Include the airport trips, Thursday reception, and whatever is needed Friday and Saturday. I do not need Dallas-side transportation included.",
+          "role": "user"
+        },
+        {
+          "content": "For the block hotel, I estimate $86 total: about $34 from MSP Thursday, $14 to the North Loop reception, $14 back afterward, and $24 from the hotel to MSP Saturday. Friday is walkable, and Saturday requires no transfer. For the Downtown East hotel, I estimate $132: $31 from MSP, $17 to the reception, $17 back, $15 to Friday’s venue, $15 back, $16 to the Saturday roundtable, and $21 from there to MSP. These are planning figures with ordinary demand, so I would keep a small cushion inside the ceiling.",
+          "role": "assistant"
+        },
+        {
+          "content": "What do the four combinations cost? Use the same Saturday return for all of them.",
+          "role": "user"
+        },
+        {
+          "content": "Earlier flight plus block hotel is $970.10, leaving $79.90. Later flight plus block hotel is $908.10, leaving $141.90. Earlier flight plus Downtown East hotel is $901.28, leaving $148.72. Later flight plus Downtown East hotel is $839.28, leaving $210.72. Those totals include airfare, two hotel nights with tax, and the estimated Minneapolis transfers, but not meals or Dallas transportation.",
+          "role": "assistant"
+        },
+        {
+          "content": "The earlier flight and cheaper hotel cost less than the later flight and block, which is useful. How much working time do I really gain by taking the early flight?",
+          "role": "user"
+        },
+        {
+          "content": "With the early flight, you should reach the hotel around noon. Even allowing for luggage storage before the room is ready, you would have roughly four and a half hours before leaving for the reception. The later flight probably gets you to the hotel between 4:20 and 4:45, leaving less than an hour of uncommitted time. The early departure therefore adds about four hours of workable time in Minneapolis and substantially more delay protection.",
+          "role": "assistant"
+        },
+        {
+          "content": "I will only have a carry-on, so do not add bag fees. Is the cheaper hotel’s Saturday checkout going to be awkward if I need to be at the roundtable through 11:30?",
+          "role": "user"
+        },
+        {
+          "content": "Its checkout is noon, which is awkward because the roundtable is elsewhere. The clean arrangement is to check out around 7:45 Saturday, take your carry-on to the summit hotel, and ask the event desk or bell desk to hold it during the roundtable. The summit hotel confirms day-of-event luggage storage for registered attendees, so the $16 ride from Downtown East to the roundtable still covers that plan.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Check the timing from the end of the roundtable to the 2:10 flight. I do not want the savings to depend on leaving the session early.",
+          "role": "user"
+        },
+        {
+          "content": "If the roundtable ends at 11:30, collecting the bag and requesting a car should put you on the road by about 11:45. The drive to MSP is commonly 20 to 30 minutes, giving an airport arrival around 12:05 to 12:15, nearly two hours before departure. Even with a 20-minute pickup or traffic delay, you would still have about 95 minutes. You would not need to leave the roundtable early under normal conditions.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are the hotel rates equally flexible? I do not want to compare a cancellable block room with a prepaid outside rate as though they are the same thing.",
+          "role": "user"
+        },
+        {
+          "content": "They are not identical. The $528.10 block reservation can be canceled without charge until 6:00 p.m. Central on August 18 and is paid at the hotel. The $413.28 Downtown East rate is also paid at the hotel, with free cancellation until 6:00 p.m. Central on August 19. After its deadline, the penalty is one night plus tax, estimated at $206.64. Neither quoted rate is prepaid.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the airfare terms? I may need to show finance why the $356 option is the better operational choice.",
+          "role": "user"
+        },
+        {
+          "content": "Both flight combinations are nonrefundable economy fares that permit cancellation for an airline credit before departure. The $356 itinerary buys the 8:10 a.m. outbound; the $294 itinerary uses the 1:05 p.m. outbound. The $62 difference creates about four additional working hours and changes the reception buffer from roughly 35 to 60 minutes to more than five hours. That is the clearest business justification.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then narrow this to the early nonstop with the Downtown East hotel and the early nonstop with the block hotel. Show the cost difference, practical tradeoff, and remaining allowance. Do not book either yet.",
+          "role": "user"
+        },
+        {
+          "content": "The lower-cost finalist is the 8:10 a.m. Thursday nonstop, 2:10 p.m. Saturday nonstop, and Downtown East hotel. Airfare is $356, lodging is $413.28, and estimated local transportation is $132, for $901.28 total. It leaves $148.72 under the $1,050 ceiling. The tradeoff is six additional local rides, an off-site Friday stay, and checking out before Saturday’s roundtable, though attendee luggage storage at the summit hotel resolves the bag issue.\n\nThe convenience finalist uses the same flights with the summit block. Airfare is $356, lodging is $528.10, and transfers are estimated at $86, for $970.10 total. It leaves $79.90. It costs $68.82 more overall, places you within walking distance Friday, and eliminates Saturday’s hotel transfer and early checkout logistics. Both preserve more than five hours before Thursday’s reception and allow the full Saturday roundtable before the 2:10 p.m. flight. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0086",
+      "session_index": 86,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Gulf Coast unit B remains reserved for August 10-15 for three guests at $2,098; $1,468.60 is due July 11, parking confirmation is outstanding, and a $300 security authorization is scheduled for August 8. New Orleans Cambria is confirmed for December 20-23 at $929.01; call with a revised ETA after 9:00 p.m. Approval remains pending for the May 13-15 Indian Wells return change, which is $43.62 above the reimbursement ceiling. The March 10-15 beachfront hotel is booked at $1,978.20; an occupancy-only correction remains needed, with cancellation through February 24 at 6:00 p.m. Central. The May 8-9 Denver visit is booked at an estimated $632.46. For the June Seattle summit, Pine Street Inn is selected at $437.35; verify live terms. The June 25-29 Chicago family trip is booked at an estimated $3,673.84; museum reservations remain outstanding. The September 16-17 Atlanta visit is estimated at $648.67 excluding meals. Inn by the Harbor is confirmed for July 26-31 at $1,862.16; verify the $74 rental change and late-arrival acknowledgment. The October 8-9 Denver forum remains within its $800 allowance; retain the reissued-return exchange records. For November 19-20 Minneapolis, Aloft is booked and flights remain to be ticketed; total estimate $709.76. The October 10-14 New Orleans family trip is booked at $2,823.40. The Philadelphia retreat has ticketed flights and Conwell Inn reserved at $446.82. For the July coastal drive, Courtyard Birmingham Hoover, Hotel Folly, and La Quinta Atlanta Conyers are reserved; remaining lodging and parking payments total $1,845.73. Call the Courtyard before departure to confirm the late arrival hold. The loop is estimated at roughly 2,250 miles and $275 in fuel; meals remain excluded. For the May 5-6 St. Louis convening, Southwest nonstops and the AC Hotel are booked at an estimated $591.42 before meals and Dallas transportation. For the August 21-23 Minneapolis arts-funder summit, the finalists use an 8:10 a.m. Thursday nonstop from DFW and a 2:10 p.m. Saturday return. Pairing them with the Downtown East hotel is estimated at $901.28, leaving $148.72 of the allowance; pairing them with the summit block is $970.10, leaving $79.90. Neither finalist is booked.",
+  "verification": {
+    "86": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "I am expected for introductions at 6:00, so I do not want to build a plan around slipping in at 6:30.",
+          "habit_id": "tm_pd_v05_user_004_h00",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly establishes a current-trip obligation that requires an earlier departure, overriding the general afternoon-departure preference. The dialogue does not provide sufficiently strong user-originated evidence for the other candidate habits."
+    }
+  }
+}

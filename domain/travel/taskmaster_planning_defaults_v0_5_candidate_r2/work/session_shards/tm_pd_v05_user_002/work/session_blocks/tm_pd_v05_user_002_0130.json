@@ -1,0 +1,147 @@
+{
+  "cache_fingerprint": "b74252a05b876f162c9d8683ccd6877652a2f3b1387677c939ccaef0a40bfdec",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "No recurring travel preference was established. For this trip, Marcus selected the Friday evening outbound to recover four to five useful Saturday hours and the earlier Sunday nonstop to avoid a higher-priced evening connection.",
+        "evidence_topology": {
+          "episode_id": "maine-coast-family-vacation-01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 130,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user makes current-trip choices: an earlier Sunday return overrides the later-day return preference, while explicitly rejecting a connecting Sunday itinerary supports the nonstop preference. The Friday connecting outbound is a trip-specific tradeoff and does not establish a durable routing revision. No user utterance evidences cabin, seat, breakfast, balcony, or a generally applicable morning-departure preference.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Use Friday evening outbound and the 1:25 nonstop home as the working flights.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h01",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "I do not want to spend Sunday evening connecting.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h03",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Compare the Friday-evening and Saturday-morning Maine options for all three of us. Include bags, the extra Portland night, actual usable time, and both Sunday returns. I want one flight set to carry into hotels and a rental car, but do not book anything.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare July 10-19 against July 11-19. Before I total it, should I assume one checked bag per person and that the Friday airport hotel is only for that arrival night?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. Three checked bags each direction. Friday would be one night near PWM, then eight nights on the coast. Saturday would be eight nights total.",
+          "role": "user"
+        },
+        {
+          "content": "The Friday itinerary leaves ORD at 6:05 p.m., connects in Washington National for 58 minutes, and reaches Portland at 10:52 p.m. The round-trip fare for three is $1,188. Checked bags add $240, so flights plus bags are $1,428. A cancellable airport hotel with tax is about $246, bringing that date combination to $1,674 before the coastal lodging and rental car.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does that arrival really look like? We will not be walking into the hotel at 10:55.",
+          "role": "user"
+        },
+        {
+          "content": "With checked bags, a realistic hotel arrival is 11:35 p.m. to midnight. That assumes 20-35 minutes for baggage and 15-25 minutes for the hotel shuttle or a short rideshare. I would not collect the rental car that night. Returning to PWM Saturday morning for an 8:30 a.m. pickup should put you on the road around 9:00.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Saturday nonstop?",
+          "role": "user"
+        },
+        {
+          "content": "The Saturday nonstop leaves ORD at 8:10 a.m. and arrives PWM at 11:33 a.m. Its round-trip fare is $1,422 for three; bags again add $240, for $1,662. There is no Portland hotel night, so it is $12 less than the Friday plan on the currently measurable travel costs, despite the airfare itself being $234 higher.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much Saturday do we lose in practical terms? We are thinking Portland first, then driving south before turning up the coast later.",
+          "role": "user"
+        },
+        {
+          "content": "On Friday travel, you can have breakfast, retrieve the car, and be in central Portland around 9:15 a.m. After a few hours there, you could start south around lunch and reach the Kennebunkport area in roughly 45-60 minutes depending on traffic. With the Saturday nonstop, baggage and the rental counter likely put you in the car between 12:25 and 1:00 p.m. Central Portland would be about 1:15, or Kennebunkport about 1:45-2:15 if you drive there directly. The Friday option effectively buys four to five useful daytime hours.",
+          "role": "assistant"
+        },
+        {
+          "content": "Lay out the Sunday choices. I do not want the comparison quietly using different returns.",
+          "role": "user"
+        },
+        {
+          "content": "Using the same return for either outbound: the earlier nonstop leaves PWM Sunday at 1:25 p.m. and reaches ORD at 3:18 p.m.; it is included in the totals already quoted. The later option leaves at 5:40 p.m., connects at Dulles for 1 hour 5 minutes, and arrives ORD at 9:22 p.m. It adds $168 for three, making Friday $1,842 with the airport hotel or Saturday $1,830 without it.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much usable time does the later return actually add once we allow for the airport?",
+          "role": "user"
+        },
+        {
+          "content": "About four hours. For the 1:25 nonstop, I would target PWM by 11:25 a.m.; for the 5:40 departure, by 3:40 p.m. The later flight adds 4 hours 15 minutes before airport arrival, but it also adds a connection, $168, and an ORD arrival just after 9:00 p.m. instead of midafternoon.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use Friday evening outbound and the 1:25 nonstop home as the working flights. The $12 is immaterial compared with getting Saturday back, and I do not want to spend Sunday evening connecting. Recap what should feed the lodging and car search.",
+          "role": "user"
+        },
+        {
+          "content": "Working plan, entirely unbooked: Friday, July 10, depart ORD at 6:05 p.m., connect at DCA for 58 minutes, and arrive PWM at 10:52 p.m. Plan on reaching the airport hotel around 11:35 p.m. to midnight. The three round-trip fares are $1,188 and six checked-bag charges total $240. Add the estimated $246 cancellable Portland airport hotel for a current travel subtotal of $1,674. Saturday, July 11, return to PWM for an 8:30 a.m. rental pickup and expect to be driving around 9:00; that preserves a Portland morning and an early-afternoon drive south. Coastal lodging must cover eight nights, July 11-19, while the complete trip requires nine lodging nights including July 10 near PWM. Sunday, July 19, return the car and reach PWM by about 11:25 a.m. for the 1:25 p.m. nonstop, arriving ORD at 3:18 p.m. Use these flights and timing assumptions for the route, lodging, and rental-car comparison. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0130",
+      "session_index": 130,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "The San Diego family trip for Marcus, Daniel, and Owen remains booked for June 14-20 under flight SD7K4P and Best Western Coronado confirmation BW-583174, totaling $4,498.26 before the arrival rideshare. The Columbus-Cincinnati operations trip is booked for July 21-23 under K7LM2Q, ALF-731904, CY-448217, and ENT-6R29PL, totaling $1,126.54 before fuel, tolls, and optional coverage. The Richmond operations trip is booked for August 12-14 under R8V4LM and OM-628451; airfare and hotel total $908.20, with a $1,009.20 estimate including rideshares. The Boston family trip is booked for October 9-13 under B7Q2LN and CAM-804731; confirmed airfare, lodging, and paid seats total $2,863.32, and the arrival rideshare is not prepaid. The Houston operations trip is booked for November 5-7 under H6T9QK and HA-917604; fixed charges are $1,092.42 and the planning total with rideshares is $1,218.42-$1,275.42. For the Maine coast family trip, the unbooked working flights are Friday, July 10, ORD-DCA-PWM from 6:05 to 10:52 p.m. and Sunday, July 19, PWM-ORD nonstop from 1:25 to 3:18 p.m. Three fares plus checked bags total $1,428. One estimated $246 airport hotel night on July 10 brings the current travel subtotal to $1,674. The family needs eight coastal lodging nights for July 11-19 and a rental car from Saturday morning through Sunday departure; route, lodging, and rental comparisons remain unresolved.",
+  "verification": {
+    "130": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Use Friday evening outbound and the 1:25 nonstop home as the working flights.",
+          "habit_id": "tm_pd_v05_user_002_h01",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "I do not want to spend Sunday evening connecting.",
+          "habit_id": "tm_pd_v05_user_002_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user makes current-trip choices: an earlier Sunday return overrides the later-day return preference, while explicitly rejecting a connecting Sunday itinerary supports the nonstop preference. The Friday connecting outbound is a trip-specific tradeoff and does not establish a durable routing revision. No user utterance evidences cabin, seat, breakfast, balcony, or a generally applicable morning-departure preference."
+    }
+  }
+}

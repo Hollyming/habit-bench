@@ -1,0 +1,166 @@
+{
+  "cache_fingerprint": "703afcf79fda11098efe6513c65c25f9e5d88f21bd9f748e354207e96d7bd007",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip planning only. Avery established current-trip schedule constraints, compared three Wednesday transfer options around an unresolved exhibition release, and retained a provisional multi-city itinerary without booking or expressing a recurring travel policy.",
+        "evidence_topology": {
+          "episode_id": "southeast_exhibition_transfer_01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 93,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly sets a later-day departure constraint for this trip and later retains the 2:35 p.m. return. The user does not independently state a nonstop, carrier, seat, or hotel preference in the quoted utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "On Friday, assume the meeting ends at 11:30. I would like enough time to get from the museum area to Logan without rushing, so probably nothing before 2:00 p.m.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to map out a three-city work trip. I have to go from Atlanta to Washington, then Washington to Boston, then back to Atlanta. I am not ready to purchase because one handoff time is still unsettled.",
+          "role": "user"
+        },
+        {
+          "content": "I can build a workable set of options and leave the uncertain segment open. What are the travel dates, and when do you need to be at the meetings in Washington and Boston?",
+          "role": "assistant"
+        },
+        {
+          "content": "Fly to Washington on Monday, February 9. The condition review is Tuesday, February 10 at 9:00 a.m. near the National Mall. The exhibition should be released Wednesday afternoon, and I need to accompany it to Boston. The receiving meeting there is Friday, February 13 at 9:30 a.m., then I can fly home.",
+          "role": "user"
+        },
+        {
+          "content": "For Wednesday, do you have an expected release time or a range? Also, should I check all three Washington-area airports, or keep the departure near central Washington?",
+          "role": "assistant"
+        },
+        {
+          "content": "They are aiming for 3:30 p.m., but it could slip to 5:00. Keep Wednesday out of Reagan if possible. I do not want to add a long airport transfer while managing the handoff materials.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I will treat the Monday arrival and Friday meeting as firm, and compare at least two Wednesday departures from Reagan: one that works after a 3:30 release and a later fallback if it runs to 5:00. How early can you leave Atlanta Monday, and how much time do you need after Friday's meeting?",
+          "role": "assistant"
+        },
+        {
+          "content": "Monday can be any time after noon. On Friday, assume the meeting ends at 11:30. I would like enough time to get from the museum area to Logan without rushing, so probably nothing before 2:00 p.m.",
+          "role": "user"
+        },
+        {
+          "content": "I found a clean multi-city outline in economy. Monday has a nonstop from Atlanta at 4:10 p.m., arriving Reagan at 5:55 p.m. Wednesday has nonstops from Reagan to Boston at 6:45 p.m. and 8:15 p.m. Friday has a nonstop from Boston at 2:35 p.m., arriving Atlanta at 5:45 p.m. The current total for that combination is $612 before optional bags or seats.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Monday and Friday flights sound workable. Is 6:45 on Wednesday actually realistic if the release happens at 3:30?",
+          "role": "user"
+        },
+        {
+          "content": "It is feasible but not generous. If the release finishes at 3:30, allowing about 30 minutes to close out paperwork and gather materials puts you on the road around 4:00. From the National Mall area, that usually leaves a reasonable airport margin for a 6:45 departure, though weekday traffic or a delayed release could erode it. If the release reaches 5:00, that flight is not a sound choice.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the next flight after 8:15? I want to understand whether that one is truly the fallback or whether there is another option behind it.",
+          "role": "user"
+        },
+        {
+          "content": "There is a 9:35 p.m. nonstop arriving Boston at 11:13 p.m. It is currently $74 more than the 8:15 option when paired with the same Monday and Friday flights. After that, the remaining itineraries require a connection or travel the following morning, which would separate you from the Wednesday transfer plan.",
+          "role": "assistant"
+        },
+        {
+          "content": "The 9:35 arrival is later than I would like, but keep it in view. Compare the practical deadlines for all three Wednesday choices.",
+          "role": "user"
+        },
+        {
+          "content": "For the 6:45 p.m. flight, I would want the release completed by about 3:45 and departure for Reagan near 4:15 at the latest. For 8:15 p.m., finishing by 5:00 and leaving around 5:30 gives a more defensible margin. The 9:35 p.m. flight provides additional recovery time if paperwork extends beyond 5:00, but it puts you into Boston after 11:00 p.m. These estimates assume travel from the National Mall area and no checked baggage requiring an earlier cutoff.",
+          "role": "assistant"
+        },
+        {
+          "content": "I will have a carry-on and a document case, no checked bag. Are the 6:45 and 8:15 flights on the same airline? I am wondering whether a same-day change could be possible if we choose the earlier one.",
+          "role": "user"
+        },
+        {
+          "content": "Yes, those two departures are on the same airline. The 9:35 flight is also operated by that airline. The fares I am viewing allow changes, but any switch is subject to seat availability and a fare difference. A same-day confirmed change may be offered closer to departure under the airline's rules, but it should not be treated as guaranteed protection against a late release.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then price the itinerary once with 6:45 and once with 8:15. Do not book either one yet.",
+          "role": "user"
+        },
+        {
+          "content": "With the Monday 4:10 p.m. Atlanta-Reagan flight and Friday 2:35 p.m. Boston-Atlanta flight held constant, the itinerary using Wednesday at 6:45 p.m. is $612 total. Using Wednesday at 8:15 p.m. is $648 total. Both are standard economy fares that permit changes subject to fare difference; neither includes a checked bag or paid seat selection.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there any reason to change the Friday flight? I need to be sure a meeting that ends at 11:30 does not leave me pressed for a 2:35 departure.",
+          "role": "user"
+        },
+        {
+          "content": "The 2:35 p.m. departure leaves roughly three hours from the expected end of the meeting. That is workable for a trip from central Boston to Logan with carry-on baggage, while still allowing for ordinary traffic and security. There is also a 4:05 p.m. nonstop arriving Atlanta at 7:16 p.m.; choosing it raises either itinerary by $29 and provides considerably more margin if the meeting runs long.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep 2:35 for now. The Friday group is good about ending on time. For Wednesday, I think 8:15 is the responsible working choice, but I need the registrar to confirm whether 5:00 is a hard latest release.",
+          "role": "user"
+        },
+        {
+          "content": "That leaves a coherent provisional itinerary: Monday, February 9, Atlanta to Reagan nonstop at 4:10 p.m., arriving 5:55 p.m.; Wednesday, February 11, Reagan to Boston nonstop at 8:15 p.m., arriving 9:53 p.m.; and Friday, February 13, Boston to Atlanta nonstop at 2:35 p.m., arriving 5:45 p.m. Current total: $648 in standard economy.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please retain that itinerary, along with the 6:45 and 9:35 Wednesday alternatives. Note exactly what I need to confirm before I come back.",
+          "role": "user"
+        },
+        {
+          "content": "Retained for confirmation, with no purchase made. The working itinerary is February 9 Atlanta-Reagan, February 11 Reagan-Boston on the 8:15 p.m. nonstop, and February 13 Boston-Atlanta. The 6:45 p.m. and 9:35 p.m. Wednesday nonstops remain the earlier and later alternatives. Before selecting the middle flight, confirm the registrar's hard latest release time, whether closeout paperwork is included in that time, and whether you can leave for Reagan immediately afterward. Fares and seats can change until ticketing.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0093",
+      "session_index": 93,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "The Chicago installation trip, Omni Amelia Island stay, Nashville stay, Denver collection trip, January New Orleans trip, Cambria Hotel, Midtown Lodge Raleigh, and Milwaukee retirement visit remain arranged as previously summarized; registrar approval is still pending for the proposed Boston hotel replacement. A new February 9-13 exhibition-transfer trip is being planned from Atlanta through Washington and Boston. The Monday and Friday legs are workable, and a provisional three-flight itinerary has been retained without purchase. The Washington-Boston leg remains unresolved pending confirmation of the registrar's hard latest Wednesday release time and whether closeout paperwork is included. Earlier and later alternatives are retained for comparison; fares and availability remain subject to change.",
+  "verification": {
+    "93": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "On Friday, assume the meeting ends at 11:30. I would like enough time to get from the museum area to Logan without rushing, so probably nothing before 2:00 p.m.",
+          "habit_id": "tm_pd_v05_user_005_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly sets a later-day departure constraint for this trip and later retains the 2:35 p.m. return. The user does not independently state a nonstop, carrier, seat, or hotel preference in the quoted utterances."
+    }
+  }
+}

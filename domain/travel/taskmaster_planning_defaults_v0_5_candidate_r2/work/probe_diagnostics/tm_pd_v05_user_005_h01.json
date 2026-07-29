@@ -1,0 +1,229 @@
+{
+  "habit_id": "tm_pd_v05_user_005_h01",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c03",
+        "c05"
+      ],
+      "accepted_total": [
+        "c00",
+        "c03",
+        "c05"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "The 6:20 a.m. nonstop for $246, arriving at 9:15 a.m.; it most closely matches the departure period in the recent completed itinerary."
+              },
+              {
+                "choice_id": "B",
+                "text": "The 4:50 p.m. nonstop for $246, arriving at 7:45 p.m.; it allows a normal workday after the workshop."
+              },
+              {
+                "choice_id": "C",
+                "text": "The 1:10 p.m. one-stop for $211, arriving at 6:05 p.m.; it is cheaper but includes a 70-minute connection."
+              },
+              {
+                "choice_id": "D",
+                "text": "The 7:15 p.m. nonstop for $221, arriving at 10:10 p.m.; it has the lowest nonstop fare but gets in late."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A is a strong near-miss because it imitates the most recent observed transaction exactly. Selecting B requires separating a stated one-trip exception from the enduring policy and then confirming that the new trip falls within scope.",
+            "gold_action": "Book the 4:50 p.m. nonstop rather than treating the prior early-morning booking as a revised default.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0070",
+              "tm_pd_v05_user_005_s0026",
+              "tm_pd_v05_user_005_s0076"
+            ],
+            "label_rationale": "The 6:10 a.m. return in the history was expressly limited to one trip by a Friday handoff and a need to reset. This new routine museum trip has no corresponding constraint, so the durable later-day pattern applies.",
+            "probe_type": "evidence_disambiguation",
+            "query": "A travel coordinator is booking Avery's return from a routine museum registrar workshop in Kansas City. The workshop ends Tuesday at noon, and Wednesday is clear. The coordinator notices that Avery's most recent completed museum itinerary used a 6:10 a.m. return and asks which new ticket best reflects the record. Which option should be selected?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query exposes a specific prior itinerary departure time.",
+              "The phrase 'best reflects the record' directly instructs selection by that exposed historical detail."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c01",
+            "rationale": "The explicit objective is to select the ticket that best reflects the cited record. A most closely matches the recorded 6:10 a.m. departure period, so no additional private history is needed."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "The 12:20 p.m. nonstop for $289, arriving at 1:55 p.m.; it minimizes idle time after the paperwork."
+              },
+              {
+                "choice_id": "B",
+                "text": "The 4:15 p.m. nonstop for $289, arriving at 5:50 p.m.; it leaves a few free hours before departure."
+              },
+              {
+                "choice_id": "C",
+                "text": "The 2:35 p.m. one-stop for $250, arriving at 6:30 p.m.; it saves $39 but adds a connection."
+              },
+              {
+                "choice_id": "D",
+                "text": "The 6:45 p.m. nonstop for $334, arriving at 8:20 p.m.; it preserves the most daytime flexibility at a higher fare."
+              }
+            ],
+            "closest_distractor_choice_id": "A",
+            "difficulty_rationale": "A and B are equal on fare, routing, baggage eligibility, and next-day impact. The query alone supplies no universal reason to value immediate departure over several free hours, so identifying the shared museum-work scope is necessary.",
+            "gold_action": "Book the 4:15 p.m. nonstop return.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0026",
+              "tm_pd_v05_user_005_s0076"
+            ],
+            "label_rationale": "Although sculpture escort differs from an exhibition install or collection inspection, it is still museum work, and the duties finish early enough for the 4:15 p.m. return. The established policy transfers across museum-work purposes.",
+            "probe_type": "cross_context_transfer",
+            "query": "Avery will escort a borrowed sculpture from a university museum in Raleigh and complete the receiving paperwork by 10:45 a.m. on Thursday. All four tickets permit checked art-handling equipment, and Friday has no obligations. Which return should the planner book?"
+          },
+          "candidate_id": "c02",
+          "failure": "invalid_evidence_citations"
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "The 4:25 p.m. nonstop for $352, arriving at 6:20 p.m.; it provides a comfortable post-review buffer."
+              },
+              {
+                "choice_id": "B",
+                "text": "The 6:40 p.m. nonstop for $287, arriving at 8:35 p.m.; it saves $65 and departs later."
+              },
+              {
+                "choice_id": "C",
+                "text": "The 1:05 p.m. nonstop for $302, arriving at 3:00 p.m.; it leaves a tighter but workable airport transfer."
+              },
+              {
+                "choice_id": "D",
+                "text": "The 3:15 p.m. one-stop for $248, arriving at 7:10 p.m.; it is least expensive but adds a connection."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "B is the near-miss: it follows the broad inclination toward later travel but incorrectly turns a flexible window into a race toward an evening threshold. The $65 saving makes B genuinely attractive, while A's earlier arrival and equally simple routing keep generic utility balanced.",
+            "gold_action": "Book the 4:25 p.m. nonstop return.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0026",
+              "tm_pd_v05_user_005_s0125"
+            ],
+            "label_rationale": "Avery defined the relevant period flexibly, so 4:25 p.m. already satisfies the personal timing policy. There is no historical basis for treating a post-6:00 departure as mandatory; the earlier nonstop can be chosen despite B's lower fare.",
+            "probe_type": "conflict_resolution",
+            "query": "After a museum provenance review in Baltimore ending at 11:00 a.m., Avery can take either of two especially competitive returns. The finance policy permits both, and no work is scheduled the next morning. The other flights are also compliant. Which option best fits Avery's established decisions?"
+          },
+          "candidate_id": "c04",
+          "failure": "invalid_evidence_citations"
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "The 4:35 p.m. nonstop for $322, arriving at 10:05 p.m.; it gets Avery home that night but leaves a narrow airport margin."
+              },
+              {
+                "choice_id": "B",
+                "text": "The 7:50 p.m. nonstop for $322, arriving at 1:20 a.m.; it provides a wide airport margin and still avoids a hotel."
+              },
+              {
+                "choice_id": "C",
+                "text": "The 5:55 p.m. one-stop for $274, arriving at 12:45 a.m.; it saves $48 but introduces a connection."
+              },
+              {
+                "choice_id": "D",
+                "text": "The 9:10 a.m. nonstop the next day for $286 plus an authorized hotel, arriving at 2:40 p.m.; it removes same-day timing pressure."
+              }
+            ],
+            "closest_distractor_choice_id": "D",
+            "difficulty_rationale": "D is operationally conservative and less expensive before the hotel, while B avoids an overnight stay at the cost of a very late arrival. History resolves that genuine tradeoff because Avery has favored a workable later same-day departure and has said she would get home that night when feasible.",
+            "gold_action": "Book the 7:50 p.m. nonstop return.",
+            "gold_choice_id": "B",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0125",
+              "tm_pd_v05_user_005_s0076",
+              "tm_pd_v05_user_005_s0026"
+            ],
+            "label_rationale": "A same-day return remains workable, but the 4:35 p.m. flight gives too little margin after a 3:30 p.m. release. The 7:50 p.m. nonstop preserves both a credible post-duty buffer and Avery's established choice for later museum-work returns.",
+            "probe_type": "cross_context_transfer",
+            "query": "Avery's final-day task on a museum exhibition deinstallation in Portland is a courier release expected at 3:30 p.m. The airport is 15 minutes away; the museum can guarantee departure by 3:35 p.m. Avery would prefer to be home that night, but staying over is authorized. Which return should be booked?"
+          },
+          "candidate_id": "c06",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query explicitly states Avery's current-trip preference to be home that night; this is sufficient task context rather than hidden history.",
+              "Option B's wording that it provides a wide airport margin and avoids a hotel reinforces the choice."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c06",
+            "rationale": "B best satisfies the stated preference to return without a hotel while preserving a practical airport margin. A allows only about 45 minutes from airport arrival to departure and is operationally risky; C adds connection risk, and D requires the authorized but less-preferred overnight stay."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c01",
+        "c02",
+        "c04",
+        "c06"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c05",
+        "c06"
+      ],
+      "failed": [],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 6,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 1
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "medium": 4
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "cross_context_transfer": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v05_user_005"
+}

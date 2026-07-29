@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "516b44cc29076cc8055f4147a5cb3f3e9d55f00e8d8a267e9a59f4d0476408d2",
+  "habits": [
+    {
+      "boundary_condition": "Treat the balcony as a soft preference rather than a strict requirement; a first-floor room can be acceptable without one",
+      "bundle_id": "tm_v04_e2e_bundle_c407a334b298",
+      "condition": "When selecting a hotel room",
+      "confidence": 0.84,
+      "decision": "accept",
+      "default_action": "Prioritize rooms with a balcony when available",
+      "exception_condition": "Do not reject an otherwise suitable hotel solely because a balcony is unavailable",
+      "family": "hotel_view_balcony_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_c407a334b298",
+      "induced_at": "2026-07-25T10:28:10.986220+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_room_balcony_preference",
+      "preference_value": "Prefer a room with a balcony",
+      "rationale": "Three independent hotel dialogues express a balcony preference. The clearest negotiation shows that the preference is conditional on floor level, while the other dialogues use soft language or list the balcony among desired room amenities.",
+      "reasoning_effort": "high",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Establishes the balcony preference and its floor-level boundary.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "We don't need a balcony if the room's on the first floor, but if it's on a higher floor then, you know, we can have a balcony.",
+          "instruction_id": "hotel-2",
+          "turn_index": 28
+        },
+        {
+          "contribution": "Independently supports seeking a room with a balcony.",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "exact_user_quote": "I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker.",
+          "instruction_id": "hotel-1c",
+          "turn_index": 22
+        },
+        {
+          "contribution": "Independently frames a balcony as a preference rather than a hard requirement.",
+          "conversation_id": "dlg-c7024cd0-70ff-496c-9c74-f6ef9b154248",
+          "exact_user_quote": "we prefer to have a balcony and a nice view as well.",
+          "instruction_id": "hotel-14",
+          "turn_index": 7
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "We don't need a balcony if the room's on the first floor, but if it's on a higher floor then, you know, we can have a balcony.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 28,
+          "user_utterance": "We don't need a balcony if the room's on the first floor, but if it's on a higher floor then, you know, we can have a balcony."
+        },
+        {
+          "annotated_segment": "I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 22,
+          "user_utterance": "I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker."
+        },
+        {
+          "annotated_segment": "we prefer to have a balcony and a nice view as well.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-c7024cd0-70ff-496c-9c74-f6ef9b154248",
+          "habitual_language": false,
+          "instruction_id": "hotel-14",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 7,
+          "user_utterance": "we prefer to have a balcony and a nice view as well."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+    "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+    "dlg-c7024cd0-70ff-496c-9c74-f6ef9b154248"
+  ]
+}

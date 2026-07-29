@@ -1,0 +1,209 @@
+{
+  "habit_id": "tm_pd_v05_user_005_h03",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c02",
+        "c05"
+      ],
+      "accepted_total": [
+        "c00",
+        "c02",
+        "c05"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Select 18A now as the no-fee seat that matches the recurring pattern."
+              },
+              {
+                "choice_id": "B",
+                "text": "Select 18C now by carrying forward the location from the most recent itinerary."
+              },
+              {
+                "choice_id": "C",
+                "text": "Pay $19 for 8A to combine the recurring pattern with a position nearer the front."
+              },
+              {
+                "choice_id": "D",
+                "text": "Defer seat assignment until check-in because the current message is silent."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "The free same-row seats are generic-utility peers. Choosing 18C is a strong recency-based near miss, and rejecting it requires distinguishing a trip-specific exception from the durable preference across multiple episodes.",
+            "gold_action": "Select no-fee window seat 18A based on the durable pattern, not the latest one-trip aisle selection.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0074",
+              "tm_pd_v05_user_005_s0085",
+              "tm_pd_v05_user_005_s0104"
+            ],
+            "label_rationale": "The most recent aisle evidence was explicitly limited to one Chicago itinerary and was not a revision for later trips. The repeated window selections before and after that exception establish the action for this new solo work flight.",
+            "probe_type": "evidence_disambiguation",
+            "query": "For a new solo work trip to Raleigh, the booking system can either reuse the location from the most recently completed itinerary or apply the user's recurring travel pattern. She has made no seat request in the current conversation. Seats 18A and 18C are free and otherwise equivalent; 8A costs $19, and seat assignment can also be deferred. What should the planner do?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choice A reveals that 18A matches the recurring pattern.",
+              "Choice B reveals that 18C was the location on the most recent itinerary.",
+              "These answer choices expose the private-history facts needed to rank the options."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c01",
+            "rationale": "The choices themselves disclose that 18A matches a recurring pattern, whereas 18C merely copies the most recent itinerary. With no current instruction and no fee difference, the recurring pattern is the stronger stated signal and does not require access to private history once that fact is exposed in the answer text."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Select 15A, treating the repeated trip-level instructions as controlling over the profile field."
+              },
+              {
+                "choice_id": "B",
+                "text": "Select 15C, treating the corporate-profile field as controlling over the trip history."
+              },
+              {
+                "choice_id": "C",
+                "text": "Select 10B because its forward position avoids relying on either conflicting location signal."
+              },
+              {
+                "choice_id": "D",
+                "text": "Defer selection until check-in rather than resolve the conflicting records now."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "Seats 15A and 15C are controlled for row, price, and dimensions, while each is backed by a plausible source of preference data. Resolving the tie requires weighing repeated explicit historical evidence more heavily than an unexplained profile value.",
+            "gold_action": "Choose window seat 15A because the repeated explicit travel history outweighs the conflicting profile field.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0027",
+              "tm_pd_v05_user_005_s0074",
+              "tm_pd_v05_user_005_s0104"
+            ],
+            "label_rationale": "Multiple explicit instructions and selections across separate trips consistently support the window-seat policy. A conflicting profile field with no supplied evidence of a permanent revision should not override that longitudinal record.",
+            "probe_type": "conflict_resolution",
+            "query": "While preparing a new solo work flight to Detroit, the planner sees an old corporate-profile field set to aisle. There is no new seat instruction, and the current seat map offers same-row, no-fee seats 15A and 15C with identical dimensions. Seat 10B is also free, or selection may be deferred. Which action best resolves the record conflict?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The query does not describe the repeated trip-level instructions, but choice A introduces them and identifies their associated seat.",
+              "The phrase 'record conflict' presupposes a second record signal that is only exposed by the choices."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c03",
+            "rationale": "Choice A discloses that repeated trip-level instructions favor 15A. Repeated, trip-level evidence is more specific and reliable than an old corporate-profile field, so A resolves the stated record conflict without needing external history once the choice wording supplies that evidence."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Choose the same-row window seat, returning to the standing pattern for the new trip."
+              },
+              {
+                "choice_id": "B",
+                "text": "Choose the same-row aisle seat, extending the last itinerary's selection to this trip."
+              },
+              {
+                "choice_id": "C",
+                "text": "Choose the forward middle seat to prioritize a quicker exit without a fee."
+              },
+              {
+                "choice_id": "D",
+                "text": "Choose the extra-legroom aisle and pay $22 for added space."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "The same-row seats are equal on all stated generic attributes, and copying the latest selection is operationally plausible. Only the historical statement limiting that aisle choice to one trip makes the window action uniquely correct.",
+            "gold_action": "Select the equivalent window seat because the prior aisle choice was confined to one trip.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_005_s0027",
+              "tm_pd_v05_user_005_s0085",
+              "tm_pd_v05_user_005_s0104"
+            ],
+            "label_rationale": "The aisle request in the exceptional itinerary was expressly temporary and must not be treated as a permanent preference revision. With that exception over and no new constraint, the standing window-seat preference resumes for this personal flight.",
+            "probe_type": "exception",
+            "query": "The user is now booking a solo personal flight to San Diego and gives no seating instruction. The booking tool proposes copying the aisle location from her last exceptional work itinerary, while an equivalent window seat is available in the same row at no charge. Two other options are a forward middle seat at no charge and an extra-legroom aisle for $22. What should the planner select?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The word 'exceptional' signals that the last aisle selection should not be generalized.",
+              "Choice A reveals an otherwise unstated standing window pattern."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c04",
+            "rationale": "The query labels the prior aisle selection as exceptional, making it unsuitable for automatic carry-forward, while choice A explicitly identifies the equivalent no-fee window as the standing pattern. That wording makes A the best-supported option without consulting private history."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c01",
+        "c03",
+        "c04"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c05"
+      ],
+      "failed": [],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 6,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 1,
+      "exception": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v05_user_005"
+}

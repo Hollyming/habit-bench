@@ -1,0 +1,147 @@
+{
+  "cache_fingerprint": "0a5c0adec3616e5edcff7fb7e972c64eaf0990111359a8ec25f81cca88443cb7",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The user compared current fares, ground-transfer costs, and post-meeting margins for EWR and PHL returns, rejected the early EWR flight, and booked the 5:10 p.m. EWR nonstop with both hotels. No recurring preference was introduced.",
+        "evidence_topology": {
+          "episode_id": "conference-philadelphia-01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 140,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user endorses the previously identified Sunday 8:05 a.m. outbound and explicitly rejects the cheapest Newark option, then chooses the more expensive 5:10 nonstop for its operational margin and convenience. These are current-trip choices, not durable recurring-language evidence. No other candidate habit is established by the user's own words.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.9,
+            "evidence_quote": "Book the Sunday outbound and the 5:10 Newark nonstop as one open-jaw ticket.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "The 2:35 is out. Is there any operational reason to take the late connection instead of paying for 5:10?",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h01",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The supplier has confirmed Thursday, so I can book now. Reprice the open-jaw plan and the Philadelphia round trip, then show me the site-to-gate timing. I do not want to pay more for Newark without seeing what margin it actually buys.",
+          "role": "user"
+        },
+        {
+          "content": "The Sunday American nonstop from SFO to Philadelphia is still 8:05 a.m.-4:31 p.m. The return choices have changed: United's Thursday 5:10 p.m. EWR-SFO nonstop now makes the open-jaw fare $676. The cheaper EWR departure is a 2:35 p.m. nonstop at $521 total, and the 6:40 p.m. one-stop through Denver is $548, arriving SFO at 11:47 p.m. A Philadelphia round trip with American's 6:05 p.m. nonstop return is $559. I'll map each from the supplier site in Linden, using a noon scheduled finish and a possible 45-minute overrun.",
+          "role": "assistant"
+        },
+        {
+          "content": "Include the actual transfer cost. For Philadelphia, compare rail with a car rather than assuming one method.",
+          "role": "user"
+        },
+        {
+          "content": "For the 2:35 EWR flight, a noon finish means leaving the site around 12:10, reaching the terminal about 12:35-12:50, and having only 1 hour 45 minutes to 2 hours before departure. A 12:45 finish reduces that to roughly one hour at the terminal. The rideshare estimate is $34-$48. That option does not absorb a meaningful overrun.\n\nFor the 5:10 nonstop, leaving at 12:10 puts you at EWR around 12:35-12:50, more than four hours before departure. Even with a 12:45 finish and departure from the site at 12:55, the expected terminal arrival is 1:20-1:40, leaving 3 hours 30 minutes or more. The same $34-$48 rideshare applies.\n\nThe 6:40 one-stop adds another 90 minutes on the ground but reaches San Francisco at 11:47 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "And getting back to PHL?",
+          "role": "user"
+        },
+        {
+          "content": "By rail, leave Linden about 12:10 for Metropark, allow 25-40 minutes by car, take a Northeast Regional around 1:20 p.m., and reach 30th Street about 2:20. The airport connection should put you at PHL around 3:00-3:20 for the 6:05 flight. With a 12:45 meeting finish, the likely terminal arrival moves to about 4:00, leaving roughly two hours. Estimated rideshare, rail, and airport train cost is $78-$103.\n\nA direct car from Linden to PHL is estimated at 1 hour 35 minutes to 2 hours 20 minutes in Thursday traffic and $185-$245. A noon finish gives a likely airport arrival around 2:00-2:45; a 12:45 finish could push that to 3:45 or later. It is workable, but both the timing and cost are less predictable.",
+          "role": "assistant"
+        },
+        {
+          "content": "So compare the totals, including the existing conference hotel and one Newark night. Use the Hampton, not the Marriott.",
+          "role": "user"
+        },
+        {
+          "content": "With the Philadelphia Marriott Downtown block at $912.48 and the refundable Hampton night at $214.36, the 5:10 Newark plan is approximately $1,850.84 using a $48 rideshare allowance and a $30 Amtrak allowance for Wednesday. The 2:35 Newark plan is $1,695.84, and the 6:40 one-stop is $1,722.84 on the same basis.\n\nThe Philadelphia round trip would not need the Newark hotel, but it would require changing Wednesday's positioning plan. Keeping a fourth night at the conference hotel at the current available rate, then allowing $103 for Thursday rail transfers, produces an estimated total of $1,891.47. The direct-car version would be about $1,973.47 at the low end.",
+          "role": "assistant"
+        },
+        {
+          "content": "The 2:35 is out. Is there any operational reason to take the late connection instead of paying for 5:10?",
+          "role": "user"
+        },
+        {
+          "content": "Only price: it saves $128. The 5:10 is nonstop, lands at 8:22 p.m., and still leaves at least about 3 hours 30 minutes at EWR after a 45-minute meeting overrun under the expected traffic range. The 6:40 itinerary provides more site margin, but it adds a connection and arrives 3 hours 25 minutes later. The extra margin is unlikely to matter unless the meeting runs well beyond 12:45 or traffic is unusually severe.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the Hampton logistics once more. I will have my conference luggage with me Wednesday evening and need to leave directly for the supplier Thursday morning.",
+          "role": "user"
+        },
+        {
+          "content": "The Hampton reservation can accommodate that plan. Wednesday's 5:59 p.m. train reaches Newark Penn at 7:04 p.m.; allow about 20-35 minutes and $28-$42 for a rideshare to the hotel. The hotel has luggage storage if the room is not immediately available, though arrival is well after normal check-in. On Thursday, a 7:35 a.m. rideshare departure should reach the Linden site around 8:00 for the 8:15 meeting. Estimated cost is $24-$36. You can keep your luggage with you at the site and leave directly for EWR afterward. The room remains refundable through 11:59 p.m. September 19.",
+          "role": "assistant"
+        },
+        {
+          "content": "Book the Sunday outbound and the 5:10 Newark nonstop as one open-jaw ticket. Also book the Philadelphia block and the Hampton. Do not add the rail yet; I can buy that after the schedule is final.",
+          "role": "user"
+        },
+        {
+          "content": "Before I issue it: the open-jaw airfare is $676 in economy, the Philadelphia Marriott Downtown block is $912.48 for September 17-20, and the Hampton Inn Newark Airport is $214.36 for September 20-21. The committed total will be $1,802.84 before Wednesday rail and local rideshares. Shall I proceed with all three at those amounts?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, proceed at those amounts.",
+          "role": "user"
+        },
+        {
+          "content": "Booked. American/United ticket record C4P8VN covers the Sunday, September 17 American nonstop SFO-PHL from 8:05 a.m. to 4:31 p.m. and the Thursday, September 21 United nonstop EWR-SFO from 5:10 p.m. to 8:22 p.m.; airfare is $676. Philadelphia Marriott Downtown confirmation PM6D41 is booked for September 17-20 at $912.48, cancelable through 6:00 p.m. local time September 14. Hampton Inn Newark Airport confirmation HN8K27 is booked for September 20-21 at $214.36, refundable through 11:59 p.m. September 19. No rail ticket has been purchased. The booked total is $1,802.84; allowing $30 for Amtrak and $134 for the three expected rideshares gives a working trip estimate of $1,966.84. For Thursday, leave the Hampton around 7:35 a.m., leave the Linden site by 12:55 p.m. even after a 45-minute overrun, and expect to reach EWR by about 1:40 p.m., leaving at least 3 hours 30 minutes before departure.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0140",
+      "session_index": 140,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund documentation remains pending. Phoenix is completed at a projected $1,459.40 with a $28.40 authorization increase required. Puerto Vallarta is arranged for November 28-December 4, 2026, with K7M4QX, PV8R26, TR-PV8R26, and SP4017; projected total $7,098. Clayton is arranged for January 19-22, 2027, with R7Q2LM, NC4D81, and RDU6K83; projected total $1,582.84. Washington is arranged for March 1-5, 2027, with W4N8JP and CB6K91; projected total $2,802.40. Sedona is booked for November 11-14, 2027, with H6T9QK, CL4N82, SPA7714, and PXR5D27; projected total $4,094.60. Maple Grove remains arranged with Westline WB4K92, rental MSL9P42, and the Thursday 9:10 a.m. flight; projected total $1,871.18. Kauai is fully booked for June 10-17, 2028, with H7K2QM, KB8F41, and LIH6R28; projected total $6,475.73. The corrected resort confirmation includes breakfast for two and self-parking at no added charge; the $1,270.85 deposit is refundable through June 3 at 6:00 p.m. Hawaii time. The Hillsboro audit trip is arranged for August 14-18, 2028, with United record P8L4TR, Aloft confirmation AL7H26, and compact rental PDX3C84; projected total $1,858.44. Aloft includes daily breakfast, four nights of self-parking, and a Friday cold takeaway breakfast at 6:35 a.m.; cancellation remains available through August 13 at 11:59 p.m. local time. Rental pickup is stated as 1:25 p.m., with a documented hold until 2:30 p.m. Philadelphia/Newark is booked for September 17-21, 2028. Record C4P8VN covers the Sunday 8:05 a.m. American SFO-PHL nonstop and Thursday 5:10 p.m. United EWR-SFO nonstop for $676. Philadelphia Marriott Downtown confirmation PM6D41 is $912.48 for September 17-20 and cancelable through September 14 at 6:00 p.m. local time. Hampton Inn Newark Airport confirmation HN8K27 is $214.36 for September 20-21 and refundable through September 19 at 11:59 p.m. The booked total is $1,802.84 and the working estimate with rail and rideshares is $1,966.84. Wednesday rail remains unbooked.",
+  "verification": {
+    "140": {
+      "habit_signals": [
+        {
+          "confidence": 0.9,
+          "evidence_quote": "Book the Sunday outbound and the 5:10 Newark nonstop as one open-jaw ticket.",
+          "habit_id": "tm_pd_v05_user_003_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "The 2:35 is out. Is there any operational reason to take the late connection instead of paying for 5:10?",
+          "habit_id": "tm_pd_v05_user_003_h01",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user endorses the previously identified Sunday 8:05 a.m. outbound and explicitly rejects the cheapest Newark option, then chooses the more expensive 5:10 nonstop for its operational margin and convenience. These are current-trip choices, not durable recurring-language evidence. No other candidate habit is established by the user's own words."
+    }
+  }
+}

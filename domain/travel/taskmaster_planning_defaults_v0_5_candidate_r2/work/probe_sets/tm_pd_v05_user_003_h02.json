@@ -1,0 +1,417 @@
+{
+  "cache_fingerprint": "4bd895ec269b262448649dc6331fe6f76c7caa9e7922cf0486a99096198c0b39",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B share the required maximum-buffer itinerary and differ only between two lower-fare nonstops with a modest price-versus-arrival tradeoff. Query-only reasoning supports either pair; longitudinal evidence is needed to distinguish soft United inclusion from both carrier indifference and automatic United priority.",
+      "gold_action": "Retain United with American for final comparison, treating United as a recurring acceptable option rather than as an automatic winner.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_003_s0045",
+        "tm_pd_v05_user_003_s0096",
+        "tm_pd_v05_user_003_s0100"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v05_user_003_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "preferred_flight_carrier",
+        "boundary_condition": "Do not rank United above other preferred carriers solely from this habit; the evidence only establishes repeated inclusion in multi-carrier sets.",
+        "condition": "When searching for commercial flights and no current-trip instruction specifies a different carrier set.",
+        "default_action": "Include United among the preferred carrier options when it is otherwise suitable and comparable.",
+        "exception_condition": "Use other carriers when United is unavailable, unsuitable for the itinerary, materially worse, or excluded by a current-trip instruction.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v05_user_003_h02",
+        "name": "united_soft_carrier_option",
+        "preference_value": "United is a recurring acceptable carrier to include among preferred flight options, but is not required or uniquely favored.",
+        "scope_condition": "Commercial flight searches, especially those originating from her San Francisco home base, when the trip does not specify or exclude particular carriers.",
+        "scope_key": "san_francisco_origin_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Alaska saves another $8, so it is a plausible comparator, but it gives up another 10 minutes of deadline margin and would omit United despite United's useful competitive schedule-price position.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "American preserves the required largest arrival buffer. United is a competitive lower-fare nonstop and retains 25 minutes of deadline margin, matching the user's repeated instruction to include United when its schedule and price compare well.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "United offers 10 more minutes of arrival margin than Alaska, while Alaska costs $8 less, so current itinerary facts do not determine which should accompany American. The Boston, Hawaii, and St. Louis evidence consistently shows that repeated United outcomes encode inclusion among competitive options, not first-place carrier status. A applies that narrower inference and leaves the final decision to seats and fare details.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_003_h02_p00",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The choices present progressively cheaper alternatives while varying timing and routing, but no stated objective ranks those dimensions."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rationale": "American must be retained for the largest arrival buffer. United, Alaska, and Southwest are each cheaper and feasible, with unresolved tradeoffs among arrival buffer, fare, and nonstop routing.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B both satisfy the required shortlist structure and preserve Alaska as the maximum-buffer anchor. Their second options exchange a small fare saving for a small schedule loss, so generic flight-search logic cannot choose between them; the hidden recurring inclusion policy selects United.",
+      "gold_action": "Retain United alongside the required maximum-buffer itinerary, while leaving the final choice to the fare, seat, and reliability comparison.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_003_s0045",
+        "tm_pd_v05_user_003_s0096",
+        "tm_pd_v05_user_003_s0100"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v05_user_003_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "preferred_flight_carrier",
+        "boundary_condition": "Do not rank United above other preferred carriers solely from this habit; the evidence only establishes repeated inclusion in multi-carrier sets.",
+        "condition": "When searching for commercial flights and no current-trip instruction specifies a different carrier set.",
+        "default_action": "Include United among the preferred carrier options when it is otherwise suitable and comparable.",
+        "exception_condition": "Use other carriers when United is unavailable, unsuitable for the itinerary, materially worse, or excluded by a current-trip instruction.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v05_user_003_h02",
+        "name": "united_soft_carrier_option",
+        "preference_value": "United is a recurring acceptable carrier to include among preferred flight options, but is not required or uniquely favored.",
+        "scope_condition": "Commercial flight searches, especially those originating from her San Francisco home base, when the trip does not specify or exclude particular carriers.",
+        "scope_key": "san_francisco_origin_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Delta saves $6 more than United, but arrives another 10 minutes later. It is plausible, yet United offers the stronger timing tradeoff while remaining less expensive than Alaska and fitting the user's inclusion policy.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "Alaska is required because it provides the largest meeting buffer. United is a lower-priced nonstop that sacrifices only 15 minutes, making it a balanced competitive comparator under the user's policy of keeping United in the set when its schedule and fare are useful.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Relative to Delta, United costs $6 more but adds 10 minutes of meeting margin; neither lower-fare nonstop dominates the other. The user's Boston, Hawaii, and St. Louis history consistently calls for United to remain in comparable sets without receiving automatic priority. A directly applies that policy while keeping Alaska's current-trip schedule advantage intact.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_003_h02_p01",
+      "probe_type": "direct_use",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Terms such as moderate arrival tradeoff, larger arrival tradeoff, and lowest fare frame the alternatives but do not establish which tradeoff the user values."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rationale": "Alaska is required for the largest meeting buffer. United, Delta, and Southwest are all cheaper and feasible, but selecting among their fare, arrival-time, and routing tradeoffs requires a priority not stated in the query.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B both include the required latest departure and add a nonstop that improves arrival margin. The United-versus-Delta substitution presents a balanced fare, departure, and arrival tradeoff with no generic winner; only the longitudinal interpretation of repeated United decisions breaks the tie.",
+      "gold_action": "Carry United into final verification with the required latest-departing option, without interpreting prior United selections as standing first-place status.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_003_s0045",
+        "tm_pd_v05_user_003_s0096",
+        "tm_pd_v05_user_003_s0100"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v05_user_003_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "preferred_flight_carrier",
+        "boundary_condition": "Do not rank United above other preferred carriers solely from this habit; the evidence only establishes repeated inclusion in multi-carrier sets.",
+        "condition": "When searching for commercial flights and no current-trip instruction specifies a different carrier set.",
+        "default_action": "Include United among the preferred carrier options when it is otherwise suitable and comparable.",
+        "exception_condition": "Use other carriers when United is unavailable, unsuitable for the itinerary, materially worse, or excluded by a current-trip instruction.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v05_user_003_h02",
+        "name": "united_soft_carrier_option",
+        "preference_value": "United is a recurring acceptable carrier to include among preferred flight options, but is not required or uniquely favored.",
+        "scope_condition": "Commercial flight searches, especially those originating from her San Francisco home base, when the trip does not specify or exclude particular carriers.",
+        "scope_key": "san_francisco_origin_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Delta arrives 10 minutes before United, but it costs $6 more. United supplies the more direct lower-fare comparison while still materially improving the arrival margin over Alaska.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "Alaska must be verified as the latest departure. United is a lower-fare alternative that arrives 25 minutes earlier and preserves substantially more deadline margin, so its schedule and price are both competitively useful without elevating it merely for its name.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "United is $6 cheaper than Delta and departs 10 minutes later, while Delta arrives 10 minutes earlier, so current facts leave both as defensible companions to Alaska. The Boston, Hawaii, and St. Louis episodes show that United's repeated presence means it should remain available when suitable, not that it must win. A captures that soft inclusion and preserves a merits-based final check.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_003_h02_p02",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The choices emphasize substantially earlier arrival, moderately higher fare, or lowest fare, but the query gives no priority among those attributes once feasibility and the required Alaska anchor are satisfied."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rationale": "Alaska must be included as the latest-departing option. United, Delta, and American all satisfy the explicit constraints and are cheaper, with unresolved tradeoffs between fare and arrival margin.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_003"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B share American and swap between United and Delta flights whose six-dollar and ten-minute differences offset each other. Query-only reasoning cannot determine whether the user's carrier policy transfers beyond San Francisco; C is the near miss that transfers it but incorrectly strengthens it because Chicago is a United hub.",
+      "gold_action": "Transfer United's soft inclusion to a comparable commercial flight outside the home-origin context, without converting it into a hub-based preference.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_003_s0045",
+        "tm_pd_v05_user_003_s0096",
+        "tm_pd_v05_user_003_s0100"
+      ],
+      "habit_family": "flight_airline_preference",
+      "habit_id": "tm_pd_v05_user_003_h02",
+      "hidden_habit_graph": {
+        "alternative_group_key": "preferred_flight_carrier",
+        "boundary_condition": "Do not rank United above other preferred carriers solely from this habit; the evidence only establishes repeated inclusion in multi-carrier sets.",
+        "condition": "When searching for commercial flights and no current-trip instruction specifies a different carrier set.",
+        "default_action": "Include United among the preferred carrier options when it is otherwise suitable and comparable.",
+        "exception_condition": "Use other carriers when United is unavailable, unsuitable for the itinerary, materially worse, or excluded by a current-trip instruction.",
+        "family": "flight_airline_preference",
+        "habit_id": "tm_pd_v05_user_003_h02",
+        "name": "united_soft_carrier_option",
+        "preference_value": "United is a recurring acceptable carrier to include among preferred flight options, but is not required or uniquely favored.",
+        "scope_condition": "Commercial flight searches, especially those originating from her San Francisco home base, when the trip does not specify or exclude particular carriers.",
+        "scope_key": "san_francisco_origin_flights",
+        "source_bundle_id": "tm_v04_e2e_bundle_95ce9d7fff28",
+        "source_habit_instance_id": "tm_v04_e2e_habit_95ce9d7fff28",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_003",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "American and Delta are tempting as the full-service fare and arrival-time endpoints, but Delta costs more and improves on United by only five minutes; excluding a closely competitive United option conflicts with the recurring inclusion policy.",
+        "difficulty": "hard",
+        "model": "gpt-5.6-sol",
+        "rationale": "American has the lowest all-in fare among the comparable full-service options, while United is only $3 more and arrives five minutes earlier. Advancing both keeps United in a genuinely competitive set without treating hub presence or carrier name as an independent advantage. Spirit costs $224 after its cabin-bag fee and therefore is not the low-cost option stated by its headline fare.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The evidence is strongest for San Francisco-origin searches but describes United as an acceptable commercial carrier when schedule and price are competitive, not as a rule confined to one airport. This comparable post-conference leg therefore warrants inclusion, while the boundary against automatic elevation still applies.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_003_h02_p03",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Choice C invokes prior carrier patterns and hub presence without a current carrier instruction.",
+          "Selecting between A and B would require an unstated preference for price versus arrival time."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "American, United, and Delta form a near-even price-versus-arrival frontier: each $3 step buys five minutes. Nothing in the query states whether the user values the small fare savings or the small arrival advantage, so both American-United and American-Delta shortlists are reasonably defensible. Spirit costs $224 after the required bag, weakening choice D despite its five-minute advantage.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Retain American for the largest arrival buffer and United as a lower-fare nonstop, then use seat and fare details to resolve the remaining tradeoff."
+        },
+        {
+          "choice_id": "B",
+          "text": "Retain American for the largest arrival buffer and Alaska as a lower-fare nonstop, then use seat and fare details to resolve the remaining tradeoff."
+        },
+        {
+          "choice_id": "C",
+          "text": "Retain American for the largest arrival buffer and Southwest for the lowest fare, then weigh the connection against the additional savings."
+        },
+        {
+          "choice_id": "D",
+          "text": "Retain United and Alaska as the two lower-fare nonstops, even though doing so drops the itinerary with the largest arrival buffer."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "evidence_disambiguation"
+      },
+      "probe_id": "tm_pd_v05_user_003_h02_p00",
+      "query": "For a San Francisco-to-Chicago audit visit, the user must land by 2:15 p.m. American is $426 and arrives at 1:30 p.m.; United is $408 and arrives at 1:50 p.m.; Alaska is $400 and arrives at 2:00 p.m. Each is nonstop, includes the same cabin allowance, and has equivalent change terms. Southwest is $390 with one connection and arrives at 2:05 p.m. The two-itinerary finalist set must preserve the largest arrival buffer and add one lower-fare alternative before seat maps are checked. What should be retained?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_003",
+      "visible_history_scope": {
+        "max_session_index": 145
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Move Alaska and United forward, preserving the largest meeting buffer plus a lower-fare nonstop with a moderate arrival tradeoff."
+        },
+        {
+          "choice_id": "B",
+          "text": "Move Alaska and Delta forward, preserving the largest meeting buffer plus a still-lower-fare nonstop with a larger arrival tradeoff."
+        },
+        {
+          "choice_id": "C",
+          "text": "Move Alaska and Southwest forward, preserving the largest meeting buffer plus the lowest fare while accepting a connection."
+        },
+        {
+          "choice_id": "D",
+          "text": "Move United and Delta forward as the two lower-fare nonstops, despite omitting the flight with the largest meeting buffer."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "direct_use"
+      },
+      "probe_id": "tm_pd_v05_user_003_h02_p01",
+      "query": "The user needs a morning nonstop from San Francisco to Seattle for a 1:00 p.m. meeting. Alaska is $239 and arrives at 9:50 a.m.; United is $225 and arrives at 10:05 a.m.; Delta is $219 and arrives at 10:15 a.m. Each has the same cabin allowance and equivalent change terms. Southwest is $198 with one connection and arrives at 10:25 a.m. The two-itinerary recommendation set must include the flight with the largest meeting buffer and one less expensive alternative. Which set should move forward?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_003",
+      "visible_history_scope": {
+        "max_session_index": 145
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Verify Alaska and United, preserving the latest departure plus a lower fare with a substantially earlier arrival."
+        },
+        {
+          "choice_id": "B",
+          "text": "Verify Alaska and Delta, preserving the latest departure plus an earlier arrival at a moderately higher fare than United."
+        },
+        {
+          "choice_id": "C",
+          "text": "Verify Alaska and American, preserving the latest departure plus the lowest fare while accepting the smallest arrival margin."
+        },
+        {
+          "choice_id": "D",
+          "text": "Verify United and Delta, preserving two stronger arrival margins but dropping the required latest-departing option."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "evidence_disambiguation"
+      },
+      "probe_id": "tm_pd_v05_user_003_h02_p02",
+      "query": "For a same-day San Francisco-to-Los Angeles trip, the user needs to depart after 3:30 p.m. and arrive before 6:00 p.m. Alaska is $200, departs at 4:20 p.m., and arrives at 5:50 p.m.; United is $190, departs at 3:50 p.m., and arrives at 5:25 p.m.; Delta is $196, departs at 3:40 p.m., and arrives at 5:15 p.m. American is $184, departs at 3:35 p.m., and arrives at 5:55 p.m. All are nonstop, use the requested airport, and have matching change conditions. The final two-itinerary verification set must include the latest-departing option and one lower-fare alternative. Which pair should be verified?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_003",
+      "visible_history_scope": {
+        "max_session_index": 145
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Advance American and United as co-finalists and compare their remaining seat and operational details."
+        },
+        {
+          "choice_id": "B",
+          "text": "Advance American and Delta as co-finalists and compare their remaining seat and operational details."
+        },
+        {
+          "choice_id": "C",
+          "text": "Advance United alone because its hub presence should amplify any prior carrier pattern."
+        },
+        {
+          "choice_id": "D",
+          "text": "Advance Spirit and Delta, comparing the lowest headline fare with the earliest full-service arrival."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "cross_context_transfer"
+      },
+      "probe_id": "tm_pd_v05_user_003_h02_p03",
+      "query": "After a conference, the user will fly from Chicago to New York rather than from her home airport. United is $204 and arrives at LaGuardia at 9:45 a.m.; American is $201 and arrives there at 9:50; Delta is $206 and arrives there at 9:40. All are nonstop, include a cabin bag, and have equivalent change terms. Spirit is $159 before a $65 cabin-bag charge and arrives at 9:35. There is no carrier instruction for this leg. Which shortlist should be used?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_003",
+      "visible_history_scope": {
+        "max_session_index": 145
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "cross_context_transfer": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 2
+    }
+  }
+}

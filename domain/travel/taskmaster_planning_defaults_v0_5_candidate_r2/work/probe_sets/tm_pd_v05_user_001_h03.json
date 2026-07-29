@@ -1,0 +1,322 @@
+{
+  "cache_fingerprint": "246575bf9572ec518e08450ea0fc9315af896c2cbfa723fed44c4814fd8efd10",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "A and B use the same current row, fare, and cabin quality; their only difference is whether one historical exception is interpreted as a policy revision. Resolving that ambiguity requires comparing the exception episode with repeated support across other episodes.",
+      "gold_action": "Choose 14A, treating the earlier aisle use as a limited exception rather than a permanent revision.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_001_s0077",
+        "tm_pd_v05_user_001_s0052",
+        "tm_pd_v05_user_001_s0100"
+      ],
+      "habit_family": "flight_seat_preference",
+      "habit_id": "tm_pd_v05_user_001_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v05_user_001_h03",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Flights on which Elena is selecting her own seat and has not requested a different location or seating arrangement.",
+        "scope_key": "solo_flight_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "The prior aisle selection is tempting evidence of flexibility, but its explicit trip-only scope and fallback condition prevent it from becoming a standing preference.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "The aisle instruction was expressly limited to one Boston trip and applied only if no acceptable window was available. It does not replace Elena's broader window-seat pattern, so 14A is appropriate here.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The aisle evidence was expressly limited to one trip and conditioned on the absence of an acceptable window, whereas multiple separate episodes support the durable default. On a new trip with both locations available, the temporary exception should not be generalized.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_001_h03_p00",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The references to a 'standing pattern' and a 'broader pattern' imply omitted historical preference data.",
+          "The prior aisle selection is described as an isolated fallback after the initially sought location was unavailable, but the initially sought location is not identified.",
+          "The phrase 'even though selection is currently available' discourages D, while the availability statement naming only 14A and 14C discourages C; neither cue resolves A versus B."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B"
+        ],
+        "rationale": "The stated trip attributes do not make 14A or 14C objectively better: they have the same price and legroom, and Elena gave no trip-specific instruction. The lone prior aisle selection occurred after another location was unavailable, so it does not by itself establish either a revised aisle preference or the broader pattern asserted by choice B. Distinguishing A from B therefore requires additional private history. Choice C selects a middle seat that is not among the seats stated to be available, and choice D unnecessarily forgoes an available seat rather than resolving the missing preference.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "A",
+      "generator_difficulty_rationale": "Finalizing 16C remains plausible because it was the only seat previously named and is operationally equal to 16A. Recency alone only establishes that the hold is no longer binding; personal history is required to interpret the later reference and choose 16A. The middle and paid-forward seats are realistic but unsupported interpretations.",
+      "gold_action": "Release the provisional seat and assign the included window seat 16A.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_001_s0016",
+        "tm_pd_v05_user_001_s0052",
+        "tm_pd_v05_user_001_s0100"
+      ],
+      "habit_family": "flight_seat_preference",
+      "habit_id": "tm_pd_v05_user_001_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v05_user_001_h03",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Flights on which Elena is selecting her own seat and has not requested a different location or seating arrangement.",
+        "scope_key": "solo_flight_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "Seat 16C was provisionally held and remains included, but the latest instruction explicitly releases that hold and replaces it with her usual window preference.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "The latest instruction releases the provisional 16C hold and invokes Elena's usual setup. Her established setup is a window seat, making included seat 16A the final assignment.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The later message supersedes the temporary hold but leaves 'usual setup' undefined within the current exchange. Elena's window requests and selections across the Maine-coast, Boston-New York, and Providence episodes (s0016, s0052, and s0100) supply that meaning. Because 16A is available at the same price and quality as 16C, it implements the latest instruction without introducing another tradeoff.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_001_h03_p01",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The phrase 'my usual setup' explicitly refers to unavailable history.",
+          "The earlier provisional hold on 16C is a potentially suggestive cue, but it was expressly released and is not sufficient to establish the usual setup."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "D"
+        ],
+        "rationale": "The latest instruction requires releasing the provisional hold, but 'my usual setup' is undefined without history. A final assignment of 16C after releasing its provisional status, assignment of equivalent 16A, or paying for the earlier exit can each reflect a different unstated preference. Seat 16B has no stated compensating advantage.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "Seats 23A and 23C have equal stated travel quality but create a real cost-versus-location tradeoff. A cost-conscious planner could reasonably choose free seat 23C from the query alone; only Elena's longitudinal choices support spending the approved amount on 23A. The middle and last-row options remain feasible without dominating the core pair.",
+      "gold_action": "Use the approved seat allowance to assign window seat 23A.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_001_s0016",
+        "tm_pd_v05_user_001_s0052",
+        "tm_pd_v05_user_001_s0100"
+      ],
+      "habit_family": "flight_seat_preference",
+      "habit_id": "tm_pd_v05_user_001_h03",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_seat_location_preference",
+        "boundary_condition": "Applies only to seat location. If seat selection is unavailable at booking or is deferred until check-in, note that limitation and try to secure a window seat at the earliest available time.",
+        "condition": "When booking or selecting seats for flights where a seat location preference can be applied.",
+        "default_action": "Prefer or request a window seat by default.",
+        "exception_condition": "Use a different seat only if the user specifies another seat preference, needs a different seating arrangement, or no acceptable window seat is available.",
+        "family": "flight_seat_preference",
+        "habit_id": "tm_pd_v05_user_001_h03",
+        "name": "prefers_window_seat_on_flights",
+        "preference_value": "window seat",
+        "scope_condition": "Flights on which Elena is selecting her own seat and has not requested a different location or seating arrangement.",
+        "scope_key": "solo_flight_seat_selection",
+        "source_bundle_id": "tm_v04_e2e_bundle_8295755bcd5d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_8295755bcd5d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Seat 23C is free and operationally equivalent, making it the strongest cost-based alternative, but it is an aisle seat and the approved allowance already covers the preferred window assignment.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "Elena's established choice is a window seat, and 23A is the only window among the relevant equivalent row-23 options. The stated approved seat allowance covers its assignment fee, so the fee does not require abandoning that preference.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Elena requested or selected windows for her own flights in three independent episodes: both Maine-coast flights with deferred follow-up if needed (s0016), both Boston-New York flights (s0052), and all four Providence-trip segments (s0100). The approved allowance makes 23A feasible, and that repeated personal policy resolves the genuine tradeoff between paying the covered fee for 23A and taking the otherwise equivalent free 23C.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_001_h03_p02",
+      "probe_type": "direct_use",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The phrase 'established choices' explicitly calls for unavailable history.",
+          "Stating that the allowance covers either 23A or 23C weakens price as a decisive cue and leaves an unstated window-versus-aisle preference.",
+          "The statement that Elena has not named a seat location confirms that the needed preference is absent from the current exchange."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "D"
+        ],
+        "rationale": "Seat 23C avoids a fee, but 23A may be worth the approved fee to someone who prefers a window; the query does not state that preference. Seat 31C also presents a cost-versus-overhead-access tradeoff. Seat 23B has no stated advantage over the free aisle seat 23C.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Choose 14C because the prior long-segment aisle selection revised her standing pattern."
+        },
+        {
+          "choice_id": "B",
+          "text": "Choose 14A because the isolated aisle use does not replace her broader pattern."
+        },
+        {
+          "choice_id": "C",
+          "text": "Choose 14B to avoid inferring any location pattern from mixed records."
+        },
+        {
+          "choice_id": "D",
+          "text": "Leave the seat unassigned even though selection is currently available."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "evidence_disambiguation"
+      },
+      "probe_id": "tm_pd_v05_user_001_h03_p00",
+      "query": "A prior itinerary in Elena's record contains one aisle selection on a long segment after the initially sought location was unavailable. She is now choosing her own seat for an unrelated Phoenix-to-Cleveland trip. Seats 14A and 14C are both available at the same price with equal legroom, and she has given no trip-specific seating instruction. What should the planner do?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_001",
+      "visible_history_scope": {
+        "max_session_index": 123
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Release the hold, then make a final assignment of included seat 16C."
+        },
+        {
+          "choice_id": "B",
+          "text": "Release the hold, then make a final assignment of included seat 16A."
+        },
+        {
+          "choice_id": "C",
+          "text": "Release the hold, then make a final assignment of included seat 16B."
+        },
+        {
+          "choice_id": "D",
+          "text": "Release the hold, then pay $22 and assign forward seat 11C."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "conflict_resolution"
+      },
+      "probe_id": "tm_pd_v05_user_001_h03_p01",
+      "query": "While comparing fares for an upcoming Reykjavik flight, Elena asked for a temporary hold on seat 16C. After selecting the fare, she writes, 'Release that provisional hold and use my usual setup if an included standard seat allows it.' Seats 16A and 16C remain included and are identical in legroom, recline, and deplaning time; 16B is also included, while 11C costs $22 for an earlier exit. Which action follows the latest instruction?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_001",
+      "visible_history_scope": {
+        "max_session_index": 123
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Pay $14 and assign standard seat 23A."
+        },
+        {
+          "choice_id": "B",
+          "text": "Assign standard seat 23C with no fee."
+        },
+        {
+          "choice_id": "C",
+          "text": "Assign standard seat 23B with no fee."
+        },
+        {
+          "choice_id": "D",
+          "text": "Pay $10 and assign last-row seat 31C."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "direct_use"
+      },
+      "probe_id": "tm_pd_v05_user_001_h03_p02",
+      "query": "Elena's selected Montreal-to-Chicago flight offers standard seat 23A for a $14 assignment fee and standard seat 23C at no fee. They have the same pitch, recline, deplaning time, and distance from the lavatory, and the booking's approved seat allowance covers either option. Seat 23B is free, while a last-row seat 31C costs $10 and has extra overhead-bin access. Elena has not named a seat location in the current exchange. Which option best fits her established choices?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_001",
+      "visible_history_scope": {
+        "max_session_index": 123
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 3,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 4
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 3,
+    "selected_difficulty_counts": {
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 1
+    }
+  }
+}

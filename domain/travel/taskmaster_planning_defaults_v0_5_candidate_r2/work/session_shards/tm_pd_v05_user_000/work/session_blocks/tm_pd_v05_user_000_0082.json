@@ -1,0 +1,87 @@
+{
+  "cache_fingerprint": "31cccdec112600474e45df465c2dcdc9cedba97379259aeae5e8f8923b27addd",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Completed the Baltimore booking administration: reconciled the Sunday-through-Tuesday dates and exact costs, ticketed the expiring $536 nonstop airfare, reserved the refundable two-night hotel, recorded the flight arrival for late check-in, and left only airport transfers outstanding.",
+        "evidence_topology": {
+          "episode_id": "client-baltimore-014",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 82,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user confirms and books the current Baltimore itinerary, but no user utterance itself states or durably reaffirms any candidate habit's concrete preference value. References to the selected schedule, hotel, refundable rate, and office adjacency are trip-specific and do not independently evidence the listed habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Go ahead and finish Baltimore. Before you book, reconcile the dates, times, hotel nights, and total. I have the flight at $536 and the hotel at about $548, and the airfare expires at noon.",
+          "role": "user"
+        },
+        {
+          "content": "I have Sunday, September 30 through Tuesday, October 2, 2029. The selected nonstop flights are MSP-BWI Sunday, arriving at 7:45 p.m., and BWI-MSP Tuesday at 7:20 p.m. The hotel is for Sunday and Monday nights, checking out Tuesday. The exact hotel total is $549.78 after tax, so the working trip total is $1,161.78: $536 airfare, $549.78 hotel, and $76 estimated airport transfers. The earlier $1,160 figure rounded the room to about $548.",
+          "role": "assistant"
+        },
+        {
+          "content": "That schedule is right. Ticket the flight first using Maya Chen and the traveler details already on the reservation record.",
+          "role": "user"
+        },
+        {
+          "content": "The nonstop round trip is ticketed for $536. Confirmation: DL7K2P. Sunday, September 30, MSP to BWI, arriving 7:45 p.m.; Tuesday, October 2, BWI to MSP, departing 7:20 p.m. The ticket was issued before the noon deadline.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now reserve the selected office-adjacent hotel. Keep the refundable rate, and add the Sunday flight arrival so they know I will check in late.",
+          "role": "user"
+        },
+        {
+          "content": "The Inner Harbor hotel is reserved for two nights, September 30 through October 2, at $549.78 after tax. Confirmation: IH48261. The rate remains refundable until 48 hours before arrival, and the reservation notes a 7:45 p.m. BWI arrival with a later evening check-in. Complimentary luggage storage Tuesday until 8:00 p.m. is also confirmed.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me one final chronological itinerary and tell me what is still not booked.",
+          "role": "user"
+        },
+        {
+          "content": "Confirmed itinerary: Sunday, September 30, fly nonstop MSP-BWI and arrive at 7:45 p.m.; transfer to the Inner Harbor hotel and check in for two nights. Monday, October 1, stay at the same hotel near the client office. Tuesday, October 2, check out, leave luggage with the hotel, finish at the client office at 4:30 p.m., retrieve the bag, and depart BWI nonstop at 7:20 p.m. Airfare is confirmed at $536 and lodging at $549.78, for $1,085.78 booked. Airport transfers remain unbooked and are estimated at $76, bringing the projected trip total to $1,161.78.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0082",
+      "session_index": 82,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The August 25-31, 2029 Naples trip remains fully confirmed for two travelers at $4,428 with no arrival follow-up. The Baltimore client trip September 30-October 2, 2029 is confirmed: nonstop airfare was ticketed for $536, and the Inner Harbor hotel was reserved for two nights at $549.78 after tax. The hotel has the 7:45 p.m. Sunday flight arrival noted for later check-in, remains refundable until 48 hours before arrival, and provides complimentary Tuesday luggage storage until 8:00 p.m. Booked cost is $1,085.78; airport transfers remain unbooked at an estimated $76, for a projected total of $1,161.78. The August 2028 Cary client trip is confirmed; the July 2028 Columbus trip retains a separate travel credit and unresolved office bag-storage question. Earlier Monterey Peninsula, Charlotte, Richmond, Nashville, central Oregon coast, Denver, and San Diego trips remain reserved or completed. Coastal Georgia and January 2027 Denver remain unbooked. The Raleigh corrected folio, Philadelphia deposit release, and earlier Nashville refund reconciliation remain unresolved.",
+  "verification": {
+    "82": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user confirms and books the current Baltimore itinerary, but no user utterance itself states or durably reaffirms any candidate habit's concrete preference value. References to the selected schedule, hotel, refundable rate, and office adjacency are trip-specific and do not independently evidence the listed habits."
+    }
+  }
+}

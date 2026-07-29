@@ -1,0 +1,369 @@
+{
+  "cache_fingerprint": "beb9f8c78b8b893ac78a26349fdd9f5a39f195afd0e245f7d46ba02c9e2da099",
+  "rows": [
+    {
+      "boundary_condition": "This should be treated as a soft bed-type default, not as something inferred mechanically from the current number of travelers or rooms.",
+      "bundle_id": "tm_v04_e2e_bundle_90a7ff1f51d8",
+      "canonical_value": "none",
+      "condition": "When booking a hotel room and no room-specific separate-bed setup is explicitly requested.",
+      "confidence": 0.7,
+      "decision": "reject",
+      "default_action": "Ask for or filter toward rooms with a queen-size bed or larger, applying queen-or-king beds to adult/couple rooms in multi-room bookings when possible.",
+      "exception_condition": "If a specific room is requested with twin beds or another separate sleeping arrangement, honor that room-specific request instead of forcing a queen or king bed.",
+      "family": "hotel_room_bed_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_90a7ff1f51d8",
+      "induced_at": "2026-07-16T08:07:32.316245+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "queen_or_larger_bed_as_standard_hotel_room_default",
+      "preference_value": "Tends to prefer at least a queen-size bed for standard hotel rooms; a king-size bed is an acceptable larger alternative.",
+      "rationale": "All three independent hotel dialogues include a queen-size bed request. One dialogue broadens the acceptable option to queen or king for adult rooms, while another shows twin beds can be a room-specific exception rather than the general default.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "reject",
+        "quality_score": 0.18,
+        "reason": "Although queen beds appear across three instruction IDs, the examples describe trip-specific room configurations rather than a reusable default: one is tied to the current adult party, one assigns different bed types to two requested rooms, and one only supplies a slot value.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports queen as the minimum bed size and king as an acceptable alternative for adult/couple rooms.",
+          "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+          "exact_user_quote": "at least a queen size bed. They'll all be adults, So queen or king size bed in each room.",
+          "instruction_id": "hotel-9",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Supports queen-size for a room while also showing that twin beds are an explicit room-specific exception.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "One room needs to have two twin beds and the other room a queen-size bed.",
+          "instruction_id": "hotel-8",
+          "turn_index": 9
+        },
+        {
+          "contribution": "Independently supports queen-size bed as a desired hotel room feature.",
+          "conversation_id": "dlg-5aa1cf5c-121b-435d-9234-277161743eac",
+          "exact_user_quote": "Queen-size bed.",
+          "instruction_id": "hotel-14",
+          "turn_index": 7
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "at least a queen size bed. They'll all be adults, So queen or king size bed in each room.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+          "habitual_language": false,
+          "instruction_id": "hotel-9",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "at least a queen size bed. They'll all be adults, So queen or king size bed in each room."
+        },
+        {
+          "annotated_segment": "One room needs to have two twin beds and the other room a queen-size bed.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 9,
+          "user_utterance": "One room needs to have two twin beds and the other room a queen-size bed."
+        },
+        {
+          "annotated_segment": "Queen-size bed.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-5aa1cf5c-121b-435d-9234-277161743eac",
+          "habitual_language": false,
+          "instruction_id": "hotel-14",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 7,
+          "user_utterance": "Queen-size bed."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Do not infer an ocean/view requirement from this habit; ocean view appears in only some supporting dialogues. Treat balcony as a preference unless the current request explicitly says it is mandatory.",
+      "bundle_id": "tm_v04_e2e_bundle_5687f4a741ee",
+      "canonical_value": "hotel_balcony",
+      "condition": "Use when searching for or checking hotel room amenities; especially relevant when floor is unknown or the room is above the first floor.",
+      "confidence": 0.74,
+      "decision": "keep",
+      "default_action": "Ask for or verify that the hotel room has a balcony.",
+      "exception_condition": "A first-floor room may make the balcony unnecessary, based on one dialogue where the user explicitly relaxed the balcony request for first-floor placement.",
+      "family": "hotel_view_balcony_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_5687f4a741ee",
+      "induced_at": "2026-07-16T08:09:46.097002+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_room_balcony_preference",
+      "preference_value": "Prefers a hotel room with a balcony when booking or evaluating rooms.",
+      "rationale": "All three independent hotel dialogues include the user asking for a balcony as a room feature. One dialogue later makes the balcony conditional on floor level, so the reusable habit should be soft and include that boundary rather than treating balcony as an absolute requirement.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.94,
+        "reason": "Three distinct instruction IDs consistently support seeking a balcony. The wording appropriately excludes an unsupported view preference and preserves the explicitly supported first-floor exception.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows a balcony preference for higher-floor rooms and the first-floor exception that makes the habit soft rather than mandatory.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "We don't need a balcony if the room's on the first floor, but if it's on a higher floor then, you know, we can have a balcony.",
+          "instruction_id": "hotel-2",
+          "turn_index": 28
+        },
+        {
+          "contribution": "Independently supports balcony as a desired hotel-room feature.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "The room must also have an ocean view, a balcony, a mini fridge, a king bed.",
+          "instruction_id": "hotel-3",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Independently supports looking for a hotel room with a balcony.",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "exact_user_quote": "Great. Now, for the rooms, I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker.",
+          "instruction_id": "hotel-1c",
+          "turn_index": 22
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "We don't need a balcony if the room's on the first floor, but if it's on a higher floor then, you know, we can have a balcony.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 28,
+          "user_utterance": "We don't need a balcony if the room's on the first floor, but if it's on a higher floor then, you know, we can have a balcony."
+        },
+        {
+          "annotated_segment": "The room must also have an ocean view, a balcony, a mini fridge, a king bed.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "The room must also have an ocean view, a balcony, a mini fridge, a king bed."
+        },
+        {
+          "annotated_segment": "Great. Now, for the rooms, I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 22,
+          "user_utterance": "Great. Now, for the rooms, I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Treat this as a soft amenity preference and do not infer a particular view type.",
+      "bundle_id": "tm_v04_e2e_bundle_572f078bb517",
+      "canonical_value": "hotel_balcony",
+      "condition": "When searching for or booking a hotel room.",
+      "confidence": 0.78,
+      "decision": "revise",
+      "default_action": "Include a balcony in the room-amenity search and confirm availability; consider a terrace as a substitute when appropriate.",
+      "exception_condition": "Relax the preference when the current request deprioritizes it or suitable balcony rooms are unavailable.",
+      "family": "hotel_view_balcony_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_572f078bb517",
+      "induced_at": "2026-07-16T08:10:58.977571+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_room_balcony_preference",
+      "preference_value": "Prefers a hotel room with a balcony; a terrace may be an acceptable substitute when offered.",
+      "rationale": "Across three independent hotel dialogues, the user repeatedly asks for or confirms a balcony/terrace as a room amenity, sometimes emphasizing it as part of the desired stay experience.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.86,
+        "reason": "All three instruction IDs support a balcony preference, but only two establish a terrace as an acceptable alternative. The reusable default should therefore center on a balcony and mention a terrace only as a possible substitute, not as an equally established recurring preference.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows the user actively wants a balcony as part of the room experience, with a view requested in this specific waterfront context.",
+          "conversation_id": "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+          "exact_user_quote": "I'd like to have a good view of the ocean and a balcony to look out over the water.",
+          "instruction_id": "hotel-13",
+          "turn_index": 9
+        },
+        {
+          "contribution": "Lists balcony or terrace as a room amenity to check, supporting terrace as an acceptable alternative to balcony.",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "exact_user_quote": "A balcony or terrace, a TV with cable, mini fridge, coffee maker, honor bar and fireplace.",
+          "instruction_id": "hotel-1b",
+          "turn_index": 14
+        },
+        {
+          "contribution": "Strongly states a preference for a balcony or terrace and explains the desired use of relaxing there.",
+          "conversation_id": "dlg-17a9410c-dbb4-47ba-a2ac-218346429404",
+          "exact_user_quote": "I would love a balcony or, you know, a terrace. I would love just to sit on the balcony and relax.",
+          "instruction_id": "hotel-4",
+          "turn_index": 7
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I'd like to have a good view of the ocean and a balcony to look out over the water.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+          "habitual_language": false,
+          "instruction_id": "hotel-13",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 9,
+          "user_utterance": "I'd like to have a good view of the ocean and a balcony to look out over the water."
+        },
+        {
+          "annotated_segment": "A balcony or terrace, a TV with cable, mini fridge, coffee maker, honor bar and fireplace.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "habitual_language": false,
+          "instruction_id": "hotel-1b",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 14,
+          "user_utterance": "A balcony or terrace, a TV with cable, mini fridge, coffee maker, honor bar and fireplace."
+        },
+        {
+          "annotated_segment": "I would love a balcony or, you know, a terrace. I would love just to sit on the balcony and relax.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-17a9410c-dbb4-47ba-a2ac-218346429404",
+          "habitual_language": false,
+          "instruction_id": "hotel-4",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 7,
+          "user_utterance": "I would love a balcony or, you know, a terrace. I would love just to sit on the balcony and relax."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Treat the balcony as a soft preference rather than a strict requirement; a first-floor room can be acceptable without one",
+      "bundle_id": "tm_v04_e2e_bundle_c407a334b298",
+      "canonical_value": "hotel_balcony",
+      "condition": "When selecting a hotel room",
+      "confidence": 0.84,
+      "decision": "keep",
+      "default_action": "Prioritize rooms with a balcony when available",
+      "exception_condition": "Do not reject an otherwise suitable hotel solely because a balcony is unavailable",
+      "family": "hotel_view_balcony_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_c407a334b298",
+      "induced_at": "2026-07-25T10:28:10.986220+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_room_balcony_preference",
+      "preference_value": "Prefer a room with a balcony",
+      "rationale": "Three independent hotel dialogues express a balcony preference. The clearest negotiation shows that the preference is conditional on floor level, while the other dialogues use soft language or list the balcony among desired room amenities.",
+      "reasoning_effort": "high",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.95,
+        "reason": "Three distinct instruction IDs consistently establish a reusable balcony preference, while the wording correctly treats it as soft and captures the supported first-floor exception without adding a view requirement.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Establishes the balcony preference and its floor-level boundary.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "We don't need a balcony if the room's on the first floor, but if it's on a higher floor then, you know, we can have a balcony.",
+          "instruction_id": "hotel-2",
+          "turn_index": 28
+        },
+        {
+          "contribution": "Independently supports seeking a room with a balcony.",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "exact_user_quote": "I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker.",
+          "instruction_id": "hotel-1c",
+          "turn_index": 22
+        },
+        {
+          "contribution": "Independently frames a balcony as a preference rather than a hard requirement.",
+          "conversation_id": "dlg-c7024cd0-70ff-496c-9c74-f6ef9b154248",
+          "exact_user_quote": "we prefer to have a balcony and a nice view as well.",
+          "instruction_id": "hotel-14",
+          "turn_index": 7
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "We don't need a balcony if the room's on the first floor, but if it's on a higher floor then, you know, we can have a balcony.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 28,
+          "user_utterance": "We don't need a balcony if the room's on the first floor, but if it's on a higher floor then, you know, we can have a balcony."
+        },
+        {
+          "annotated_segment": "I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 22,
+          "user_utterance": "I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker."
+        },
+        {
+          "annotated_segment": "we prefer to have a balcony and a nice view as well.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-c7024cd0-70ff-496c-9c74-f6ef9b154248",
+          "habitual_language": false,
+          "instruction_id": "hotel-14",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 7,
+          "user_utterance": "we prefer to have a balcony and a nice view as well."
+        }
+      ]
+    }
+  ]
+}

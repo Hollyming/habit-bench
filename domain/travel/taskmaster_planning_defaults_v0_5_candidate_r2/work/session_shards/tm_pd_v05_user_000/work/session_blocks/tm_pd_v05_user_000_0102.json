@@ -1,0 +1,95 @@
+{
+  "cache_fingerprint": "791ae52d6eb86320b3f62528e16201682e2e04d0a62a5c08a31f80eb3a358a29",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session addresses only the active Columbus trip: airline deadlines were converted into exact times, luggage retrieval and ride-request time were included, and a missed-margin fallback was established without adding a recurring preference.",
+        "evidence_topology": {
+          "episode_id": "client-columbus-016",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 102,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user discusses only current-trip airport timing, baggage retrieval, traffic, check-in and boarding cutoffs, and a fallback for missing the flight. None of the candidate habits is explicitly supported, bounded, excepted, or revised by the user's utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The last Easton meeting may now run until 4:20 tomorrow. Can I still collect my suitcase from the hotel across the street and make the 6:35 flight without cutting it too close?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, that still looks workable. What cutoff times does the airline show for check-in and boarding, and are you still traveling without a checked bag?",
+          "role": "assistant"
+        },
+        {
+          "content": "No checked bag. The app says check-in must be completed 45 minutes before departure and boarding closes 15 minutes before departure.",
+          "role": "user"
+        },
+        {
+          "content": "For a 6:35 p.m. departure, those deadlines are 5:50 p.m. for check-in and 6:20 p.m. for boarding. I would complete app check-in well before leaving Easton, so the 5:50 cutoff is not something you are trying to meet from the car.",
+          "role": "assistant"
+        },
+        {
+          "content": "Allow a few minutes to get the suitcase and request the ride. Traffic has been 15 to 25 minutes.",
+          "role": "user"
+        },
+        {
+          "content": "If the meeting ends at 4:20, allow about 5-10 minutes to cross over and retrieve the suitcase, then another 5 minutes for the ride to arrive. That puts you in the car around 4:35. With the slower 25-minute trip, you should reach CMH near 5:00, about 95 minutes before departure and 80 minutes before boarding closes.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the latest practical time I should actually leave the hotel?",
+          "role": "user"
+        },
+        {
+          "content": "Treat 5:05 p.m. as the latest practical departure from the hotel. A 25-minute ride would reach the terminal around 5:30, leaving roughly 50 minutes for security and the walk to the gate before boarding closes at 6:20. That assumes you are already checked in and have only the suitcase you can carry through security.",
+          "role": "assistant"
+        },
+        {
+          "content": "And if the meeting goes past 4:20? Give me one simple fallback.",
+          "role": "user"
+        },
+        {
+          "content": "At 4:20, request the ride while the meeting wraps and message the hotel to have the suitcase ready at the desk. If you are not out of the hotel and in the car by 5:05, switch immediately to the airline app and rebook the next viable flight rather than relying on the formal 6:20 boarding cutoff. Under the expected sequence, though, a 4:20 meeting end should still put you at CMH around 5:00 with a solid margin.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0102",
+      "session_index": 102,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The December 9-11, 2029 Columbus client trip is underway. Ticketed nonstop flights are Sunday MSP-CMH, 5:10 p.m.-8:03 p.m., and Tuesday CMH-MSP, 6:35 p.m.-7:42 p.m., at $512 with no checked bag. The hotel across from the Easton client office is reserved for Sunday and Monday nights at approximately $562 after tax, and is holding Maya's suitcase after Tuesday checkout. Tuesday's final meeting may run until 4:20 p.m.; allowing 5-10 minutes to retrieve luggage, about 5 minutes for ride pickup, and 15-25 minutes to CMH should produce an arrival near 5:00 p.m. Airline deadlines are 5:50 p.m. for completed check-in and 6:20 p.m. for boarding closure. Maya should check in through the app in advance and treat 5:05 p.m. as the latest practical hotel departure; if she is not in the car by then, the fallback is to rebook promptly in the airline app. Airport rides remain unbooked at an estimated $68, and the projected trip total remains $1,142 before tips, surge pricing, meals, and incidentals. The September 12-16 Monterey Peninsula trip for Maya Lian Chen and Jordan Avery Lee is confirmed at $2,849 for flights, car, and hotels; whale-watching booking status and exact hotel cancellation cutoffs remain unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2, 2029 Baltimore client trip is confirmed, with airport transfers unbooked at an estimated $76. The November 6-8, 2029 Raleigh trip remains confirmed at a projected $1,288; rides remain unbooked and no checked bag is attached. Earlier unresolved follow-ups include the Raleigh corrected folio, Philadelphia deposit release, and Nashville refund reconciliation.",
+  "verification": {
+    "102": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user discusses only current-trip airport timing, baggage retrieval, traffic, check-in and boarding cutoffs, and a fallback for missing the flight. None of the candidate habits is explicitly supported, bounded, excepted, or revised by the user's utterances."
+    }
+  }
+}

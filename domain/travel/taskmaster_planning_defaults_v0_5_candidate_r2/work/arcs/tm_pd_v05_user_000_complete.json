@@ -1,0 +1,2880 @@
+{
+  "cache_fingerprint": "26c18dea248974efbf00ab4807cb50378f668d73958205fa51ca5a0005bbcc49",
+  "events": [
+    {
+      "continuity_hook": "This opens the first planning episode and establishes the fixed onsite window that later lodging and booking decisions must fit.",
+      "days_after_previous": 0,
+      "domain": "flights",
+      "episode_id": "client-raleigh-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+      ],
+      "interaction_goal": "Compare viable round-trip flight schedules, including total travel time and arrival margin, and narrow the choice to two practical itineraries.",
+      "scenario_brief": "Maya needs to travel from Minneapolis to Raleigh for a healthcare software go-live scheduled Tuesday through Friday. She must reach the client site in Cary by 12:30 p.m. Tuesday, can leave Monday after 5:30 p.m. or very early Tuesday, and expects to return Friday after the 3:00 p.m. project close. The project has authorized economy airfare up to $700, while the exact outbound day and airport-to-site timing remain unresolved.",
+      "session_index": 0,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The hotel search uses the arrival plan and onsite schedule established in the prior session; the flight has not yet been purchased.",
+      "days_after_previous": 1,
+      "domain": "hotels",
+      "episode_id": "client-raleigh-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218"
+      ],
+      "interaction_goal": "Compare the most practical hotels by rate, morning travel time, cancellation deadline, and breakfast availability, then identify a leading option.",
+      "scenario_brief": "With a Monday evening arrival now looking more workable, Maya needs four hotel nights near the Cary client office. Her reimbursable room limit is $210 per night before tax, the first onsite meeting begins at 7:30 a.m., and she will use rideshare rather than rent a car. Several nearby properties are available, but their commute times, cancellation terms, and included breakfast differ.",
+      "session_index": 1,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The earlier client start resolves the outbound-day question and brings the flight and hotel selections into one purchase decision.",
+      "days_after_previous": 2,
+      "domain": "combined_trip",
+      "episode_id": "client-raleigh-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218"
+      ],
+      "interaction_goal": "Verify the selected itinerary against the new start time, calculate the trip total, surface restrictive terms, and prepare the chosen flight and hotel for purchase.",
+      "scenario_brief": "The client has moved Tuesday's first working session from 12:30 p.m. to 9:00 a.m., eliminating Tuesday morning flight options. Maya now needs a Monday evening flight and the previously shortlisted Cary hotel for four nights. She has the traveler details and corporate card ready, but wants the full airfare, lodging total, and cancellation conditions checked before purchase.",
+      "session_index": 2,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This session uses the purchased Raleigh itinerary and responds to a concrete schedule change received before departure.",
+      "days_after_previous": 6,
+      "domain": "booking_administration",
+      "episode_id": "client-raleigh-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+      ],
+      "interaction_goal": "Check earlier Friday flight availability, determine the fare difference and change conditions, and confirm whether the revised airport timing works before modifying the ticket.",
+      "scenario_brief": "The flight and hotel are booked, but the client has confirmed that Friday's work will end at noon instead of 3:00 p.m. Maya wants to know whether her ticket can be moved from the evening departure to a midafternoon flight without exceeding the remaining project travel allowance. Her hotel checkout and airport transfer timing also need to remain feasible.",
+      "session_index": 3,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This begins a separate leisure episode after the Raleigh work trip, with destination and trip structure still open.",
+      "days_after_previous": 31,
+      "domain": "combined_trip",
+      "episode_id": "partner-coast-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Compare the two destination plans using realistic flight times, lodging costs, ground transportation, and time spent near the beach, then recommend which plan better fits five nights and the stated budget.",
+      "scenario_brief": "Maya and her partner are considering a five-night coastal break in late April, departing Minneapolis on a Thursday and returning Tuesday. They are deciding between Savannah with time on Tybee Island and Charleston with time near Folly Beach. Their combined flight-and-lodging ceiling is $3,800 for two travelers, and they have not decided whether to stay in one place or split the nights between a city and the coast.",
+      "session_index": 4,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The destination decision carries forward from the prior comparison and narrows the work to a two-property lodging plan.",
+      "days_after_previous": 4,
+      "domain": "hotels",
+      "episode_id": "partner-coast-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218"
+      ],
+      "interaction_goal": "Build a concise pairing of Savannah and Tybee lodging options, compare total cost and payment terms, and identify the strongest combination without purchasing yet.",
+      "scenario_brief": "Maya and her partner have chosen Savannah and Tybee Island after reviewing the two coastal options. They want two nights in Savannah followed by three nights on Tybee, with one room and a total lodging target of $2,300 before taxes. The city dates have several refundable choices, while the island inventory is tighter and some rates require full prepayment; they have not selected either property.",
+      "session_index": 5,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The lodging shortlist from the prior session establishes the remaining trip budget and makes flight timing the next unresolved part of the Savannah and Tybee plan.",
+      "days_after_previous": 2,
+      "domain": "flights",
+      "episode_id": "partner-coast-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+      ],
+      "interaction_goal": "Compare practical round-trip flight options for two, calculate their effect on the full trip estimate, and narrow the choice based on cost, travel time, and usable time at the destination.",
+      "scenario_brief": "With two Savannah nights and three Tybee Island nights tentatively paired, Maya now needs round-trip flights for two from Minneapolis to Savannah for the Thursday-to-Tuesday trip. The leading lodging combination leaves about $1,500 of the combined $3,800 ceiling for airfare and local transportation, and the couple still needs to decide whether a lower fare with a connection is worth losing several hours on the first or final day.",
+      "session_index": 6,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This brings the selected air and lodging options from the preceding sessions into a single booking-stage review while the preferred rooms and fares remain available.",
+      "days_after_previous": 3,
+      "domain": "combined_trip",
+      "episode_id": "partner-coast-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748",
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+      ],
+      "interaction_goal": "Validate the complete itinerary and estimated cost, identify payment and cancellation deadlines, and prepare the flights and both hotels for purchase.",
+      "scenario_brief": "Maya and her partner have selected flights that arrive in Savannah Thursday afternoon and return Tuesday evening, along with a refundable Savannah hotel and a partially prepaid Tybee property. Before booking, they need the five-night date split checked against the flight dates, a complete total including estimated taxes and the transfer between Savannah and Tybee, and a clear account of when each reservation becomes nonrefundable.",
+      "session_index": 7,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The fixed hotels and flight times now allow the remaining ground-transportation question to be resolved without changing the booked trip structure.",
+      "days_after_previous": 18,
+      "domain": "booking_administration",
+      "episode_id": "partner-coast-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+      ],
+      "interaction_goal": "Compare realistic transportation plans for the city-to-island transfer and airport return, including parking and pickup timing, and choose the most workable arrangement.",
+      "scenario_brief": "The coastal trip is booked, and Maya is reviewing transportation after learning that the Tybee hotel charges for overnight parking. They need to leave the Savannah hotel on Saturday, spend the afternoon in the city before checking in on Tybee, and reach Savannah airport in time for Tuesday's evening departure. A rental car, two scheduled rides, and a mixed rideshare-and-shuttle plan are all possible, but availability and total cost have not been checked.",
+      "session_index": 8,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This starts a new client-travel episode after the coastal trip planning, centered on a fixed workshop schedule and an unresolved return day.",
+      "days_after_previous": 24,
+      "domain": "flights",
+      "episode_id": "client-denver-002",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+        "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748"
+      ],
+      "interaction_goal": "Compare round-trip schedules and prices, test Friday departures against the workshop end time and airport transfer, and identify two viable itineraries.",
+      "scenario_brief": "Maya has been assigned a three-day client configuration workshop in downtown Denver from Wednesday morning through Friday at 2:00 p.m. She can depart Minneapolis Tuesday after 4:30 p.m. and needs enough margin to reach an 8:00 a.m. Wednesday session; the project permits economy airfare up to $650. The return could be Friday evening or Saturday morning if the Friday options make the final workshop day impractical, and no itinerary has been selected.",
+      "session_index": 9,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The narrowed flight schedule fixes the hotel dates and makes the morning trip to the workshop the main lodging tradeoff.",
+      "days_after_previous": 1,
+      "domain": "hotels",
+      "episode_id": "client-denver-002",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a"
+      ],
+      "interaction_goal": "Compare suitable hotels by nightly and total cost, morning travel time, and cancellation terms, then select the strongest option within the project limit.",
+      "scenario_brief": "A Tuesday evening arrival and Friday evening return are now the leading flight plan for Denver, so Maya needs three hotel nights near the downtown workshop venue. The reimbursable room cap is $225 per night before tax, and the workshop days begin at 8:00 a.m.; one nearby property is within walking distance but has a stricter cancellation deadline, while less expensive options require a short light-rail or rideshare trip. The flight is still being held rather than purchased.",
+      "session_index": 10,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The fare change affects the flight selected in the first Denver session and must be reconciled with the workshop schedule and chosen hotel before purchase.",
+      "days_after_previous": 2,
+      "domain": "combined_trip",
+      "episode_id": "client-denver-002",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748",
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+      ],
+      "interaction_goal": "Recheck Friday timing, compare the revised itinerary totals, confirm the applicable fare and hotel terms, and prepare the feasible flight and hotel combination for booking.",
+      "scenario_brief": "Maya is ready to book the Tuesday-to-Friday Denver itinerary, but the lowest quoted return fare now departs 50 minutes earlier than the option previously reviewed. The workshop still ends Friday at 2:00 p.m., the selected hotel requires checkout that morning, and the airfare and three hotel nights must remain within the approved project total. She needs to know whether the earlier flight leaves a credible airport margin or whether the higher-priced later departure should be used.",
+      "session_index": 11,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The airline's schedule adjustment reopens the airport-timing decision that was settled when the Denver trip was purchased.",
+      "days_after_previous": 5,
+      "domain": "booking_administration",
+      "episode_id": "client-denver-002",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-302fc04e-6d21-4826-b462-2a475325a94e"
+      ],
+      "interaction_goal": "Recalculate the Friday transfer margin, compare the changed flight with the later alternative, and determine whether to accept the new schedule or move the ticket.",
+      "scenario_brief": "Maya booked the higher-priced Friday departure that allowed a workable transfer after the Denver workshop, but the airline has now moved that flight 40 minutes earlier. The change can be accepted or replaced without a fare-change charge, and one later flight still has seats at a higher fare; the workshop remains scheduled to end at 2:00 p.m.",
+      "session_index": 12,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This begins a new client trip after the Denver travel is complete, with fixed workshop hours and the return schedule still open.",
+      "days_after_previous": 37,
+      "domain": "flights",
+      "episode_id": "client-philadelphia-003",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a",
+        "dlg-302fc04e-6d21-4826-b462-2a475325a94e"
+      ],
+      "interaction_goal": "Compare practical Monday outbound and Thursday return combinations, account for airport-transfer time after the workshop, and identify two itineraries within the airfare allowance.",
+      "scenario_brief": "Maya has a three-day user-acceptance workshop in central Philadelphia from Tuesday at 8:30 a.m. through Thursday at 4:30 p.m. She can leave Minneapolis after 3:30 p.m. Monday, must arrive in time for the Tuesday start, and has an economy airfare allowance of $700. Thursday evening departures vary substantially in price and in the time available to reach the airport, and no flight has been selected.",
+      "session_index": 13,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The narrowed flight schedule fixes the lodging dates and shifts the decision to cost, morning travel time, and booking terms.",
+      "days_after_previous": 2,
+      "domain": "hotels",
+      "episode_id": "client-philadelphia-003",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b"
+      ],
+      "interaction_goal": "Compare the three hotels by full stay cost, route to the workshop, deposit timing, and cancellation deadline, then choose the best fit for the project.",
+      "scenario_brief": "A Monday evening arrival and Thursday evening return are now the leading flight plan for Philadelphia. Maya needs three hotel nights, with reimbursement limited to $245 per night before tax. One property is a short walk from the workshop, while two less expensive options require a subway ride and have different deposit and cancellation terms.",
+      "session_index": 14,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The selected flights and hotel are ready to be combined, but the fare increase changes the final amount at the purchase stage.",
+      "days_after_previous": 3,
+      "domain": "combined_trip",
+      "episode_id": "client-philadelphia-003",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a",
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b"
+      ],
+      "interaction_goal": "Confirm the dates and timing, calculate the revised trip total with estimated taxes, surface the applicable cancellation conditions, and prepare the itinerary for purchase.",
+      "scenario_brief": "Maya has selected a nonstop Monday flight, a Thursday departure with a credible post-workshop airport margin, and the walkable hotel for three nights. The quoted airfare has increased by $46 since the first search, so she needs the revised air-and-hotel total checked against the approved project amount before using the corporate card.",
+      "session_index": 15,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The venue change affects the booked hotel's main practical advantage while there is still time to replace it without a penalty.",
+      "days_after_previous": 18,
+      "domain": "booking_administration",
+      "episode_id": "client-philadelphia-003",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b"
+      ],
+      "interaction_goal": "Compare keeping the city hotel with moving to a suburban property, include commute and airport transportation costs, and modify the reservation if the suburban plan is stronger.",
+      "scenario_brief": "Two days before departure, the client has moved the workshop from central Philadelphia to an office near King of Prussia. Maya's booked hotel can still be canceled until the following evening, but keeping it would create a lengthy rush-hour commute. Several suburban rooms remain within the nightly cap, and changing hotels would also alter the trip to and from the airport.",
+      "session_index": 16,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The on-site schedule change makes the purchased return flight unusable and ties the replacement choice to the current hotel stay.",
+      "days_after_previous": 4,
+      "domain": "flights",
+      "episode_id": "client-philadelphia-003",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+        "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a"
+      ],
+      "interaction_goal": "Compare the late Thursday and Friday morning return plans, calculate each added cost, check the hotel extension and flight-change conditions, and identify the most feasible arrangement for approval.",
+      "scenario_brief": "During the Philadelphia workshop, the client extends Thursday's final validation work from 4:30 p.m. to 6:15 p.m. Maya's booked evening flight is no longer reachable with a responsible airport margin. A late nonstop has limited availability, while a Friday morning departure would require extending the newly booked suburban hotel by one night and obtaining approval for the added lodging.",
+      "session_index": 17,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Approval resolves the cost question raised during the workshop and allows the replacement flight and extra hotel night to be secured together.",
+      "days_after_previous": 0,
+      "domain": "booking_administration",
+      "episode_id": "client-philadelphia-003",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-ae59a0d7-ded6-4361-9eb9-f6ca47186758"
+      ],
+      "interaction_goal": "Verify the Friday flight, extend the hotel through Friday morning, calculate the final added amount, and complete the itinerary update before availability changes.",
+      "scenario_brief": "The project manager has approved a Friday morning return after Thursday's validation work was extended. Maya's suburban hotel can add Thursday night at the existing project rate, and the airline can exchange the unusable Thursday ticket for a Friday nonstop with a modest fare difference. Both options are still available, but neither has been confirmed.",
+      "session_index": 18,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This begins a new client-travel episode after the Philadelphia work is complete, with fixed meeting hours and no transportation selected.",
+      "days_after_previous": 43,
+      "domain": "flights",
+      "episode_id": "client-nashville-004",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Compare Monday outbound and Thursday return combinations, account for the transfer from the client office after the final meeting, and identify two workable round trips within the airfare allowance.",
+      "scenario_brief": "Maya has been assigned an integration review in downtown Nashville from Tuesday at 9:00 a.m. through Thursday at 5:00 p.m. She can leave Minneapolis after 2:30 p.m. Monday and has an economy airfare allowance of $625. Several Monday itineraries arrive late enough to reduce the overnight margin, while the practical Thursday returns differ in price and airport-transfer time.",
+      "session_index": 19,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The narrowed flight times establish the stay dates and make total ground cost and morning access to the client office central to the lodging decision.",
+      "days_after_previous": 1,
+      "domain": "hotels",
+      "episode_id": "client-nashville-004",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+        "dlg-ae59a0d7-ded6-4361-9eb9-f6ca47186758"
+      ],
+      "interaction_goal": "Compare full stay prices, estimated local transportation, commute times, and cancellation terms, then select the strongest hotel within the project rules.",
+      "scenario_brief": "A Monday evening arrival and Thursday evening departure are now the leading Nashville flight plan, requiring three hotel nights. The project permits up to $230 per night before tax. A hotel near the client office is slightly above that limit, while two qualifying properties have lower rates but require either a bus connection or daily rideshares; their cancellation deadlines also differ.",
+      "session_index": 20,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The selected air and hotel options can now be evaluated as one itinerary, but taxes and local travel determine whether the complete plan remains under the approved amount.",
+      "days_after_previous": 3,
+      "domain": "combined_trip",
+      "episode_id": "client-nashville-004",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377"
+      ],
+      "interaction_goal": "Confirm the dates and meeting margins, calculate the complete estimated trip cost, check the fare and hotel conditions, and prepare the qualifying itinerary for purchase.",
+      "scenario_brief": "Maya has chosen a $574 round trip and a qualifying hotel at $214 per night before tax. The approved trip ceiling is $1,450 for airfare, lodging, and required local transportation. The room rate is refundable only until four days before arrival, and estimated airport and office rides must be included before the corporate card is used.",
+      "session_index": 21,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The canceled outbound reopens only the arrival plan; the client schedule, return flight, and hotel stay remain fixed.",
+      "days_after_previous": 8,
+      "domain": "booking_administration",
+      "episode_id": "client-nashville-004",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Compare the replacement itineraries by workday feasibility, arrival reliability, added fare, and effect on the hotel check-in, then choose the most practical rebooking.",
+      "scenario_brief": "After the Nashville itinerary was booked, the airline canceled Maya's Monday nonstop. It is offering either an earlier departure that overlaps her final work meeting in Minneapolis or a one-stop itinerary arriving in Nashville at 10:50 p.m. A later nonstop on another carrier remains available at an added cost, and the existing hotel reservation begins Monday night.",
+      "session_index": 22,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This opens a new leisure episode after several client trips, with the travel week fixed but the flight, neighborhood, hotel structure, and spending balance unresolved.",
+      "days_after_previous": 55,
+      "domain": "combined_trip",
+      "episode_id": "partner-coast-005",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+        "dlg-ae59a0d7-ded6-4361-9eb9-f6ca47186758",
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Establish a realistic trip budget, compare flight costs with single-hotel and split-stay lodging plans, and narrow the search to two coherent trip structures.",
+      "scenario_brief": "Maya and her partner are considering a five-night San Diego trip during a fixed week of approved leave. They could stay entirely near the beach or split the trip between a lower-cost city hotel and two nights at a more expensive waterfront property. Flights into San Diego are available at several price points, but they have not decided how much of their overall budget to devote to lodging or whether the split stay is worth the extra transfer.",
+      "session_index": 23,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The initial budget discussion narrowed the lodging structure, allowing the airfare decision to focus on total cost and usable vacation time.",
+      "days_after_previous": 2,
+      "domain": "flights",
+      "episode_id": "partner-coast-005",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a"
+      ],
+      "interaction_goal": "Compare the three round trips for two travelers, including baggage charges and arrival and departure timing, then select the best flight plan for the five-night stay.",
+      "scenario_brief": "Maya and her partner have set a total San Diego budget of $3,600 for two people and are leaning toward a single beach-area hotel. Three round trips fit their fixed leave dates: the lowest fare uses an early outbound and late return, a moderately priced option has convenient daytime nonstops, and a third lowers the fare through a connection that reduces their first afternoon in San Diego.",
+      "session_index": 24,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The narrowed flights establish the exact lodging dates, while the remaining decision is whether the waterfront finish justifies its cost and midtrip move.",
+      "days_after_previous": 3,
+      "domain": "hotels",
+      "episode_id": "partner-coast-005",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-7dd08d76-05f0-4121-aecb-1c9501512eee",
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a"
+      ],
+      "interaction_goal": "Calculate the full lodging cost of each plan, compare location and transfer implications, and choose a hotel structure that keeps the complete trip within budget.",
+      "scenario_brief": "The daytime nonstop itinerary is now the leading flight plan, fixing five hotel nights. Maya and her partner are comparing a moderately priced property two blocks from the beach with a quieter hotel near the bay and a split stay that ends with two waterfront nights. Resort fees, parking costs, room cancellation dates, and the time required to transfer between hotels make the advertised nightly rates incomplete.",
+      "session_index": 25,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The flight and hotel comparisons have produced one coherent itinerary that is ready for a final price and date check before purchase.",
+      "days_after_previous": 4,
+      "domain": "combined_trip",
+      "episode_id": "partner-coast-005",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+        "dlg-7dd08d76-05f0-4121-aecb-1c9501512eee"
+      ],
+      "interaction_goal": "Verify traveler dates and flight times, reconcile every known trip charge against the budget, review the purchase terms, and complete the air and hotel reservations.",
+      "scenario_brief": "Maya and her partner have chosen the daytime nonstop flights and the single hotel two blocks from the beach. Airfare for two, five hotel nights, mandatory property fees, and estimated airport transportation total $3,284, leaving a modest amount below their $3,600 ceiling. The airfare must be purchased by the end of the day at the quoted price, while the room remains refundable for another week.",
+      "session_index": 26,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The trip is booked, but the airline's schedule shift reopens the return choice without affecting the outbound flight or five-night room reservation.",
+      "days_after_previous": 27,
+      "domain": "booking_administration",
+      "episode_id": "partner-coast-005",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a"
+      ],
+      "interaction_goal": "Compare the offered return flights by usable vacation time, arrival hour, and ground-travel implications, then confirm the most practical replacement and update the itinerary.",
+      "scenario_brief": "The airline has moved the booked return flight nearly four hours earlier, cutting into the final vacation day. Maya can accept that schedule, move to an evening nonstop at no added fare, or take a later one-stop itinerary that arrives in Minneapolis after midnight. The hotel checkout date and airport ride are still aligned with the original evening departure.",
+      "session_index": 27,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This begins a new client trip after the San Diego itinerary was settled, with meeting hours fixed and transportation still open.",
+      "days_after_previous": 61,
+      "domain": "flights",
+      "episode_id": "client-denver-006",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a"
+      ],
+      "interaction_goal": "Compare workable Tuesday outbound and Friday return combinations, account for airport travel after the final meeting, and narrow the options to two round trips within the airfare limit.",
+      "scenario_brief": "Maya needs to attend a client data-conversion review in Denver beginning Wednesday at 10:00 a.m. and ending Friday at 3:30 p.m. She can leave Minneapolis after 4:00 p.m. Tuesday, and the project allows up to $590 for economy airfare. Two nonstops provide comfortable arrival margins at different prices, while the least expensive itinerary includes a connection and reaches Denver close to midnight.",
+      "session_index": 28,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The narrowed flight schedule fixes the stay dates and shifts the planning to lodging cost, morning travel time, and reservation terms.",
+      "days_after_previous": 2,
+      "domain": "hotels",
+      "episode_id": "client-denver-006",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-7dd08d76-05f0-4121-aecb-1c9501512eee",
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a"
+      ],
+      "interaction_goal": "Compare total room charges, taxes, daily travel requirements, included items, and cancellation dates, then select the strongest hotel for the client schedule.",
+      "scenario_brief": "A Tuesday evening nonstop and Friday evening return are now the leading Denver flights, requiring three hotel nights. The client office is near Union Station, and the project room limit is $255 per night before tax. One nearby hotel reaches the cap and includes breakfast, another is less expensive but has a stricter cancellation date, and a third requires a short rail trip each morning but offers the lowest full-stay price.",
+      "session_index": 29,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The flight and hotel searches have produced a complete Denver itinerary, but taxes and transportation must be reconciled before purchase.",
+      "days_after_previous": 3,
+      "domain": "combined_trip",
+      "episode_id": "client-denver-006",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-b7377723-1b87-4a92-8f3c-f05ec010ae4f",
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Verify the travel dates and meeting margins, total all known trip charges, confirm the fare and room conditions, and prepare the qualifying itinerary for booking.",
+      "scenario_brief": "Maya has selected the Union Station hotel that includes breakfast and the Tuesday evening nonstop with a Friday evening return. Airfare is $548, the three hotel nights are $255 each before tax, and estimated airport rail and local transportation bring the trip close to the project's $1,520 authorization. The hotel can be canceled until 6:00 p.m. two days before arrival, while the airfare quote expires that evening.",
+      "session_index": 30,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Only the Friday return must be reopened because the outbound flight, hotel reservation, and first two meeting days remain fixed.",
+      "days_after_previous": 11,
+      "domain": "booking_administration",
+      "episode_id": "client-denver-006",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-b7377723-1b87-4a92-8f3c-f05ec010ae4f"
+      ],
+      "interaction_goal": "Compare the feasible return options by meeting margin, added cost, and arrival time, then update the booked itinerary and revised trip total.",
+      "scenario_brief": "The Denver trip is booked, but the client has moved Friday's final review from 3:30 p.m. to 5:00 p.m. Maya's current flight departs too early to reach the airport after the meeting. A later nonstop is available for a $72 fare difference, while an evening connection costs less but arrives in Minneapolis after midnight; the hotel checkout date does not need to change.",
+      "session_index": 31,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This opens a new client trip with fixed workshop hours but an unresolved tradeoff between airfare, an extra night, and arrival risk.",
+      "days_after_previous": 47,
+      "domain": "flights",
+      "episode_id": "client-raleigh-007",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+        "dlg-b7377723-1b87-4a92-8f3c-f05ec010ae4f"
+      ],
+      "interaction_goal": "Compare Sunday and Monday outbound plans with workable Wednesday returns, account for the possible extra hotel night, and narrow the search to two practical round trips.",
+      "scenario_brief": "Maya needs to be in Raleigh for a client workflow workshop beginning Monday at 1:00 p.m. and ending Wednesday at 4:00 p.m. She may travel Sunday evening or Monday morning, and the project allows $640 for economy airfare. The Sunday choices add a hotel night, while the lowest Monday itinerary has a connection and leaves little margin before the workshop.",
+      "session_index": 32,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The preferred flight schedule fixes the stay dates and makes full lodging cost, daily access, and cancellation timing the next decisions.",
+      "days_after_previous": 1,
+      "domain": "hotels",
+      "episode_id": "client-raleigh-007",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Calculate the complete three-night cost of each property, compare local transportation and morning travel time, and select the strongest option within project rules.",
+      "scenario_brief": "A Sunday evening arrival and Wednesday evening departure are now leading, requiring three hotel nights. The workshop venue is in North Hills, and the room limit is $235 per night before tax. One hotel is walkable but charges $18 per night for parking, another includes parking and breakfast but requires short rides each day, and a third has the lowest rate but becomes nonrefundable a week before arrival.",
+      "session_index": 33,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The separate air, hotel, and ground choices now form one itinerary, with the late rental-car pickup as the remaining operational concern.",
+      "days_after_previous": 4,
+      "domain": "combined_trip",
+      "episode_id": "client-raleigh-007",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c",
+        "dlg-b7377723-1b87-4a92-8f3c-f05ec010ae4f"
+      ],
+      "interaction_goal": "Confirm dates and workshop margins, reconcile the complete estimated cost, assess whether the rental pickup window is workable, and finalize the reservations.",
+      "scenario_brief": "Maya has chosen the Sunday nonstop and the hotel that includes parking and breakfast. The flight costs $612, the room is $219 per night before tax, and a rental car is available for $146 plus fuel. The combined estimate is below the $1,600 trip authorization, but the airfare must be ticketed that day and the rental car pickup closes 40 minutes after the scheduled arrival.",
+      "session_index": 34,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The booked trip remains intact except for ground transportation, which must be replaced without delaying Monday's workshop.",
+      "days_after_previous": 16,
+      "domain": "booking_administration",
+      "episode_id": "client-raleigh-007",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Compare the replacement ground plans by total cost, Sunday-night practicality, and Monday timing, then cancel the unusable rental and update the itinerary.",
+      "scenario_brief": "Two days before departure, the rental agency has shortened its Sunday desk hours and will close before Maya's flight lands. Her flight and hotel remain confirmed. She can switch to an airport agency with a higher rate, use rideshares for the full stay, or collect a car near the hotel on Monday morning after breakfast.",
+      "session_index": 35,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The replacement ground plan worked and the trip is complete; only the hotel billing discrepancy remains unresolved.",
+      "days_after_previous": 3,
+      "domain": "booking_administration",
+      "episode_id": "client-raleigh-007",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+      ],
+      "interaction_goal": "Check the reservation terms against the folio, identify the charges that should be removed, and prepare a concise request for a corrected receipt.",
+      "scenario_brief": "After checking out in Raleigh, Maya finds that the hotel folio includes two breakfast charges even though breakfast was included in the booked rate. The room, taxes, and final ground-transportation expenses otherwise match the updated itinerary, but she needs a corrected itemized receipt before submitting the trip expense report.",
+      "session_index": 36,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This begins a new client trip with fixed workshop hours and no transportation or lodging booked.",
+      "days_after_previous": 43,
+      "domain": "flights",
+      "episode_id": "client-nashville-008",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377"
+      ],
+      "interaction_goal": "Compare feasible outbound and return combinations, account for travel time to and from the client site, and narrow the flight search to two practical round trips within the airfare allowance.",
+      "scenario_brief": "Maya must attend a client configuration workshop in Nashville from Tuesday at 9:00 a.m. through Thursday at 2:30 p.m. She can leave Minneapolis after 3:30 p.m. Monday, and the project permits up to $670 for economy airfare. Two Monday nonstops arrive at useful evening hours, while a cheaper connecting itinerary arrives after midnight; Thursday returns differ substantially in airport margin and arrival time.",
+      "session_index": 37,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The flight search is down to two workable round trips, with a small fare-rule question preventing a fair total-price comparison.",
+      "days_after_previous": 1,
+      "domain": "flights",
+      "episode_id": "client-nashville-008",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+      ],
+      "interaction_goal": "Verify the inclusions and restrictions of the lower fare, calculate any required add-on charges, and determine which flight has the lower usable price.",
+      "scenario_brief": "One shortlisted Nashville fare is $46 lower than the other, but its displayed price does not make clear whether a standard carry-on and advance seat assignment are included. Both itineraries still fit the workshop schedule, and the fare must be evaluated accurately before lodging costs are added.",
+      "session_index": 38,
+      "session_length": "micro",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The flight dates are stable enough to compare lodging by complete stay cost, access to the client site, and reservation terms.",
+      "days_after_previous": 2,
+      "domain": "hotels",
+      "episode_id": "client-nashville-008",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377"
+      ],
+      "interaction_goal": "Calculate the full three-night cost for each property, compare morning travel and included items, and select the hotel that best fits the client schedule and room rules.",
+      "scenario_brief": "The leading flight plan requires three nights in Nashville. The client site is near Midtown, and the project room limit is $250 per night before tax. A hotel across from the client is at the cap and charges for breakfast, a lower-priced property is a fifteen-minute walk away and includes breakfast, and another has the lowest room rate but adds a nightly destination fee and allows cancellation only until five days before arrival.",
+      "session_index": 39,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The separate Nashville comparisons now form a complete itinerary ready for a final schedule, cost, and purchase review.",
+      "days_after_previous": 4,
+      "domain": "combined_trip",
+      "episode_id": "client-nashville-008",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+      ],
+      "interaction_goal": "Verify the workshop margins and travel dates, reconcile airfare, lodging, taxes, and local transportation against the authorization, then complete the qualifying reservations.",
+      "scenario_brief": "Maya has chosen the Monday evening nonstop, Thursday late-afternoon return, and the hotel within walking distance that includes breakfast. Airfare is $638, the room is $226 per night before tax for three nights, and estimated airport rides bring the trip to $1,498 against a $1,650 authorization. The airfare quote expires that evening, while the hotel remains refundable until 6:00 p.m. three days before arrival.",
+      "session_index": 40,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This opens a new leisure episode; the general region and trip length are set, but exact dates and lodging have not been chosen.",
+      "days_after_previous": 72,
+      "domain": "hotels",
+      "episode_id": "partner-coast-006",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377"
+      ],
+      "interaction_goal": "Compare the lodging options across the flexible date window, including all mandatory charges and payment terms, and identify two stays that preserve enough budget for flights, a rental car, and meals.",
+      "scenario_brief": "Maya and her partner are considering a six-night trip to the central Oregon coast in early September, with their dates flexible by two days. They expect to fly into Portland and rent a car, leaving about $2,700 of their $4,400 trip budget for lodging. One oceanfront property has direct beach access but a mandatory resort fee, a smaller inn two blocks inland is substantially less expensive, and a highly rated rental has a kitchen but requires full payment well before the trip.",
+      "session_index": 41,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The lodging comparison has produced workable dates, so flight timing and price now determine whether the first and last days remain useful without crowding the overall budget.",
+      "days_after_previous": 3,
+      "domain": "flights",
+      "episode_id": "partner-coast-006",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0"
+      ],
+      "interaction_goal": "Compare complete round-trip prices for two travelers, account for the drive between Portland and the coast, and identify the flight pairing that leaves practical arrival and departure margins.",
+      "scenario_brief": "The two viable six-night lodging options are both available for a Tuesday-to-Monday stay in early September, fixing the travel window. Maya and her partner need round-trip flights from Minneapolis to Portland, and the remaining budget allows up to $1,050 total for two economy tickets. The least expensive outbound has a connection and arrives near 9:00 p.m., while two higher-priced options arrive early enough to collect a rental car and reach the coast before dinner; the Monday returns differ in both driving margin and total fare.",
+      "session_index": 42,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flights, lodging, and a rental car can now be assembled, but the mileage restriction must be resolved before the trip is booked as a complete itinerary.",
+      "days_after_previous": 2,
+      "domain": "combined_trip",
+      "episode_id": "partner-coast-006",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f",
+        "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc"
+      ],
+      "interaction_goal": "Verify the dates and airport-to-coast timing, compare the restricted rental with an unlimited-mileage alternative, reconcile the total against the trip budget, and complete the suitable reservations.",
+      "scenario_brief": "Maya and her partner favor the inland inn at $2,040 including taxes for six nights and flights totaling $924. A compact rental car is quoted at $438 with taxes, bringing the committed travel components to $3,402 of the $4,400 budget. The inn can be canceled until seven days before arrival, but the airfare price expires that evening and the rental quote includes a limited-mileage condition that may not cover their planned coastal drives.",
+      "session_index": 43,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The trip remains viable after the schedule change, but the first-night arrival procedure and rental pickup margin need confirmation.",
+      "days_after_previous": 24,
+      "domain": "booking_administration",
+      "episode_id": "partner-coast-006",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f",
+        "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc"
+      ],
+      "interaction_goal": "Recalculate the arrival timeline, compare accepting the changed nonstop with switching flights, and document the rental-counter and after-hours check-in arrangements for the selected plan.",
+      "scenario_brief": "Three weeks before departure, the airline has moved the Portland-bound flight 95 minutes later. The new arrival is still before the rental counter closes, but it pushes the estimated arrival at the inn beyond its staffed check-in hours. The flight can be accepted at no charge, changed to an earlier connecting itinerary, or refunded, while the inn offers an after-hours lockbox if identification details are submitted in advance.",
+      "session_index": 44,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The adjusted flight and after-hours check-in are settled; a late road disruption now changes only the ground portion of the first travel day.",
+      "days_after_previous": 18,
+      "domain": "combined_trip",
+      "episode_id": "partner-coast-006",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+      ],
+      "interaction_goal": "Map a practical detour, update the door-to-door timeline, confirm that the rental terms permit the route, and produce a concise first-night itinerary with relevant contact details.",
+      "scenario_brief": "The day before departure, a highway closure affects the most direct route from Portland to the inn. The signed detour adds roughly 50 minutes, and the inn confirms that the lockbox remains available through the night. Maya and her partner need a revised route with a sensible fuel or meal stop, plus an updated arrival estimate that accounts for collecting luggage and the rental car.",
+      "session_index": 45,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This starts a new client trip with fixed meeting hours and no air, lodging, or local transportation reserved.",
+      "days_after_previous": 39,
+      "domain": "flights",
+      "episode_id": "client-denver-009",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+      ],
+      "interaction_goal": "Evaluate feasible outbound and return combinations, include travel time between the client site and airport, and narrow the options to two round trips within the airfare allowance.",
+      "scenario_brief": "Maya needs to attend a hospital-system rollout review in Denver beginning Wednesday at 10:30 a.m. and ending Friday at noon. She can leave Minneapolis after 4:00 p.m. Tuesday, and the project allows $690 for economy airfare. Two Tuesday nonstops arrive at 7:15 p.m. and 10:05 p.m.; a cheaper connecting option has a 42-minute transfer. Friday return choices include an early-afternoon flight with a tight airport margin and an evening flight that leaves several uncommitted hours after the meeting.",
+      "session_index": 46,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The likely flight schedule establishes the stay dates, making total lodging cost and dependable access to the medical campus the next decisions.",
+      "days_after_previous": 1,
+      "domain": "hotels",
+      "episode_id": "client-denver-009",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc"
+      ],
+      "interaction_goal": "Calculate the complete three-night cost of each hotel, compare shuttle, parking, rideshare, and morning travel implications, and select the strongest lodging plan within project rules.",
+      "scenario_brief": "The earlier Tuesday nonstop and Friday evening return are leading, requiring three hotel nights. The rollout review is at a medical campus east of downtown, with a room limit of $245 per night before tax. A nearby hotel offers a client shuttle but charges $24 nightly for parking, a less expensive property includes parking but has no direct shuttle, and a downtown option is near the airport rail line but would require a longer trip to the campus each morning.",
+      "session_index": 47,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The flight and hotel comparisons have produced a workable Denver itinerary, leaving a final review of timing, transportation, and total cost before purchase.",
+      "days_after_previous": 2,
+      "domain": "combined_trip",
+      "episode_id": "client-denver-009",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-9728d808-4a19-4e73-83d6-31a095819bbf"
+      ],
+      "interaction_goal": "Confirm all travel dates and meeting margins, reconcile the complete trip cost with the authorization, and complete the qualifying air and hotel reservations.",
+      "scenario_brief": "Maya has selected the Tuesday flight arriving at 7:15 p.m., the Friday evening return, and the hotel near the medical campus with its client shuttle. Airfare is $664, three hotel nights total $798 after tax, and estimated airport rides bring the trip to $1,556 against a $1,700 authorization. The outbound fare expires that afternoon, while the hotel can be canceled until 6:00 p.m. two days before arrival.",
+      "session_index": 48,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The outbound flight and hotel remain intact, but the canceled return requires a new airport transfer plan and a realistic post-meeting departure margin.",
+      "days_after_previous": 11,
+      "domain": "booking_administration",
+      "episode_id": "client-denver-009",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+        "dlg-9728d808-4a19-4e73-83d6-31a095819bbf"
+      ],
+      "interaction_goal": "Compare the replacement returns using the possible debrief end time, rideshare duration, and airport processing margin, then accept the viable itinerary and update the Friday schedule.",
+      "scenario_brief": "Six days before travel, the airline removes Maya's Friday evening return and offers either a 3:05 p.m. nonstop or an 8:40 p.m. nonstop at no added fare. The rollout review ends at noon, but a final client debrief may run until 1:00 p.m.; the hotel shuttle serves only the medical campus and does not go to the airport.",
+      "session_index": 49,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This begins a two-city client episode with fixed meeting blocks but unresolved intercity transportation and no reservations.",
+      "days_after_previous": 54,
+      "domain": "flights",
+      "episode_id": "client-carolinas-010",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c",
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+      ],
+      "interaction_goal": "Compare the complete flight structures, confirm that each arrival and departure fits the meetings, and retain two practical options within the air allowance.",
+      "scenario_brief": "Maya must attend a software validation meeting in Charlotte on Tuesday and a separate go-live readiness review in Richmond on Thursday morning. She can leave Minneapolis after 3:30 p.m. Monday and return after the Richmond review ends at 2:00 p.m. Thursday. The project authorizes up to $980 for air travel, and the initial search includes a multi-city itinerary, two separate one-way tickets, and a round trip to Charlotte paired with ground travel between the client sites.",
+      "session_index": 50,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The outer flights are workable; the trip now depends on choosing a dependable Tuesday evening transfer from Charlotte to Richmond.",
+      "days_after_previous": 2,
+      "domain": "combined_trip",
+      "episode_id": "client-carolinas-010",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Build door-to-door timelines for the rental and flight alternatives, calculate their full costs, account for the hotel arrival limit, and select the intercity plan with an adequate delay margin.",
+      "scenario_brief": "The leading air plan reaches Charlotte Monday evening and departs Richmond Thursday at 5:35 p.m. Maya now needs to travel between the cities after Tuesday's meeting ends at 4:00 p.m. A one-way rental costs $286 plus fuel and a $95 drop charge, while a short connecting flight costs $318 and arrives later after airport processing. The Richmond hotel can hold a late arrival, but its desk closes at midnight.",
+      "session_index": 51,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flights and intercity driving are established, so lodging must now be matched to the rental-car schedule, office access, and separate city limits.",
+      "days_after_previous": 3,
+      "domain": "hotels",
+      "episode_id": "client-carolinas-010",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Calculate each property's complete stay cost, compare parking and client-site travel, and choose one hotel in each city without exceeding the applicable room rules.",
+      "scenario_brief": "The selected plan uses a one-way rental Tuesday evening, requiring one night near the Charlotte client office and two nights in Richmond. The Charlotte room limit is $230 before tax and the Richmond limit is $250. In Charlotte, the nearest property charges for parking while a hotel farther away includes it; in Richmond, one option is walkable to the client office but requires prepaid parking, while another has free parking and a refundable rate but adds a longer morning drive.",
+      "session_index": 52,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Every segment of the two-city trip has been selected, with only a final sequence, cost, and reservation-term check remaining.",
+      "days_after_previous": 1,
+      "domain": "combined_trip",
+      "episode_id": "client-carolinas-010",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Verify the chronological itinerary from Monday departure through Thursday return, confirm the rental pickup and drop locations, reconcile all components against the authorization, and complete the reservations.",
+      "scenario_brief": "Maya has chosen the multi-city airfare at $842, a Charlotte hotel totaling $247 after tax and parking, a Richmond stay totaling $514, and the one-way rental estimated at $406 with fuel and the drop charge. The full trip is $2,009 against a $2,150 authorization. The airfare must be purchased by 8:00 p.m., the rental permits interstate travel, and both hotels remain refundable until shortly before their arrival dates.",
+      "session_index": 53,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The flights and both hotels remain confirmed; only the pickup location, revised driving timeline, and final rental amount need to be settled.",
+      "days_after_previous": 8,
+      "domain": "booking_administration",
+      "episode_id": "client-carolinas-010",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+      ],
+      "interaction_goal": "Compare the two pickup branches from the client office, verify closing-time margins and the one-way return terms, confirm the better location, and update Tuesday's Charlotte-to-Richmond itinerary and trip total.",
+      "scenario_brief": "A week before the two-city trip, the rental company relocates Maya's Tuesday pickup from an office near the Charlotte client site to an airport branch that closes at 7:00 p.m. Her meeting ends at 4:00 p.m., the airport is about 35 minutes away in ordinary traffic, and returning to the highway from the terminal adds time to the Richmond drive. The company can instead move the reservation to a neighborhood branch open until 6:00 p.m., but the quoted one-way total may increase by $38.",
+      "session_index": 54,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This opens a new coastal leisure trip with dates and an overall spending ceiling but no selected airport, lodging pattern, or local transportation.",
+      "days_after_previous": 46,
+      "domain": "combined_trip",
+      "episode_id": "partner-coast-007",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+        "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd"
+      ],
+      "interaction_goal": "Estimate the major costs for one-base and split-stay itineraries, account for airport-to-peninsula travel, and identify a workable trip structure that leaves enough of the ceiling for flights and a car.",
+      "scenario_brief": "Maya and her partner are considering six nights on California's Monterey Peninsula in late May, with a fixed Saturday-to-Friday window and a combined ceiling of $4,300 for air, lodging, and a rental car. They are deciding whether to stay entirely in Pacific Grove or divide the trip between Monterey and a quieter property farther south. No transportation or lodging is reserved, and the initial task is to determine which trip structure is realistic before comparing individual properties.",
+      "session_index": 55,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The trip will use one lodging base, so the airport and flight schedule now determine the rental-car period and usable time on the first and final days.",
+      "days_after_previous": 1,
+      "domain": "flights",
+      "episode_id": "partner-coast-007",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd"
+      ],
+      "interaction_goal": "Compare complete round-trip flight and rental combinations for both airports, include realistic driving and terminal time, and retain the two combinations that fit the trip ceiling without creating an impractical final day.",
+      "scenario_brief": "The one-base plan is leading. A Minneapolis nonstop to San Francisco costs $612 per person and arrives at 11:20 a.m.; a San Jose itinerary with one connection costs $498 per person and arrives at 2:45 p.m. The return options differ by nearly four hours, and rental quotes are lower at San Jose but require an additional drop fee if the airport choice differs between arrival and departure.",
+      "session_index": 56,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flights and the rental period are established, leaving the lodging choice as the largest unresolved cost and location decision.",
+      "days_after_previous": 3,
+      "domain": "hotels",
+      "episode_id": "partner-coast-007",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+        "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+      ],
+      "interaction_goal": "Calculate each property's full six-night cost, verify the stated shoreline access and room details, compare parking and cancellation terms, and select the best fit within the remaining trip amount.",
+      "scenario_brief": "The selected flight plan uses San Jose and leaves up to $2,250 for six hotel nights before local parking charges. One Pacific Grove inn is an eight-minute walk from the shoreline and includes parking but has smaller rooms; a Monterey hotel costs less, charges $28 nightly for parking, and is close to restaurants but requires a short drive to the coast; a third property offers a partial ocean view and breakfast but is nonrefundable after 48 hours.",
+      "session_index": 57,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The preferred air, lodging, and car combination is complete and within the stated amount, with reservation deadlines and the full sequence still to be checked.",
+      "days_after_previous": 2,
+      "domain": "combined_trip",
+      "episode_id": "partner-coast-007",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b"
+      ],
+      "interaction_goal": "Reconcile the complete trip cost, verify dates and airport pickup times across all components, review the fare and hotel terms, and complete the qualifying reservations in the correct order.",
+      "scenario_brief": "Maya and her partner have chosen the San Jose connecting flights at $996 total, a six-night Pacific Grove inn stay totaling $2,086 after tax, and a rental car estimated at $638 including fees. The planned total is $3,720, leaving $580 under the trip ceiling. The outbound fare expires that evening, while the inn permits cancellation until seven days before arrival.",
+      "session_index": 58,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flights and the rental car are unchanged, but temporary mobility needs and the inn's elevator outage require a decision about the reserved room.",
+      "days_after_previous": 31,
+      "domain": "booking_administration",
+      "episode_id": "partner-coast-007",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b"
+      ],
+      "interaction_goal": "Clarify ground-floor access and room features, compare the inn's two accommodations with relocating, and document the selected room arrangement and any updated arrival instructions.",
+      "scenario_brief": "Three weeks before departure, the Pacific Grove inn reports that its elevator will be out of service during the stay. Maya's partner is recovering from a minor knee strain and would have difficulty carrying luggage to the reserved third-floor room. The inn can assign a ground-floor room facing the parking area at the same rate, keep the original room with staff handling luggage at arrival, or allow cancellation without a charge; comparable nearby rooms now cost about $310 more for the stay.",
+      "session_index": 59,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The lodging room arrangement is settled and the outbound trip is unchanged; only the retimed return journey and any resulting car or hotel extension remain unresolved.",
+      "days_after_previous": 11,
+      "domain": "flights",
+      "episode_id": "partner-coast-007",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+      ],
+      "interaction_goal": "Verify whether the 34-minute connection is valid and realistically usable, compare the later same-day and next-morning alternatives in full, and confirm the revised return itinerary without disturbing the outbound reservations.",
+      "scenario_brief": "Nine days before the Monterey Peninsula trip, the airline moves the San Jose return connection 55 minutes earlier, leaving only 34 minutes at the connecting airport. Maya and her partner can accept that itinerary, move to a later connection that reaches Minneapolis at 11:40 p.m., or switch both return segments to the next morning for an added $176 total. The inn and rental car can each be extended one night, but their combined added cost would be $264.",
+      "session_index": 60,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This opens a new two-day client episode with fixed workshop hours, separate travel limits, and unresolved flights, lodging, and airport-to-office transportation.",
+      "days_after_previous": 43,
+      "domain": "combined_trip",
+      "episode_id": "client-columbus-011",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Map feasible Monday outbound and Wednesday return windows, estimate the complete cost of an office-area and airport-area structure, and identify a practical plan before individual reservations are selected.",
+      "scenario_brief": "Maya is assigned to lead a client configuration workshop in Dublin, Ohio, from 8:30 a.m. Tuesday through 3:30 p.m. Wednesday. She can leave Minneapolis after 2:00 p.m. Monday and needs to return Wednesday night. Airfare is capped at $760, lodging at $245 per night before tax, and local transportation is reimbursable separately. No reservations exist, and the first search must determine whether staying near the client office or near Columbus airport produces the more workable trip.",
+      "session_index": 61,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The trip will use a hotel near the client office, so the flight decision now determines Monday check-in time and whether Wednesday's workshop can be attended in full.",
+      "days_after_previous": 2,
+      "domain": "flights",
+      "episode_id": "client-columbus-011",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f",
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Compare the flight timelines and fares, reject any option that conflicts with the workshop, account for airport transfer time in both directions, and select an itinerary within the air limit.",
+      "scenario_brief": "The office-area structure is leading. A $552 nonstop reaches Columbus at 6:50 p.m. Monday and returns at 7:05 p.m. Wednesday, while a $436 connecting itinerary arrives at 9:35 p.m. and has a 46-minute connection on the return. A third combination costs $621 and provides an earlier Wednesday departure, but it requires Maya to leave the workshop before the scheduled close.",
+      "session_index": 62,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Air travel is fixed, and lodging must now fit the Monday arrival, the two workshop mornings, and the Wednesday airport transfer.",
+      "days_after_previous": 1,
+      "domain": "hotels",
+      "episode_id": "client-columbus-011",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218"
+      ],
+      "interaction_goal": "Calculate the two-night totals after tax, compare check-in and transportation details, verify that the client-rate property can hold a late arrival, and choose the hotel that stays within the nightly limit.",
+      "scenario_brief": "The nonstop flights have been selected, requiring two hotel nights. A client-rate property two blocks from the workshop costs $231 nightly before tax and includes breakfast, but its Monday front desk closes at 10:00 p.m. A second hotel costs $204 nightly, has round-the-clock check-in, and is 12 minutes away by rideshare. A third costs $238 nightly and includes an airport shuttle, though the shuttle stops running before Wednesday's planned airport departure.",
+      "session_index": 63,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "All trip components have been selected, with purchase timing, late-arrival notation, and the final chronological itinerary left to confirm.",
+      "days_after_previous": 3,
+      "domain": "booking_administration",
+      "episode_id": "client-columbus-011",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218"
+      ],
+      "interaction_goal": "Reconcile the fare, lodging, and local transportation estimate, verify each date and time, record the hotel arrival note, and complete the flight and room reservations in deadline order.",
+      "scenario_brief": "Maya has chosen the $552 nonstop airfare and the client-rate hotel, totaling $526 after tax for two nights. Estimated round-trip rideshare costs add $94, bringing the trip estimate to $1,172. The airfare hold expires at 7:30 p.m.; the hotel can note an arrival after 8:00 p.m. and remains cancellable until 6:00 p.m. the day before check-in.",
+      "session_index": 64,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The hotel, workshop, and Wednesday return remain intact, but the canceled outbound flight requires same-day replacement travel and an updated arrival plan.",
+      "days_after_previous": 16,
+      "domain": "flights",
+      "episode_id": "client-columbus-011",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+      ],
+      "interaction_goal": "Compare the replacement flights by total out-of-pocket cost, arrival reliability, connection risk, and hotel timing; secure the stronger option; and update the airport transfer and late check-in details.",
+      "scenario_brief": "On Monday afternoon, Maya's nonstop to Columbus is canceled before she leaves for the airport. The airline offers a 6:20 p.m. connecting itinerary arriving at 10:48 p.m., while another carrier has a $689 nonstop arriving at 9:15 p.m. with no transfer of the original ticket value. The hotel will hold the room until midnight if contacted, and both alternatives still allow arrival before Tuesday's 8:30 a.m. workshop.",
+      "session_index": 65,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The outbound disruption is resolved and Maya is in Columbus, but the final trip record needs to distinguish the unused-ticket credit from the new airfare charge.",
+      "days_after_previous": 1,
+      "domain": "booking_administration",
+      "episode_id": "client-columbus-011",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748"
+      ],
+      "interaction_goal": "Verify the value and expiration terms of the airline credit, reconcile the replacement fare with the original trip estimate, and produce an updated expense breakdown for the completed outbound journey.",
+      "scenario_brief": "The replacement nonstop reached Columbus at 9:18 p.m., and the hotel confirmed that Maya checked in before midnight. The original airline has issued a $552 travel credit rather than a refund, while the replacement ticket remains a separate $689 charge; the Wednesday return and workshop schedule are unchanged.",
+      "session_index": 66,
+      "session_length": "micro",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This begins a new client trip whose late Wednesday departure, Friday return deadline, and suburban meeting location must be evaluated together.",
+      "days_after_previous": 37,
+      "domain": "combined_trip",
+      "episode_id": "client-raleigh-012",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748",
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+      ],
+      "interaction_goal": "Identify feasible flight windows, compare one-night and two-night trip structures, estimate airport-to-Cary transportation costs, and select a workable overall structure within the stated limits.",
+      "scenario_brief": "Maya is scheduled for a healthcare data-conversion review in Cary, North Carolina, from 10:00 a.m. Thursday through 1:00 p.m. Friday. She can depart Minneapolis after 5:30 p.m. Wednesday and must return by 10:30 p.m. Friday. Airfare is limited to $700, the hotel limit is $235 nightly before tax, and local transportation can be either a rental car or rideshares; nothing has been reserved.",
+      "session_index": 67,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Two hotel nights are now expected, and the flight choice determines the late check-in requirement and the amount of time available after Friday's review.",
+      "days_after_previous": 2,
+      "domain": "flights",
+      "episode_id": "client-raleigh-012",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+        "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748"
+      ],
+      "interaction_goal": "Compare complete round-trip combinations by fare, arrival time, connection exposure, and ground-transfer timing; eliminate any pairing that misses the return deadline; and retain the strongest itinerary within the air limit.",
+      "scenario_brief": "The two-night structure is the only one that preserves the full Thursday meeting. A $584 nonstop leaves Minneapolis at 6:45 p.m. Wednesday and lands at 10:18 p.m.; a $467 itinerary with one stop lands at 11:56 p.m. A Friday nonstop departs at 5:35 p.m. and arrives home at 7:48 p.m., while a $42 cheaper return connects through Chicago and arrives at 10:12 p.m. with a 41-minute transfer.",
+      "session_index": 68,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flights are fixed, so lodging must accommodate the late Wednesday arrival and provide practical access to both days of the client review.",
+      "days_after_previous": 1,
+      "domain": "hotels",
+      "episode_id": "client-raleigh-012",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748"
+      ],
+      "interaction_goal": "Calculate the two-night totals with tax, confirm late-arrival handling and Friday checkout options, compare office access and rideshare costs, and select a room within the nightly cap.",
+      "scenario_brief": "The $584 nonstop itinerary is selected, with an estimated 10:50 p.m. arrival at the hotel after baggage claim and a rideshare from the airport. A hotel beside the client office costs $229 nightly before tax and accepts arrivals until midnight; another property is $196 nightly, has a 24-hour desk, and is about 15 minutes from the office; a third is $219 nightly but requires prepayment and has no availability for the second night at the quoted rate.",
+      "session_index": 69,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The air, lodging, and transportation plan is complete, with reservation timing and the late-arrival notation left to finalize.",
+      "days_after_previous": 3,
+      "domain": "booking_administration",
+      "episode_id": "client-raleigh-012",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+        "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748"
+      ],
+      "interaction_goal": "Reconcile all dates, times, and costs; book the expiring airfare before the hotel; add the flight details to the room record; and summarize the confirmed Wednesday-through-Friday itinerary.",
+      "scenario_brief": "Maya has selected the nonstop flights for $584 and the office-adjacent hotel for $521 after tax. Estimated rideshares total $118, placing the trip at $1,223. The flight fare expires that afternoon, the hotel can hold a late arrival when supplied with the flight number, and the room remains cancellable until 6:00 p.m. two days before check-in.",
+      "session_index": 70,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The hotel and Friday return remain confirmed, but the canceled outbound requires a replacement that respects Maya's Wednesday availability and Thursday start time.",
+      "days_after_previous": 12,
+      "domain": "flights",
+      "episode_id": "client-raleigh-012",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+      ],
+      "interaction_goal": "Reject the unusable rebooked departure, compare the Wednesday connecting and nonstop replacements by cost and arrival reliability, verify that the hotel will hold either late arrival, and confirm the best outbound without altering the Friday return.",
+      "scenario_brief": "Four days before departure, the airline cancels Maya's Wednesday evening nonstop and places her on a 4:05 p.m. flight that leaves before she is available. The same airline can instead route her through Detroit at 6:10 p.m. for arrival at 10:42 p.m. at no added cost, or move her to a Thursday 6:20 a.m. nonstop that arrives at 10:01 a.m., one minute after the client review begins. Another carrier has a Wednesday nonstop arriving at 11:08 p.m. for an additional $146.",
+      "session_index": 71,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "With the replacement outbound accepted, the remaining work is to align the hotel record, ground transfer, and trip documentation with the later arrival.",
+      "days_after_previous": 2,
+      "domain": "booking_administration",
+      "episode_id": "client-raleigh-012",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b"
+      ],
+      "interaction_goal": "Verify the reissued ticket and unchanged Friday segment, update the hotel with the new flight details, recalculate the airport-to-hotel timing, and produce one corrected chronological itinerary.",
+      "scenario_brief": "The no-cost Wednesday connection through Detroit has replaced the canceled nonstop, while the original Friday return and office-adjacent hotel remain confirmed. The new outbound is scheduled to reach Raleigh-Durham at 10:42 p.m.; the hotel has Maya's flight number but the expense record and arrival estimate still show the canceled itinerary.",
+      "session_index": 72,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This opens a coastal leisure trip whose date range and arrival airport must be narrowed before beachfront lodging can be compared accurately.",
+      "days_after_previous": 31,
+      "domain": "combined_trip",
+      "episode_id": "leisure-naples-013",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+        "dlg-302fc04e-6d21-4826-b462-2a475325a94e"
+      ],
+      "interaction_goal": "Compare the two travel weeks at a high level, estimate airfare and airport-transfer costs for each viable gateway, establish a realistic lodging allowance, and choose the stronger date-and-airport structure for further planning.",
+      "scenario_brief": "Maya and her partner are considering a six-night late-summer trip from Minneapolis to Naples, Florida. They can travel within either of two adjacent Saturday-to-Friday date ranges, have set a combined flight-and-hotel ceiling of $4,800, and want to understand whether flying into Fort Myers or another practical airport leaves enough for lodging within a five-minute walk of the beach; nothing is reserved.",
+      "session_index": 73,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The week and gateway are set, and selecting the flights will determine the first-night check-in timing and final hotel budget.",
+      "days_after_previous": 3,
+      "domain": "flights",
+      "episode_id": "leisure-naples-013",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a",
+        "dlg-302fc04e-6d21-4826-b462-2a475325a94e"
+      ],
+      "interaction_goal": "Compare the complete flight timelines, fares, connection durations, baggage costs, and likely Naples arrival times; then retain the itinerary that best fits the overall trip ceiling.",
+      "scenario_brief": "The later Saturday-to-Friday week and Fort Myers airport have emerged as the workable structure, leaving about $3,350 of the total ceiling for lodging and local transportation. Three round-trip flight combinations are available for two travelers: a $1,086 nonstop pairing with a late-afternoon outbound, a $914 one-stop pairing that arrives after 10:30 p.m., and a $1,174 combination with an early outbound but a connection on the return.",
+      "session_index": 74,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flight spending and arrival time are fixed, so the lodging choice now determines whether the six-night trip stays below the combined ceiling after ground costs.",
+      "days_after_previous": 1,
+      "domain": "hotels",
+      "episode_id": "leisure-naples-013",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b"
+      ],
+      "interaction_goal": "Compare true six-night totals, cancellation and prepayment terms, beach access, parking costs, and evening check-in arrangements; estimate the remaining trip total and select a feasible property.",
+      "scenario_brief": "The $1,086 nonstop flights are selected, with an estimated Naples arrival near 7:15 p.m. after collecting bags and driving from Fort Myers. A beachfront hotel totals $3,264 after tax but charges $42 per night for parking, a property across the road totals $2,718 and is a four-minute walk from the sand, and a $2,496 inn is nine minutes away on foot and requires full prepayment.",
+      "session_index": 75,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The main components have been chosen, with fare timing, traveler details, and the order of reservations left to settle.",
+      "days_after_previous": 4,
+      "domain": "booking_administration",
+      "episode_id": "leisure-naples-013",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a",
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b"
+      ],
+      "interaction_goal": "Recheck both travelers' dates and flight times, reconcile the full trip estimate, reserve the expiring airfare first, and then complete the hotel and rental-car bookings with matching arrival information.",
+      "scenario_brief": "Maya and her partner have chosen the across-the-road hotel for $2,718 after tax and the nonstop flights for $1,086. A compact rental car is quoted at $438 including taxes, bringing the planned total to $4,242; the airfare quote expires that evening, while the hotel can be canceled without charge until seven days before arrival.",
+      "session_index": 76,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The trip remains booked, but the temporary access closure changes the practical value of the selected hotel while there is still time to switch without penalty.",
+      "days_after_previous": 17,
+      "domain": "hotels",
+      "episode_id": "leisure-naples-013",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b"
+      ],
+      "interaction_goal": "Verify the closure dates and walking routes, compare the net cost and cancellation terms of staying versus moving, confirm availability for all six nights, and update the lodging reservation if the alternate property is worth the added cost.",
+      "scenario_brief": "The hotel has announced that its beach-access path will be closed for repairs during three days of the stay, although the room remains cancellable for four more days. A comparable property two blocks north now costs $2,904 after tax and has direct public beach access, while keeping the existing reservation would require a twelve-minute detour to the nearest open access point; flights and rental car are unchanged.",
+      "session_index": 77,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The lodging decision is settled, but the replacement must be secured before the original room is canceled and all arrival details must remain aligned.",
+      "days_after_previous": 2,
+      "domain": "booking_administration",
+      "episode_id": "leisure-naples-013",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ae59a0d7-ded6-4361-9eb9-f6ca47186758",
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377"
+      ],
+      "interaction_goal": "Confirm the alternate property's exact dates, room terms, and evening arrival procedure; reserve it at the quoted total; cancel the original hotel; and produce an updated trip summary with confirmation status and total cost.",
+      "scenario_brief": "The alternate hotel two blocks north is available for all six nights at $2,904 after tax, and Maya and her partner have decided that direct public beach access is worth the $186 increase. Their nonstop flights and $438 rental car remain confirmed, the existing $2,718 hotel can still be canceled without charge, and the revised trip total will be $4,428.",
+      "session_index": 78,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "A new client trip begins with the arrival window, return feasibility, and lodging area still to be narrowed together.",
+      "days_after_previous": 26,
+      "domain": "combined_trip",
+      "episode_id": "client-baltimore-014",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377"
+      ],
+      "interaction_goal": "Map viable Sunday outbound and Tuesday return windows, compare Baltimore/Washington with practical alternate airports, estimate ground-transfer implications, and establish a workable flight-and-hotel structure within the stated limits.",
+      "scenario_brief": "Maya needs to travel from Minneapolis to Baltimore for a Monday afternoon project kickoff and a full Tuesday workshop. She can leave Sunday after 2:00 p.m., expects to finish Tuesday at 4:30 p.m., and has an airfare ceiling of $650 plus a two-night hotel cap of $245 per night before tax. The client office is near the Inner Harbor, and nothing has been reserved.",
+      "session_index": 79,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The airport and two-night structure are established, so the complete flight pairing must preserve both the Sunday arrival and a realistic Tuesday transfer from the client office.",
+      "days_after_previous": 2,
+      "domain": "flights",
+      "episode_id": "client-baltimore-014",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Compare total fares, elapsed travel times, connection exposure, baggage terms, and office-to-airport timing; reject returns that cannot be reached reliably; and select the strongest round trip under the airfare ceiling.",
+      "scenario_brief": "Baltimore/Washington airport is the practical gateway, and two hotel nights near the client office are expected. A $512 nonstop departs Minneapolis at 3:20 p.m. Sunday and arrives at 6:48 p.m.; a $438 one-stop option arrives at 9:37 p.m. Tuesday returns include a $536 round-trip pairing departing at 6:15 p.m. and a cheaper combination leaving at 5:05 p.m., too close to the workshop finish once ground travel is included.",
+      "session_index": 80,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flight timing is fixed, leaving the room's full cost, office access, and Sunday check-in arrangements to determine the lodging choice.",
+      "days_after_previous": 1,
+      "domain": "hotels",
+      "episode_id": "client-baltimore-014",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+        "dlg-ae59a0d7-ded6-4361-9eb9-f6ca47186758"
+      ],
+      "interaction_goal": "Calculate tax-and-fee totals for both nights, confirm Sunday check-in and Tuesday luggage storage, compare commuting and rideshare costs, and choose a hotel that remains within the nightly cap.",
+      "scenario_brief": "The $536 nonstop round trip is selected, with a Sunday evening hotel arrival around 7:45 p.m. Three rooms are available for two nights: an Inner Harbor property six minutes from the client office at $238 nightly before tax, a $209 option about eighteen minutes away by light rail, and a $226 hotel nine minutes away that adds a mandatory $28 nightly destination fee.",
+      "session_index": 81,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The itinerary is selected, with reservation order, traveler details, and cross-checking of the Sunday-through-Tuesday schedule left to complete.",
+      "days_after_previous": 3,
+      "domain": "booking_administration",
+      "episode_id": "client-baltimore-014",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377"
+      ],
+      "interaction_goal": "Reconcile dates, flight times, hotel nights, and total cost; ticket the expiring airfare first; reserve the refundable room; add the arrival details; and assemble one chronological confirmed itinerary.",
+      "scenario_brief": "Maya has selected the office-adjacent hotel at $548 after tax and the $536 nonstop flights. Airport transfers are estimated at $76, placing the trip at $1,160. The airfare must be ticketed by noon, while the hotel rate remains refundable until 48 hours before arrival and requires the flight arrival time for a late-arrival notation.",
+      "session_index": 82,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The outbound and lodging are intact, but the altered return now conflicts with the client schedule and must be replaced without disturbing the rest of the trip.",
+      "days_after_previous": 9,
+      "domain": "flights",
+      "episode_id": "client-baltimore-014",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Verify the schedule alteration, assess realistic transfer time after the workshop, compare the no-cost connection with the paid nonstop, retain all unaffected reservations, and confirm a Tuesday return that Maya can actually reach.",
+      "scenario_brief": "Two days before departure, the Tuesday nonstop home is moved from 6:15 p.m. to 4:55 p.m., which is not reachable after the workshop. The airline offers a 7:40 p.m. connection through Detroit at no added cost, arriving in Minneapolis at 11:18 p.m.; a 6:50 p.m. nonstop on another carrier costs $173 more, while moving the final workshop segment earlier would require client approval that has not been obtained. The Sunday outbound and hotel remain confirmed.",
+      "session_index": 83,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The Sunday outbound and Inner Harbor hotel remain unchanged, and only the replacement Tuesday flight needs to be finalized before departure.",
+      "days_after_previous": 1,
+      "domain": "flights",
+      "episode_id": "client-baltimore-014",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a"
+      ],
+      "interaction_goal": "Confirm the no-cost 7:40 p.m. connecting return, verify its Detroit connection time and baggage handling, obtain the revised ticket details, and preserve the existing outbound and hotel reservations.",
+      "scenario_brief": "The airline has confirmed that the retimed 4:55 p.m. Tuesday nonstop cannot be restored. Maya still expects the workshop to end at 4:30 p.m.; the no-cost 7:40 p.m. itinerary through Detroit allows a practical trip to Baltimore/Washington airport and reaches Minneapolis at 11:18 p.m., while the 6:50 p.m. nonstop on another carrier remains available for an additional $173.",
+      "session_index": 84,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "All travel is confirmed, but the duplicate return display creates uncertainty about which boarding passes and record details are valid.",
+      "days_after_previous": 2,
+      "domain": "combined_trip",
+      "episode_id": "client-baltimore-014",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-7dd08d76-05f0-4121-aecb-1c9501512eee"
+      ],
+      "interaction_goal": "Check the ticket status for each segment, identify the active Tuesday return, confirm that the obsolete flight requires no action, and produce a concise final schedule with airport-transfer timing.",
+      "scenario_brief": "On departure day, the revised itinerary shows the correct Sunday nonstop to Baltimore and Tuesday connection through Detroit, but the airline application still displays the canceled 4:55 p.m. flight beside the active return. The hotel has Maya's arrival notation, and the workshop address and Tuesday luggage-storage arrangement are unchanged.",
+      "session_index": 85,
+      "session_length": "micro",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "A new two-night client trip begins with flight timing, airport-to-hotel transportation, and a practical lodging area still unresolved.",
+      "days_after_previous": 31,
+      "domain": "combined_trip",
+      "episode_id": "client-raleigh-015",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a"
+      ],
+      "interaction_goal": "Establish workable Tuesday outbound and Thursday return windows, compare complete flight itineraries within the airfare limit, estimate local transportation, and identify lodging areas that support both client days.",
+      "scenario_brief": "Maya needs to travel from Minneapolis to Raleigh for a Wednesday morning implementation review and Thursday training sessions ending at 3:30 p.m. She can leave Tuesday after 1:00 p.m., must be home Thursday night, has an airfare ceiling of $700, and can spend up to $255 per hotel night before tax. The client site is in North Hills, and no reservations have been made.",
+      "session_index": 86,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The airport and lodging area are established, so the round trip must now balance fare, Tuesday arrival, and a reachable Thursday departure.",
+      "days_after_previous": 2,
+      "domain": "flights",
+      "episode_id": "client-raleigh-015",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a"
+      ],
+      "interaction_goal": "Compare total travel time, fares, connection details, baggage charges, and Thursday transfer margins; eliminate the infeasible early return; and select a complete itinerary under the airfare ceiling.",
+      "scenario_brief": "Raleigh-Durham is the only practical airport, and two hotel nights near North Hills are expected. A $584 nonstop leaves Minneapolis at 2:40 p.m. Tuesday and arrives at 6:12 p.m.; a $497 one-stop itinerary arrives at 9:26 p.m. Thursday returns include a nonstop at 5:55 p.m. for a $632 round trip and a $548 pairing that departs at 4:45 p.m., leaving too little time after training and the drive to the airport.",
+      "session_index": 87,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flight dates and arrival timing are fixed, leaving the real lodging totals, site access, and Thursday checkout logistics to determine the hotel.",
+      "days_after_previous": 1,
+      "domain": "hotels",
+      "episode_id": "client-raleigh-015",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-7dd08d76-05f0-4121-aecb-1c9501512eee",
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a"
+      ],
+      "interaction_goal": "Calculate two-night totals with taxes and parking, verify the actual route to the client site, confirm late check-in and Thursday luggage storage, compare rideshare costs, and choose a room within the nightly limit.",
+      "scenario_brief": "The $632 nonstop round trip is selected, with a Tuesday hotel arrival near 7:15 p.m. Three North Hills options are available for two nights: a hotel beside the client building at $249 nightly before tax, a $218 property eleven minutes away by car with a $16 nightly parking charge, and a $236 property across a major roadway that advertises a short walking distance but has no direct pedestrian crossing.",
+      "session_index": 88,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The trip components are selected, but ticketing, room confirmation, and a final date-and-time reconciliation remain to be completed.",
+      "days_after_previous": 4,
+      "domain": "booking_administration",
+      "episode_id": "client-raleigh-015",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+        "dlg-7dd08d76-05f0-4121-aecb-1c9501512eee"
+      ],
+      "interaction_goal": "Recheck the Tuesday-through-Thursday schedule and projected cost, ticket the expiring flights, reserve the refundable hotel with the arrival estimate, and assemble one chronological itinerary with confirmation status and Thursday airport timing.",
+      "scenario_brief": "Maya has chosen the hotel beside the client building for $574 after tax and the $632 nonstop flights. Estimated rideshares between the airport and North Hills add $82, for a projected trip total of $1,288. The airfare quote expires that afternoon, while the room is refundable until three days before arrival and needs an estimated Tuesday check-in time.",
+      "session_index": 89,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flights, lodging, and ground transportation are already arranged; only the inaccurate hotel arrival notation and a concise final timing check remain.",
+      "days_after_previous": 8,
+      "domain": "combined_trip",
+      "episode_id": "client-raleigh-015",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-b7377723-1b87-4a92-8f3c-f05ec010ae4f"
+      ],
+      "interaction_goal": "Verify both flight statuses, update the hotel with the evening arrival estimate, reconfirm that the room will be held, and summarize Tuesday airport departure and Thursday transfer timing.",
+      "scenario_brief": "The evening before the Raleigh trip, the airline record still shows the confirmed Tuesday 2:40 p.m. nonstop and Thursday 5:55 p.m. return, but the hotel confirmation lists a generic 3:00 p.m. arrival instead of Maya's expected 7:15 p.m. check-in. The room remains guaranteed, and the North Hills client schedule and Thursday luggage storage are unchanged.",
+      "session_index": 90,
+      "session_length": "micro",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "A new coastal trip begins with airport choice, transportation structure, and lodging geography unresolved.",
+      "days_after_previous": 47,
+      "domain": "combined_trip",
+      "episode_id": "leisure-monterey-004",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c",
+        "dlg-b7377723-1b87-4a92-8f3c-f05ec010ae4f"
+      ],
+      "interaction_goal": "Map complete Thursday-to-Monday travel options through both airports, estimate rental-car and transfer costs, compare one-base and split-stay structures, and identify combinations that fit the overall budget.",
+      "scenario_brief": "Maya and her partner are considering a four-night September trip to the Monterey Peninsula, leaving Minneapolis on a Thursday and returning Monday. They want time in Monterey and Carmel, have a combined flight-and-hotel target of $3,400, and have not decided whether to use San Jose or San Francisco airport, rent a car for the full stay, or divide the nights between towns.",
+      "session_index": 91,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The trip dates and peninsula focus are established, and the flight decision now depends on total door-to-door cost and usable vacation time.",
+      "days_after_previous": 2,
+      "domain": "flights",
+      "episode_id": "leisure-monterey-004",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-b7377723-1b87-4a92-8f3c-f05ec010ae4f",
+        "dlg-302fc04e-6d21-4826-b462-2a475325a94e"
+      ],
+      "interaction_goal": "Compare the two airport itineraries for two travelers, including elapsed time, connection details, baggage costs, car pricing, and realistic drives; then select flights that protect Thursday afternoon and Monday morning without exceeding the trip target.",
+      "scenario_brief": "San Jose offers the shorter drive to Monterey. A $486 round trip per person leaves Minneapolis at 9:05 a.m. Thursday with one connection and arrives at 2:18 p.m.; a $574 nonstop reaches San Francisco at 11:42 a.m. but adds a longer drive and higher rental-car fees. Monday choices include a 1:20 p.m. San Jose departure at the quoted fare and a 10:10 a.m. option that would sharply shorten the final morning.",
+      "session_index": 92,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flights and rental-car assumptions are fixed, leaving lodging totals, location tradeoffs, and the practicality of changing hotels to settle.",
+      "days_after_previous": 3,
+      "domain": "hotels",
+      "episode_id": "leisure-monterey-004",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Calculate complete four-night totals, verify parking and cancellation terms, assess access to planned activities from each location, and determine whether the split stay adds enough value to justify the Saturday move.",
+      "scenario_brief": "The $486-per-person San Jose itinerary with the 1:20 p.m. Monday return is selected, and a compact rental car is estimated at $338 including taxes. Four-night lodging options include a Monterey waterfront hotel at $312 nightly plus $35 parking, a Carmel inn at $344 nightly with parking included, and a split stay using two $279 Monterey nights followed by two $329 Carmel nights. Taxes range from 12 to 14 percent, and the split stay would require moving luggage Saturday.",
+      "session_index": 93,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The overall trip remains within budget, but the Saturday lodging transition conflicts with the timing and luggage requirements of the main Monterey activity.",
+      "days_after_previous": 1,
+      "domain": "combined_trip",
+      "episode_id": "leisure-monterey-004",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c",
+        "dlg-302fc04e-6d21-4826-b462-2a475325a94e"
+      ],
+      "interaction_goal": "Compare secure luggage options, a later tour, and reversing the hotel order; account for driving and check-in windows; and produce a workable day-by-day structure without changing the selected flights.",
+      "scenario_brief": "The split stay is the leading option at $1,391 after lodging taxes, bringing flights, car, and rooms to about $2,701 before fuel, meals, and activities. A Saturday morning whale-watching departure from Monterey is available, but hotel checkout is at 11:00 a.m. and the Carmel room is not guaranteed before 4:00 p.m.; the operator cannot store full-size luggage on the boat.",
+      "session_index": 94,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "All major trip choices and the Saturday transfer plan are resolved; reservations, traveler details, and one chronological confirmation record remain to be completed.",
+      "days_after_previous": 5,
+      "domain": "booking_administration",
+      "episode_id": "leisure-monterey-004",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-b7377723-1b87-4a92-8f3c-f05ec010ae4f",
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Reconcile dates and costs, ticket the expiring flights, reserve the rental car and refundable rooms in dependency order, add both travelers correctly, and assemble the confirmed Thursday-to-Monday itinerary with cancellation deadlines.",
+      "scenario_brief": "Maya and her partner have settled on two Monterey nights followed by two Carmel nights, with the whale-watching tour moved to Friday morning so luggage can remain at the first hotel. The two San Jose round trips total $972, the rental car is $338, and refundable lodging totals $1,391. The airfare hold expires tonight, while both hotels allow cancellation until five days before arrival and require the names of both guests.",
+      "session_index": 95,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The booked coastal trip remains intact except for a material return-flight schedule change that affects the final day and rental-car timing.",
+      "days_after_previous": 24,
+      "domain": "combined_trip",
+      "episode_id": "leisure-monterey-004",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377"
+      ],
+      "interaction_goal": "Compare the revised Monday itineraries by elapsed time, added fare, connection risk, Carmel departure time, and car-return window; then choose the option that best preserves the final day within the remaining trip budget.",
+      "scenario_brief": "Three weeks before the Monterey Peninsula trip, the airline has moved the Monday San Jose departure from 1:20 p.m. to 10:35 a.m. The new time would require leaving Carmel before 7:00 a.m. and giving up the planned final breakfast and walk. The Thursday outbound, both hotels, whale-watching reservation, and rental car remain confirmed, while the airline offers either the earlier flight at no added cost or a 2:50 p.m. one-stop return for $74 more per traveler.",
+      "session_index": 96,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The preferred response to the airline schedule change is settled, leaving the flight exchange, car timing, and itinerary record to be updated together.",
+      "days_after_previous": 1,
+      "domain": "booking_administration",
+      "episode_id": "leisure-monterey-004",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+      ],
+      "interaction_goal": "Accept the replacement flight without losing the existing outbound, verify the new ticket total and seat assignments, extend the rental-car return time, and issue an updated chronological itinerary with the revised trip cost.",
+      "scenario_brief": "Maya and her partner have chosen the 2:50 p.m. one-stop return for an added $148 total, keeping the trip below the $3,400 target. The airline change has not yet been accepted, and the rental-car reservation still shows a noon return even though a 12:45 p.m. drop-off would be more appropriate. Both lodging reservations and the Friday whale-watching time are unchanged.",
+      "session_index": 97,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "A new two-night client trip begins with complete flight timing, local transportation, and lodging geography unresolved.",
+      "days_after_previous": 39,
+      "domain": "combined_trip",
+      "episode_id": "client-columbus-016",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+        "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6"
+      ],
+      "interaction_goal": "Identify workable Sunday outbound and Tuesday return windows, compare airport-to-client transportation costs, and determine which lodging area minimizes transfers while staying within the airfare and room limits.",
+      "scenario_brief": "Maya needs to travel from Minneapolis to Columbus for a Monday afternoon project kickoff and Tuesday meetings ending at 4:00 p.m. She can leave Sunday after 3:00 p.m. and must return Tuesday night. Airfare may not exceed $650, lodging is capped at $240 per night before tax, and the client office is near Easton Town Center. No reservations have been made, and she is unsure whether an airport hotel or an Easton property will produce the simpler two-day schedule.",
+      "session_index": 98,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The destination airport, lodging area, and ground-transportation approach are established, so the flight choice now turns on arrival quality and a realistic Tuesday departure.",
+      "days_after_previous": 2,
+      "domain": "flights",
+      "episode_id": "client-columbus-016",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377"
+      ],
+      "interaction_goal": "Compare complete itineraries, baggage charges, connection details, total travel time, and Tuesday airport margins; rule out any pairing that cannot be reached reliably; and select a round trip under the airfare ceiling.",
+      "scenario_brief": "Easton has been chosen as the practical lodging area, with rideshares planned instead of a rental car. A $438 nonstop leaves Minneapolis at 5:10 p.m. Sunday and arrives at 8:03 p.m.; a $367 one-stop arrives at 10:41 p.m. Tuesday returns include a $512 round-trip pairing departing at 6:35 p.m. and a $449 pairing departing at 5:15 p.m., which leaves little margin after the meeting and the drive to the airport.",
+      "session_index": 99,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flight dates and transfer windows are fixed, leaving the true lodging totals, morning access, meal costs, and Tuesday luggage arrangements to determine the hotel.",
+      "days_after_previous": 3,
+      "domain": "hotels",
+      "episode_id": "client-columbus-016",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+        "dlg-71e04dea-b9a2-444d-8257-5b6098acf377"
+      ],
+      "interaction_goal": "Calculate two-night totals with tax, breakfast, and expected rideshares; confirm Sunday late arrival and Tuesday luggage storage; assess the walking routes; and choose a refundable room within the nightly cap.",
+      "scenario_brief": "The $512 nonstop round trip with the 6:35 p.m. Tuesday return is selected. Three Easton hotels are available for Sunday and Monday nights: a $239 nightly property across from the client office with breakfast included, a $207 hotel fifteen minutes away by rideshare, and a $224 hotel inside the shopping district that charges $18 for breakfast and is a twelve-minute walk from the office. Estimated lodging taxes are 17.5 percent, and Maya will need luggage held after Tuesday checkout.",
+      "session_index": 100,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "All trip components are selected, but ticketing, the refundable room reservation, arrival notation, and final timing reconciliation remain incomplete.",
+      "days_after_previous": 4,
+      "domain": "booking_administration",
+      "episode_id": "client-columbus-016",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+        "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6"
+      ],
+      "interaction_goal": "Reconcile the Sunday-through-Tuesday dates and costs, ticket the expiring flights, reserve the hotel with the correct arrival time and luggage request, and assemble one confirmed itinerary including cancellation terms and the Tuesday airport departure plan.",
+      "scenario_brief": "Maya has selected the $239 hotel across from the client office, totaling about $562 after tax for two nights, and the $512 nonstop flights. Estimated airport rideshares add $68, bringing the projected trip total to $1,142. The flight fare expires at midnight, the room can be canceled until 6:00 p.m. two days before arrival, and the hotel needs notice of the expected 8:45 p.m. Sunday check-in.",
+      "session_index": 101,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The booked trip is underway, and only the later meeting end time affects the established Tuesday sequence from the client office to the hotel and airport.",
+      "days_after_previous": 12,
+      "domain": "combined_trip",
+      "episode_id": "client-columbus-016",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+      ],
+      "interaction_goal": "Calculate the latest practical departure from Easton using the airline's check-in and boarding cutoffs, include time to retrieve luggage and request a ride, and identify a concise fallback if the meeting runs beyond 4:20 p.m.",
+      "scenario_brief": "On Monday evening in Columbus, Maya learns that Tuesday's final client meeting may run until 4:20 p.m. rather than 4:00 p.m. Her nonstop flight still departs at 6:35 p.m., the hotel across from the office is holding her suitcase after checkout, and the usual late-afternoon ride to the airport takes 15 to 25 minutes. She needs to know whether collecting the bag and leaving Easton after the extended meeting still provides a workable airport margin.",
+      "session_index": 102,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "A new two-night client trip begins with flight timing, lodging geography, and local transportation still open.",
+      "days_after_previous": 38,
+      "domain": "combined_trip",
+      "episode_id": "client-raleigh-017",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0"
+      ],
+      "interaction_goal": "Establish realistic outbound and return windows, compare the full cost and daily timing of the two ground-transportation approaches, and choose the lodging area that best fits the workshop schedule and stated limits.",
+      "scenario_brief": "Maya must travel from Minneapolis to Raleigh for a Wednesday morning implementation workshop and Thursday sessions ending at 3:30 p.m. She can leave Tuesday after 2:00 p.m. and needs to return Thursday night. The airfare ceiling is $700, the hotel limit is $255 per night before tax, and the client site is in North Hills. She has not decided between staying near the client and using rideshares or staying by the airport with a rental car.",
+      "session_index": 103,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The lodging area and local transportation method are provisionally settled, so the remaining flight question is how much to pay for a manageable arrival and a reliable Thursday departure.",
+      "days_after_previous": 2,
+      "domain": "flights",
+      "episode_id": "client-raleigh-017",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f",
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0"
+      ],
+      "interaction_goal": "Compare total elapsed time, connection locations, fare rules, baggage costs, and airport margins; determine whether the 5:55 p.m. nonstop return is realistically reachable; and select a complete round trip under the airfare ceiling.",
+      "scenario_brief": "North Hills lodging with rideshares has emerged as the simpler plan. A $476 nonstop leaves Minneapolis at 4:05 p.m. Tuesday and arrives at 7:42 p.m.; a $389 one-stop option arrives at 10:18 p.m. Thursday returns include a nonstop at 5:55 p.m. for a $548 round trip and a 7:10 p.m. one-stop pairing at $462. The client expects Thursday sessions to end at 3:30 p.m., and the ride to the airport can take 20 to 40 minutes in late-afternoon traffic.",
+      "session_index": 104,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flights and the rideshare plan are fixed, leaving hotel totals, cancellation exposure, walking practicality, and Thursday luggage handling to resolve.",
+      "days_after_previous": 4,
+      "domain": "hotels",
+      "episode_id": "client-raleigh-017",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc"
+      ],
+      "interaction_goal": "Calculate complete two-night costs including tax, breakfast, and expected local rideshares; verify late check-in and luggage holding; compare the walking routes; and choose a room that remains within the nightly limit.",
+      "scenario_brief": "The $548 nonstop round trip has been selected, including the 5:55 p.m. Thursday return. North Hills options for Tuesday and Wednesday nights include a $252 property beside the client building with breakfast included, a $218 hotel about ten minutes away by car with a $16 breakfast charge, and a $236 property within a half-mile walk that includes breakfast but has a nonrefundable first-night deposit. Lodging tax is estimated at 13.25 percent, and Maya will need her suitcase held between Thursday checkout and the airport ride.",
+      "session_index": 105,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "All components are selected, but the flight purchase, hotel reservation, arrival note, and final chronological record have not been completed.",
+      "days_after_previous": 3,
+      "domain": "booking_administration",
+      "episode_id": "client-raleigh-017",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f",
+        "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc"
+      ],
+      "interaction_goal": "Reconcile dates, traveler details, and totals; purchase the expiring airfare; reserve the refundable room with the arrival and luggage notes; and assemble the confirmed Tuesday-to-Thursday itinerary with cancellation terms and Thursday departure timing.",
+      "scenario_brief": "Maya has chosen the $252 hotel beside the client building, estimated at $571 after tax for two nights, and the $548 nonstop flights. Airport rideshares are expected to total $76, placing the trip near $1,195. The fare expires this evening, the room remains refundable until 4:00 p.m. three days before arrival, and the hotel needs an estimated 8:30 p.m. Tuesday arrival plus a Thursday luggage-hold request.",
+      "session_index": 106,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The hotel, ground transportation, and Thursday return remain usable, but cancellation of the outbound requires a replacement that protects Wednesday morning without unnecessarily rebuilding the trip.",
+      "days_after_previous": 19,
+      "domain": "flights",
+      "episode_id": "client-raleigh-017",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f",
+        "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0"
+      ],
+      "interaction_goal": "Verify whether the original outbound can be changed without disturbing the Thursday return, compare the replacement choices by work conflict, arrival time, connection risk, and net cost, and update the hotel arrival estimate after selecting the most practical option.",
+      "scenario_brief": "The day before departure, the airline cancels Maya's 4:05 p.m. Tuesday nonstop. It offers a no-cost 2:20 p.m. nonstop that conflicts with her last internal meeting, a 5:35 p.m. one-stop itinerary arriving at 10:46 p.m., or a refund. Another carrier has a 6:10 p.m. nonstop arriving at 9:44 p.m. for $184 above the refunded outbound value. The North Hills hotel will accept arrival until midnight, Wednesday's workshop starts at 8:00 a.m., and the original Thursday return remains confirmed on a separate flight segment.",
+      "session_index": 107,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The canceled Tuesday flight has been replaced without disturbing the hotel or Thursday return, leaving only confirmation details and the revised arrival sequence to reconcile.",
+      "days_after_previous": 1,
+      "domain": "booking_administration",
+      "episode_id": "client-raleigh-017",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Verify both airline records and the outbound refund, record the later hotel arrival, recalculate the trip total, and produce one chronological itinerary spanning the separate Tuesday and Thursday reservations.",
+      "scenario_brief": "Maya has purchased the 6:10 p.m. nonstop on the other carrier for $184 above the refunded outbound value, preserving her Tuesday workday and a 9:44 p.m. Raleigh arrival. Her original Thursday 5:55 p.m. return remains active, and the North Hills hotel has confirmed that a check-in near 10:30 p.m. is acceptable. The two flight segments now sit on separate reservations, and the revised airport ride and hotel arrival details have not yet been consolidated.",
+      "session_index": 108,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "A new coastal leisure trip begins with travel dates established but airport timing, lodging geography, and the need for a rental car unresolved.",
+      "days_after_previous": 31,
+      "domain": "combined_trip",
+      "episode_id": "partner-san-diego-018",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Compare workable Friday outbound and Wednesday return windows, estimate the full cost of staying in each area, and determine whether one hotel or a split stay best fits the dinner commitment and coastal plans.",
+      "scenario_brief": "Maya and her partner are considering a five-night October trip from Minneapolis to San Diego, traveling Friday through Wednesday. They can spend up to $1,150 total on airfare and would like lodging to average no more than $390 per night before tax. They want substantial time near the water, have a Saturday dinner commitment in Little Italy, and are deciding among Coronado, La Jolla, and a split stay. No flights, hotel, or local transportation have been selected.",
+      "session_index": 109,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Trip length and airfare ceiling are fixed, so the flight decision turns on usable destination time, baggage costs, and the value of the later return.",
+      "days_after_previous": 3,
+      "domain": "flights",
+      "episode_id": "partner-san-diego-018",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+        "dlg-9728d808-4a19-4e73-83d6-31a095819bbf"
+      ],
+      "interaction_goal": "Compare complete elapsed times, connection details, baggage charges, and usable hours in San Diego; confirm that the later nonstop remains within the combined airfare limit; and select the round trip that best fits the five-night schedule.",
+      "scenario_brief": "A single hotel area has not yet been chosen, but Maya and her partner have narrowed the air search to three round trips. A $1,086 total nonstop pairing leaves Minneapolis at 9:20 a.m. Friday and returns at 12:40 p.m. Wednesday; a $914 one-stop pairing arrives after 8:00 p.m. Friday; and a $1,142 nonstop pairing offers a 5:35 p.m. Wednesday return. The lowest fares allow seat selection but charge for checked bags, while the later Wednesday option leaves room for a final morning by the coast.",
+      "session_index": 110,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flight times are settled, leaving the true lodging totals and the practical value of a split stay to determine where the five nights should be spent.",
+      "days_after_previous": 2,
+      "domain": "hotels",
+      "episode_id": "partner-san-diego-018",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Calculate all-in lodging costs for the single-area and split-stay options, compare beach access and transportation needs, verify room availability across the exact dates, and choose an arrangement near the target nightly average.",
+      "scenario_brief": "Maya and her partner have selected the $1,142 nonstop flights, arriving Friday before noon and departing at 5:35 p.m. Wednesday. Available lodging includes a Coronado hotel at $418 per night with a $42 nightly destination fee, a La Jolla property at $356 with parking at $35 per night, and a Little Italy hotel at $309 with no destination fee. Estimated lodging tax is 12.7 percent. They are considering three nights in La Jolla followed by two nights in Little Italy, but moving hotels would consume part of Monday and require separate minimum-stay and cancellation terms.",
+      "session_index": 111,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The split stay fits the lodging target, but car timing, luggage handling during the Monday move, and transportation costs remain unsettled.",
+      "days_after_previous": 5,
+      "domain": "combined_trip",
+      "episode_id": "partner-san-diego-018",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-9728d808-4a19-4e73-83d6-31a095819bbf",
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+      ],
+      "interaction_goal": "Compare a three-day rental with an all-rideshare plan, account for parking and fuel, establish a workable Monday hotel transfer with luggage, and finalize the transportation sequence from Friday arrival through Wednesday departure.",
+      "scenario_brief": "The leading lodging plan is three nights in La Jolla at $356 and two nights in Little Italy at $309, keeping the pre-tax room average at $337.20. Maya has found a compact rental car for Friday through Monday at $284 including taxes, while airport rideshares plus local trips are estimated at $250 to $330 for the full stay. The La Jolla hotel charges for parking, the Little Italy hotel does not offer parking, and Monday checkout is at 11:00 a.m. while the second room may not be ready until 3:00 p.m.",
+      "session_index": 112,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Every major component is selected, but the expiring airfare, two hotel records, rental return location, and Monday luggage handoff still need to be booked and reconciled.",
+      "days_after_previous": 8,
+      "domain": "booking_administration",
+      "episode_id": "partner-san-diego-018",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+        "dlg-e6d3cc0c-97b2-4505-90fd-cf05ac79a51c"
+      ],
+      "interaction_goal": "Book the flights, both hotels, and the three-day rental for the correct travelers and dates; record deposits and cancellation deadlines; request Monday luggage storage; and assemble one confirmed Friday-to-Wednesday itinerary with the final projected total.",
+      "scenario_brief": "Maya and her partner have chosen the nonstop flights, three nights in La Jolla followed by two nights in Little Italy, and a Friday-to-Monday rental car returned downtown before the second hotel check-in. Airfare totals $1,142, the two hotel reservations total about $1,904 after estimated tax, and the rental with La Jolla parking and fuel is projected at $434. The flight fare expires tonight; the La Jolla room is refundable until seven days before arrival, while the Little Italy room requires a one-night deposit and permits cancellation until 72 hours before check-in.",
+      "session_index": 113,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The trip is fully booked, but a possible rate reduction on the first hotel needs to be verified without risking the room or altering the split-stay sequence.",
+      "days_after_previous": 18,
+      "domain": "hotels",
+      "episode_id": "partner-san-diego-018",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+        "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd"
+      ],
+      "interaction_goal": "Confirm that the lower rate covers the identical room and dates, calculate the savings after parking and tax, compare its cancellation terms with the existing reservation, and modify or replace the booking only if the confirmed savings are meaningful.",
+      "scenario_brief": "Three weeks before the San Diego trip, the La Jolla hotel is advertising the same room category at $331 per night instead of the booked $356 rate. Maya's existing three-night reservation is still refundable for another two weeks, but the lower listing does not clearly state whether the $35 nightly parking charge and the same cancellation terms apply. The two-night Little Italy reservation and the Monday move remain unchanged.",
+      "session_index": 114,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The lower hotel rate is secured, leaving a final check of arrival instructions, rental paperwork, deposits, and the Monday transfer details before departure.",
+      "days_after_previous": 15,
+      "domain": "booking_administration",
+      "episode_id": "partner-san-diego-018",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+      ],
+      "interaction_goal": "Reconcile the flight, hotel, and rental confirmations; verify deposit postings and cancellation deadlines; confirm after-hours contact details; and produce a compact chronological itinerary for the Friday arrival, Monday hotel move, and Wednesday departure.",
+      "scenario_brief": "The La Jolla reservation has been adjusted to $331 per night with its original cancellation deadline retained, reducing the projected trip cost by about $85 after tax. Departure is now one week away. Both hotels show the correct guests and dates, the downtown rental return is recorded for Monday at 12:30 p.m., and the Little Italy hotel has acknowledged a luggage-storage request but cannot promise early room access.",
+      "session_index": 115,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The planned hotel move remains workable, but the shortened rental-office hours require an immediate choice about the car and luggage sequence.",
+      "days_after_previous": 10,
+      "domain": "combined_trip",
+      "episode_id": "partner-san-diego-018",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+      ],
+      "interaction_goal": "Check driving and refueling time from La Jolla, choose the least disruptive return option, and set the exact sequence for checkout, car return, luggage storage, and later check-in.",
+      "scenario_brief": "On Monday morning in La Jolla, Maya learns that the selected downtown rental branch will close at 1:00 p.m. because of a staffing issue. Checkout is at 11:00 a.m., the Little Italy room will not be ready before 3:00 p.m., and they have two suitcases. They can return the car downtown by 12:30 p.m. and leave the bags at the second hotel, return it at the airport for a $47 location charge plus a rideshare back, or keep it until Tuesday for another $96 before parking.",
+      "session_index": 116,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "A new client trip begins with fixed onsite hours but unresolved flight timing, lodging geography, and airport transportation.",
+      "days_after_previous": 29,
+      "domain": "combined_trip",
+      "episode_id": "client-pittsburgh-019",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b"
+      ],
+      "interaction_goal": "Identify feasible Tuesday outbound and Thursday return windows, compare staying near Bakery Square with East Liberty, Shadyside, and downtown, estimate rideshare or transit costs, and build a short list that fits the trip limits.",
+      "scenario_brief": "Maya needs to attend a healthcare implementation workshop in Pittsburgh from Wednesday morning through Thursday afternoon. She can leave Minneapolis only after a 2:00 p.m. Tuesday internal meeting, must reach the client site near Bakery Square by 8:30 a.m. Wednesday, and expects Thursday sessions to end at 4:00 p.m. Airfare should remain under $650, lodging should stay near $260 per night before tax, and no flight, hotel, or local transportation has been selected.",
+      "session_index": 117,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The workable flight choices are known, but the cheaper options reduce rest before the workshop or delay the return home substantially.",
+      "days_after_previous": 2,
+      "domain": "flights",
+      "episode_id": "client-pittsburgh-019",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+      ],
+      "interaction_goal": "Compare elapsed time, connection risk, fare rules, and baggage charges; determine whether the 6:20 p.m. Thursday departure has a sufficient airport margin; and select the complete round trip within the airfare ceiling.",
+      "scenario_brief": "The Pittsburgh search has narrowed to a $612 nonstop round trip leaving Minneapolis at 3:45 p.m. Tuesday and arriving at 6:52 p.m., a $468 one-stop itinerary leaving at 5:10 p.m. and arriving at 10:05 p.m., and a $536 mixed itinerary with a nonstop outbound but a Thursday connection arriving home after midnight. The $612 pairing returns nonstop at 6:20 p.m. Thursday. The client site is normally 30 to 45 minutes from the airport in late-afternoon traffic, and Maya will need to leave after the 4:00 p.m. workshop close.",
+      "session_index": 118,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flights are settled, so the remaining decision is whether proximity justifies exceeding the room limit or whether a lower hotel rate plus local rideshares produces the better complete trip cost.",
+      "days_after_previous": 3,
+      "domain": "hotels",
+      "episode_id": "client-pittsburgh-019",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+        "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+        "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+      ],
+      "interaction_goal": "Calculate two-night totals with tax, breakfast, and expected rideshares; verify late Tuesday check-in and Thursday luggage storage; compare the morning routes to the client site; and choose a refundable room that keeps the overall trip within budget.",
+      "scenario_brief": "Maya has selected the $612 nonstop flights, with a Tuesday evening arrival and a Thursday 6:20 p.m. departure. Two-night hotel options include a $268 property beside the client site, a $231 East Liberty hotel with breakfast included and a short rideshare to the workshop, and a $218 Shadyside hotel about 15 minutes away by car. Estimated lodging tax is 14 percent. The closest property exceeds the nightly limit, while the other two require Thursday luggage storage and a reliable ride to the airport immediately after the workshop.",
+      "session_index": 119,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The flight and hotel choices are settled, but both reservations, the Thursday bag retrieval, and the narrow trip from the workshop to the airport still need to be put into one workable record.",
+      "days_after_previous": 4,
+      "domain": "booking_administration",
+      "episode_id": "client-pittsburgh-019",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218"
+      ],
+      "interaction_goal": "Complete the airfare and hotel reservations, verify the traveler and payment details, record the cancellation deadline, schedule the Thursday hotel pickup, and assemble a chronological itinerary with a target airport arrival time for the 6:20 p.m. flight.",
+      "scenario_brief": "Maya has selected the East Liberty hotel at $231 per night for two nights, with breakfast included, late Tuesday check-in, and Thursday luggage storage confirmed. The estimated room total is $526.68 with tax. Expected rideshares are $48 from the airport Tuesday, $14 to the client site Wednesday morning, $14 back that evening, $14 to the workshop Thursday, and $42 from the hotel to the airport after retrieving her bag. The $612 nonstop airfare is being held until 8:00 p.m., and the hotel remains refundable until 6:00 p.m. two days before arrival.",
+      "session_index": 120,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The onsite work is almost finished, but the canceled flight requires an immediate decision that accounts for the stored suitcase, ground travel, and the next morning's obligations in Minneapolis.",
+      "days_after_previous": 11,
+      "domain": "flights",
+      "episode_id": "client-pittsburgh-019",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f",
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Confirm live seat availability and arrival times, compare the overnight connection with the two nonstop alternatives, determine refund or credit consequences, account for retrieving the suitcase, and secure the most workable route home.",
+      "scenario_brief": "At 3:10 p.m. Thursday, Maya's 6:20 p.m. Pittsburgh-to-Minneapolis nonstop is canceled because of thunderstorms. The airline can place her on an 8:05 p.m. one-stop itinerary arriving at 12:18 a.m. at no added fare, or on a 7:05 a.m. Friday nonstop. A seat on another carrier's 7:40 p.m. nonstop is available for $286, and the original airline has not confirmed whether it will reimburse a hotel because the cancellation is weather-related. Her suitcase is still at the East Liberty hotel, about 15 minutes from the client site and 35 to 50 minutes from the airport.",
+      "session_index": 121,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The trip is complete, but the reissued ticket documentation and lingering hotel authorization need to be reconciled before the expense report can be submitted.",
+      "days_after_previous": 6,
+      "domain": "booking_administration",
+      "episode_id": "client-pittsburgh-019",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Organize the receipts by expense date, identify the documentation needed for the zero-dollar reissue and delay meal, distinguish the hotel authorization from a posted charge, and produce the final reimbursable total.",
+      "scenario_brief": "Maya accepted the no-cost 8:05 p.m. one-stop itinerary and reached Minneapolis shortly after midnight. Her expense report now has the original $612 airfare receipt, a reissued ticket showing a zero-dollar balance, a $46 rideshare from East Liberty to the airport, and a $19 airport meal purchased during the delay. The hotel folio correctly shows $526.68, but a separate $75 incidental authorization is still pending on her card five days after checkout.",
+      "session_index": 122,
+      "session_length": "micro",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "A new client trip begins with fixed onsite hours and flexibility around Monday travel, while the number of hotel nights and the route between the airport and University Circle remain open.",
+      "days_after_previous": 37,
+      "domain": "combined_trip",
+      "episode_id": "client-cleveland-020",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+      ],
+      "interaction_goal": "Map feasible Monday outbound and Wednesday return windows, compare one-night and two-night lodging structures, estimate airport and onsite transportation, and create a complete short list within the stated airfare limit.",
+      "scenario_brief": "Maya is scheduled to lead a hospital software cutover review in Cleveland on Tuesday and Wednesday. The first meeting begins at 9:00 a.m. Tuesday near University Circle, the Wednesday review should end by 3:30 p.m., and she has no reason to remain afterward. She can leave Minneapolis any time Monday, airfare is capped at $600, and one or two hotel nights are acceptable if the schedule remains reliable. No flights, lodging, or local transportation have been selected.",
+      "session_index": 123,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "All three pairings fit the airfare cap, but the Wednesday airport margin and the late Monday arrival make the ticket rules and complete elapsed time consequential.",
+      "days_after_previous": 2,
+      "domain": "flights",
+      "episode_id": "client-cleveland-020",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+      ],
+      "interaction_goal": "Compare travel duration, connection exposure, fare terms, and realistic airport arrival times; verify whether the 6:05 p.m. nonstop remains viable after a late meeting close; and select the round trip that best fits the onsite schedule.",
+      "scenario_brief": "The Cleveland flight search has narrowed to a $574 nonstop round trip leaving Minneapolis at 4:25 p.m. Monday and returning at 6:05 p.m. Wednesday, a $442 pairing with a Monday connection that arrives at 10:48 p.m., and a $519 itinerary with the same nonstop outbound but a 7:10 p.m. Wednesday return through Chicago. The client site is typically 25 to 35 minutes from the airport, and Wednesday's meeting could run 20 minutes beyond its planned 3:30 p.m. close. The least expensive fares include a carry-on but have different rebooking and same-day travel terms.",
+      "session_index": 124,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The flights are ready to purchase, and the remaining task is to choose a two-night room whose full cost and Wednesday checkout logistics work with the 6:05 p.m. departure.",
+      "days_after_previous": 5,
+      "domain": "booking_administration",
+      "episode_id": "client-cleveland-020",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Calculate taxed hotel totals and expected rideshare costs, verify Monday check-in and Wednesday luggage storage or late checkout, select a refundable two-night room, complete the flight and hotel reservations, and record the final itinerary and deadlines.",
+      "scenario_brief": "Maya has selected the $574 nonstop flights. Hotel candidates are a University Circle property at $247 per night with a 6:00 p.m. day-before cancellation deadline, a $219 hotel near the medical campus that includes breakfast but charges a $25 early-departure fee if the reservation is shortened, and a downtown room at $204 that would require rideshares to both workshop days. Lodging tax is estimated at 17.5 percent. Staying Monday and Tuesday nights avoids handling a suitcase at the client site and permits a shower after Wednesday checkout only if late checkout is approved; booking Monday night alone would require finding a Tuesday room or departing before the second workday.",
+      "session_index": 125,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The Cleveland trip remains booked, but the earlier return no longer provides a dependable airport margin after the client meeting.",
+      "days_after_previous": 6,
+      "domain": "flights",
+      "episode_id": "client-cleveland-020",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+        "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748"
+      ],
+      "interaction_goal": "Compare the revised return options, calculate realistic departure times from University Circle, review fare consequences, and rebook the Wednesday itinerary that best preserves the work schedule.",
+      "scenario_brief": "Six days after booking, Maya is notified that her Wednesday Cleveland-to-Minneapolis nonstop has moved from 6:05 p.m. to 5:25 p.m. The client review still ends at 3:30 p.m. near University Circle and could run 20 minutes late, leaving little time to retrieve her suitcase and reach the airport. The airline offers a 7:15 p.m. connection arriving in Minneapolis at 11:38 p.m., an 8:10 a.m. Thursday nonstop, or a refund of the return segment; the Monday outbound is unchanged.",
+      "session_index": 126,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The Cleveland travel is finished, but the ticket exchange and mixed personal and business charges must be separated before submission.",
+      "days_after_previous": 9,
+      "domain": "booking_administration",
+      "episode_id": "client-cleveland-020",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a"
+      ],
+      "interaction_goal": "Reconcile the original and reissued ticket records, identify the business portion of the hotel folio, document the incomplete rideshare receipt, and calculate the final reimbursable amount.",
+      "scenario_brief": "Maya took the 7:15 p.m. Wednesday connection and arrived home at 11:38 p.m. Her expense file now contains the $574 original airfare receipt, a reissued itinerary with no additional collection, a $514.65 two-night hotel folio, $96 in airport and local rideshares, and a $27 meal purchased during the connection. One rideshare receipt shows only the card charge and pickup time, while the hotel folio includes a $32 restaurant charge that Maya paid personally.",
+      "session_index": 127,
+      "session_length": "micro",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "A new coastal trip begins with fixed travel windows and a preferred city-and-beach split, while the arrival airport, room costs, and car timing remain open.",
+      "days_after_previous": 68,
+      "domain": "combined_trip",
+      "episode_id": "partner-savannah-019",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748",
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+      ],
+      "interaction_goal": "Compare flying into Savannah with using a larger nearby airport, map feasible Thursday and Tuesday itineraries, estimate lodging and ground transportation costs, and determine whether the proposed split fits the complete budget.",
+      "scenario_brief": "Maya and her partner are considering a five-night October trip combining Savannah and Tybee Island. They can leave Minneapolis after 1:00 p.m. Thursday and need to return by 9:00 p.m. Tuesday. They want two nights in Savannah and three near the beach, expect to rent a car only when leaving the city, and have a total transportation and lodging budget of $3,800 before meals. No flights, rooms, or car have been selected.",
+      "session_index": 128,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "All three flight choices can anchor the trip, but the lowest fare consumes part of the first night and adds a long drive, while the most convenient pairing leaves less room for beachfront lodging.",
+      "days_after_previous": 3,
+      "domain": "flights",
+      "episode_id": "partner-savannah-019",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+        "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748"
+      ],
+      "interaction_goal": "Compare total travel time, baggage costs, connection exposure, and ground transportation for each pairing, then select flights that leave a workable lodging budget and preserve most of the five-night trip.",
+      "scenario_brief": "The Savannah search has narrowed to three round trips for two travelers: a $936 itinerary with one connection each way that arrives at 8:42 p.m. Thursday and returns at 7:55 p.m. Tuesday, a $1,148 pairing with a nonstop outbound and one-stop return, and an $812 option through Atlanta that arrives after midnight Thursday and requires a separate three-and-a-half-hour drive to Savannah. The $936 fare includes carry-ons, while checked bags would add $140 round trip for the pair.",
+      "session_index": 129,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "Flights are settled, but taxes, parking, property fees, and cancellation terms could push several lodging combinations beyond the remaining trip budget.",
+      "days_after_previous": 5,
+      "domain": "hotels",
+      "episode_id": "partner-savannah-019",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+      ],
+      "interaction_goal": "Calculate complete lodging totals for practical city-and-island combinations, verify Saturday luggage handling and car pickup timing, compare cancellation deadlines, and choose the two properties that keep the trip within budget.",
+      "scenario_brief": "Maya and her partner selected the $936 Savannah flights and plan to share one checked bag, bringing airfare to $1,076. For the first two nights, they are comparing a $238-per-night historic-district hotel with breakfast against a $204-per-night room about a mile south that charges $35 nightly for parking. Tybee Island options for three nights are a $286-per-night beachfront hotel with a $32 nightly resort fee, a $244-per-night inn two blocks from the beach, and a $219-per-night apartment with a $145 cleaning fee and a four-night cancellation penalty. Estimated taxes range from 13 to 15 percent, and a compact rental car from Saturday morning through Tuesday afternoon is quoted at $318.",
+      "session_index": 130,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The trip selections fit the budget, but the reservations, deadlines, seat assignments, and final-day sequence still need to be consolidated.",
+      "days_after_previous": 7,
+      "domain": "booking_administration",
+      "episode_id": "partner-savannah-019",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+        "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+      ],
+      "interaction_goal": "Complete and verify the flight, hotel, and rental reservations; record confirmation details and cancellation times; assign available seats; and produce a chronological itinerary with a realistic Tuesday airport arrival target.",
+      "scenario_brief": "Maya and her partner chose the historic-district hotel for Thursday and Friday at an estimated $542.64 with tax, the Tybee Island inn for Saturday through Monday at an estimated $834.48 with tax, and the $318 compact rental car from Saturday at 10:00 a.m. until Tuesday at 3:30 p.m. The flights and shared checked bag total $1,076. The Savannah room can be canceled until 6:00 p.m. three days before arrival, the island inn requires cancellation seven days before arrival, and the rental rate is payable at pickup. The flight seats are still unassigned, and the Tuesday drive, fuel stop, car return, and airport arrival need to be timed.",
+      "session_index": 131,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "versions": [
+    {
+      "alternative_group_key": "return_leg_departure_time_of_day",
+      "boundary_condition": "Treat this as a soft default; departures close to afternoon may be considered when true afternoon options are limited or unattractive.",
+      "condition": "When booking or comparing round-trip flights and selecting the return leg departure time.",
+      "default_action": "Present return-flight options departing in the afternoon first and let the user choose among them.",
+      "effective_from_session": 0,
+      "exception_condition": "Do not generalize this return-leg preference to outbound legs, and follow any explicit timing requirement for the current trip.",
+      "family": "flight_departure_arrival_timing",
+      "habit_id": "tm_pd_v05_user_000_h00",
+      "name": "afternoon_return_departure_preference",
+      "preference_value": "Prefer the return flight to depart in the afternoon.",
+      "scope_condition": "Applies when Maya is selecting the return leg of a round trip after a client visit or leisure stay and has no explicit return-time requirement; afternoon departure is her recurring default.",
+      "scope_key": "return_legs_after_work_or_leisure_stays",
+      "source_bundle_id": "tm_v04_e2e_bundle_26cf0aa15c48",
+      "source_habit_instance_id": "tm_v04_e2e_habit_26cf0aa15c48",
+      "strength": "secondary",
+      "testable": true,
+      "user_id": "tm_pd_v05_user_000",
+      "version": 1
+    },
+    {
+      "alternative_group_key": "flight_route_connection_policy",
+      "boundary_condition": "Treat this as a preference rather than an absolute requirement unless the user explicitly says no layovers for the current trip.",
+      "condition": "When searching for outbound or return flights, prioritize nonstop options.",
+      "default_action": "Search for and present a nonstop itinerary first.",
+      "effective_from_session": 0,
+      "exception_condition": "If no suitable nonstop flight is available, a one-stop option may be acceptable, but confirm the tradeoff before booking.",
+      "family": "flight_route_connection_policy",
+      "habit_id": "tm_pd_v05_user_000_h01",
+      "name": "Prefer nonstop flights",
+      "preference_value": "Nonstop flights are generally preferred.",
+      "scope_condition": "Applies to Maya's routine domestic client and leisure flight searches from Minneapolis, where nonstop service is her recurring routing preference.",
+      "scope_key": "routine_domestic_round_trip_routing",
+      "source_bundle_id": "tm_v04_e2e_bundle_ca360da1d426",
+      "source_habit_instance_id": "tm_v04_e2e_habit_ca360da1d426",
+      "strength": "primary",
+      "testable": true,
+      "user_id": "tm_pd_v05_user_000",
+      "version": 1
+    },
+    {
+      "alternative_group_key": "preferred_flight_carrier",
+      "boundary_condition": "This is a soft preference: the evidence supports Delta as a favored option, not as the only acceptable airline or an always-first choice over every other preferred carrier.",
+      "condition": "When choosing among flight carriers and Delta is available while also satisfying the trip's schedule, route, price, and stop constraints.",
+      "default_action": "Search for or present Delta options as part of the preferred carrier set, and favor Delta when it is otherwise comparable to alternatives.",
+      "effective_from_session": 0,
+      "exception_condition": "Use another acceptable carrier when Delta is unavailable, materially worse, or does not meet the current trip constraints.",
+      "family": "flight_airline_preference",
+      "habit_id": "tm_pd_v05_user_000_h02",
+      "name": "Delta as a soft preferred carrier option",
+      "preference_value": "Delta is a preferred airline to include in the flight shortlist, but not an exclusive carrier requirement.",
+      "scope_condition": "Applies when Maya compares carriers for trips originating in Minneapolis and Delta has an itinerary that is reasonably comparable on schedule, route, and price.",
+      "scope_key": "minneapolis_origin_carrier_choice",
+      "source_bundle_id": "tm_v04_e2e_bundle_9f7064c606c7",
+      "source_habit_instance_id": "tm_v04_e2e_habit_9f7064c606c7",
+      "strength": "secondary",
+      "testable": true,
+      "user_id": "tm_pd_v05_user_000",
+      "version": 1
+    },
+    {
+      "alternative_group_key": "flight_option_ranking_priority",
+      "boundary_condition": "Do not let price override explicit requirements such as Wi-Fi, acceptable layover length, nonstop service when requested, or required departure and return timing.",
+      "condition": "When comparing flights that meet the trip's required timing, connectivity, and onboard-feature needs.",
+      "default_action": "Rank acceptable options by price and choose the cheapest one.",
+      "effective_from_session": 0,
+      "exception_condition": "Choose a more expensive option when the cheapest violates a stated must-have or has an unacceptably long or inconvenient layover.",
+      "family": "flight_price_quality_tradeoff",
+      "habit_id": "tm_pd_v05_user_000_h03",
+      "name": "Cheapest acceptable flight",
+      "preference_value": "Prefer the lowest-priced flight that still satisfies essential itinerary and amenity constraints.",
+      "scope_condition": "Applies after Maya's current trip timing, routing, and any stated onboard requirements have defined an acceptable domestic flight shortlist; she then prefers its lowest-priced option.",
+      "scope_key": "acceptable_domestic_flight_shortlist",
+      "source_bundle_id": "tm_v04_e2e_bundle_cfc55e51f18b",
+      "source_habit_instance_id": "tm_v04_e2e_habit_cfc55e51f18b",
+      "strength": "primary",
+      "testable": true,
+      "user_id": "tm_pd_v05_user_000",
+      "version": 1
+    },
+    {
+      "alternative_group_key": "",
+      "boundary_condition": "Treat the pool and exercise facility as the durable core preference and the hot tub as a softer additional preference. Do not infer indoor versus outdoor pool requirements, a specific pool type, or unrelated room amenities unless stated for the current trip.",
+      "condition": "When choosing or comparing hotels based on wellness or recreation amenities.",
+      "default_action": "Prioritize hotels that offer both a pool and an on-site fitness center, gym, or comparable exercise facility; among otherwise suitable options, prefer one that also has a hot tub.",
+      "effective_from_session": 0,
+      "exception_condition": "Relax the hot-tub preference when it materially limits suitable options, and relax either core amenity when the user explicitly waives it or stronger current-trip constraints favor another hotel.",
+      "family": "hotel_accessibility_amenity_priority",
+      "habit_id": "tm_pd_v05_user_000_h04",
+      "name": "prefers_hotels_with_pool_fitness_and_optional_hot_tub",
+      "preference_value": "Prefer hotels with both a pool and an on-site fitness facility, with a hot tub as an additional preference when available.",
+      "scope_condition": "Applies to Maya's multi-night work and leisure hotel stays, where a pool and on-site fitness facility support her recurring exercise routine and a hot tub is an additional preference.",
+      "scope_key": "multi_night_hotel_wellness_routine",
+      "source_bundle_id": "tm_v04_e2e_bundle_051d8fbc7334",
+      "source_habit_instance_id": "tm_v04_e2e_habit_051d8fbc7334",
+      "strength": "primary",
+      "testable": true,
+      "user_id": "tm_pd_v05_user_000",
+      "version": 1
+    },
+    {
+      "alternative_group_key": "hotel_quality_threshold_rating_floor",
+      "boundary_condition": "Use a 3.5 minimum when the search is explicitly budget-focused. Apply either threshold only to the rating metric under discussion, and do not conflate hotel class, Google ratings, and customer-review ratings.",
+      "condition": "When a hotel search calls for a well-rated property and frames the stay as nice, upscale, resort-style, or explicitly budget-focused.",
+      "default_action": "Filter or prioritize options meeting a 4.0 minimum for nice, upscale, or resort-style searches, and identify the rating source when known.",
+      "effective_from_session": 0,
+      "exception_condition": "Follow any newly stated threshold or metric. If no suitable option meets the applicable floor while satisfying more important trip constraints, ask before relaxing it.",
+      "family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v05_user_000_h05",
+      "name": "contextual_hotel_rating_floor",
+      "preference_value": "Prefer hotels rated at least 4.0 when seeking a nice, upscale, or resort-style stay; for explicitly budget-focused searches, prefer at least 3.5.",
+      "scope_condition": "Applies when Maya explicitly frames a hotel search as nice, upscale, or resort-style, using a 4.0 rating floor, or as budget-focused, using a 3.5 floor for the named rating metric.",
+      "scope_key": "quality_floor_by_stay_positioning",
+      "source_bundle_id": "tm_v04_e2e_bundle_2f7cf6d5b85d",
+      "source_habit_instance_id": "tm_v04_e2e_habit_2f7cf6d5b85d",
+      "strength": "secondary",
+      "testable": true,
+      "user_id": "tm_pd_v05_user_000",
+      "version": 1
+    },
+    {
+      "alternative_group_key": "hotel_location_beach_proximity",
+      "boundary_condition": "Treat walking distance as the reusable threshold; use a stricter walk-time limit only when the current request explicitly supplies one",
+      "condition": "When searching for a hotel in a coastal or beach-oriented area",
+      "default_action": "Prioritize properties on the beach or close enough to walk while also filtering to the trip's stated budget",
+      "effective_from_session": 0,
+      "exception_condition": "Do not apply this preference to non-coastal trips or when the current trip names a different location priority",
+      "family": "hotel_location_price_tradeoff",
+      "habit_id": "tm_pd_v05_user_000_h06",
+      "name": "Prefer beach-proximate hotels",
+      "preference_value": "A hotel on or near the beach, ideally within walking distance",
+      "scope_condition": "Applies on Maya's beach-oriented trips with her partner, where she repeatedly looks for a hotel on or near the beach and normally treats walking distance as the proximity threshold.",
+      "scope_key": "partner_coastal_leisure_hotels",
+      "source_bundle_id": "tm_v04_e2e_bundle_9872ac91d495",
+      "source_habit_instance_id": "tm_v04_e2e_habit_9872ac91d495",
+      "strength": "secondary",
+      "testable": true,
+      "user_id": "tm_pd_v05_user_000",
+      "version": 1
+    }
+  ]
+}

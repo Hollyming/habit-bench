@@ -1,0 +1,166 @@
+{
+  "cache_fingerprint": "7484746da27d2efbb8813120564ad6df55ce6b106dc760dddb7a515c918f2d6c",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "No durable travel preference was established. Marcus selected the better-positioned hotel pair and fully priced Budget rental for this trip only, while retaining the later Memphis flight as a fallback; no purchase or hold was authorized.",
+        "evidence_topology": {
+          "episode_id": "nashville-memphis-ops-01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 110,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selects an evening return departure for this trip and retains a later evening option as fallback. No other candidate habit is directly established by the user's words.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Keep the 6:05 flight, with the 8:15 flight only as the fallback.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Put the Nashville and Memphis hotels together with the car now. I want the real total, including any one-way fee, and I need to know whether the 6:05 Memphis flight is still workable after Tuesday's inspection.",
+          "role": "user"
+        },
+        {
+          "content": "I found two sensible hotel pairs and two one-way rental quotes. Before I compare them, are the Monday Nashville meeting and the Tuesday Memphis inspection still at the addresses from the earlier plan, with the inspection ending around 3:30 p.m.?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. The Nashville meeting starts at 9:30 Monday. The Memphis restaurant visit is Monday evening, and Tuesday's inspection is 1:30 to about 3:30. Use the same addresses.",
+          "role": "user"
+        },
+        {
+          "content": "The better-positioned pair is Home2 Suites Nashville Vanderbilt Sunday night at $187.72 total and Hyatt Place Memphis/Primacy Parkway Monday night at $169.38 total. Home2 is about 11-17 minutes from Monday's meeting. The Hyatt Place is about 8 minutes from the Memphis restaurant, 10-15 minutes from Tuesday's inspection, and 18-25 minutes from MEM after the inspection.",
+          "role": "assistant"
+        },
+        {
+          "content": "What's the other pair, and is it actually cheaper?",
+          "role": "user"
+        },
+        {
+          "content": "The second pair is Hilton Garden Inn Nashville Vanderbilt at $206.44 total and Caption by Hyatt Beale Street at $142.18 total. Together that pair is $348.62, which is $8.48 less than the first pair's $357.10. The tradeoff is Memphis: Caption is about 24-35 minutes from the restaurant and 28-40 minutes from the inspection, so Tuesday requires a cross-town drive before the 1:30 appointment.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Nashville difference sounds negligible. Give me the complete car numbers. The cheap quote last time did not include the drop fee.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Budget displays $176.84 for the base rate, taxes, and facility charges, then adds a $75 intercity drop charge at checkout. The complete Budget total is $251.84. Pickup is at BNA Sunday after the 7:55 p.m. arrival; that counter is open until 11:00 p.m. The MEM return location is open from 4:00 a.m. to 11:00 p.m. Tuesday.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the other car?",
+          "role": "user"
+        },
+        {
+          "content": "Avis is $269.60 all-in, including its $60 one-way charge. Its BNA counter is open until 11:30 p.m., and MEM returns are accepted from 4:00 a.m. to 11:00 p.m. Budget is $17.76 less and still leaves more than three hours of pickup margin after the scheduled landing.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use Budget in the comparison. What are the two full trip totals with the $417 flights?",
+          "role": "user"
+        },
+        {
+          "content": "With the selected $417 open-jaw flights and the complete $251.84 Budget price, the Home2 plus Hyatt Place combination totals $1,025.94. The Hilton Garden Inn plus Caption combination totals $1,017.46. Those figures include both hotel totals, the rental taxes and drop charge, and airfare; they exclude fuel, parking, tolls, and meals.",
+          "role": "assistant"
+        },
+        {
+          "content": "Walk Monday through. I don't want the lower hotel number hiding a bad drive.",
+          "role": "user"
+        },
+        {
+          "content": "From either Nashville hotel, leave around 8:55 a.m. for the 9:30 meeting. If the meeting ends at 12:30 p.m., allowing 30 minutes to wrap up and get on the road puts departure near 1:00 p.m. The Nashville-to-Memphis drive remains about 3 hours 15 minutes before a stop or traffic, so plan on reaching East Memphis around 4:15-4:35 p.m. The Hyatt Place is then roughly 8 minutes from the restaurant. Caption would add a cross-town leg of roughly 24-35 minutes before the evening visit.",
+          "role": "assistant"
+        },
+        {
+          "content": "That argues for the Hyatt. Now prove Tuesday works with the early flight, including the rental return rather than just the drive to the terminal.",
+          "role": "user"
+        },
+        {
+          "content": "From Hyatt Place, check out and leave by 1:05 p.m. for the 1:30 inspection; the normal drive is 10-15 minutes, leaving about 10 minutes of buffer. If the inspection ends at 3:30, the drive to the MEM rental return is approximately 18-25 minutes, putting you there around 3:48-3:55. Allow 10-15 minutes for fuel receipt, return, and the short transfer into the terminal, and you should enter the terminal around 4:05-4:10 for the 6:05 p.m. departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "So almost two hours at the airport. What if the inspection runs fifteen minutes late?",
+          "role": "user"
+        },
+        {
+          "content": "A 3:45 finish would put the car return around 4:03-4:10 and terminal arrival around 4:20-4:25. That still leaves about 1 hour 40 minutes before departure. A 30-minute overrun would reduce it to roughly 1 hour 25 minutes. The schedule is workable, but I would treat 4:00 p.m. as the latest comfortable departure from the inspection site and refuel Monday night or before the appointment.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would Caption change the inspection-to-airport part?",
+          "role": "user"
+        },
+        {
+          "content": "No. Once you are at the inspection, the 18-25-minute drive to the rental return is the same. Caption's problem is getting from the hotel to the 1:30 inspection: you would need to leave around 12:40 p.m. instead of 1:05 p.m., with more exposure to cross-town traffic and less useful time before the appointment.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then select Home2, Hyatt Place, and Budget for the working plan. Keep the 6:05 flight, with the 8:15 flight only as the fallback. Do not buy any of it yet.",
+          "role": "user"
+        },
+        {
+          "content": "Selected for the unbooked working plan: ORD-BNA Sunday 6:20-7:55 p.m.; Home2 Suites Nashville Vanderbilt at $187.72; Budget BNA-to-MEM at $251.84 complete, including the $75 drop charge; Hyatt Place Memphis/Primacy Parkway at $169.38; and MEM-ORD Tuesday 6:05-7:49 p.m. The complete planned total is $1,025.94 before fuel, parking, tolls, meals, and any fare or rate changes.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the exact timing with it, especially Tuesday. And nothing should be held or charged.",
+          "role": "user"
+        },
+        {
+          "content": "The plan remains comparison-only: nothing is held, booked, ticketed, or charged. Budget pickup follows the Sunday 7:55 p.m. BNA arrival and is available until 11:00 p.m. Monday's meeting begins at 9:30 a.m.; target a 1:00 p.m. departure for the approximately 3-hour-15-minute drive to Memphis. Tuesday, leave Hyatt Place by 1:05 p.m. for the 1:30-3:30 inspection, then allow 18-25 minutes to the MEM rental return and 10-15 minutes to complete the return and reach the terminal, targeting 4:05-4:10 p.m. for the 6:05 flight. The 8:15-9:59 p.m. return remains the $451 airfare fallback.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0110",
+      "session_index": 110,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Charleston remains confirmed for Marcus, Daniel, and Owen for March 27-31 under flights H7Q4LM and A6N9RP, Hyatt House HH-729461, and rides R-48271 and R-48296; the $501 canceled-return refund remains pending. Louisville is confirmed April 7-8 under L8V2KD and GH-684217; four local rides remain unbooked at an expected $124-$171. Cleveland is confirmed May 13-14 under C7M4QP, AB-417286, HZ-638205, and LF-290184. Dallas is confirmed June 16-17 under U6D9KF, HP-583194, and AV-741620, estimated at $683. Southern California is confirmed July 19-27 under N4K8TZ, SV-731904, AVD-904671, and BM-558217, total $5,739. Boston is confirmed January 22-26 under J7R4NX and RV-621847; Tuesday car pickup is 4:30 a.m. Norfolk and Virginia Beach are confirmed under N6R3PV, CY-842619, and AV-395742; expected total is $1,112.56 before fuel, tolls, meals, and Tuesday parking. St. Louis is confirmed March 23-28 under DT-573826; expected hotel, parking, fuel, and tolls total is $1,149.40. Sacramento is confirmed under S6K9TR, CY-519384, and AL-728541; estimated total is $1,235.08. Oregon coast is confirmed under UA-8K4R2M, BZ-761943, TI-846291, AR-593817, and HP-274608; current exposure is $4,989.68 before meals and activities. Atlanta-Birmingham September 16-17 is confirmed under Q7L3VD, H2-846317, and AV-592804; expected total is $1,141.06 before meals. The Pittsburgh family weekend is complete under P6T8RM and SH-418672; revised charges total $2,171.46, with rides still unbooked at an estimated $210. For October 18-20 Nashville-Memphis, the selected but entirely unbooked working plan is ORD-BNA Sunday 6:20-7:55 p.m., Home2 Suites Nashville Vanderbilt at $187.72, Budget one-way BNA-to-MEM at $251.84 including a $75 drop charge, Hyatt Place Memphis/Primacy Parkway at $169.38, and MEM-ORD Tuesday 6:05-7:49 p.m.; total planned cost is $1,025.94 before fuel, parking, tolls, meals, and rate changes. Budget BNA pickup is available until 11:00 p.m. Sunday and MEM return hours are 4:00 a.m.-11:00 p.m. Monday's 9:30 a.m. meeting is followed by a target 1:00 p.m. departure and an approximately 3-hour-15-minute drive to Memphis. Tuesday's inspection is 1:30-3:30 p.m.; leave the hotel by 1:05 p.m., allow 10-15 minutes to the inspection, 18-25 minutes from the inspection to the rental return, and 10-15 minutes to reach the terminal, targeting 4:05-4:10 p.m. The 8:15-9:59 p.m. MEM-ORD return, bringing airfare to $451, remains the fallback. Nothing is held, booked, ticketed, or charged.",
+  "verification": {
+    "110": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Keep the 6:05 flight, with the 8:15 flight only as the fallback.",
+          "habit_id": "tm_pd_v05_user_002_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selects an evening return departure for this trip and retains a later evening option as fallback. No other candidate habit is directly established by the user's words."
+    }
+  }
+}

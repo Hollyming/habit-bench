@@ -1,0 +1,21 @@
+{
+  "cache_fingerprint": "622871221dfa86cc93667096ade2874dfa1edd1847fe90fd407cd269a143f3e5",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_option_ranking_priority",
+      "boundary_condition": "Do not let price override explicit requirements such as Wi-Fi, acceptable layover length, nonstop service when requested, or required departure and return timing.",
+      "canonical_value": "Among flights satisfying the trip's explicit timing, connectivity, and onboard-feature requirements, prefer the lowest-priced option; choose a more expensive flight when the cheapest violates a must-have or entails an unacceptable layover.",
+      "condition": "When comparing flights that meet the trip's required timing, connectivity, and onboard-feature needs.",
+      "default_action": "Rank acceptable options by price and choose the cheapest one.",
+      "exception_condition": "Choose a more expensive option when the cheapest violates a stated must-have or has an unacceptably long or inconvenient layover.",
+      "input_ids": [
+        "tm_v04_e2e_habit_cfc55e51f18b"
+      ],
+      "name": "Cheapest acceptable flight",
+      "preference_value": "Prefer the lowest-priced flight that still satisfies essential itinerary and amenity constraints.",
+      "rationale": "Multiple source examples consistently support price as the ranking preference only after explicit itinerary and amenity requirements are satisfied. The candidate already preserves the relevant constraints and exceptions without overstating price as absolute.",
+      "representative_id": "tm_v04_e2e_habit_cfc55e51f18b"
+    }
+  ]
+}

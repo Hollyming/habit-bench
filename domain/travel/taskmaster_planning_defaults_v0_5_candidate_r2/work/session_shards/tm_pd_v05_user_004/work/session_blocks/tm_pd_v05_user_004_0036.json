@@ -1,0 +1,87 @@
+{
+  "cache_fingerprint": "04e60b67698ecd1795bcddf1acb7237cd017dbf0a98e2797ab2e7df365ff483a",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves only the outstanding New Orleans booking checks: three-person occupancy, full price composition, deposit, and the exact holiday-period cancellation deadline. It introduces no recurring travel preference or policy evidence.",
+        "evidence_topology": {
+          "episode_id": "ep_013_family_new_orleans_winter_break",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 36,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_004"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user only requests verification of occupancy, payment timing, and cancellation terms for the current hotel reservation; none of the candidate habits is evidenced.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I’m ready to book Cambria, but I want the actual reservation terms in one place first. Can you verify the room accepts all three of us, what I would pay today, and the exact cancellation cutoff? Don’t place the reservation yet.",
+          "role": "user"
+        },
+        {
+          "content": "The selected two-queen room is listed for two adults and one child age 14, with a maximum occupancy of four, so all three guests can be registered. The three-night total still comes to $929.01: $657.00 room charge, $109.72 lodging tax, $144.00 valet parking, and $18.29 parking tax. No resort, destination, or other mandatory property fee is shown.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does the checkout page say is due now? I don’t want the full stay charged before we arrive.",
+          "role": "user"
+        },
+        {
+          "content": "It requires a deposit of one night’s room and tax, $255.57, at booking. The remaining $673.44 is due at the hotel, assuming there are no incidental purchases. The hotel may also place a separate incidental hold at check-in, but that is not included in the $929.01 trip total.",
+          "role": "assistant"
+        },
+        {
+          "content": "And give me the cancellation deadline as a date and local time. Since this is right before Christmas, make sure there isn’t a separate holiday rule hiding in the terms.",
+          "role": "user"
+        },
+        {
+          "content": "The no-penalty cancellation deadline is December 18 at 3:00 p.m. Central Time, 48 hours before the hotel’s stated check-in time on December 20. The rate details do not show a separate Christmas or holiday cancellation restriction. After that cutoff, the penalty is the one-night room-and-tax deposit of $255.57.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Put the final reservation details in a compact summary so I can compare them against the payment screen before I submit.",
+          "role": "user"
+        },
+        {
+          "content": "Cambria Hotel New Orleans Downtown, December 20-23, one two-queen room for two adults and one 14-year-old. Total: $929.01, including three nights, lodging tax, three nights of valet, and parking tax; no mandatory property fee. Due at booking: $255.57. Expected balance at the hotel: $673.44, excluding any refundable incidental hold. Cancel by December 18 at 3:00 p.m. Central Time for no penalty; afterward, the penalty is $255.57. Tuesday vehicle retrieval remains available around the clock. Nothing has been reserved.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0036",
+      "session_index": 36,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Danielle's Denver, Santa Fe, Chicago, Nashville, other Atlanta plans, and pending work and family travel remain unchanged. Gulf Coast unit B remains reserved for August 10-15 for three guests at $2,098; $629.40 has been paid, $1,468.60 is due July 11, written parking confirmation remains outstanding, and a separate $300 security authorization is scheduled for August 8. For the September 15-17 Atlanta summit, Monday and Tuesday lodging is confirmed, but mandatory-charge coverage still needs verification. Southwest DAL-ATL flights were selected at a quoted $338 with one checked bag; fare, baggage, and times require rechecking, and nothing has been purchased. For Washington October 10-14, the Dupont Circle room is reserved and Southwest DAL-DCA nonstops were selected at a quoted $1,263 for three; flight details, hotel arrival notice, Tuesday luggage storage, and timed Air and Space entry remain unresolved. For the November 6-7 Kansas City trip, the Holiday Inn Express remains selected at a working $258.20; hotel charges and luggage storage still need verification, and the requested return-flight reissue has not been made. For New Orleans December 20-23, Cambria remains selected but unreserved for one two-queen room accommodating two adults and one 14-year-old. The complete stay is $929.01, including room, lodging tax, valet, and parking tax, with no mandatory property fee. A $255.57 one-night room-and-tax deposit is due at booking and the expected hotel balance is $673.44, excluding any incidental hold. Cancellation is free through December 18 at 3:00 p.m. Central Time; afterward the penalty is $255.57, with no separate holiday restriction shown. Tuesday vehicle retrieval is available around the clock. The Dallas departure plan is 6:45 a.m. with an expected 4:00-4:30 p.m. arrival.",
+  "verification": {
+    "36": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user only requests verification of occupancy, payment timing, and cancellation terms for the current hotel reservation; none of the candidate habits is evidenced."
+    }
+  }
+}

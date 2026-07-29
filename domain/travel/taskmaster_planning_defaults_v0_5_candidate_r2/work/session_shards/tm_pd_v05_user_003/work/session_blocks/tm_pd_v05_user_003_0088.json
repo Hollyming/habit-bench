@@ -1,0 +1,163 @@
+{
+  "cache_fingerprint": "541a67e5d5122e21dc7629def10013ad1e1e51b6cad7506168535c1fbe3d0689",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For this specific short Scottsdale leisure trip, Priya explicitly chose coach after business class was surfaced, treating coach as a local exception rather than changing any broader cabin policy.",
+        "evidence_topology": {
+          "episode_id": "leisure-arizona-wellness-01",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 88,
+          "target_habit_id": "tm_pd_v05_user_003_h03",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user made trip-specific timing and cabin overrides and explicitly favored a more expensive itinerary for substantially more usable resort time. No carrier or hotel habit was evidenced.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Use the midday flight Thursday and the evening flight Monday.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "So the $556 itinerary buys us Thursday evening and nearly all of Monday for only $36 more than that combination.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h01",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For this short Scottsdale trip, use coach. Business class isn’t worth the difference here.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_003_h03",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Let’s settle the Scottsdale flights now. Compare the full round trips, not just individual legs. I want to see what each choice does to our resort time and airport transfers.",
+          "role": "user"
+        },
+        {
+          "content": "For March 12-16, the nonstop options through Phoenix are still available. Business class starts at $1,184 for two; coach combinations range from $498 to $672 for two. Should I compare both cabins, or concentrate on one for this trip?",
+          "role": "assistant"
+        },
+        {
+          "content": "For this short Scottsdale trip, use coach. Business class isn’t worth the difference here.",
+          "role": "user"
+        },
+        {
+          "content": "The lowest coach combination is $498 total: depart SFO Thursday at 6:35 p.m., arrive PHX at 8:38 p.m.; return Monday at 7:05 a.m., arrive SFO at 9:18 a.m. It is changeable without an airline change fee, but any fare difference applies. The tickets are nonrefundable and would retain value as flight credit if canceled before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "That effectively loses Thursday and forces us out of the resort before dawn Monday. Show me the combinations with the midday outbound.",
+          "role": "user"
+        },
+        {
+          "content": "The midday nonstop leaves SFO at 12:40 p.m. and reaches PHX at 2:43 p.m. With baggage claim and a rideshare, arrival at Montelucia should be about 3:40 p.m., close to check-in time. Pairing it with Monday’s 7:05 a.m. return costs $534 total. Pairing it with the 6:25 p.m. return, arriving SFO at 8:38 p.m., costs $556 total. Both use the same nonrefundable, no-change-fee fare terms.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much usable Monday time does the evening return actually give us, and when would we need to leave the resort?",
+          "role": "user"
+        },
+        {
+          "content": "For the 6:25 p.m. departure, I would plan to leave Montelucia around 3:45 p.m. That allows roughly 35 minutes to PHX in ordinary Monday traffic and gives you just over two hours at the airport. You would have breakfast, most of the morning, lunch, and part of the afternoon at the resort. The 7:05 a.m. flight would require leaving around 4:25 a.m.; traffic would be light, but there would be no usable resort time Monday.",
+          "role": "assistant"
+        },
+        {
+          "content": "And if we took the cheap Thursday evening flight but kept the Monday evening return?",
+          "role": "user"
+        },
+        {
+          "content": "That combination is $520 for two. You would likely reach Montelucia around 9:35 p.m. Thursday, so it saves $36 against the midday-out, evening-back itinerary but gives up nearly six hours in Scottsdale. The return timing and fare conditions are otherwise the same.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the $556 itinerary buys us Thursday evening and nearly all of Monday for only $36 more than that combination. Are seats and carry-ons included?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The $556 total includes standard seat selection and one carry-on plus one personal item per traveler. Checked bags are not included. Seats together are currently available on both flights, and the quoted total includes taxes and carrier charges.",
+          "role": "assistant"
+        },
+        {
+          "content": "Purchase the $556 round trip for both of us with the saved traveler details and payment card. Use the midday flight Thursday and the evening flight Monday.",
+          "role": "user"
+        },
+        {
+          "content": "Before ticketing: two coach tickets, nonstop SFO-PHX on Thursday, March 12, 12:40-2:43 p.m., and nonstop PHX-SFO on Monday, March 16, 6:25-8:38 p.m. The total is $556. The fare is nonrefundable; cancellation before departure produces airline credit, and changes have no airline fee but can require a fare difference. Shall I submit the purchase?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, submit it.",
+          "role": "user"
+        },
+        {
+          "content": "The flights are ticketed for both travelers at a total of $556 using the saved payment card. The itinerary is SFO-PHX nonstop March 12, 12:40-2:43 p.m., and PHX-SFO nonstop March 16, 6:25-8:38 p.m. Seats together are confirmed, and the airline confirmation has been added to the trip record. Plan on leaving Montelucia around 3:45 p.m. Monday. The resort room and Saturday couples massage remain unbooked pending confirmation of the room cancellation and deposit terms and the massage price including service charge.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0088",
+      "session_index": 88,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund and rental documentation remain pending. Washington, Sonoma, Bothell, Chicago, Carlsbad, Palm Springs, Cypress Spa Lodge, Indianapolis, July supplier-audit, prior Scottsdale, Clayton, Plymouth, Denver, Coastal Sonoma, Holly Springs, Puerto Rico, Lenexa, and Boston arrangements remain as recorded. Boston conference and workshop registration totals $1,690; United airfare is $486; Westin Boston Seaport is reserved September 14-18 for $1,268 including tax, with cancellation until 6:00 p.m. Boston time September 11; trip subtotal is $3,444. For the March 12-16 Scottsdale wellness trip, two nonstop SFO-PHX coach tickets are booked for $556: outbound March 12 at 12:40 p.m., arriving 2:43 p.m., and return March 16 at 6:25 p.m., arriving 8:38 p.m. Montelucia’s resort-view king remains unbooked at the working total of $2,018, as does the Saturday 2:30 p.m. 80-minute couples massage. Exact room cancellation and deposit terms and the massage price including service charge still require confirmation before authorization. Estimated rideshares remain $110, and the current trip estimate remains $2,684 before meals and treatments.",
+  "verification": {
+    "88": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Use the midday flight Thursday and the evening flight Monday.",
+          "habit_id": "tm_pd_v05_user_003_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "So the $556 itinerary buys us Thursday evening and nearly all of Monday for only $36 more than that combination.",
+          "habit_id": "tm_pd_v05_user_003_h01",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For this short Scottsdale trip, use coach. Business class isn’t worth the difference here.",
+          "habit_id": "tm_pd_v05_user_003_h03",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user made trip-specific timing and cabin overrides and explicitly favored a more expensive itinerary for substantially more usable resort time. No carrier or hotel habit was evidenced."
+    }
+  }
+}

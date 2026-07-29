@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "138d4ec1bacc4bd9ffc46644da435547f6fe8c0766db87902179f26cc4f3106a",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_recreational_wellness_amenity_cluster",
+      "boundary_condition": "Treat this as a soft reusable default unless the current request states it as mandatory. Do not infer destination, dates, price, balcony, ocean view, or indoor versus outdoor pool type.",
+      "canonical_value": "Prefer hotels with a pool, hot tub, and exercise facilities.",
+      "condition": "When selecting or evaluating hotel options.",
+      "default_action": "Prioritize hotel properties with a pool, hot tub, and exercise access, and verify that the amenities are available.",
+      "exception_condition": "If a current trip prioritizes a different tradeoff or no suitable property provides the full amenity cluster, ask whether a substitute or omission is acceptable.",
+      "input_ids": [
+        "tm_v04_e2e_habit_020c4625aa8b"
+      ],
+      "name": "Prefer amenity-rich hotel properties with pool, hot tub, and exercise access",
+      "preference_value": "Prefers hotels that provide a pool, a hot tub, and a place to exercise, ideally a fitness center.",
+      "rationale": "Repeated, strongly grounded hotel-selection preference across three conversations. The evidence consistently supports prioritizing a pool, hot tub, and exercise access, while variation in wording supports retaining it as a soft reusable default rather than inferring unrelated property attributes.",
+      "representative_id": "tm_v04_e2e_habit_020c4625aa8b"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_breakfast_inclusion",
+      "boundary_condition": "Do not let this preference override stronger trip-specific constraints such as location, room or bed setup, price or class limits, or explicitly stated must-have amenities.",
+      "canonical_value": "Prefer hotels that include free breakfast.",
+      "condition": "When searching for or choosing a hotel.",
+      "default_action": "Favor properties advertising free breakfast when otherwise suitable options are being compared.",
+      "exception_condition": "If no otherwise suitable hotel includes free breakfast, or the current request frames breakfast tentatively, ask whether a property without it is acceptable rather than rejecting suitable options outright.",
+      "input_ids": [
+        "tm_v04_e2e_habit_f94c5af6a3b1"
+      ],
+      "name": "Prefers hotels with free breakfast",
+      "preference_value": "Prefer hotels that include free breakfast; breakfast quality is a plus when known, but the reusable default should remain soft rather than absolute.",
+      "rationale": "Free breakfast recurs across three separate hotel conversations with mixed strength, from tentative interest to an explicit preference. This supports a longitudinal soft ranking preference without making breakfast an absolute requirement.",
+      "representative_id": "tm_v04_e2e_habit_f94c5af6a3b1"
+    }
+  ]
+}

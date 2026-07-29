@@ -1,0 +1,82 @@
+{
+  "cache_fingerprint": "94d3f686b9b7cdfcb9fde420773d21bb9dfccd6a2d724488bfd7521f6a3eaa8f",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "No explicit durable preference evidence appears in this session; the hotel decision is limited to the Chicago conference trip.",
+        "evidence_topology": {
+          "episode_id": "ep_001_chicago_rights_conference",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 2,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "model": "gpt-5.6-sol",
+          "reasoning_effort": "medium"
+        },
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to settle the Chicago hotel now. Can either the Palmer House or the Central Loop cover all three nights, March 27 through March 30?",
+          "role": "user"
+        },
+        {
+          "content": "Based on the current options, the Central Loop Hotel has a standard flexible room available for all three nights. The Palmer House conference block can cover Friday and Saturday, but Thursday is not available at the conference rate, so it would require a room change or a separately priced Thursday night.",
+          "role": "assistant"
+        },
+        {
+          "content": "I do not want to split the stay. What are the totals for a single room at each if the Palmer House has any regular inventory Thursday?",
+          "role": "user"
+        },
+        {
+          "content": "The Central Loop flexible rate is estimated at $687 total including taxes for three nights. The Palmer House would be about $934 total if its regular-rate Thursday room can be combined with the conference-rate Friday and Saturday nights. The Palmer House is at the venue; Central Loop is roughly an eight-to-ten-minute walk away.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the cancellation terms on the Central Loop option?",
+          "role": "user"
+        },
+        {
+          "content": "The displayed flexible rate allows cancellation without penalty until 6:00 p.m. local hotel time on March 26. After that, the stated penalty is one night plus tax. The exact deadline and penalty should be confirmed on the final reservation page because they can change with inventory.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then use Central Loop as the hotel plan. Please give me what the coordinator needs, but do not book it.",
+          "role": "user"
+        },
+        {
+          "content": "Have the coordinator reserve one standard room at the Central Loop Hotel for check-in Thursday, March 27 and check-out Sunday, March 30, for one guest and three nights. The working flexible-rate total is $687 including estimated taxes. Before purchase, confirm uninterrupted availability for all three nights, the final itemized total, whether a deposit is charged, and cancellation without penalty through 6:00 p.m. Chicago time on March 26. The hotel is about an eight-to-ten-minute walk from the Palmer House conference venue. The separate flight plan remains the Southwest nonstop itinerary already prepared for office booking.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0002",
+      "session_index": 2,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena Ruiz is planning a solo professional trip from Denver to a university-press rights conference at the Palmer House in Chicago, March 27-30. The unbooked flight plan is Southwest nonstop from Denver at 11:35 a.m. Thursday, arriving Midway at 2:55 p.m., and Southwest nonstop from Midway at 6:35 p.m. Sunday, arriving Denver around 8:15 p.m., at a working round-trip fare of about $382. The selected hotel plan is one standard flexible room at the Central Loop Hotel for March 27-30, with an estimated total of $687 including taxes. The coordinator must verify live flight details and terms, uninterrupted hotel availability, the itemized hotel total, deposit requirements, and the March 26 cancellation deadline before booking.",
+  "verification": {
+    "2": {
+      "habit_signals": [],
+      "leakage": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user chose an uninterrupted three-night stay at Central Loop, but none of the candidate habits concerning flight timing, connections, carrier, seat location, hotel bed configuration, or in-room amenities was established by a user utterance."
+    }
+  }
+}

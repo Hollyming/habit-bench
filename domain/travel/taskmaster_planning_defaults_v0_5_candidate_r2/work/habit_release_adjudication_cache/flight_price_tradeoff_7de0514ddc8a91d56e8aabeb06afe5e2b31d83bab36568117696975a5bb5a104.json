@@ -1,0 +1,21 @@
+{
+  "cache_fingerprint": "7de0514ddc8a91d56e8aabeb06afe5e2b31d83bab36568117696975a5bb5a104",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_price_tradeoff.primary_selection_priority",
+      "boundary_condition": "Do not infer a persistent dollar cap, and do not relax explicit trip constraints merely to find a lower fare.",
+      "canonical_value": "Prefer the lowest-fare flight among options that otherwise satisfy the current trip requirements, when no stronger non-price priority is stated.",
+      "condition": "When selecting among flight options that already meet the current trip's explicit route, date, stop, cabin, and schedule constraints, and the user has not stated a stronger non-price priority.",
+      "default_action": "Choose or ask for the lowest-fare option within the acceptable set.",
+      "exception_condition": "If the user explicitly prioritizes another factor such as premium cabin, exact timing, shortest duration, airline, or convenience, follow that stated priority instead.",
+      "input_ids": [
+        "tm_v04_habit_e34f3f137618"
+      ],
+      "name": "Prefer the cheapest acceptable flight option",
+      "preference_value": "cheapest acceptable flight",
+      "rationale": "Kept as a soft recurring flight-selection preference: multiple examples show the user asking for the cheapest option within already stated trip constraints. The policy should not be strengthened into a persistent budget cap or permission to relax explicit constraints.",
+      "representative_id": "tm_v04_habit_e34f3f137618"
+    }
+  ]
+}

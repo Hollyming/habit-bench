@@ -1,0 +1,495 @@
+{
+  "cache_fingerprint": "eb591db071fa8a7586a5e0657ef476889e684691fb4410f39b22ec72891e5573",
+  "rows": [
+    {
+      "boundary_condition": "Apply only to hotel brand or property selection; do not infer any destination, route, flight, or non-hotel preference.",
+      "bundle_id": "tm_v04_bundle_fa43ba3a1995",
+      "canonical_value": "hilton",
+      "condition": "When choosing a hotel and a Hilton property is available among otherwise relevant options for the current lodging search.",
+      "confidence": 0.67,
+      "decision": "revise",
+      "default_action": "Favor the Hilton option over comparable non-Hilton hotels if it satisfies the user's stated lodging constraints.",
+      "exception_condition": "If Hilton is unavailable or fails a required constraint such as location, amenities, quality, or price, choose another qualifying hotel instead.",
+      "family": "hotel_brand_choice",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_fa43ba3a1995",
+      "induced_at": "2026-07-15T13:06:13.980488+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Prefer Hilton among suitable hotel options",
+      "preference_value": "Hilton hotel brand when otherwise suitable",
+      "rationale": "Across three distinct scripted sources, the user asks about Hilton amenities, chooses Hilton, and checks Hilton availability with a stated price constraint. This supports a reusable but conditional Hilton-first brand default, not unconditional loyalty.",
+      "seed_value": "hilton",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.62,
+        "reason": "Three distinct instruction_id values show positive Hilton consideration or selection, so a weak hotel-brand preference is supported. However, the evidence does not support a stronger 'check Hilton first' rule; it only supports favoring Hilton when it is among suitable hotel options.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "User follows up about Hilton specifically by asking whether Hilton has Wi-Fi.",
+          "conversation_id": "dlg-d4836329-3c61-4889-b216-4a77c5bf9420",
+          "turn_index": 29
+        },
+        {
+          "contribution": "User selects Hilton: \"Yes, I'll take the Hilton, please.\"",
+          "conversation_id": "dlg-f0b975df-4e4c-47cc-a941-b5832b9c3cf3",
+          "turn_index": 12
+        },
+        {
+          "contribution": "User asks whether Hilton is available for the requested dates while also imposing a price constraint.",
+          "conversation_id": "dlg-8d872906-b9d3-4ea3-97f2-4c827b72b783",
+          "turn_index": 17
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Hilton",
+          "annotation": "hotel_search.name.hotel",
+          "conversation_id": "dlg-d4836329-3c61-4889-b216-4a77c5bf9420",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 29,
+          "user_utterance": "Okay, great. Does Hilton have Wi-Fi?"
+        },
+        {
+          "annotated_segment": "Hilton",
+          "annotation": "hotel_search.name.hotel",
+          "conversation_id": "dlg-f0b975df-4e4c-47cc-a941-b5832b9c3cf3",
+          "habitual_language": false,
+          "instruction_id": "hotel-16",
+          "preference_language": false,
+          "source_domain": "hotels",
+          "turn_index": 12,
+          "user_utterance": "Yes, I'll take the Hilton, please."
+        },
+        {
+          "annotated_segment": "Hilton",
+          "annotation": "hotel_search.name.hotel",
+          "conversation_id": "dlg-8d872906-b9d3-4ea3-97f2-4c827b72b783",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": false,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "Yes, Can you tell me if the Hilton is available from June 16th through June 19th, 2017? I'd like the price to be about $300 or less."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Apply only to lodging selection; do not infer this preference for flights, restaurants, car rentals, destinations, or other travel tasks.",
+      "bundle_id": "tm_v04_bundle_814fd3ee77b4",
+      "canonical_value": "family_friendly",
+      "condition": "When booking lodging for a family-oriented stay or when child/family suitability is relevant to the hotel choice.",
+      "confidence": 0.78,
+      "decision": "keep",
+      "default_action": "Prioritize or filter for hotels described as family-friendly or suitable for families/children.",
+      "exception_condition": "If the user explicitly asks for adults-only, romantic, no-children, nightlife-focused, or otherwise non-family-oriented lodging, do not apply the family-friendly default.",
+      "family": "hotel_feature",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_814fd3ee77b4",
+      "induced_at": "2026-07-15T13:06:13.987230+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Prioritizes hotels suitable for families and children",
+      "preference_value": "family_friendly_hotel",
+      "rationale": "Three independent hotel-task sources each add family-friendly suitability as a hotel requirement. This supports a controlled synthetic-user default for family-suitable lodging, without treating the separate Taskmaster speakers as one real longitudinal user.",
+      "seed_value": "family_friendly",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.86,
+        "reason": "Family-friendly lodging is requested across three distinct instruction_id values with consistent polarity, supporting a reusable scoped hotel-feature preference.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "User states “Family friendly would be good,” supporting family-suitable lodging as a desired hotel feature.",
+          "conversation_id": "dlg-b5b5ba61-e959-4564-94eb-e4b081a0fb0a",
+          "turn_index": 10
+        },
+        {
+          "contribution": "User says to “make sure it's family-friendly,” again grounding the hotel feature preference.",
+          "conversation_id": "dlg-a1128482-e584-493b-8d0c-7ed7801273b3",
+          "turn_index": 19
+        },
+        {
+          "contribution": "User asks for “Family-friendly?” as a hotel requirement, matching the same reusable lodging feature.",
+          "conversation_id": "dlg-a97646ee-d64d-4e1e-a58a-d8b6565ab137",
+          "turn_index": 9
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Family friendly",
+          "annotation": "hotel_search.other_request",
+          "conversation_id": "dlg-b5b5ba61-e959-4564-94eb-e4b081a0fb0a",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": false,
+          "source_domain": "hotels",
+          "turn_index": 10,
+          "user_utterance": "Family friendly would be good."
+        },
+        {
+          "annotated_segment": "family-friendly",
+          "annotation": "hotel_search.other_request",
+          "conversation_id": "dlg-a1128482-e584-493b-8d0c-7ed7801273b3",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": false,
+          "source_domain": "hotels",
+          "turn_index": 19,
+          "user_utterance": "Yeah. I guess just make sure it's family-friendly, and then that's everything."
+        },
+        {
+          "annotated_segment": "Family-friendly",
+          "annotation": "hotel_search.other_request",
+          "conversation_id": "dlg-a97646ee-d64d-4e1e-a58a-d8b6565ab137",
+          "habitual_language": false,
+          "instruction_id": "hotel-1b",
+          "preference_language": false,
+          "source_domain": "hotels",
+          "turn_index": 9,
+          "user_utterance": "Family-friendly?"
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Apply only to hotel sub-location selection; do not infer a destination, airport choice, flight route, or ground-transport route.",
+      "bundle_id": "tm_v04_bundle_86a9320b4802",
+      "canonical_value": "near_airport",
+      "condition": "When choosing a hotel location and airport proximity is relevant, with no competing required neighborhood, landmark, or area specified.",
+      "confidence": 0.86,
+      "decision": "revise",
+      "default_action": "Prioritize hotels described as near the airport or convenient to the airport.",
+      "exception_condition": "If the user requests a different required area such as downtown, beachfront, near a venue, or says airport proximity is not needed, follow that stated location instead.",
+      "family": "hotel_location_priority",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_86a9320b4802",
+      "induced_at": "2026-07-15T13:06:13.973875+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Prefers hotels near the airport",
+      "preference_value": "hotel near the airport",
+      "rationale": "Four independent hotel-task sources request staying near the airport. The reusable habit is a location-type preference for airport-adjacent lodging, not any one named airport or city.",
+      "seed_value": "near_airport",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.9,
+        "reason": "Four distinct instruction_id values consistently request hotels near the airport, supporting a reusable hotel sub-location preference. Wording should be narrowed from 'airport-adjacent' to 'near airport' and kept limited to hotel location choice.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "User requests a hotel room “near the airport,” grounding airport-adjacent lodging as the location type.",
+          "conversation_id": "dlg-c5b8fc83-028e-4f86-920e-326eb6b00ee6",
+          "turn_index": 0
+        },
+        {
+          "contribution": "User says “I would like to stay near the airport,” supporting airport proximity for hotel location.",
+          "conversation_id": "dlg-5340f3b7-ad23-48a5-9f04-de653e4105d8",
+          "turn_index": 8
+        },
+        {
+          "contribution": "User again states “I would like to stay near the airport,” confirming the same location preference type.",
+          "conversation_id": "dlg-c95db6b2-8f7c-4e07-a35b-96ebdc9f5a35",
+          "turn_index": 6
+        },
+        {
+          "contribution": "User asks for a hotel with free breakfast and “near the airport,” adding further independent support for airport-adjacent hotel location.",
+          "conversation_id": "dlg-f51f226d-7931-451d-9dce-7f4d69ca29fd",
+          "turn_index": 16
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "near the airport",
+          "annotation": "hotel_search.sub_location.hotel",
+          "conversation_id": "dlg-c5b8fc83-028e-4f86-920e-326eb6b00ee6",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 0,
+          "user_utterance": "Yes, I need a hotel room four-star March 27th for one person. With a king-size bed near the airport. King Shaka Airport. In San Francisco."
+        },
+        {
+          "annotated_segment": "near the airport",
+          "annotation": "hotel_search.sub_location.hotel",
+          "conversation_id": "dlg-5340f3b7-ad23-48a5-9f04-de653e4105d8",
+          "habitual_language": false,
+          "instruction_id": "hotel-9",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 8,
+          "user_utterance": "I would like to stay near the airport and I would like it to have a shuttle also from the airport."
+        },
+        {
+          "annotated_segment": "near the airport",
+          "annotation": "hotel_search.sub_location.hotel",
+          "conversation_id": "dlg-c95db6b2-8f7c-4e07-a35b-96ebdc9f5a35",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 6,
+          "user_utterance": "I would like to stay near the airport."
+        },
+        {
+          "annotated_segment": "near the airport",
+          "annotation": "hotel_search.sub_location.hotel",
+          "conversation_id": "dlg-f51f226d-7931-451d-9dce-7f4d69ca29fd",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 16,
+          "user_utterance": "I'd like free breakfast and near the airport."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Apply only to hotel lodging price filtering or ranking; do not infer a reusable dollar ceiling, destination, trip date, party size, room count, flight budget, or activity budget.",
+      "bundle_id": "tm_v04_bundle_753c3c57acf0",
+      "canonical_value": "budget_sensitive",
+      "condition": "When choosing hotel lodging after the required location, quality, style, and amenity constraints for the current trip are known.",
+      "confidence": 0.86,
+      "decision": "revise",
+      "default_action": "Apply an affordable price range when supplied or ask for one if needed, and prefer lower-priced options among hotels that satisfy the stated constraints.",
+      "exception_condition": "If a cheaper hotel fails an explicitly required constraint such as location, free Wi-Fi, minimum rating, or upscale/resort style, do not choose it solely for price; return the least expensive qualifying option or ask whether to relax constraints.",
+      "family": "hotel_price_tradeoff",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_753c3c57acf0",
+      "induced_at": "2026-07-15T13:06:13.982731+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Budget-conscious hotel filtering",
+      "preference_value": "budget-conscious hotel pricing without a fixed cap",
+      "rationale": "Across independent hotel-task examples, the speakers repeatedly constrain hotel searches by affordability or a nightly price cap while also preserving quality/location/amenity requirements. This supports a controlled synthetic default of budget-sensitive hotel selection, not a fixed numeric price ceiling and not a claim about one real longitudinal user.",
+      "seed_value": "stated_price_band",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.72,
+        "reason": "Multiple distinct instruction_id values show hotel price sensitivity through price limits or a cheap-hotel request, but the sources do not support any reusable numeric cap or an always-cheapest rule. The habit should be limited to affordability as a filter or secondary ranking factor after stated constraints.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "instruction_id hotel-2: User says, \"I want it to be $300 or less per night,\" while also requiring beach/walking-distance location and 4 Google stars, supporting price sensitivity among qualifying hotels.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "turn_index": 4
+        },
+        {
+          "contribution": "instruction_id hotel-11: User says, \"We can go up to $300 a night,\" while also asking for a downtown tour and free Wi-Fi, supporting use of an affordability limit rather than unrestricted luxury.",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "turn_index": 13
+        },
+        {
+          "contribution": "instruction_id hotel-3: User says, \"I need it to be $250 per night,\" alongside upscale/resort style and minimum four ratings, showing budget constraints coexisting with quality requirements.",
+          "conversation_id": "dlg-da8c2d19-185a-4cf5-9ee2-05933ca2eb97",
+          "turn_index": 7
+        },
+        {
+          "contribution": "instruction_id hotel-9: User references \"$161 per night\" for a selected hotel description, adding another grounded example of price being salient in hotel choice.",
+          "conversation_id": "dlg-52828110-b73b-4b90-858a-5af956c4729c",
+          "turn_index": 54
+        },
+        {
+          "contribution": "instruction_id hotel-8: User asks for a \"relatively cheap hotel\" that is still highly rated, directly supporting the qualitative reusable tradeoff of budget-sensitive but not quality-blind hotel selection.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "turn_index": 2
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "$300 or less per night",
+          "annotation": "hotel_search.price_range",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 4,
+          "user_utterance": "And we want to be on the beach or close to, within walking distance. I want it to be $300 or less per night. 4 stars on Google."
+        },
+        {
+          "annotated_segment": "up to $300 a night",
+          "annotation": "hotel_search.price_range",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 13,
+          "user_utterance": "No. We can go up to $300 a night. But I would like the one that has offers a tour of downtown St. Louis. I need the one that has free Wi-Fi."
+        },
+        {
+          "annotated_segment": "$250 per night",
+          "annotation": "hotel_search.price_range",
+          "conversation_id": "dlg-da8c2d19-185a-4cf5-9ee2-05933ca2eb97",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 7,
+          "user_utterance": "Yeah, I would like the hotel to feel a little bit upscale and something like a resort style. I need it to be $250 per night and I need minimum four ratings."
+        },
+        {
+          "annotated_segment": "$161 per night",
+          "annotation": "hotel_search.price_range",
+          "conversation_id": "dlg-52828110-b73b-4b90-858a-5af956c4729c",
+          "habitual_language": false,
+          "instruction_id": "hotel-9",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 54,
+          "user_utterance": "$161 per night polished restored Victorian home with stately rooms and Suites plus free breakfast."
+        },
+        {
+          "annotated_segment": "cheap",
+          "annotation": "hotel_search.price_range",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 2,
+          "user_utterance": "There will be four of us traveling, and we're looking to go from May 5th to May 15th. We're looking for a relatively cheap hotel, but that is still highly-rated, at least three and a half stars or Yeah, three and a half."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Apply only to hotel lodging searches where a multi-room stay is relevant; do not apply to solo/couple stays or to non-hotel travel tasks.",
+      "bundle_id": "tm_v04_bundle_4a0659dd53f9",
+      "canonical_value": "none",
+      "condition": "When making a hotel booking for a group/family or other stay needing multiple sleeping spaces, and no different room count is specified.",
+      "confidence": 0.84,
+      "decision": "reject",
+      "default_action": "Request two hotel rooms.",
+      "exception_condition": "If the user explicitly specifies a different room count, or a bed/occupancy setup that requires more or fewer than two rooms, follow that explicit requirement instead of defaulting to two rooms.",
+      "family": "room_configuration",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_4a0659dd53f9",
+      "induced_at": "2026-07-15T13:06:13.983952+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Default to two rooms for group hotel stays",
+      "preference_value": "two hotel rooms",
+      "rationale": "Several independent hotel task dialogues explicitly request two rooms, while the accompanying bed and party details vary and are therefore treated as transaction-specific rather than part of the habit. This supports a controlled synthetic default of asking for two rooms only within multi-room hotel-booking contexts.",
+      "seed_value": "two_rooms",
+      "semantic_review": {
+        "decision": "reject",
+        "quality_score": 0,
+        "reason": "Requested room count is explicitly excluded by the criteria. The examples are trip-specific and often tied to the current group size or sleeping arrangement, so they do not establish a genuine reusable room-count preference.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "The user states, \"I want two rooms,\" directly supporting a two-room hotel-room-count preference.",
+          "conversation_id": "dlg-9c02c76a-dcd3-49d8-a5a7-abad604ea38b",
+          "turn_index": 18
+        },
+        {
+          "contribution": "The user says they will need \"two rooms next to each other\" for a hotel stay, supporting a two-room default in group lodging contexts.",
+          "conversation_id": "dlg-6436464d-f345-47f7-9335-0859e6613431",
+          "turn_index": 5
+        },
+        {
+          "contribution": "The user plainly says, \"I need two rooms,\" giving direct evidence for requesting two hotel rooms.",
+          "conversation_id": "dlg-5d5d79de-c652-4b4b-93eb-860da11dffce",
+          "turn_index": 8
+        },
+        {
+          "contribution": "The user says, \"We want two rooms,\" with bed details for each room, supporting the reusable room-count value while leaving bed setup as request-specific.",
+          "conversation_id": "dlg-fc949fd8-e98f-4a76-a124-96c7b205b536",
+          "turn_index": 10
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "two rooms",
+          "annotation": "hotel_search.num.rooms",
+          "conversation_id": "dlg-47d6c8f5-da3a-4f4f-bb14-c10f5cacb7d7",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 8,
+          "user_utterance": "Amenities, yes. They have to all have coffee makers and refrigerators, which they probably will, but two rooms need to have king-size beds and the other one needs to have a queen and a twin or two queens."
+        },
+        {
+          "annotated_segment": "two rooms",
+          "annotation": "hotel_search.num.rooms",
+          "conversation_id": "dlg-9c02c76a-dcd3-49d8-a5a7-abad604ea38b",
+          "habitual_language": false,
+          "instruction_id": "hotel-1b",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 18,
+          "user_utterance": "Yeah, I want two rooms with four-person and three kids."
+        },
+        {
+          "annotated_segment": "two rooms",
+          "annotation": "hotel_search.num.rooms",
+          "conversation_id": "dlg-6436464d-f345-47f7-9335-0859e6613431",
+          "habitual_language": false,
+          "instruction_id": "hotel-9",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 5,
+          "user_utterance": "Well, First off, There will be four of us, So we'll need two rooms next to each other."
+        },
+        {
+          "annotated_segment": "two rooms",
+          "annotation": "hotel_search.num.rooms",
+          "conversation_id": "dlg-5d5d79de-c652-4b4b-93eb-860da11dffce",
+          "habitual_language": false,
+          "instruction_id": "hotel-5",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 8,
+          "user_utterance": "I need two rooms."
+        },
+        {
+          "annotated_segment": "two rooms",
+          "annotation": "hotel_search.num.rooms",
+          "conversation_id": "dlg-fc949fd8-e98f-4a76-a124-96c7b205b536",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 10,
+          "user_utterance": "We want two rooms. One room has a queen and the other has two twins."
+        }
+      ]
+    }
+  ]
+}

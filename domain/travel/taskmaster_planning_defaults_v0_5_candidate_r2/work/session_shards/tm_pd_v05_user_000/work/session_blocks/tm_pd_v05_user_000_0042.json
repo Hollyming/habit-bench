@@ -1,0 +1,139 @@
+{
+  "cache_fingerprint": "9e65800a75e7e01e8b8e7f18579390a516069b950c9ee227de3dfb521681d584",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip-specific comparison. Maya rejected the cheapest itinerary because its late Portland arrival would require a nighttime coastal drive, then selected a $986 nonstop pairing that preserves useful time on both travel days. No durable travel preference was established, and no booking was made.",
+        "evidence_topology": {
+          "episode_id": "partner-coast-006",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 42,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selects the offered pairing with a 5:05 p.m. return and nonstop flights in both directions for this trip. No user utterance establishes a durable preference, a carrier preference, the cheapest-acceptable-flight policy, or any hotel habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Use the $986 combination as the flight choice, but don’t book it yet.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.97,
+            "evidence_quote": "Use the $986 combination as the flight choice, but don’t book it yet.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The hotel dates now work for Tuesday, September 7 through Monday, September 13. Can we compare flights from Minneapolis to Portland for two people? We have at most $1,050 left for both round-trip tickets, and I want the Portland-to-coast drive included in the timing.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I’ll compare complete economy totals for two travelers, including mandatory airline charges, then test the arrival and departure times against rental-car pickup and roughly a two-and-a-half-hour drive to the coast. Are checked bags part of the flight budget?",
+          "role": "assistant"
+        },
+        {
+          "content": "No checked bags. We’ll each have a carry-on. The rental car is separate. I’d rather not lose Tuesday entirely just to get the lowest fare.",
+          "role": "user"
+        },
+        {
+          "content": "I found three workable round trips. All totals below are for two passengers with one carry-on each.\n\n1. $786 total: depart MSP at 3:42 p.m., one stop in Denver, arrive PDX at 8:58 p.m.; return Monday at 11:15 a.m., nonstop, arriving MSP at 4:22 p.m.\n2. $942 total: depart MSP at 7:35 a.m., nonstop, arrive PDX at 9:24 a.m.; return Monday at 1:50 p.m., nonstop, arriving MSP at 6:58 p.m.\n3. $1,018 total: depart MSP at 10:20 a.m., nonstop, arrive PDX at 12:14 p.m.; return Monday at 5:05 p.m., nonstop, arriving MSP at 10:12 p.m.\n\nThe late arrival in option 1 is the main problem: after deplaning and collecting the car, you would likely start the coastal drive around 9:45 p.m. and arrive after midnight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Right, I don’t want that drive at night. How realistic are the other two outbound timings if the rental counter takes forty-five minutes?",
+          "role": "user"
+        },
+        {
+          "content": "Option 2 should put you on the road around 10:15 a.m. Allowing two and a half hours for the drive plus a short stop, you would reach the hotel around 1:00 p.m. That leaves most of Tuesday usable, though the room may not be ready yet.\n\nOption 3 puts you on the road around 1:00 p.m. and at the coast around 3:45 p.m., which is still comfortably before dinner but uses most of the day in transit.",
+          "role": "assistant"
+        },
+        {
+          "content": "And for Monday, assume we need three hours at the airport before departure for returning the car, getting through security, and a little buffer. When would we have to leave the coast?",
+          "role": "user"
+        },
+        {
+          "content": "For the 1:50 p.m. return, the airport target would be 10:50 a.m. Working backward by two and a half hours for the drive and adding thirty minutes for fuel or traffic means leaving the coast around 7:50 a.m.\n\nFor the 5:05 p.m. return, the airport target would be 2:05 p.m., so a coast departure around 11:05 a.m. is reasonable. The later flight preserves Monday morning, but it raises the fare by $76 total.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can the early outbound from option 2 be paired with the later return from option 3, and what would that cost?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. That combination prices at $986 total for two: the Tuesday 7:35 a.m. nonstop from MSP arriving at 9:24 a.m., and the Monday 5:05 p.m. nonstop from PDX arriving at 10:12 p.m. It stays $64 under the flight cap and gives you both a useful arrival day and a Monday morning at the coast.",
+          "role": "assistant"
+        },
+        {
+          "content": "That sounds better. Is there any hidden downside compared with the $942 pairing?",
+          "role": "user"
+        },
+        {
+          "content": "The tradeoffs are the later arrival home Monday night and the extra $44. Both flights are standard economy fares with carry-ons included, but neither includes advance seat selection in the displayed total. The $986 pairing also has a forty-minute schedule-change risk noted on the return listing because the timetable is still several months out; that is not a current delay, just a reason to recheck the schedule before purchase and again closer to travel.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the $986 combination as the flight choice, but don’t book it yet. Give me the practical schedule and what needs verification.",
+          "role": "user"
+        },
+        {
+          "content": "Hold the $986 flight pairing as the choice; nothing is booked.\n\nTuesday, September 7: depart MSP at 7:35 a.m., fly nonstop, and arrive PDX at 9:24 a.m. With forty-five minutes for rental-car pickup, plan to leave the airport around 10:15 a.m. and reach the coast near 1:00 p.m., including a short stop.\n\nMonday, September 13: leave the coast around 11:05 a.m. for the 5:05 p.m. nonstop departure. That allows two and a half hours of driving plus thirty minutes for fuel or traffic and gets you to PDX three hours before departure. Arrival in Minneapolis is 10:12 p.m.\n\nBefore purchase, verify the total remains $986 for two passengers, both carry-ons are included, the fare rules and seat-selection charges are acceptable, the rental counter will be open at arrival, and both flight times remain unchanged. Also confirm the selected hotel will hold luggage before check-in on Tuesday and that its September 7-13 total is still available. The pairing is $64 under the airfare limit.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0042",
+      "session_index": 42,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Nashville client workshop trip for April 12-15, 2027 is booked: airfare was ticketed at $638 and Cumberland Suites Midtown is reserved at an estimated $788.90, with the trip projected at $1,498. The central Oregon coast trip is being evaluated for September 7-13, 2027. Shoreline Headlands remains the location-first lodging option and Alder Street Inn the budget option; lodging must be repriced for the revised dates, with fees, route access, parking, deposits, cancellation terms, and early luggage holding still to verify. A $986 flight pairing for two is the current choice but is not booked: nonstop MSP-PDX on September 7 at 7:35 a.m., arriving 9:24 a.m., and nonstop PDX-MSP on September 13 at 5:05 p.m., arriving 10:12 p.m. Fare, carry-on inclusion, fare rules, seat charges, rental-counter hours, and schedules require confirmation. Pacific Window Cottage remains dropped because of its payment and cancellation terms. The Raleigh breakfast refund and corrected folio remain pending. The coastal Georgia trip and January 2027 Denver client trip remain unbooked. The San Diego November 2026 trip remains booked. Philadelphia deposit-release and shuttle details, plus an earlier Nashville refund reconciliation, remain unresolved.",
+  "verification": {
+    "42": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Use the $986 combination as the flight choice, but don’t book it yet.",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.97,
+          "evidence_quote": "Use the $986 combination as the flight choice, but don’t book it yet.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selects the offered pairing with a 5:05 p.m. return and nonstop flights in both directions for this trip. No user utterance establishes a durable preference, a carrier preference, the cheapest-acceptable-flight policy, or any hotel habit."
+    }
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "habit_id": "tm_pd_v05_user_003_h02",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c06"
+      ],
+      "accepted_total": [
+        "c06"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Advance Air Canada and United as co-finalists, with neither ranked ahead until seat and fare details are checked."
+              },
+              {
+                "choice_id": "B",
+                "text": "Advance Air Canada and Alaska as co-finalists, with neither ranked ahead until seat and fare details are checked."
+              },
+              {
+                "choice_id": "C",
+                "text": "Advance Alaska and the connecting Delta itinerary, emphasizing arrival time and the lower fare respectively."
+              },
+              {
+                "choice_id": "D",
+                "text": "Advance United alone because its nonstop schedule is competitive and it appears in prior bookings."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A and B have nearly identical generic utility: both retain Air Canada plus a second nonstop whose price and timing differ only trivially. Only the longitudinal carrier policy resolves whether the second slot should include United; D is the near miss that remembers United but turns soft inclusion into automatic priority.",
+            "gold_action": "Keep United in the comparable nonstop set without elevating it above Air Canada solely by carrier name.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_003_s0045",
+              "tm_pd_v05_user_003_s0096",
+              "tm_pd_v05_user_003_s0100"
+            ],
+            "label_rationale": "This is a commercial search from the user's San Francisco home base with no trip-local carrier restriction. United is suitable and effectively tied with the other nonstops, so the durable policy calls for including it while preserving a merits-based final comparison.",
+            "probe_type": "cross_context_transfer",
+            "query": "The user needs a weekday flight from San Francisco to Vancouver, arriving before noon with one carry-on. Air Canada is $314 and arrives at 11:35; United is $318 and arrives at 11:20; Alaska is $316 and arrives at 11:15. All three are nonstop, use the same departure terminal, and have equivalent change terms. Delta is $279 with one connection and arrives at 11:50. No carrier instruction was given for this trip. Which initial shortlist should the planner present?"
+          },
+          "candidate_id": "c00",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choice D invokes prior bookings even though the query says no carrier instruction was given."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c00",
+            "rationale": "Among the nonstops, Alaska is earlier than both alternatives and cheaper than United; Air Canada preserves the only meaningful nonstop tradeoff by saving $2. The Delta connection saves money but adds a connection and arrives later, so it is not the strongest initial shortlist absent a stated price-first objective."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Retain American and United as co-finalists for the seat-map and fare-rule check."
+              },
+              {
+                "choice_id": "B",
+                "text": "Retain American and Alaska as co-finalists for the seat-map and fare-rule check."
+              },
+              {
+                "choice_id": "C",
+                "text": "Retain only United, treating prior United selections as evidence that it should win close comparisons."
+              },
+              {
+                "choice_id": "D",
+                "text": "Retain only Alaska, using its five-minute arrival advantage to settle the comparison."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "American is held constant in A and B, while United and Alaska are essentially tied on price, timing, routing, and terms. Generic flight-search logic cannot determine which carrier belongs in the second slot; C is a strong near miss because it notices the repeated United evidence but overstates what that evidence proves.",
+            "gold_action": "Include United in the final comparison with American, without treating prior United purchases as a mandate to select it.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_003_s0045",
+              "tm_pd_v05_user_003_s0096",
+              "tm_pd_v05_user_003_s0100"
+            ],
+            "label_rationale": "The historical statements consistently support United as an acceptable comparable option, while the actual purchases were driven by schedule, connection risk, and complete-itinerary value. The correct inference is inclusion, not unique favoritism.",
+            "probe_type": "evidence_disambiguation",
+            "query": "For a San Francisco-to-Chicago audit visit, the user must land by 2:15 p.m. American is $408 and arrives at 1:50; United is $414 and arrives at 1:45; Alaska is $410 and arrives at 1:40. Each is nonstop, includes the same cabin allowance, and has equivalent change terms. A later Southwest connection is $365 and arrives at 2:05. The planner is narrowing the list before checking seat maps. What should be retained?"
+          },
+          "candidate_id": "c01",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choice C invokes prior United selections to break a comparison that can be resolved from the stated itinerary data."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c01",
+            "rationale": "Alaska dominates United by arriving five minutes earlier for $4 less. American remains a reasonable co-finalist because it is $2 cheaper than Alaska, while Alaska arrives ten minutes earlier."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "For the user, retain United and American as co-finalists; for the colleague, retain American, then coordinate the ground-arrival plan."
+              },
+              {
+                "choice_id": "B",
+                "text": "Use American as the sole finalist for both travelers so their carrier handling is consistent."
+              },
+              {
+                "choice_id": "C",
+                "text": "Use United as the sole finalist for both travelers because the user's prior choices should govern the joint planning task."
+              },
+              {
+                "choice_id": "D",
+                "text": "Use Southwest as the sole finalist for both travelers because it is marginally cheaper and arrives marginally earlier."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A and B both respect the colleague's American instruction and preserve nearly identical schedules; they differ only in whether that instruction is improperly propagated to the user. Without the user's longitudinal policy, using American for both and keeping separate user finalists are comparably defensible operational choices.",
+            "gold_action": "Apply the colleague's explicit carrier direction only to the colleague while preserving United as a comparable option for the user.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_003_s0045",
+              "tm_pd_v05_user_003_s0096",
+              "tm_pd_v05_user_003_s0100"
+            ],
+            "label_rationale": "Traveler-specific instructions outrank convenience from using one carrier, but they do not transfer between separately owned tickets. The user's own history supports retaining United among comparable options, while the colleague's explicit profile controls the colleague's shortlist.",
+            "probe_type": "conflict_resolution",
+            "query": "The user and a colleague need separately ticketed flights from San Francisco to Phoenix in the same morning arrival window; they do not need to be on the same aircraft. United is $248 and arrives at 9:42, American is $246 and arrives at 9:47, and Southwest is $244 and arrives at 9:38. All are nonstop with comparable flexibility after bag fees. The colleague's current traveler profile says to use American when timing and price are comparable. The user gave no carrier direction for this trip. Which plan correctly handles both travelers?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": false,
+            "choice_id": "UNRESOLVED",
+            "generic_best_exists": false,
+            "leakage_signals": [
+              "Choice C refers to the user's prior choices, which are not supplied.",
+              "Choice A appears to require an unstated reason for excluding the dominating Southwest itinerary from the user's shortlist.",
+              "The colleague's current profile is explicit query data and must not be generalized to the user."
+            ],
+            "plausible_choice_ids": [],
+            "probe_id": "c02",
+            "rationale": "No offered plan correctly handles both travelers from the stated facts. Southwest dominates the other options for the user on price and arrival while matching routing and flexibility, but the colleague's explicit American rule applies because the differences are comparable. The justified combination would be Southwest for the user and American for the colleague, which is not offered."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Treat the old omission as local to its source itinerary and advance Alaska and United as co-finalists for Portland."
+              },
+              {
+                "choice_id": "B",
+                "text": "Treat the old omission as an enduring profile rule and advance Alaska and Delta as co-finalists for Portland."
+              },
+              {
+                "choice_id": "C",
+                "text": "Pause the Portland search and request clarification before showing any carrier options."
+              },
+              {
+                "choice_id": "D",
+                "text": "Discard the migrated note and advance United alone because its fare and schedule are competitive."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A and B each produce a two-carrier nonstop shortlist with negligible utility differences; the migrated note alone does not reveal its original scope. The historical sequence is necessary to distinguish a one-trip exclusion from a persistent profile change, while D is the near miss that removes the exclusion but overcorrects into sole-carrier priority.",
+            "gold_action": "Do not carry the Denver-specific United exclusion into the unrelated Portland search; restore United to the comparable set without prioritizing it.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_003_s0063",
+              "tm_pd_v05_user_003_s0096",
+              "tm_pd_v05_user_003_s0100"
+            ],
+            "label_rationale": "Session s0063 establishes a trip-local Denver exception rather than a permanent revision, while later support sessions continue to treat United as acceptable when competitive. With no Portland-specific exclusion, the durable default resumes.",
+            "probe_type": "exception",
+            "query": "While preparing a new San Francisco-to-Portland trip, the planner finds a migrated note reading 'United omitted from comparison' that is linked to an older Denver itinerary. The migration did not preserve whether the note was trip-local or profile-wide. For Portland, Alaska is $194 and arrives at 11:52, United is $198 and arrives at 11:57, and Delta is $201 and arrives at 11:49; all are nonstop with equivalent fare conditions. The user has issued no current carrier instruction. What should the planner do?"
+          },
+          "candidate_id": "c03",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "C",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The migrated note comes from another itinerary and has explicitly ambiguous scope.",
+              "Choices A and B each convert that ambiguous historical annotation into a definite rule."
+            ],
+            "plausible_choice_ids": [
+              "C"
+            ],
+            "probe_id": "c03",
+            "rationale": "The query explicitly says the migration lost the note's scope. Treating it as either trip-local or profile-wide would invent provenance, so clarification is the only choice that avoids applying or discarding a potentially relevant rule without support."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Move Alaska and United forward as co-finalists, subject to the final seat and reliability check."
+              },
+              {
+                "choice_id": "B",
+                "text": "Move Alaska and Delta forward as co-finalists, subject to the final seat and reliability check."
+              },
+              {
+                "choice_id": "C",
+                "text": "Move United forward alone because a close comparison should be settled by prior carrier use."
+              },
+              {
+                "choice_id": "D",
+                "text": "Move Southwest forward alone because the fare savings outweigh the added connection while still meeting the deadline."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A and B share Alaska and substitute two flights separated by only one dollar and three minutes, so generic travel utility does not break the tie. The user's history is required to know that United should remain in the set; C captures the carrier signal but violates its non-priority boundary.",
+            "gold_action": "Retain United alongside Alaska in an otherwise tied home-origin flight search, with the final choice left to trip-specific merits.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_003_s0045",
+              "tm_pd_v05_user_003_s0096",
+              "tm_pd_v05_user_003_s0100"
+            ],
+            "label_rationale": "The trip sits squarely within the established commercial-flight context, and United is comparable on schedule, price, routing, and terms. The evidence supports including it, but not using the airline name to settle the final ranking.",
+            "probe_type": "direct_use",
+            "query": "The user needs a morning nonstop from San Francisco to Seattle for a 1:00 p.m. meeting. Alaska is $229 and arrives at 10:02, United is $231 and arrives at 10:07, and Delta is $230 and arrives at 10:04. Each has the same cabin allowance and equivalent change terms. A Southwest one-stop is $197 and arrives at 10:28. No airline was named in the current request. Which recommendation set should move forward?"
+          },
+          "candidate_id": "c04",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "Choice C relies on prior carrier use despite the absence of a current airline instruction."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c04",
+            "rationale": "Alaska is both cheaper and earlier than United and Delta. Of the offered two-itinerary sets, Alaska and Delta is better than Alaska and United because Delta also dominates United. The Southwest connection is cheaper but does not generically justify becoming the sole finalist when close-priced nonstops are available."
+          }
+        },
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Verify Alaska and United, keeping both open until the remaining itinerary details are compared."
+              },
+              {
+                "choice_id": "B",
+                "text": "Verify Alaska and Delta, keeping both open until the remaining itinerary details are compared."
+              },
+              {
+                "choice_id": "C",
+                "text": "Verify only United because its repeated appearance in earlier decisions indicates a standing first-place carrier."
+              },
+              {
+                "choice_id": "D",
+                "text": "Verify only Delta because its two-dollar fare advantage is enough to avoid a broader comparison."
+              }
+            ],
+            "closest_distractor_choice_id": "B",
+            "difficulty_rationale": "A and B hold Alaska constant, and the United-versus-Delta substitution is a two-dollar, two-minute tradeoff that has no generic winner. Historical evidence is needed to interpret repeated United outcomes as a soft inclusion rule rather than either noise or an automatic ranking signal.",
+            "gold_action": "Carry United into final verification with Alaska while avoiding any inference that historical United selections create first-place status.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_003_s0045",
+              "tm_pd_v05_user_003_s0096",
+              "tm_pd_v05_user_003_s0100"
+            ],
+            "label_rationale": "Across the cited episodes, the user retained United when competitive but selected it only when itinerary-specific benefits justified the result. Here those differentiators are absent, so the supported behavior is to include United and continue comparing.",
+            "probe_type": "evidence_disambiguation",
+            "query": "For a same-day San Francisco-to-Los Angeles trip, the user needs to depart after 3:30 p.m. and arrive before 6:00 p.m. Alaska is $191 and arrives at 5:24, United is $189 and arrives at 5:31, and Delta is $187 and arrives at 5:29. All are nonstop, use the preferred arrival airport, and have matching change conditions. The planner must choose two itineraries for final fare verification. Which pair best reflects the user's established decision pattern?"
+          },
+          "candidate_id": "c05",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "B",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrase 'user's established decision pattern' suggests unavailable private history.",
+              "Choice C explicitly treats repeated earlier appearances as a standing carrier preference, but no such history is supplied."
+            ],
+            "plausible_choice_ids": [
+              "B"
+            ],
+            "probe_id": "c05",
+            "rationale": "Delta dominates United by costing $2 less and arriving two minutes earlier. Alaska remains nondominated because it arrives five minutes before Delta, making Alaska and Delta the strongest pair from the stated facts alone."
+          }
+        }
+      ],
+      "round": 0
+    },
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c05"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c05",
+        "c06"
+      ],
+      "failed": [],
+      "round": 1
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 7,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "cross_context_transfer": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 2
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v05_user_003"
+}

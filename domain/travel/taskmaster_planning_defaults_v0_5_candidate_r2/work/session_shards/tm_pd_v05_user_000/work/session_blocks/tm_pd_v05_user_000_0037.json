@@ -1,0 +1,142 @@
+{
+  "cache_fingerprint": "e8e74904f56c042d16bd6d2cb364ef3434d880a9fe371818a4b9348096046565",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya narrowed the Nashville search to two nonstop round trips within the airfare allowance. She selected the $598 combination as the lead and retained the $642 earlier-outbound combination as a backup; no durable travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "client-nashville-008",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 37,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly rejects the connecting itinerary and chooses nonstop options for this trip. The other candidate habits are not established strongly enough by the user's own words: the 6:05 p.m. return is not clearly an afternoon-default statement, the $598 lead option reflects trip-specific timing tradeoffs rather than a general cheapest-acceptable policy, and no hotel or carrier preference is discussed.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Drop the connection. Getting in after midnight before a 9:00 workshop is not worth the savings.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need flights for a Nashville client workshop. It starts Tuesday, April 13 at 9:00 a.m. and ends Thursday, April 15 at 2:30 p.m. I can leave Minneapolis after 3:30 Monday. Airfare needs to stay under $670.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare Monday evening outbound options and Thursday returns with enough time to get between BNA and the client site. What part of Nashville is the workshop in, and will you have checked luggage?",
+          "role": "assistant"
+        },
+        {
+          "content": "The office is near One Hundred Oaks, about 20 minutes from the airport without traffic. Carry-on only.",
+          "role": "user"
+        },
+        {
+          "content": "The useful Monday nonstops are a 5:10 p.m. departure arriving at 7:18 p.m. for $642 round trip, and a 7:35 p.m. departure arriving at 9:42 p.m. for $598. There is also a $487 itinerary connecting in Chicago, but it does not reach Nashville until 12:16 a.m. Tuesday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Drop the connection. Getting in after midnight before a 9:00 workshop is not worth the savings.",
+          "role": "user"
+        },
+        {
+          "content": "Agreed. Both nonstops leave a workable Monday evening, though the earlier one provides more recovery time and a wider buffer if the flight is delayed. For Thursday, I found nonstops at 4:25 p.m., 6:05 p.m., and 8:10 p.m. The quoted round-trip prices depend on which outbound is paired with them.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is 4:25 actually feasible if the workshop ends at 2:30?",
+          "role": "user"
+        },
+        {
+          "content": "It is technically possible but too exposed. Leaving at 2:30, you could reach BNA around 3:00 in light traffic, only 85 minutes before departure. Any workshop overrun or traffic would erase the margin. The 6:05 gives roughly three hours from the scheduled finish and gets to Minneapolis at 8:18 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "That sounds better. What does the 8:10 return look like?",
+          "role": "user"
+        },
+        {
+          "content": "It arrives in Minneapolis at 10:24 p.m. Pairing it with the 7:35 Monday outbound costs $541 round trip. The same outbound with the 6:05 Thursday return is $598. Pairing the 5:10 Monday outbound with the 6:05 return is $642.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the main choice is earlier Monday for $642, or later both directions for $541. Is there a middle option with the 7:35 outbound and 6:05 return?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. That is the $598 itinerary: Monday 7:35 p.m. to 9:42 p.m., then Thursday 6:05 p.m. to 8:18 p.m. It stays $72 below the allowance and avoids both the tight 4:25 departure and the late 10:24 arrival home.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep that one. For the second practical choice, use the earlier Monday flight and the 6:05 return. I’d rather compare the extra evening in Nashville against the $44 difference.",
+          "role": "user"
+        },
+        {
+          "content": "The two finalists are now: Option 1 at $598, departing MSP Monday at 7:35 p.m., arriving BNA at 9:42 p.m., and returning Thursday at 6:05 p.m. with an 8:18 p.m. arrival; Option 2 at $642, departing MSP Monday at 5:10 p.m., arriving BNA at 7:18 p.m., with the same Thursday return. Both are nonstop, carry-on itineraries and fit the $670 limit.",
+          "role": "assistant"
+        },
+        {
+          "content": "How should I think about airport timing Thursday? I don’t want the itinerary to imply I can stay at the office indefinitely.",
+          "role": "user"
+        },
+        {
+          "content": "Plan to leave the client site by 3:15 p.m. That allows about 30 minutes for variable traffic, arrival at BNA around 3:45, and more than two hours before the 6:05 departure. Even if the workshop runs 15 minutes late, the margin remains reasonable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Don’t book yet, but make Option 1 the lead and note the Thursday departure from the client site.",
+          "role": "user"
+        },
+        {
+          "content": "Option 1 is the lead: $598 round trip, nonstop MSP-BNA Monday from 7:35 to 9:42 p.m., and nonstop BNA-MSP Thursday from 6:05 to 8:18 p.m. The itinerary should show a 3:15 p.m. Thursday departure from the One Hundred Oaks client site. Option 2 remains the backup at $642, using the earlier Monday flight from 5:10 to 7:18 p.m. No flight has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0037",
+      "session_index": 37,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Nashville client workshop trip for April 12-15, 2027 is unbooked. The lead flight option is a $598 nonstop round trip, departing Minneapolis Monday at 7:35 p.m., arriving Nashville at 9:42 p.m., and returning Thursday at 6:05 p.m. for an 8:18 p.m. Minneapolis arrival. A $642 backup uses a 5:10 p.m. Monday departure and the same Thursday return. Maya should leave the One Hundred Oaks client site by 3:15 p.m. Thursday. Lodging and local transportation are not yet arranged. The Raleigh client workshop trip for February 28-March 3, 2027 is complete; a request for a $49.20 breakfast-charge refund and corrected $744.38 folio remains pending. The Denver trip for June 16-19, 2026 is fully updated at $1,756.40. The Philadelphia July 2026 return and hotel extension added $348.56; the Sonesta deposit release and Hyatt shuttle details remain unresolved. The coastal Georgia trip remains unbooked at $3,647. An earlier Nashville trip still needs total reconciliation after its refund posts. The two-person San Diego trip for November 8-13, 2026 remains booked at an estimated $3,284, with hotel cancellation available through November 3 at 6:00 p.m. local time. The Denver client trip for January 12-15, 2027 remains unbooked pending final approval, with a prepared total of $1,511.49 that must be rechecked before purchase.",
+  "verification": {
+    "37": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Drop the connection. Getting in after midnight before a 9:00 workshop is not worth the savings.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly rejects the connecting itinerary and chooses nonstop options for this trip. The other candidate habits are not established strongly enough by the user's own words: the 6:05 p.m. return is not clearly an afternoon-default statement, the $598 lead option reflects trip-specific timing tradeoffs rather than a general cheapest-acceptable policy, and no hotel or carrier preference is discussed."
+    }
+  }
+}

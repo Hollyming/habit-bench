@@ -1,0 +1,95 @@
+{
+  "cache_fingerprint": "34fb39f72bca2e559468f1bc6d1549016e4e38eb2a001b8a97800a36f2949417",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Priya chose the itinerary with the larger operational buffers for this audit after comparing transfer assumptions, airport time, and elapsed flight time; no recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "audit-seattle-01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 8,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user establishes trip-specific briefing and airport-transfer constraints, but does not state or endorse any candidate recurring habit with sufficient specificity. The assistant's inclusion of United is neutral option presentation, and the user only tentatively keeps both outbound options without naming or preferring United in the quoted user language.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The host confirmed two changes. There is a mandatory auditor briefing in Bothell at 5:30 p.m. Tuesday, and the shared car will leave for SEA after the audit closes at 3:00 p.m. Friday. Please revise the flight shortlist.",
+          "role": "user"
+        },
+        {
+          "content": "With the briefing fixed, I would replace the 8:05 a.m. outbound with an earlier nonstop. The two practical Tuesday options are Alaska at 6:10 a.m., arriving SEA at 8:22 a.m., and United at 7:00 a.m., arriving at 9:12 a.m. Both take about 2 hours 12 minutes, but Alaska provides 50 additional minutes for baggage, the drive to Bothell, and disruption recovery.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep both for the moment. How much usable time would each leave before 5:30 after allowing for the transfer?",
+          "role": "user"
+        },
+        {
+          "content": "Using 45 minutes to exit SEA and 60 minutes for the drive in variable traffic, Alaska would put you in Bothell around 10:07 a.m., leaving about 7 hours 20 minutes. United would put you there around 10:57 a.m., leaving about 6 hours 30 minutes. Either works; Alaska gives the stronger delay buffer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now reassess Friday. The car may not leave the site until 3:15, and I do not want to treat the 6:45 flight as workable just because transportation is confirmed.",
+          "role": "user"
+        },
+        {
+          "content": "That is the right distinction. For the Alaska 6:45 p.m. departure, a 3:15 pickup with a 60- to 90-minute drive reaches SEA around 4:15-4:45. That leaves 2 hours to 2 hours 30 minutes before departure, but the margin contracts quickly if the close runs late or traffic exceeds the estimate. Delta at 8:20 p.m. leaves roughly 3 hours 35 minutes to 4 hours 5 minutes at the airport under the same assumptions.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the full itineraries, including elapsed flight time. Is the earlier return saving enough time to justify that tighter margin?",
+          "role": "user"
+        },
+        {
+          "content": "The Alaska 6:10 a.m. outbound is about 2 hours 12 minutes. On Friday, Alaska’s 6:45 p.m. nonstop is about 2 hours 10 minutes, while Delta’s 8:20 p.m. nonstop is about 2 hours 15 minutes. The earlier return saves about 1 hour 30 minutes in San Francisco arrival time, not meaningful time in the air. In exchange, it gives up roughly 1 hour 35 minutes of airport buffer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then give me the most workable choice. Still do not book it.",
+          "role": "user"
+        },
+        {
+          "content": "The most workable itinerary is Alaska nonstop from SFO Tuesday at 6:10 a.m., arriving SEA at 8:22 a.m., paired with Delta nonstop Friday at 8:20 p.m. The early outbound leaves ample protection before the 5:30 p.m. briefing, and the later return accommodates a 3:15 departure from Bothell without relying on ideal traffic. I would drop the 6:45 p.m. Alaska return from the shortlist. Nothing is booked; fares and schedules should be checked again before purchase.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0008",
+      "session_index": 8,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Priya’s Raleigh supplier-audit itinerary remains selected but unbooked pending an audit travel authorization number, with flight and hotel details requiring a final recheck. The Fairmont Sonoma Mission Inn stay for May 31-June 3 is booked with the breakfast-and-parking package; Priya’s spouse is registered, both guests may charge eligible expenses to the room, and both spa treatments are linked to the stay. The Saturday 2:30 p.m. massage is confirmed, while written confirmation of the 2:45 p.m. facial remains outstanding before the May 10 free-cancellation deadline. For the Bothell audit beginning July 10, the revised leading itinerary is an unbooked Alaska SFO-SEA Tuesday 6:10 a.m. nonstop paired with a Delta Friday 8:20 p.m. nonstop. The itinerary accommodates the Tuesday 5:30 p.m. briefing and the shared airport car leaving after Friday’s 3:00 p.m. close; fares and schedules require rechecking before purchase.",
+  "verification": {
+    "8": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user establishes trip-specific briefing and airport-transfer constraints, but does not state or endorse any candidate recurring habit with sufficient specificity. The assistant's inclusion of United is neutral option presentation, and the user only tentatively keeps both outbound options without naming or preferring United in the quoted user language."
+    }
+  }
+}

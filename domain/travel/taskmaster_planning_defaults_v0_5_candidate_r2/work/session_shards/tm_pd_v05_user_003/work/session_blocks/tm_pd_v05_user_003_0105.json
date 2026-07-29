@@ -1,0 +1,128 @@
+{
+  "cache_fingerprint": "92dbe45970263683147b0850de0cc3d133b616c9f621258d14fc515bb05e630b",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support for the supplied flight decision policy appears once in the user's selection: after rejecting the tight connection as unacceptable, she directs the agent to choose the least expensive itinerary that meets timing, connectivity, and onboard requirements.",
+        "evidence_topology": {
+          "episode_id": "conference-boston-01",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 105,
+          "target_habit_id": "tm_pd_v05_user_003_h01",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly applies the cheapest-acceptable-flight policy: the lower-priced connection is rejected because it fails the current trip's connection-risk requirement, and the least expensive remaining acceptable fare is chosen. The wording occurs within this trip's decision and does not clearly establish a cross-trip recurring rule. No other candidate habit is strongly evidenced by the user's own words.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Once the timing, connection, and onboard requirements are met, choose the least expensive fare.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_003_h01",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The fare hold expired before it was ticketed. Please reprice the complete Boston round trips, not just the outbound. The hotel and conference dates are fixed, and the Harborview cancellation deadline is tomorrow at 4:00 p.m. Boston time.",
+          "role": "user"
+        },
+        {
+          "content": "I found three economy round trips using the same Thursday morning nonstop return. The earlier Sunday nonstop is $492, departing SFO at 6:15 a.m. and arriving BOS at 2:43 p.m. The previously selected 8:30 a.m. nonstop is now $558 and arrives at 5:08 p.m. The later option is $475, departing at 10:05 a.m., connecting in Denver for 48 minutes, and arriving at 8:41 p.m. All three include standard Wi-Fi, and none includes a checked bag.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much useful Sunday time does the 6:15 flight add compared with the one we had held?",
+          "role": "user"
+        },
+        {
+          "content": "It arrives 2 hours 25 minutes earlier. Allowing about an hour for deplaning, baggage, and the Silver Line, you would likely reach the Harborview around 4:00 p.m., close to check-in time. The held itinerary would put you at the hotel around 6:25 p.m. The earlier flight therefore gives you roughly two and a half additional hours in Boston without creating an extra hotel night.",
+          "role": "assistant"
+        },
+        {
+          "content": "And assess the later connection. Forty-eight minutes in Denver sounds thin for the last useful arrival of the day.",
+          "role": "user"
+        },
+        {
+          "content": "It is a legal connection, but it leaves little recovery margin. The Denver-to-Boston segment is the final same-airline option that would get you in Sunday night. A moderate delay from San Francisco could push arrival to Monday, which is too risky before the 8:30 a.m. workshop. It also reaches the hotel about 9:45 p.m. if everything runs on time.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then I do not consider the $475 itinerary acceptable. Between the two nonstops, is there any reason to pay $66 more for the 8:30 departure?",
+          "role": "user"
+        },
+        {
+          "content": "No practical advantage stands out. Both use the unchanged Thursday 7:15 a.m. nonstop return, have the same economy conditions, and include Wi-Fi. The $492 option costs less and provides more time Sunday; its only tradeoff is the earlier start from home.",
+          "role": "assistant"
+        },
+        {
+          "content": "That start is manageable. Once the timing, connection, and onboard requirements are met, choose the least expensive fare. Here that is the $492 nonstop, since the cheaper connection does not meet the trip's risk tolerance.",
+          "role": "user"
+        },
+        {
+          "content": "With $492 airfare, the revised projection is $3,470: $1,690 confirmed registration and workshop, $492 flights, $1,176 reserved lodging with tax, $40 estimated airport transportation, and $72 estimated breakfasts. That is $6 below the $3,484 authorization. The increase from the prior projection is also $6.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before you issue it, confirm the return and tell me whether the hotel needs to change.",
+          "role": "user"
+        },
+        {
+          "content": "The return remains Thursday, September 18: nonstop from BOS at 7:15 a.m., arriving SFO at 10:55 a.m. The Harborview reservation still covers Sunday through Thursday for $1,176 including tax, so no hotel change is needed. Its cancellation deadline remains tomorrow at 4:00 p.m. Boston time.",
+          "role": "assistant"
+        },
+        {
+          "content": "Purchase the $492 round trip and leave the Harborview reservation in place.",
+          "role": "user"
+        },
+        {
+          "content": "The $492 round trip is ticketed. You will depart Sunday, September 14 at 6:15 a.m., arrive Boston at 2:43 p.m., and return Thursday, September 18 at 7:15 a.m., arriving San Francisco at 10:55 a.m. The Harborview reservation is unchanged. Registration, airfare, and lodging are confirmed; transportation and breakfasts remain estimates. The projected trip total is $3,470, leaving $6 in the authorization.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0105",
+      "session_index": 105,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund and rental documentation remain pending. Washington, Sonoma, Bothell, Chicago, Carlsbad, Palm Springs, Cypress Spa Lodge, Indianapolis, July supplier-audit, prior Scottsdale, Clayton, Plymouth, Denver, Coastal Sonoma, Holly Springs, Puerto Rico, Lenexa, and earlier Boston arrangements remain as recorded. For the September 15-17 Boston quality-systems conference, registration and workshop are confirmed at $1,690. The September 14-18 round trip is now ticketed at $492, and the Harborview Business Hotel remains reserved September 14-18 for $1,176 including tax, cancellable through 4:00 p.m. Boston time September 13. With estimated airport transportation and breakfasts, the trip projects to $3,470, leaving $6 of the $3,484 authorization. The March 12-16 Scottsdale wellness trip remains confirmed at $3,627.20 before meals and incidentals. For the June 17-19 Durham audit, airfare is ticketed at $514; lodging is confirmed June 16-20 for $676, and the trip total is $1,404. The October 24-November 1 Hawaii vacation remains confirmed or reserved as recorded, with a revised estimate of $10,221.61. For the January 20-21 Chesterfield Valley audit, airfare is ticketed at $568 including one checked bag; the Residence Inn Chesterfield Valley is confirmed January 19-22 for $552 including tax plus $45 parking; and the compact rental is confirmed at $238. With estimated fuel and meals, that trip totals $1,659, and an $84 authorization increase remains pending.",
+  "verification": {
+    "105": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Once the timing, connection, and onboard requirements are met, choose the least expensive fare.",
+          "habit_id": "tm_pd_v05_user_003_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly applies the cheapest-acceptable-flight policy: the lower-priced connection is rejected because it fails the current trip's connection-risk requirement, and the least expensive remaining acceptable fare is chosen. The wording occurs within this trip's decision and does not clearly establish a cross-trip recurring rule. No other candidate habit is strongly evidenced by the user's own words."
+    }
+  }
+}

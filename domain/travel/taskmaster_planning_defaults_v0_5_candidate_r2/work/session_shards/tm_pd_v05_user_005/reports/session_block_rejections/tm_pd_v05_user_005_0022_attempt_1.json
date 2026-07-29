@@ -1,0 +1,120 @@
+{
+  "reason": "unnatural_habit_leakage_session_22:The user explicitly rejected a connecting itinerary, endorsed the later Monday return, and requested a hotel closer to the beach. These are current-trip signals rather than durable recurring claims. Leakage occurred because the assistant selected and foregrounded a nonstop itinerary before the user established the no-connection preference. The user's king-room acceptance does not strongly evidence the exact queen-bed preference graph, and no user utterance establishes a Delta preference, window-seat preference, or hotel rating threshold.",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip-specific comparison only. Avery selected June 25-29 for further research based on the quoted totals and flight schedule, while leaving the lodging decision open; no durable preference was stated or inferred.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "Let's compare the two Carlsbad anniversary windows now. We would leave Atlanta on either Thursday, June 18 or Thursday, June 25, stay four nights, and come back Monday. Please include flights for both of us, transportation from San Diego, and one realistic hotel directly by the ocean versus one several blocks inland. Nothing should be booked yet.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll price June 18-22 and June 25-29 on the same basis: round-trip economy airfare for two between Atlanta and San Diego, a four-day rental car with taxes and fees, and one room for two adults. For the hotels, I’ll include taxes, mandatory fees, and parking where the quote discloses them so the totals are comparable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. We can share one king room. What flight pairings are available for the first weekend?",
+          "role": "user"
+        },
+        {
+          "content": "For Thursday, June 18, the strongest nonstop pairing is Delta departing Atlanta at 9:10 a.m. and arriving in San Diego at 10:42 a.m. local time. The Monday, June 22 return leaves San Diego at 11:35 a.m. and reaches Atlanta at 6:47 p.m. The current Main Cabin total for two is $968, including taxes. Seat selection is included; checked bags are not.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the second weekend? I don't want a low fare that turns out to involve a connection.",
+          "role": "user"
+        },
+        {
+          "content": "The June 25-29 pairing is also nonstop. Delta leaves Atlanta Thursday at 7:25 a.m. and arrives in San Diego at 8:58 a.m. The Monday return departs at 1:05 p.m. and arrives in Atlanta at 8:16 p.m. Main Cabin is currently $842 total for two, including taxes, so that weekend saves $126 on airfare.",
+          "role": "assistant"
+        },
+        {
+          "content": "The later return on Monday is actually better. How are you handling transportation?",
+          "role": "user"
+        },
+        {
+          "content": "I found a compact rental at the San Diego airport with unlimited mileage and standard taxes and facility fees included. It is $312 for June 18-22 and $298 for June 25-29. Fuel is excluded. Both quotes allow pickup shortly after the listed arrivals and return about two hours before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would rideshares be meaningfully cheaper? We would mostly walk once we're settled, but we'd want airport trips and probably two dinners where driving is easier.",
+          "role": "user"
+        },
+        {
+          "content": "Not reliably. Two airport-Carlsbad rides plus four shorter local rides are roughly $285-$365 before surge pricing and tips. The rental is $298-$312 before fuel, but hotel parking can erase the advantage. I’ll retain the rental in the complete totals because it gives a fixed quoted base, while showing parking explicitly in each lodging figure.",
+          "role": "assistant"
+        },
+        {
+          "content": "All right. Start with the first dates and the oceanfront example.",
+          "role": "user"
+        },
+        {
+          "content": "For June 18-22, Beach Terrace has a king room in its oceanfront building at $2,184 for four nights after taxes. The quoted room has a balcony and an ocean-facing category, and self-parking is included in this rate. Adding $968 airfare and the $312 rental produces a complete quoted trip total of $3,464, before fuel, meals, checked bags, or optional hotel charges.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the inland comparison for those dates? Several blocks back is fine; I don't mean ten miles away.",
+          "role": "user"
+        },
+        {
+          "content": "The Westin Carlsbad Resort & Spa is the most useful upscale comparison I found, though it is farther than several blocks at roughly 1.5 miles from the beach. Its king-room quote is $1,548 after taxes, plus $140 for four nights of self-parking, making lodging and parking $1,688. With the same flights and rental, the June 18-22 total is $2,968. That is $496 less than the Beach Terrace total.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is farther inland than I had in mind. Is there a closer representative property, even if it isn't as resort-like?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Carlsbad Village Inn is about six blocks from the beach and closer to restaurants in the village. A king room is $1,412 after taxes for June 18-22, with complimentary parking. Using that instead, the first weekend totals $2,692: $968 for flights, $312 for the car, and $1,412 for lodging. It is the cleaner inland comparison, saving $772 against Beach Terrace.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use that one in the comparison. Now price those same two hotel positions for June 25-29.",
+          "role": "user"
+        },
+        {
+          "content": "For June 25-29, Beach Terrace rises to $2,488 after taxes for the comparable oceanfront king category, again with parking included. With $842 airfare for two and the $298 rental, the complete total is $3,628. Carlsbad Village Inn is $1,456 after taxes with free parking, bringing the inland total to $2,596. The inland option is $1,032 below the oceanfront option for that weekend.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the later weekend has cheaper travel but more expensive rooms. Put all four totals together and make sure the arithmetic is consistent.",
+          "role": "user"
+        },
+        {
+          "content": "June 18-22: flights $968 plus rental $312 plus Beach Terrace $2,184 equals $3,464 oceanfront. With Carlsbad Village Inn at $1,412, the inland total is $2,692. June 25-29: flights $842 plus rental $298 plus Beach Terrace $2,488 equals $3,628 oceanfront. With Carlsbad Village Inn at $1,456, the inland total is $2,596. The later window is $96 cheaper if you stay inland, while the earlier window is $164 cheaper if you choose the oceanfront room.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much should we care about the flight times? We are losing part of Thursday either way, but I don't want Monday to feel rushed.",
+          "role": "user"
+        },
+        {
+          "content": "The June 25 departure reaches San Diego 1 hour 44 minutes earlier, which gives you more of Thursday after the drive north. Its Monday flight also leaves 1 hour 30 minutes later, allowing a more relaxed breakfast and checkout before driving to the airport. The tradeoff is the later Atlanta arrival, 8:16 p.m. rather than 6:47 p.m. On usable time in Carlsbad, June 25-29 is stronger.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then I think the second weekend is the one to work on. The oceanfront premium of more than a thousand dollars is hard to justify, but I don't want to rule it out until we look closely at the actual rooms and beach access.",
+          "role": "user"
+        },
+        {
+          "content": "That points to June 25-29 for the detailed hotel search. It has the better nonstop schedule and the lowest starting total at $2,596 with the inland example. Beach Terrace brings the same trip to $3,628, a $1,032 premium, so the next step is to compare actual room categories, verified beach access, cancellation terms, and all mandatory charges before deciding whether that premium buys enough value. No flight, car, or hotel has been held or booked, and all quoted prices remain subject to change.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0022",
+      "session_index": 22,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "Avery's Atlanta-Chicago museum trip was completed as arranged for October 14-18. The Atlanta-Raleigh family trip for Avery and her wife is confirmed for November 14-16 at a combined total of $864, with hotel cancellation available through 11:59 p.m. November 12. For the December 9-13 museum assignment, Club Quarters Hotel Faneuil Hall remains the proposed Boston replacement, bringing the quoted trip total to $1,236.18 before local transportation and airline bag fees; registrar approval is pending and nothing has been booked or held. Avery and her wife will drive from Atlanta to St. George Island for September 20-27. St. George Inn confirmation SGI-927416 is for one deluxe king room for two adults for seven nights at $1,968.24 total; a $263.18 deposit is applied, $1,705.06 is due at check-in, and cancellation remains free through 3:00 p.m. local hotel time September 13, after which the full stay is nonrefundable. For the Denver gallery installation, Delta confirmation H7Q4LM and Catbird confirmation CB-481730 remain in place for August 18-21; the expected total is $1,273.22, which is $23.22 above prior employer approval and may require follow-up. For the Minneapolis graduation trip, American confirmation K6R9PT and Graduate by Hilton Minneapolis confirmation GM-583214 remain confirmed for two travelers for May 15-18. The hotel has recorded the late arrival and Saturday dinner remains workable. For the Dallas collection pickup, Delta confirmation D8L4QX is confirmed for June 9-10, returning Wednesday at 8:25 p.m. and arriving Atlanta at 11:31 p.m.; the airfare remains $412 and no Thursday flight remains on the itinerary. Fairmont Dallas confirmation FD-629184 covers one night on June 9 for $214.36 and is cancelable through 6:00 p.m. local time June 8. The airfare and hotel total $626.36, and the expected trip total with rideshares is $712.36 before checked-equipment fees and meals. Avery and her wife selected June 25-29 as the stronger window for their four-night Carlsbad anniversary trip. Current comparison totals are $2,596 with the inland example and $3,628 with the oceanfront example, including nonstop airfare for two and a rental car. Lodging remains undecided and requires detailed room, access, fee, and cancellation research. Nothing for Carlsbad has been held or booked."
+}

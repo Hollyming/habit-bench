@@ -1,0 +1,166 @@
+{
+  "cache_fingerprint": "d9364ce65a83a6c31d44ff6a18d518e0cd2b36361f44b1ad6071c97c67d767c1",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For the September 12-19 St. Simons Island stay, Avery eliminated Ocean Inn & Suites after comparing its longer walk with the savings. Sea Gate Inn and King and Prince remain under consideration, with no reservation or hold placed.",
+        "evidence_topology": {
+          "episode_id": "georgia_south_carolina_coastal_vacation_01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 98,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly rejects the inland hotel because its beach walk is too long and retains only the direct-beach and short-walk options for this trip. No other candidate habit is concretely evidenced by the user's utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "The inland savings are not enough to justify that walk every beach day. Remove Ocean Inn.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h05",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "We decided on St. Simons Island for September 12 through 19. Please take the three realistic hotels and show me the complete cost for seven nights, including every required fee, tax, and parking charge.",
+          "role": "user"
+        },
+        {
+          "content": "I found continuous availability for one room and two adults at all three. The complete totals are: King and Prince Beach & Golf Resort, directly on the beach, $2,496.76; Sea Gate Inn, across Ocean Boulevard from public beach access, $2,182.60; and Ocean Inn & Suites, several blocks inland near the village, $1,861.72. All three fit within the $2,650 lodging ceiling.",
+          "role": "assistant"
+        },
+        {
+          "content": "Break those down. I do not want a low headline rate followed by another few hundred dollars at checkout.",
+          "role": "user"
+        },
+        {
+          "content": "King and Prince: $1,953.00 room charge, based on $279 per night for seven nights; $245.00 resort fee, at $35 per night; $263.76 in percentage-based lodging taxes; $35.00 in state hotel fees; and no parking charge. Total: $2,496.76.\n\nSea Gate Inn: $1,855.00 room charge, based on $265 per night; no resort fee; $222.60 in percentage-based lodging taxes; $35.00 in state hotel fees; and $70.00 for parking, at $10 per night. Total: $2,182.60.\n\nOcean Inn & Suites: $1,526.00 room charge, based on $218 per night; $105.00 destination fee, at $15 per night; $195.72 in percentage-based lodging taxes; $35.00 in state hotel fees; and free parking. Total: $1,861.72.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now verify what “across from the beach” means for Sea Gate. Is there actually a usable crossing and public access, or would we be walking along a busy road looking for an entrance?",
+          "role": "user"
+        },
+        {
+          "content": "Sea Gate is on Ocean Boulevard opposite the coast. From the hotel entrance, the practical route is south on the sidewalk for roughly 250 feet, then across Ocean Boulevard at the marked crosswalk by the public beach access. The access path continues between the oceanfront properties to the sand. The route is about 0.1 mile and generally takes two to three minutes. You would not need to walk on the road shoulder, but you would cross two traffic lanes without a signal, so it is less effortless than walking directly out from the King and Prince grounds.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the King and Prince really opens onto the beach? No road or neighboring property in between?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The resort grounds directly border the beach. Guests can leave the oceanfront pool area through the beach gate and use the short boardwalk over the dunes to reach the sand. There is no public road to cross and no off-property access lane involved.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the actual walk from Ocean Inn & Suites? “Several blocks” can hide a lot.",
+          "role": "user"
+        },
+        {
+          "content": "From Ocean Inn & Suites, the shortest practical route is southeast along Mallery Street, then east toward the public access near the pier and shoreline. It is approximately 0.45 mile each way, usually nine to eleven minutes on sidewalks. The village streets are walkable, but this is not an across-the-road beach hotel, and carrying chairs or other beach gear would make the difference noticeable.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is farther than we want for this trip. Keep it in the comparison for the moment, but tell me the cancellation terms for all three in exact local deadlines.",
+          "role": "user"
+        },
+        {
+          "content": "King and Prince can be canceled without penalty through 4:00 p.m. Eastern on September 5, 2026. After that deadline, the penalty is one night’s room rate plus applicable tax, estimated at $317.48.\n\nSea Gate Inn can be canceled without penalty through 6:00 p.m. Eastern on September 9, 2026. A later cancellation or no-show is charged one night’s room rate plus tax, estimated at $301.80.\n\nOcean Inn & Suites can be canceled without penalty through 3:00 p.m. Eastern on September 10, 2026. Afterward, the charge is the first night plus its destination fee and applicable tax, estimated at $296.96.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does King and Prince require a deposit now, and is the resort fee already included in that cancellation penalty?",
+          "role": "user"
+        },
+        {
+          "content": "The available King and Prince rate requires a one-night deposit when booked. The deposit is refundable if canceled by the September 5 deadline. The displayed late-cancellation penalty is based on one night’s room charge and tax; it does not add all seven nights of resort fees. The remaining balance, including the nightly resort fees, is due at the property.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about Sea Gate? I want to know whether the $70 parking figure is unavoidable and whether anything is charged now.",
+          "role": "user"
+        },
+        {
+          "content": "The rate includes one parking space for the room, and the booking page applies the $10 nightly parking charge automatically, so the $70 is unavoidable if you book this offer. Sea Gate takes a one-night room-and-tax deposit of about $301.80 at booking. It is refundable through September 9 at 6:00 p.m. Eastern, and the rest is collected during the stay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there any room-category issue behind the price difference? We only need one bed, but I do not want the cheapest total to be for a room with no exterior window or some separate annex.",
+          "role": "user"
+        },
+        {
+          "content": "The compared King and Prince rate is for a standard king room in the main resort complex, without a guaranteed ocean view. Sea Gate is a king suite in the main inn with a separate sitting area; its balcony faces the property or street, not a guaranteed ocean view. Ocean Inn & Suites is a standard king room in the main building with an exterior window and no guaranteed balcony. None of the three prices is for a detached annex or an interior room without a window.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then compare the tradeoff in dollars. How much more are we paying for direct beach access at King and Prince versus Sea Gate, and how much do we save by going inland?",
+          "role": "user"
+        },
+        {
+          "content": "King and Prince costs $314.16 more than Sea Gate for the seven-night stay, or $44.88 more per night on a total-cost basis. Sea Gate costs $320.88 more than Ocean Inn & Suites, or $45.84 per night. From the least expensive option to the direct-beach resort, the full difference is $635.04.",
+          "role": "assistant"
+        },
+        {
+          "content": "The inland savings are not enough to justify that walk every beach day. Remove Ocean Inn. Between the other two, which one is the stronger value once cancellation flexibility and access are considered?",
+          "role": "user"
+        },
+        {
+          "content": "Sea Gate is the stronger value if a short road crossing is acceptable. It saves $314.16 and gives you four additional days before the free-cancellation deadline, while keeping the beach about a two-to-three-minute walk away. King and Prince is the better access choice because the beach is directly behind the resort, but the premium is meaningful and its penalty window begins earlier.",
+          "role": "assistant"
+        },
+        {
+          "content": "I am leaning toward Sea Gate, but I want the direct-beach option left open. Give me the final two in a compact comparison and do not book either one yet.",
+          "role": "user"
+        },
+        {
+          "content": "The shortlist is now Sea Gate Inn and King and Prince Beach & Golf Resort; nothing has been booked or held.\n\nSea Gate Inn: $2,182.60 complete for September 12-19, including taxes and $70 parking. The marked public beach route is about 0.1 mile and requires crossing two lanes of Ocean Boulevard. A refundable deposit of about $301.80 is charged at booking. Free cancellation ends September 9 at 6:00 p.m. Eastern.\n\nKing and Prince: $2,496.76 complete, including taxes and the $245 resort fee, with free parking. Its grounds connect directly to the sand by a beach gate and short dune boardwalk. A refundable one-night deposit is charged at booking. Free cancellation ends September 5 at 4:00 p.m. Eastern.\n\nSea Gate is the value leader by $314.16; King and Prince remains the no-road-crossing alternative.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0098",
+      "session_index": 98,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "The Chicago installation trip, Omni Amelia Island stay, Nashville stay, Denver collection trip, January New Orleans trip, Cambria Hotel, Midtown Lodge Raleigh, Milwaukee retirement visit, and February 9-13 exhibition-transfer arrangements remain as previously recorded. Registrar approval is still pending for the proposed Boston hotel replacement from the earlier matter. Avery and her wife selected St. Simons Island for their September 12-19, 2026 coastal vacation and are driving from Atlanta. For one room and two adults, Sea Gate Inn totals $2,182.60 and is reached by a roughly 0.1-mile route with a marked crossing of Ocean Boulevard; its free-cancellation deadline is September 9 at 6:00 p.m. Eastern. King and Prince Beach & Golf Resort totals $2,496.76 and connects to the sand by its own gate and boardwalk; its free-cancellation deadline is September 5 at 4:00 p.m. Eastern. Ocean Inn & Suites was removed from consideration. No coastal hotel has been held or booked.",
+  "verification": {
+    "98": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "The inland savings are not enough to justify that walk every beach day. Remove Ocean Inn.",
+          "habit_id": "tm_pd_v05_user_005_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly rejects the inland hotel because its beach walk is too long and retains only the direct-beach and short-walk options for this trip. No other candidate habit is concretely evidenced by the user's utterances."
+    }
+  }
+}

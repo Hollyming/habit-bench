@@ -1,0 +1,136 @@
+{
+  "cache_fingerprint": "b84ca6916a9f1e3701b0633e7efe0ab10d035442a598ff1994365b800cabcfae",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya asked that Delta remain in the comparison and said she tends to choose it when schedule and price are reasonably close, while allowing another airline when it is clearly better. She then selected the $612 Delta nonstop pairing because its later return and overall travel time justified the premium over the alternatives; no purchase was made.",
+        "evidence_topology": {
+          "episode_id": "client-baltimore-014",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 80,
+          "target_habit_id": "tm_pd_v05_user_000_h02",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly states a durable, soft preference for Delta when schedule and price are comparable, matching the candidate habit and its built-in tradeoff condition. The other habits are not established strongly enough by the user’s own words in this dialogue.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Please keep Delta in the comparison. I tend to choose it when its schedule and price are reasonably close, but I don’t need it when another airline is clearly better.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h02",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I want to finish the Baltimore flight comparison. Can you pair the Sunday outbound with returns I can actually reach after the workshop and keep the total under $650?",
+          "role": "user"
+        },
+        {
+          "content": "I found three workable round-trip combinations from MSP to BWI. The key issue is Tuesday: with the workshop ending near the Inner Harbor at 4:30 p.m., a normal ride to BWI plus check-in and security makes departures before about 6:30 p.m. risky. I’ll separate those from the reliably reachable option.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Show total fare, travel time, stops, and bag terms, not just the departure times.",
+          "role": "user"
+        },
+        {
+          "content": "Option 1 is Delta Main Cabin at $612 round trip: nonstop Sunday from 3:20 p.m. to 6:48 p.m., then nonstop Tuesday from 7:20 p.m. to 8:58 p.m. Elapsed time is 2h28 outbound and 2h38 return. A carry-on and personal item are included; the first checked bag is $35 each way. The fare is changeable without a change fee, though a fare difference can apply.\n\nOption 2 is a mixed nonstop pairing at $536: the same Sunday 3:20-6:48 p.m. outbound, with a Tuesday return at 6:15 p.m. arriving MSP at 7:57 p.m. Carry-on is included and a first checked bag would total $70 round trip. It has no connections, but the return leaves only 1h45 after the workshop ends.\n\nOption 3 is United Economy at $438 round trip with one stop each way. Sunday runs 4:05-9:37 p.m. via Chicago, 4h32 elapsed. Tuesday leaves at 7:05 p.m. and arrives at 11:48 p.m., also via Chicago, 5h43 elapsed. Carry-on is included; the first checked bag is $40 each way. Both directions add connection exposure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the 6:15 return truly unrealistic, or just less comfortable?",
+          "role": "user"
+        },
+        {
+          "content": "It is possible only if the workshop ends exactly on time, the ride is immediately available, and traffic and security are cooperative. A typical 25-35 minute ride would put you at BWI around 5:05-5:15, roughly an hour before departure. A 15-minute overrun or heavier traffic would erase that margin. I would not call it reliable for a fixed client commitment.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the cheaper return that left around five?",
+          "role": "user"
+        },
+        {
+          "content": "That combination is $492 round trip and departs BWI at 5:05 p.m. You could not reach it after a 4:30 finish without leaving the workshop early, so I excluded it from the viable set.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please keep Delta in the comparison. I tend to choose it when its schedule and price are reasonably close, but I don’t need it when another airline is clearly better.",
+          "role": "user"
+        },
+        {
+          "content": "Applied here, Delta’s $612 option is the only nonstop pairing with a return that preserves a dependable airport buffer. It costs $174 more than United, but avoids two connections and cuts total scheduled travel by 5h09 across the trip. It is also $76 more than the 6:15 pairing, which is buying a materially safer Tuesday departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "What time should I leave the office for the 7:20 Delta flight?",
+          "role": "user"
+        },
+        {
+          "content": "Leaving at 4:45 p.m. should get you to BWI around 5:15-5:30 under ordinary traffic, leaving roughly 1h50 before departure. If you can depart at 4:35, that adds protection against workshop overrun and traffic without making the afternoon unnecessarily tight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does the $612 fare still stay inside the trip budget once I check one bag?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. One checked bag each way adds $70, making the flight-and-bag total $682. The airfare itself remains under the $650 ceiling; if that ceiling was intended to include baggage, it would exceed it by $32. The United option would be $518 including one checked bag round trip.",
+          "role": "assistant"
+        },
+        {
+          "content": "The airfare cap is ticket price only. I may carry on anyway. Select the Delta 3:20 outbound and 7:20 return as the best option, but don’t purchase it yet.",
+          "role": "user"
+        },
+        {
+          "content": "Selected, not ticketed: Delta Main Cabin, MSP-BWI nonstop Sunday, September 30, 3:20-6:48 p.m.; BWI-MSP nonstop Tuesday, October 2, 7:20-8:58 p.m.; $612 round trip before any checked-bag charge. It is within the airfare ceiling, preserves the Sunday arrival, and gives a realistic transfer from the 4:30 p.m. workshop finish. The $536 6:15 return and $492 5:05 return are rejected for insufficient airport time; the $438 United itinerary remains cheaper but adds two connections and substantially more travel time.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0080",
+      "session_index": 80,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The August 25-31, 2029 Naples trip remains fully confirmed for two travelers at a total of $4,428, with no remaining arrival follow-up. For the Baltimore client trip September 30-October 2, 2029, a $612 round trip has been selected but not ticketed: nonstop MSP-BWI Sunday from 3:20-6:48 p.m. and nonstop BWI-MSP Tuesday from 7:20-8:58 p.m. The airfare is within the $650 ticket-price ceiling, and the Tuesday schedule supports leaving the Inner Harbor office after the 4:30 p.m. workshop. Earlier returns at 6:15 p.m. and 5:05 p.m. were rejected as unreliable, while a $438 connecting itinerary was set aside because of its added travel time and connection exposure. Two hotel nights near the Inner Harbor remain unbooked, capped at $245 per night before tax, and airport rides are still expected to total about $60-$100. The August 2028 Cary client trip is confirmed; the July 2028 Columbus trip retains a separate travel credit and unresolved office bag-storage question. Earlier Monterey Peninsula, Charlotte, Richmond, Nashville, central Oregon coast, Denver, and San Diego trips remain reserved or completed. Coastal Georgia and January 2027 Denver remain unbooked. The Raleigh corrected folio, Philadelphia deposit release, and earlier Nashville refund reconciliation remain unresolved.",
+  "verification": {
+    "80": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Please keep Delta in the comparison. I tend to choose it when its schedule and price are reasonably close, but I don’t need it when another airline is clearly better.",
+          "habit_id": "tm_pd_v05_user_000_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly states a durable, soft preference for Delta when schedule and price are comparable, matching the candidate habit and its built-in tradeoff condition. The other habits are not established strongly enough by the user’s own words in this dialogue."
+    }
+  }
+}

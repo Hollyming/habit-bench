@@ -1,0 +1,80 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_001_h04', 'support') actual=[]",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "No durable hotel-room bed policy is evidenced because this is a solo professional stay, outside the supplied policy's shared personal-trip scope.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "Please normalize the two hotel choices for September 16-19. Include the destination charge, taxes, and the local transportation each location would require. I also need the deposit and cancellation terms checked before we choose.",
+          "role": "user"
+        },
+        {
+          "content": "For three nights, the Back Bay conference hotel is $329 nightly, or $987. Its $35 nightly destination charge adds $105, and estimated hotel taxes on the room and charge add $179.63, producing a lodging total of $1,271.63. The Cambridge hotel is $279 nightly, or $837, with no destination charge; estimated taxes add $116.76, producing a lodging total of $953.76.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now add realistic transportation. Remember that registration is Wednesday afternoon in Back Bay, meetings are split Thursday, Friday's appointments are in Cambridge, and the publisher dinner Friday night is back in Back Bay. Saturday's flight leaves at 9:10 a.m.",
+          "role": "user"
+        },
+        {
+          "content": "From the Back Bay hotel, I estimate $45 from Logan on Wednesday, $30 for Thursday's cross-city travel, $38 for Friday's Cambridge round trip, and $58 for a reserved car to Logan early Saturday: $171 total. That makes the normalized Back Bay cost about $1,442.63. From Cambridge, I estimate $47 from Logan, $25 to Back Bay Wednesday, $48 for Thursday's cross-city travel, $48 for Friday's dinner trip, and $62 for the early Saturday airport car: $230 total. The Cambridge normalized cost is about $1,183.76.",
+          "role": "assistant"
+        },
+        {
+          "content": "So Cambridge is still materially cheaper.",
+          "role": "user"
+        },
+        {
+          "content": "Yes, by about $258.87 on these assumptions. It also puts you closer to Friday's appointments. The tradeoff is more travel around Wednesday registration, Thursday obligations, Friday dinner, and the Saturday airport departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the actual rate conditions? The lower number is less useful if it locks immediately.",
+          "role": "user"
+        },
+        {
+          "content": "The Back Bay rate is card-guaranteed with no advance deposit. It can be canceled without penalty through 6:00 p.m. Eastern on Monday, September 14; after that, the penalty is one night's room, destination charge, and tax. The Cambridge rate requires an immediate nonrefundable deposit of $953.76 for the full stay. Changes are allowed only if the hotel reprices the reservation, and cancellation forfeits the deposit.",
+          "role": "assistant"
+        },
+        {
+          "content": "And can the Back Bay hotel handle the early Saturday departure?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Its front desk is staffed overnight and can arrange a car for 6:30 a.m. The quoted sedan estimate is $58 before gratuity, with about 20 to 30 minutes allowed to Logan at that hour. That should put you at the terminal around 7:00 a.m., a little over two hours before the 9:10 departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the Back Bay hotel. The flexibility and simpler workshop days are worth the difference. A standard queen room is fine for these three solo nights. Please book the cancellable rate, not a prepaid variation.",
+          "role": "user"
+        },
+        {
+          "content": "Before I finalize: the booking is for one adult, checking in Wednesday, September 16 and checking out Saturday, September 19, in a standard queen room at $1,271.63 including the destination charge and estimated taxes. No advance deposit is due, and cancellation is free through 6:00 p.m. Eastern on September 14. Is that correct?",
+          "role": "assistant"
+        },
+        {
+          "content": "Correct. Go ahead, and note the 6:30 Saturday car request if the hotel will accept it this far out.",
+          "role": "user"
+        },
+        {
+          "content": "The Back Bay conference hotel is booked for one adult, September 16-19, for three nights in a standard queen room. The estimated total is $1,271.63, with no advance deposit; the card is a guarantee only. Cancellation is free through 6:00 p.m. Eastern on September 14, after which the penalty is one night plus the associated charge and tax. The hotel added a 6:30 a.m. Saturday car request, but the concierge will reconfirm the vehicle and final price during the week of arrival. The selected flights remain unbooked, and their schedules, fare terms, operating carriers, and checked-carton limits still need rechecking.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0093",
+      "session_index": 93,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "The January 25-31 Nashville and Raleigh press circuit remains confirmed, including the January 31 closing schedule, luggage pickup, and nonstop return to Denver. The November 18-21 Atlanta trip remains unchanged: the Emory Inn is booked, Friday cars are unbooked, and flight details need verification. The May 12-17 San Juan anniversary trip remains confirmed. The solo June 11-14 Boston work trip remains confirmed at Boston Park Plaza for $1,146; flight and ground details still need verification. For the September 16-19 solo Boston rights-workshop trip, the Back Bay conference hotel is booked for three nights at an estimated $1,271.63, with no advance deposit and free cancellation through 6:00 p.m. Eastern September 14. A 6:30 a.m. Saturday car request is noted but requires reconfirmation during the week of arrival. The selected but unbooked flights remain the Wednesday 6:25 a.m.-11:55 a.m. Denver-Boston nonstop and Saturday 9:10 a.m.-11:45 a.m. Boston-Denver nonstop at a complete $428 round-trip fare including one checked carton each way. Wednesday registration, Thursday and Friday meetings, and Friday's publisher dinner remain fixed. Flight schedules, operating carriers, fare terms, and carton limits still require verification. For the May 14-18 Philadelphia family graduation trip, The Study at University City remains selected but unbooked at an estimated $1,172, with final terms and transportation unresolved. For the October 7-10 New Orleans conference, Riverside remains booked; reissued ticket details, checked-carton handling, seats, and Wednesday luggage storage need confirmation. For the November 13-16 Chicago arts weekend, the River North hotel is booked for $771 with a $257 deposit, refundable through 6:00 p.m. Central November 11. Flights, the Saturday concert, and Sunday's 10:30 a.m. Art Institute entry are confirmed; the Saturday restaurant, concert entry details, and Monday transfer to Midway remain unresolved."
+}

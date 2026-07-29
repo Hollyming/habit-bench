@@ -1,0 +1,87 @@
+{
+  "cache_fingerprint": "b98a87a6cefbd9181e59981a8c2430955898ae3599f8cdef4da20b97d9c121ab",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Elena compared the airline's earlier Bangor departure with a later no-additional-airfare Portland return. The Portland option was recommended, subject to verifying the live flight exchange and repriced round-trip rental; the two-city hotel sequence and final Bar Harbor night remain unchanged.",
+        "evidence_topology": {
+          "episode_id": "ep_005_maine_coast_shared_vacation",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 17,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user presents the 4:05 p.m. Portland flight as an available option and asks which plan is more workable, but never explicitly chooses or endorses the afternoon departure. No other candidate habit is evidenced by the user utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The airline moved our Friday Bangor flight from 12:40 to 11:20. They will also let us switch to a 4:05 p.m. flight from Portland without adding airfare. We are still ending with the final night in Bar Harbor. Which return is more workable?",
+          "role": "user"
+        },
+        {
+          "content": "The Portland return is more workable. An 11:20 Bangor departure would put you on the road from Bar Harbor around 7:30 a.m. once you allow for the drive, rental return, and airport processing. The 4:05 Portland flight requires a much longer drive, but leaving Bar Harbor around 10:00 a.m. should provide a reasonable buffer for the roughly three-hour drive, a fuel stop, and the rental return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would changing airports disturb either hotel reservation?",
+          "role": "user"
+        },
+        {
+          "content": "No. Keep the confirmed Portland-then-Bar Harbor hotel sequence exactly as it is, including the final night in Bar Harbor. Only the return flight and the rental-car return location need attention.",
+          "role": "assistant"
+        },
+        {
+          "content": "The car is already a one-way rental from Portland to Bangor. Is changing the drop-off to Portland likely to simplify it?",
+          "role": "user"
+        },
+        {
+          "content": "Operationally, yes: it becomes a Portland round-trip rental rather than a one-way rental. Before changing it, have the agency reprice the full reservation and confirm that the one-way fee disappears, the same vehicle class remains available, and the pickup time and terms do not change. A round-trip rate could still differ from the current $501 total.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the two airport plans in one concise recommendation, and be clear about what has not been changed.",
+          "role": "user"
+        },
+        {
+          "content": "Choose the 4:05 p.m. Portland return. Bangor preserves the shorter drive but the new 11:20 departure creates an uncomfortably early start and little recovery time for traffic or rental delays. Portland adds roughly two hours of driving but gives you a substantially wider morning margin and keeps the final Bar Harbor night intact. First verify the live Portland flight details and that the airline exchange is truly fare-neutral; then obtain the revised Portland-return rental total and confirm the one-way fee is removed. If both checks hold, change only the return flight and rental drop-off. Leave both confirmed hotels unchanged. No flight, rental, or hotel change has been made here.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0017",
+      "session_index": 17,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena's solo Chicago rights conference trip remains March 27-30 with the booked Embassy Suites Chicago Downtown Magnificent Mile, Midway arrival, and O'Hare return. For the Raleigh family wedding, Elena and her spouse have confirmed May 2-4 flights and a two-night stay at the Raleigh Marriott City Center; family events and Saturday transportation remain unchanged. For the solo Seattle work trip June 15-18, the three-night Hyatt at Olive 8 stay and selected flights are confirmed. Tuesday's Seattle rights meeting and author activities are at Elliott Bay Book Company; Elena still needs to confirm venue access, alert the rights contact, arrange a car, and cancel the conflicting dinner. For the solo Philadelphia board trip July 24-26, the Thursday itinerary and two-night Club Quarters Hotel Rittenhouse Square reservation are confirmed. The office should exchange the Saturday return for the later nonstop at the quoted $84 additional fare after verifying the live total and ticket credit; that change has not yet been made. Saturday luggage storage remains part of the plan. Elena and her spouse have confirmed two nights in Portland followed by four nights in Bar Harbor, September 13-19, with the final night in Bar Harbor. Their Bangor return was moved from 12:40 p.m. to 11:20 a.m.; a 4:05 p.m. Portland return is available without additional airfare and is the more workable option. Before making changes, verify the live Portland exchange terms and reprice the existing rental with Portland as the return location, confirming removal of the one-way fee and unchanged pickup terms. Only the return flight and rental drop-off should change; no update has yet been made.",
+  "verification": {
+    "17": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user presents the 4:05 p.m. Portland flight as an available option and asks which plan is more workable, but never explicitly chooses or endorses the afternoon departure. No other candidate habit is evidenced by the user utterances."
+    }
+  }
+}

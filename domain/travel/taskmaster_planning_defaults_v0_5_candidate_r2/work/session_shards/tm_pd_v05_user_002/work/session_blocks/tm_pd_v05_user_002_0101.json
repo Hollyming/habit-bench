@@ -1,0 +1,144 @@
+{
+  "cache_fingerprint": "c771b6c5f849883c3fde22201eaea2224a3410e5e62c8a8f11415c059a91c296",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support for the supplied flight-timing policy appears when Marcus asks that morning departures be presented first for solo work travel unless the meeting schedule requires otherwise, then accepts the 7:10 a.m. outbound for this trip. No other durable preference is established.",
+        "evidence_topology": {
+          "episode_id": "atlanta-birmingham-ops-01",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 101,
+          "target_habit_id": "tm_pd_v05_user_002_h00",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly establishes a durable morning-departure default for solo work travel, with the meeting-schedule qualifier already represented in the candidate habit's activation condition. No other user quote independently provides strong evidence for an exact candidate habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For solo work travel, put morning departures first unless a meeting schedule requires a different time.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_002_h00",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I need to cover a restaurant outside Atlanta Tuesday afternoon and Birmingham Wednesday morning. Compare flying round trip to Atlanta and driving the whole loop against flying into Atlanta and home from Birmingham. Do not book anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "What dates are these, which Chicago airport should I use, and what are the appointment times and addresses?",
+          "role": "assistant"
+        },
+        {
+          "content": "September 16 and 17, from O'Hare. Tuesday is at 2:30 p.m. in Kennesaw. Wednesday is at 9:00 a.m. in Birmingham, near The Summit. I should be done there around noon.",
+          "role": "user"
+        },
+        {
+          "content": "Both structures can work with Tuesday-morning travel. The useful outbound is United ORD-ATL, 7:10-10:15 a.m. local time. Allowing about 35 minutes to reach the rental counter and 45-60 minutes to Kennesaw, you should arrive around 11:40 a.m.-noon, leaving more than two hours before the inspection.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. For solo work travel, put morning departures first unless a meeting schedule requires a different time. What does the round-trip version look like after Kennesaw?",
+          "role": "user"
+        },
+        {
+          "content": "Round trip through Atlanta is $438 airfare. After the Tuesday visit, allow about 2 hours 25 minutes from Kennesaw to the Birmingham hotel, including a modest traffic buffer and the one-hour time-zone gain. On Wednesday, leave The Summit area around 1:15 p.m. Central for ATL. The drive is about 2 hours 40 minutes, and the time-zone change puts you at the airport near 4:55 p.m. Eastern. That supports a 7:45-9:05 p.m. ATL-ORD flight. The rental returns to the same airport, so there is no one-way fee.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much driving is that overall? Include the airport and restaurant legs, not just Atlanta to Birmingham.",
+          "role": "user"
+        },
+        {
+          "content": "Use roughly 5 hours 40 minutes total: 50 minutes ATL to Kennesaw, 2 hours 25 minutes Kennesaw to Birmingham, and 2 hours 25 minutes from the Wednesday site back to ATL under normal conditions. I would budget up to 6 hours 15 minutes because the return crosses metro Atlanta in the afternoon.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now the open jaw. Is the higher fare mostly offset by the car, or is it still clearly more expensive?",
+          "role": "user"
+        },
+        {
+          "content": "The open-jaw airfare is $596: the same 7:10-10:15 a.m. ORD-ATL outbound, then United BHM-ORD nonstop Wednesday at 5:35-7:40 p.m. The estimated one-way rental fee is $85. Its combined flight and drop-fee premium is therefore $243 over the round trip before fuel. It is still clearly more expensive, but it removes the Birmingham-to-Atlanta return drive.",
+          "role": "assistant"
+        },
+        {
+          "content": "What would Wednesday look like with that option? I do not want a long dead period at the Birmingham airport.",
+          "role": "user"
+        },
+        {
+          "content": "After finishing around noon, you could have lunch near the site and leave for BHM around 3:35 p.m. The drive is about 25 minutes; returning the car and clearing security should put you at the gate around 4:30 p.m., about an hour before departure. That is a practical schedule without spending most of the afternoon at the airport.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are there any later Birmingham flights that still get me home Wednesday?",
+          "role": "user"
+        },
+        {
+          "content": "There is a 6:48 p.m. departure connecting in Charlotte and reaching O'Hare at 10:54 p.m., but the connection is only 43 minutes and the fare rises to $671. The 5:35 p.m. nonstop is the latest practical Wednesday departure: later choices either add a tight connection, arrive close to 11:00 p.m., or require an overnight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put the two realistic patterns side by side, including the intercity driving and every fare or drop charge we know.",
+          "role": "user"
+        },
+        {
+          "content": "Round trip ATL: ORD-ATL Tuesday 7:10-10:15 a.m.; ATL-ORD Wednesday 7:45-9:05 p.m.; airfare $438; one-way fee $0; about 5 hours 40 minutes total driving, including roughly 5 hours 5 minutes of intercity and cross-metro driving after Kennesaw; latest practical Wednesday departure 7:45 p.m. Eastern.\n\nOpen jaw: ORD-ATL Tuesday 7:10-10:15 a.m.; BHM-ORD Wednesday 5:35-7:40 p.m.; airfare $596; estimated one-way rental fee $85; about 3 hours 40 minutes total driving, including roughly 2 hours 25 minutes between Kennesaw and Birmingham; latest practical Wednesday departure 5:35 p.m. Central.\n\nThe open jaw costs $243 more before fuel and saves about two hours of driving plus the risk of Wednesday-afternoon Atlanta traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "Carry both into the hotel and car comparison, but treat the open jaw as the lead option. The time saved Wednesday is worth keeping in front of us. Still no purchase.",
+          "role": "user"
+        },
+        {
+          "content": "I will carry both forward without booking. Lead pattern: open jaw at $596 airfare plus an estimated $85 one-way rental fee, with about 3 hours 40 minutes total driving and the 5:35 p.m. Wednesday BHM departure. Backup: Atlanta round trip at $438, no drop fee, about 5 hours 40 minutes total driving, and the 7:45 p.m. ATL departure. The next comparison will test Birmingham hotel location, rental totals, fuel, parking, and the full door-to-door difference.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0101",
+      "session_index": 101,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Charleston remains confirmed for Marcus, Daniel, and Owen for March 27-31 under flights H7Q4LM and A6N9RP, Hyatt House HH-729461, and rides R-48271 and R-48296; the $501 canceled-return refund remains pending. Louisville is confirmed for Marcus April 7-8 under flight L8V2KD and Galt House GH-684217; four local rides remain unbooked at an expected $124-$171. Cleveland is confirmed for Marcus May 13-14 under United C7M4QP, Aloft Cleveland Beachwood AB-417286, Hertz HZ-638205, and ORD Lot F LF-290184. Dallas is confirmed June 16-17 under United U6D9KF, Hyatt Place Dallas North/Addison HP-583194, and Avis AV-741620, estimated at $683. Southern California is confirmed for Marcus, Daniel, and Owen July 19-27 under United N4K8TZ, Sea View SV-731904, Avis AVD-904671, and Bahia BM-558217, total $5,739. Boston is confirmed for the family January 22-26 under JetBlue J7R4NX and Revere Hotel RV-621847; Tuesday car pickup is 4:30 a.m. Norfolk and Virginia Beach are confirmed for Marcus under flights N6R3PV, Courtyard Norfolk Downtown CY-842619, and Avis AV-395742; expected total is $1,112.56 before fuel, tolls, meals, and Tuesday parking. St. Louis is confirmed for the family at DoubleTree St. Louis Forest Park under DT-573826, March 23-28; expected hotel, parking, fuel, and tolls total is $1,149.40 before meals, transit, and rideshares. Sacramento is confirmed under flights S6K9TR, Courtyard CY-519384, and Alamo AL-728541; estimated trip total is $1,235.08. Oregon coast is fully confirmed for Marcus, Daniel, and Owen August 2-10 under United UA-8K4R2M, Budget BZ-761943, Tolovana TI-846291, Adobe AR-593817, and Hampton HP-274608; current exposure is $4,989.68 before meals and activities. For the September 16-17 Atlanta and Birmingham inspections, nothing is booked. Carry two structures into the hotel and rental-car comparison. Lead open jaw: ORD-ATL 7:10-10:15 a.m. Tuesday and BHM-ORD 5:35-7:40 p.m. Wednesday, $596 airfare, estimated $85 one-way rental fee, and about 3 hours 40 minutes total driving. Backup Atlanta round trip: same outbound and ATL-ORD 7:45-9:05 p.m. Wednesday, $438 airfare, no one-way fee, and about 5 hours 40 minutes total driving. The open jaw costs $243 more before fuel and saves about two hours of driving. Next step is to compare a Birmingham hotel, rental totals, fuel, parking, and door-to-door costs; no purchase has been authorized.",
+  "verification": {
+    "101": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For solo work travel, put morning departures first unless a meeting schedule requires a different time.",
+          "habit_id": "tm_pd_v05_user_002_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly establishes a durable morning-departure default for solo work travel, with the meeting-schedule qualifier already represented in the candidate habit's activation condition. No other user quote independently provides strong evidence for an exact candidate habit."
+    }
+  }
+}

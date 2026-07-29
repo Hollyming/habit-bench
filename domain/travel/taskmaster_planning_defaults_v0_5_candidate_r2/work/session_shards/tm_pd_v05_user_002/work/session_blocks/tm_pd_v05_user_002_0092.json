@@ -1,0 +1,163 @@
+{
+  "cache_fingerprint": "bd88e8f7d1b3acc9a9dfa43fc29cf89ec6567a43c16833d9cf75a65444ab0ed3",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Exception evidence: Marcus explicitly chose an evening outbound only for this Sacramento trip because the Wednesday inspection schedule makes same-morning travel too risky, and he clearly limited the choice to this trip.",
+        "evidence_topology": {
+          "episode_id": "sacramento-ops-01",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 92,
+          "target_habit_id": "tm_pd_v05_user_002_h00",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly makes a one-trip evening-departure override, requests a later Thursday return after the Roseville visit, and rejects the connecting outbound in favor of the nonstop option. The user limits these choices to the Sacramento schedule and does not state a durable revision.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "using a Thursday flight after the Roseville visit",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "I don't want a connection that can wipe out the only margin",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h03",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For this trip, use the Tuesday evening flight. The inspection start matters more than leaving in the morning",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_002_h00",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I need to cover Sacramento at 10:30 Wednesday and Roseville through about 4:00 Thursday. Compare the flights door to door. I do not want to buy anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "I found three relevant outbound patterns from Chicago. The cleanest is a Tuesday nonstop to Sacramento, leaving ORD at 6:35 p.m. and landing at 9:05 p.m. The lowest fare leaves Wednesday at 5:20 a.m., connects in Denver, and reaches Sacramento at 9:14 a.m. There is also a Wednesday nonstop to Oakland from 7:00 to 9:35 a.m., but the drive to Sacramento is the main risk. What time could you leave for O'Hare Tuesday?",
+          "role": "assistant"
+        },
+        {
+          "content": "I can leave the office around 3:45, so I should be at ORD by 4:45. What do the complete round trips cost, using a Thursday flight after the Roseville visit?",
+          "role": "user"
+        },
+        {
+          "content": "Pairing each Sacramento outbound with the same Thursday return gives these totals: Tuesday evening nonstop, $618 round trip; Wednesday 5:20 a.m. connection, $441 round trip. The return leaves SMF at 6:20 p.m. and reaches ORD at 12:15 a.m. Friday. The Oakland pattern, returning from OAK at 7:05 p.m., is $502 round trip.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much real margin does the Wednesday connection leave before 10:30? Include getting off the plane, the rental car, and the drive.",
+          "role": "user"
+        },
+        {
+          "content": "Very little. With the scheduled 9:14 a.m. arrival, allow 10 minutes to deplane, roughly 25 to 35 minutes for the rental-car shuttle and pickup, then 20 to 30 minutes to the Sacramento restaurant. Best case is about 10:09; a more realistic arrival is 10:20 to 10:30. A delay of even 15 minutes could make you late, and the Denver connection adds another failure point.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Oakland? The fare is better than the Tuesday option.",
+          "role": "user"
+        },
+        {
+          "content": "The Oakland flight is not compatible with the inspection. After landing at 9:35, deplaning and collecting a car would put you on the road around 10:15. Oakland to the Sacramento site is about 1 hour 45 minutes in favorable traffic and can exceed 2 hours 30 minutes during congestion. You would likely arrive around noon or later.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the actual choice is saving $177 with the Wednesday connection versus getting in Tuesday night.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The Wednesday itinerary also means leaving home around 3:30 a.m. and gives you almost no recovery room before the inspection. Tuesday requires a hotel night and an evening departure, but you would wake up in Sacramento and could reach the restaurant without depending on same-day flight performance.",
+          "role": "assistant"
+        },
+        {
+          "content": "For this trip, use the Tuesday evening flight. The inspection start matters more than leaving in the morning, and I don't want a connection that can wipe out the only margin. This is just for this Sacramento schedule.",
+          "role": "user"
+        },
+        {
+          "content": "Tuesday evening is the lead option: ORD 6:35 p.m. to SMF 9:05 p.m., then the Thursday 6:20 p.m. nonstop back to ORD, arriving 12:15 a.m. Friday, for $618 round trip. Nothing is being purchased.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can I realistically finish in Roseville at 4:00 and make that return? I need the latest time I can reach the airport, not just the airline cutoff.",
+          "role": "user"
+        },
+        {
+          "content": "Yes, but leave the Roseville site promptly. The drive to SMF is usually 30 to 40 minutes and can run 50 minutes with Thursday traffic. Reaching the terminal by 5:05 p.m. gives you 75 minutes before departure; 5:20 is the latest airport arrival I would treat as feasible if the rental return is quick and you have no checked bag. To protect that, leave Roseville by 4:10. A 4:25 departure would make the return fragile.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the cheaper Wednesday connection as the comparison option, drop Oakland, and carry both Sacramento patterns into the hotel and car search. No booking.",
+          "role": "user"
+        },
+        {
+          "content": "Saved without booking. Lead: Tuesday 6:35 p.m. ORD-SMF nonstop, arriving 9:05 p.m., with Thursday 6:20 p.m. SMF-ORD nonstop, $618 round trip. Comparison: Wednesday 5:20 a.m. departure via Denver, arriving SMF at 9:14 a.m., with the same return, $441 round trip; it offers only about 10 to 20 minutes of practical inspection margin if operations run on time. Oakland is dropped because of the 1 hour 45 minute to 2 hour 30 minute drive exposure. For Thursday planning, leave Roseville by 4:10 p.m., target SMF by 5:05, and treat 5:20 as the latest feasible airport arrival.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0092",
+      "session_index": 92,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Charleston remains confirmed for Marcus, Daniel, and Owen for March 27-31 under flights H7Q4LM and A6N9RP, Hyatt House HH-729461, and rides R-48271 and R-48296; the $501 canceled-return refund remains pending. Louisville remains confirmed for Marcus April 7-8 under flight L8V2KD and Galt House GH-684217; four local rides remain unbooked at an expected $124-$171. Cleveland remains confirmed for Marcus May 13-14 under United C7M4QP, Aloft Cleveland Beachwood AB-417286, Hertz HZ-638205, and ORD Lot F LF-290184. Dallas is confirmed for June 16-17 under United U6D9KF, Hyatt Place Dallas North/Addison HP-583194, and Avis AV-741620, estimated at $683. Southern California remains confirmed for Marcus, Daniel, and Owen July 19-27 under United N4K8TZ, Sea View SV-731904, Avis AVD-904671, and Bahia BM-558217, total $5,739. Boston is confirmed for Marcus, Daniel, and Owen for January 22-26 under JetBlue J7R4NX and Revere Hotel RV-621847; Tuesday's car pickup is 4:30 a.m. Norfolk and Virginia Beach are confirmed for Marcus under flights N6R3PV, Courtyard Norfolk Downtown CY-842619, and Avis AV-395742; expected total is $1,112.56 before fuel, tolls, meals, and Tuesday parking. St. Louis remains confirmed for Marcus, Daniel, and Owen at DoubleTree St. Louis Forest Park under DT-573826, March 23-28, in a two-queen room. Room and estimated taxes remain $985.40, with free cancellation through 11:59 p.m. local time March 21. The attached garage will be closed Tuesday and Wednesday nights; use Argyle Garage, 225 N. Euclid Avenue, about 0.3 mile or a six-minute walk away, at $20 per 24 hours with no in-and-out privileges. Leave the car parked there, use rideshares for the Forest Park days, and walk about 15 minutes from the garage to Central West End MetroLink for downtown. Expected parking is now $76 across the stay, making hotel and parking $1,061.40; estimated fuel and tolls bring the driving plan to $1,149.40 before meals, local transit, and rideshares. Keep the existing Sunday and Friday driving schedule. Home2 was reconsidered but not reserved. Sacramento and Roseville flights remain unbooked. Lead pattern is Tuesday ORD 6:35 p.m.-SMF 9:05 p.m. nonstop with Thursday SMF 6:20 p.m.-ORD 12:15 a.m. nonstop for $618 round trip. The comparison is Wednesday ORD 5:20 a.m.-SMF 9:14 a.m. via Denver with the same return for $441; it leaves little practical margin before the 10:30 a.m. inspection. The Oakland option was dropped because of driving exposure. For the Thursday return, leave Roseville by 4:10 p.m., target SMF by 5:05, and treat 5:20 as the latest feasible airport arrival. Carry both Sacramento patterns into the hotel and ground-transportation search.",
+  "verification": {
+    "92": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For this trip, use the Tuesday evening flight. The inspection start matters more than leaving in the morning",
+          "habit_id": "tm_pd_v05_user_002_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "using a Thursday flight after the Roseville visit",
+          "habit_id": "tm_pd_v05_user_002_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "I don't want a connection that can wipe out the only margin",
+          "habit_id": "tm_pd_v05_user_002_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly makes a one-trip evening-departure override, requests a later Thursday return after the Roseville visit, and rejects the connecting outbound in favor of the nonstop option. The user limits these choices to the Sacramento schedule and does not state a durable revision."
+    }
+  }
+}

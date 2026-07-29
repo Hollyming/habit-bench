@@ -1,0 +1,126 @@
+{
+  "cache_fingerprint": "e90b8801a2900cd3e6ad55828103774eb491bd6d3026da349da1790250b5337e",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For this Cary trip, Maya selected the $584 nonstop round trip after comparing fare, arrival timing, connection exposure, hotel transfer timing, and the Friday return deadline. The itinerary remains unbooked.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-012",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 68,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chose the nonstop round-trip combination over the cheaper itinerary with a connecting outbound. This is current-trip support for the nonstop-flight habit, not a durable recurring statement. The shared 5:35 p.m. return does not independently evidence an afternoon-return preference because it was present in both compared options, and the user did not choose between return times. No other candidate habit is established by the user's utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Keep the $584 nonstop combination as the choice.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I want to compare the Raleigh flights as complete round trips before I approve anything. Use the two-night hotel setup, and drop any combination that gets me home too late Friday.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare both Wednesday outbounds against both Friday returns. What is the latest acceptable arrival in Minneapolis, and is the airfare ceiling still $600 round trip?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, keep air under $600. I need to be back by 8:30 p.m. Friday.",
+          "role": "user"
+        },
+        {
+          "content": "That removes the connecting Friday return immediately. It arrives in Minneapolis at 10:12 p.m., after your 8:30 deadline, and its 41-minute connection in Chicago adds another failure point. The $42 savings does not make either pairing viable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Compare the two options that use the nonstop return.",
+          "role": "user"
+        },
+        {
+          "content": "Option one is $584 round trip: Wednesday nonstop from Minneapolis at 6:45 p.m., arriving Raleigh at 10:18 p.m.; Friday nonstop at 5:35 p.m., arriving Minneapolis at 7:48 p.m. Option two is $467 round trip: a one-stop Wednesday itinerary arriving Raleigh at 11:56 p.m.; the same Friday nonstop home, arriving at 7:48 p.m. Both stay under the $600 air limit and meet the return deadline.",
+          "role": "assistant"
+        },
+        {
+          "content": "How do the Wednesday arrivals affect the hotel check-in and the Thursday meeting?",
+          "role": "user"
+        },
+        {
+          "content": "With the 10:18 p.m. arrival, allow roughly 35 to 50 minutes for deplaning and the rideshare to Cary, putting hotel arrival around 11:00 to 11:20 p.m. The hotel should still receive a late-arrival note. With the 11:56 p.m. arrival, hotel arrival is more likely 12:40 to 1:00 a.m., so the reservation needs an explicit overnight hold to avoid being treated as a no-show. Both preserve Thursday’s full meeting, but the connecting option leaves a much shorter night.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Friday after the review? I don’t want the airport timing to be unrealistic.",
+          "role": "user"
+        },
+        {
+          "content": "For the 5:35 p.m. departure, I’d target leaving the Cary office around 3:35 p.m. That allows about 25 to 35 minutes to RDU plus a reasonable airport buffer. If the review ends by 3:15 p.m., there is about 20 minutes to wrap up and request the ride. A review running past roughly 3:40 p.m. would make the schedule tight.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the cheaper outbound saves $117, but it adds a connection and gets me to the hotel almost two hours later. Is that right?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The $467 combination saves $117 versus the $584 combination, but adds connection exposure Wednesday and shifts likely hotel arrival from about 11:00–11:20 p.m. to about 12:40–1:00 a.m. Friday ground timing is identical because both use the same nonstop return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the $584 nonstop combination as the choice. Don’t book it yet, but replace the earlier flight times in the working plan and note the late check-in.",
+          "role": "user"
+        },
+        {
+          "content": "Working plan updated, still unbooked: Wednesday MSP–RDU nonstop departing 6:45 p.m. and arriving 10:18 p.m.; two nights at the $198-per-night Cary hotel, with expected arrival around 11:00–11:20 p.m. and a late-check-in note required; Friday RDU–MSP nonstop departing 5:35 p.m. and arriving 7:48 p.m.; rideshare departure from the Cary office targeted for about 3:35 p.m. The airfare is $584 round trip, within the $600 limit. The $467 outbound pairing was declined because of its connection and near-1:00 a.m. hotel arrival, and both Chicago-return pairings were eliminated because they arrive after the 8:30 p.m. deadline.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0068",
+      "session_index": 68,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The July 17–19, 2028 Columbus client trip is underway: the replacement outbound arrived at 9:18 p.m., Maya checked in before midnight, current-trip charges are $1,861, and net exposure is $1,309 after separately recognizing a $552 nontransferable travel credit valid for travel completed by July 18, 2029. The Wednesday 7:05 p.m. return and workshop schedule remain unchanged; client-office bag storage is unconfirmed. The August 30–September 1 Cary client trip remains unbooked with an updated working structure: Wednesday 6:45 p.m. MSP–RDU nonstop arriving 10:18 p.m., two nights at a Cary hotel priced at $198 nightly before tax with a late-check-in note, rideshares, and Friday 5:35 p.m. RDU–MSP nonstop arriving 7:48 p.m. Airfare is $584 round trip; the connecting Friday return was eliminated because it misses the 8:30 p.m. home-arrival deadline. The May 2028 Monterey Peninsula, December 2027 Charlotte and Richmond, April 2027 Nashville, September 2027 central Oregon coast, October 2027 Denver, and November 2026 San Diego trips remain reserved or completed as previously recorded. Coastal Georgia and January 2027 Denver remain unbooked. The Raleigh breakfast refund and corrected folio, Philadelphia deposit release and shuttle details, and an earlier Nashville refund reconciliation remain unresolved.",
+  "verification": {
+    "68": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Keep the $584 nonstop combination as the choice.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chose the nonstop round-trip combination over the cheaper itinerary with a connecting outbound. This is current-trip support for the nonstop-flight habit, not a durable recurring statement. The shared 5:35 p.m. return does not independently evidence an afternoon-return preference because it was present in both compared options, and the user did not choose between return times. No other candidate habit is established by the user's utterances."
+    }
+  }
+}

@@ -1,0 +1,323 @@
+{
+  "cache_fingerprint": "dc5fbc242a5b6dc36672523f4fe0a3927f073fce318554913a9427c2278bf874",
+  "raw_candidates": {
+    "candidate_habits": [
+      {
+        "boundary_condition": "A materially cheaper alternative may remain viable if its transportation and timing consequences are still simple and reliable.",
+        "default_action": "Compare hotels using all-in lodging, local transportation, commute time, and luggage handling; rank the operationally simpler option first when savings are modest.",
+        "evidence": [
+          {
+            "quote": "Use that one. I would rather pay the extra $33 than spend both mornings driving and deal with a rental return before the flight. Assume the client can keep my suitcase Thursday, but mark that as something to confirm.",
+            "session_id": "tm_pd_v05_user_000_s0103"
+          },
+          {
+            "quote": "So East Liberty saves only about $43 and adds four local rides plus the Thursday bag detour. Make the short list, but put Bakery Square first.",
+            "session_id": "tm_pd_v05_user_000_s0117"
+          },
+          {
+            "quote": "Mainly schedule and total cost. More generally, work searches driven by logistics and company caps should not count as budget-focused hotel searches just because I’m watching the total. Only apply the budget rating floor when I actually describe the hotel search as budget-focused.",
+            "session_id": "tm_pd_v05_user_000_s0119"
+          }
+        ],
+        "exception_condition": "This work-trip rule does not control leisure coastal lodging choices.",
+        "family": "lodging_location_tradeoff",
+        "local_confidence": 0.99,
+        "name": "Optimize work-trip hotels for logistics, not room price alone",
+        "preference_value": "For client trips, prefer a hotel near the work site when a cheaper hotel creates repeated rides, driving, bag retrieval, or schedule risk.",
+        "scope_condition": "Work and client trips where the office or workshop schedule is the primary constraint."
+      },
+      {
+        "boundary_condition": "Connections are acceptable when they still protect the fixed commitment and the nonstop premium does not buy enough useful time.",
+        "default_action": "Put a workable nonstop first when it remains inside the airfare cap, even if a connecting itinerary is cheaper.",
+        "evidence": [
+          {
+            "quote": "Then use the nonstop both ways. I would rather take the afternoon nonstop home and avoid turning Thursday into a five-hour trip. The $548 ticket is under the cap, and the bag fee is acceptable.",
+            "session_id": "tm_pd_v05_user_000_s0104"
+          },
+          {
+            "quote": "It does not. Put the nonstop first. I would rather pay the difference than take a connection in both directions for this schedule.",
+            "session_id": "tm_pd_v05_user_000_s0118"
+          },
+          {
+            "quote": "Then take the free 5:35 itinerary. Both remaining flights protect the meeting and get me there in time, so I don't want to spend another $184 just to arrive about an hour earlier. Keep the Thursday nonstop exactly as it is.",
+            "session_id": "tm_pd_v05_user_000_s0107"
+          }
+        ],
+        "exception_condition": "Do not pay extra merely for an airline name or for a small arrival-time improvement.",
+        "family": "flight_itinerary_tradeoff",
+        "local_confidence": 0.99,
+        "name": "Prefer schedule-preserving nonstops when the premium is reasonable",
+        "preference_value": "Pay a moderate premium for nonstop flights when connections materially lengthen the trip, threaten an early work commitment, or produce a very late arrival.",
+        "scope_condition": "Time-sensitive work trips and short trips with fixed meetings or workshops."
+      },
+      {
+        "boundary_condition": "Do not recommend a flight based only on perfect traffic or an on-time meeting finish.",
+        "default_action": "Build a conservative door-to-gate sequence and state a practical latest departure time plus a fallback trigger.",
+        "evidence": [
+          {
+            "quote": "Ticket only is fine. Now stress-test that 5:55 departure. I don't want a recommendation based on perfect traffic.",
+            "session_id": "tm_pd_v05_user_000_s0104"
+          },
+          {
+            "quote": "Allow a few minutes to get the suitcase and request the ride. Traffic has been 15 to 25 minutes.",
+            "session_id": "tm_pd_v05_user_000_s0102"
+          },
+          {
+            "quote": "Compare the morning routes. I need to be at the client site by 8:15 for an 8:30 start, and I don’t want optimistic travel times.",
+            "session_id": "tm_pd_v05_user_000_s0119"
+          },
+          {
+            "quote": "Don’t assume the client will store it. Use the hotel plan for the budget, but give me a clear trigger for changing course Thursday.",
+            "session_id": "tm_pd_v05_user_000_s0119"
+          }
+        ],
+        "exception_condition": "Mobile boarding and carry-on-only travel can reduce process time but do not remove the need for traffic and boarding buffers.",
+        "family": "schedule_risk_tolerance",
+        "local_confidence": 0.99,
+        "name": "Use realistic, buffered airport timing",
+        "preference_value": "Flight recommendations must remain workable under meeting overruns, traffic at the bad end, bag pickup, ride request, check-in, and boarding deadlines.",
+        "scope_condition": "Departures following fixed work sessions or hotel checkout and luggage retrieval."
+      },
+      {
+        "boundary_condition": "Estimated items should remain labeled as estimates rather than presented as confirmed charges.",
+        "default_action": "Show arithmetic and keep cost categories distinct before giving one projected total.",
+        "evidence": [
+          {
+            "quote": "Yes for this trip. Use that pair in the comparison. What are the actual lodging totals? A $360 room that becomes $500 with fees and parking isn't really a $360 room.",
+            "session_id": "tm_pd_v05_user_000_s0109"
+          },
+          {
+            "quote": "Put the whole Friday-to-Wednesday schedule together. Keep airfare, lodging, bags, and transportation distinct, but give me one projected total too.",
+            "session_id": "tm_pd_v05_user_000_s0113"
+          },
+          {
+            "quote": "Flights are set at $612. Now compare the three hotels on the full two-night cost, not just the room rate. Use 14 percent lodging tax, include breakfast and all likely rides, and keep the whole trip under $1,300 if possible.",
+            "session_id": "tm_pd_v05_user_000_s0119"
+          }
+        ],
+        "exception_condition": "When a stated cap applies only to airfare or pre-tax room rate, keep that cap separate from ancillary charges while still showing the all-in cost.",
+        "family": "cost_accounting",
+        "local_confidence": 0.99,
+        "name": "Compare complete trip costs rather than headline prices",
+        "preference_value": "Use full, reconciled totals that include taxes, mandatory fees, parking, breakfast, bags, rides, rental charges, fuel, and other required trip costs.",
+        "scope_condition": "Flight, hotel, rental-car, and whole-trip comparisons."
+      },
+      {
+        "boundary_condition": "Breakfast can be omitted only when the user explicitly says it is unnecessary for that comparison.",
+        "default_action": "Price breakfast for each occupied morning unless it is included in the room rate.",
+        "evidence": [
+          {
+            "quote": "Now make the breakfast comparison fair. I would eat breakfast Monday and Tuesday.",
+            "session_id": "tm_pd_v05_user_000_s0100"
+          },
+          {
+            "quote": "And the $218 hotel? Count breakfast both mornings. I will not skip it to make the number look better.",
+            "session_id": "tm_pd_v05_user_000_s0105"
+          },
+          {
+            "quote": "And Shadyside? Don’t leave breakfast out just because the room is cheaper.",
+            "session_id": "tm_pd_v05_user_000_s0119"
+          }
+        ],
+        "exception_condition": "No general requirement that breakfast be included in the rate; the requirement is fair all-in accounting.",
+        "family": "meal_cost_accounting",
+        "local_confidence": 0.99,
+        "name": "Count breakfast consistently",
+        "preference_value": "Include breakfast for every relevant morning so a cheaper room is not made artificially attractive by omitting meals.",
+        "scope_condition": "Hotel comparisons where breakfast differs by property or rate."
+      },
+      {
+        "boundary_condition": "Refundability must be verified for the exact rate, not inferred from a property listing.",
+        "default_action": "Compare cancellation exposure explicitly and select a refundable rate when the premium is modest.",
+        "evidence": [
+          {
+            "quote": "That rules out the $236 one for a client trip. Please verify the late check-in and bag handling for the $218 hotel, not just what the listing says.",
+            "session_id": "tm_pd_v05_user_000_s0105"
+          },
+          {
+            "quote": "Choose the $218 hotel. The refundable terms and having both workout options are worth the extra $24 over the nonrefundable place. Keep the client-site suitcase plan, with hotel storage only as backup.",
+            "session_id": "tm_pd_v05_user_000_s0105"
+          },
+          {
+            "quote": "Choose East Liberty at the refundable rate. Keep it unbooked with the flights, and give me the final numbers and timing in one place.",
+            "session_id": "tm_pd_v05_user_000_s0119"
+          }
+        ],
+        "exception_condition": "A nonrefundable option may be considered outside client travel or when the user explicitly accepts the exposure.",
+        "family": "booking_flexibility",
+        "local_confidence": 0.98,
+        "name": "Prefer refundable lodging for client trips",
+        "preference_value": "Refundable hotel terms are worth a modest premium on client travel; avoid nonrefundable rates when schedule changes are plausible.",
+        "scope_condition": "Work and client trips."
+      },
+      {
+        "boundary_condition": "Do not rely solely on listing text or assume a client will hold luggage.",
+        "default_action": "Verify the exact property's late-arrival and luggage-storage policies and incorporate the handoff into the itinerary.",
+        "evidence": [
+          {
+            "quote": "Check the operational details next: my flight lands at 8:03 Sunday, and I probably would not reach Easton until 8:40 or so. Also, meetings run past checkout Tuesday.",
+            "session_id": "tm_pd_v05_user_000_s0100"
+          },
+          {
+            "quote": "Please verify the late check-in and bag handling for the $218 hotel, not just what the listing says.",
+            "session_id": "tm_pd_v05_user_000_s0105"
+          },
+          {
+            "quote": "So East Liberty is actually cheaper all-in. Verify the operational pieces: Tuesday check-in, Thursday luggage storage, and a refundable rate.",
+            "session_id": "tm_pd_v05_user_000_s0119"
+          }
+        ],
+        "exception_condition": "Hotel storage can be a backup when confirmed client-site storage is operationally better.",
+        "family": "hotel_operations",
+        "local_confidence": 0.99,
+        "name": "Verify late arrival and post-checkout luggage handling",
+        "preference_value": "Treat late check-in guarantees and luggage storage after checkout as operational requirements that need confirmation.",
+        "scope_condition": "Trips with evening arrivals, meetings after checkout, or flights departing late in the day."
+      },
+      {
+        "boundary_condition": "Rebuild lodging or other segments only when the changed arrival or departure makes the existing reservation unworkable.",
+        "default_action": "Protect fixed commitments, keep unaffected segments intact, and update dependent timing only as needed.",
+        "evidence": [
+          {
+            "quote": "The airline just canceled Tuesday's 4:05 nonstop to Raleigh. I need to preserve Wednesday morning, but please do not touch the Thursday return or rebuild the hotel unless we have to.",
+            "session_id": "tm_pd_v05_user_000_s0107"
+          },
+          {
+            "quote": "The 2:20 is out. I cannot move that meeting on one day's notice. Is the connection late enough that you think it is unreasonable before an 8:00 workshop?",
+            "session_id": "tm_pd_v05_user_000_s0107"
+          },
+          {
+            "quote": "Then take the free 5:35 itinerary. Both remaining flights protect the meeting and get me there in time, so I don't want to spend another $184 just to arrive about an hour earlier. Keep the Thursday nonstop exactly as it is.",
+            "session_id": "tm_pd_v05_user_000_s0107"
+          }
+        ],
+        "exception_condition": "A replacement that costs more is acceptable when the free alternative conflicts with an immovable meeting.",
+        "family": "disruption_management",
+        "local_confidence": 0.98,
+        "name": "Preserve unaffected reservations during disruptions",
+        "preference_value": "When one travel segment is canceled or changed, modify only what is necessary and preserve unaffected flights and hotel arrangements.",
+        "scope_condition": "Airline schedule changes and partial itinerary disruptions."
+      },
+      {
+        "boundary_condition": "United should not beat a comparable option merely because of its name.",
+        "default_action": "Compare United alongside other suitable carriers using schedule, fare, restrictions, and trip fit.",
+        "evidence": [
+          {
+            "quote": "Use the $512 nonstops. One broader correction for future searches: replace the Delta preference. Include United among the carriers you compare when it fits the trip, but United is not required and should not beat another comparable option just because of the name.",
+            "session_id": "tm_pd_v05_user_000_s0099"
+          }
+        ],
+        "exception_condition": "This explicitly replaces an earlier Delta preference.",
+        "family": "airline_preference",
+        "local_confidence": 1.0,
+        "name": "Treat airline brand as neutral among comparable options",
+        "preference_value": "Include United in comparisons, but do not favor it or any carrier solely because of the brand.",
+        "scope_condition": "Future flight searches where United fits the itinerary."
+      },
+      {
+        "boundary_condition": "The property must remain within the specific trip budget.",
+        "default_action": "Prioritize practical walkable beach access during lodging searches.",
+        "evidence": [
+          {
+            "quote": "This is a work trip, so the office route is what matters. On coastal trips with Jordan, keep looking for a place on or near the beach that we can walk to while staying inside that trip’s budget, but that has nothing to do with Columbus.",
+            "session_id": "tm_pd_v05_user_000_s0100"
+          }
+        ],
+        "exception_condition": "This preference does not apply to work trips such as Columbus.",
+        "family": "leisure_lodging_location",
+        "local_confidence": 1.0,
+        "name": "Favor beach-accessible lodging on coastal trips with Jordan",
+        "preference_value": "On coastal leisure trips with Jordan, look for lodging on or near a beach that is reachable on foot while staying within that trip's budget.",
+        "scope_condition": "Coastal trips with Jordan."
+      },
+      {
+        "boundary_condition": "A hot tub is not valuable enough to justify poor cancellation terms.",
+        "default_action": "Retain properties with both workout options in the comparison and weigh them alongside price and flexibility.",
+        "evidence": [
+          {
+            "quote": "Keep both the pool and fitness room in the comparison because I use both on multi-night trips. A hot tub is a bonus, but not enough reason to accept a bad cancellation rule.",
+            "session_id": "tm_pd_v05_user_000_s0105"
+          },
+          {
+            "quote": "Choose the $218 hotel. The refundable terms and having both workout options are worth the extra $24 over the nonrefundable place. Keep the client-site suitcase plan, with hotel storage only as backup.",
+            "session_id": "tm_pd_v05_user_000_s0105"
+          }
+        ],
+        "exception_condition": "This signal was stated during a Raleigh work-hotel comparison and may not apply to every short stay.",
+        "family": "hotel_amenities",
+        "local_confidence": 0.96,
+        "name": "Require fitness room and pool on multi-night trips",
+        "preference_value": "Keep both a pool and fitness room in hotel comparisons for multi-night stays; a hot tub is only a minor bonus.",
+        "scope_condition": "Multi-night hotel trips."
+      },
+      {
+        "boundary_condition": "Watching a company cap or total trip cost does not by itself make a work-hotel search budget-focused.",
+        "default_action": "State the review source and keep customer rating separate from hotel star class when a quality floor is active.",
+        "evidence": [
+          {
+            "quote": "Good. Since this is meant to be a nice trip, I prefer hotels with a customer-review rating of at least 4.0. Keep that separate from the hotel’s star class, and say where the score comes from.",
+            "session_id": "tm_pd_v05_user_000_s0111"
+          },
+          {
+            "quote": "Mainly schedule and total cost. More generally, work searches driven by logistics and company caps should not count as budget-focused hotel searches just because I’m watching the total. Only apply the budget rating floor when I actually describe the hotel search as budget-focused.",
+            "session_id": "tm_pd_v05_user_000_s0119"
+          }
+        ],
+        "exception_condition": "No general rating floor is established for ordinary logistics-driven work trips.",
+        "family": "hotel_quality_threshold",
+        "local_confidence": 0.99,
+        "name": "Apply a hotel review floor only when context calls for it",
+        "preference_value": "For a nice leisure trip, prefer customer-review ratings of at least 4.0 and distinguish the review score from star class; do not automatically apply a budget-search rating floor to logistics-driven work searches.",
+        "scope_condition": "The 4.0 floor applies when the trip is framed as a nice trip; any budget rating floor applies only when the hotel search is explicitly described as budget-focused."
+      },
+      {
+        "boundary_condition": "A split can be worthwhile when the trip has enough time at both ends and the luggage handoff is operationally secure.",
+        "default_action": "Prefer the simpler single stay unless the split provides meaningful place access or enough savings to justify the move.",
+        "evidence": [
+          {
+            "quote": "Tell me whether moving on Monday is really worth $185. We want useful beach time, but I don’t want to lose half a day packing and waiting for rooms.",
+            "session_id": "tm_pd_v05_user_000_s0111"
+          },
+          {
+            "quote": "So which plan best fits the dinner and gives us meaningful time in both coastal areas without turning the trip into constant packing?",
+            "session_id": "tm_pd_v05_user_000_s0109"
+          },
+          {
+            "quote": "How should Monday work if La Jolla checkout is 11 and the Little Italy room might not be ready until 3? I don't want to drag luggage around for four hours.",
+            "session_id": "tm_pd_v05_user_000_s0112"
+          }
+        ],
+        "exception_condition": "The user may still choose a split when it gives meaningful time in distinct areas without constant packing.",
+        "family": "itinerary_complexity",
+        "local_confidence": 0.96,
+        "name": "Avoid split stays unless savings justify the move",
+        "preference_value": "Do not trade away a large part of a leisure day for a modest lodging saving; account for packing, luggage storage, room-readiness gaps, and transportation when judging a split stay.",
+        "scope_condition": "Leisure trips comparing one hotel with a multi-hotel split."
+      },
+      {
+        "boundary_condition": "A selected or working choice is not a booking.",
+        "default_action": "Label itineraries unbooked during comparison, seek explicit purchase authorization, then provide a chronological confirmed record with unresolved or estimated items visible.",
+        "evidence": [
+          {
+            "quote": "Then make the Hilton at Easton and the two nonstops the working choice. Give me the schedule and what still needs confirmation, but do not treat anything as booked.",
+            "session_id": "tm_pd_v05_user_000_s0098"
+          },
+          {
+            "quote": "And the reconciliation? I want to know what was actually charged now versus what is still projected.",
+            "session_id": "tm_pd_v05_user_000_s0113"
+          },
+          {
+            "quote": "Choose East Liberty at the refundable rate. Keep it unbooked with the flights, and give me the final numbers and timing in one place.",
+            "session_id": "tm_pd_v05_user_000_s0119"
+          }
+        ],
+        "exception_condition": "When the user explicitly says to ticket or reserve, execute in the specified order and reconcile the final records.",
+        "family": "booking_control",
+        "local_confidence": 0.99,
+        "name": "Maintain explicit booking-state and confirmation records",
+        "preference_value": "Do not treat candidates as booked until explicitly authorized; after booking, distinguish confirmed charges and details from estimates, projections, and unresolved items.",
+        "scope_condition": "All trip planning, purchase, reissue, and reconciliation workflows."
+      }
+    ]
+  }
+}

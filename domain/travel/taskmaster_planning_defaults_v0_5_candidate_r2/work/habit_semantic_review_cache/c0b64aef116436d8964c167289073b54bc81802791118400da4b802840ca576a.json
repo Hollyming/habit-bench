@@ -1,0 +1,495 @@
+{
+  "cache_fingerprint": "c0b64aef116436d8964c167289073b54bc81802791118400da4b802840ca576a",
+  "rows": [
+    {
+      "boundary_condition": "Applies only to flight departure time-of-day; it does not determine destination, date, route, arrival time, lodging timing, or transportation outside the flight search.",
+      "bundle_id": "tm_v04_bundle_8430a5b05421",
+      "canonical_value": "flight_evening_departure",
+      "condition": "When arranging flight itineraries and choosing a departure time of day for a flight leg, prefer evening departures if the user has not given a conflicting time requirement.",
+      "confidence": 0.88,
+      "decision": "keep",
+      "default_action": "Filter or rank flight options toward departures in the evening for the relevant outbound or return leg.",
+      "exception_condition": "If the user specifies a non-evening departure time, needs a departure earlier than evening, or no feasible evening flight satisfies the trip constraints, honor the stated constraint or ask whether a non-evening option is acceptable.",
+      "family": "departure_time",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_8430a5b05421",
+      "induced_at": "2026-07-15T13:06:13.973189+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Evening flight departure default",
+      "preference_value": "evening departures",
+      "rationale": "Multiple independent flight dialogues include explicit requests for evening departures, including outbound-only and both-leg cases. The examples support a scoped synthetic default for departure time, not a universal travel preference or a claim about one real user.",
+      "seed_value": "evening",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.84,
+        "reason": "Supported by positive evening-departure requests across at least three distinct flight instruction_id values. The candidate is scoped to flight departure time of day and does not retain dates, routes, or destinations.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "instruction_id flight-10: user wants both flights to leave in the evening if possible.",
+          "conversation_id": "dlg-76731d2b-8f4b-4dcb-a579-f507685c9b02",
+          "turn_index": 3
+        },
+        {
+          "contribution": "instruction_id flight-11: user requests a flight leaving this evening.",
+          "conversation_id": "dlg-810207e7-974d-4b65-ab5d-79fec8b75ec1",
+          "turn_index": 2
+        },
+        {
+          "contribution": "instruction_id flight-3: user chooses sometime in the evening.",
+          "conversation_id": "dlg-e11de364-0a20-46dc-9ee7-fcf9aa4ca5b8",
+          "turn_index": 50
+        },
+        {
+          "contribution": "instruction_id flight-13: user needs to leave this evening.",
+          "conversation_id": "dlg-c0ebb119-5c87-481a-ae20-5b0797064157",
+          "turn_index": 1
+        },
+        {
+          "contribution": "instruction_id flight-12: user says both flights will be in the evening.",
+          "conversation_id": "dlg-ba5f9ff1-e342-4e35-9fb5-915c738cc8f6",
+          "turn_index": 4
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "in the evening",
+          "annotation": "flight_search.time_of_day",
+          "conversation_id": "dlg-76731d2b-8f4b-4dcb-a579-f507685c9b02",
+          "habitual_language": false,
+          "instruction_id": "flight-10",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 3,
+          "user_utterance": "I'm going to be leaving from San Francisco and going to Miami. I want to leave today and come back on Tuesday the 27th. I want to leave for both flight in the evening, if possible."
+        },
+        {
+          "annotated_segment": "evening",
+          "annotation": "flight_search.time_of_day",
+          "conversation_id": "dlg-810207e7-974d-4b65-ab5d-79fec8b75ec1",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 2,
+          "user_utterance": "Hey, could you help me book a flight from New York City to London? Leaving this evening."
+        },
+        {
+          "annotated_segment": "in the evening",
+          "annotation": "flight_search.time_of_day",
+          "conversation_id": "dlg-e11de364-0a20-46dc-9ee7-fcf9aa4ca5b8",
+          "habitual_language": false,
+          "instruction_id": "flight-3",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 50,
+          "user_utterance": "Let's go for sometime in the evening."
+        },
+        {
+          "annotated_segment": "this evening",
+          "annotation": "flight_search.time_of_day",
+          "conversation_id": "dlg-c0ebb119-5c87-481a-ae20-5b0797064157",
+          "habitual_language": false,
+          "instruction_id": "flight-13",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 1,
+          "user_utterance": "Yeah, I'm looking for a round-trip flight from San Francisco to Jamaica. I need to leave this evening and come back in five days."
+        },
+        {
+          "annotated_segment": "in the evening",
+          "annotation": "flight_search.time_of_day",
+          "conversation_id": "dlg-ba5f9ff1-e342-4e35-9fb5-915c738cc8f6",
+          "habitual_language": false,
+          "instruction_id": "flight-12",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 4,
+          "user_utterance": "And both will be in the evening."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Apply this only to the flight amenity decision when alcohol-service information is available; it is not a reusable destination, date, route, cabin, or price constraint.",
+      "bundle_id": "tm_v04_bundle_34457fbd6d6a",
+      "canonical_value": "flight_alcohol_service",
+      "condition": "When searching for commercial flights and in-flight amenities are part of the choice criteria.",
+      "confidence": 0.72,
+      "decision": "reject",
+      "default_action": "Ask for or select flights that serve alcohol on board, as long as they also satisfy the trip's stated requirements.",
+      "exception_condition": "If no otherwise acceptable option is known to serve alcohol, or if the alcohol-serving option conflicts with a stated requirement such as meal, Wi-Fi, nonstop, or schedule needs, do not block the booking solely for alcohol service.",
+      "family": "flight_feature",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_34457fbd6d6a",
+      "induced_at": "2026-07-15T13:06:13.979538+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Prefer flights with alcohol service",
+      "preference_value": "onboard alcohol service",
+      "rationale": "Across three independent scripted flight tasks, alcohol service is either explicitly requested or checked as a relevant onboard feature. This supports a controlled synthetic default to value onboard alcohol service, without claiming the speakers are one real longitudinal user.",
+      "seed_value": "serve_alcohol",
+      "semantic_review": {
+        "decision": "reject",
+        "quality_score": 0.18,
+        "reason": "The sources do not establish a reusable preference across three distinct instruction_id values: one example is a clear positive request, one is only weak/current-trip evidence, and one is merely a question about whether alcohol is served.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "flight-8: explicitly requested flights that serve alcohol, alongside other onboard and itinerary requirements.",
+          "conversation_id": "dlg-91a56fd6-2441-43fc-ba60-72af5f0daa77",
+          "turn_index": 6
+        },
+        {
+          "contribution": "flight-6: added that the flights should serve alcohol as a desired onboard feature.",
+          "conversation_id": "dlg-e56461b0-f86b-44fe-8c59-f8a62ccf72d5",
+          "turn_index": 24
+        },
+        {
+          "contribution": "flight-5: asked whether alcohol is served on the plane, making alcohol service a feature to verify during flight selection.",
+          "conversation_id": "dlg-673c1e74-872b-458f-b227-4a664607b8c7",
+          "turn_index": 16
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "serve alcohol",
+          "annotation": "flight_search.other_description",
+          "conversation_id": "dlg-91a56fd6-2441-43fc-ba60-72af5f0daa77",
+          "habitual_language": false,
+          "instruction_id": "flight-8",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 6,
+          "user_utterance": "On all three flights, I would like the Kosher meal. I need flights that have Wi-Fi on the plane and that serve alcohol. And I would like all of them to be non-stop, please."
+        },
+        {
+          "annotated_segment": "serve alcohol",
+          "annotation": "flight_search.other_description",
+          "conversation_id": "dlg-e56461b0-f86b-44fe-8c59-f8a62ccf72d5",
+          "habitual_language": false,
+          "instruction_id": "flight-6",
+          "preference_language": false,
+          "source_domain": "flights",
+          "turn_index": 24,
+          "user_utterance": "And I'd like them to serve alcohol."
+        },
+        {
+          "annotated_segment": "serve alcohol",
+          "annotation": "flight_search.other_description",
+          "conversation_id": "dlg-673c1e74-872b-458f-b227-4a664607b8c7",
+          "habitual_language": false,
+          "instruction_id": "flight-5",
+          "preference_language": false,
+          "source_domain": "flights",
+          "turn_index": 16,
+          "user_utterance": "Do they serve alcohol on the plane?"
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Applies only to airfare selection and does not create a persistent dollar limit, destination, date, route, carrier, cabin, or layover preference.",
+      "bundle_id": "tm_v04_bundle_3cf5800ce123",
+      "canonical_value": "flight_lower_fare",
+      "condition": "When comparing flight options for a trip after applying the user's stated itinerary, schedule, seat, service, and other requirements.",
+      "confidence": 0.86,
+      "decision": "revise",
+      "default_action": "Rank lower fares higher among otherwise acceptable flight options; use any budget cap the user states only for that trip, and ask before sacrificing stated conveniences such as nonstop routing or short layovers solely to reduce fare.",
+      "exception_condition": "If the lowest fare violates a stated requirement or creates an unacceptable layover or airport-time burden, present the next-lowest acceptable options and explain the tradeoff.",
+      "family": "flight_price_tradeoff",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_3cf5800ce123",
+      "induced_at": "2026-07-15T13:06:13.972179+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Prefer lower-priced acceptable flights",
+      "preference_value": "lower-priced acceptable flights",
+      "rationale": "The independent flight tasks consistently show cost-conscious behavior: asking for the cheapest fare, giving trip-specific maximums, and being willing to trade nonstop convenience for lower price while still considering layover burden. This supports a qualitative budget-sensitive synthetic default, not a numeric recurring budget.",
+      "seed_value": "budget_sensitive",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.7,
+        "reason": "Recurring airfare price sensitivity is supported across at least three distinct instruction_id values, but several examples are one-off numeric caps and the proposed stopover tradeoff is stronger than the sources generally support. Keep only a lower-fare ranking default among otherwise acceptable flights, with no permanent dollar ceiling.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "flight-5: stated nonstop is preferred but would accept stopovers if needed to stay within a trip-specific fare limit, while avoiding too much airport time.",
+          "conversation_id": "dlg-78de9237-4c9a-4923-a509-25c657c48f63",
+          "turn_index": 8
+        },
+        {
+          "contribution": "flight-10: asked to get the cheapest flight possible, grounding a reusable low-fare default.",
+          "conversation_id": "dlg-5b9d6fe0-f540-4e58-a9ec-b9e57456bba5",
+          "turn_index": 5
+        },
+        {
+          "contribution": "flight-7: chose based on whichever option was cheapest while also asking about layover differences.",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "turn_index": 33
+        },
+        {
+          "contribution": "flight-6: expressed a preferred trip-specific maximum fare along with another requirement, supporting budget sensitivity rather than an absolute permanent cap.",
+          "conversation_id": "dlg-e39ee300-241b-472b-9762-d4321ae60f83",
+          "turn_index": 7
+        },
+        {
+          "contribution": "flight-11: requested, if possible, to keep the round-trip fare within a stated trip-specific amount.",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "turn_index": 4
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "under $1,600",
+          "annotation": "flight_search.price_range",
+          "conversation_id": "dlg-78de9237-4c9a-4923-a509-25c657c48f63",
+          "habitual_language": true,
+          "instruction_id": "flight-5",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 8,
+          "user_utterance": "You know nonstop is always a preference of mine but I don't want to pay more than $1,600 roundtrip. So if you can't find it nonstop under $1,600 I'd say I'm willing to have a stopover or maybe two, but I don't want to spend to much time in other airports."
+        },
+        {
+          "annotated_segment": "the cheapest flight",
+          "annotation": "flight_search.price_range",
+          "conversation_id": "dlg-5b9d6fe0-f540-4e58-a9ec-b9e57456bba5",
+          "habitual_language": true,
+          "instruction_id": "flight-10",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 5,
+          "user_utterance": "Yeah, we always find. Let's just try to get the cheapest flight we can."
+        },
+        {
+          "annotated_segment": "the cheapest",
+          "annotation": "flight_search.price_range",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "habitual_language": false,
+          "instruction_id": "flight-7",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 33,
+          "user_utterance": "Oh, okay. Alright. Whichever one's the cheapest or Well, what are their layover differences?"
+        },
+        {
+          "annotated_segment": "less than $700",
+          "annotation": "flight_search.price_range",
+          "conversation_id": "dlg-e39ee300-241b-472b-9762-d4321ae60f83",
+          "habitual_language": false,
+          "instruction_id": "flight-6",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 7,
+          "user_utterance": "I'd like it to be less than $700 preferably and I need a window seat."
+        },
+        {
+          "annotated_segment": "no more than $6,000",
+          "annotation": "flight_search.price_range",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 4,
+          "user_utterance": "I would like, if possible, to spend no more than $6,000 on the round-trip flight."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Apply only to hotel/lodging searches where room-level amenities are relevant; do not apply this default to flights, car rentals, destinations, dates, party size, or other non-hotel constraints.",
+      "bundle_id": "tm_v04_bundle_0cb760f69e9d",
+      "canonical_value": "hotel_room_fireplace",
+      "condition": "When the synthetic user is searching for hotel lodging and room amenities are being filtered or compared, treat an in-room fireplace as a preferred comfort amenity.",
+      "confidence": 0.84,
+      "decision": "keep",
+      "default_action": "Prioritize or recommend otherwise suitable hotel rooms that explicitly list a fireplace.",
+      "exception_condition": "If no otherwise suitable hotel room with a fireplace is available, or if the user explicitly prioritizes different required constraints that conflict with it, surface the tradeoff and ask whether to relax the fireplace preference.",
+      "family": "hotel_amenity_priority",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_0cb760f69e9d",
+      "induced_at": "2026-07-15T13:06:13.973371+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Prefer hotel rooms that include a fireplace",
+      "preference_value": "hotel room with a fireplace",
+      "rationale": "Three independent scripted hotel-search sources request a fireplace as a desired room amenity. The shared support is for a reusable hotel-room amenity preference, not for the one-off dates, party sizes, ski-area setting, balcony, or other amenities mentioned in individual requests.",
+      "seed_value": "fireplace",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.86,
+        "reason": "Positive in-room fireplace requests appear across three distinct hotel instruction_id values. The candidate is narrowly scoped to a hotel room amenity and does not infer dates, location, party size, or room count.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "The user asks whether the room has several amenities, including \"a fireplace.\"",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "turn_index": 12
+        },
+        {
+          "contribution": "The user says they are looking for a room with \"a great balcony\" and \"nice fireplace,\" supporting fireplace as a desired hotel-room feature.",
+          "conversation_id": "dlg-f0d2e68a-6e23-427e-914a-c78a99f9b93e",
+          "turn_index": 15
+        },
+        {
+          "contribution": "The user requests a place where \"the room has a fireplace,\" grounding the same amenity preference in a separate instruction source.",
+          "conversation_id": "dlg-59ba2086-347f-48db-84ae-2c6cb0f67f64",
+          "turn_index": 4
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "fireplace",
+          "annotation": "hotel_search.amenity",
+          "conversation_id": "dlg-00131332-f7b3-4227-9672-652dd3a2c39e",
+          "habitual_language": false,
+          "instruction_id": "hotel-1b",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 12,
+          "user_utterance": "Great they have a sport bar. Any special activity center duties and does the room have a balcony, cable TV, a mini-fridge, coffee and honor bar and a fireplace."
+        },
+        {
+          "annotated_segment": "fireplace",
+          "annotation": "hotel_search.amenity",
+          "conversation_id": "dlg-f0d2e68a-6e23-427e-914a-c78a99f9b93e",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 15,
+          "user_utterance": "Great. I'm looking for a room that has a great balcony to stay and cable TV and nice fireplace."
+        },
+        {
+          "annotated_segment": "fireplace",
+          "annotation": "hotel_search.amenity",
+          "conversation_id": "dlg-59ba2086-347f-48db-84ae-2c6cb0f67f64",
+          "habitual_language": false,
+          "instruction_id": "hotel-5",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 4,
+          "user_utterance": "I would like to have it from 12/24 to 12/27, I want a place with an atmosphere that has a lodge-style and relaxed area, it has to be a place that can house four people and the room needs a microwave. Try to find a place with a room that has a fireplace and In-door pool. And it should be close to the ski area."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Apply only within hotel searches when customer-review information is available; do not convert one-off star ratings, waterfront requests, or nightly budgets from the examples into persistent defaults.",
+      "bundle_id": "tm_v04_bundle_2cf0d6fd22f9",
+      "canonical_value": "hotel_good_reviews",
+      "condition": "When the synthetic user is selecting or ranking hotels, treat good customer reviews as a reusable quality signal to prefer among otherwise viable options.",
+      "confidence": 0.9,
+      "decision": "keep",
+      "default_action": "Filter for or rank higher hotels described as having good customer reviews before presenting recommendations.",
+      "exception_condition": "If hotels with good customer reviews do not meet the user’s explicit hard constraints, such as the current dates, location type, room needs, or stated price limit, present the conflict and ask whether to relax the review preference or another constraint.",
+      "family": "hotel_feature",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_habit_2cf0d6fd22f9",
+      "induced_at": "2026-07-15T13:06:13.981543+00:00",
+      "induced_by": "gpt-5.5",
+      "name": "Prefer hotels with good customer reviews",
+      "preference_value": "hotels with good customer reviews",
+      "rationale": "At least three independent hotel-search instruction sources explicitly ask for good customer reviews. This supports a coherent synthetic default to prefer well-reviewed hotels, while keeping request-specific details such as star level, water proximity, and budget out of the habit.",
+      "seed_value": "good_customer_reviews",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.9,
+        "reason": "Good customer reviews are requested positively across at least three distinct hotel instruction_id values. The candidate is a scoped hotel quality signal and correctly avoids turning associated star ratings or nightly budgets into persistent defaults.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "The user asks for a hotel with \"good customer reviews\" along with other one-off search constraints.",
+          "conversation_id": "dlg-5848c621-1a58-4589-b500-d445b612f64d",
+          "turn_index": 3
+        },
+        {
+          "contribution": "The user states \"Good customer reviews\" as a hotel-selection requirement, supporting reviews as a desired quality feature.",
+          "conversation_id": "dlg-11b17307-0cca-4b65-ba94-3834bc20b21c",
+          "turn_index": 15
+        },
+        {
+          "contribution": "The user requests something with \"good customer reviews,\" independently grounding the reusable preference for well-reviewed hotels.",
+          "conversation_id": "dlg-43dc383e-1f82-4660-9ba9-6b66fa0b4511",
+          "turn_index": 4
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "good customer reviews",
+          "annotation": "hotel_search.other_request",
+          "conversation_id": "dlg-5848c621-1a58-4589-b500-d445b612f64d",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 3,
+          "user_utterance": "I'm looking for something near the water, at least four stars, good customer reviews."
+        },
+        {
+          "annotated_segment": "Good customer reviews",
+          "annotation": "hotel_search.other_request",
+          "conversation_id": "dlg-11b17307-0cca-4b65-ba94-3834bc20b21c",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 15,
+          "user_utterance": "Good customer reviews, and I need the one that has four star rating."
+        },
+        {
+          "annotated_segment": "good customer reviews",
+          "annotation": "hotel_search.other_request",
+          "conversation_id": "dlg-43dc383e-1f82-4660-9ba9-6b66fa0b4511",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 4,
+          "user_utterance": "I'm looking for something $150 per night or less, at least three stars and good customer reviews."
+        },
+        {
+          "annotated_segment": "good customer reviews",
+          "annotation": "hotel_search.other_request",
+          "conversation_id": "dlg-73dd8390-5de8-4248-918c-97c4af8b6104",
+          "habitual_language": false,
+          "instruction_id": "hotel-12",
+          "preference_language": false,
+          "source_domain": "hotels",
+          "turn_index": 3,
+          "user_utterance": "Yes. I'd like a hotel that has good customer reviews."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "cache_fingerprint": "25ccbc46322ca9c8a80a82edb857ea3638401c08f40d0fe0fcf4fd17b269c433",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "No recurring travel preference was introduced. For this Columbus trip, Marcus selected the Dublin hotel and rideshare structure as the unbooked working agenda while preserving an Easton hotel alternative and a rental-car option pending the Wednesday schedule.",
+        "evidence_topology": {
+          "episode_id": "columbus-ops-01",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 51,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly establishes morning outbound and evening return timing for this trip. No user utterance independently provides strong semantic evidence for business class, nonstop routing, a window seat, included breakfast, or a balcony. The timing statements are trip-specific rather than recurring defaults.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "I can leave Chicago Tuesday morning and come back Wednesday evening, but the Wednesday start time is not final yet.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "I can leave Chicago Tuesday morning and come back Wednesday evening, but the Wednesday start time is not final yet.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to set up a quick Columbus trip for operating reviews. I have Easton Tuesday afternoon and Dublin Wednesday morning. I can leave Chicago Tuesday morning and come back Wednesday evening, but the Wednesday start time is not final yet.",
+          "role": "user"
+        },
+        {
+          "content": "What dates are we working with, and how long should I allow at each restaurant?",
+          "role": "assistant"
+        },
+        {
+          "content": "Tuesday, October 29 and Wednesday, October 30. Figure two hours at Easton starting at 2:00 p.m. Wednesday will be either 9:00 or 10:30 a.m., probably ninety minutes.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare a hotel near Easton against one closer to Dublin and price both a rental car and point-to-point rides. Are you checking a bag?",
+          "role": "assistant"
+        },
+        {
+          "content": "No. Carry-on only. I need something compact, not a list of every flight.",
+          "role": "user"
+        },
+        {
+          "content": "The clean flight pair is American nonstop from O’Hare at 8:05 a.m. Tuesday, arriving Columbus at 10:24 a.m., with the Wednesday return at 6:45 p.m., arriving O’Hare at 7:18 p.m. Current round-trip fare is $318. That leaves about three hours before the Easton review and gives you a workable evening return if the Dublin visit ends by noon.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. What are the two hotel structures? Include the actual driving time between everything.",
+          "role": "user"
+        },
+        {
+          "content": "Structure one is Hilton Columbus at Easton at $196 including tax. It is about 10 minutes from CMH, 3-5 minutes from the Easton restaurant, and 25-35 minutes from the Dublin restaurant in normal weekday traffic. From Dublin back to CMH is about 25-35 minutes. With a compact rental at $112, about $14 in fuel, and free hotel parking, the trip total is $640: $318 air, $196 hotel, and $126 local transportation.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the other one?",
+          "role": "user"
+        },
+        {
+          "content": "Structure two uses Hyatt Place Columbus/Dublin at $168 including tax. Tuesday would be roughly 10 minutes from CMH to Easton, then 25-35 minutes from Easton to the hotel after the review. Wednesday it is about 5-10 minutes to the Dublin restaurant and 25-35 minutes from there to CMH. Using estimated rides instead of a car: $22 airport to Easton, $34 Easton to the hotel, $12 hotel to the Dublin restaurant, and $39 Dublin to the airport. That is $107 locally and $593 total with airfare and hotel.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does the rideshare version still work if Wednesday starts at 10:30? I don’t want the lower total hiding a bad airport margin.",
+          "role": "user"
+        },
+        {
+          "content": "Yes, provided the visit stays near ninety minutes. A 10:30 a.m. start should end around noon. Even allowing until 12:30 for overrun, lunch, and notes, leaving Dublin by 4:30 p.m. gives you more than two hours before the 6:45 flight; the airport drive is generally 25-35 minutes. I would set 4:45 p.m. as the latest departure from Dublin. Rental-car return adds roughly 10-15 minutes, so rideshare actually preserves a little more margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does the rental look like with the Dublin hotel? I may need to make another stop, but it isn’t confirmed.",
+          "role": "user"
+        },
+        {
+          "content": "With Hyatt Place Dublin, the same $112 rental plus about $14 fuel brings local transportation to $126 and the full trip to $612. That is $19 more than the rideshare version. It buys flexibility for an extra stop; parking is free at the hotel, and neither restaurant visit requires paid parking based on the current locations.",
+          "role": "assistant"
+        },
+        {
+          "content": "Hold both hotel ideas, but make the Dublin hotel with rides the working agenda. Do not reserve anything until I confirm Wednesday.",
+          "role": "user"
+        },
+        {
+          "content": "Working agenda, with nothing reserved: American nonstop ORD-CMH Tuesday, October 29, 8:05-10:24 a.m.; rideshare to Easton around 11:00 a.m.; operating review 2:00-4:00 p.m.; rideshare 25-35 minutes to Hyatt Place Columbus/Dublin; Wednesday review at either 9:00 or 10:30 a.m.; leave the Dublin area no later than 4:45 p.m.; American CMH-ORD 6:45-7:18 p.m. Estimated total is $593: $318 airfare, $168 hotel, and $107 for four rides. Hilton Columbus at Easton remains the location alternative at $621 with rides or $640 with a rental. Hyatt with a rental is $612. The open decision is Wednesday’s start time and whether the possible extra stop makes the $19 rental premium worthwhile.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0051",
+      "session_index": 51,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Washington for Marcus, Daniel, and Owen is revised and confirmed: American D8L4QH, Friday, October 11 ORD-DCA 8:10 a.m.-11:03 a.m., returning Monday, October 14 DCA-ORD 6:15 p.m.-7:36 p.m., $1,143; Hilton Washington DC National Mall The Wharf HWM-481725, October 11-14, one two-queen room for three, $828.22 including tax. Hotel cancellation is penalty-free until 6:00 p.m. Thursday, October 10. Revised total is $1,971.22. Columbus October 29-30 remains unbooked pending the Wednesday Dublin review time and a possible extra stop. The working structure is American ORD-CMH 8:05-10:24 a.m. Tuesday and CMH-ORD 6:45-7:18 p.m. Wednesday, Hyatt Place Columbus/Dublin, and four rides for an estimated $593 total; Hilton Columbus at Easton and a $612 Hyatt rental-car structure remain alternatives. Seattle Thanksgiving remains confirmed under American R4K8VN, Coast Gateway CGH-730194, and United H7LM2Q, with seats 22D-22F and one checked bag. Phoenix is confirmed for January 12-15 under United N8Q4LS, American K3R7DX, Hilton HTM-593184, and Hertz J84219673; total $1,651.45 and Thursday hotel departure at 4:35 a.m. San Diego is confirmed for June 20-27 under American Q7N4PL, San Diego Mission Bay Resort MBY-624817, Enterprise EPM-731846, and transfers SDT-620518 and SDT-627104; revised total $6,660.37 before fuel and tips. Atlanta inspections are complete; reimbursable total is $856.08, with a $65.54 rental overcharge to dispute. Nashville for March 16-17 is confirmed under Southwest K5R8TN, Hampton Inn & Suites Nashville-Green Hills HGI-316842, and National NAT-7041936 for $642.11; leave Green Hills by 4:45 p.m. Tuesday.",
+  "verification": {
+    "51": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "I can leave Chicago Tuesday morning and come back Wednesday evening, but the Wednesday start time is not final yet.",
+          "habit_id": "tm_pd_v05_user_002_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "I can leave Chicago Tuesday morning and come back Wednesday evening, but the Wednesday start time is not final yet.",
+          "habit_id": "tm_pd_v05_user_002_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly establishes morning outbound and evening return timing for this trip. No user utterance independently provides strong semantic evidence for business class, nonstop routing, a window seat, included breakfast, or a balcony. The timing statements are trip-specific rather than recurring defaults."
+    }
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "cache_fingerprint": "7fb9f86d456e3a67156456298c2b07c7b88655d5b3a0dd1eb317cc00351e7174",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Priya naturally endorsed keeping United among comparable options while explicitly evaluating it on the merits; she selected it here because the nonstop arrival margin and coordinated late Sunday return produced the strongest complete itinerary, not because of carrier name alone.",
+        "evidence_topology": {
+          "episode_id": "professional-boston-extension-01",
+          "mode": "evidence",
+          "phase": "early",
+          "session_index": 45,
+          "target_habit_id": "tm_pd_v05_user_003_h02",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requests a morning nonstop for the current trip, establishes that price must be evaluated only after itinerary constraints and whole-trip usability, and durably states United should remain a comparable soft option without name-based elevation. No cabin or hotel habit is evidenced.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Is there another morning nonstop for me, including something other than United, that still protects registration?",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Compare the complete combinations, not just the cheapest individual legs. I need enough margin for Tuesday registration, my spouse cannot leave SFO before 3:00 p.m. Friday, and I would prefer that we return together Sunday if the timing is sensible.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h01",
+            "signal_type": "boundary"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 1.0,
+            "evidence_quote": "Keep United in the set when it is comparable. I do not want it elevated just because of the name, but here its schedule appears to be doing useful work.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_003_h02",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I want to settle the Boston flights before I authorize anything. Compare the complete combinations, not just the cheapest individual legs. I need enough margin for Tuesday registration, my spouse cannot leave SFO before 3:00 p.m. Friday, and I would prefer that we return together Sunday if the timing is sensible.",
+          "role": "user"
+        },
+        {
+          "content": "I found two workable structures. Combination A puts you on the Tuesday 8:10 a.m. United nonstop, arriving Boston at 4:43 p.m. Your spouse takes the Friday 4:45 p.m. United nonstop, arriving at 1:13 a.m. Saturday, and both of you take the Sunday 5:40 p.m. nonstop back to SFO. The current combined airfare is $973: $447 for you and $526 for your spouse. Combination B uses a Tuesday one-stop itinerary for you, the same Friday flight for your spouse, and separate Sunday returns. Its combined fare is $881.",
+          "role": "assistant"
+        },
+        {
+          "content": "Break down why B is $92 less and what we give up.",
+          "role": "user"
+        },
+        {
+          "content": "Your Tuesday one-stop fare is $374, saving $73, but it reaches BOS at 5:24 p.m. Registration closes at 6:00 p.m. Even with an on-time arrival, the airport-to-hotel transfer makes that impractical. The other $19 comes from putting your spouse on a 1:20 p.m. Sunday departure while you retain the 5:40 p.m. flight. That earlier departure removes most of Sunday together and requires separate airport trips unless you also leave early.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the connection is not a real option. Is there another morning nonstop for me, including something other than United, that still protects registration?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Delta has an 8:35 a.m. nonstop arriving at 5:02 p.m. for $469 on your Tuesday-Sunday itinerary. JetBlue has a 7:15 a.m. nonstop arriving at 3:49 p.m. for $458, but its matching Sunday flight leaves at 3:05 p.m. Neither produces a lower complete shared-return combination than the United schedule. The United option gives you 77 minutes more arrival margin than Delta and keeps the later Sunday return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep United in the set when it is comparable. I do not want it elevated just because of the name, but here its schedule appears to be doing useful work.",
+          "role": "user"
+        },
+        {
+          "content": "That is the right reading of this comparison. United is not the absolute lowest fare, but the $447 itinerary is the lowest option that combines a Tuesday nonstop with credible registration margin and the 5:40 p.m. shared Sunday return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now compare the Sunday choice on usable time. We plan to check out of The Verb, have brunch, and spend about two hours at the Isabella Stewart Gardner Museum before heading to the airport.",
+          "role": "user"
+        },
+        {
+          "content": "The 1:20 p.m. departure would require your spouse to leave the hotel around 10:30 a.m., so brunch and the museum would not both fit. For the 5:40 p.m. flight, you can check out, store bags, have brunch, visit the museum roughly 11:45 a.m. to 1:45 p.m., retrieve the bags, and leave for BOS around 2:40 p.m. That preserves the planned Sunday and provides about two hours at the airport.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the consequences of buying independently? I need my work ticket separate from my spouse's personal purchase, and I do not want one transaction to obscure reimbursement.",
+          "role": "user"
+        },
+        {
+          "content": "Buy two separate round trips. Your ticket should be Tuesday SFO-BOS and Sunday BOS-SFO for $447, with the Tuesday booking-page capture and the previously retained $409 Tuesday-Friday comparison attached to your expense file. Your spouse should buy Friday SFO-BOS and Sunday BOS-SFO for $526. Separate records keep reimbursement clean, but the airline will treat changes, cancellations, seating, and disruption handling independently. Matching flights do not guarantee that both reservations will be reprotected together.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can the reservations be linked without combining payment or ownership? Also check whether these are basic economy fares.",
+          "role": "user"
+        },
+        {
+          "content": "Both quoted fares are standard economy, not basic economy. Each includes normal seat selection and one carry-on; checked-bag charges remain separate unless account or card benefits apply. After purchase, you can ask United to add a cross-reference note between the two confirmation numbers. That may help an agent see that you are traveling together, but it does not merge the tickets or create guaranteed joint reaccommodation.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then select Combination A. State the exact independently bookable itineraries, total, and anything I should verify on the payment screens. Do not purchase yet.",
+          "role": "user"
+        },
+        {
+          "content": "Selected, not purchased: your United round trip departs SFO Tuesday, September 15 at 8:10 a.m., arrives BOS at 4:43 p.m., and returns Sunday, September 20 at 5:40 p.m., arriving SFO at 9:12 p.m.; current fare $447. Your spouse's separate United round trip departs SFO Friday at 4:45 p.m., arrives BOS Saturday at 1:13 a.m., and uses the same Sunday 5:40 p.m. return; current fare $526. Combined airfare is $973. Before payment, verify that both fares still show standard economy, confirm change and cancellation terms, inspect baggage charges, ensure the Sunday flight number is identical on both records, and preserve the $409 business-only comparison for reimbursement. After purchase, request cross-reference notes between the reservations.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0045",
+      "session_index": 45,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh audit travel is complete except for the pending Cedar Park Wednesday refund and unconfirmed rental documentation; retain confirmations, charge and refund records, final folios, and the United receipt. Washington forum travel is booked, including Tuesday luggage service; retain authorization, tracking, and delivery records. Fairmont Sonoma is booked, with written confirmation of the Sunday facial outstanding. Bothell, Chicago, and Carlsbad are booked, with noted confirmations and reimbursement records pending. Scottsdale November 6-10 remains selected but unbooked. Palm Springs November 14-18 is paid; corrected resort documentation remains outstanding. Cypress Spa Lodge remains booked for May 28-June 1 under CYP-52841, with revised spa confirmation SPA-53026 and expected total $2,479.08; room and spa cancellation deadlines remain May 21 and May 28 respectively. Indianapolis supplier-audit flights are complete. The nearby business hotel is booked for July 6-9 under NBH-76428 for $504 including taxes, with the audit-site shuttle charge waived. Prior hotel bookings were canceled under HX-39017 and AC-11864. Thursday transportation is reserved under CAR-70941; add the driver's full name to the hotel authorization by 2:30 p.m. and retain all final records. Boston September 15-20 remains unbooked. Independently purchased round trips have been selected: Priya travels Tuesday and returns with her spouse Sunday, while the spouse travels Friday evening; combined quoted airfare is $973. Before purchase, verify fare terms, baggage charges, and matching Sunday flight details, then cross-reference the separate reservations. Work lodging remains planned at the Westin Copley Place through Friday checkout, followed by a personal two-night stay at The Verb. Retain the contemporaneous $409 business-only airfare comparison and confirm reimbursement treatment, final hotel totals, spouse access, and the overnight-arrival note before booking.",
+  "verification": {
+    "45": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Is there another morning nonstop for me, including something other than United, that still protects registration?",
+          "habit_id": "tm_pd_v05_user_003_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Compare the complete combinations, not just the cheapest individual legs. I need enough margin for Tuesday registration, my spouse cannot leave SFO before 3:00 p.m. Friday, and I would prefer that we return together Sunday if the timing is sensible.",
+          "habit_id": "tm_pd_v05_user_003_h01",
+          "signal_type": "boundary"
+        },
+        {
+          "confidence": 1.0,
+          "evidence_quote": "Keep United in the set when it is comparable. I do not want it elevated just because of the name, but here its schedule appears to be doing useful work.",
+          "habit_id": "tm_pd_v05_user_003_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requests a morning nonstop for the current trip, establishes that price must be evaluated only after itinerary constraints and whole-trip usability, and durably states United should remain a comparable soft option without name-based elevation. No cabin or hotel habit is evidenced."
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "reason": "unnatural_habit_leakage_session_120:The user directly requested and later booked the Tuesday afternoon outbound. The user also established a durable rule for comparing connecting itineraries: at most one short layover with practical transfer time and a quick break, while explicitly clarifying that this does not imply a general preference for connections or nonstops. Leakage occurred before that new habit was user-established because the assistant invoked the dossier-specific criterion of a brief, practical transfer when filtering connecting alternatives.",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "While comparing connecting alternatives for the Philadelphia return, Elena stated that this criterion applies only when connections are under consideration: compare options with no more than one short, practical layover, without treating either nonstop or connecting service as inherently preferred.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "Let’s finish the Philadelphia flights. I’ve ruled out leaving early Wednesday; even if it ran on time, I’d be cutting the 10:00 a.m. sales session too close. Please compare the Tuesday afternoon outbound with Thursday evening versus Friday morning returns.",
+          "role": "user"
+        },
+        {
+          "content": "I found a Tuesday nonstop leaving Denver at 2:20 p.m. and arriving in Philadelphia at 7:48 p.m. The two return combinations are: Thursday at 8:30 p.m., arriving Denver at 10:55 p.m., for $438 round trip; or Friday at 8:05 a.m., arriving at 10:31 a.m., for $391 round trip. Both returns are nonstop.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does the Friday option really cost once the extra hotel night is included?",
+          "role": "user"
+        },
+        {
+          "content": "The hotel is $306 for the added Thursday night, including taxes. With the two nights already needed, lodging is $612. That makes the Thursday-return trip $1,050 for airfare and lodging. Staying through Friday raises lodging to $918, so that trip totals $1,309 despite the lower fare. Friday costs $259 more overall.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then calculate the Thursday airport timing carefully. My last rights appointment starts at 4:30 near Rittenhouse Square and should end at 5:15.",
+          "role": "user"
+        },
+        {
+          "content": "For the 8:30 p.m. departure, a reasonable target is to reach PHL by 6:45 p.m., 1 hour 45 minutes before takeoff. A car from Rittenhouse Square at that hour is typically 25 to 40 minutes, so leaving by 6:05 p.m. allows for the longer estimate. From the 5:15 appointment end, that leaves 50 minutes before departure for the airport and 3 hours 15 minutes before the flight itself.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does that assume I already have my bag with me? I don’t want to take it into the appointment.",
+          "role": "user"
+        },
+        {
+          "content": "No. The cleanest sequence is to check out Thursday morning, leave the bag with the hotel, and retrieve it after the appointment. If the appointment ends at 5:15, allow about 10 minutes to walk back, 10 minutes for bag pickup, and request the car around 5:35. Even with a 40-minute ride, you would reach PHL around 6:15, adding roughly 30 minutes beyond the 6:45 target.",
+          "role": "assistant"
+        },
+        {
+          "content": "That sounds workable. Are there any cheaper alternatives that connect?",
+          "role": "user"
+        },
+        {
+          "content": "There is a $362 itinerary returning Thursday with two stops and a 6-hour-50-minute journey, plus a $379 option with one 2-hour-35-minute layover. Neither saves enough to offset the added travel time. I did not find a connecting return with a brief, practical transfer that beats the nonstop fare materially.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. When connections are actually under consideration, keep them to no more than one short layover with enough time for a practical transfer and a quick break. That doesn’t mean I need a connection or that nonstop is automatically better; it’s just how to compare connecting choices.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. For this trip, the nonstop still wins on both schedule and overall value. The Tuesday arrival also leaves Tuesday night and Wednesday morning clear before the 10:00 a.m. sales session, with no effect on Wednesday’s hosted dinner or Thursday’s rights appointments.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please confirm the Thursday plan one more time, including the total and the airport margin.",
+          "role": "user"
+        },
+        {
+          "content": "Solo itinerary: Denver to Philadelphia Tuesday, departing 2:20 p.m. and arriving 7:48 p.m. nonstop; Philadelphia to Denver Thursday, departing 8:30 p.m. and arriving 10:55 p.m. nonstop. Airfare is $438. Two hotel nights are $612, making airfare plus lodging $1,050. After the 4:30–5:15 p.m. appointment, retrieve the stored bag and request a car around 5:35; estimated airport arrival is 6:00–6:15, at least 2 hours 15 minutes before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Book that Tuesday outbound and Thursday return for me. Keep it as one traveler, and leave the seat selection for later.",
+          "role": "user"
+        },
+        {
+          "content": "Booked for Elena Ruiz as one traveler: Tuesday’s 2:20 p.m. nonstop from Denver to Philadelphia, arriving 7:48 p.m., and Thursday’s 8:30 p.m. nonstop back to Denver, arriving 10:55 p.m. Airfare is $438. Seat selection remains open. The trip uses two hotel nights, for a combined airfare-and-lodging total of $1,050; Thursday bag storage and the 5:35 p.m. airport car plan are noted.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0120",
+      "session_index": 120,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena’s solo Philadelphia trip is set around a Wednesday 10:00 a.m. sales session, Wednesday hosted dinner near Rittenhouse Square, and Thursday rights appointments. She booked the Tuesday 2:20 p.m. Denver-to-Philadelphia nonstop arriving at 7:48 p.m. and the Thursday 8:30 p.m. nonstop returning to Denver at 10:55 p.m., for $438. Seat selection remains unresolved. The two hotel nights cost $612, making airfare plus lodging $1,050. After Thursday checkout, the hotel will hold her bag; following the 4:30–5:15 p.m. appointment, she plans to retrieve it and request a car around 5:35 p.m. Elena’s Boston hotel comparison for the Thursday-through-Sunday stay remains unresolved. Her shared Chicago wedding flights and River North luggage plan remain set. The separate Chicago arts weekend Loop hotel is also set for Friday through Monday, including its deposit, cancellation deadline, and Monday bag storage."
+}

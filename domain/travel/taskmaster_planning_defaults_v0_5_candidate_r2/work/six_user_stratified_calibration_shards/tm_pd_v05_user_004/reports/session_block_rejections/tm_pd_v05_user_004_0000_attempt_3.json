@@ -1,0 +1,72 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_004_h02', 'exception') actual=[('tm_pd_v05_user_004_h02', 'support')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Exception: Danielle chose the $488 early-outbound/later-return pairing over the $418 cheapest pairing because the cheaper connection left an unreliable 45-minute margin before Monday's required site visit. This decision is explicitly local to the St. Louis work trip.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to settle the St. Louis trip. I have four flight pairings left, and I want to compare the real totals, not just the headline fares. I need to be there for Monday's site visit and Tuesday's closing program.",
+          "role": "user"
+        },
+        {
+          "content": "What are the event times, and will you check a bag? Those details affect whether the cheaper pairing is actually workable.",
+          "role": "assistant"
+        },
+        {
+          "content": "The site visit starts at 1:30 Monday, and the closing program ends at about 3:30 Tuesday. I can check one bag. I would rather not cut the arrival too close, but I also do not want to pay for extra flexibility I will not use.",
+          "role": "user"
+        },
+        {
+          "content": "I found these four combinations. The first outbound is a 6:20 a.m. nonstop from Dallas to St. Louis, arriving at 7:50. It is $239 in a standard economy fare, with a $35 checked-bag charge each way, and changes are allowed for a $75 fee plus any fare difference. The second outbound is $169, leaves at 10:15 a.m. with one connection, and arrives at 12:45 p.m. Its published ground-transfer margin before the site visit is about 45 minutes. It has the same bag charge and ticket-change fee.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the returns?",
+          "role": "user"
+        },
+        {
+          "content": "The Tuesday early return leaves at 5:10 p.m. and arrives at 6:45 p.m. It is $219, with the same $35 bag charge and $75 change fee. It gives you roughly 80 minutes after the closing program, but you would need to leave promptly. The later return leaves at 8:40 p.m. and arrives at 10:15 p.m. It is $179, with a $35 bag charge and a $75 change fee.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please lay out all four totals, including the bag. Also include the total travel time and whether the fare can be canceled.",
+          "role": "user"
+        },
+        {
+          "content": "Here is the comparison for one traveler, including one checked bag on each flight.\n\n1. Early nonstop out plus early return: $239 + $219 + $70 bag = $528. About 3 hours 5 minutes in the air and scheduled travel time. Standard economy; changes cost $75 plus the fare difference, and the ticket is not refundable.\n2. Early nonstop out plus late return: $239 + $179 + $70 = $488. About 3 hours 5 minutes of flight time. The same nonrefundable standard fare and change terms.\n3. Midmorning connection out plus early return: $169 + $219 + $70 = $458. About 5 hours 10 minutes of scheduled travel time, with the short arrival-to-site margin. It is nonrefundable and has the same change fee.\n4. Midmorning connection out plus late return: $169 + $179 + $70 = $418. About 5 hours 10 minutes of scheduled travel time, and the 45-minute arrival margin. It is also nonrefundable with the $75 change fee.\n\nNone of the four standard fares can be canceled for a cash refund. The airline offers a credit after cancellation, less the applicable fee.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the $418 option is the cheapest, but arriving at 12:45 for a 1:30 site visit leaves almost no room for a delayed connection or getting from the airport. The $458 option has the same problem on Monday even though the Tuesday return is earlier.",
+          "role": "user"
+        },
+        {
+          "content": "Right. The early outbound is the only one that gives you a substantial airport-transfer buffer before the site visit. Between those two early-outbound choices, the $488 pairing costs $40 more than the early return and lets you stay through the closing program without leaving immediately. The $528 pairing is more conservative on Tuesday but costs another $40.",
+          "role": "assistant"
+        },
+        {
+          "content": "Take the $488 pairing: the early nonstop Monday and the later nonstop Tuesday. The $418 fare is cheaper, but it does not reliably get me to Monday's site visit, so it is not a real option for this trip. Please hold that itinerary with one checked bag if the fare credit terms are as described.",
+          "role": "user"
+        },
+        {
+          "content": "I selected the $488 standard-economy pairing: Monday's 6:20 a.m. nonstop Dallas to St. Louis, arriving at 7:50 a.m., and Tuesday's 8:40 p.m. nonstop return, arriving at 10:15 p.m. The total includes one checked bag each way. The tickets are nonrefundable, with cancellation issuing an airline credit less the applicable fee, and changes costing $75 plus any fare difference. I cannot place a hold from here, but this is the itinerary to book; verify the final baggage and credit terms on the checkout screen before payment.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0082",
+      "session_index": 82,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Danielle selected an early Monday nonstop to St. Louis and a later Tuesday nonstop return for the youth arts convening after comparing four fare pairings. The selected standard economy fare totals $488 including one checked bag each way; tickets are nonrefundable but provide airline credit subject to the stated cancellation fee. Booking remains unresolved."
+}

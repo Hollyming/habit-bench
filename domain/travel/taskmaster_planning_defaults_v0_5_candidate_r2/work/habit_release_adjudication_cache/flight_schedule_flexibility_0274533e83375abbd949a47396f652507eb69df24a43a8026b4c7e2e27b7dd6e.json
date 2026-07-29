@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "0274533e83375abbd949a47396f652507eb69df24a43a8026b4c7e2e27b7dd6e",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "return_flight_departure_time_of_day",
+      "boundary_condition": "Treat this as a flexible time-of-day preference ranging from afternoon through evening, not as a fixed cutoff.",
+      "canonical_value": "For return flights, softly prefer afternoon or evening departures, including after 6:00 p.m. when suitable.",
+      "condition": "When selecting a return flight and multiple departure times are available",
+      "default_action": "Prioritize return options departing in the afternoon or evening",
+      "exception_condition": "Use another departure period when explicitly requested for the current trip or when no workable later-day option is available.",
+      "input_ids": [
+        "tm_v04_e2e_habit_4ea52517321d"
+      ],
+      "name": "Prefer later-day return flights",
+      "preference_value": "Afternoon or evening return departures",
+      "rationale": "The examples consistently support a later-day preference specifically for return legs, while allowing variation from afternoon to evening. This is a reusable travel habit rather than a one-off constraint, and it is not an alias of the broader afternoon-departure policy because its return-leg scope and later acceptable range are distinct.",
+      "representative_id": "tm_v04_e2e_habit_4ea52517321d"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "general_flight_departure_time_of_day",
+      "boundary_condition": "Do not apply the preference to a leg for which another time of day is explicitly requested.",
+      "canonical_value": "Softly prefer afternoon flight departures when the applicable leg has workable afternoon options.",
+      "condition": "When selecting a flight departure time and afternoon options are available",
+      "default_action": "Prioritize departure options in the afternoon.",
+      "exception_condition": "Use another departure period when explicitly requested or when no workable afternoon option is available.",
+      "input_ids": [
+        "tm_v04_e2e_habit_ff9a7f3c433c"
+      ],
+      "name": "Prefer afternoon departures",
+      "preference_value": "Afternoon flight departures preferred",
+      "rationale": "Multiple examples support a recurring soft preference for afternoon departures. It remains separate from the return-flight policy because the evidence does not limit it to return legs and does not establish an evening preference.",
+      "representative_id": "tm_v04_e2e_habit_ff9a7f3c433c"
+    }
+  ]
+}

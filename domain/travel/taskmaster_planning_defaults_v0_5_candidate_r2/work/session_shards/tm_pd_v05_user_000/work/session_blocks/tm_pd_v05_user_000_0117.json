@@ -1,0 +1,179 @@
+{
+  "cache_fingerprint": "6c9d26d09407def5c7d53d3737f88546802ee4ad188823c42160669384af44fb",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary current-trip planning only. Maya selected the nonstop candidate and ranked Bakery Square ahead of East Liberty based on schedule margin, workshop access, and Thursday luggage logistics; no recurring preference was established.",
+        "evidence_topology": {
+          "episode_id": "client-pittsburgh-019",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 117,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selected the nonstop for this trip despite having been shown cheaper connecting options, supporting the nonstop preference and creating a one-trip override of the cheapest-acceptable-flight default. No user utterance establishes a recurring preference or evidences the other candidate habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Use the nonstop as the flight candidate, but do not call it booked.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.94,
+            "evidence_quote": "Use the nonstop as the flight candidate, but do not call it booked.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h03",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I have a Pittsburgh client workshop Wednesday morning through Thursday afternoon. The site is near Bakery Square, and I need to be there by 8:30 Wednesday. I cannot leave Minneapolis until after a 2:00 p.m. internal meeting Tuesday. Can you work out flights, where to stay, and airport transportation?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. What time can you realistically reach MSP after the meeting, and when do you expect Thursday's workshop to release you? Also, what limits should I use for airfare and hotel?",
+          "role": "assistant"
+        },
+        {
+          "content": "I should be at MSP around 3:15 Tuesday if the meeting ends on time. Thursday should finish at 4:00. Keep airfare under $650 and the room around $260 a night before tax. Nothing is booked.",
+          "role": "user"
+        },
+        {
+          "content": "That makes a Tuesday departure before about 4:30 too tight. The useful outbound window is roughly 4:45-6:30 p.m., which should put you in Pittsburgh around 8:00-10:30 p.m. depending on whether the flight is nonstop. For Thursday, Bakery Square to PIT can take 35-60 minutes in late-afternoon traffic, so I would target departures no earlier than 7:00 p.m. Are you checking a bag, and would you accept a connection if it materially lowers the fare?",
+          "role": "assistant"
+        },
+        {
+          "content": "Carry-on only. A connection is acceptable, but I do not want to get in after midnight when I have to be onsite early.",
+          "role": "user"
+        },
+        {
+          "content": "Then I would compare three workable patterns: a nonstop around 5:15 p.m., arriving about 8:20 p.m.; a 4:50-5:10 p.m. departure connecting in Chicago and arriving around 9:35 p.m.; or a connection leaving near 6:00 p.m. and arriving around 10:45 p.m. The first two are the better operational choices. On Thursday, look for a nonstop around 7:20-7:45 p.m. or a connecting itinerary after 7:00 that reaches MSP before 11:30 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Assume the nonstop is $487 round trip, the earlier Chicago connection is $421, and the later connection is $368. Which one would you use?",
+          "role": "user"
+        },
+        {
+          "content": "For this trip, the $487 nonstop is the strongest choice. It costs $66 more than the earlier connection but removes a misconnection risk Tuesday and gets you to the hotel about an hour sooner. The $368 option saves $119, but its later arrival leaves little recovery time if either segment slips. All three fit the airfare ceiling, so the nonstop buys useful margin rather than merely convenience.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the nonstop as the flight candidate, but do not call it booked. Now compare Bakery Square itself with East Liberty, Shadyside, and downtown.",
+          "role": "user"
+        },
+        {
+          "content": "Bakery Square is simplest for the workshop: usually a short walk or a 3-5 minute ride, but there are fewer hotel choices. East Liberty is the best nearby value area, roughly 5-10 minutes by rideshare and potentially walkable only from its southern edge. Shadyside is quieter and has smaller upscale properties, generally 8-15 minutes from the site. Downtown has the broadest inventory and easy airport-bus access, but the workshop commute is usually 20-35 minutes and more exposed to traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "I found these before tax: SpringHill Suites Bakery Square at $239, Hotel Indigo East Liberty at $205, a Shadyside hotel at $249, and a downtown hotel at $190. Two nights. Can you put real transportation consequences around those?",
+          "role": "user"
+        },
+        {
+          "content": "Using planning ranges: SpringHill Suites would need an airport rideshare Tuesday for about $45-$65, then little or no workshop transportation, and $50-$70 back to PIT Thursday. Hotel Indigo would have similar airport costs, plus about $10-$16 each way to Bakery Square if you do not walk or use a local bus. Shadyside would be about $45-$65 from PIT, $10-$18 each way for the workshop, and $50-$70 to the airport. Downtown could use the 28X airport bus for about $2.75 each airport leg, but rideshares to Bakery Square would run about $18-$28 each way.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would public transit from East Liberty or downtown be dependable for an 8:30 arrival? I do not want a complicated transfer first thing.",
+          "role": "user"
+        },
+        {
+          "content": "Downtown can work by busway plus a local connection or a walk from the East Liberty area, but it is not the cleanest first-morning plan and I would allow at least 45 minutes. From Hotel Indigo, a local bus may be feasible, but service alignment varies and the final walk matters. For a fixed 8:30 start, a rideshare from East Liberty around 7:55-8:05 is the straightforward option. Bakery Square is the only choice that largely eliminates that morning calculation.",
+          "role": "assistant"
+        },
+        {
+          "content": "What do the lodging totals look like, and how much am I really saving after local transportation?",
+          "role": "user"
+        },
+        {
+          "content": "Before tax, two nights are $478 at Bakery Square, $410 in East Liberty, $498 in Shadyside, and $380 downtown. Using midpoint transportation estimates for the whole stay: Bakery Square about $115, East Liberty about $140, Shadyside about $145, and downtown about $98 if you take the 28X both ways and rideshare to the site twice. Combined lodging and local transportation comes to roughly $593, $550, $643, and $478 respectively. Downtown saves about $115 versus Bakery Square, while East Liberty saves about $43.",
+          "role": "assistant"
+        },
+        {
+          "content": "The downtown number assumes the airport bus late Tuesday and again after a 4:00 finish Thursday. Is that actually sensible?",
+          "role": "user"
+        },
+        {
+          "content": "Tuesday is reasonable if the nonstop arrives on schedule and you are comfortable reaching the hotel later; the 28X takes roughly 40-55 minutes to downtown before waiting and walking. Thursday is less attractive because you would first travel west from Bakery Square to retrieve your bag downtown, then continue to PIT during rush hour. I would budget a rideshare from the downtown hotel to PIT that evening, raising downtown transportation to roughly $140-$165 and its combined figure to about $520-$545.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good catch. I also need somewhere to leave my carry-on Thursday after checkout. Which area makes that least awkward?",
+          "role": "user"
+        },
+        {
+          "content": "Bakery Square is easiest if the hotel holds the bag: finish the workshop, walk back, collect it, and leave directly for PIT. East Liberty is still manageable, with a short rideshare from the site to the hotel and then onward to the airport. Shadyside adds a similar detour but from farther south. Downtown creates the largest backtrack and weakens most of its price advantage.",
+          "role": "assistant"
+        },
+        {
+          "content": "Narrow this to Bakery Square and East Liberty. Give me a safe Thursday schedule and total estimates using the nonstop fare.",
+          "role": "user"
+        },
+        {
+          "content": "For either hotel, plan to check out Thursday morning and leave the carry-on with the front desk. After the 4:00 finish, Bakery Square lets you retrieve it around 4:10 and request a PIT rideshare by 4:20; expected airport arrival is about 5:05-5:30 for a 7:20-7:45 flight. From East Liberty, leave the client site by 4:05, reach the hotel around 4:15-4:25, collect the bag, and request the airport ride by 4:30; expected arrival is about 5:15-5:45. With the $487 airfare, Bakery Square is about $1,080 before hotel tax using $478 lodging and $115 transportation. East Liberty is about $1,037 using $410 lodging and $140 transportation.",
+          "role": "assistant"
+        },
+        {
+          "content": "So East Liberty saves only about $43 and adds four local rides plus the Thursday bag detour. Make the short list, but put Bakery Square first.",
+          "role": "user"
+        },
+        {
+          "content": "Short list: 1. SpringHill Suites Bakery Square, $239 per night or $478 before tax. Best fit for the 8:30 start and Thursday luggage retrieval; estimated trip subtotal is about $1,080 with the $487 nonstop and $115 ground transportation. 2. Hotel Indigo East Liberty, $205 per night or $410 before tax. It saves about $43 overall after allowing roughly $140 for transportation, but requires rides to and from the workshop and a brief Thursday bag stop. Flight candidate: Tuesday nonstop around 5:15 p.m., arriving about 8:20 p.m., with a Thursday nonstop no earlier than 7:20 p.m. Nothing is booked; exact flight times, hotel availability, taxes, luggage-hold confirmation, and cancellation terms still need verification.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0117",
+      "session_index": 117,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The February 5-7, 2030 Raleigh client trip remains confirmed at a working total of $1,459; the corrected Raleigh folio, Philadelphia deposit release, and Nashville refund reconciliation remain unresolved. The September 12-16 Monterey Peninsula trip remains confirmed at $2,849, with whale-watching status and exact hotel cancellation cutoffs unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2 Baltimore and November 6-8 Raleigh client trips remain recorded as confirmed, with noted ground-transportation items unresolved. The October 4-9, 2030 San Diego trip remains fully reconciled for Maya Chen and Jordan Lee at a projected $3,665.71 including bags, with the Monday traffic fallback and downtown rental return plan intact. A new Pittsburgh client trip is being evaluated for Tuesday through Thursday: the leading flight candidate is a $487 Tuesday evening nonstop with a Thursday nonstop after 7:20 p.m. SpringHill Suites Bakery Square is first on the lodging short list at $239 per night, followed by Hotel Indigo East Liberty at $205; estimated subtotals are about $1,080 and $1,037 before hotel tax. No component is booked, and exact schedules, availability, taxes, luggage storage, and cancellation terms remain to be verified.",
+  "verification": {
+    "117": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Use the nonstop as the flight candidate, but do not call it booked.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.94,
+          "evidence_quote": "Use the nonstop as the flight candidate, but do not call it booked.",
+          "habit_id": "tm_pd_v05_user_000_h03",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selected the nonstop for this trip despite having been shown cheaper connecting options, supporting the nonstop preference and creating a one-trip override of the cheapest-acceptable-flight default. No user utterance establishes a recurring preference or evidences the other candidate habits."
+    }
+  }
+}

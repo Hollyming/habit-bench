@@ -1,0 +1,179 @@
+{
+  "cache_fingerprint": "21b8202359a271256c7341d7112fb041c9cfa6d09062097733fbb23d6654dcc8",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Danielle established only trip-specific choices: a Monday afternoon outbound, a walkable downtown hotel comparison, the Hyatt as the working hotel, and a later Wednesday return contingent on the organizer’s final adjournment time. No recurring travel preference was introduced.",
+        "evidence_topology": {
+          "episode_id": "ep_006_denver_partner_roundtable",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 13,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_004"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selects the early-afternoon departure and favors the cheaper acceptable hotel while preserving change flexibility. Both are current-trip choices, not durable recurring preferences. No qualifying evidence appears for connection count, seat location, included breakfast, or balcony.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Use the early-afternoon one for the working itinerary.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.94,
+            "evidence_quote": "I’m leaning Hyatt because $64 buys only a short walk, but I don’t want to reserve something that becomes expensive to change.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h02",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to map out a Denver work trip for the partner roundtable. It starts Tuesday, April 22 at 9:30 a.m. downtown, so I’m assuming I should fly from Dallas on Monday and stay two nights.",
+          "role": "user"
+        },
+        {
+          "content": "That is the workable baseline: fly DFW to DEN on Monday, April 21, stay Monday and Tuesday nights, attend the program Tuesday morning, and return after the expected 5:00 p.m. adjournment on Wednesday, April 23. What is the meeting address, and has the organizer said how firm that Wednesday end time is?",
+          "role": "assistant"
+        },
+        {
+          "content": "It’s at 1701 California Street. Five o’clock is still tentative. They may add a closing reception and keep us until 6:00 or 6:30.",
+          "role": "user"
+        },
+        {
+          "content": "That uncertainty matters. From 1701 California, allowing roughly 45 minutes to reach DEN plus time for security means a departure before about 8:30 p.m. would be risky if the reception runs to 6:30. I’d compare a convenient Wednesday flight based on the 5:00 finish with a later fallback, and also price a refundable third hotel night in case the schedule expands further.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. For Monday, I don’t need to arrive extremely early. I just want enough time to check in and have dinner before Tuesday.",
+          "role": "user"
+        },
+        {
+          "content": "Two practical nonstop choices are a late-morning departure arriving around 1:00 p.m. and an early-afternoon departure arriving around 3:30 p.m. The first gives you more recovery time but adds most of a workday in Denver; the second still leaves enough time to take the airport train downtown, check in, and eat without rushing. A flight landing after 5:00 p.m. would make the evening less forgiving if there is a delay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the early-afternoon one for the working itinerary. Now compare hotels close enough that I won’t need a car.",
+          "role": "user"
+        },
+        {
+          "content": "I found three sensible comparison points for April 21–23. The Hilton City Center is about a two-minute walk from 1701 California and totals $612 with taxes. The Hyatt Regency at the Colorado Convention Center is about a 12-minute walk and totals $548. The Magnolia is roughly seven minutes away and totals $574. All three are for one room and two nights; none requires a car for this meeting.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are those true totals, or are there destination fees waiting at checkout?",
+          "role": "user"
+        },
+        {
+          "content": "The displayed Hilton total is $612, but it lists a $25 nightly destination charge already included in that amount. Hyatt shows $548 including taxes and no separate mandatory property fee on the rate details. Magnolia shows $574 including taxes, also with no mandatory fee listed. Incidentals and optional services would still be extra.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the Hilton is really $64 more than the Hyatt. Is saving ten minutes each way worth that?",
+          "role": "user"
+        },
+        {
+          "content": "For this schedule, possibly. You would make the walk at least four times, and the Hilton is effectively next door to the venue. The Hyatt saves $64 and remains an easy walk, but Wednesday creates the strongest case for Hilton: you could retrieve your bag immediately after the program and leave for the airport. The Magnolia sits between them on both price and distance without a clear advantage.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about getting to the airport from each one? I’d rather not add a rental car or expensive parking.",
+          "role": "user"
+        },
+        {
+          "content": "All three work with the A Line train. Hilton and Magnolia are about a 15-minute walk from Union Station or a short ride to it; Hyatt is closer to the Convention Center light-rail stop, where you can connect toward Union Station. For the time-sensitive Wednesday departure, a taxi or rideshare directly to DEN would generally take about 35–50 minutes depending on traffic. No rental car is useful here.",
+          "role": "assistant"
+        },
+        {
+          "content": "Let’s keep Hilton and Hyatt in the comparison. What Wednesday flights actually make sense?",
+          "role": "user"
+        },
+        {
+          "content": "With the planned 5:00 p.m. finish, a 7:55 p.m. nonstop is possible but tight: you would need to leave downtown promptly, and traffic or a late adjournment could undo it. A 9:20 p.m. nonstop gives substantially more margin and still gets to Dallas that night. If the reception ends at 6:30, I would treat 9:20 as the earliest reasonable option, not a comfortable guarantee.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the current round-trip prices using the Monday afternoon outbound?",
+          "role": "user"
+        },
+        {
+          "content": "Paired with the Monday flight arriving around 3:30 p.m., the 7:55 p.m. Wednesday return is $336 round trip, while the 9:20 p.m. return is $382. Both are standard economy fares before any optional seat or bag charges. A Thursday morning return is $354, but that adds another hotel night and moves travel into Thursday.",
+          "role": "assistant"
+        },
+        {
+          "content": "The later Wednesday flight sounds better than gambling over $46. But what happens if they tell us the program goes later than 6:30?",
+          "role": "user"
+        },
+        {
+          "content": "Then Wednesday becomes unreliable. The clean backup is to stay Wednesday night and take a Thursday morning nonstop. Hilton’s refundable third night brings its three-night total to $918; Hyatt’s brings its total to $811. Combining hotel and airfare, the current comparisons are $994 for Hilton with the 9:20 Wednesday flight, $930 for Hyatt with that flight, and $1,165 for Hyatt plus Wednesday night and the Thursday flight.",
+          "role": "assistant"
+        },
+        {
+          "content": "I’m leaning Hyatt because $64 buys only a short walk, but I don’t want to reserve something that becomes expensive to change. Can the two-night stay be extended later?",
+          "role": "user"
+        },
+        {
+          "content": "The refundable Hyatt rate can be canceled without penalty until 11:59 p.m. local hotel time on April 19. Extending it is subject to Wednesday-night availability and the price available when you make the change; the hotel does not promise the current $263 Wednesday-night amount. A separate refundable reservation for Wednesday night would protect availability, but you would need to verify that the hotel can keep you in the same room and note its cancellation deadline.",
+          "role": "assistant"
+        },
+        {
+          "content": "Don’t hold the extra night yet. Give me the best working plan and clearly mark what depends on the organizer.",
+          "role": "user"
+        },
+        {
+          "content": "Use the Monday, April 21 early-afternoon nonstop arriving at DEN around 3:30 p.m., then take the A Line downtown and check into the Hyatt Regency for two nights at a displayed total of $548. Walk about 12 minutes to 1701 California for the Tuesday 9:30 a.m. start. For now, pair it with the Wednesday 9:20 p.m. nonstop, making the flight total $382 and the working trip total $930 before optional airline charges and local transportation. The return is conditional: if the organizer confirms a finish no later than 6:30 p.m., keep Wednesday; if the program moves later, compare changing to the $354 Thursday flight and adding Wednesday night. Before booking, verify the exact flight change terms, baggage allowance, hotel cancellation deadline, absence of a mandatory hotel fee, and the live price for April 23 in case you need to extend.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0013",
+      "session_index": 13,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Danielle’s Denver partner roundtable is at 1701 California Street beginning Tuesday, April 22 at 9:30 a.m. The working itinerary is a Monday, April 21 early-afternoon nonstop from DFW arriving around 3:30 p.m., two nights at the Hyatt Regency for $548 total, and a Wednesday, April 23 9:20 p.m. nonstop, for $382 round trip and a combined $930 before optional airline charges and local transportation. The Wednesday flight depends on the program ending by 6:30 p.m.; a later finish may require a third hotel night and Thursday return. Hotel extension price and availability, flight change terms, baggage, mandatory fees, and the organizer’s final schedule remain unresolved. Danielle, her spouse, and their 14-year-old will drive from Dallas to Santa Fe March 10–13 and selected the Traditional Double Queen at El Rey Court for $950 total, due at the property, with complimentary self-parking and free cancellation through March 8 at 11:59 p.m. Santa Fe time. Their October 12–17 Orange Beach reservation remains selected at $1,575 for lodging and $1,845 including estimated driving, with cancellation through October 10. The Chicago partner-summit trip remains unbooked. Danielle is ready to reserve the December 3–4 Washington flight and hotel after final payment-screen verification. The Atlanta working itinerary remains the Monday outbound and Wednesday 6:45 p.m. return, pending the airport call arrangement, dinner venue, and final flight terms.",
+  "verification": {
+    "13": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Use the early-afternoon one for the working itinerary.",
+          "habit_id": "tm_pd_v05_user_004_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.94,
+          "evidence_quote": "I’m leaning Hyatt because $64 buys only a short walk, but I don’t want to reserve something that becomes expensive to change.",
+          "habit_id": "tm_pd_v05_user_004_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selects the early-afternoon departure and favors the cheaper acceptable hotel while preserving change flexibility. Both are current-trip choices, not durable recurring preferences. No qualifying evidence appears for connection count, seat location, included breakfast, or balcony."
+    }
+  }
+}

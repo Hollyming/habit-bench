@@ -1,0 +1,168 @@
+{
+  "cache_fingerprint": "8b53c85d9d2f9632a02ed4c948927d100db4da31e11f75d1cfa44b60bec48c31",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya chose the refundable $218 hotel after explicitly treating both a pool and an on-site fitness room as meaningful for a multi-night stay, while describing the hot tub as a bonus that should not outweigh cancellation terms.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-017",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 105,
+          "target_habit_id": "tm_pd_v05_user_000_h04",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly establishes both the pool and fitness room as recurring multi-night-trip preferences and treats the hot tub as a softer bonus that does not outweigh cancellation terms. No other candidate habit is directly evidenced by the user's utterances in this session.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Keep both the pool and fitness room in the comparison because I use both on multi-night trips. A hot tub is a bonus, but not enough reason to accept a bad cancellation rule.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h04",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I want to settle the North Hills hotel now. Compare all three with tax, breakfast, and the rideshares we would actually use, not just the room rates.",
+          "role": "user"
+        },
+        {
+          "content": "I can do that. I am using two nights, Tuesday and Wednesday, at 13.25% lodging tax. For transportation, I will include the Tuesday ride from RDU, the Thursday ride back to RDU, and any hotel-client trips that the location requires. Is the nightly room cap still $250 before tax?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. The cap is $250 before tax. Also check whether a roughly 8:30 p.m. arrival is a problem and whether they will hold my suitcase after checkout Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "That removes the $252 hotel beside the client building from compliance, even though it is only $2 over. I will still show it as a comparison. One question before I rank them: should the recreation facilities affect the decision, or should I focus strictly on cost, cancellation, and walking?",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep both the pool and fitness room in the comparison because I use both on multi-night trips. A hot tub is a bonus, but not enough reason to accept a bad cancellation rule.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. Here is the amenity check: the $252 adjacent property has a pool and fitness room but no listed hot tub. The $218 hotel has a pool, fitness room, and hot tub. The $236 walkable property has a fitness room but no pool, so it loses ground despite being close. I am checking the totals and operating details next.",
+          "role": "assistant"
+        },
+        {
+          "content": "Start with the adjacent one. What is the real total?",
+          "role": "user"
+        },
+        {
+          "content": "The adjacent hotel is $504 for two nights. Estimated lodging tax is $66.78, making the room total $570.78. Breakfast is included. Because it is beside the client building, I would budget only the $34 Tuesday airport ride and the $36 Thursday airport ride, or $70 total. Complete expected cost: $640.78. The route is about a three-minute walk on sidewalks with one marked driveway crossing. It is the easiest location, but its $252 base rate exceeds the nightly cap.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the $218 hotel? Count breakfast both mornings. I will not skip it to make the number look better.",
+          "role": "user"
+        },
+        {
+          "content": "Two nights cost $436, with estimated lodging tax of $57.77, for $493.77. Breakfast is $16 each on Wednesday and Thursday, adding $32. The hotel is about ten minutes from the client by car, so the expected rides are $34 from RDU Tuesday, $11 to the client Wednesday, $11 back Wednesday, $11 to the client Thursday, and $36 from the client to RDU. That is $103 in rideshares. Complete expected cost: $628.77 before breakfast sales tax, tips, or surge pricing.",
+          "role": "assistant"
+        },
+        {
+          "content": "So it is about $12 cheaper than the hotel next door, but with three extra local rides. What about the half-mile hotel?",
+          "role": "user"
+        },
+        {
+          "content": "The $236 property is $472 for two nights. Estimated lodging tax is $62.54, so lodging totals $534.54, and breakfast is included. If you walk to and from the client and take your suitcase to the client Thursday, rideshares remain $70 for the airport legs. Complete expected cost: $604.54. That is the lowest projected total.",
+          "role": "assistant"
+        },
+        {
+          "content": "How realistic is that walk? Half a mile can mean very different things around a commercial district.",
+          "role": "user"
+        },
+        {
+          "content": "It is roughly 10 to 12 minutes. Most of the route has sidewalks, but it includes a broad signalized crossing at Six Forks Road and an exposed final block near parking-lot entrances. In ordinary weather it is practical. With a rolling suitcase Thursday it is manageable but less pleasant, and rain would make a short rideshare sensible. The adjacent hotel's route is substantially easier; the $218 hotel should be treated as drive-only rather than walkable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now the cancellation exposure. That is probably what decides it.",
+          "role": "user"
+        },
+        {
+          "content": "The $236 hotel charges a nonrefundable first-night deposit when booked. Including estimated lodging tax, $267.27 would be exposed immediately if the trip were canceled. The $218 hotel is refundable until 6:00 p.m. local time on Monday, February 4; after that, the stated penalty is one night plus tax. The $252 hotel is refundable until 48 hours before arrival, also with a one-night-plus-tax late-cancellation penalty.",
+          "role": "assistant"
+        },
+        {
+          "content": "That rules out the $236 one for a client trip. Please verify the late check-in and bag handling for the $218 hotel, not just what the listing says.",
+          "role": "user"
+        },
+        {
+          "content": "The front desk confirmed it is staffed 24 hours. An arrival around 8:30 p.m. is routine, but they asked that the reservation note the 7:42 p.m. flight arrival so the room is not treated as an early no-show. They also confirmed complimentary luggage holding after Thursday checkout, with a claim ticket and same-day pickup.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would leaving the suitcase there work with the 5:55 flight, or does that create too much backtracking?",
+          "role": "user"
+        },
+        {
+          "content": "It is possible but inferior to leaving the suitcase at the client site. From the client, returning to the hotel, collecting the bag, and then continuing to RDU would add roughly 15 to 25 minutes and likely $8 to $15 compared with a direct airport ride. With sessions ending at 3:30, that still may work, but it reduces the cushion before the 5:10 checked-bag cutoff. The hotel's storage is a useful fallback; client-site storage remains the better Thursday plan and still needs confirmation.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose the $218 hotel. The refundable terms and having both workout options are worth the extra $24 over the nonrefundable place. Keep the client-site suitcase plan, with hotel storage only as backup.",
+          "role": "user"
+        },
+        {
+          "content": "Selected hotel: the $218 North Hills property for Tuesday and Wednesday nights. Estimated lodging is $493.77 including tax, breakfast adds $32, and expected rideshares are $103, for a complete hotel, breakfast, and local-transport estimate of $628.77 before breakfast tax, tips, or surge pricing. It is within the $250 nightly cap. The desk is open 24 hours, will note the late arrival, and will hold luggage free on Thursday if needed. The primary plan is still to bring the suitcase to the client Thursday morning and ride directly to RDU after the 3:30 session.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the complete trip number now, and tell me exactly what remains unconfirmed.",
+          "role": "user"
+        },
+        {
+          "content": "The selected nonstop airfare is $548, and the checked suitcase is $80 round trip, for $628 in air costs. Add $493.77 for the taxed hotel estimate, $32 for two breakfasts, and $103 for expected rideshares. The projected trip total is $1,256.77 before breakfast sales tax, other meals, tips, or rideshare surge pricing. Nothing is booked. Before purchase, confirm the final hotel tax and cancellation wording, add the late-arrival note, verify the flight numbers and operating carrier, recheck fare and bag terms plus the 5:10 p.m. bag cutoff, and get explicit approval from the client to store the suitcase Thursday. If the client cannot hold it, use the hotel's confirmed storage and plan an earlier departure from the client to allow for the hotel stop.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0105",
+      "session_index": 105,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The February 5-7, 2030 Raleigh client trip remains unbooked. Maya selected the standard-economy nonstop round trip, MSP-RDU Tuesday 4:05-7:42 p.m. and RDU-MSP Thursday at 5:55 p.m., quoted at $548 plus $80 for one checked suitcase. She selected the $218-per-night North Hills hotel for Tuesday and Wednesday; estimated lodging is $493.77 after tax, two breakfasts add $32, and expected rideshares are $103. The projected trip total is $1,256.77 before breakfast sales tax, other meals, tips, or surge pricing. The hotel confirmed a 24-hour desk, a late-arrival notation process, and complimentary same-day luggage holding after checkout. The primary Thursday plan is still to store the suitcase at the client site, leave near 3:40 p.m., and ride directly to RDU; client approval remains outstanding, and hotel storage is the fallback. Before purchase, final hotel tax and cancellation wording, flight details, fare and bag terms, operating-carrier cutoffs, and the displayed 5:10 p.m. checked-bag cutoff require confirmation. The airport-hotel and rental alternative remains rejected. Unresolved accounting follow-ups include the Raleigh corrected folio, Philadelphia deposit release, and Nashville refund reconciliation. The September 12-16 Monterey Peninsula trip for Maya Lian Chen and Jordan Avery Lee remains confirmed at $2,849, with whale-watching booking status and exact hotel cancellation cutoffs unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2, 2029 Baltimore client trip and November 6-8, 2029 Raleigh client trip remain recorded as confirmed, with their noted ground-transportation items unresolved.",
+  "verification": {
+    "105": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Keep both the pool and fitness room in the comparison because I use both on multi-night trips. A hot tub is a bonus, but not enough reason to accept a bad cancellation rule.",
+          "habit_id": "tm_pd_v05_user_000_h04",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly establishes both the pool and fitness room as recurring multi-night-trip preferences and treats the hot tub as a softer bonus that does not outweigh cancellation terms. No other candidate habit is directly evidenced by the user's utterances in this session."
+    }
+  }
+}

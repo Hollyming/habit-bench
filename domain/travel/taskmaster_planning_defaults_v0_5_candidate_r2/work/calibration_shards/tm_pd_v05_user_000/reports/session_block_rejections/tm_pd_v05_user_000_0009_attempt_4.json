@@ -1,0 +1,80 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h03', 'support') actual=[('tm_pd_v05_user_000_h01', 'boundary'), ('tm_pd_v05_user_000_h03', 'boundary')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya endorsed the $452 itinerary because it was the lowest-priced option after her workshop timing and outbound Wi-Fi requirements were satisfied, directly supporting the supplied flight price-quality policy.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to sort out Denver for the client workshop. It runs Wednesday, May 20 through Friday, May 22 downtown, ending at 2:00 Friday. I can leave Minneapolis Tuesday after 4:30. The return day is flexible if Friday is too tight.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare Tuesday evening outbound options with both Friday evening and Saturday morning returns. Is the $650 project limit for the round trip, and are there any flight requirements beyond getting you in with a reasonable margin before the 8:00 a.m. Wednesday start?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, $650 total in economy. I need Wi-Fi on the outbound because I’ll still have workshop prep to finish. Nonstop would be helpful, but the schedule matters more.",
+          "role": "user"
+        },
+        {
+          "content": "Three Tuesday departures fit. The strongest two are nonstop: Delta at 5:35 p.m., arriving Denver at 6:48 p.m., and United at 7:10 p.m., arriving at 8:22 p.m. Both list Wi-Fi. There is also a 4:55 p.m. connection through Omaha arriving at 9:18 p.m.; it is cheaper by about $40, but the 38-minute connection and later arrival make it fragile before an 8:00 a.m. session.",
+          "role": "assistant"
+        },
+        {
+          "content": "Drop the Omaha connection. What do the Friday returns look like once I account for getting from downtown to DEN?",
+          "role": "user"
+        },
+        {
+          "content": "With the workshop ending at 2:00, I would allow about 45–60 minutes to wrap up and reach the airport, then preserve normal security margin. A 4:05 p.m. departure is not practical. The viable Friday nonstops are United at 6:05 p.m., arriving MSP at 9:03 p.m., or Delta at 7:25 p.m., arriving at 10:20 p.m. Both leave enough transfer margin if you depart downtown by roughly 3:15–3:30.",
+          "role": "assistant"
+        },
+        {
+          "content": "Price those with each Tuesday nonstop. And check whether staying until Saturday actually saves enough to matter after another hotel night.",
+          "role": "user"
+        },
+        {
+          "content": "Current round-trip combinations are: Tuesday 5:35 Delta with Friday 7:25 Delta for $487; Tuesday 7:10 United with Friday 6:05 United for $452; and mixed carriers using the 5:35 outbound and 6:05 return for $479. Saturday morning returns bring airfare down to $398–$421, but an additional downtown hotel night is about $185 before tax, so the total trip cost rises by at least $130.",
+          "role": "assistant"
+        },
+        {
+          "content": "The 6:05 Friday flight sounds workable, but is leaving downtown at 3:30 enough? I don’t want the last workshop discussion cut short just to chase the cheaper fare.",
+          "role": "user"
+        },
+        {
+          "content": "A 3:30 departure gives you about two hours and 35 minutes before takeoff. Typical Friday travel to DEN is 40–55 minutes, which would leave around 1 hour 40 minutes to 1 hour 55 minutes at the airport. That is workable with no checked bag, though a major traffic incident could reduce the cushion. Leaving at 3:15 would be more comfortable without affecting the workshop end.",
+          "role": "assistant"
+        },
+        {
+          "content": "I’ll be carry-on only. Does the United outbound have Wi-Fi for the full flight, and is there any meaningful difference between that $452 itinerary and the $479 mixed one?",
+          "role": "user"
+        },
+        {
+          "content": "United lists Wi-Fi on the scheduled A319, though aircraft substitutions can affect availability. The $452 itinerary departs Tuesday at 7:10 p.m.; the $479 mixed option leaves at 5:35 p.m., giving you 1 hour 35 minutes more in Denver that evening. Both use the same Friday 6:05 p.m. return, have standard economy restrictions, and remain under the project cap.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then the earlier outbound is mostly buying extra evening time. Since both satisfy the workshop timing and Wi-Fi requirement, keep the $452 United itinerary as the first choice. I’d rather take the lowest price once the actual requirements are covered. What’s the best backup?",
+          "role": "user"
+        },
+        {
+          "content": "First choice: United nonstop Tuesday, May 19, departing MSP at 7:10 p.m. and arriving DEN at 8:22 p.m.; return Friday, May 22, departing DEN at 6:05 p.m. and arriving MSP at 9:03 p.m., currently $452 round trip in economy. It includes listed onboard Wi-Fi outbound and leaves a workable Friday airport transfer with a 3:15–3:30 downtown departure. Best backup: the mixed-carrier itinerary with Delta’s Tuesday 5:35 p.m. nonstop and the same United Friday return for $479. It adds evening margin for $27. Both are viable and under the $650 cap; nothing has been selected or booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0009",
+      "session_index": 9,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh return change remains staged but unsubmitted. The April 23–28 coastal trip flights and hotels are booked; two private rides totaling $180 before optional gratuity remain unreserved. For the May 20–22 Denver client workshop, two round-trip flight options are viable within the $650 project cap. The $452 United itinerary is the first choice and a $479 mixed-carrier itinerary is the backup; no Denver flight has been selected or booked, and the Friday airport transfer plan remains to be finalized."
+}

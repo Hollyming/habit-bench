@@ -1,0 +1,139 @@
+{
+  "cache_fingerprint": "1e8dec297c669e269d52125af249c8d678428c6978854dd6417d655620aee988",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The approved Phoenix audit trip was repriced using a 5:00 p.m. Wednesday site departure. After realistic drive, refueling, rental-return, and terminal-transfer timing, the Wednesday nonstop was rejected as too vulnerable to delay. The later connection was feasible but arrived after midnight. The Thursday morning nonstop with a third hotel night was booked at a projected total within authorization.",
+        "evidence_topology": {
+          "episode_id": "audit-phoenix-01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 110,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user chose the identified Thursday morning nonstop and explicitly rejected both cheaper Wednesday returns because they conflicted with the current trip's closing-meeting requirement. This is trip-specific, not durable recurring language.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.97,
+            "evidence_quote": "Ticket the Thursday itinerary and keep the three hotel nights.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I need to be present through the end of the closing meeting, so don’t use either Wednesday return.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h01",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The $1,431 authorization was approved. Before you ticket it, recalculate the timing from the Goodyear site if Wednesday’s closing meeting ends at 5:00. Reprice the evening nonstop, the later connection, and the Thursday morning flight with the extra hotel night.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare all three using a 5:00 p.m. departure from the site, including the drive to Phoenix Sky Harbor, refueling, rental return, shuttle time, and a reasonable airport buffer. I’ll also refresh the full trip totals rather than comparing airfare alone.",
+          "role": "assistant"
+        },
+        {
+          "content": "The rental has to be returned full. Assume I leave the meeting promptly, but don’t assume the close-out will finish early.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. At 5:00 p.m., the drive from the Goodyear site to an airport-area fuel station is about 35 to 50 minutes in weekday traffic. Refueling and reaching the rental facility adds roughly 15 minutes, and return plus the Sky Train to Terminal 4 generally takes another 20 to 30. That puts you at the terminal around 6:10 to 6:35 p.m. if there are no delays.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does that mean for the nonstop we looked at?",
+          "role": "user"
+        },
+        {
+          "content": "The refreshed Wednesday nonstop departs PHX at 7:20 p.m. and arrives SFO at 9:25 p.m. Its current fare brings the trip total to $1,318. You might reach the terminal 45 to 70 minutes before departure, but the low end leaves almost no recovery time for traffic, fueling, the rental return, security, or a delayed meeting. I would not treat it as dependable with a 5:00 close.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the late connection? Include the actual arrival time.",
+          "role": "user"
+        },
+        {
+          "content": "The later option leaves PHX at 8:55 p.m., connects in Los Angeles for 58 minutes, and reaches SFO at 12:18 a.m. Thursday. The refreshed trip total is $1,276. It gives you about 2 hours 20 minutes to 2 hours 45 minutes from terminal arrival to departure, so the site-to-gate timing works. The tradeoff is the connection and arrival after midnight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now compare that with staying Wednesday night and taking the Thursday nonstop. Check whether the hotel and rental still fit the approval.",
+          "role": "user"
+        },
+        {
+          "content": "The Thursday nonstop remains available at 9:05 a.m., arriving SFO at 11:12 a.m. Three nights at Holiday Inn & Suites Goodyear, the midsize rental through Thursday morning, airfare, fuel, and meals now total $1,424. That is $148 more than the late connection and $7 below the approved amount. The hotel rate is still cancellable until 6:00 p.m. local time on April 5.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the Wednesday nonstop only saves $106 versus Thursday but risks missing the flight, and the connection saves $148 but gets me home after midnight. Is that right?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Wednesday nonstop: $1,318, 9:25 p.m. arrival, but an unsafe post-meeting margin. Wednesday connection: $1,276, 12:18 a.m. arrival, with workable timing. Thursday nonstop: $1,424, 11:12 a.m. arrival, with the closing meeting and Wednesday evening fully protected. All three remain within the $1,431 authorization.",
+          "role": "assistant"
+        },
+        {
+          "content": "Ticket the Thursday itinerary and keep the three hotel nights. I need to be present through the end of the closing meeting, so don’t use either Wednesday return.",
+          "role": "user"
+        },
+        {
+          "content": "Booked. American nonstop flights are confirmed from SFO to Phoenix on Monday, April 6 at 9:15 a.m. and from Phoenix to SFO on Thursday, April 9 at 9:05 a.m., arriving at 11:12 a.m. Holiday Inn & Suites Goodyear is confirmed for three nights, April 6 through April 9, and the midsize airport rental is reserved through Thursday morning. The projected trip total is $1,424, leaving $7 in the authorization. The Wednesday returns were not booked, and the itinerary allows attendance through the full closing meeting.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0110",
+      "session_index": 110,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund and rental documentation remain pending. Existing Washington, Bothell, Chicago, Carlsbad, Palm Springs, Cypress Spa Lodge, Indianapolis, July supplier-audit, Scottsdale, Clayton, Plymouth, Denver, Coastal Sonoma, Holly Springs, Puerto Rico, Lenexa, Boston, and other recorded trips remain unchanged. The September Boston conference trip is confirmed at a projected $3,470, leaving $6 of authorization. The March Scottsdale wellness trip remains confirmed at $3,627.20 before meals and incidentals. The June Durham audit remains confirmed at $1,404. The October Hawaii vacation remains confirmed or reserved as recorded, estimated at $10,221.61. The January Chesterfield Valley audit remains confirmed at $1,659, with an $84 authorization increase pending. Sonoma Grove is confirmed February 13-16 for two adults in a king room on a cancellable wellness package totaling $1,812 including tax, breakfast, and a $150 spa credit. Both massages are confirmed Sunday at 10:00 a.m.; current room and spa deposits total $1,036, and the canceled reservation’s $582 refund remains pending. Driving is planned, and the Sonoma projected total remains $2,325 before other meals and incidentals. The Phoenix-area supplier audit is scheduled for April 7-8. The approved trip is now booked for April 6-9 with American nonstop flights, three nights at Holiday Inn & Suites Goodyear, and a midsize airport rental through Thursday morning. The Thursday return preserves attendance through the Wednesday closing meeting. The projected Phoenix trip total is $1,424, leaving $7 of the $1,431 authorization.",
+  "verification": {
+    "110": {
+      "habit_signals": [
+        {
+          "confidence": 0.97,
+          "evidence_quote": "Ticket the Thursday itinerary and keep the three hotel nights.",
+          "habit_id": "tm_pd_v05_user_003_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I need to be present through the end of the closing meeting, so don’t use either Wednesday return.",
+          "habit_id": "tm_pd_v05_user_003_h01",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user chose the identified Thursday morning nonstop and explicitly rejected both cheaper Wednesday returns because they conflicted with the current trip's closing-meeting requirement. This is trip-specific, not durable recurring language."
+    }
+  }
+}

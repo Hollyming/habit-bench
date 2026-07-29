@@ -1,0 +1,136 @@
+{
+  "cache_fingerprint": "631f3e0c4ad337093f0636e5687a2c0c6075e8f5c4d8f340315a6e29c588557f",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marcus made a trip-specific exception to use the early Thursday return because the Wednesday site visit could run late; he explicitly limited the override to this trip.",
+        "evidence_topology": {
+          "episode_id": "norfolk-ops-01",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 85,
+          "target_habit_id": "tm_pd_v05_user_002_h01",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly makes a one-trip early-morning return choice to avoid a rushed Wednesday, overriding the usual later-day return preference. No other user utterance strongly establishes an exact candidate habit at the required confidence.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For this trip, use an early flight if that is what keeps Wednesday from becoming a scramble.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_002_h01",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I need to cover Norfolk and Virginia Beach on a Tuesday and Wednesday. Norfolk starts at 1:00 Tuesday, and I should be done in Virginia Beach around 3:30 Wednesday. Compare the flight choices from Chicago door to door. I don't want to buy anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "What dates are these, and are you willing to fly Monday evening? Also, should I compare a farther airport if the nonstop reduces connection risk?",
+          "role": "assistant"
+        },
+        {
+          "content": "September 14 and 15. Monday evening is fine. Yes, include Richmond, but count the rental-car drive honestly. There is also a Tuesday morning connection that looks tempting.",
+          "role": "user"
+        },
+        {
+          "content": "I found three relevant patterns. First, American leaves ORD Monday at 5:05 p.m., connects in Charlotte for 1 hour 8 minutes, and reaches ORF at 10:18 p.m. The round trip is $418 before bags. Second, Delta leaves Tuesday at 5:40 a.m., connects in Atlanta for 46 minutes, and reaches ORF at 10:37 a.m.; that itinerary is $386. Third, United flies nonstop ORD-RIC Monday from 6:20 to 9:21 p.m. local time for $344 round trip. Richmond adds a rental car and roughly 1 hour 35 minutes to Norfolk without traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put real door-to-door times on those. I would leave from home in Lakeview, and Tuesday's restaurant is near Military Circle.",
+          "role": "user"
+        },
+        {
+          "content": "For the Monday ORF connection, leave home about 2:35 p.m. Allowing 45 minutes from ORF for baggage, rental pickup, and the drive, you would reach a nearby hotel around 11:05 p.m. Door to door is about 7 hours 30 minutes. For Tuesday's Delta option, leave home around 3:15 a.m. If both flights run on time, you would reach the restaurant area around 11:35 a.m., giving about 85 minutes before the appointment. Door to door is about 8 hours 20 minutes. For the Richmond nonstop, leave home at 3:50 p.m. Monday. Rental pickup plus the drive puts you near Military Circle around 11:30 p.m., about 7 hours 40 minutes door to door.",
+          "role": "assistant"
+        },
+        {
+          "content": "How dependable is that Tuesday arrival? The Atlanta connection is what worries me.",
+          "role": "user"
+        },
+        {
+          "content": "It is not dependable enough for a first visit with a fixed 1:00 p.m. start. The 46-minute connection has little recovery room, and a 45-minute delay at either ORD or ATL could push arrival past noon. Even on schedule, baggage or a rental-car queue consumes most of the 85-minute cushion. I would eliminate it unless the meeting can move.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. Now compare the return after Virginia Beach. I could leave Wednesday or Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "From Virginia Beach, the latest feasible Wednesday option is American from ORF at 6:42 p.m., connecting in Charlotte and reaching ORD at 10:58 p.m. You would need to leave the restaurant by 3:40 p.m.; the drive is usually 30-40 minutes, leaving limited margin for traffic, fuel, and rental return. Paired with Monday's outbound, the fare is $418. From RIC, United's Wednesday nonstop leaves at 7:35 p.m. and reaches ORD at 8:52 p.m. You would need to depart Virginia Beach by about 4:05 p.m. for the 1 hour 45 minute to 2 hour 15 minute drive and rental return. That pairing is $344, with a midsize rental estimated at $176 before fuel and tolls.",
+          "role": "assistant"
+        },
+        {
+          "content": "So Richmond is cheaper in airfare but not after the car, and Wednesday gives me no room if the visit runs long.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Richmond totals about $520 before fuel and tolls, versus $418 airfare plus a shorter Norfolk rental. Its nonstop reduces airline disruption exposure, but it replaces that with roughly 3 hours 20 minutes to 4 hours of regional driving across the trip. The Wednesday RIC return also fails if the visit runs more than about 30 minutes late.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does Thursday morning look like from Norfolk? For this trip, use an early flight if that is what keeps Wednesday from becoming a scramble.",
+          "role": "user"
+        },
+        {
+          "content": "United has a 7:05 a.m. ORF-ORD nonstop Thursday, arriving at 8:29 a.m., for $441 round trip when paired with the Monday American outbound. You would need to leave a Virginia Beach hotel around 4:55 a.m. and return the car by 5:40. A later 10:25 a.m. connection arrives Chicago at 2:18 p.m. for $463.",
+          "role": "assistant"
+        },
+        {
+          "content": "Select the early Thursday return for this one. Which full pattern should we carry forward, and keep the other realistic option for comparison?",
+          "role": "user"
+        },
+        {
+          "content": "Carry forward Monday ORD-CLT-ORF, 5:05-10:18 p.m., with the Thursday nonstop ORF-ORD, 7:05-8:29 a.m., at $441 round trip. It protects both restaurant visits and avoids the long Richmond drive; do not purchase yet. Keep the Richmond pattern as the alternative: Monday ORD-RIC nonstop 6:20-9:21 p.m. and Wednesday RIC-ORD nonstop 7:35-8:52 p.m., $344 airfare plus about $176 for the rental before fuel and tolls, with arrival near Norfolk around 11:30 p.m. Monday. For the next comparison, price two Norfolk-area hotel nights plus Wednesday in Virginia Beach for the selected pattern against two Norfolk nights and the longer Richmond rental for the alternative. The Tuesday-morning Atlanta itinerary is rejected as too fragile. Wednesday's latest usable departures remain 6:42 p.m. from ORF and 7:35 p.m. from RIC.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0085",
+      "session_index": 85,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Charleston remains confirmed for Marcus, Daniel, and Owen for March 27-31 under flights H7Q4LM and A6N9RP, Hyatt House HH-729461, and rides R-48271 and R-48296; the $501 canceled-return refund remains pending. Louisville remains confirmed for Marcus April 7-8 under flight L8V2KD and Galt House GH-684217; four local rides remain unbooked at an expected $124-$171. Cleveland remains confirmed for Marcus May 13-14 under United C7M4QP, Aloft Cleveland Beachwood AB-417286, Hertz HZ-638205, and ORD Lot F LF-290184. Dallas is confirmed for June 16-17 under United U6D9KF, Hyatt Place Dallas North/Addison HP-583194, and Avis AV-741620, estimated at $683. Southern California remains confirmed for Marcus, Daniel, and Owen July 19-27 under United N4K8TZ, Sea View SV-731904, Avis AVD-904671, and Bahia BM-558217, total $5,739. Boston is confirmed for Marcus, Daniel, and Owen for January 22-26 under JetBlue J7R4NX and Revere Hotel RV-621847; Tuesday's car pickup is 4:30 a.m. Norfolk and Virginia Beach for September 14-15 is under comparison, not booked. Selected pattern: Monday ORD-CLT-ORF 5:05-10:18 p.m. and Thursday ORF-ORD nonstop 7:05-8:29 a.m., $441 round trip. Alternative: Monday ORD-RIC nonstop 6:20-9:21 p.m. and Wednesday RIC-ORD nonstop 7:35-8:52 p.m., $344 airfare plus an estimated $176 rental before fuel and tolls, with substantial regional driving. The Tuesday-morning Atlanta connection was rejected as too fragile. Next step is to compare lodging and transportation for both workable patterns; latest feasible Wednesday departures are 6:42 p.m. from ORF and 7:35 p.m. from RIC.",
+  "verification": {
+    "85": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For this trip, use an early flight if that is what keeps Wednesday from becoming a scramble.",
+          "habit_id": "tm_pd_v05_user_002_h01",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly makes a one-trip early-morning return choice to avoid a rushed Wednesday, overriding the usual later-day return preference. No other user utterance strongly establishes an exact candidate habit at the required confidence."
+    }
+  }
+}

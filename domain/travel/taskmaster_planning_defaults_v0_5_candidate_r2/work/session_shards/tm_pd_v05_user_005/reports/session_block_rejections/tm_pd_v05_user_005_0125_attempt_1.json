@@ -1,0 +1,120 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_005_h01', 'support') actual=[('tm_pd_v05_user_005_h00', 'support'), ('tm_pd_v05_user_005_h01', 'exception')]",
+  "sessions": [
+    {
+      "domain": "flights_and_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "{'kind': 'support', 'policy': 'Avery naturally endorsed afternoon or evening return departures for work trips when scheduling permits, while explicitly choosing a Saturday morning exception because the later Friday itinerary lacked a reliable post-sign-off margin.'}",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "The gallery changed Friday. Final lighting is now at 5:00, and lender sign-off may run until 6:15. I cannot make the 7:20 flight. Please compare the later Friday connection with a Saturday nonstop, including the hotel extension and what I would owe to change.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare both against a realistic gallery release time. Is 6:15 the expected end of sign-off, or could you still have closeout duties afterward?",
+          "role": "assistant"
+        },
+        {
+          "content": "They say I should be released by 6:30 if there are no objections. Use 6:45 as the conservative time. My suitcase can stay at the Hampton.",
+          "role": "user"
+        },
+        {
+          "content": "Using a 6:45 p.m. release from Empire Street, the later Friday option is Delta at 8:36 p.m. from PVD, connecting in New York LaGuardia, and arriving Atlanta at 12:42 a.m. Saturday. You would have about 1 hour 51 minutes before departure, but the hotel stop for your bag and Friday traffic reduce the airport margin to roughly 65-85 minutes. The connection is 52 minutes. The Saturday option is a 9:10 a.m. nonstop arriving Atlanta at 11:47 a.m.; it requires another hotel night but removes the Friday timing and connection risks.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the fare difference for each? The ticket already includes my checked bag.",
+          "role": "user"
+        },
+        {
+          "content": "Changing only the return to the Friday 8:36 itinerary adds $118.40 in fare, with no separate change fee. The Saturday 9:10 nonstop adds $74.20. Your checked-bag inclusion carries over to either replacement itinerary. These are current exchange quotes and can move until reissued.",
+          "role": "assistant"
+        },
+        {
+          "content": "So Saturday is cheaper on the airfare but not after the room. What does the Hampton want for one more night?",
+          "role": "user"
+        },
+        {
+          "content": "The Hampton has your same room type available for Friday night at $319 before tax, $366.85 total. Because it would be an extension made at the current rate rather than part of the original two-night price, the full stay would total $929.59. The hotel can link the reservations so you should not need to change rooms, though that remains subject to the front desk keeping the room assigned.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please put the totals side by side, and include the practical downside of each rather than only the dollars.",
+          "role": "user"
+        },
+        {
+          "content": "Friday connection: $118.40 additional trip cost. A 6:45 gallery release likely gets you to the hotel around 6:55, PVD around 7:15-7:30, and leaves about 66-81 minutes before departure. That is workable with a stored bag, but a delayed sign-off, traffic, bag retrieval, or security line could cause a misconnect before you even leave Providence. The 52-minute LaGuardia connection also has limited recovery room, and arrival in Atlanta is after midnight.\n\nSaturday nonstop: $441.05 additional trip cost, consisting of the $74.20 fare increase and $366.85 hotel extension. You can finish without watching the clock Friday and avoid a connection. The tradeoffs are the extra night, the much higher total cost, and reaching Atlanta late Saturday morning instead of Friday night.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the airline terms carefully. If the Friday sign-off slips and I miss the 8:36, would Delta simply move me to Saturday?",
+          "role": "user"
+        },
+        {
+          "content": "Not automatically under the fare rules. Delta’s standard economy ticket has no change fee, but you would owe any fare difference when changing before departure. If you miss the flight without changing or notifying Delta, the remaining ticket value can be lost under the no-show provision. Same-day standby or confirmed-change options are not guaranteed for this itinerary, and a gallery delay is not an airline-controlled disruption. If Delta itself delays or cancels the flight, its rebooking protections would apply.",
+          "role": "assistant"
+        },
+        {
+          "content": "And if I switch to Friday now but realize at 5:30 that sign-off is going badly, can I change again to Saturday?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, provided you change before the Friday flight departs and seats remain. There is no change fee, but Delta would recalculate the fare at that time. The current $74.20 Saturday difference would not be preserved, so the last-minute amount could be higher. You would also need a Friday room still available.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the extension cancellation terms? I do not want to authorize a $367 room tonight and then find it is nonrefundable.",
+          "role": "user"
+        },
+        {
+          "content": "The quoted extension is flexible, not prepaid. It can be canceled without penalty until 6:00 p.m. Eastern on Thursday, June 17. After that, cancellation or a no-show is charged one night plus tax, which is the full $366.85. The original June 16-18 reservation keeps its existing terms; adding or canceling the separate Friday night does not reopen the cancellation deadline for those first two nights.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can either flight be held while I get approval? I should have an answer tomorrow afternoon.",
+          "role": "user"
+        },
+        {
+          "content": "Delta will not preserve both exchange prices simultaneously on your existing ticket. I can place a courtesy hold on one new itinerary until 5:00 p.m. Eastern tomorrow, but the other remains subject to availability and repricing. The Hampton can hold the Friday extension until 4:00 p.m. tomorrow without charging the card.",
+          "role": "assistant"
+        },
+        {
+          "content": "Hold the Saturday nonstop and the hotel night. For work returns, I prefer an afternoon or evening departure when the schedule allows, but here the Friday option does not leave enough protection after sign-off. The Saturday morning flight is the practical exception.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll use the safer Saturday plan for this trip because Friday’s release margin is exposed, even though it means a morning departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before you place the holds, confirm exactly what will and will not happen to H7Q4LM and PVD62841.",
+          "role": "user"
+        },
+        {
+          "content": "The flight hold will reserve the Saturday 9:10 a.m. exchange quote through 5:00 p.m. Eastern tomorrow, but H7Q4LM will remain ticketed as it is now, including the Friday 7:20 return. Nothing will be reissued and no card will be charged until you authorize the exchange. The hotel will create a no-charge courtesy hold for June 18-19, linked as a possible extension to PVD62841; it will not alter or cancel the confirmed June 16-18 stay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Go ahead with those two holds. Give me the expiration times and the amount I need approved.",
+          "role": "user"
+        },
+        {
+          "content": "Both practical options are now held without changing your confirmed reservations. Delta hold D9K2RV covers the Saturday, June 19 nonstop departing PVD at 9:10 a.m. and arriving ATL at 11:47 a.m.; it expires tomorrow, June 13, at 5:00 p.m. Eastern. The current ticket exchange requires $74.20 additional airfare. Hampton hold HT-61873 covers the same room type for June 18-19 at $366.85 including tax and expires June 13 at 4:00 p.m. Eastern. The total approval needed is $441.05. H7Q4LM and PVD62841 remain unchanged, and neither card nor ticket has been processed.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0125",
+      "session_index": 125,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "The St. Thomas vacation for Avery and her wife, May 22-30, 2027, remains complete. Providence outbound travel on June 16 remains ticketed under H7Q4LM; the original June 18 return is also still ticketed and unchanged. The Hampton Inn & Suites Providence Downtown stay for June 16-18 remains confirmed under PVD62841 at $562.74, payable at the hotel, with Friday luggage storage noted. Because gallery lighting and lender sign-off moved to Friday evening, the original return is no longer workable. Delta hold D9K2RV reserves a June 19 nonstop exchange through 5:00 p.m. Eastern on June 13 for $74.20 additional airfare. Hampton hold HT-61873 reserves a linked June 18-19 extension through 4:00 p.m. Eastern on June 13 for $366.85. Total authorization needed is $441.05; no exchange, extension, or charge has been completed. The previously outstanding Boston hotel approval remains unresolved."
+}

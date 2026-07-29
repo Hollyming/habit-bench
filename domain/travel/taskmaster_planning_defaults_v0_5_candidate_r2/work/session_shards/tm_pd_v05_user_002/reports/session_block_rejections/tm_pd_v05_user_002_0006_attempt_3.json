@@ -1,0 +1,80 @@
+{
+  "reason": "unnatural_habit_leakage_session_6:The user makes only trip-specific choices and does not establish any candidate habit as a recurring preference. The early flight is specific to this San Diego itinerary and falls outside the morning-departure habit's solo-work-trip scope. The assistant repeatedly treats nonstop routing as already selected before the user explicitly establishes or endorses a nonstop preference, so the nonstop value leaks from outside the user evidence.",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marcus selected the lower-cost Coronado hotel after comparing complete trip totals, arrival-day usability, room occupancy, and cancellation terms. He explicitly authorized and completed the flight, hotel, and rental-car reservations.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "Let's finish San Diego. Compare the Coronado and La Jolla options with the early flight, including the car and parking. I also want the cancellation terms before we book.",
+          "role": "user"
+        },
+        {
+          "content": "Using the July 18 early nonstop and July 26 return for three travelers, the airfare is still $1,947. An eight-day midsize rental from SAN is now $638 including airport taxes, with pickup around 10:15 a.m. and return by 10:00 a.m.\n\nGlorietta Bay Inn is $4,660 including eight nights of parking, bringing that combination to $7,245.\n\nLa Jolla Shores Hotel is $5,790 including eight nights of parking, bringing that combination to $8,375.\n\nThe La Jolla option is $1,130 more overall. Both estimates exclude fuel, checked bags, paid airline seats, meals, and attraction tickets.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much arrival day do we actually get at each one?",
+          "role": "user"
+        },
+        {
+          "content": "The flight lands at 9:29 a.m. Allowing for bags and the rental counter, you should leave SAN around 10:30 a.m.\n\nGlorietta Bay Inn is roughly 15 to 25 minutes away, so you could drop bags around 11:00 a.m. The beach and nearby restaurants are walkable while you wait for the room. La Jolla Shores is more often 25 to 40 minutes at that hour, putting arrival around 11:10 a.m. to 11:30 a.m.; the beach is directly outside the hotel.\n\nNeither hotel guarantees check-in before 4:00 p.m., but both will hold luggage. In practical terms, both preserve most of the day. La Jolla gives immediate beach access, while Coronado costs less and still leaves five hours or more before standard check-in.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the exact room and cancellation rules?",
+          "role": "user"
+        },
+        {
+          "content": "Glorietta Bay Inn: Deluxe Room with Two Queen Beds for two adults and one 12-year-old. The current total is $4,660.24, including taxes, mandatory charges, and estimated self-parking for eight nights. Cancellation is free through 6:00 p.m. local hotel time on July 11. After that, the penalty is one night's room and tax. No-show terms are the same, and the remaining balance is collected at the property.\n\nLa Jolla Shores Hotel: Garden View Room with Two Queen Beds for the same three guests. The total is $5,789.61 including taxes, mandatory charges, and parking. Cancellation is free through 4:00 p.m. local time on July 4; afterward, the deposit of one night's room and tax is forfeited.",
+          "role": "assistant"
+        },
+        {
+          "content": "Coronado is the better overall deal. Before you reserve it, what are the flight rules? The airfare hasn't moved, correct?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The selected nonstop itinerary remains $1,947 total for all three travelers: ORD to SAN on July 18 from 7:05 a.m. to 9:29 a.m., and SAN to ORD on July 26 from 12:05 p.m. to 6:10 p.m.\n\nThe tickets are nonrefundable. Changes are allowed before departure, but any fare difference applies; cancellation returns airline credit to each ticketed traveler rather than cash. Checked bags and advance seat selection are not included. The fare is currently available for all three passengers.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use Glorietta Bay Inn. Is the $638 car cancellable too?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The $638.12 rental-car rate is pay at pickup, with no cancellation charge before the scheduled July 18 pickup. The midsize vehicle seats five and includes unlimited mileage. Fuel, tolls, optional insurance, and any additional-driver charge are excluded.\n\nThe complete amount currently priced is $7,245.36: $1,947.00 flights, $4,660.24 hotel with estimated parking, and $638.12 rental car. Because hotel parking is paid locally, the final parking amount could change if the property revises its rate before the stay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Go ahead with all three. Use the traveler details and card ending 1842 already attached to this trip.",
+          "role": "user"
+        },
+        {
+          "content": "Before I submit: three nonrefundable airline tickets for $1,947.00, the refundable Glorietta Bay Inn reservation under the terms just reviewed, and the pay-at-pickup rental car. The card ending 1842 will be used where payment or a guarantee is required. Shall I complete the purchases?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, complete them.",
+          "role": "user"
+        },
+        {
+          "content": "The three reservations are confirmed.\n\nFlights: ORD-SAN on July 18, 7:05 a.m.-9:29 a.m.; SAN-ORD on July 26, 12:05 p.m.-6:10 p.m. Total charged: $1,947.00. Airline confirmation: H7Q4LM.\n\nHotel: Glorietta Bay Inn, Deluxe Room with Two Queen Beds, July 18-26, for two adults and one child. Estimated total with taxes and eight nights of parking: $4,660.24. Free cancellation through 6:00 p.m. San Diego time on July 11; afterward, one night's room and tax applies. Hotel confirmation: GBI-482731.\n\nCar: midsize rental at SAN from July 18 at 10:15 a.m. through July 26 at 10:00 a.m. Estimated pay-at-pickup total: $638.12, cancellable without charge before pickup. Rental confirmation: SD6K291.\n\nThe current trip total is $7,245.36, excluding checked bags, airline seat fees, fuel, tolls, optional rental coverage, and any change in the hotel's locally collected parking rate.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0006",
+      "session_index": 6,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Marcus's Atlanta regional leadership trip is confirmed for April 13-14. His nonstop flights total $438.20, and his April 13 Embassy Suites stay is confirmed at an estimated $296. Tuesday's meeting ends at 4:30 p.m.; the planned transfer leaves sufficient time for the evening flight home. No Atlanta decisions remain unresolved.\n\nThe San Diego family vacation is confirmed for July 18-26 for two adults and one 12-year-old. Flights are booked nonstop from ORD to SAN on July 18, departing at 7:05 a.m. and arriving at 9:29 a.m., with the return from SAN to ORD on July 26, departing at 12:05 p.m. and arriving at 6:10 p.m. The three tickets cost $1,947 and are nonrefundable, with airline credit available upon eligible cancellation. Glorietta Bay Inn is confirmed for eight nights in a Deluxe Room with Two Queen Beds at an estimated $4,660.24 including taxes, mandatory charges, and parking. Hotel cancellation is free through 6:00 p.m. San Diego time on July 11; a one-night room-and-tax penalty applies afterward. A midsize rental car is confirmed from July 18 at 10:15 a.m. through July 26 at 10:00 a.m. for an estimated $638.12 payable at pickup and cancellable without charge before pickup. The current trip total is $7,245.36, excluding bags, seat fees, fuel, tolls, optional rental coverage, and possible parking-rate changes. Flight confirmation H7Q4LM, hotel confirmation GBI-482731, and rental confirmation SD6K291 should remain available for follow-up."
+}

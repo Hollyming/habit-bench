@@ -1,0 +1,195 @@
+{
+  "cache_fingerprint": "e8528b12502a1757ded8142ce8c22239e6ff981e5e77f18b8845c344601c30fa",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session compares two trip-specific conference itineraries and recommends the Sunday workshop plan based on project relevance, schedule protection, and a quantified incremental cost. No recurring travel preference is established.",
+        "evidence_topology": {
+          "episode_id": "conference-chicago-01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 11,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user concretely selected United for this itinerary and explicitly chose economy for this trip. The very early Sunday departure was explicitly trip-specific and does not establish a general morning-departure habit. No user utterance established the price-ranking or hotel-amenity habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Use the United return for both comparisons.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h02",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.97,
+            "evidence_quote": "Yes, economy and return Wednesday after the final session.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h03",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to settle the Chicago conference trip before the workshop rate changes. The conference is Monday, August 19 through Wednesday, August 21, and there is an optional workshop Sunday afternoon. Compare going Sunday with flying in Monday morning from San Francisco. I need enough detail to decide whether the workshop is worth extending the trip.",
+          "role": "user"
+        },
+        {
+          "content": "I can compare the full trip cost and the schedule risk. What time does the Sunday workshop begin, when does Monday's conference program start, and do you have the workshop price or registration deadline?",
+          "role": "assistant"
+        },
+        {
+          "content": "The workshop is 1:30 to 5:00 p.m. on Sunday, August 18. It is $295 through July 12 and $375 after that, if space remains. The main conference begins Monday at 10:30 a.m., though registration opens at 8:00. Everything is at the Hyatt Regency Chicago.",
+          "role": "user"
+        },
+        {
+          "content": "That makes the Sunday option straightforward: a morning nonstop would need to reach Chicago with enough time for the trip downtown and workshop check-in. The Monday option is tighter because of the time change; a same-day flight must leave SFO very early to arrive before 10:30. Should I price economy, and is Wednesday evening the intended return for both versions?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, economy and return Wednesday after the final session. It ends at 4:15 p.m. I do not need to stay Wednesday night. Please include the Hyatt first, then a reasonable nearby alternative if its extra night makes the Sunday version disproportionately expensive.",
+          "role": "user"
+        },
+        {
+          "content": "I found workable nonstop outlines using current sample fares. For Sunday, United leaves SFO at 7:05 a.m. and arrives ORD at 1:20 p.m. That is too close for a 1:30 workshop once the airport transfer is included. American has a 5:40 a.m. departure arriving at 11:48 a.m.; it leaves roughly 1 hour 40 minutes to reach the Hyatt and check in. A safer United flight departs Saturday night, but that adds another hotel night and does not fit the comparison well. On Monday, United departs at 5:15 a.m. and arrives at 11:27 a.m., after the opening. American at 12:20 a.m. arrives at 6:28 a.m. and protects the 10:30 start, but it is an overnight flight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do not use the Sunday United flight if it lands at 1:20. Compare the Sunday American departure with the Monday overnight. What does the return look like?",
+          "role": "user"
+        },
+        {
+          "content": "After the Wednesday 4:15 p.m. finish, the practical nonstop choices are American at 6:35 p.m., arriving SFO at 9:10 p.m., and United at 7:45 p.m., arriving at 10:24 p.m. The American departure allows about 2 hours 20 minutes from the conference, which is workable by taxi or rideshare but has limited cushion in heavy traffic. United gives another 70 minutes. Pairing American outbound and United return is permitted as separate one-way tickets, though changes would be managed separately.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the United return for both comparisons. I would rather not make the airport transfer the deciding stress point. What are the fares?",
+          "role": "user"
+        },
+        {
+          "content": "The Sunday American outbound is $184 one way, and the Wednesday United return is $219, for $403 total. The Monday 12:20 a.m. American outbound is $156, making that flight combination $375. These are standard economy examples with advance seat selection; checked-bag charges are not included. The airfare difference is only $28 in favor of Monday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now check the hotel dates carefully. Sunday arrival means three nights, August 18 through 21. Monday means two nights, August 19 through 21.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The Hyatt conference block currently shows a standard room at $249 per night for Monday and Tuesday, but Sunday is no longer available at the block rate. A flexible public rate is available Sunday at $319, and the hotel can keep all three nights in one room if the reservations are linked. Estimated room tax is 17.4%. That puts the Hyatt at about $959 total for three nights in the Sunday version and $585 for two nights in the Monday version.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there any risk that booking Sunday separately means changing rooms Monday? Also check one nearby hotel rather than giving me a long list.",
+          "role": "user"
+        },
+        {
+          "content": "The Hyatt can note the consecutive reservations and generally keep the same room type assigned, but it cannot guarantee no room move until the bookings are linked and confirmed by the property. The Swissotel Chicago, about a five-minute walk away, shows a flexible rate averaging $238 per night for August 18 through 21. With estimated taxes, three nights are about $838. For Monday through Wednesday, it is about $559. It saves roughly $121 on the Sunday stay but only $26 on the Monday stay.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Hyatt is more convenient during the conference, so keep it unless the total difference changes the workshop decision. Add the workshop and show the full comparison. Do not include meals or local transportation.",
+          "role": "user"
+        },
+        {
+          "content": "Using the Hyatt and the early workshop registration price, the Sunday plan is: flights $403, hotel about $959, workshop $295, total about $1,657. The Monday overnight plan is: flights $375 and hotel about $585, total about $960. Attending the workshop therefore adds approximately $697. Of that, $295 is registration, about $374 is the extra Hyatt night including tax, and $28 is the higher outbound airfare.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is clearer. But the Sunday flight landing at 11:48 still seems a little tight. Lay out the actual timing from O'Hare to the workshop.",
+          "role": "user"
+        },
+        {
+          "content": "If the flight arrives on time at 11:48 a.m., allowing 20 to 30 minutes to deplane and reach the pickup area puts you landside around 12:15. A car to the Hyatt often takes 35 to 55 minutes on Sunday, so a reasonable arrival estimate is 12:50 to 1:10. You could leave luggage with the bell desk and go directly to workshop check-in. That provides only 20 to 40 minutes before 1:30, and a delay of about 30 minutes could make you late. The train is more predictable in severe road traffic but takes longer door to door and is not a strong fallback for this schedule.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there an earlier Sunday nonstop that does not require arriving Saturday? I can tolerate a very early departure for this specific trip.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. United has a 4:55 a.m. nonstop from SFO arriving ORD at 11:03 a.m. It is currently $211 one way in standard economy. With the same $219 return, airfare becomes $430. That arrival adds about 45 minutes of protection and should put you at the Hyatt around noon to 12:25 under ordinary conditions.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use that in the Sunday version. Does it change the conclusion materially?",
+          "role": "user"
+        },
+        {
+          "content": "It raises the Sunday total by $27, from about $1,657 to about $1,684. Compared with the $960 Monday plan, the workshop trip costs about $724 more. The financial conclusion does not change, but the itinerary quality does: the 4:55 a.m. flight is the first Sunday option with a reasonable buffer for a 1:30 p.m. workshop.",
+          "role": "assistant"
+        },
+        {
+          "content": "What happens if I miss the July 12 workshop deadline while waiting for internal approval?",
+          "role": "user"
+        },
+        {
+          "content": "If space remains and the fee rises to $375, the Sunday total becomes about $1,764, or roughly $804 more than the Monday plan. There are two separate availability risks: the workshop could fill, and the Hyatt's $319 Sunday rate could change or disappear. The Monday conference-block nights may also be subject to their own cutoff, so delaying the workshop decision should not automatically delay securing cancellable lodging.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the decision in practical terms. The workshop content is directly relevant to two open remediation projects, but I still need to justify the incremental cost.",
+          "role": "user"
+        },
+        {
+          "content": "Choose the Sunday itinerary if the workshop can be charged to the projects: United nonstop at 4:55 a.m. Sunday, Hyatt August 18 through 21, and United at 7:45 p.m. Wednesday. The defensible incremental amount is about $724 before July 12: $295 for instruction and approximately $429 for the added night and fare difference. The earlier flight makes attendance reasonably reliable, and staying at the conference hotel avoids losing time between the workshop and the main program. If the added cost cannot be allocated, the Monday overnight flight is the lower-cost plan at about $960, but it sacrifices sleep and the workshop rather than preserving a comparable experience.",
+          "role": "assistant"
+        },
+        {
+          "content": "I am not ready to book. Summarize the two choices and tell me what I need to confirm before I request approval.",
+          "role": "user"
+        },
+        {
+          "content": "Sunday workshop plan: depart SFO Sunday at 4:55 a.m. on United, arrive ORD at 11:03 a.m.; stay at the Hyatt August 18-21; return Wednesday at 7:45 p.m. on United. Estimated total is $1,684 with the $295 workshop fee. Monday plan: depart SFO at 12:20 a.m. Monday on American, arrive at 6:28 a.m.; stay at the Hyatt August 19-21; use the same United return. Estimated total is $960. The Sunday plan costs about $724 more. Before requesting approval, confirm that workshop seats remain at $295 through July 12, obtain the workshop cancellation or substitution terms, verify the Hyatt can link the Sunday public-rate night to the conference-block reservation without a room move, and recheck taxes, cancellation deadlines, and flight fares. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0011",
+      "session_index": 11,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh supplier-audit itinerary remains selected but unbooked pending an audit travel authorization number and a final recheck. The Fairmont Sonoma Mission Inn stay for May 31-June 3 is booked with both guests and spa services linked; written confirmation of the Sunday facial remains outstanding before the May 10 cancellation deadline. The Bothell audit flights and Hilton Garden Inn stay are booked; the return was changed to an earlier Friday departure for a $43 fare difference, hotel dates and total remain unchanged, and complimentary 1:00 p.m. checkout is noted. For the Chicago quality-systems conference August 19-21, a Sunday workshop itinerary is recommended but unbooked: its estimated total is $1,684 versus $960 for a Monday arrival. Approval depends on justifying the approximately $724 incremental cost. Workshop availability and terms, linked Hyatt reservations, final hotel conditions, and live airfares still need confirmation.",
+  "verification": {
+    "11": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Use the United return for both comparisons.",
+          "habit_id": "tm_pd_v05_user_003_h02",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.97,
+          "evidence_quote": "Yes, economy and return Wednesday after the final session.",
+          "habit_id": "tm_pd_v05_user_003_h03",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user concretely selected United for this itinerary and explicitly chose economy for this trip. The very early Sunday departure was explicitly trip-specific and does not establish a general morning-departure habit. No user utterance established the price-ranking or hotel-amenity habits."
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "cache_fingerprint": "95440b90b0d5a62baf3f6adcba8290540e630443ab35fdcc596762337333b667",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Priya chose a hotel with both a pool and an on-site fitness facility for a shared-useful longer stay, treating the hot tub as a tie-breaker rather than allowing it to outweigh commute reliability.",
+        "evidence_topology": {
+          "episode_id": "audit-minneapolis-01",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 129,
+          "target_habit_id": "tm_pd_v05_user_003_h06",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requires both core recreation amenities for this stay and treats the hot tub as a tie-breaker subordinate to commute quality. The language is trip-specific, not a durable cross-trip rule.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For a stay this long, keep both a pool and a real on-site gym in the comparison. A hot tub would settle a close choice, but it is not worth compromising the commute.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_003_h06",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The return is now Thursday morning, so I need to fix the hotel. North Arbor cannot give me Wednesday night. Compare extending with a second hotel against moving the whole stay somewhere practical for both Maple Grove and MSP.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare a Sunday-through-Wednesday split with four nights in one hotel. I’ll include taxes, parking, cancellation terms, normal and snow-delay drive times, and the Thursday airport run. Do you want me to treat avoiding a Wednesday move as worth some added cost, or simply choose the lowest total?",
+          "role": "assistant"
+        },
+        {
+          "content": "Avoiding the move has value because the audit closes late Wednesday, but quantify it. I do not want to pay a large premium without a schedule benefit.",
+          "role": "user"
+        },
+        {
+          "content": "Three workable arrangements emerge. The existing North Arbor reservation for Sunday through Tuesday is $626.66 including tax and parking. Adding Wednesday at MSP Gateway Hotel is $172.91 including tax, plus $24 parking, for a split total of $823.57. Westline Business Hotel, midway between Maple Grove and MSP, has all four nights for $930.48 including tax with free parking. MSP Gateway for all four nights would be $866.12 including tax and parking.",
+          "role": "assistant"
+        },
+        {
+          "content": "Map the drives. Assume January conditions, not optimistic map times.",
+          "role": "user"
+        },
+        {
+          "content": "North Arbor is typically 8–12 minutes from the site and about 35–45 minutes from MSP; allow 20–30 and 60–80 minutes respectively during a meaningful snow delay. Westline is typically 18–25 minutes to the site and 20–28 minutes to MSP; winter-delay ranges are about 35–50 and 35–50 minutes. MSP Gateway is 30–38 minutes to the site in ordinary traffic and 8–12 minutes to the terminal; allow 55–75 minutes to the site in snow, while the terminal trip is usually still within 20 minutes.",
+          "role": "assistant"
+        },
+        {
+          "content": "For the split, include the actual Wednesday sequence.",
+          "role": "user"
+        },
+        {
+          "content": "With the split, you would check out of North Arbor Wednesday morning, keep luggage in the rental car during the audit, leave Maple Grove around 5:00 p.m., and drive 35–45 minutes normally or 60–80 in snow to MSP Gateway. After check-in and parking, Thursday’s terminal drive is short. The split saves $106.91 versus Westline, but it puts the hotel transfer immediately after the closing meeting and leaves belongings in the car all day.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Westline on Wednesday and Thursday?",
+          "role": "user"
+        },
+        {
+          "content": "At Westline, you keep the same room through Wednesday night. A 5:00 p.m. site departure should reach the hotel around 5:25–5:50 normally or 5:50–6:20 with winter delay. For the Thursday 9:10 a.m. flight, leaving at 6:15 a.m. gives roughly 35–50 minutes for the drive in poor conditions, then time for rental return and security. The airport hotel could support a later departure, but it adds roughly 20–30 minutes each way on all three audit days.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check recreation facilities too. For a stay this long, keep both a pool and a real on-site gym in the comparison. A hot tub would settle a close choice, but it is not worth compromising the commute.",
+          "role": "user"
+        },
+        {
+          "content": "Westline has an indoor pool, a staffed fitness room with cardio and free weights, and a hot tub. MSP Gateway has an indoor pool and a small fitness room but no hot tub. North Arbor has a fitness room and pool; its hot tub is currently closed for repairs. On amenities and schedule reliability, Westline is the strongest single-stay option.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the parking and cancellation details, including what happens to North Arbor if we replace it?",
+          "role": "user"
+        },
+        {
+          "content": "Westline includes self-parking for one vehicle and allows cancellation without penalty until 6:00 p.m. local time Saturday, January 22; after that, one night plus tax is charged. MSP Gateway charges $24 per night and is refundable until 4:00 p.m. Sunday, January 23. North Arbor remains penalty-free until 6:00 p.m. Saturday, January 22, so it can still be canceled in full. No destination or resort fees appear on Westline’s rate.",
+          "role": "assistant"
+        },
+        {
+          "content": "Book Westline for all four nights and cancel North Arbor. The $106.91 premium is justified by not moving after the close and by the more balanced winter drives. Keep the existing rental and Thursday flight unchanged.",
+          "role": "user"
+        },
+        {
+          "content": "Westline Business Hotel is booked for January 23–27, 2028, under confirmation WB4K92. The four-night tax-inclusive total is $930.48, with self-parking included. Cancellation remains penalty-free until 6:00 p.m. local time January 22. North Arbor confirmation NA7K26 has been canceled with no charge; cancellation reference NAC381. The rental MS3W81 and Thursday flight remain unchanged. For Thursday, plan to leave Westline by 6:15 a.m. for the 9:10 a.m. departure.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0129",
+      "session_index": 129,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund documentation remains pending. Phoenix remains completed at a projected $1,459.40 with a $28.40 authorization increase required. Puerto Vallarta is arranged for Priya Nair and Anil Raj Nair for November 28-December 4, 2026, with confirmations K7M4QX, PV8R26, TR-PV8R26, and SP4017 and a projected total of $7,098. The Clayton audit trip is arranged for January 19-22, 2027, with R7Q2LM, NC4D81, RDU6K83, and a projected total of $1,582.84. The Washington meeting is arranged for March 1-5, 2027, with W4N8JP and CB6K91; projected total is $2,802.40. The Sedona trip for Priya Nair and Anil Raj Nair is booked for November 11-14, 2027, with flights H6T9QK, Canyon Light CL4N82, spa SPA7714, and rental PXR5D27. The room cancellation deadline is October 28 and the spa deposit remains refundable until November 6. Projected complete Sedona total is $4,094.60. The Maple Grove audit return is now Thursday morning. Westline Business Hotel is booked for January 23-27, 2028, under WB4K92 for $930.48 including tax and parking; it is penalty-free until 6:00 p.m. local time January 22. North Arbor reservation NA7K26 was canceled without charge under NAC381. Rental MS3W81 remains unchanged, as does the Thursday 9:10 a.m. flight. The Thursday departure plan is to leave Westline by 6:15 a.m.",
+  "verification": {
+    "129": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For a stay this long, keep both a pool and a real on-site gym in the comparison. A hot tub would settle a close choice, but it is not worth compromising the commute.",
+          "habit_id": "tm_pd_v05_user_003_h06",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requires both core recreation amenities for this stay and treats the hot tub as a tie-breaker subordinate to commute quality. The language is trip-specific, not a durable cross-trip rule."
+    }
+  }
+}

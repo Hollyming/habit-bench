@@ -1,0 +1,142 @@
+{
+  "cache_fingerprint": "6d48bf3c0e3d4272cda78b5c0c59cf9627435ff8781997d47f08e4e7c5fa51d0",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya naturally favors the all-Delta itinerary when it is both cheaper and at least as practical, while explicitly treating the carrier choice as flexible rather than exclusive.",
+        "evidence_topology": {
+          "episode_id": "client-philadelphia-003",
+          "mode": "evidence",
+          "phase": "early",
+          "session_index": 13,
+          "target_habit_id": "tm_pd_v05_user_000_h02",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly prefers nonstop routing while allowing a substantial-savings fallback, and states a soft general preference for Delta when schedule and price are comparable. The assistant introduced neither preference as prior user knowledge before the user established it; presenting concrete carrier and nonstop options was normal option comparison.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I do not want a connection unless it saves a lot.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I would rather use Delta when the schedule and price are in the same range, but I do not need to force it.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h02",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I need flights for the Philadelphia workshop next month. It runs Tuesday through Thursday downtown, starting at 8:30 Tuesday and ending at 4:30 Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "What dates are the workshop, and how late can you leave Minneapolis on Monday? Also, what is the airfare ceiling?",
+          "role": "assistant"
+        },
+        {
+          "content": "August 11 through 13. I can leave MSP after 3:30 p.m. Monday the 10th. Economy, no more than $700 round trip.",
+          "role": "user"
+        },
+        {
+          "content": "For Thursday, should I protect time for the trip from central Philadelphia to PHL, or are you willing to leave the workshop early for a better fare?",
+          "role": "assistant"
+        },
+        {
+          "content": "I need to stay through 4:30. Assume I will have my bag with me and can go straight to the airport. I do not want a connection unless it saves a lot.",
+          "role": "user"
+        },
+        {
+          "content": "I found three workable nonstop combinations. Monday's useful outbound is Delta at 5:18 p.m., arriving PHL at 8:52 p.m. The return choices are Delta Thursday at 7:32 p.m. for $648 round trip, American at 8:21 p.m. for $584, or Delta at 9:05 p.m. for $526. The displayed fares are standard economy, not basic economy.",
+          "role": "assistant"
+        },
+        {
+          "content": "How tight is the 7:32 after a 4:30 finish? The workshop is near City Hall.",
+          "role": "user"
+        },
+        {
+          "content": "It is workable but leaves limited resilience. Allow about 10 minutes to wrap up and reach the pickup point, then roughly 25 to 45 minutes by car to PHL in Thursday traffic. A 4:40 departure would put you at the terminal around 5:05 to 5:25, about two hours before boarding is likely to begin. A traffic incident or delayed workshop close could erode that margin. The 8:21 and 9:05 departures provide substantially more room.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there any reason not to use the American return with the Delta outbound?",
+          "role": "user"
+        },
+        {
+          "content": "The mixed-carrier itinerary prices as two one-way tickets: $278 on Delta outbound and $306 on American return, totaling $584. The main drawback is separate tickets, so changes or cancellation would be handled independently with each airline. Since the flights are on different days, there is no connection-protection issue. Both are nonstop and within the allowance.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare that with staying on Delta at 9:05. I would rather use Delta when the schedule and price are in the same range, but I do not need to force it.",
+          "role": "user"
+        },
+        {
+          "content": "The all-Delta option is $526, which is $58 less than the mixed itinerary, and the later return gives you another 44 minutes. Monday remains 5:18–8:52 p.m.; Thursday is 9:05–10:48 p.m. The tradeoff is the later arrival home. On schedule and price, Delta is the stronger choice here.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me two finalists. One should prioritize getting home earlier, and the other should prioritize a comfortable airport transfer. Include the Thursday timing from City Hall.",
+          "role": "user"
+        },
+        {
+          "content": "Finalist 1, earlier arrival: Delta MSP–PHL Monday, August 10, 5:18–8:52 p.m.; American PHL–MSP Thursday, August 13, 8:21–10:04 p.m.; $584 total on separate standard-economy tickets. Leave City Hall around 4:40, expect PHL about 5:05–5:25, and retain roughly three hours before departure. Finalist 2, more transfer cushion and lower fare: Delta nonstop both ways, with the same Monday outbound and a Thursday 9:05–10:48 p.m. return; $526 round trip. The same transfer estimate leaves about 3 hours 40 minutes before departure. Both fit the $700 allowance and neither is booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0013",
+      "session_index": 13,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. The April 23–28 coastal trip flights and hotels are booked: The Drayton April 23–25, Beachview Inn & Spa April 25–28, and the MSP–SAV round trip for two. Two scheduled private rides remain unreserved: The Drayton to Beachview Saturday at 3:30 p.m. and Beachview to SAV Tuesday at 3:15 p.m., quoted at $180 before optional gratuity. For the June 9–12 Denver workshop trip, the Friday return was changed to the 6:40 p.m. DEN–MSP nonstop, arriving at 9:34 p.m.; the change cost $58 with no change fee, and the Hampton Inn & Suites Denver-Downtown stay remains June 9–12. For the August 11–13 central Philadelphia workshop, two flight combinations remain unbooked: a $584 mixed-ticket itinerary returning Thursday at 8:21 p.m., and a $526 round trip returning at 9:05 p.m. Both use the Monday August 10 departure from MSP at 5:18 p.m. and are within the $700 allowance. After the Thursday 4:30 p.m. finish near City Hall, the working plan is to leave around 4:40 and reach PHL at approximately 5:05–5:25.",
+  "verification": {
+    "13": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I do not want a connection unless it saves a lot.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I would rather use Delta when the schedule and price are in the same range, but I do not need to force it.",
+          "habit_id": "tm_pd_v05_user_000_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly prefers nonstop routing while allowing a substantial-savings fallback, and states a soft general preference for Delta when schedule and price are comparable. The assistant introduced neither preference as prior user knowledge before the user established it; presenting concrete carrier and nonstop options was normal option comparison."
+    }
+  }
+}

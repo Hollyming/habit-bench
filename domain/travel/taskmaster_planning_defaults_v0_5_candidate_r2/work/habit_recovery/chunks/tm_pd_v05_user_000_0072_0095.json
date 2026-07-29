@@ -1,0 +1,427 @@
+{
+  "cache_fingerprint": "49d57e782f7071fdadb5fb12cde546f70146ce400ff4befc89c8cede4553c3f4",
+  "raw_candidates": {
+    "candidate_habits": [
+      {
+        "boundary_condition": "Do not silently deduct transfers from a cap that the user defined as airfare and hotel only.",
+        "default_action": "Evaluate flights and hotels against the stated cap, then itemize ground transportation separately and show the all-in trip cost.",
+        "evidence": [
+          {
+            "quote": "One correction: I said flight and hotel ceiling, but I don’t want the recommendation to hide the transfers. Keep the $4,800 cap exactly as stated and show the rideshares separately every time.",
+            "session_id": "tm_pd_v05_user_000_s0073"
+          },
+          {
+            "quote": "And the remaining trip budget under each? Keep the airport rideshares in the trip math this time, but separate them from airfare.",
+            "session_id": "tm_pd_v05_user_000_s0074"
+          },
+          {
+            "quote": "A connection is fine if it saves enough. Keep the car or transfers separate, but I want realistic totals for them. We’d like most of Thursday and at least part of Monday to be usable, not just travel days.",
+            "session_id": "tm_pd_v05_user_000_s0091"
+          }
+        ],
+        "exception_condition": "Ground transportation may be included in broader trip math when the user explicitly asks, but it should remain separately labeled.",
+        "family": "budget_accounting",
+        "local_confidence": 0.99,
+        "name": "Separate core trip caps from ground transportation",
+        "preference_value": "Keep stated airfare-and-hotel caps unchanged while showing airport transfers, rideshares, rental cars, and other ground transportation as separate costs and in the realistic trip total.",
+        "scope_condition": "Trip planning when the stated ceiling applies specifically to airfare and lodging."
+      },
+      {
+        "boundary_condition": "Do not declare a fare over policy solely because optional checked-bag charges increase the travel total.",
+        "default_action": "Check the base ticket against the airfare ceiling and disclose bag charges separately.",
+        "evidence": [
+          {
+            "quote": "The airfare cap is ticket price only. I may carry on anyway. Select the Delta 3:20 outbound and 7:20 return as the best option, but don’t purchase it yet.",
+            "session_id": "tm_pd_v05_user_000_s0080"
+          },
+          {
+            "quote": "Yes, $650 for the ticket itself. I’ll have one checked suitcase. I can leave MSP after 2:00 Tuesday, and I don’t want to arrive so late that getting to the hotel becomes a hassle.",
+            "session_id": "tm_pd_v05_user_000_s0087"
+          }
+        ],
+        "exception_condition": "Include bags in comparison and total-trip accounting when the user expects to check them.",
+        "family": "budget_accounting",
+        "local_confidence": 0.99,
+        "name": "Treat airfare caps as ticket-price limits",
+        "preference_value": "Apply the airfare ceiling to the ticket price itself rather than ancillary bag charges.",
+        "scope_condition": "Trips with an explicit airfare cap."
+      },
+      {
+        "boundary_condition": "Do not use a low displayed room rate to hide mandatory destination or resort fees.",
+        "default_action": "Compare room rate plus mandatory fees, before tax, with the nightly cap.",
+        "evidence": [
+          {
+            "quote": "Good. For the $245 nightly ceiling, count mandatory hotel fees with the room rate before tax.",
+            "session_id": "tm_pd_v05_user_000_s0081"
+          },
+          {
+            "quote": "Do any resort or destination fees change the Renaissance total? And is parking accidentally included even though I won’t have a car?",
+            "session_id": "tm_pd_v05_user_000_s0088"
+          }
+        ],
+        "exception_condition": "Taxes can still be included in the full-stay and all-in trip totals.",
+        "family": "budget_accounting",
+        "local_confidence": 0.98,
+        "name": "Count mandatory hotel fees in the pre-tax nightly cap",
+        "preference_value": "For hotel-policy compliance, include mandatory property fees with the room rate before tax while excluding tax from a before-tax ceiling.",
+        "scope_condition": "Hotel searches with a nightly limit stated before tax."
+      },
+      {
+        "boundary_condition": "Do not compare hotels using headline nightly rates alone.",
+        "default_action": "Normalize every property to the same full-stay cost basis and separately identify optional services or rentals.",
+        "evidence": [
+          {
+            "quote": "Can you put all three on the same basis? Separate what we would pay for the trip from optional beach rentals.",
+            "session_id": "tm_pd_v05_user_000_s0075"
+          },
+          {
+            "quote": "I expect to reach the hotel around 7:45 Sunday evening and need to leave my bag there Tuesday until the workshop ends at 4:30. Can you compare the three rooms using the full two-night cost, not just the displayed rate?",
+            "session_id": "tm_pd_v05_user_000_s0081"
+          },
+          {
+            "quote": "I have the three North Hills hotel quotes now. Can you compare the real two-night totals, including tax and parking where it applies? I also want to know whether the places described as walkable are actually practical for getting to the client building.",
+            "session_id": "tm_pd_v05_user_000_s0088"
+          },
+          {
+            "quote": "Let’s settle the hotels now. Use the selected San Jose flights and the $338 compact car. I want the full four-night cost for each lodging plan, including tax and parking, and I want to know whether changing hotels Saturday is actually worthwhile.",
+            "session_id": "tm_pd_v05_user_000_s0093"
+          }
+        ],
+        "exception_condition": "Parking should not be charged to the scenario when the user will not have a car.",
+        "family": "lodging_evaluation",
+        "local_confidence": 0.99,
+        "name": "Compare lodging on true all-in stay cost",
+        "preference_value": "Use the full stay total including tax, mandatory fees, and applicable parking, while keeping optional extras separate.",
+        "scope_condition": "Comparing hotel alternatives."
+      },
+      {
+        "boundary_condition": "Do not present a cheaper rate without disclosing a large prepaid or nonrefundable commitment.",
+        "default_action": "Show cancellation terms and payment timing beside the price, and favor refundable options when booking.",
+        "evidence": [
+          {
+            "quote": "And the payment exposure before the cancellation deadlines? I do not want the cheaper number to hide a big commitment.",
+            "session_id": "tm_pd_v05_user_000_s0075"
+          },
+          {
+            "quote": "Now reserve the selected office-adjacent hotel. Keep the refundable rate, and add the Sunday flight arrival so they know I will check in late.",
+            "session_id": "tm_pd_v05_user_000_s0082"
+          },
+          {
+            "quote": "Let’s finish Raleigh today. Recheck the Tuesday-through-Thursday timing and total first, then ticket the flights before the quote expires and reserve the refundable room. Use a 7:15 p.m. Tuesday arrival estimate.",
+            "session_id": "tm_pd_v05_user_000_s0089"
+          }
+        ],
+        "exception_condition": "A nonrefundable option may remain comparable if its savings and commitment are explicit, but no evidence here shows it being preferred.",
+        "family": "booking_flexibility",
+        "local_confidence": 0.98,
+        "name": "Expose cancellation and payment commitment",
+        "preference_value": "Evaluate lodging prices together with cancellation deadlines, refundability, deposits, and amounts charged before arrival.",
+        "scope_condition": "Hotel selection and booking-stage reconciliation."
+      },
+      {
+        "boundary_condition": "Never cancel the existing room first when the replacement is not yet confirmed.",
+        "default_action": "Confirm the new room and its confirmation, then cancel the old room and verify that cancellation completed without a fee.",
+        "evidence": [
+          {
+            "quote": "The $186 is worth avoiding that detour for half the stay. Switch us to the northern property and cancel the old reservation only after the new one is confirmed.",
+            "session_id": "tm_pd_v05_user_000_s0077"
+          },
+          {
+            "quote": "Yes. Reserve the $2,904 room, verify the confirmation, and only then cancel the original one without a fee.",
+            "session_id": "tm_pd_v05_user_000_s0078"
+          }
+        ],
+        "exception_condition": "None stated in this window.",
+        "family": "change_management",
+        "local_confidence": 1.0,
+        "name": "Confirm replacement lodging before canceling the original",
+        "preference_value": "Protect continuity during a hotel switch by securing and verifying the replacement before canceling the existing reservation.",
+        "scope_condition": "Changing an already reserved hotel."
+      },
+      {
+        "boundary_condition": "Do not let hotel booking consume the airfare hold window.",
+        "default_action": "Verify dates, travelers, times, and total, then purchase airfare first and proceed to refundable lodging.",
+        "evidence": [
+          {
+            "quote": "Let’s finish Naples. Before anything is charged, recheck the dates and flight times for both of us, then give me the complete total. The airfare quote expires tonight, so that should be booked first.",
+            "session_id": "tm_pd_v05_user_000_s0076"
+          },
+          {
+            "quote": "Go ahead and finish Baltimore. Before you book, reconcile the dates, times, hotel nights, and total. I have the flight at $536 and the hotel at about $548, and the airfare expires at noon.",
+            "session_id": "tm_pd_v05_user_000_s0082"
+          },
+          {
+            "quote": "Let’s finish Raleigh today. Recheck the Tuesday-through-Thursday timing and total first, then ticket the flights before the quote expires and reserve the refundable room. Use a 7:15 p.m. Tuesday arrival estimate.",
+            "session_id": "tm_pd_v05_user_000_s0089"
+          },
+          {
+            "quote": "Let's finish the Monterey trip tonight. First reconcile the dates and total, then book in the order that protects the airfare hold.",
+            "session_id": "tm_pd_v05_user_000_s0095"
+          }
+        ],
+        "exception_condition": "No general booking-order preference is established when airfare is not time-sensitive.",
+        "family": "booking_sequence",
+        "local_confidence": 1.0,
+        "name": "Book time-sensitive airfare before lodging",
+        "preference_value": "When an airfare quote or hold is expiring, reconcile the trip first and ticket the flights before booking lodging.",
+        "scope_condition": "Booking sessions where the airfare price has an imminent expiration or protected hold."
+      },
+      {
+        "boundary_condition": "A cheaper itinerary is not acceptable if it arrives too late, cannot realistically be reached, or materially sacrifices usable trip time.",
+        "default_action": "Screen options for practical timing first, then choose the lowest-priced viable itinerary.",
+        "evidence": [
+          {
+            "quote": "Then select the $632 itinerary. I’m fine taking the lowest-priced option once it actually meets the schedule, but the early return doesn’t. Keep Hyatt Place with the two nights, and don’t book the rides.",
+            "session_id": "tm_pd_v05_user_000_s0087"
+          },
+          {
+            "quote": "The nonstop pairing is the balance. For this trip, use the other carrier instead of Delta: Delta’s early arrival is attractive, but the return connection and higher total are not worth it. Retain Option 1, and don’t book yet.",
+            "session_id": "tm_pd_v05_user_000_s0074"
+          },
+          {
+            "quote": "So choose the flights. I want Thursday afternoon intact as much as reasonably possible, but I don't want to sacrifice Monday morning or push the trip over target.",
+            "session_id": "tm_pd_v05_user_000_s0092"
+          }
+        ],
+        "exception_condition": "Pay more for a viable nonstop or better-timed option when the cheaper choice fails practical constraints.",
+        "family": "flight_selection",
+        "local_confidence": 0.98,
+        "name": "Prefer the lowest-priced flight only after schedule viability",
+        "preference_value": "Choose lower fares when they genuinely meet arrival, meeting, and return constraints; reject nominal savings that create unusable or overly tight itineraries.",
+        "scope_condition": "Flight comparisons with fixed work or vacation-time requirements."
+      },
+      {
+        "boundary_condition": "Do not pay a substantial premium or accept a materially worse return merely to fly Delta.",
+        "default_action": "Keep Delta in the comparison and use it as a modest preference among close choices.",
+        "evidence": [
+          {
+            "quote": "Please keep Delta in the comparison. I tend to choose it when its schedule and price are reasonably close, but I don’t need it when another airline is clearly better.",
+            "session_id": "tm_pd_v05_user_000_s0080"
+          },
+          {
+            "quote": "The nonstop pairing is the balance. For this trip, use the other carrier instead of Delta: Delta’s early arrival is attractive, but the return connection and higher total are not worth it. Retain Option 1, and don’t book yet.",
+            "session_id": "tm_pd_v05_user_000_s0074"
+          }
+        ],
+        "exception_condition": "Use another carrier when its schedule, total cost, or itinerary quality is clearly superior.",
+        "family": "airline_preference",
+        "local_confidence": 1.0,
+        "name": "Use Delta as a soft tie-breaker, not a hard requirement",
+        "preference_value": "Tend toward Delta when its schedule and price are reasonably close, but select another carrier when it is clearly better.",
+        "scope_condition": "Airline comparisons with otherwise viable options."
+      },
+      {
+        "boundary_condition": "Avoid plans that depend on everything going perfectly or on a very tight connection or airport transfer.",
+        "default_action": "Build a chronological door-to-door timeline with hotel arrival, office departure, airport arrival, and usable vacation time.",
+        "evidence": [
+          {
+            "quote": "Same office, carry-on only. I can leave directly at 4:30, but I don't want a schedule that depends on everything going perfectly.",
+            "session_id": "tm_pd_v05_user_000_s0079"
+          },
+          {
+            "quote": "How tight is the Delta return once I account for the drive and airport security? And is that $668 the full round trip, not each direction?",
+            "session_id": "tm_pd_v05_user_000_s0086"
+          },
+          {
+            "quote": "What do you mean by reasonably protected? I don’t want a 35-minute sprint somewhere.",
+            "session_id": "tm_pd_v05_user_000_s0091"
+          },
+          {
+            "quote": "But SFO is farther from Monterey. Give me realistic hotel arrival times, not the map estimate.",
+            "session_id": "tm_pd_v05_user_000_s0092"
+          }
+        ],
+        "exception_condition": "A tighter itinerary may be discussed, but should be labeled less comfortable or unrealistic rather than treated as equivalent.",
+        "family": "itinerary_risk",
+        "local_confidence": 0.99,
+        "name": "Require realistic door-to-door timing and schedule margin",
+        "preference_value": "Judge flights using actual transfers, traffic, airport security, baggage, and meeting-end timing rather than departure time or map time alone.",
+        "scope_condition": "Selecting outbound and return flights, especially around fixed meetings or activities."
+      },
+      {
+        "boundary_condition": "Do not base the itinerary on leaving before the stated work commitment ends.",
+        "default_action": "Keep the work schedule intact and choose a return flight with adequate post-meeting airport time.",
+        "evidence": [
+          {
+            "quote": "Keep the workshop as scheduled and take the $173 nonstop. Confirm that return and leave every other reservation alone.",
+            "session_id": "tm_pd_v05_user_000_s0083"
+          },
+          {
+            "quote": "That works. For this trip, ignore the afternoon-return timing because the workshop runs until 4:30. Confirm the 7:40 connection and remove the 6:50 nonstop without changing anything else.",
+            "session_id": "tm_pd_v05_user_000_s0084"
+          }
+        ],
+        "exception_condition": "No exception is stated; the user explicitly rejected moving the final workshop segment.",
+        "family": "business_travel_schedule",
+        "local_confidence": 1.0,
+        "name": "Preserve fixed work commitments over earlier return flights",
+        "preference_value": "Do not shorten or rearrange a client workshop merely to catch an earlier flight when a later workable option exists.",
+        "scope_condition": "Business trips with a fixed meeting or workshop end time."
+      },
+      {
+        "boundary_condition": "Do not transfer leisure location priorities to client travel merely because a hotel is in a scenic area.",
+        "default_action": "Apply beach proximity on coastal couple trips and practical client-site access on business trips.",
+        "evidence": [
+          {
+            "quote": "Being on the harbor itself isn't important here. On coastal trips with my partner, I do want a hotel on the beach or close enough to walk, but this is client travel, so score this one on office access and cost.",
+            "session_id": "tm_pd_v05_user_000_s0081"
+          },
+          {
+            "quote": "$4,800 total for airfare and hotel. Within a five-minute walk is fine. Nothing is booked, and transfers can sit outside the ceiling for now, but I do want them estimated so we see the real trip cost.",
+            "session_id": "tm_pd_v05_user_000_s0073"
+          }
+        ],
+        "exception_condition": "A beach hotel need not be directly beachfront if it is genuinely close enough to walk and provides better budget flexibility.",
+        "family": "lodging_location",
+        "local_confidence": 1.0,
+        "name": "Use trip purpose to score hotel location",
+        "preference_value": "For coastal leisure trips with a partner, favor beachfront or genuinely walkable beach access; for client travel, prioritize office access and cost over waterfront appeal.",
+        "scope_condition": "Hotel location evaluation where trip purpose differs between leisure and business."
+      },
+      {
+        "boundary_condition": "Do not count a route as walkable if it lacks a safe crossing or requires walking along a shoulder or a large detour.",
+        "default_action": "Check crossings, major roads, shoulders, detours, and actual walking practicality before relying on walking.",
+        "evidence": [
+          {
+            "quote": "Can you be more specific about the AC route? I don’t want to discover Wednesday morning that I have to walk along a shoulder or make a huge detour.",
+            "session_id": "tm_pd_v05_user_000_s0088"
+          },
+          {
+            "quote": "I have the three North Hills hotel quotes now. Can you compare the real two-night totals, including tax and parking where it applies? I also want to know whether the places described as walkable are actually practical for getting to the client building.",
+            "session_id": "tm_pd_v05_user_000_s0088"
+          }
+        ],
+        "exception_condition": "A short car or rideshare trip can substitute when the route is not practically walkable, but its cost must be included.",
+        "family": "lodging_location",
+        "local_confidence": 1.0,
+        "name": "Verify claimed walkability in practical route terms",
+        "preference_value": "Treat hotel walkability as a route-safety and convenience question, not a listing label or straight-line distance.",
+        "scope_condition": "Hotels described as walkable to a client site or attraction."
+      },
+      {
+        "boundary_condition": "Include rental price, taxes, airport fees, and hotel parking before calling a car cheaper.",
+        "default_action": "Estimate rideshares first and compare a rental car only if it could be financially or operationally better.",
+        "evidence": [
+          {
+            "quote": "No rental car unless it somehow makes financial sense. We expect to stay around the beach and downtown, so start with rideshares. Which airports are actually worth considering?",
+            "session_id": "tm_pd_v05_user_000_s0073"
+          },
+          {
+            "quote": "Good. Compare transportation. I won’t need a car during the client days unless that is somehow cheaper overall.",
+            "session_id": "tm_pd_v05_user_000_s0086"
+          },
+          {
+            "quote": "What if I rent a car instead? That is why I included the parking charge.",
+            "session_id": "tm_pd_v05_user_000_s0088"
+          }
+        ],
+        "exception_condition": "Use a rental car when the itinerary requires broader regional travel, as on the Monterey Peninsula trip.",
+        "family": "ground_transportation",
+        "local_confidence": 0.97,
+        "name": "Default to rideshares when a car is unnecessary",
+        "preference_value": "Use rideshares as the starting assumption when the trip is localized and a rental car is not needed for daily activities.",
+        "scope_condition": "Trips centered on a beach/downtown area or a single client site."
+      },
+      {
+        "boundary_condition": "Do not convert a transportation estimate into a reservation without explicit approval.",
+        "default_action": "Estimate realistic ride costs and timings but leave rides unbooked.",
+        "evidence": [
+          {
+            "quote": "Keep Hyatt Place as the leading hotel for now. I’ll ask the client whether they can hold the bag. Don’t reserve the flight, hotel, or rides yet; just give me the shortlist and the one open question.",
+            "session_id": "tm_pd_v05_user_000_s0086"
+          },
+          {
+            "quote": "Then select the $632 itinerary. I’m fine taking the lowest-priced option once it actually meets the schedule, but the early return doesn’t. Keep Hyatt Place with the two nights, and don’t book the rides.",
+            "session_id": "tm_pd_v05_user_000_s0087"
+          }
+        ],
+        "exception_condition": "Rental cars may be explicitly approved and booked when they are part of the selected plan.",
+        "family": "booking_scope",
+        "local_confidence": 0.9,
+        "name": "Do not prebook rides unless requested",
+        "preference_value": "Leave rides and similar ground transportation unreserved while booking the core flight and hotel components.",
+        "scope_condition": "Booking-stage business trips in this window."
+      },
+      {
+        "boundary_condition": "Do not reuse an outdated hotel arrival estimate or attach it to car pickup or hotel notes.",
+        "default_action": "Recalculate realistic hotel arrival from the active flight, add that arrival to the reservation, and verify the room will be held.",
+        "evidence": [
+          {
+            "quote": "Update the hotel’s arrival note with the actual flight. What time should I expect to reach it?",
+            "session_id": "tm_pd_v05_user_000_s0072"
+          },
+          {
+            "quote": "Now the compact car. Make sure the pickup information uses the actual flight arrival, not the old hotel estimate.",
+            "session_id": "tm_pd_v05_user_000_s0076"
+          },
+          {
+            "quote": "Book the $574 refundable room and include the arrival note. What is the cancellation deadline?",
+            "session_id": "tm_pd_v05_user_000_s0089"
+          },
+          {
+            "quote": "Update it to 7:15 p.m. and make sure they will hold the room that evening.",
+            "session_id": "tm_pd_v05_user_000_s0090"
+          }
+        ],
+        "exception_condition": "When the property has a special after-hours process, record and surface the required call, code, or other action.",
+        "family": "lodging_operations",
+        "local_confidence": 1.0,
+        "name": "Tie late-arrival notes to the actual flight timeline",
+        "preference_value": "Use the verified flight arrival to calculate hotel arrival and update late-check-in or room-hold notes accordingly.",
+        "scope_condition": "Trips arriving at the hotel in the evening or after normal desk hours."
+      },
+      {
+        "boundary_condition": "Do not leave canceled or inactive flights presented as part of the live trip.",
+        "default_action": "Verify which segments are valid, remove obsolete alternatives, preserve unaffected reservations, and present one chronological itinerary.",
+        "evidence": [
+          {
+            "quote": "Good catch. Please use the ticket that is actually active and remove the other flight from the trip record.",
+            "session_id": "tm_pd_v05_user_000_s0072"
+          },
+          {
+            "quote": "That works. For this trip, ignore the afternoon-return timing because the workshop runs until 4:30. Confirm the 7:40 connection and remove the 6:50 nonstop without changing anything else.",
+            "session_id": "tm_pd_v05_user_000_s0084"
+          },
+          {
+            "quote": "The airline app still shows the canceled 4:55 return next to the Detroit itinerary. Which flights are actually valid, and do I need to fix anything before I leave?",
+            "session_id": "tm_pd_v05_user_000_s0085"
+          }
+        ],
+        "exception_condition": "Historical alternatives can be mentioned only to explain a change, not as active reservations.",
+        "family": "itinerary_management",
+        "local_confidence": 0.99,
+        "name": "Maintain one clean active itinerary",
+        "preference_value": "Use only the currently active ticket and remove superseded or canceled flight records from the trip view.",
+        "scope_condition": "Trips affected by reissues, schedule changes, or duplicate airline-app entries."
+      },
+      {
+        "boundary_condition": "Do not justify a hotel move on small savings alone or on uncertain luggage accommodation.",
+        "default_action": "Quantify savings and itinerary value, then account for checkout, check-in, luggage storage, and activity timing before choosing a split.",
+        "evidence": [
+          {
+            "quote": "Agreed. For the hotels, would splitting actually improve the trip, or are Monterey and Carmel close enough that moving is pointless?",
+            "session_id": "tm_pd_v05_user_000_s0091"
+          },
+          {
+            "quote": "That doesn’t sound like enough savings by itself. Is there enough location value to make up for it?",
+            "session_id": "tm_pd_v05_user_000_s0093"
+          },
+          {
+            "quote": "Compare that with taking a later boat or reversing the hotels. I do not want to build Saturday around something the hotel might refuse.",
+            "session_id": "tm_pd_v05_user_000_s0094"
+          },
+          {
+            "quote": "Assume the Monterey hotel confirms locked storage through 3:00. How does Saturday run with the morning boat?",
+            "session_id": "tm_pd_v05_user_000_s0094"
+          }
+        ],
+        "exception_condition": "A split can remain viable when confirmed storage and activity sequencing resolve the operational gap and the location value is meaningful.",
+        "family": "lodging_structure",
+        "local_confidence": 0.97,
+        "name": "Avoid split stays unless savings or location value justify the move",
+        "preference_value": "Prefer a single hotel when nearby destinations are easy to visit without moving; retain a split only when its savings or location benefits outweigh packing, checkout gaps, and luggage handling.",
+        "scope_condition": "Leisure trips considering multiple hotels within the same region."
+      }
+    ]
+  }
+}

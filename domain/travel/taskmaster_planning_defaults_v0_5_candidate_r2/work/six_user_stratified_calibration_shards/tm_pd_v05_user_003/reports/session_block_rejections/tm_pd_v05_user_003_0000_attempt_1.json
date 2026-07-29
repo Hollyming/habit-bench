@@ -1,0 +1,80 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_003_h01', 'exception') actual=[('tm_pd_v05_user_003_h01', 'support')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For this audit only, Priya explicitly chose the $59 more expensive early Friday flight because the cheapest acceptable-routing option arrived after a required Friday appointment, demonstrating a local timing-based exception to choosing the lowest-priced flight.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "The audit lead has now confirmed that Thursday's closing session will not finish before 4:45 p.m. The site says the drive to MSP could take 45 to 75 minutes then. Can you compare the Thursday return with staying over and flying Friday?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The Thursday option is the 7:05 p.m. nonstop to San Francisco, arriving at 9:18 p.m., at a $812 round-trip fare. Friday has a 7:10 a.m. nonstop arriving at 9:25 a.m. for $548 round trip, and an 11:20 a.m. nonstop arriving at 1:35 p.m. for $489. The Friday choices require one more hotel night.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please include the extra hotel and transportation, not just the airfare. I want to see the real trip cost and how much time each plan adds.",
+          "role": "user"
+        },
+        {
+          "content": "Using $189 including tax for Thursday night and the current car estimates: Thursday return totals about $867, including a $55 ride from the site to MSP. The early Friday return totals about $819, including the hotel and roughly $82 for the site-to-hotel and hotel-to-airport transfers. The later Friday return totals about $760 on the same assumptions. Compared with Thursday, the early Friday plan gets you home about 12 hours later; the later flight adds about 16 hours.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much usable airport margin would I actually have on Thursday? The closing session sometimes runs ten minutes over even when they say it will end on time.",
+          "role": "user"
+        },
+        {
+          "content": "With a 4:45 p.m. finish, you would reach the airport between 5:30 and 6:00. That leaves 65 to 95 minutes before departure, before accounting for unloading, walking to security, and boarding closing. If the meeting runs ten minutes over, the range drops to 55 to 85 minutes. The slow-drive case would leave very little protection against a security line or traffic delay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then I don't consider Thursday workable. Missing that flight would cost more than the overnight, and I do not want to rush the closing discussion.",
+          "role": "user"
+        },
+        {
+          "content": "That leaves the two Friday nonstops. The 7:10 a.m. flight costs $59 more than the 11:20 a.m. flight and requires leaving the hotel around 5:20 a.m. The later flight allows breakfast and a normal departure from the hotel, but it keeps you away until early afternoon.",
+          "role": "assistant"
+        },
+        {
+          "content": "I need to be home before noon on Friday for an appointment. For this audit, take the $59 higher fare and use the early nonstop. The cheaper flight is not useful if it gets me back after the appointment.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. The suitable round trip is the Wednesday outbound already shortlisted, paired with the Friday 7:10 a.m. nonstop return to SFO at $548 round trip. Estimated trip cost with the additional night and ground transportation is $819, which is about $48 less than attempting the Thursday return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before I purchase it, check whether the $189 hotel is practical for that departure. I don't want to discover that its airport transportation starts too late.",
+          "role": "user"
+        },
+        {
+          "content": "The $189 rate is at the Hampton Inn near MSP and is cancellable until Wednesday evening. Its airport shuttle begins at 4:00 a.m. and runs every 30 minutes, so the 5:30 a.m. shuttle would put you at the terminal around 5:40. That gives about 90 minutes before departure. Breakfast starts at 6:00, so it would not be available before you leave, but the room rate does not depend on taking breakfast.",
+          "role": "assistant"
+        },
+        {
+          "content": "That works. Give me the final selection in one place so I can purchase the flight and hold the room.",
+          "role": "user"
+        },
+        {
+          "content": "Purchase the Wednesday SFO-MSP outbound from the existing shortlist with the Friday 7:10 a.m. nonstop MSP-SFO return, arriving at 9:25 a.m.; round-trip airfare is $548. Hold the Hampton Inn for Thursday night at $189 including tax, using the cancellable rate, and plan on the 5:30 a.m. shuttle. With estimated ground transportation, the trip total is approximately $819.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0059",
+      "session_index": 59,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Priya's Minneapolis audit closing session is confirmed for Thursday afternoon. The same-day return was rejected as too fragile, and a Friday return round trip was selected for purchase. One additional hotel night is required; a cancellable room suitable for the selected return was identified and remains to be held."
+}

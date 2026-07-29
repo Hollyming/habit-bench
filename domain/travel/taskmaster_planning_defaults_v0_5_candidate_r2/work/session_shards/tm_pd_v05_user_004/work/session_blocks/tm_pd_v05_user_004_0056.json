@@ -1,0 +1,142 @@
+{
+  "cache_fingerprint": "bb404280995058e0a12138e32a410ce496fe592b769a99f52f7fef7fa17c0e60",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Danielle explicitly made a trip-local exception by requesting an aisle seat on the Wednesday Atlanta return and stated that it must not alter seat choices for later flights.",
+        "evidence_topology": {
+          "episode_id": "ep_019_atlanta_partner_site_visit",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 56,
+          "target_habit_id": "tm_pd_v05_user_004_h03",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_004"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly establishes that small airfare savings do not override required work-commitment timing, and explicitly makes an aisle seat a one-trip override while rejecting any durable change. No user utterance strongly evidences the other candidate habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I am not risking either work commitment to save $20 or $30.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_004_h02",
+            "signal_type": "boundary"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 1.0,
+            "evidence_quote": "For this trip only, make my Wednesday return seat an aisle. I want to be able to stand up easily after the two site visits. Do not treat that as a change for later flights.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_004_h03",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I want to settle the Atlanta flights now. Compare all four pairings using realistic airport and ground-transfer margins, not just the scheduled flight times.",
+          "role": "user"
+        },
+        {
+          "content": "Using the two Tuesday nonstops and two Wednesday returns, the practical issue is how much delay each pairing can absorb. What time does the donor reception begin Tuesday, and when is the West End meeting expected to finish Wednesday?",
+          "role": "assistant"
+        },
+        {
+          "content": "The reception starts at 4:00 p.m. in Midtown, and I need to be there by 3:40. Wednesday's second meeting is scheduled to end at 3:00 p.m., but it could run fifteen minutes over.",
+          "role": "user"
+        },
+        {
+          "content": "The 8:10 a.m. Love Field flight arrives at ATL at 11:15 a.m. Allowing 20 to 30 minutes to reach MARTA, about 25 minutes on the train, and a short walk to the hotel, you should reach Midtown around 12:15 to 12:35. Even with a one-hour flight delay, there is ample room before 3:40. The 11:05 a.m. flight arrives at 2:10 p.m.; a normal transfer puts you in Midtown around 3:10 to 3:30, leaving almost no protection against a delay. The earlier flight creates a long afternoon gap, but the hotel can hold your bag while you work nearby.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the cheaper late flight is not really viable. What about Wednesday?",
+          "role": "user"
+        },
+        {
+          "content": "The 4:45 p.m. return is technically possible only if the meeting ends at 3:00 sharp and everything goes smoothly. From West End, a hired ride to ATL can take 20 to 40 minutes at that hour, followed by the walk and security. A 3:15 departure from the site could leave only about 45 to 65 minutes before takeoff. The 6:35 p.m. return gives roughly two additional hours and still reaches Love Field at 7:55 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Lay out the prices and restrictions for the sensible combinations. I will have one carry-on and no checked bag.",
+          "role": "user"
+        },
+        {
+          "content": "The early outbound paired with the 4:45 p.m. return is $258 in standard economy. The same outbound with the 6:35 p.m. return is $278. Both include one carry-on, allow advance seat selection from the available standard seats, and can be changed without a change fee, though any fare difference applies. They are nonrefundable to the original payment method; cancellation produces a carrier credit. The late outbound saves $30 in either pairing, but its Tuesday margin is too thin for the reception.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the full trip totals? Keep the Hampton and the transportation assumptions from the last comparison.",
+          "role": "user"
+        },
+        {
+          "content": "With the $255.67 Hampton mandatory total and $115 for home-airport rides, MARTA, and the Midtown-West End hired rides, the early outbound plus early return totals $628.67 before meals. Pairing the early outbound with the 6:35 p.m. return totals $648.67. The $20 difference buys a workable Wednesday airport margin. The hotel choice and transfer estimate remain unchanged.",
+          "role": "assistant"
+        },
+        {
+          "content": "Take the $648.67 plan. I am not risking either work commitment to save $20 or $30.",
+          "role": "user"
+        },
+        {
+          "content": "That selects Tuesday's 8:10 a.m. Love Field nonstop, arriving ATL at 11:15 a.m., and Wednesday's 6:35 p.m. nonstop, arriving Love Field at 7:55 p.m. The airfare component is $278, and the estimated reimbursable trip total remains $648.67 before meals.",
+          "role": "assistant"
+        },
+        {
+          "content": "For this trip only, make my Wednesday return seat an aisle. I want to be able to stand up easily after the two site visits. Do not treat that as a change for later flights.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. For this Atlanta return only, select an available standard aisle seat; that does not change future flight choices. Before purchase, verify that the live $278 fare still includes the carry-on, advance seat selection, and carrier-credit cancellation terms. Then confirm the Hampton's $255.67 mandatory total, refund deadline, and complimentary luggage storage through at least 4:00 p.m. Wednesday. If those checks hold, book the selected flights and hotel; retain the 7:10 p.m. DFW return only as a backup if the Love Field itinerary changes.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0056",
+      "session_index": 56,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Gulf Coast unit B remains reserved for August 10-15 for three guests at $2,098; $1,468.60 is due July 11, written parking confirmation remains outstanding, and a separate $300 security authorization is scheduled for August 8. The New Orleans Cambria reservation is confirmed for December 20-23 for three guests at $929.01; use the valet entrance and call with a revised ETA if arrival will be after 9:00 p.m. Approval remains pending for the May 13-15 Indian Wells return-flight change, which would raise the trip total to $1,243.62, or $43.62 above the reimbursement ceiling. The March 10-15 beachfront hotel is booked for three guests at a mandatory total of $1,978.20; an occupancy-only correction under the same confirmation number remains needed without repricing, and the cancellation deadline is February 24 at 6:00 p.m. Central. The May 8-9 Denver partner visit is booked at an estimated $632.46, with a $647.46 approval amount and documented Friday luggage storage. For the June Seattle sponsor summit, select the Pine Street Inn at a mandatory $437.35 total, charged in full and refundable through 11:59 p.m. Pacific on June 14; verify the live total and terms. For the June 25-29 Chicago family trip, flights, lodging, and theater tickets are booked; the hotel mandatory total is $1,312.84, cancellation by 6:00 p.m. Central on June 23 returns the $1,232.84 prepaid amount, and the complete estimate is $3,673.84. Museum reservations remain outstanding. For the September 16-17 Atlanta partner visit, the selected unbooked plan is Tuesday's 8:10 a.m. Love Field nonstop to Atlanta, Wednesday's 6:35 p.m. nonstop back to Love Field, one refundable night at the Hampton Inn & Suites Atlanta Midtown, MARTA airport transfers, and hired rides for the West End meeting, estimated at $648.67 excluding meals. Verify the live $278 airfare, carry-on inclusion, seat availability, and change or cancellation terms; confirm the hotel's $255.67 mandatory total, refund deadline, and complimentary Wednesday luggage storage through at least 4:00 p.m.; and check MARTA service notices. Retain the 7:10 p.m. DFW return as the schedule backup.",
+  "verification": {
+    "56": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I am not risking either work commitment to save $20 or $30.",
+          "habit_id": "tm_pd_v05_user_004_h02",
+          "signal_type": "boundary"
+        },
+        {
+          "confidence": 1.0,
+          "evidence_quote": "For this trip only, make my Wednesday return seat an aisle. I want to be able to stand up easily after the two site visits. Do not treat that as a change for later flights.",
+          "habit_id": "tm_pd_v05_user_004_h03",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly establishes that small airfare savings do not override required work-commitment timing, and explicitly makes an aisle seat a one-trip override while rejecting any durable change. No user utterance strongly evidences the other candidate habits."
+    }
+  }
+}

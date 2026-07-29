@@ -1,0 +1,176 @@
+{
+  "cache_fingerprint": "bca600f7006c7b737dcf39aa47f34ea2241aed37e811d2d43673e73684ae66fc",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support evidence: while evaluating an upscale leisure stay, Maya explicitly chose a minimum 4.0 customer-review score and distinguished that metric from hotel star class; the assistant applied it to the current options and named the booking site as the rating source.",
+        "evidence_topology": {
+          "episode_id": "partner-san-diego-018",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 111,
+          "target_habit_id": "tm_pd_v05_user_000_h05",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly establishes the 4.0 customer-review rating floor for this nice-trip hotel search and distinguishes that metric from hotel star class. Other candidate habits are not directly established by the user's utterances in this dialogue.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Since this is meant to be a nice trip, I prefer hotels with a customer-review rating of at least 4.0. Keep that separate from the hotel’s star class, and say where the score comes from.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Now compare the hotel choices using the actual five nights, Friday October 4 through Wednesday October 9. I want the full lodging totals, not just the advertised room rates.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll calculate all five nights with the 12.7% estimated lodging tax and include each stated mandatory fee or parking charge. Should I compare all three hotels as five-night stays as well as the three-night La Jolla and two-night Little Italy split?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. Also check whether those exact combinations are still available before recommending one.",
+          "role": "user"
+        },
+        {
+          "content": "The current availability display shows rooms for all five nights at each property. It also permits La Jolla for Friday through Monday checkout and Little Italy for Monday through Wednesday checkout, so the proposed split is available. I’m checking the minimum stays and cancellation terms separately because availability alone does not establish that the split works cleanly.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Since this is meant to be a nice trip, I prefer hotels with a customer-review rating of at least 4.0. Keep that separate from the hotel’s star class, and say where the score comes from.",
+          "role": "user"
+        },
+        {
+          "content": "All three clear that floor on the booking site’s customer-review metric: Coronado is 4.4 out of 5, La Jolla is 4.3, and Little Italy is 4.2. Those are customer scores displayed by the booking site, not hotel star classifications or Google ratings.",
+          "role": "assistant"
+        },
+        {
+          "content": "Run the numbers. Assume the tax applies to the room rate and the listed mandatory nightly charges for this comparison.",
+          "role": "user"
+        },
+        {
+          "content": "Coronado is $418 room plus a $42 destination fee, or $460 per night before tax. Five nights are $2,300 before tax; 12.7% adds $292.10, producing an estimated lodging total of $2,592.10, or $518.42 per night all in.",
+          "role": "assistant"
+        },
+        {
+          "content": "And La Jolla by itself? Include parking every night if we stay there all five nights.",
+          "role": "user"
+        },
+        {
+          "content": "La Jolla is $356 plus $35 parking, or $391 nightly before tax. For five nights that is $1,955 before tax. Estimated tax is $248.29, making the total $2,203.29 and the all-in nightly average $440.66. The base room-rate average, excluding parking and tax, remains $356.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do Little Italy next, then the split.",
+          "role": "user"
+        },
+        {
+          "content": "Little Italy alone is $309 nightly with no destination fee. Five nights are $1,545 before tax; estimated tax is $196.22, for $1,741.22 total and $348.24 per night all in. For the split, three La Jolla nights cost $1,173 before tax including parking, and two Little Italy nights cost $618. The combined pretax amount is $1,791; estimated tax is $227.46, so lodging totals $2,018.46, averaging $403.69 all in.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the room-rate average on the split? I’m trying to stay near the earlier $353 nightly target, and fees can obscure that.",
+          "role": "user"
+        },
+        {
+          "content": "The split’s room charges are three times $356 plus two times $309, totaling $1,686. Divided across five nights, the average base room rate is $337.20. That is $15.80 below the $353 target. By comparison, five nights in La Jolla average $356 base, Coronado averages $418, and Little Italy averages $309.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the split saves about $185 against all five nights in La Jolla?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Using the stated assumptions, $2,203.29 minus $2,018.46 is $184.83. It saves $573.64 compared with Coronado, but costs $277.24 more than staying all five nights in Little Italy.",
+          "role": "assistant"
+        },
+        {
+          "content": "Tell me whether moving on Monday is really worth $185. We want useful beach time, but I don’t want to lose half a day packing and waiting for rooms.",
+          "role": "user"
+        },
+        {
+          "content": "Three nights in La Jolla put Friday afternoon, all day Saturday, and all day Sunday near the coast. On Monday you would need to check out, load the car, return it or park it, and leave luggage with Little Italy if the room is not ready. With coordinated checkout, luggage storage, and car return, the transfer should consume roughly two to three hours rather than half the day, but it still interrupts Monday. Staying in La Jolla avoids that disruption and keeps beach access convenient through Wednesday morning.",
+          "role": "assistant"
+        },
+        {
+          "content": "What changes with transportation under each arrangement? Don’t pretend we have exact rental prices yet.",
+          "role": "user"
+        },
+        {
+          "content": "For five nights in La Jolla, the lodging calculation assumes five parking nights, and you would likely keep the rental car until Wednesday. With the split, you need parking only Friday through Sunday and can return the car Monday before settling into Little Italy, potentially removing two rental days as well as two parking nights; the $184.83 lodging savings already reflects the parking difference, but not any rental savings. Little Italy alone favors rideshares or transit for city plans, though repeated beach trips add time and fares. Coronado gives direct beach access but likely requires rideshares for La Jolla and Little Italy outings. Exact rental and rideshare totals remain unpriced.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the stay rules? This is where split plans sometimes fall apart.",
+          "role": "user"
+        },
+        {
+          "content": "The displayed terms support the split: La Jolla has a three-night minimum for the selected rate, which the Friday-to-Monday stay meets, and allows cancellation without penalty until 6:00 p.m. local time three days before arrival. Little Italy has no minimum stay and allows cancellation until 6:00 p.m. local time two days before its Monday check-in. Coronado requires at least two nights and has a seven-day cancellation deadline. These terms should be captured again on the final checkout screens because rate rules can change with inventory.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would you choose the split or just stay in La Jolla? The flights arrive before noon Friday and don’t leave until 5:35 Wednesday, so we have time on both ends.",
+          "role": "user"
+        },
+        {
+          "content": "I would choose the three-night La Jolla and two-night Little Italy split. It preserves the strongest beach window from Friday afternoon through Sunday, meets the $353 base-rate target at $337.20, and lowers estimated lodging by $184.83 versus five nights in La Jolla. Returning the car Monday may add further savings, while Little Italy is practical for Monday evening through Wednesday afternoon. The tradeoff is one two-to-three-hour transfer and two separate cancellation deadlines.",
+          "role": "assistant"
+        },
+        {
+          "content": "Summarize the arrangement and what still has to be verified. Nothing should be booked yet.",
+          "role": "user"
+        },
+        {
+          "content": "Working choice, not booked: stay in La Jolla Friday, October 4 through Monday, October 7 for three nights, then Little Italy Monday through Wednesday, October 9 for two nights. Current inventory shows both rooms available for those exact dates, and the displayed minimum stays permit the split. Estimated lodging is $2,018.46 including three La Jolla parking charges and 12.7% tax, with a $337.20 average base room rate and $403.69 all-in nightly average. This is $184.83 less than five nights in La Jolla. Plan to return the rental car Monday and use luggage storage if the Little Italy room is not ready. Before booking, reconfirm both room types, final tax treatment, parking, the three-day La Jolla and two-day Little Italy cancellation deadlines, Monday luggage storage and early-check-in options, rental return hours and price, and the already selected $1,142 nonstop airfare and separate $140 checked-bag estimate.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0111",
+      "session_index": 111,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The February 5-7, 2030 Raleigh client trip remains confirmed with the replacement outbound separately ticketed, the original return confirmed, and a working total of $1,459. The Raleigh corrected folio, Philadelphia deposit release, and Nashville refund reconciliation remain unresolved. The September 12-16 Monterey Peninsula trip remains confirmed at $2,849, with whale-watching status and exact hotel cancellation cutoffs unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2 Baltimore and November 6-8 Raleigh client trips remain recorded as confirmed, with noted ground-transportation items unresolved. For the October 4-9, 2030 San Diego leisure trip, nothing is booked. The working air choice remains the $1,142 nonstop pairing, arriving Friday at 11:15 a.m. and departing Wednesday at 5:35 p.m.; checked bags would add $140. The preferred lodging arrangement is now three nights in La Jolla followed by two nights in Little Italy, currently estimated at $2,018.46 including tax and three parking nights. Current displays show exact-date availability and compatible minimum stays. Before booking, reconfirm room inventory, tax and parking, cancellation deadlines, Monday luggage handling, rental return hours and price, airfare availability, and baggage terms.",
+  "verification": {
+    "111": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Since this is meant to be a nice trip, I prefer hotels with a customer-review rating of at least 4.0. Keep that separate from the hotel’s star class, and say where the score comes from.",
+          "habit_id": "tm_pd_v05_user_000_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly establishes the 4.0 customer-review rating floor for this nice-trip hotel search and distinguishes that metric from hotel star class. Other candidate habits are not directly established by the user's utterances in this dialogue."
+    }
+  }
+}

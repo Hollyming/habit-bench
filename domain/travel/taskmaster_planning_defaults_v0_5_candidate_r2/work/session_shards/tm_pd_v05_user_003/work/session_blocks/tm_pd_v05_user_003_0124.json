@@ -1,0 +1,171 @@
+{
+  "cache_fingerprint": "5114fa76d80d55c85b99aee315ffa92534c544e08bf97d16ed0b771ca0f40b49",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip planning only. Priya selected the November 11-14 window after comparing complete costs, daylight driving conditions, treatment availability, and cancellation exposure. Two unreserved resort plans remain under consideration.",
+        "evidence_topology": {
+          "episode_id": "leisure-sedona-wellness-01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 124,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selected the offered 8:35 a.m. departure for this trip and accepted its higher airfare to avoid an undesirable late arrival and drive. This is trip-specific evidence, not a durable recurring policy. No candidate hotel amenity, rating, carrier, or cabin habit is directly evidenced by the user's utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Use that earlier flight when you price the second weekend.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.94,
+            "evidence_quote": "Use that earlier flight when you price the second weekend.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h01",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Let's work on Sedona for Anil and me. We can do Thursday through Sunday, either November 4-7 or November 11-14. I want the comparison to include the real trip total, not just room rates: flights to Phoenix, rental car, three nights, resort charges, breakfast, and one spa treatment for each of us.",
+          "role": "user"
+        },
+        {
+          "content": "I can compare both weekends on that basis. Before I build the totals, should I use refundable hotel rates, and are nonstop SFO-PHX flights the right starting point? Also, do you want a compact rental car or something with more luggage room?",
+          "role": "assistant"
+        },
+        {
+          "content": "Use flexible hotel rates and nonstop flights. A midsize car is enough. We will each check one bag. Please look closely at the Phoenix arrival time because I do not want the drive to Sedona becoming unpleasant after a flight.",
+          "role": "user"
+        },
+        {
+          "content": "For November 4-7, the best-priced practical nonstop is 9:05 a.m.-11:03 a.m. outbound and 6:20 p.m.-8:25 p.m. return, at $596 for two including one checked bag each. A midsize rental is $286 including taxes. You should be out of the rental facility around noon and reach Sedona about 2:15-2:35 p.m., allowing for a brief stop.\n\nFor November 11-14, the lowest comparable nonstop is 12:15-2:13 p.m. outbound and 6:20-8:25 p.m. return, at $648 for two with bags. The car is $252. Rental-lot departure would likely be near 3:10 p.m., putting you in Sedona around 5:25-5:50 p.m. Sunset is about 5:25 p.m., so the last part of the drive would be at dusk or after dark.",
+          "role": "assistant"
+        },
+        {
+          "content": "That later arrival is not ideal. Is there an earlier flight on November 11 that does not make the airfare unreasonable?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. There is a nonstop at 8:35-10:33 a.m. The total for two with checked bags is $712, or $64 more than the midday option. You would likely leave the rental facility around 11:30 a.m. and arrive at the resort around 1:45-2:05 p.m. The return remains 6:20-8:25 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use that earlier flight when you price the second weekend. What are the resort choices?",
+          "role": "user"
+        },
+        {
+          "content": "Two properties fit the wellness focus. Canyon Light Resort has a flexible package that includes daily breakfast for two and a $300 spa credit. Its mandatory resort charge is separate. Red Rock Springs has a lower flexible room rate and much broader treatment availability, but breakfast, resort charges, and spa services are all additional. Both include self-parking in the resort charge.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me all four totals first. Keep the credits and fees visible so I can see what is driving the difference.",
+          "role": "user"
+        },
+        {
+          "content": "November 4-7 totals for two:\n\nCanyon Light: airfare $596; rental $286; three flexible-rate nights with tax $2,394; resort charges $180; breakfasts $0; two treatments $520; spa credit minus $300; treatment service charges $104. Complete total: $3,780.\n\nRed Rock Springs: airfare $596; rental $286; three flexible-rate nights with tax $1,848; resort charges $165; six breakfasts $240; two treatments $470; treatment service charges $94. Complete total: $3,699.\n\nNovember 11-14, using the earlier outbound:\n\nCanyon Light: airfare $712; rental $252; three nights with tax $2,466; resort charges $180; breakfasts $0; two treatments $520; spa credit minus $300; treatment service charges $104. Complete total: $3,934.\n\nRed Rock Springs: airfare $712; rental $252; three nights with tax $1,782; resort charges $165; six breakfasts $240; two treatments $470; treatment service charges $94. Complete total: $3,715.",
+          "role": "assistant"
+        },
+        {
+          "content": "The second Red Rock total is only $16 more than the first weekend, despite the higher airfare. Is that correct?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The later weekend's room total is $66 lower and the rental is $34 lower, offsetting $100 of the $116 airfare increase. That leaves a net increase of $16: $3,715 versus $3,699.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now check actual treatment availability. We would prefer Saturday, one treatment each, and they do not need to be simultaneous.",
+          "role": "user"
+        },
+        {
+          "content": "For November 6, Canyon Light has only one qualifying Saturday appointment, at 4:40 p.m.; the second treatment would have to be Friday at 2:30 p.m. or Sunday at 9:00 a.m. Red Rock Springs has Saturday openings at 10:20 a.m., 11:40 a.m., 1:10 p.m., and 3:00 p.m.\n\nFor November 13, Canyon Light can place one treatment at 11:30 a.m. and the other at 2:20 p.m. Red Rock Springs has multiple openings from 9:30 a.m. through 4:10 p.m., including adjacent 11:00 a.m. and 11:20 a.m. starts.",
+          "role": "assistant"
+        },
+        {
+          "content": "That makes the first weekend less attractive. Are the treatments comparable, or did you price different things?",
+          "role": "user"
+        },
+        {
+          "content": "They are comparable 60-minute customized massages. Canyon Light charges $260 per person before the package credit and service charge. Red Rock Springs charges $235 per person before service charge. The totals do not assume upgrades, add-ons, or extra gratuity beyond each spa's automatic 20 percent service charge.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about cancellation terms for the later weekend? I want the room and spa exposure stated separately.",
+          "role": "user"
+        },
+        {
+          "content": "Canyon Light's room can be canceled without penalty through 6:00 p.m. Arizona time on October 28. After that, the penalty is the full three-night room-and-tax amount. Spa appointments can be canceled up to 24 hours before the first appointment; later cancellation is charged at the treatment price.\n\nRed Rock Springs is refundable through 4:00 p.m. Arizona time on November 4. After that, the room penalty is one night plus tax, currently $594. Spa appointments have a 24-hour cancellation window and otherwise charge the full treatment price. Neither option is being held.",
+          "role": "assistant"
+        },
+        {
+          "content": "Let's narrow it to November 11-14. Before you give me the final two plans, is the return timing sensible with the drive back to Phoenix?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. For the 6:20 p.m. departure, leaving Sedona at 1:30 p.m. provides about 2 hours 15 minutes for the drive and fuel, then roughly 25 minutes for the rental return and terminal transfer. That should put you at the terminal around 4:10 p.m., a little over two hours before departure. Even with 30 minutes of added road delay, the margin remains workable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Give me the two bookable plans for that weekend, including the tradeoff. Do not reserve anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "Plan 1, Canyon Light package: November 11-14, three flexible-rate nights; nonstop flights 8:35-10:33 a.m. Thursday and 6:20-8:25 p.m. Sunday; midsize rental; breakfast for two each morning; one 60-minute massage each on Saturday at 11:30 a.m. and 2:20 p.m. Complete projected total is $3,934. This is the more integrated resort plan and the $300 spa credit is already applied, but it costs $219 more and has the stricter room cancellation penalty after October 28.\n\nPlan 2, Red Rock Springs: the same flights and rental, three flexible-rate nights, breakfast budgeted at $40 per day for two, and Saturday massages at 11:00 a.m. and 11:20 a.m. Complete projected total is $3,715. It has broader appointment availability, a later no-penalty room deadline of November 4, and only a one-night room penalty afterward; breakfast and spa charges remain separate.\n\nBoth plans reach Sedona around 1:45-2:05 p.m. Thursday and use a 1:30 p.m. Sunday departure for Phoenix. Nothing has been booked or placed on hold.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0124",
+      "session_index": 124,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund documentation remains pending. Phoenix remains completed at a projected $1,459.40 with a $28.40 authorization increase required. Puerto Vallarta remains fully arranged for Priya Nair and Anil Raj Nair for November 28-December 4, 2026, with confirmations K7M4QX, PV8R26, TR-PV8R26, and SP4017 and a projected total of $7,098. The Clayton audit trip remains arranged for January 19-22, 2027, with flight confirmation R7Q2LM, rental NC4D81, hotel RDU6K83, and projected total $1,582.84. The Washington quality-systems meeting remains arranged for March 1-5, 2027, with flights W4N8JP and Capitol Business reservation CB6K91; projected total is $2,802.40. A Sedona leisure trip for Priya and Anil has been narrowed to November 11-14, 2027. Two unreserved plans remain: Canyon Light at a projected $3,934 and Red Rock Springs at $3,715, both using the earlier Thursday nonstop and a midsize rental. No Sedona components are booked or held.",
+  "verification": {
+    "124": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Use that earlier flight when you price the second weekend.",
+          "habit_id": "tm_pd_v05_user_003_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.94,
+          "evidence_quote": "Use that earlier flight when you price the second weekend.",
+          "habit_id": "tm_pd_v05_user_003_h01",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selected the offered 8:35 a.m. departure for this trip and accepted its higher airfare to avoid an undesirable late arrival and drive. This is trip-specific evidence, not a durable recurring policy. No candidate hotel amenity, rating, carrier, or cabin habit is directly evidenced by the user's utterances."
+    }
+  }
+}

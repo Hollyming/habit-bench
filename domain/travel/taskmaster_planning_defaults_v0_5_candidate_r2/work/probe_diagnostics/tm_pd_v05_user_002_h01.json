@@ -1,0 +1,96 @@
+{
+  "habit_id": "tm_pd_v05_user_002_h01",
+  "rounds": [
+    {
+      "accepted_this_round": [
+        "c00",
+        "c01",
+        "c03",
+        "c04",
+        "c05",
+        "c06"
+      ],
+      "accepted_total": [
+        "c00",
+        "c01",
+        "c03",
+        "c04",
+        "c05",
+        "c06"
+      ],
+      "failed": [
+        {
+          "candidate": {
+            "choices": [
+              {
+                "choice_id": "A",
+                "text": "Book the 7:10 a.m. flight for this trip and retain Marcus's established return-timing profile for future trips."
+              },
+              {
+                "choice_id": "B",
+                "text": "Book the 4:20 p.m. flight and treat the recital preference as secondary because the later option matches his established profile."
+              },
+              {
+                "choice_id": "C",
+                "text": "Book the 7:10 a.m. flight and revise Marcus's profile so morning returns become the default on future trips."
+              },
+              {
+                "choice_id": "D",
+                "text": "Book the 11:05 a.m. one-stop at $301, accepting a tighter recital buffer in exchange for the lower fare."
+              }
+            ],
+            "closest_distractor_choice_id": "C",
+            "difficulty_rationale": "A and C make the same sensible current booking, so current-trip utility alone cannot distinguish them. Only the longitudinal distinction between a one-trip override and a durable revision identifies A; B is a realistic near miss that remembers the default but ignores the supported exception mechanism.",
+            "gold_action": "Honor the explicit trip-specific request with the early nonstop, without converting that exception into a permanent preference revision.",
+            "gold_choice_id": "A",
+            "gold_evidence_session_ids": [
+              "tm_pd_v05_user_002_s0085",
+              "tm_pd_v05_user_002_s0041",
+              "tm_pd_v05_user_002_s0050"
+            ],
+            "label_rationale": "Session s0085 establishes that Marcus can override his usual return pattern for a named trip, while s0041 and s0050 show that the underlying later-return policy otherwise persists. His wording here is similarly limited to the current trip.",
+            "probe_type": "exception",
+            "query": "Marcus is returning from a one-off supplier visit in Columbus. He says, 'For this trip, getting home with a wide buffer before my daughter's 2:00 p.m. recital matters more than having extra time here.' Both the 7:10 a.m. and 4:20 p.m. flights are nonstop and cost $348. Which action should the planner take, including how this instruction should affect later trips?"
+          },
+          "candidate_id": "c02",
+          "failure": "answerable_without_history_or_invalid_audit",
+          "query_only_verdict": {
+            "answerable_without_history": true,
+            "choice_id": "A",
+            "generic_best_exists": true,
+            "leakage_signals": [
+              "The phrases 'one-off,' 'For this trip,' and the explicit request about later trips directly cue a trip-specific override rather than a profile update."
+            ],
+            "plausible_choice_ids": [
+              "A"
+            ],
+            "probe_id": "c02",
+            "rationale": "Marcus explicitly prioritizes a wide buffer before the 2:00 p.m. recital, and the 7:10 a.m. nonstop costs the same as the late flight. Because he limits the instruction to this one-off trip, it should not replace his established future-trip profile."
+          }
+        }
+      ],
+      "round": 0
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 4,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 4,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "cross_context_transfer": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 1
+    }
+  },
+  "status": "pass",
+  "user_id": "tm_pd_v05_user_002"
+}

@@ -1,0 +1,182 @@
+{
+  "cache_fingerprint": "abbd75adedb014bf3f7d6d8f592a47ab01fc7c02c6790372cff09fcfc239c2b2",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "{'intended_evidence_kind': 'support', 'policy_context': 'flight_seat_preference', 'evidence': 'The user states, ‘Please request a window seat. For my flights, use a window seat whenever seat choice is available,’ establishing a reusable window-seat preference during the ordinary seat-selection step. No other durable preference is introduced.'}",
+        "evidence_topology": {
+          "episode_id": "atlanta_st_louis_exhibition_installation_01",
+          "mode": "evidence",
+          "phase": "early",
+          "session_index": 27,
+          "target_habit_id": "tm_pd_v05_user_005_h03",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The Thursday-morning return is explicitly limited to this installation and overrides the established later-day return preference for the current trip. The window-seat instruction establishes a durable default across flights. No assistant leakage occurred because seat preference was neutrally elicited before the user established it.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Choose the Thursday morning return. That is a decision for this installation, since the finish time is uncertain.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h01",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 1.0,
+            "evidence_quote": "For my flights, use a window seat whenever seat choice is available.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_005_h03",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I need to start planning a work trip to St. Louis. The condition review is Tuesday, July 21 at 2:00 p.m., and the installation is Wednesday, July 22. They expect to finish around 5:00, but that could slip.",
+          "role": "user"
+        },
+        {
+          "content": "I can compare the workable flight combinations from Atlanta. Will you be traveling alone, and do you need any setup time at the museum before the Tuesday review?",
+          "role": "assistant"
+        },
+        {
+          "content": "I’ll be alone. I need to be at the museum by 12:30 Tuesday so I can check in with the registrar and unpack my paperwork. I’m deciding between arriving Monday evening and taking an early flight Tuesday.",
+          "role": "user"
+        },
+        {
+          "content": "The one-stop inventory gives you two practical outbound choices. American can leave Atlanta Monday at 5:10 p.m., connect in Charlotte, and reach St. Louis at 8:34 p.m. for $248 round trip when paired with the Thursday return. United can leave Tuesday at 6:05 a.m., connect at Washington Dulles, and arrive at 10:18 a.m. for $231 with that same return. Both fares are standard economy and include a carry-on; checked-bag charges are separate.",
+          "role": "assistant"
+        },
+        {
+          "content": "How realistic is the Tuesday arrival? I won’t be checking equipment, just one suitcase and my document case.",
+          "role": "user"
+        },
+        {
+          "content": "St. Louis Lambert is usually about 25 to 35 minutes from the museum by car in ordinary late-morning traffic. If the flight lands at 10:18, allowing roughly 20 minutes to leave the aircraft and reach the pickup area plus 35 minutes for the drive would put you there near 11:15. That leaves about 75 minutes before your required arrival. It works on schedule, but a delay on either segment could consume that margin, and the connection at Dulles is 52 minutes.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is tighter than I want for a loan review. What does Monday evening look like after landing?",
+          "role": "user"
+        },
+        {
+          "content": "With the 8:34 p.m. arrival, you would likely reach a central St. Louis hotel around 9:25 to 9:45 p.m., depending on baggage delivery and the car pickup. You would then have Tuesday morning free and could leave for the museum around noon. It adds one hotel night but removes the same-day flight risk.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use Monday evening as the outbound. Now compare getting home late Wednesday with returning Thursday morning.",
+          "role": "user"
+        },
+        {
+          "content": "For Wednesday, American has a 7:42 p.m. departure through Charlotte, arriving in Atlanta at 12:06 a.m. Thursday. The connection is 58 minutes, and the round trip with Monday’s outbound is $276. To make it comfortably, you would want to leave the museum by about 5:45 p.m. If installation runs past 6:15, that flight becomes risky. The Thursday option departs at 8:20 a.m. through Charlotte and arrives in Atlanta at 12:31 p.m.; paired with Monday’s outbound, it is $248.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there anything later Wednesday that gives me more room?",
+          "role": "user"
+        },
+        {
+          "content": "United has an 8:36 p.m. departure through Chicago, but its Atlanta arrival is not until 8:47 a.m. Thursday because of an overnight connection. It costs $263 round trip and would mean spending most of the night at O’Hare. There is no later one-stop option in this inventory that reaches Atlanta the same night or shortly after midnight.",
+          "role": "assistant"
+        },
+        {
+          "content": "No, an overnight airport connection is not useful. If I take the Thursday morning flight, when would I need to leave the hotel?",
+          "role": "user"
+        },
+        {
+          "content": "For an 8:20 a.m. departure, I would plan to leave a central hotel around 6:10 a.m. That allows roughly 25 minutes to the airport, time to return or exit the car service, and about 90 minutes at the terminal. Because you are not checking work equipment, that should be adequate, though your personal suitcase may still need to be checked depending on fare and size.",
+          "role": "assistant"
+        },
+        {
+          "content": "And staying Wednesday night means I do not have to watch the clock during installation.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The Thursday return lets the installation run beyond 5:00 without putting the flight at risk. The tradeoff is a third hotel night and an early departure Thursday, but it avoids both a rushed transfer Wednesday and the overnight Chicago connection.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose the Thursday morning return. That is a decision for this installation, since the finish time is uncertain. Please give me the complete itinerary before we use it for the hotel dates.",
+          "role": "user"
+        },
+        {
+          "content": "The selected itinerary is American round trip from Atlanta to St. Louis for $248 in standard economy. Outbound Monday, July 20: depart ATL at 5:10 p.m., connect in Charlotte for 1 hour 6 minutes, and arrive STL at 8:34 p.m. Return Thursday, July 23: depart STL at 8:20 a.m., connect in Charlotte for 1 hour 2 minutes, and arrive ATL at 12:31 p.m. The fare includes a carry-on, while checked-bag charges are separate. This sets the hotel stay at three nights, checking in Monday, July 20 and checking out Thursday, July 23.",
+          "role": "assistant"
+        },
+        {
+          "content": "That works. Use July 20 through July 23 for the hotel search. Before we move on, what do you need from me about the flight seats?",
+          "role": "user"
+        },
+        {
+          "content": "I need to know whether you want a particular seat location requested. The seat maps have not been checked yet, so I cannot confirm a specific seat number at this stage.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please request a window seat. For my flights, use a window seat whenever seat choice is available.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll request a window seat on both segments in each direction when the seat maps are available. If seat selection is deferred until check-in, the request will need to be completed then; I will not substitute another location without checking with you unless no acceptable window seat is available.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Do not book the flights yet. Keep this itinerary as the basis for finding the hotel, and note that the Thursday return is specifically because this installation may run late.",
+          "role": "user"
+        },
+        {
+          "content": "The itinerary is saved as the working option and has not been booked or held. It supports a St. Louis hotel check-in on Monday, July 20 and check-out on Thursday, July 23. The Thursday return remains a current-trip scheduling choice tied to the uncertain installation finish. The next step is to compare lodging for those three nights, and seat-map availability will be checked before any flight purchase.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0027",
+      "session_index": 27,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "Avery's Atlanta-Chicago museum trip was completed as arranged for October 14-18. The Atlanta-Raleigh family trip for Avery and her wife is confirmed for November 14-16 at a combined total of $864, with hotel cancellation available through 11:59 p.m. November 12. For the December 9-13 museum assignment, Club Quarters Hotel Faneuil Hall remains the proposed Boston replacement, bringing the quoted trip total to $1,236.18 before local transportation and airline bag fees; registrar approval is pending and nothing has been booked or held. Avery and her wife will drive from Atlanta to St. George Island for September 20-27. St. George Inn confirmation SGI-927416 is confirmed for seven nights at $1,968.24 total; $1,705.06 remains due at check-in, and cancellation is free through 3:00 p.m. local hotel time September 13. For the Denver gallery installation, Delta confirmation H7Q4LM and Catbird confirmation CB-481730 remain in place; the expected total is $1,273.22, which is $23.22 above prior employer approval and may require follow-up. The Minneapolis graduation, Dallas collection pickup, and June 18-22 Carlsbad anniversary reservations remain confirmed as previously recorded. For the St. Louis museum assignment, Avery must attend a condition review Tuesday, July 21 and an installation Wednesday, July 22 whose finish may slip. A working flight itinerary has been selected but not booked or held, and it establishes hotel dates of July 20-23. Lodging still needs to be compared, and flight seat-map availability must be checked before purchase.",
+  "verification": {
+    "27": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Choose the Thursday morning return. That is a decision for this installation, since the finish time is uncertain.",
+          "habit_id": "tm_pd_v05_user_005_h01",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 1.0,
+          "evidence_quote": "For my flights, use a window seat whenever seat choice is available.",
+          "habit_id": "tm_pd_v05_user_005_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The Thursday-morning return is explicitly limited to this installation and overrides the established later-day return preference for the current trip. The window-seat instruction establishes a durable default across flights. No assistant leakage occurred because seat preference was neutrally elicited before the user established it."
+    }
+  }
+}

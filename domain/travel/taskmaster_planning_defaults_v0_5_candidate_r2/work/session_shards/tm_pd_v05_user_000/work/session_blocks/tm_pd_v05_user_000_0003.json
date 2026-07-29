@@ -1,0 +1,110 @@
+{
+  "cache_fingerprint": "21ce7ac90d5ee9a5c1c58db77d62ad43352c35a1767eb29fdd3477b7a7d394d7",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya evaluated a trip-specific move to an earlier Friday flight after the client shortened the workday. She confirmed the added cost, ticket conditions, and hotel-to-airport timing, then stopped before authorizing the change.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-001",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 3,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requests a midafternoon return for this trip. The user does not establish a recurring preference, and their utterances do not independently provide strong evidence for the other candidate habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Can you see whether I can switch the 5:35 p.m. return to something around midafternoon?",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The Raleigh flight and Hampton are booked now. The client just moved Friday's finish from 3:00 to noon. Can you see whether I can switch the 5:35 p.m. return to something around midafternoon? I have $175 left in the project travel allowance.",
+          "role": "user"
+        },
+        {
+          "content": "I found one earlier nonstop on Delta: RDU 2:45 p.m. to MSP 4:34 p.m. A same-day change would add $128 in fare, with no separate change fee. Your original 5:35 p.m. flight remains available if you do nothing.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the $128 refundable if the schedule changes again, and would switching affect the rest of the round trip?",
+          "role": "user"
+        },
+        {
+          "content": "The $128 is an additional fare collection under the existing Main Cabin ticket. It is not refundable to the corporate card if you later cancel voluntarily; the eligible ticket value would generally be retained as a Delta eCredit. The Monday outbound and its seat assignment would remain unchanged. Any later voluntary change could require another fare difference.",
+          "role": "assistant"
+        },
+        {
+          "content": "Work out the timing from Cary. I need to check out that morning, attend the client session until noon, and retrieve my bag before heading to RDU.",
+          "role": "user"
+        },
+        {
+          "content": "The Hampton's checkout is at noon, so checking out before the session and leaving your bag with the front desk is the workable plan. If the session ends at noon, allow about 15 minutes to return to the hotel, 10 minutes to collect the bag, and 20 to 30 minutes by rideshare to RDU. That puts you at the airport around 12:45 to 12:55 p.m., about 1 hour 50 minutes before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does that still work if traffic takes 40 minutes? I'm carry-on only.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. With a 40-minute airport ride, you would reach RDU around 1:05 p.m., leaving about 1 hour 40 minutes. With no checked bag, that is a reasonable margin for the 2:45 departure. A client overrun past roughly 12:25 would start making the schedule less comfortable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Confirm the exact total and conditions one more time, but don't change it yet.",
+          "role": "user"
+        },
+        {
+          "content": "Proposed change: Friday, October 17, Delta nonstop from RDU at 2:45 p.m., arriving MSP at 4:34 p.m. Additional charge: $128.00, bringing the airfare total from $548.00 to $676.00 and leaving $47 in the remaining project allowance. No separate change fee applies. The ticket remains nonrefundable; future voluntary changes may require a fare difference, and eligible value after cancellation would generally be issued as an eCredit. Monday's outbound is unaffected. The checkout, bag pickup, and airport transfer are feasible if the client session ends close to noon. No modification has been submitted.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0003",
+      "session_index": 3,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya purchased the Delta Main Cabin itinerary for October 13-17 and the Hampton Inn & Suites Raleigh/Cary-I-40 stay for October 13-17. The client now expects Friday work to end at noon. A Friday change from the booked 5:35 p.m. RDU-MSP flight to the 2:45 p.m. nonstop is available for $128, which would bring airfare to $676 and leave $47 in the project allowance. The earlier flight is feasible with morning hotel checkout, front-desk bag storage, and departure for RDU shortly after noon. The ticket remains nonrefundable, future changes may require a fare difference, and eligible cancellation value would generally become an eCredit. No flight change has been submitted.",
+  "verification": {
+    "3": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Can you see whether I can switch the 5:35 p.m. return to something around midafternoon?",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requests a midafternoon return for this trip. The user does not establish a recurring preference, and their utterances do not independently provide strong evidence for the other candidate habits."
+    }
+  }
+}

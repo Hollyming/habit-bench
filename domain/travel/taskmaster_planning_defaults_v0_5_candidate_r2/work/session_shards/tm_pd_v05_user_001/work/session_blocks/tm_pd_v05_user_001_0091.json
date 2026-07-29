@@ -1,0 +1,158 @@
+{
+  "cache_fingerprint": "54408d70bfe0dcd78f9287c906ba095fd5570a41dbb11fe016658a963684b62f",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip-specific planning only. Elena chose a workable same-day arrival, Back Bay base, and later Saturday return for this Boston workshop without establishing any recurring travel policy.",
+        "evidence_topology": {
+          "episode_id": "ep_024_boston_rights_workshop",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 91,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly overrides the afternoon-departure default for the Wednesday outbound by choosing the early-morning nonstop due to the fixed same-day event, while separately choosing the 12:40 p.m. Saturday return. These are current-trip, per-leg choices rather than recurring preference language. No other candidate habit is established with the required exact semantics by the user's own words.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Build the working combination around the early nonstop, a hotel within ten minutes of the venue, and the 12:40 Saturday return.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to start a Boston work trip from Denver. Registration and a reception begin Wednesday at 4:30 p.m. in Back Bay, meetings run Thursday and Friday, and a publisher dinner should end around 9:00 Friday night. I can return Saturday.",
+          "role": "user"
+        },
+        {
+          "content": "I can map the flight and hotel tradeoffs. Are you willing to fly Tuesday evening, or should I keep the outbound to Wednesday? Also, are the two Friday appointments in Cambridge important enough that you might move hotels, or are you considering one base for all three nights?",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the outbound on Wednesday. One hotel for Wednesday through Saturday morning. I am deciding between staying by the Back Bay venue and staying in Cambridge near the Friday appointments.",
+          "role": "user"
+        },
+        {
+          "content": "For a same-day arrival, I would compare three Denver departures: an early nonstop reaching Boston around 12:45 p.m., a later nonstop arriving around 2:35 p.m., and a one-stop option arriving around 1:40 p.m. The early nonstop gives roughly 3 hours 45 minutes before registration; the later nonstop leaves only 1 hour 55 minutes before allowing for deplaning and the trip into Back Bay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Translate that into actual arrival margins. I will have a carry-on and a small checked carton of workshop materials.",
+          "role": "user"
+        },
+        {
+          "content": "Using 25 minutes to deplane and retrieve the carton, then about 30 minutes by car or 45 to 55 minutes by transit to Back Bay, the early arrival gets you to the venue area around 1:40 to 2:05 p.m. That preserves 2 hours 25 minutes to 2 hours 50 minutes. The 2:35 p.m. arrival gets you there around 3:30 to 3:55 p.m., leaving only 35 to 60 minutes. A modest delay or slow baggage delivery could erase that margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then drop the later nonstop. What does the one-stop option look like?",
+          "role": "user"
+        },
+        {
+          "content": "The representative one-stop leaves Denver around 6:10 a.m., connects for about 70 minutes, and reaches Boston near 1:40 p.m. With the same baggage and transfer allowance, you would reach Back Bay around 2:35 to 3:00 p.m., leaving 90 to 115 minutes. It is workable, but the connection adds another failure point. The early nonstop, roughly 7:00 a.m. to 12:45 p.m., is the stronger Wednesday option if its fare is reasonable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the early nonstop as the lead option and keep the one-stop as a fallback. Now compare the two hotel locations.",
+          "role": "user"
+        },
+        {
+          "content": "A Back Bay hotel makes Wednesday simple: you can leave the carton, check in if the room is ready, and walk to registration. It also keeps Thursday meetings and Friday's 9:00 p.m. dinner nearby. For the two Cambridge appointments Friday, allow about 25 to 40 minutes each way by subway or car, with extra traffic buffer. A Cambridge hotel reverses that: Friday daytime is easier, but Wednesday arrival, Thursday meetings, and the late Friday return all require crossing the river.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Friday appointments are at 10:00 a.m. and 2:00 p.m., with the dinner back in Back Bay at 7:30. Does Cambridge save enough time to matter?",
+          "role": "user"
+        },
+        {
+          "content": "Not much across the full trip. Staying in Cambridge could save roughly 45 to 75 minutes of Friday travel, depending on where the appointments are. But it adds a Wednesday transfer before registration, a Thursday round trip to Back Bay, and a Friday-night trip after dinner. Back Bay is the more resilient base, especially because your fixed opening and closing events are there.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. Keep Back Bay as the first choice. Give me two hotel bands rather than specific properties for now.",
+          "role": "user"
+        },
+        {
+          "content": "Band A is within about a 5- to 10-minute walk of the venue. It minimizes Wednesday risk and makes the Friday dinner return easy, but rates will likely be higher. Band B is near Copley or the western edge of Back Bay, about a 12- to 20-minute walk or a short transit ride. It may reduce the room cost while preserving straightforward access to both the venue and Cambridge.",
+          "role": "assistant"
+        },
+        {
+          "content": "For Saturday, compare a 9:10 a.m. nonstop with a 12:40 p.m. nonstop. Assume I leave from a Back Bay hotel.",
+          "role": "user"
+        },
+        {
+          "content": "For the 9:10 a.m. flight, target Logan by 7:25 a.m. With 20 to 35 minutes by car from Back Bay plus a traffic cushion, leave the hotel around 6:35 to 6:50 a.m. Transit would require an earlier start and is less attractive with the carton. For the 12:40 p.m. flight, target the airport by 10:55 a.m. and leave around 10:05 to 10:20 a.m. That permits breakfast and a calmer checkout.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would the noon flight create any problem if the hotel checkout is 11:00?",
+          "role": "user"
+        },
+        {
+          "content": "No. You would check out around 10:00 a.m. and depart shortly afterward. Even if traffic stretches the ride to 45 minutes, arriving near 10:50 still gives about 1 hour 50 minutes before departure. The main item to verify is whether the carton is checked as ordinary baggage or requires special handling, because that could justify another 15 to 20 minutes.",
+          "role": "assistant"
+        },
+        {
+          "content": "What decisions have to be made first, before we spend time comparing room details and seats?",
+          "role": "user"
+        },
+        {
+          "content": "First, settle the early Wednesday nonstop versus the one-stop fallback, because arrival reliability controls the entire opening day. Second, choose the Back Bay hotel band and confirm inventory for all three nights; the closest rooms may tighten quickly around a workshop. Third, choose the Saturday departure, since the 12:40 p.m. nonstop has a much easier airport margin. Room type, seat selection, and exact ground transport can follow once those three pieces are held.",
+          "role": "assistant"
+        },
+        {
+          "content": "Build the working combination around the early nonstop, a hotel within ten minutes of the venue, and the 12:40 Saturday return. Keep the cheaper Back Bay band and the 9:10 return as alternatives. Nothing should be booked yet.",
+          "role": "user"
+        },
+        {
+          "content": "Working combination, not booked: Wednesday early nonstop Denver to Boston, approximately 7:00 a.m. to 12:45 p.m.; collect the checked carton and reach the Back Bay hotel around 1:40 to 2:05 p.m., preserving at least about 2 hours 25 minutes before 4:30 registration. Stay three nights within a 10-minute walk of the venue. Use local transport for Friday's 10:00 a.m. and 2:00 p.m. Cambridge appointments, then return for the 7:30 p.m. Back Bay dinner. Saturday, check out around 10:00 a.m., leave for Logan by about 10:15, and take the 12:40 p.m. nonstop to Denver. Alternatives retained are the Wednesday one-stop arriving near 1:40 p.m., the less expensive outer Back Bay hotel band, and the 9:10 a.m. Saturday nonstop requiring a hotel departure around 6:40 a.m. Before booking, verify exact dates, live schedules and fares, operating carriers, carton rules, hotel taxes and cancellation terms, and the precise Cambridge addresses.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0091",
+      "session_index": 91,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "The January 25-31 Nashville and Raleigh press circuit remains confirmed, including the January 31 closing schedule, luggage pickup, and nonstop return to Denver. The November 18-21 Atlanta trip remains unchanged: the Emory Inn is booked, Friday cars are unbooked, and flight details need verification. The May 12-17 San Juan anniversary trip remains confirmed. The solo Boston work trip for June 11-14 remains confirmed at Boston Park Plaza for $1,146; flight and ground details still need verification. A separate solo Boston rights-workshop trip is now being developed for Wednesday through Saturday: the working, unbooked combination is an early Wednesday Denver-Boston nonstop arriving around 12:45 p.m., a three-night hotel within a 10-minute walk of the Back Bay venue, and a 12:40 p.m. Saturday nonstop home. A Wednesday one-stop, a less expensive outer Back Bay hotel band, and a 9:10 a.m. Saturday return remain alternatives. Exact dates, live flight and room details, carton handling, cancellation terms, and Cambridge appointment addresses must be verified. For the May 14-18 Philadelphia family graduation trip, The Study at University City remains selected but unbooked at an estimated $1,172, with final terms and transportation unresolved. For the October 7-10 New Orleans conference, Riverside remains booked; reissued ticket details, checked-carton handling, seats, and Wednesday luggage storage need confirmation. For the two-adult Chicago arts weekend November 13-16, the River North hotel is booked for $771 with a $257 deposit, refundable through 6:00 p.m. Central November 11; complimentary Monday luggage storage is confirmed until 8:00 p.m. The Friday 12:20 p.m. Denver-O'Hare and Monday 4:25 p.m. Midway-Denver nonstop flights are confirmed, as are Saturday's 8:00 p.m. Salt Shed concert tickets and Sunday's 10:30 a.m. Art Institute entry. The Saturday restaurant, concert entry details, and Monday transfer to Midway remain unresolved.",
+  "verification": {
+    "91": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Build the working combination around the early nonstop, a hotel within ten minutes of the venue, and the 12:40 Saturday return.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly overrides the afternoon-departure default for the Wednesday outbound by choosing the early-morning nonstop due to the fixed same-day event, while separately choosing the 12:40 p.m. Saturday return. These are current-trip, per-leg choices rather than recurring preference language. No other candidate habit is established with the required exact semantics by the user's own words."
+    }
+  }
+}

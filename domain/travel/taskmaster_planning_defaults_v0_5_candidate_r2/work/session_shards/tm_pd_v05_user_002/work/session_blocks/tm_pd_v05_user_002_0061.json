@@ -1,0 +1,139 @@
+{
+  "cache_fingerprint": "1b9d0436bb870601b24654d935513d2e06a6800f05e2680fefc4bb90d770a5dc",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marcus explicitly chose coach only for this Dallas trip because the business-class premium was not worthwhile on the two short flights, providing a local exception to the business-first cabin preference.",
+        "evidence_topology": {
+          "episode_id": "dallas-leadership-01",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 61,
+          "target_habit_id": "tm_pd_v05_user_002_h02",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requested a later-day return and nonstop routing, and made a trip-specific coach override. The selected morning outbound was driven by this meeting's timing constraint and does not independently evidence a general morning-departure habit. No user utterance evidences seat, breakfast, or balcony preferences.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Show me Thursday returns after 2:00, business and coach.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Nonstop from Chicago, and I need enough margin to get from the airport to the opening session.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h03",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For this Dallas trip, coach is fine; the business fare is not worth another $666 for two short flights.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_002_h02",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I need Dallas flights for the leadership meeting November 4 through 6. It starts Tuesday at 1:00 p.m. and ends Thursday at noon. Nonstop from Chicago, and I need enough margin to get from the airport to the opening session.",
+          "role": "user"
+        },
+        {
+          "content": "From O'Hare, the strongest outbound is American nonstop to DFW, leaving Tuesday at 7:10 a.m. and arriving at 9:50 a.m. That leaves 3 hours 10 minutes before the session. Even allowing about 45 minutes to deplane and collect a bag plus an hour in traffic, you should reach a central Dallas venue around 11:35 a.m. Business is $1,084 round trip; Main Cabin is $418. Both include changes without a fee, but any fare difference applies, and neither is refundable.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the next reasonable outbound, and is Love Field any better?",
+          "role": "user"
+        },
+        {
+          "content": "The next ORD-DFW nonstop leaves at 8:35 a.m. and arrives at 11:17 a.m., which is too tight for a 1:00 p.m. start once ground travel is included. Southwest has a Midway-Love Field nonstop at 6:20 a.m., arriving 8:45 a.m., for $506 in coach. Love Field is closer to central Dallas, but the departure requires a much earlier airport arrival. The 7:10 from O'Hare has the better overall balance.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. Show me Thursday returns after 2:00, business and coach.",
+          "role": "user"
+        },
+        {
+          "content": "American has nonstop DFW-ORD options at 3:05-5:31 p.m. and 4:40-7:08 p.m. Paired with the 7:10 Tuesday outbound, either is $1,084 in business or $418 in Main Cabin. The 3:05 return gives three hours after the meeting ends, enough for the trip to DFW if you leave by about 12:45 p.m.; the 4:40 provides more cushion.",
+          "role": "assistant"
+        },
+        {
+          "content": "Take the 3:05. For this Dallas trip, coach is fine; the business fare is not worth another $666 for two short flights. Keep the changeable fare, though.",
+          "role": "user"
+        },
+        {
+          "content": "I have the American Main Cabin round trip at $418: ORD-DFW Tuesday, November 4, 7:10-9:50 a.m.; DFW-ORD Thursday, November 6, 3:05-5:31 p.m. It is nonrefundable, with no change fee but fare differences applicable. Shall I purchase it for you?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, buy it.",
+          "role": "user"
+        },
+        {
+          "content": "Booked for $418.00 on American under confirmation J4V8NC. Tuesday, November 4: ORD-DFW, 7:10-9:50 a.m. Thursday, November 6: DFW-ORD, 3:05-5:31 p.m. Both flights are nonstop in Main Cabin; the ticket is nonrefundable and changes have no fee, with any fare difference due. Plan to leave O'Hare security behind by 6:25 a.m. Tuesday. The outbound timing should put you in central Dallas around 11:35 a.m. under ordinary traffic. Once the organizer confirms the meeting hotel, we can settle lodging and refine the local travel timing.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0061",
+      "session_index": 61,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Washington is confirmed for Marcus, Daniel, and Owen for October 11-14 under D8L4QH and HWM-481725; total $1,971.22, with hotel cancellation through October 10. Columbus is confirmed for October 29-30 under C7M2KD, HYP-604271, and HZ-9184632; total $612.40 before fuel. Seattle Thanksgiving remains confirmed under R4K8VN, CGH-730194, and H7LM2Q. Phoenix is confirmed for January 12-15 under N8Q4LS, K3R7DX, HTM-593184, and J84219673; total $1,651.45. San Diego is confirmed for June 20-27 under Q7N4PL, MBY-624817, EPM-731846, SDT-620518, and SDT-627104; revised total $6,660.37 before fuel and tips. Atlanta inspections are complete, with $856.08 reimbursable and a $65.54 rental overcharge unresolved. Nashville is confirmed for March 16-17 under K5R8TN, HGI-316842, and NAT-7041936; total $642.11. Maine for Marcus, Daniel, and Owen is confirmed for July 13-20 under M7C4LP, HZ-5271846, CRH-813502, and CNP-640271. Camden lodging accommodates all three guests, with $389.68 paid and $1,558.72 due at the property; Portland lodging totals $850.48. Confirmed Maine reservations total $4,998.92, or $5,048.92 with estimated tolls. Pittsburgh is confirmed for September 14-15 under P6T9LR and HPA-742816; total $852.00, using the hotel shuttle Sunday and rides Monday. Dallas flights are confirmed under J4V8NC for November 4-6 at $418.00: Tuesday ORD-DFW 7:10-9:50 a.m. and Thursday DFW-ORD 3:05-5:31 p.m., both nonstop. The ticket is nonrefundable and changeable without a fee, subject to fare difference. Dallas lodging remains unresolved pending confirmation of the meeting hotel.",
+  "verification": {
+    "61": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Show me Thursday returns after 2:00, business and coach.",
+          "habit_id": "tm_pd_v05_user_002_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For this Dallas trip, coach is fine; the business fare is not worth another $666 for two short flights.",
+          "habit_id": "tm_pd_v05_user_002_h02",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Nonstop from Chicago, and I need enough margin to get from the airport to the opening session.",
+          "habit_id": "tm_pd_v05_user_002_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requested a later-day return and nonstop routing, and made a trip-specific coach override. The selected morning outbound was driven by this meeting's timing constraint and does not independently evidence a general morning-departure habit. No user utterance evidences seat, breakfast, or balcony preferences."
+    }
+  }
+}

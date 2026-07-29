@@ -1,0 +1,139 @@
+{
+  "cache_fingerprint": "62e7a815b22d6f274713df77c9fdb32d015ad7c50a38092168db52d83696393d",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For this Phoenix trip, Marcus selected the Monday evening United outbound as the practical option from his downtown office. He retained a 7:15 p.m. Wednesday return for a confirmed 4:00 p.m. finish and a 9:05 p.m. return if the meeting may last until 5:30, pending the hotel and schedule decision.",
+        "evidence_topology": {
+          "episode_id": "phoenix-ops-01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 27,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly overrides the usual morning-outbound preference for this trip because of the Tuesday schedule and requests later-day return options around two possible meeting end times. No durable cross-trip preference is stated, and the assistant's flight recommendations follow user-provided timing constraints rather than leaking an unestablished profile value.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "The Tuesday walkthrough starts at 9:00 a.m., so look at Monday evening flights from Chicago.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Show me one that works if we finish at 4:00 and another if I have to stay until about 5:30.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to be in suburban Phoenix for an opening review Tuesday and Wednesday. The Tuesday walkthrough starts at 9:00 a.m., so look at Monday evening flights from Chicago. I should finish Wednesday at 4:00, but there is a chance the meeting runs late.",
+          "role": "user"
+        },
+        {
+          "content": "What dates are you traveling, and which suburb is the restaurant in? That will determine whether a Wednesday flight is realistic after the meeting.",
+          "role": "assistant"
+        },
+        {
+          "content": "Monday, January 12 through Wednesday, January 14. The site is in Chandler, near Loop 202 and Arizona Avenue.",
+          "role": "user"
+        },
+        {
+          "content": "I found three useful nonstop outbound options. From ORD, American 1942 departs at 5:25 p.m. and arrives PHX at 8:19 p.m. for $387 round trip when paired with the Wednesday returns. United 2248 leaves at 6:35 p.m. and arrives at 9:31 p.m. for $412. Southwest from MDW leaves at 7:10 p.m. and arrives at 10:05 p.m. for $369. Are you leaving from the office downtown or from home Monday?",
+          "role": "assistant"
+        },
+        {
+          "content": "From the office. The 5:25 is probably too tight. Keep the United option unless the Midway flight gives me a meaningful advantage.",
+          "role": "user"
+        },
+        {
+          "content": "United is the better fit. Allowing for an afternoon trip from downtown, ORD is less sensitive to a late departure from the office than crossing to Midway during rush hour, and it gets you into Phoenix 34 minutes earlier. With a rental car, you should reach a Chandler hotel around 10:45 to 11:15 p.m. after landing. That still leaves a dependable morning for the 9:00 walkthrough.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Now compare Wednesday returns. Show me one that works if we finish at 4:00 and another if I have to stay until about 5:30.",
+          "role": "user"
+        },
+        {
+          "content": "For a 4:00 p.m. finish, United 2036 departs PHX at 7:15 p.m. and arrives ORD at 11:25 p.m. It is included in the $412 round-trip fare. From the Chandler site, budget 40 to 55 minutes to PHX in late-afternoon traffic, then 15 to 25 minutes for fuel and rental-car return. Leaving by 4:10 should put you at the terminal around 5:20 to 5:40, giving you a reasonable margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the later one? I don't want a plan that depends on the local team ending exactly at 5:30.",
+          "role": "user"
+        },
+        {
+          "content": "American 2871 departs at 9:05 p.m. and arrives ORD at 1:12 a.m. Thursday. Pairing that return with the United outbound requires separate one-way tickets totaling $458. If you leave the site at 5:45, a conservative estimate puts you at the terminal between 7:00 and 7:25 after traffic and the rental return. That leaves roughly 1 hour 40 minutes before departure. A third option at 8:10 p.m. is possible on paper, but it would be too exposed to a meeting overrun or heavy traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there any reason to take the 9:05 now instead of waiting for the local team to confirm?",
+          "role": "user"
+        },
+        {
+          "content": "The main reason would be fare or seat availability, but operationally there is no need to commit yet. The 7:15 return is workable only if the meeting ends around 4:00; the 9:05 protects a meeting lasting until 5:30. The tradeoff is $46 more and getting home after 2:00 a.m. once you account for deplaning and the ride from ORD.",
+          "role": "assistant"
+        },
+        {
+          "content": "Hold both return candidates for the hotel and schedule decision. Which outbound should I carry forward exactly?",
+          "role": "user"
+        },
+        {
+          "content": "Carry forward United 2248 on Monday, January 12: ORD 6:35 p.m. to PHX 9:31 p.m. For Wednesday, keep United 2036 at 7:15 p.m. if the Chandler meeting has a firm 4:00 p.m. end, and American 2871 at 9:05 p.m. if it may run to 5:30. No flight has been booked. The next decision is whether the hotel location and Wednesday schedule support the earlier return.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0027",
+      "session_index": 27,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Marcus's Atlanta, Minneapolis, Dallas, San Diego, and Nashville plans remain unchanged. The Washington family trip for Marcus Lee, Daniel Lee, and Owen Lee remains confirmed for October 10-14 under American confirmation W6P9KT and Embassy Suites confirmation ESW-481762. They will rideshare from DCA to Embassy Suites Washington DC Convention Center, 900 10th Street NW. The first Smithsonian entry is at 8:30 a.m.; leave the hotel at 7:55 a.m. and arrive around 8:15. For the Seattle Thanksgiving trip, American confirmation R4K8VN covers Marcus, Daniel, and Owen on American 2367, departing ORD Wednesday, November 26, at 8:05 p.m. and arriving SEA at 10:38 p.m. Coast Gateway Hotel confirmation CGH-730194 remains for November 26-27, one room with two queen beds for three guests, at $214.36; late arrival is noted. They will use the hotel shuttle after landing, return to SEA by shuttle around 8:30 a.m. Thursday, and rideshare to the relatives' home for an estimated 9:45 to 10:00 a.m. arrival. United confirmation H7LM2Q covers United 1847 on Sunday, November 30, departing SEA at 11:50 a.m. and arriving ORD at 5:48 p.m. Seats 22D, 22E, and 22F are confirmed, and one checked bag remains included. They should reach SEA around 9:50 a.m. Sunday and expect to arrive home in Chicago around 7:05 to 7:30 p.m. For the Phoenix opening review, carry forward United 2248 on Monday, January 12, ORD 6:35 p.m. to PHX 9:31 p.m. Wednesday return candidates are United 2036 at 7:15 p.m. if the Chandler meeting ends firmly at 4:00 p.m., or American 2871 at 9:05 p.m. if it may run until 5:30. No Phoenix flight is booked; the return remains pending the hotel and final meeting schedule.",
+  "verification": {
+    "27": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "The Tuesday walkthrough starts at 9:00 a.m., so look at Monday evening flights from Chicago.",
+          "habit_id": "tm_pd_v05_user_002_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Show me one that works if we finish at 4:00 and another if I have to stay until about 5:30.",
+          "habit_id": "tm_pd_v05_user_002_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly overrides the usual morning-outbound preference for this trip because of the Tuesday schedule and requests later-day return options around two possible meeting end times. No durable cross-trip preference is stated, and the assistant's flight recommendations follow user-provided timing constraints rather than leaking an unestablished profile value."
+    }
+  }
+}

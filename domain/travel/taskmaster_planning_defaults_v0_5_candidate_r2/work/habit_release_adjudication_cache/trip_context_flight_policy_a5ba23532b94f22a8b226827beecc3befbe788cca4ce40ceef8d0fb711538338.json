@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "a5ba23532b94f22a8b226827beecc3befbe788cca4ce40ceef8d0fb711538338",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_connection_count_preference",
+      "boundary_condition": "Do not infer that nonstop is always required or that an acceptable layover must have a specific duration.",
+      "canonical_value": "At most one layover",
+      "condition": "When comparing flight itineraries that may include connections.",
+      "default_action": "Limit connecting options to itineraries with at most one layover.",
+      "exception_condition": "Use an itinerary with more than one layover only when the user explicitly requests or accepts it for the current trip.",
+      "input_ids": [
+        "tm_v04_e2e_habit_a7725793148c"
+      ],
+      "name": "flight_max_one_layover_preference",
+      "preference_value": "Prefers flight itineraries with no more than one layover.",
+      "rationale": "Repeated evidence supports at most one layover as a stable upper bound when considering connecting flights. The evidence also permits nonstop and does not consistently establish a particular layover duration.",
+      "representative_id": "tm_v04_e2e_habit_a7725793148c"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_cabin_class_preference",
+      "boundary_condition": "Keep the selected fare within the stated overall flight budget.",
+      "canonical_value": "Business class when feasible, otherwise coach",
+      "condition": "When booking flights and business class is available within the stated trip budget.",
+      "default_action": "Search for and select business-class options first.",
+      "exception_condition": "Use coach when business class is unavailable or cannot fit the budget.",
+      "input_ids": [
+        "tm_v04_e2e_habit_dab7e9145814"
+      ],
+      "name": "prefer_business_class_when_feasible",
+      "preference_value": "Prefers business class when it is available within the trip budget, with coach as the fallback.",
+      "rationale": "Multiple examples support business class as a conditional preference, with coach explicitly accepted when business class is unavailable or exceeds the trip budget. The policy appropriately preserves this fallback rather than treating business class as an unconditional requirement.",
+      "representative_id": "tm_v04_e2e_habit_dab7e9145814"
+    }
+  ]
+}

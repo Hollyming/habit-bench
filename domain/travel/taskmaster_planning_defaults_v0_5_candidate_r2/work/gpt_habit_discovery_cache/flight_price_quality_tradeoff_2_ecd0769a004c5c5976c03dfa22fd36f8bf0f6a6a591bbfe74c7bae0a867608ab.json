@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "ecd0769a004c5c5976c03dfa22fd36f8bf0f6a6a591bbfe74c7bae0a867608ab",
+  "habits": [
+    {
+      "boundary_condition": "when multiple options have similar quality attributes",
+      "bundle_id": "tm_v04_e2e_bundle_fb906aa178af",
+      "condition": "prioritize cost-effectiveness over other factors",
+      "confidence": 0.85,
+      "decision": "accept",
+      "default_action": "select the lowest-priced option",
+      "exception_condition": "if a significantly better quality option is within 10% of the price",
+      "family": "flight_price_quality_tradeoff",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_fb906aa178af",
+      "induced_at": "2026-07-25T08:16:41.195474+00:00",
+      "induced_by": "habitbench-qwen3-8b",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "flight_price_quality_tradeoff",
+      "preference_value": "cheapest",
+      "rationale": "users consistently prioritize cost over minor inconveniences like layover duration or meal inclusion, but are willing to pay a small premium for essential amenities like Wi-Fi",
+      "reasoning_effort": "",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "explicit request for cheapest option",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "exact_user_quote": "Alright, what is the cheapest?",
+          "instruction_id": "flight-7",
+          "turn_index": 34
+        },
+        {
+          "contribution": "explicit request for cheapest nonstop option",
+          "conversation_id": "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+          "exact_user_quote": "Tell me the cheapest nonstop.",
+          "instruction_id": "flight-4",
+          "turn_index": 38
+        },
+        {
+          "contribution": "explicit request for cheapest option",
+          "conversation_id": "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a",
+          "exact_user_quote": "And I need the cheapest one.",
+          "instruction_id": "flight-11",
+          "turn_index": 1
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Alright, what is the cheapest?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "habitual_language": false,
+          "instruction_id": "flight-7",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 34,
+          "user_utterance": "Alright, what is the cheapest?"
+        },
+        {
+          "annotated_segment": "Tell me the cheapest nonstop.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+          "habitual_language": false,
+          "instruction_id": "flight-4",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 38,
+          "user_utterance": "Tell me the cheapest nonstop."
+        },
+        {
+          "annotated_segment": "And I need the cheapest one.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 1,
+          "user_utterance": "And I need the cheapest one."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+    "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+    "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a"
+  ]
+}

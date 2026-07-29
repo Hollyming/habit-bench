@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "92519e2decfac9060817035e37bd6761bd440a66197b01f29364d265681bdf36",
+  "habits": [
+    {
+      "boundary_condition": "suite",
+      "bundle_id": "tm_v04_e2e_bundle_4b4326885573",
+      "condition": "room_type",
+      "confidence": 0.85,
+      "decision": "accept",
+      "default_action": "require",
+      "exception_condition": "specific_request_for_no_balcony",
+      "family": "hotel_view_balcony_flexibility",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_4b4326885573",
+      "induced_at": "2026-07-25T08:17:19.904145+00:00",
+      "induced_by": "habitbench-qwen3-8b",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_view_balcony_flexibility",
+      "preference_value": "balcony",
+      "rationale": "Multiple dialogues consistently require balconies in rooms, with exceptions when suites are requested or specific no-balcony requests are made.",
+      "reasoning_effort": "",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Indirectly supports balcony preference through room amenity requests.",
+          "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+          "exact_user_quote": "We can have a refrigerator in one of the rooms, that'd be good for his insulin",
+          "instruction_id": "hotel-9",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Directly requests balcony for ocean view.",
+          "conversation_id": "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+          "exact_user_quote": "I want at least, if you could find a king-size bed, that'd be great. I'd like to have a good view of the ocean and a balcony to look out over the water.",
+          "instruction_id": "hotel-13",
+          "turn_index": 9
+        },
+        {
+          "contribution": "Directly requests balcony in room.",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "exact_user_quote": "Great. Now, for the rooms, I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker.",
+          "instruction_id": "hotel-1c",
+          "turn_index": 22
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "We can have a refrigerator in one of the rooms, that'd be good for his insulin",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+          "habitual_language": false,
+          "instruction_id": "hotel-9",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "We can have a refrigerator in one of the rooms, that'd be good for his insulin"
+        },
+        {
+          "annotated_segment": "I want at least, if you could find a king-size bed, that'd be great. I'd like to have a good view of the ocean and a balcony to look out over the water.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+          "habitual_language": false,
+          "instruction_id": "hotel-13",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 9,
+          "user_utterance": "I want at least, if you could find a king-size bed, that'd be great. I'd like to have a good view of the ocean and a balcony to look out over the water."
+        },
+        {
+          "annotated_segment": "Great. Now, for the rooms, I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 22,
+          "user_utterance": "Great. Now, for the rooms, I'm looking for a room that has a balcony, cable TV. Perhaps a coffee maker."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+    "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+    "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0"
+  ]
+}

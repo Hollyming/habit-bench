@@ -1,0 +1,26 @@
+{
+  "adapter": "secom_official_code_online",
+  "compress_rate": 0.9,
+  "memory_llm": {
+    "api_key": "<redacted>",
+    "base_url": "http://127.0.0.1:8100/v1",
+    "model": "Qwen3-8B"
+  },
+  "method_config": {
+    "compressor": {
+      "compress_model": "/plm-shared/zhangjunming/Workspace/models/llmlingua-2-xlm-roberta-large-meetingbank"
+    },
+    "retriever": {
+      "device_map": "cpu",
+      "embedding_model": "/plm-shared/zhangjunming/Workspace/models/bge-m3",
+      "storage": "FAISS"
+    },
+    "segmentor": {
+      "incremental_prompt_path": "instructions/segment_incremental.md",
+      "prompt_path": "instructions/segment_with_exchange_number.md",
+      "segment_model": "Qwen3-8B"
+    }
+  },
+  "repo_path": "/plm-shared/haosun/habit-bench/third_party/official-baselines/vendor/SeCom",
+  "topk": 5
+}

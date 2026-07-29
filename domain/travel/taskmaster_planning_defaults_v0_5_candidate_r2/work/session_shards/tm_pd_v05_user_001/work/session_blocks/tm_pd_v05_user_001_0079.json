@@ -1,0 +1,95 @@
+{
+  "cache_fingerprint": "4ca9c9e74b81ede8c5340682afd76a158090033f8e6ed7d550c583abba4d3c90",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The hotel confirmation error was corrected from a two-night Thursday-to-Saturday stay to the intended three-night Thursday-to-Sunday stay. The standard room and negotiated meeting rate were retained, and the final $1,146 total, $382 deposit, and June 8 cancellation deadline were confirmed.",
+        "evidence_topology": {
+          "episode_id": "ep_020_boston_academic_publishing_meeting",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 79,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user only confirms and corrects current hotel dates, room category, charges, cancellation deadline, and unchanged flight timing; none of the candidate habit values is explicitly requested, chosen, endorsed, or reaffirmed.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The Park Plaza confirmation came through, but it says checkout Saturday, June 13. I reserved Thursday through Sunday because my flight is Sunday morning.",
+          "role": "user"
+        },
+        {
+          "content": "That is a material error. The confirmation currently covers June 11-13, only two nights, while the intended stay is June 11-14 for three nights. Does it still show the standard room and meeting rate?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, standard room at the meeting rate. The total is $764, and the deposit charge is $254.67. Flights and meetings have not changed.",
+          "role": "user"
+        },
+        {
+          "content": "I would ask the hotel to extend the existing reservation by one night without canceling or rebooking it. The request should preserve the standard room, negotiated rate, and confirmation number.",
+          "role": "assistant"
+        },
+        {
+          "content": "Draft exactly what I should send, including the amounts I was originally shown.",
+          "role": "user"
+        },
+        {
+          "content": "Please correct my existing reservation to check in Thursday, June 11 and check out Sunday, June 14, for three nights. The confirmation currently shows an incorrect Saturday, June 13 checkout. Please retain the same standard room, negotiated meeting rate, and confirmation number. At booking, the three-night total was displayed as $1,146 including estimated taxes and the mandatory destination charge, with a $382 deposit. Please confirm the corrected dates, total, deposit, and cancellation deadline in writing. Do not cancel or replace the reservation.",
+          "role": "assistant"
+        },
+        {
+          "content": "They replied. It now shows June 11 through June 14, three nights, standard room, $1,146 total, and a $382 deposit. The extra $127.33 was charged to the same card. Cancellation is still 6:00 p.m. Boston time June 8.",
+          "role": "user"
+        },
+        {
+          "content": "That resolves the discrepancy: the dates, room category, meeting rate, total, deposit, and cancellation deadline now match the intended reservation. Keep the revised confirmation and check that the original $254.67 plus the additional $127.33 appear as a combined $382 deposit, without a duplicate pending charge.",
+          "role": "assistant"
+        },
+        {
+          "content": "The card activity shows exactly those two amounts and no duplicate. Update the itinerary.",
+          "role": "user"
+        },
+        {
+          "content": "Itinerary updated: Boston Park Plaza is confirmed for one adult in one standard room, checking in Thursday, June 11 and checking out Sunday, June 14, for three nights. Confirmed lodging total is $1,146, including estimated taxes and the mandatory destination charge. The $382 deposit was collected as charges of $254.67 and $127.33, with no duplicate. Free cancellation remains available until 6:00 p.m. Boston time Monday, June 8. The Sunday morning flight and early express-checkout plan are unchanged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0079",
+      "session_index": 79,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "The January 25-31 Nashville and Raleigh press circuit remains confirmed, including the January 31 Raleigh closing schedule, luggage pickup, and nonstop return to Denver. The November 18-21 Atlanta trip remains unchanged: the Emory Inn is booked for three nights, Friday cars are recorded but unbooked, and flight details still require verification. For the May 12-17 San Juan anniversary trip, flights and the five-night Old San Juan hotel stay are confirmed; the excursion, anniversary dinner, contingency, checkout sequence, and return flight remain unchanged. For the solo Boston work trip, Boston Park Plaza is now confirmed for June 11-14 in a standard room for three nights at a total of $1,146. The mistaken June 13 checkout was corrected without changing the room or negotiated meeting rate. A $382 deposit was collected in two charges, with no duplicate, and free cancellation ends at 6:00 p.m. Boston time June 8. The Sunday morning flight and early express-checkout plan remain unchanged; flight details, ground transportation, and airport conditions still require verification.",
+  "verification": {
+    "79": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user only confirms and corrects current hotel dates, room category, charges, cancellation deadline, and unchanged flight timing; none of the candidate habit values is explicitly requested, chosen, endorsed, or reaffirmed."
+    }
+  }
+}

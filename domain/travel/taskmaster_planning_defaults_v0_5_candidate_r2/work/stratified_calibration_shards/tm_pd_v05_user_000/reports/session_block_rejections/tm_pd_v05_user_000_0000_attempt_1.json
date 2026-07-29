@@ -1,0 +1,128 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h06', 'exception') actual=[('tm_pd_v05_user_000_h00', 'exception'), ('tm_pd_v05_user_000_h01', 'support'), ('tm_pd_v05_user_000_h06', 'boundary')]",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "{'kind': 'exception', 'summary': 'Maya explicitly limited beach or waterfront proximity to coastal trips with her partner and excluded it from this Denver client stay, where dependable medical-campus access controls the location decision.'}",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I think the Tuesday nonstop and Friday evening return are the right flights. That means I need three nights in Denver. Can we finish the hotel comparison and include the real total, not just the nightly rate?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I found three workable choices for Tuesday through Friday. All are below the project's $245 nightly room limit before tax: Campus East Hotel at $232, Central Park Suites at $198, and Union Station Hotel at $219. The quoted lodging tax is 15.75%, and none has a resort or destination fee.",
+          "role": "assistant"
+        },
+        {
+          "content": "The review is at the medical campus east of downtown. For this Denver work trip, don't give any weight to beach access or being near the water; that only matters on coastal trips with my partner. Dependable access to the campus is the location issue here.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. For this trip I'll compare them around campus transportation and the full three-night expense. Campus East is closest and has a complimentary client shuttle. Central Park Suites is less expensive and includes parking but has no direct shuttle. Union Station is convenient to the airport rail line, though it is the farthest from the campus.",
+          "role": "assistant"
+        },
+        {
+          "content": "Start with the exact room totals. Does each one stay under policy once tax and parking are added?",
+          "role": "user"
+        },
+        {
+          "content": "The $245 cap applies to the room rate before tax, so all three qualify. Campus East is $696 for three nights plus $109.62 tax, or $805.62 without parking. Parking is $24 nightly, making it $877.62 with a car. Central Park Suites is $594 plus $93.56 tax, totaling $687.56; parking is included. Union Station is $657 plus $103.48 tax, totaling $760.48. Its parking is $39 nightly, so it would be $877.48 with a car.",
+          "role": "assistant"
+        },
+        {
+          "content": "Interesting that the downtown one with parking is almost the same as Campus East. What would transportation look like if I don't rent a car?",
+          "role": "user"
+        },
+        {
+          "content": "At Campus East, airport rideshare is currently estimated at about $44 each way, so lodging plus airport transfers would be about $893.62. The hotel shuttle covers the medical campus at no charge. It runs every 30 minutes from 6:30 a.m. to 7:00 p.m., takes roughly 12 to 18 minutes, and asks guests to reserve a seat by the prior evening.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Central Park Suites? Assume I'm on campus Wednesday, Thursday, and Friday.",
+          "role": "user"
+        },
+        {
+          "content": "The airport rideshare estimate is also about $44 each way. The hotel-to-campus ride is typically $15 each way, so six campus rides would be about $90. That puts the three-night hotel, airport transfers, and expected campus rides at approximately $865.56. The downside is variability: morning travel is usually 15 to 25 minutes, and surge pricing could add roughly $20 to $40 across the stay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Could I rent a car there instead and use the included parking?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. A compact car is quoting at $244 total after rental taxes and airport fees for Tuesday through Friday. Added to the $687.56 hotel total, that is $931.56 before fuel and any tolls. It gives you schedule control, but it costs about $66 more than the rideshare estimate and adds the airport rental pickup and return.",
+          "role": "assistant"
+        },
+        {
+          "content": "So included parking doesn't actually make that the cheapest transportation plan. What about Union Station using the train?",
+          "role": "user"
+        },
+        {
+          "content": "The airport train is $10 each way, so the airport portion is only $20. The tradeoff is the campus commute. Rideshare is about $31 each way, or $186 for six rides. Combined with the $760.48 room total, the estimated trip cost is $966.48. Morning travel is generally 35 to 55 minutes, with the greatest delay risk on Friday when you also need to reach the airport later.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would train plus bus improve that enough to matter? I can handle one transfer if it's reliable.",
+          "role": "user"
+        },
+        {
+          "content": "It would lower the cost but not improve the schedule. The transit route requires one transfer and is roughly 55 to 70 minutes each way, with less frequent service near the campus. Six local trips would cost about $36 total, making lodging and all transit about $816.48. It is the lowest estimated cash cost, but it adds around four to five hours of commuting across the three review days compared with the Campus East shuttle.",
+          "role": "assistant"
+        },
+        {
+          "content": "That's not worth it. I need to be at the campus by 7:45 Wednesday and Thursday, and 8:30 Friday. Is the Campus East shuttle early enough?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. For the first two mornings, the 7:00 shuttle should arrive between 7:12 and 7:18, leaving at least 27 minutes of margin. On Friday, the 7:30 shuttle should arrive by about 7:48, though taking 7:00 would provide more protection if checkout or luggage storage takes time. The hotel confirms that the shuttle serves your campus building, not just the general district.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can they hold my bag Friday after checkout? My flight isn't until the evening.",
+          "role": "user"
+        },
+        {
+          "content": "Yes, same-day luggage storage is complimentary. You can check out, leave the bag at the desk, take the shuttle to the review, return on the afternoon shuttle, and then request the airport rideshare. The return shuttle's last scheduled campus pickup is 7:00 p.m., well after you should need it.",
+          "role": "assistant"
+        },
+        {
+          "content": "Any cancellation difference among the three? The client agenda can still shift.",
+          "role": "user"
+        },
+        {
+          "content": "Campus East and Central Park Suites allow cancellation without charge until 6:00 p.m. local time the day before arrival. Union Station requires cancellation 48 hours before arrival. The displayed rates are not prepaid, so Campus East gives you the better combination of flexibility and campus access.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then Campus East without a rental car seems strongest, even though its room total is higher. Am I missing any mandatory charge?",
+          "role": "user"
+        },
+        {
+          "content": "No mandatory charge is omitted from the $805.62 lodging total: three nights are $696 and tax is $109.62, with no required property fee. The $893.62 trip estimate adds two $44 airport rideshares; those are estimates rather than fixed charges. The campus shuttle and Friday luggage storage are complimentary.",
+          "role": "assistant"
+        },
+        {
+          "content": "Let's use that as the lodging plan. Give me the final cost and morning plan in one compact confirmation so I can put it into the project notes.",
+          "role": "user"
+        },
+        {
+          "content": "Selected plan: Campus East Hotel, Tuesday through Friday, three nights at $232 per night. Room subtotal is $696; estimated lodging tax is $109.62; total hotel cost is $805.62. No rental car or parking is planned. Estimated airport rideshares are $88 round trip, bringing hotel plus local airport transportation to about $893.62. Reserve the complimentary 7:00 a.m. campus shuttle for Wednesday and Thursday; use 7:00 or 7:30 Friday for the 8:30 start, with 7:00 providing more margin. Store luggage with the front desk after Friday checkout and return by shuttle before leaving for the evening flight. Cancellation remains free until 6:00 p.m. local time the day before arrival.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0047",
+      "session_index": 47,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya's Denver client trip is planned around the Tuesday nonstop outbound and Friday evening return. For the three-night stay, she selected Campus East Hotel at an estimated $805.62 including tax, with no rental car. The working transportation plan uses airport rideshares and the hotel's complimentary medical-campus shuttle, with 7:00 a.m. departures for the early review days. Friday luggage storage is available, and the room remains cancelable until 6:00 p.m. local time the day before arrival. Booking confirmation is still outstanding."
+}

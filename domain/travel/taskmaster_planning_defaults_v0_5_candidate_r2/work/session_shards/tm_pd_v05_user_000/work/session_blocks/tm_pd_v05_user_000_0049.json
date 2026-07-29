@@ -1,0 +1,115 @@
+{
+  "cache_fingerprint": "636eeaab47edef607b021175b710e49f239be485c09a619cf6e605ba2d44b1d8",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves a one-trip schedule disruption by rejecting the risky 3:05 p.m. return, accepting the viable 8:40 p.m. nonstop, and revising Friday's shuttle, luggage, and airport-transfer plan. No recurring preference is introduced.",
+        "evidence_topology": {
+          "episode_id": "client-denver-009",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 49,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selected a nonstop return, supporting the nonstop-flight habit. Choosing the 8:40 p.m. departure is a current-trip override of the afternoon-return default because the 3:05 p.m. option lacked a reliable post-review margin. The user did not express a durable preference change or recurring/default language.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Take the 8:40 nonstop.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Take the 8:40 nonstop.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The airline canceled my 6:35 Friday return. They’ll move me at no charge to either a 3:05 p.m. or 8:40 p.m. nonstop. Can the 3:05 work if the review ends at noon?",
+          "role": "user"
+        },
+        {
+          "content": "Only if you leave immediately at noon and the debrief is canceled. A Friday rideshare from the medical campus to DEN should be allowed 40 to 50 minutes. For a 3:05 departure, I’d target airport arrival by 1:20, which means leaving around 12:30. If the debrief runs to 1:00, you would reach the airport around 1:45 to 1:55, leaving barely over an hour for security and the gate. That is not a reliable margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. Compare that with the 8:40, including what I should do with my bag after checkout.",
+          "role": "user"
+        },
+        {
+          "content": "The 8:40 nonstop is workable even with the full debrief. Check out before the 7:00 a.m. campus shuttle and leave your bag with the hotel. After the debrief, take the hotel shuttle back from the medical campus if they can confirm a pickup around 1:15; otherwise use a short rideshare. You can work from the hotel afterward, collect the bag, and request the airport rideshare at 5:45. That should put you at DEN around 6:30, about 2 hours 10 minutes before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does the later flight change the fare or put me over the trip authorization?",
+          "role": "user"
+        },
+        {
+          "content": "No. The airline is offering the replacement at no additional fare, so the ticket remains $664. The hotel remains $798, and the existing ground-transport estimate still keeps the projected trip total at $1,556, which is $144 under the $1,700 authorization.",
+          "role": "assistant"
+        },
+        {
+          "content": "Take the 8:40 nonstop. Update Friday to keep the 7:00 shuttle, request a 1:15 return to the hotel, and plan the airport rideshare for 5:45. Note the backup rideshare if the return shuttle isn’t available.",
+          "role": "user"
+        },
+        {
+          "content": "The canceled 6:35 p.m. return has been replaced with the Friday 8:40 p.m. nonstop at no added fare. Friday now shows hotel checkout before the 7:00 a.m. campus shuttle, bag storage at the hotel, the review ending at noon, and a possible client debrief through 1:00. I requested a 1:15 hotel shuttle back from campus and noted a rideshare backup. The airport rideshare is planned for 5:45 p.m., with expected arrival at DEN around 6:30. The projected trip total remains $1,556.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0049",
+      "session_index": 49,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Nashville client workshop trip for April 12-15, 2027 remains booked at a projected $1,498. The central Oregon coast trip for September 7-13, 2027 remains booked at $3,470; its revised outbound, Budget pickup, paved detour, Salem stop, and overnight inn access plan remain confirmed, with a working 4:00 a.m. arrival September 8. The Denver rollout-review trip is booked for October 19-22: a $664 nonstop round trip arriving Tuesday at 7:15 p.m.; after the original Friday return was canceled, the return is now the 8:40 p.m. nonstop at no added fare. Three nights at the Medical Center Hotel remain confirmed for $798 after tax. Friday includes checkout before the 7:00 a.m. campus shuttle, hotel bag storage, a requested 1:15 p.m. shuttle back from campus with a rideshare backup, and a planned 5:45 p.m. airport rideshare. The projected total remains $1,556 against a $1,700 authorization. The hotel is cancelable without penalty through 6:00 p.m. October 17. The Raleigh breakfast refund and corrected folio remain pending. The coastal Georgia trip and the separate January 2027 Denver client trip remain unbooked. The San Diego November 2026 trip remains booked. Philadelphia deposit-release and shuttle details, plus an earlier Nashville refund reconciliation, remain unresolved.",
+  "verification": {
+    "49": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Take the 8:40 nonstop.",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Take the 8:40 nonstop.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selected a nonstop return, supporting the nonstop-flight habit. Choosing the 8:40 p.m. departure is a current-trip override of the afternoon-return default because the 3:05 p.m. option lacked a reliable post-review margin. The user did not express a durable preference change or recurring/default language."
+    }
+  }
+}

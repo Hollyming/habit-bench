@@ -1,0 +1,321 @@
+{
+  "cache_fingerprint": "11384911456913d47c6011da8433b919b4a09bc87a18fcf088a4593b3b210e77",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B balance a higher sourced guest score against lower cost, higher official class, and direct beach access. The history is needed to know which quality measure governs and that its source should be named.",
+      "gold_action": "Prioritize Resort A and identify Expedia as the source of the qualifying customer-review score, without treating official star class as the same metric.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_000_s0111",
+        "tm_pd_v05_user_000_s0005",
+        "tm_pd_v05_user_000_s0069"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v05_user_000_h05",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_rating_floor",
+        "boundary_condition": "Use a 3.5 minimum when the search is explicitly budget-focused. Apply either threshold only to the rating metric under discussion, and do not conflate hotel class, Google ratings, and customer-review ratings.",
+        "condition": "When a hotel search calls for a well-rated property and frames the stay as nice, upscale, resort-style, or explicitly budget-focused.",
+        "default_action": "Filter or prioritize options meeting a 4.0 minimum for nice, upscale, or resort-style searches, and identify the rating source when known.",
+        "exception_condition": "Follow any newly stated threshold or metric. If no suitable option meets the applicable floor while satisfying more important trip constraints, ask before relaxing it.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v05_user_000_h05",
+        "name": "contextual_hotel_rating_floor",
+        "preference_value": "Prefer hotels rated at least 4.0 when seeking a nice, upscale, or resort-style stay; for explicitly budget-focused searches, prefer at least 3.5.",
+        "scope_condition": "Applies when Maya explicitly frames a hotel search as nice, upscale, or resort-style, using a 4.0 rating floor, or as budget-focused, using a 3.5 floor for the named rating metric.",
+        "scope_key": "quality_floor_by_stay_positioning",
+        "source_bundle_id": "tm_v04_e2e_bundle_2f7cf6d5b85d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_2f7cf6d5b85d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_000",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "C is the strongest qualifying resort and is beachfront, but it costs $65 more than A. The history supports a 4.0 review-quality screen, not automatically paying a substantial premium to maximize the score once that screen is met.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "The relevant measure is the guest-review score, with its source identified, rather than official hotel class. Resort A has a 4.2 Expedia guest score, reasonable beach access, and a moderate rate; B's four-star class does not cure its 3.9 guest score.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "A resort-style search uses the 4.0 quality floor on the customer-review metric under discussion. A qualifies on Expedia and offers a balanced price/location tradeoff. B is the closest distractor because it elevates official class and beach access while its Expedia score misses the floor.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_000_h05_p00",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Choice B asserts that official class and location are the 'stronger quality indicators,' but the query does not establish that weighting."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The options present unresolved tradeoffs among price, official class, guest score, and beach access. The query supplies no budget, minimum class, minimum score, or valuation of beachfront access that identifies one best resort.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "Choices A and B produce nearly identical practical utility because both center Hotel A, the sole confirmed match for the non-negotiables. The query does not state whether the planner may silently relax an unstated quality floor, so the procedural choice to request approval depends on the user's history rather than generic travel-planning logic.",
+      "gold_action": "Present Hotel A as the only currently confirmed constraint-compliant fallback, identify its 3.8 Google score, and ask the traveler to approve relaxing the applicable nice-stay rating floor before proceeding with it.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_000_s0005",
+        "tm_pd_v05_user_000_s0057",
+        "tm_pd_v05_user_000_s0069",
+        "tm_pd_v05_user_000_s0111"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v05_user_000_h05",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_rating_floor",
+        "boundary_condition": "Use a 3.5 minimum when the search is explicitly budget-focused. Apply either threshold only to the rating metric under discussion, and do not conflate hotel class, Google ratings, and customer-review ratings.",
+        "condition": "When a hotel search calls for a well-rated property and frames the stay as nice, upscale, resort-style, or explicitly budget-focused.",
+        "default_action": "Filter or prioritize options meeting a 4.0 minimum for nice, upscale, or resort-style searches, and identify the rating source when known.",
+        "exception_condition": "Follow any newly stated threshold or metric. If no suitable option meets the applicable floor while satisfying more important trip constraints, ask before relaxing it.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v05_user_000_h05",
+        "name": "contextual_hotel_rating_floor",
+        "preference_value": "Prefer hotels rated at least 4.0 when seeking a nice, upscale, or resort-style stay; for explicitly budget-focused searches, prefer at least 3.5.",
+        "scope_condition": "Applies when Maya explicitly frames a hotel search as nice, upscale, or resort-style, using a 4.0 rating floor, or as budget-focused, using a 3.5 floor for the named rating metric.",
+        "scope_key": "quality_floor_by_stay_positioning",
+        "source_bundle_id": "tm_v04_e2e_bundle_2f7cf6d5b85d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_2f7cf6d5b85d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_000",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "B correctly gives decisive weight to the two non-negotiables, but it silently treats them as overriding the established 4.0 quality screen. The history shows that below-floor exceptions should remain explicit and trip-specific.",
+        "difficulty": "hard",
+        "model": "gpt-5.6-sol",
+        "rationale": "Hotel A is the only confirmed match for both non-negotiables, but its 3.8 Google score is below the standing floor for a nice stay. The planner should disclose that conflict and obtain approval for a trip-specific relaxation before prioritizing it, preserving the general quality policy.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The nice-stay framing activates the user's quality floor, but none of the hotels meeting that floor also confirms both higher-priority accessibility and late-arrival requirements. The user's longitudinal policy says to ask before relaxing the floor when more important constraints eliminate the qualifying options. Choice A and choice B preserve the same feasible hotel and core constraints; only the remembered approval rule distinguishes them.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_000_h05_p01",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The subjective term 'nice' has no stated minimum score or other measurable threshold."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "D"
+        ],
+        "rationale": "Hotel A is the only current option confirmed to satisfy both non-negotiables, so keeping it available and seeking approval is reasonable. Broadening the search is also reasonable because the traveler asked for a nice hotel and Hotel A's 3.8 score may not satisfy that underspecified quality criterion. The query does not state whether securing the sole feasible option or continuing to search for higher quality should take priority.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B trade $27 and twelve minutes of driving against review quality and a lake view, leaving no generic winner. History supplies both the governing floor and the expectation to identify the source rather than assuming the score is from Google.",
+      "gold_action": "Prefer Inn A as the balanced option that meets the nice-stay customer-review floor, and identify Hotels.com as the rating source.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_000_s0111",
+        "tm_pd_v05_user_000_s0005",
+        "tm_pd_v05_user_000_s0069"
+      ],
+      "habit_family": "hotel_quality_threshold",
+      "habit_id": "tm_pd_v05_user_000_h05",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_quality_threshold_rating_floor",
+        "boundary_condition": "Use a 3.5 minimum when the search is explicitly budget-focused. Apply either threshold only to the rating metric under discussion, and do not conflate hotel class, Google ratings, and customer-review ratings.",
+        "condition": "When a hotel search calls for a well-rated property and frames the stay as nice, upscale, resort-style, or explicitly budget-focused.",
+        "default_action": "Filter or prioritize options meeting a 4.0 minimum for nice, upscale, or resort-style searches, and identify the rating source when known.",
+        "exception_condition": "Follow any newly stated threshold or metric. If no suitable option meets the applicable floor while satisfying more important trip constraints, ask before relaxing it.",
+        "family": "hotel_quality_threshold",
+        "habit_id": "tm_pd_v05_user_000_h05",
+        "name": "contextual_hotel_rating_floor",
+        "preference_value": "Prefer hotels rated at least 4.0 when seeking a nice, upscale, or resort-style stay; for explicitly budget-focused searches, prefer at least 3.5.",
+        "scope_condition": "Applies when Maya explicitly frames a hotel search as nice, upscale, or resort-style, using a 4.0 rating floor, or as budget-focused, using a 3.5 floor for the named rating metric.",
+        "scope_key": "quality_floor_by_stay_positioning",
+        "source_bundle_id": "tm_v04_e2e_bundle_2f7cf6d5b85d",
+        "source_habit_instance_id": "tm_v04_e2e_habit_2f7cf6d5b85d",
+        "strength": "secondary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_000",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "C has the strongest score, the same lake-view benefit, and a shorter drive, so it is tempting. It loses because the history establishes a minimum review-quality screen but not a rule to maximize ratings and proximity regardless of premium once a balanced qualifying option exists.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "Inn A clears the 4.0 customer-review floor on the available Hotels.com scale, and the source can be stated explicitly. It preserves the desired lake view at a moderate rate, making the longer trailhead drive the principal tradeoff rather than paying C's premium to maximize every attribute.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The nice-stay framing activates the 4.0 floor for the available customer-review metric. A clears it and balances rate and setting; B is the closest distractor because it is cheaper and more convenient but falls just below the personal screen.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_000_h05_p02",
+      "probe_type": "direct_use",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The alternatives implicitly invite an unstated weighting of lake view, guest score, trailhead access, breakfast, and price; no wording cue is sufficient to select one."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "A, B, and C make clear tradeoffs among price, score, lake view, and trailhead time; D adds breakfast at the cost of the longest drive and no view. The query does not specify which amenity or tradeoff should control.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Prioritize Resort A, citing its 4.2 Expedia guest score and accepting a short walk for a moderate rate."
+        },
+        {
+          "choice_id": "B",
+          "text": "Prioritize Resort B, using its four-star class and beachfront location as the stronger quality indicators."
+        },
+        {
+          "choice_id": "C",
+          "text": "Prioritize Resort C because it leads on both guest score and beach access despite the substantial premium."
+        },
+        {
+          "choice_id": "D",
+          "text": "Prioritize Resort D because it is the cheapest option that remains reasonably reviewed, despite the shuttle."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "evidence_disambiguation"
+      },
+      "probe_id": "tm_pd_v05_user_000_h05_p00",
+      "query": "For an Aruba resort-style stay, the booking site lists an official hotel class and an Expedia guest score out of 5; Google scores are unavailable. Resort A is three-star, scores 4.2 on Expedia, costs $310, and is a 6-minute walk from the beach. Resort B is four-star, scores 3.9 on Expedia, costs $282, and is beachfront. Resort C is four-star, scores 4.4, costs $375, and is beachfront. Resort D is three-star, scores 4.0, costs $265, and needs a 15-minute shuttle to the beach. Which should I prioritize?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_000",
+      "visible_history_scope": {
+        "max_session_index": 131
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Keep Hotel A available as the only confirmed match, explain its Google score, and ask the traveler to approve using it before treating the quality criterion as relaxed."
+        },
+        {
+          "choice_id": "B",
+          "text": "Put Hotel A first immediately because it alone confirms both non-negotiables, treating those requirements as sufficient despite its lower Google score."
+        },
+        {
+          "choice_id": "C",
+          "text": "Put Hotel B first while requesting a staffed late arrival, accepting that its current after-hours process does not yet satisfy the desk requirement."
+        },
+        {
+          "choice_id": "D",
+          "text": "Broaden the airport search before naming a fallback, seeking another refundable hotel that confirms both non-negotiables and has a stronger Google score."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "conflict_resolution"
+      },
+      "probe_id": "tm_pd_v05_user_000_h05_p01",
+      "query": "I need a nice hotel near Sacramento airport after a flight scheduled to land at 11:35 p.m. A staffed desk after midnight and a confirmed accessible roll-in shower are non-negotiable. Hotel A is $219 with a 3.8 Google score and confirms both requirements. Hotel B is $226 with a 4.2 Google score and the right shower, but after 11 p.m. it offers only self-check-in with an on-call employee. Hotel C is $211 with a 4.1 Google score and an all-night staffed desk, but it confirms only a tub with grab bars. Hotel D is $247 with a 4.3 Google score and the right shower, but it will note the arrival time without confirming that the desk remains staffed. All rates are refundable. What should the planner do next?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_000",
+      "visible_history_scope": {
+        "max_session_index": 131
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Prefer Inn A, citing its 4.1 Hotels.com guest score and balancing the lake view against the longer trailhead drive."
+        },
+        {
+          "choice_id": "B",
+          "text": "Prefer Inn B because its lower price and shorter drive outweigh the small difference in guest score."
+        },
+        {
+          "choice_id": "C",
+          "text": "Prefer Inn C because it combines the strongest score, lake view, and a shorter drive despite the premium."
+        },
+        {
+          "choice_id": "D",
+          "text": "Prefer Inn D because breakfast and the lower rate compensate for the longest drive and lack of a view."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "direct_use"
+      },
+      "probe_id": "tm_pd_v05_user_000_h05_p02",
+      "query": "For a nice Lake District stay without reliable Google coverage, the shortlist uses Hotels.com guest scores out of 5. Inn A is $238, scores 4.1, has lake views, and is 20 minutes from the trailhead. Inn B is $211, scores 3.9, has no lake view, and is 8 minutes from the trailhead. Inn C is $279, scores 4.4, has lake views, and is 10 minutes away. Inn D is $225, scores 4.0, has no view, and is 27 minutes away with breakfast included. All have equivalent cancellation terms. Which should be preferred?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_000",
+      "visible_history_scope": {
+        "max_session_index": 131
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 3,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 5,
+    "selected_count": 3,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 2
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "direct_use": 1,
+      "evidence_disambiguation": 1
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "cache_fingerprint": "c964dff15a408c1894ff7b80a833ca667b5ff2e7dbf47391439f0c02e69bc55d",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves only the current Philadelphia lodging decision. Elena chooses a single two-night Sheraton reservation because the small savings from splitting hotels would not justify moving during Friday's meetings; no recurring travel preference is established.",
+        "evidence_topology": {
+          "episode_id": "ep_004_philadelphia_press_board_meeting",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 13,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly retains morning and evening departures for this trip, overriding the afternoon-departure default, and explicitly retains American rather than applying the soft United option. The no-bed-request instruction is reservation-specific and does not establish or revise the shared-room queen-bed habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Keep the Thursday morning and Saturday evening American flights as selected.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Keep the Thursday morning and Saturday evening American flights as selected.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h02",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Can we revisit the Philadelphia hotel before I send this to the office? Keep the Thursday morning and Saturday evening American flights as selected. I want to compare staying in one place with using the board hotel on Friday night.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. For July 23-25, the current lodging choices near the board meetings are:\n\nSheraton Philadelphia University City: available both nights at $254 nightly, refundable.\n\nThe Study at University City: available both nights at $269 nightly, refundable.\n\nThe Inn at Penn, the board hotel: unavailable Thursday but available Friday at the $239 board rate. A split stay would require Thursday at the Sheraton, checking out Friday morning, and moving to the Inn at Penn before or after the board sessions.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please compare the actual totals, including tax, rather than just the room rates.",
+          "role": "user"
+        },
+        {
+          "content": "The current checkout totals are:\n\nSheraton for both nights: $508.00 room charge plus $79.76 tax, totaling $587.76.\n\nThe Study for both nights: $538.00 room charge plus $84.47 tax, totaling $622.47.\n\nSplit stay, with Thursday at the Sheraton and Friday at the Inn at Penn: $493.00 combined room charges plus $77.40 tax, totaling $570.40.\n\nNo mandatory destination or facility fee appears on any of the three checkout screens.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the split only saves $17.36 against the Sheraton?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. It saves $17.36, but it creates two reservations and requires you to check out Friday morning, store or move your bag, and check in again during a full meeting day.",
+          "role": "assistant"
+        },
+        {
+          "content": "How inconvenient is the Saturday breakfast if I stay at the Sheraton?",
+          "role": "user"
+        },
+        {
+          "content": "The Inn at Penn is about a five-minute walk from the Sheraton. You could check out of the Sheraton Saturday morning, leave your bag with the front desk, walk to breakfast, and retrieve the bag afterward. Staying at the Sheraton does not materially complicate breakfast.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then the split does not seem worthwhile. Are the cancellation terms meaningfully different?",
+          "role": "user"
+        },
+        {
+          "content": "The Sheraton's two-night rate can be canceled without charge until 6:00 p.m. local hotel time on Tuesday, July 21. After that, the penalty is one night's room and tax.\n\nThe Study requires cancellation by 6:00 p.m. on Monday, July 20, with a one-night penalty afterward. The split arrangement has separate deadlines: Tuesday evening for the Sheraton night and Monday evening for the Inn at Penn night.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the Sheraton for both nights. The extra $17.36 is worth avoiding a move on Friday.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. The selected lodging is now one refundable reservation at the Sheraton Philadelphia University City, checking in Thursday, July 23 and checking out Saturday, July 25. The verified total is $587.76 including tax.",
+          "role": "assistant"
+        },
+        {
+          "content": "For this reservation, use the least expensive refundable standard room. There is no need to request a particular bed. Please prepare exactly what the office needs, but do not book it yourself.",
+          "role": "user"
+        },
+        {
+          "content": "I will prepare it as a standard refundable room for one adult, without a bed request. The office booking details are:\n\nTraveler: Elena Ruiz\nHotel: Sheraton Philadelphia University City Hotel\nCheck-in: Thursday, July 23, 2026\nCheck-out: Saturday, July 25, 2026\nLength: 2 nights\nRoom: least expensive refundable standard room; no bed request\nNightly rate: $254.00\nRoom subtotal: $508.00\nTaxes: $79.76\nTotal: $587.76\nCancellation: no charge through 6:00 p.m. hotel local time on Tuesday, July 21; one night's room and tax afterward\nMandatory property fee shown: none\n\nFlights remain the selected American nonstops: Denver to Philadelphia Thursday morning, departing 7:10 a.m. and arriving 12:38 p.m.; Philadelphia to Denver Saturday evening, departing 6:05 p.m. and arriving 8:26 p.m. The office should recheck live availability and final terms immediately before purchase. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0013",
+      "session_index": 13,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena's March 26-29 Chicago conference arrangements remain based at the Palmer House; flight issuance and cancellation-credit handling still need confirmation. The May 1-3 Raleigh-area wedding flights and Sheraton stay for Elena and her spouse remain confirmed, along with the scheduled Saturday ride to the Matthews House; other local transfers, seats, and bags remain unarranged. The June 14-17 Seattle work trip remains booked. Elena still needs to update the relocated rights-meeting details, confirm the Tuesday sequence with the venue contact, and cancel the conflicting dinner. For the July 23-25 Philadelphia board meeting, the selected unbooked itinerary retains the Thursday morning and Saturday evening American nonstops. The selected hotel is one refundable two-night reservation at the Sheraton Philadelphia University City, currently totaling $587.76 including tax, with no mandatory property fee displayed and free cancellation through 6:00 p.m. local hotel time on July 21. The office has the reservation details but must recheck live availability, final flight and hotel totals, and transaction terms before booking. Nothing for Philadelphia has been purchased or reserved.",
+  "verification": {
+    "13": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Keep the Thursday morning and Saturday evening American flights as selected.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Keep the Thursday morning and Saturday evening American flights as selected.",
+          "habit_id": "tm_pd_v05_user_001_h02",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly retains morning and evening departures for this trip, overriding the afternoon-departure default, and explicitly retains American rather than applying the soft United option. The no-bed-request instruction is reservation-specific and does not establish or revise the shared-room queen-bed habit."
+    }
+  }
+}

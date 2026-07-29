@@ -1,0 +1,123 @@
+{
+  "cache_fingerprint": "f37c5b0eeb701502cf6af666adb137a84098a9b15156e247b335f89532147292",
+  "sessions": [
+    {
+      "domain": "flights_and_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The final Boston-to-Atlanta segment was moved to the later Friday nonstop after comparing airport-transfer margins and fare differences. Both hotel reservations were verified unchanged.",
+        "evidence_topology": {
+          "episode_id": "southeast_exhibition_transfer_01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 96,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user chose the confirmed nonstop 8:45 p.m. return option for this trip. This supports nonstop routing and later-day return timing, but does not establish recurring/default language. The hotel-date verification does not evidence any candidate hotel preference.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.97,
+            "evidence_quote": "Move only that final segment to the 8:45 Friday flight.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Move only that final segment to the 8:45 Friday flight.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The Boston museum moved Friday's receiving meeting to 2:00 p.m., so my booked flight home is now too early. The meeting should end at 3:30. Compare the two later Boston-to-Atlanta flights, but leave everything else alone.",
+          "role": "user"
+        },
+        {
+          "content": "The later Friday nonstops are at 6:20 p.m. and 8:45 p.m. From the museum, allow about 35-45 minutes to reach Logan by car in Friday traffic, then time for security. The 6:20 would require leaving promptly at 3:30 and offers limited cushion; the 8:45 is much more forgiving. The fare differences are $48.60 for the 6:20 and $126.40 for the 8:45.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the 6:20 actually workable if the meeting ends on time, or is that cutting it too close?",
+          "role": "user"
+        },
+        {
+          "content": "It is workable if you are out by 3:30, a car arrives quickly, and traffic is reasonable. You would likely reach Logan around 4:15-4:30, roughly 1 hour 50 minutes before departure. A 20-30 minute meeting overrun or traffic delay would materially reduce that margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then check the 8:45 details. Is it still nonstop and Main Cabin, and would the confirmation number remain the same?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The 8:45 p.m. Boston-to-Atlanta flight is nonstop in Main Cabin. The change has no service fee; the additional airfare is $126.40. Your existing confirmation G7K4LP remains in place, and the seat is still unassigned.",
+          "role": "assistant"
+        },
+        {
+          "content": "Move only that final segment to the 8:45 Friday flight. I authorize the $126.40 fare difference on the card ending in 1842.",
+          "role": "user"
+        },
+        {
+          "content": "The final segment has been changed. You are now confirmed on the 8:45 p.m. Friday nonstop from Boston to Atlanta in Main Cabin under G7K4LP. The card ending in 1842 was charged $126.40, and no seat has been assigned. The Atlanta-Washington and Washington-Boston flights were not changed.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before we finish, verify both hotel dates. The meeting time changed, but I should not need another night.",
+          "role": "user"
+        },
+        {
+          "content": "Verified. Riggs Washington DC remains February 9-11 under RIG-492731, and Hyatt Regency Boston remains February 11-13 under HYB-805416. Friday's later departure does not require an additional night, so neither reservation nor its dates were changed.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0096",
+      "session_index": 96,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "The Chicago installation trip, Omni Amelia Island stay, Nashville stay, Denver collection trip, January New Orleans trip, Cambria Hotel, Midtown Lodge Raleigh, and Milwaukee retirement visit remain arranged. Registrar approval is still pending for the proposed Boston hotel replacement from the earlier matter. The February 9-13 exhibition-transfer trip remains fully arranged under flight confirmation G7K4LP: the Atlanta-Washington and Washington-Boston segments are unchanged, while the February 13 Boston-Atlanta segment is now the 8:45 p.m. nonstop in Main Cabin with no seat assigned. A $126.40 fare difference was charged to the card ending in 1842. Riggs Washington DC remains reserved February 9-11 under RIG-492731 for $681.79; Hyatt Regency Boston remains reserved February 11-13 under HYB-805416 for $568.28. Both hotels are guaranteed on the card ending in 1842 and payable at the property. Washington cancellation is free through February 7 at 6:00 p.m. local time; Boston cancellation is free through February 10 at 11:59 p.m. local time.",
+  "verification": {
+    "96": {
+      "habit_signals": [
+        {
+          "confidence": 0.97,
+          "evidence_quote": "Move only that final segment to the 8:45 Friday flight.",
+          "habit_id": "tm_pd_v05_user_005_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Move only that final segment to the 8:45 Friday flight.",
+          "habit_id": "tm_pd_v05_user_005_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user chose the confirmed nonstop 8:45 p.m. return option for this trip. This supports nonstop routing and later-day return timing, but does not establish recurring/default language. The hotel-date verification does not evidence any candidate hotel preference."
+    }
+  }
+}

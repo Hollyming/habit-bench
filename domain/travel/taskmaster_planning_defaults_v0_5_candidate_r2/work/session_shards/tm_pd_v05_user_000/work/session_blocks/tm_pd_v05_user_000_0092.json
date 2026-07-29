@@ -1,0 +1,134 @@
+{
+  "cache_fingerprint": "d8ede44e719ba38f6d835fc879bc8c79f4dc986fadf2634c1d23193b18aec11f",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For this Monterey Peninsula trip, Maya selected the SJC itinerary with a Thursday morning departure and Monday 1:20 p.m. return after comparing elapsed travel time, realistic airport-to-hotel timing, baggage fees, ground costs, and usable vacation time. No recurring preference was established.",
+        "evidence_topology": {
+          "episode_id": "leisure-monterey-004",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 92,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user’s current-trip constraint favors the afternoon return over the 10:10 a.m. option, supporting the return-leg timing preference. The utterances do not establish a recurring default, and the other candidate habits are only discussed, accommodated, or traded off without a sufficiently explicit user endorsement of their exact defaults.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.93,
+            "evidence_quote": "I don't want to sacrifice Monday morning",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The San Jose fare moved. Can you compare it against SFO for both of us using the current prices, including bags, car costs, actual travel time, and the Monday options?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The current SJC itinerary is $486 round trip per person, so $972 for two before checked bags. It leaves MSP Thursday at 9:05 a.m., connects once, and reaches SJC at 2:18 p.m. The SFO nonstop is now $574 each, or $1,148 for two, arriving at 11:42 a.m. Thursday.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much time does the connection add?",
+          "role": "user"
+        },
+        {
+          "content": "The SJC outbound is 7 hours 13 minutes elapsed, including a 58-minute connection in Salt Lake City. The SFO nonstop is 3 hours 47 minutes in the air schedule, so it saves 3 hours 26 minutes before you leave the airport.",
+          "role": "assistant"
+        },
+        {
+          "content": "But SFO is farther from Monterey. Give me realistic hotel arrival times, not the map estimate.",
+          "role": "user"
+        },
+        {
+          "content": "For SJC, allow about 45 minutes to deplane, collect bags, and get the rental car, then 1 hour 25 minutes to 1 hour 50 minutes to Monterey in Thursday traffic. That puts you at the hotel around 4:30-4:55 p.m.\n\nFor SFO, rental pickup is more likely to take 50-65 minutes. The drive is nominally about 2 hours, but 2 hours 20 minutes to 3 hours is more realistic that afternoon. Despite landing earlier, hotel arrival is roughly 3:05-3:45 p.m. SFO still protects more of Thursday, but probably by only 45-90 minutes rather than the full airfare-schedule difference.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now the costs. Assume one checked bag each.",
+          "role": "user"
+        },
+        {
+          "content": "At $35 per bag each way, checked baggage adds $140 total.\n\nSJC: $972 flights, $140 bags, $1,610 hotels, and $453-$468 for the compact car, fuel, and parking. Complete transportation and lodging total: $3,175-$3,190.\n\nSFO: $1,148 flights, $140 bags, $1,610 hotels, and $517-$532 for the higher rental rate, fuel, and parking. Complete total: $3,415-$3,430.\n\nSJC saves $240 across the trip. Flight plus hotel is $2,582 before bags, still $818 below the $3,400 target.",
+          "role": "assistant"
+        },
+        {
+          "content": "What happens Monday with the 1:20 San Jose flight?",
+          "role": "user"
+        },
+        {
+          "content": "The 1:20 p.m. SJC departure keeps the quoted fare. It has one connection and reaches MSP at 8:46 p.m., with 6 hours 26 minutes total elapsed time. From Carmel, returning the car and checking bags means leaving around 9:15 a.m. A cautious traffic allowance gets you to the rental return near 11:00 a.m. and the terminal around 11:20.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the 10:10?",
+          "role": "user"
+        },
+        {
+          "content": "The 10:10 a.m. option arrives MSP at 5:37 p.m., but you would need to leave Carmel around 6:15-6:30 a.m. That removes breakfast and almost all usable time Monday, and the earlier drive does not create enough value unless being home before dinner matters more.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does the SFO nonstop make Monday easier?",
+          "role": "user"
+        },
+        {
+          "content": "Not enough to offset its cost. The available SFO nonstop leaves at 12:35 p.m. and arrives MSP at 6:08 p.m. You would still need to leave Carmel around 7:30 a.m. because the drive, rental return, and bag check require more buffer. It gets you home 2 hours 38 minutes earlier than the 1:20 SJC itinerary, but shortens the Carmel morning by about 1 hour 45 minutes.",
+          "role": "assistant"
+        },
+        {
+          "content": "So choose the flights. I want Thursday afternoon intact as much as reasonably possible, but I don't want to sacrifice Monday morning or push the trip over target.",
+          "role": "user"
+        },
+        {
+          "content": "Choose the $486-per-person SJC itinerary: MSP at 9:05 a.m. Thursday, the 58-minute Salt Lake City connection, and arrival at 2:18 p.m.; return Monday at 1:20 p.m., arriving MSP at 8:46 p.m.\n\nIt preserves a useful Thursday evening and most of Monday morning while keeping flight plus hotel at $2,582. With two checked bags round trip and all estimated ground costs, the working total is $3,175-$3,190. That is $240 below the comparable SFO plan. The fare, bag fee, rental total, traffic, and hotel parking remain unconfirmed until booking; nothing is reserved yet.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0092",
+      "session_index": 92,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The September 12-16 Monterey Peninsula trip for Maya and her partner remains unbooked. The selected flight plan is the SJC itinerary at $972 for two: MSP at 9:05 a.m. Thursday, a 58-minute Salt Lake City connection, SJC arrival at 2:18 p.m., and a Monday 1:20 p.m. return reaching MSP at 8:46 p.m. With one checked bag per traveler each way, split Monterey/Carmel hotels, and estimated car, fuel, and parking, transportation and lodging total approximately $3,175-$3,190; flight plus hotel is $2,582 against the $3,400 target. The SFO nonstop alternative totals approximately $3,415-$3,430. Live fares, bag fees, rental totals, parking terms, traffic, and Highway 1 conditions remain uncertain. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2, 2029 Baltimore client trip is confirmed, with airport transfers unbooked at an estimated $76. The November 6-8, 2029 Raleigh trip remains confirmed at a projected $1,288: flights and hotel are reserved, rides remain unbooked, and no checked bag is attached. Earlier unresolved follow-ups include the Raleigh corrected folio, Philadelphia deposit release, and Nashville refund reconciliation.",
+  "verification": {
+    "92": {
+      "habit_signals": [
+        {
+          "confidence": 0.93,
+          "evidence_quote": "I don't want to sacrifice Monday morning",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user’s current-trip constraint favors the afternoon return over the 10:10 a.m. option, supporting the return-leg timing preference. The utterances do not establish a recurring default, and the other candidate habits are only discussed, accommodated, or traded off without a sufficiently explicit user endorsement of their exact defaults."
+    }
+  }
+}

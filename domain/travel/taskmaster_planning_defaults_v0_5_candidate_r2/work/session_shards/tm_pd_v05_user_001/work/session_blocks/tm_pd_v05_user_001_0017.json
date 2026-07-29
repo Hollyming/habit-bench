@@ -1,0 +1,110 @@
+{
+  "cache_fingerprint": "6418b28fe504572ade3b904c632c587de6ebbf07abbe29a65e7d6b8cd7583a49",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The altered Bangor departure was compared with the airline's later Portland alternative. Elena selected the Portland return because it preserves the final Bar Harbor night with more departure margin. The flight and rental return location require updates; both hotel reservations remain unchanged.",
+        "evidence_topology": {
+          "episode_id": "ep_005_maine_coast_shared_vacation",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 17,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selects the offered 5:35 p.m. Portland departure for this trip. This supports an afternoon departure choice but does not establish a recurring preference. No other candidate habit is evidenced by the user's utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.94,
+            "evidence_quote": "Use Portland, then.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The airline changed our Bangor flight to 11:55 a.m. They will also let us switch to a 5:35 p.m. departure from Portland without changing the airfare. Which is more workable from Bar Harbor?",
+          "role": "user"
+        },
+        {
+          "content": "Portland is more workable if you want to keep the final night in Bar Harbor. For Bangor, allowing about 1 hour 15 minutes to drive, time to refuel and return the car, and two hours at the airport means leaving around 7:45 a.m. The Portland option requires roughly 3 hours 15 minutes of driving, but a 10:00 a.m. departure from Bar Harbor should still put you at the airport near 2:00 p.m. after a stop and rental return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does switching airports disturb either hotel reservation?",
+          "role": "user"
+        },
+        {
+          "content": "No. The confirmed sequence remains two nights in Portland followed by four nights in Bar Harbor, including Thursday night before the Friday flight. Neither hotel date needs to change.",
+          "role": "assistant"
+        },
+        {
+          "content": "What happens to the one-way rental? It currently starts in Portland and ends in Bangor.",
+          "role": "user"
+        },
+        {
+          "content": "The return location must be changed from Bangor to Portland. That would make it a Portland round trip and should remove the quoted $82 one-way drop charge, but the rental company may reprice the full reservation when it is modified. The office should compare the revised total with a new Portland round-trip booking before canceling the existing rental.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the extra driving is the only real disadvantage?",
+          "role": "user"
+        },
+        {
+          "content": "It is the main disadvantage: about two additional hours behind the wheel and more fuel. Against that, you avoid the early departure from Bar Harbor, eliminate the Bangor drop charge if the rental rate holds, and gain considerably more schedule margin. Even with perhaps $25-$35 in additional fuel, Portland should be modestly cheaper on ground costs.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use Portland, then. Give me the limited list of changes so nothing else gets reopened.",
+          "role": "user"
+        },
+        {
+          "content": "Accept the airline's no-additional-fare change to the 5:35 p.m. Friday departure from Portland for both travelers, then confirm the new ticket numbers, connection, baggage terms, and any seat assignments. Change only the rental return location to Portland after checking the revised total; retain the current reservation until the replacement or modification is confirmed. Leave both hotel reservations and all dates unchanged. Plan to leave Bar Harbor at about 10:00 a.m., refuel near Portland, and reach the terminal around 2:00 p.m. No other trip component needs updating.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0017",
+      "session_index": 17,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena's March 26-29 Chicago conference arrangements remain based at the Palmer House; flight issuance and cancellation-credit handling still need confirmation. The May 1-3 Raleigh-area wedding trip for Elena and her spouse remains confirmed, including the scheduled Saturday ride to the Matthews House; other local transfers, seats, and bags remain unarranged. The June 14-17 Seattle work trip remains booked; Elena still needs to update the relocated rights-meeting details, confirm Tuesday's sequence with the venue contact, and cancel the conflicting dinner. The July 23-25 Philadelphia board trip remains confirmed, with Saturday checkout and bag storage planned before the unchanged evening return flight. For September 12-18, Elena and her spouse have confirmed two nights in Portland followed by four nights in Bar Harbor. After the airline moved the Bangor departure earlier, Elena selected the offered 5:35 p.m. Friday return from Portland at no additional airfare. The office must complete the flight exchange, verify ticket details and seat assignments, and change the rental return from Bangor to Portland after comparing the modified rate with a new round-trip booking. Both hotel reservations and their dates remain unchanged.",
+  "verification": {
+    "17": {
+      "habit_signals": [
+        {
+          "confidence": 0.94,
+          "evidence_quote": "Use Portland, then.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selects the offered 5:35 p.m. Portland departure for this trip. This supports an afternoon departure choice but does not establish a recurring preference. No other candidate habit is evidenced by the user's utterances."
+    }
+  }
+}

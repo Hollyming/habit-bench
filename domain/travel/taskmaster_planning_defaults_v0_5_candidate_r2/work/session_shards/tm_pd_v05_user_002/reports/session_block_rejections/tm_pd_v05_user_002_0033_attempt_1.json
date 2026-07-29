@@ -1,0 +1,128 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_002_h06', 'support') actual=[('tm_pd_v05_user_002_h06', 'boundary')]",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marcus endorsed prioritizing a balcony when available for family coastal stays, while explicitly treating it as a soft preference and accepting a suitable first-floor room without one. This supports the supplied hotel-view-balcony-flexibility policy without introducing another durable preference.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "Price the actual hotels now. Use Friday June 20 through Friday June 27 as the main set, but check Saturday June 21 through Saturday June 28 too. I want one serious Mission Bay choice and one Coronado alternative, with the real total after fees, taxes, and parking.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare rooms that explicitly allow two adults and one 12-year-old, not just rooms labeled for two. One date check first: both flight patterns produce seven hotel nights, not eight. Should I keep the search at seven nights to match the flights?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, seven nights. That eight-night reference was wrong. Keep the flights exactly as they are.",
+          "role": "user"
+        },
+        {
+          "content": "For June 20-27, the strongest initial matches are Bahia Resort Hotel in Mission Bay and Coronado Island Marriott Resort & Spa. Both have rooms whose occupancy rules explicitly permit three guests. I’m checking room configuration, mandatory charges, parking, and the cancellation terms attached to the quoted rates now.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Also compare the practical driving. We’ll have beach days, one zoo day, and the Disneyland day trip.",
+          "role": "user"
+        },
+        {
+          "content": "Bahia, Deluxe Bay View room: two queen beds, maximum occupancy four, private balcony, and no rollaway needed for three. Seven-night room subtotal is $2,688. Resort fee is $294, estimated lodging taxes are $378.52, and self-parking is $280. Complete stay total: $3,640.52. The refundable rate can be canceled through 6:00 p.m. local time on June 13; after that, the penalty is one night plus tax.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the Coronado room? Make sure it is not a king room with a vague sofa-bed listing.",
+          "role": "user"
+        },
+        {
+          "content": "The comparable Coronado Island Marriott quote is a first-floor two-queen guest room with a terrace. It permits up to four guests, so two adults and Owen are covered without a sofa bed. Room subtotal is $2,856. The destination fee is $350, estimated lodging taxes are $449.68, and self-parking is $378. Complete total: $4,033.68. Cancellation is free through 11:59 p.m. local time on June 15; canceling later triggers a one-night room-and-tax charge.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is that terrace effectively a balcony, or is it ground level?",
+          "role": "user"
+        },
+        {
+          "content": "It is ground level, not a balcony. The room opens to a furnished outdoor terrace. A two-queen room with an upper-floor balcony is available for the same dates, but its complete total with fees, taxes, and parking is $4,454.06, or $420.38 more.",
+          "role": "assistant"
+        },
+        {
+          "content": "For family coastal stays, prioritize a balcony when it’s available, but treat that as a soft preference. A first-floor room like this is acceptable without one, and I don’t want to eliminate an otherwise good hotel over it.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. Bahia’s balcony room remains the direct fit. For Coronado, I’ll keep the first-floor terrace room in contention because the outdoor space is usable and the balcony upgrade is substantial, while noting the upper-floor option separately rather than making it the default quote.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now give me the driving comparison. Use realistic ranges, not best-case estimates.",
+          "role": "user"
+        },
+        {
+          "content": "From Bahia, the hotel’s Mission Bay beach is on site, Mission Beach is usually 5-10 minutes, the San Diego Zoo about 15-25 minutes, and Disneyland roughly 90-120 minutes each way before unusual incidents. From Coronado Island Marriott, Coronado Beach is about 10-15 minutes, the zoo 15-25 minutes, Mission Beach 20-35 minutes, and Disneyland about 95-125 minutes. Coronado also adds bridge traffic exposure when going to most mainland activities.",
+          "role": "assistant"
+        },
+        {
+          "content": "So Bahia is $393.16 cheaper than the Coronado terrace room, correct?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. $4,033.68 minus $3,640.52 is $393.16. Bahia also avoids repeated bridge crossings for the zoo and Mission Beach, while Coronado gives easier access to Coronado Beach and the island’s restaurants.",
+          "role": "assistant"
+        },
+        {
+          "content": "What happens to those same two rooms on the Saturday-to-Saturday flight fallback?",
+          "role": "user"
+        },
+        {
+          "content": "For June 21-28, Bahia’s same Deluxe Bay View two-queen balcony room totals $3,782.44: $2,814 room, $294 resort fee, $394.44 estimated tax, and $280 parking. Free cancellation runs through 6:00 p.m. June 14. The Coronado Marriott first-floor two-queen terrace room totals $3,918.70: $2,754 room, $350 destination fee, $436.70 estimated tax, and $378 parking. Free cancellation runs through 11:59 p.m. June 16.",
+          "role": "assistant"
+        },
+        {
+          "content": "Interesting. Add the airfare so I can see whether Saturday actually wins overall.",
+          "role": "user"
+        },
+        {
+          "content": "Friday pattern: $1,587 airfare plus $3,640.52 at Bahia equals $5,227.52; with Coronado it is $5,620.68. Saturday pattern: $1,536 airfare plus $3,782.44 at Bahia equals $5,318.44; with Coronado it is $5,454.70. Saturday is $90.92 more with Bahia, but $165.98 less with Coronado.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Saturday United flight arrives in the morning, though. Does that create an extra hotel issue before check-in?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. United arrives at 10:35 a.m., while standard check-in at both properties is 4:00 p.m. They can hold luggage, but early room access is not guaranteed. The Friday American flight arrives at 8:45 p.m., so the room should be ready, though the first night is mostly an arrival night. Neither quote includes guaranteed early check-in or late checkout.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep Friday as primary. The cleaner arrival and the cheaper Bahia combination are enough. Which property are you actually recommending?",
+          "role": "user"
+        },
+        {
+          "content": "Primary recommendation: Bahia Resort Hotel for June 20-27 in the Deluxe Bay View room with two queens and a private balcony. It explicitly accommodates all three of you, totals $3,640.52 including resort fee, estimated taxes, and seven nights of self-parking, and has the best logistics for repeated beach time plus the zoo. Cancel by 6:00 p.m. June 13 to avoid the one-night-plus-tax penalty.",
+          "role": "assistant"
+        },
+        {
+          "content": "And keep Coronado credible, not just as a throwaway. Restate exactly which room and why it survives.",
+          "role": "user"
+        },
+        {
+          "content": "Credible alternative: Coronado Island Marriott Resort & Spa, June 20-27, first-floor two-queen room with furnished terrace, maximum occupancy four. Complete total is $4,033.68 including the destination fee, estimated taxes, and self-parking. Cancel through 11:59 p.m. June 15 without penalty. It remains viable for stronger access to Coronado Beach and island dining; its tradeoffs are the $393.16 premium and more bridge-dependent driving. The upper-floor balcony version is available at $4,454.06, but the terrace room is the better-value alternative. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0033",
+      "session_index": 33,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Marcus's Atlanta, Minneapolis, Dallas, San Diego, and Nashville plans remain unchanged. The Washington family trip for Marcus Lee, Daniel Lee, and Owen Lee remains confirmed for October 10-14 under American confirmation W6P9KT and Embassy Suites confirmation ESW-481762. They will rideshare from DCA to Embassy Suites Washington DC Convention Center, 900 10th Street NW. The first Smithsonian entry is at 8:30 a.m.; leave the hotel at 7:55 a.m. and arrive around 8:15. For Seattle Thanksgiving, American confirmation R4K8VN covers American 2367 from ORD to SEA on November 26. Coast Gateway Hotel confirmation CGH-730194 remains for November 26-27 with late arrival noted. United confirmation H7LM2Q covers United 1847 from SEA to ORD on November 30; seats 22D, 22E, and 22F and one checked bag are confirmed. The Phoenix work trip runs January 12-15. United confirmation N8Q4LS covers United 2248 from ORD to PHX on January 12. American confirmation K3R7DX covers American 447 from PHX to ORD on January 15. Hilton confirmation HTM-593184 covers January 12-15 at $627.93. Hertz confirmation J84219673 covers the midsize car through a 5:00 a.m. Thursday return at $338.58. The revised Phoenix trip total is $1,651.45; leave the Hilton at 4:35 a.m. Thursday. For the San Diego family vacation, nothing is booked. The primary dates remain June 20-27 on American nonstops at $1,587 for three. Bahia Resort Hotel is the primary lodging finalist at $3,640.52 complete, with verified occupancy for three and free cancellation through 6:00 p.m. June 13; combined airfare and lodging are $5,227.52. Coronado Island Marriott is the credible alternative at $4,033.68 complete, with verified occupancy for three and free cancellation through 11:59 p.m. June 15; combined airfare and lodging are $5,620.68. The June 21-28 United fallback remains available at $1,536, with corresponding complete lodging totals of $3,782.44 at Bahia and $3,918.70 at Coronado. Next choose the property and flights before booking."
+}

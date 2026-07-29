@@ -1,0 +1,88 @@
+{
+  "reason": "ordinary_session_excessive_incidental_policy_matches:tm_pd_v05_user_000_h00,tm_pd_v05_user_000_h01,tm_pd_v05_user_000_h03",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya compared standard-economy flight options for the current Savannah and Tybee trip and selected a mixed nonstop/one-stop itinerary based on budget, travel time, and usable destination time. No recurring preference was established.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "Now compare flights for the Savannah and Tybee trip, April 23 through 28, from Minneapolis. Two adults. With the hotels at roughly $2,502 all-in, show me what the realistic flight choices do to the full $3,800 budget.",
+          "role": "user"
+        },
+        {
+          "content": "That leaves $1,298 for airfare and local transportation. I’ll compare the useful-time tradeoff as well as fare. Should I price standard economy rather than the most restrictive basic fares, and are you planning to check bags?",
+          "role": "assistant"
+        },
+        {
+          "content": "Standard economy. One checked bag total, not one each. We can handle one connection, but I don’t want an itinerary that turns either travel day into a complete loss.",
+          "role": "user"
+        },
+        {
+          "content": "I found three practical round trips at the current displayed prices for two adults, before the checked-bag charge:\n\n1. Delta nonstop both ways: Thursday 8:05 a.m.–11:42 a.m.; Tuesday 1:35 p.m.–3:28 p.m. Airfare is $918 total. With about $70 round trip for one checked bag and $190 estimated for rideshares between SAV, Savannah, and Tybee, the trip estimate is $3,680. That leaves about $120.\n\n2. American via Charlotte both ways: Thursday 6:20 a.m.–11:18 a.m.; Tuesday 4:10 p.m.–9:14 p.m. Airfare is $654 total. With an estimated $80 for the bag and $190 for rideshares, the trip is about $3,426, leaving $374.\n\n3. Mixed schedule, Delta nonstop outbound and one stop in Atlanta returning: Thursday 8:05 a.m.–11:42 a.m.; Tuesday 2:45 p.m.–7:03 p.m. Airfare is $772 total. With about $70 for the bag and $190 for rideshares, the full estimate is $3,534, leaving $266.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much usable time are we really buying with the all-nonstop option versus number 2?",
+          "role": "user"
+        },
+        {
+          "content": "On Thursday, the nonstop gets you to Savannah 24 minutes later than option 2, despite leaving 1 hour 45 minutes later. So you gain sleep and avoid Charlotte, but almost no additional destination time. On Tuesday, option 2 leaves Savannah 2 hours 35 minutes later, although it reaches Minneapolis 5 hours 46 minutes later. The nonstop gets you home much earlier but gives up part of the final afternoon. Across the trip, the extra $264 in airfare mainly buys simpler travel and an earlier arrival home, not more time in Savannah or Tybee.",
+          "role": "assistant"
+        },
+        {
+          "content": "Interesting. What does number 3 accomplish, then?",
+          "role": "user"
+        },
+        {
+          "content": "It protects the easiest outbound, which matters because you can reach the Drayton around 12:30 p.m. and have most of Thursday in Savannah. On Tuesday it leaves 1 hour 25 minutes earlier than option 2 and arrives 2 hours 11 minutes earlier, with a 54-minute Atlanta connection. It costs $118 more than option 2 and $146 less than the nonstop round trip.",
+          "role": "assistant"
+        },
+        {
+          "content": "That Atlanta connection sounds tight. Is there a later version with a safer layover that still gets us home at a reasonable hour?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. There is a 2:05 p.m. departure from SAV connecting in Atlanta with a 1-hour-28-minute layover, arriving MSP at 7:21 p.m. Paired with the same Thursday nonstop, standard economy is $796 for two. Adding the estimated $70 bag charge and $190 local transportation puts the full trip near $3,558, leaving about $242 under the ceiling.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare that revised mixed plan directly against the cheap American itinerary. Include how much Tuesday we keep on Tybee after checkout.",
+          "role": "user"
+        },
+        {
+          "content": "Revised mixed plan: leave SAV at 2:05 p.m. You would want to leave Tybee around 11:45 a.m., allowing for the drive, bag drop, and security. After a typical 11:00 a.m. checkout, that gives you roughly 45 minutes nearby, but not a meaningful beach block. Full trip estimate: $3,558.\n\nAmerican: leave SAV at 4:10 p.m. You could leave Tybee around 1:45 p.m., preserving about 2 hours 45 minutes after checkout. Full trip estimate: $3,426.\n\nAmerican saves about $132 and gives you roughly two more hours on Tybee Tuesday. The cost is the 6:20 a.m. Thursday departure, two connections across the round trip, and getting home after 9:00 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Take the American option out. The early start plus the late return is too much for saving $132. Between all nonstop and the revised mixed plan, which is the better fit for this trip?",
+          "role": "user"
+        },
+        {
+          "content": "The revised mixed plan is the better balance. It preserves the nonstop Thursday arrival, uses a reasonable 1-hour-28-minute connection Tuesday, and keeps $242 of budget room rather than $120. The all-nonstop plan is simpler, but its Tuesday schedule actually reduces destination time and costs another $122.",
+          "role": "assistant"
+        },
+        {
+          "content": "Carry forward the revised mixed plan. Give me the concise complete estimate and timing, but don’t book it.",
+          "role": "user"
+        },
+        {
+          "content": "Carry forward the revised mixed itinerary for two in standard economy: Thursday, April 23, MSP 8:05 a.m.–SAV 11:42 a.m., nonstop; Tuesday, April 28, SAV 2:05 p.m.–MSP 7:21 p.m., connecting in Atlanta with a 1-hour-28-minute layover. Current airfare is $796 total, plus about $70 round trip for one checked bag. Combined with the $2,502 estimated lodging total and $190 estimated local transportation, the trip is approximately $3,558, leaving about $242 below the $3,800 ceiling. Plan to leave Tybee around 11:45 a.m. Tuesday. Prices and schedules remain subject to change. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0006",
+      "session_index": 6,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. For the April 23–28 coastal trip, Maya and her partner chose Savannah followed by Tybee Island. The lodging plan carried forward is The Drayton Hotel for two nights and Beachview Inn & Spa for three nights, estimated at $2,502 including taxes and current mandatory fees. The flight plan carried forward for two is MSP 8:05 a.m.–SAV 11:42 a.m. on April 23 and SAV 2:05 p.m.–MSP 7:21 p.m. via Atlanta on April 28, currently $796 plus about $70 for one checked bag. With $190 estimated local transportation, the full trip estimate is $3,558, about $242 below the ceiling. No leisure travel has been booked."
+}

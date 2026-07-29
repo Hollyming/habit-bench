@@ -1,0 +1,128 @@
+{
+  "cache_fingerprint": "5402c071c8743776e8e4f43e2a925c0418c0636b5461460fa9b9b724b7e5548a",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support evidence: when the Delta nonstop pairing met the Baltimore schedule and price constraints, Avery explicitly selected it for this trip. No other durable preference was introduced.",
+        "evidence_topology": {
+          "episode_id": "atlanta_baltimore_deinstallation_01",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 50,
+          "target_habit_id": "tm_pd_v05_user_005_h02",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selects Delta because it satisfies the current trip's schedule and price constraints, supporting the soft carrier preference. The dialogue does not contain sufficiently self-contained user wording to establish the nonstop, later-return, seat, or hotel habits at the required confidence threshold. This is a current-trip choice, not durable recurring language.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Delta fits the schedule and the price is fine, so use that pairing.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_005_h02",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I have the Baltimore project code now: BAL-DEINST-820. There is also a schedule change. Tuesday's museum call is 7:30 a.m., so I need to fly up Monday evening. Please check the Monday flight and tell me whether Wednesday night is still sensible after the crates leave at 5:00.",
+          "role": "user"
+        },
+        {
+          "content": "The Monday nonstop previously discussed still works: Atlanta to BWI on Monday, August 18, departing at 6:35 p.m. and arriving at 8:27 p.m. For Wednesday, I found two nonstop returns worth comparing: one at 7:20 p.m., arriving Atlanta at 9:14 p.m., and the later flight at 8:45 p.m., arriving at 10:39 p.m. I am checking both against the museum-to-hotel-to-airport sequence.",
+          "role": "assistant"
+        },
+        {
+          "content": "Assume the crates actually pull away at 5:00, not that I can leave before then. My carry-on will be at the hotel near the Walters.",
+          "role": "user"
+        },
+        {
+          "content": "With a 5:00 p.m. crate departure, closeout and handoff would likely keep you at the museum until about 5:15. Allowing 10 to 15 minutes to reach the hotel and retrieve the bag puts departure for BWI around 5:30. The drive is commonly 25 to 40 minutes at that hour, so a realistic airport arrival is approximately 6:00 to 6:15 p.m., with 6:30 possible if traffic or closeout runs long.",
+          "role": "assistant"
+        },
+        {
+          "content": "That makes 7:20 look too close. Is the 8:45 flight Delta?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The 8:45 p.m. nonstop is Delta, arriving in Atlanta at 10:39 p.m. The 7:20 p.m. option is another carrier. The Delta return leaves roughly two hours and fifteen minutes after a conservative 6:30 airport arrival, while the earlier flight would leave only 50 minutes later.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the Monday 6:35 flight?",
+          "role": "user"
+        },
+        {
+          "content": "That flight is also Delta and nonstop, arriving BWI at 8:27 p.m. The round trip using the Monday 6:35 outbound and Wednesday 8:45 return is still $276 in the quoted main-cabin fare.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Delta fits the schedule and the price is fine, so use that pairing. I do not want to add Thursday just to avoid getting home late.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I will use the Delta nonstop Monday evening and the later Delta nonstop Wednesday. The Wednesday timing preserves a workable airport margin after the 5:00 p.m. crate departure, so there is no need to retain Thursday as the planned return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before you ticket it, confirm the sequence Wednesday one more time. I do not want the itinerary resting on a best-case drive.",
+          "role": "user"
+        },
+        {
+          "content": "Conservative Wednesday sequence: crates depart at 5:00 p.m.; finish the handoff and leave the Walters around 5:15; reach the nearby hotel and collect the carry-on by about 5:30; depart immediately for BWI; arrive around 6:10 under ordinary traffic, with 6:30 as the working delay case. That still leaves 2 hours 15 minutes before the 8:45 departure. A disruption beyond that could reduce the cushion, but the plan does not depend on the fastest drive.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is realistic. Book the round trip to BAL-DEINST-820. Keep the hotel at two nights; I will choose the property separately.",
+          "role": "user"
+        },
+        {
+          "content": "Booked under project code BAL-DEINST-820: Delta nonstop from Atlanta to BWI on Monday, August 18, departing at 6:35 p.m. and arriving at 8:27 p.m.; Delta nonstop from BWI to Atlanta on Wednesday, August 20, departing at 8:45 p.m. and arriving at 10:39 p.m. Total airfare is $276. Flight confirmation: DL8M4R. The Wednesday return is based on leaving the museum after the 5:00 p.m. crate departure, retrieving the carry-on near the Walters, and targeting BWI by 6:10 to 6:30 p.m. Thursday is no longer being held as the return option. The lodging plan remains two nights, Monday and Tuesday, with Wednesday luggage storage; no hotel has been selected or booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0050",
+      "session_index": 50,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "Avery’s Atlanta-Chicago museum trip was completed as arranged. The Atlanta-Raleigh family trip for Avery and her wife remains confirmed at $864, with hotel cancellation through November 12. Registrar approval remains pending for the proposed Boston hotel replacement; nothing there has been booked. The September St. George Island stay, Denver installation trip, Minneapolis graduation, Dallas collection pickup, June Carlsbad anniversary trip, October Columbus family visit, and November Detroit assignment remain as previously confirmed. The July St. Louis loan handoff is fully arranged under project code STL-LH-417: flights are confirmed under ATL7QK and MetroLink Hotel Central West End under MLCWE-716284. For August 22-28 on Jekyll Island, Seafarer confirmation SJI-6382049 remains the only active coastal reservation at $1,493.16; free cancellation runs through 4:00 p.m. local time August 20, and the canceled Westin deposit of $344.28 is expected back. For the August 19-20 Baltimore deinstallation at the Walters Art Museum, round-trip flights are confirmed under DL8M4R and project code BAL-DEINST-820: Atlanta to BWI Monday, August 18, 6:35-8:27 p.m., and BWI to Atlanta Wednesday, August 20, 8:45-10:39 p.m., for $276. Tuesday reporting time is 7:30 a.m. Wednesday’s plan is to remain through the 5:00 p.m. crate departure, collect a carry-on from the hotel, and target BWI by 6:10-6:30 p.m. Thursday is not part of the itinerary. Two hotel nights, Monday and Tuesday, plus Wednesday luggage storage are required, but the Baltimore hotel remains unbooked.",
+  "verification": {
+    "50": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Delta fits the schedule and the price is fine, so use that pairing.",
+          "habit_id": "tm_pd_v05_user_005_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selects Delta because it satisfies the current trip's schedule and price constraints, supporting the soft carrier preference. The dialogue does not contain sufficiently self-contained user wording to establish the nonstop, later-return, seat, or hotel habits at the required confidence threshold. This is a current-trip choice, not durable recurring language."
+    }
+  }
+}

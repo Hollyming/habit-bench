@@ -1,0 +1,136 @@
+{
+  "cache_fingerprint": "edcea41bc066d8ae9763b9a6d746b9bd370672d7af025ff62b1a3214d0b2be08",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support for the supplied flight-cabin policy appears once through Priya's ordinary choice to review business class first, accept coach if needed for feasibility, compare the live coach difference, and select business when it remains feasible for this employer-funded audit trip.",
+        "evidence_topology": {
+          "episode_id": "audit-raleigh-01",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 50,
+          "target_habit_id": "tm_pd_v05_user_003_h03",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly prioritizes business class when feasible and accepts coach as a schedule-driven fallback for this trip. No other candidate habit is established with sufficiently exact user-language evidence.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Please show business class first where it is available and feasible; coach is acceptable if that is what makes the schedule work.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_003_h03",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The manager has now fixed the Tuesday closing meeting to end by 4:30 p.m. Compare the actual Sunday and Tuesday flight combinations before we decide. Please show business class first where it is available and feasible; coach is acceptable if that is what makes the schedule work.",
+          "role": "user"
+        },
+        {
+          "content": "I found two workable Sunday departures from San Francisco. Option A leaves SFO at 7:05 a.m., connects in Denver, and reaches RDU at 4:12 p.m. Option B is a 2:00 p.m. nonstop arriving at 10:18 p.m. Both currently have business-class inventory. For Tuesday, the lower fare leaves RDU at 6:05 p.m. and connects in Dallas; the later nonstop leaves at 7:25 p.m. Business-class round trips range from $1,438 to $1,674 depending on the pairing.",
+          "role": "assistant"
+        },
+        {
+          "content": "Break those into complete round trips. I do not want to compare disconnected segments.",
+          "role": "user"
+        },
+        {
+          "content": "Using the 7:05 a.m. Sunday departure and 4:12 p.m. arrival: the Tuesday 6:05 p.m. connecting return totals $1,438 in business, while the 7:25 p.m. nonstop return totals $1,674. Using the Sunday nonstop that arrives at 10:18 p.m.: the same Tuesday connection totals $1,360, and the later Tuesday nonstop totals $1,596. All four fares include one checked bag and are currently changeable with a fare difference.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much airport margin do the Tuesday flights really leave if I am in Clayton until 4:30? Include the rental-car return.",
+          "role": "user"
+        },
+        {
+          "content": "A realistic sequence is 10 minutes to leave the site, 35 to 45 minutes to RDU in ordinary traffic, and 15 minutes for fuel and rental return. That puts you in the terminal around 5:30 to 5:40. The 6:05 connection would leave only 25 to 35 minutes before departure, so it is not credible. The 7:25 nonstop leaves about 1 hour 45 minutes before departure and roughly 1 hour 10 minutes before boarding closes, with some exposure to heavier traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. Remove the 6:05 option. Does arriving after 10 Sunday create any issue beyond a late hotel check-in?",
+          "role": "user"
+        },
+        {
+          "content": "It would put you in Clayton around 11:15 p.m. after collecting the car, assuming no delay. The hotel will hold the room with a guaranteed reservation, but that leaves no useful buffer if the nonstop runs late and gives you a short night before Monday. The 4:12 p.m. arrival provides time to collect the car, check in, and handle any schedule disruption before the audit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then the earlier Sunday arrival is the sensible outbound even though it connects. Compare that round trip with returning Wednesday morning.",
+          "role": "user"
+        },
+        {
+          "content": "The earlier Sunday flight paired with Tuesday's 7:25 p.m. nonstop is $1,674 in business. A Wednesday 7:20 a.m. nonstop return is $1,522 in business. However, Wednesday adds a $226 airport-hotel night and about $58 for the extra rental period. After the $152 airfare reduction, returning Wednesday adds approximately $132 to the trip, before tax adjustments, and delays your return until Wednesday morning.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the Tuesday nonstop against coach as well. I want to know whether the business fare is still reasonable, not assume it is.",
+          "role": "user"
+        },
+        {
+          "content": "With the same Sunday 7:05 a.m. outbound and Tuesday 7:25 p.m. nonstop, coach is $982 round trip and business is $1,674, a difference of $692. Both preserve the same schedule. Business remains available on both segments; the outbound uses domestic first-class seating on the two legs, and the nonstop return is sold as business.",
+          "role": "assistant"
+        },
+        {
+          "content": "The schedule and Tuesday return matter more here, and business is feasible. Use the $1,674 round trip. Before purchasing, verify that the connection in Denver is not unusually short and that the Tuesday fare has not moved.",
+          "role": "user"
+        },
+        {
+          "content": "The Denver connection is 1 hour 18 minutes, with no terminal change currently shown. The Tuesday nonstop is still available, and the complete business-class fare remains $1,674 including taxes. The ticket is changeable subject to fare difference and nonrefundable to the original payment method.",
+          "role": "assistant"
+        },
+        {
+          "content": "Purchase that itinerary. Keep Wednesday documented only as the fallback if the closing schedule changes again.",
+          "role": "user"
+        },
+        {
+          "content": "Purchased in business class: Sunday, October 27, SFO at 7:05 a.m. to RDU at 4:12 p.m. via Denver, followed by Tuesday, October 29, RDU at 7:25 p.m. nonstop to SFO at 10:08 p.m. The total charged is $1,674 including taxes, and the ticket is changeable with any fare difference. The Wednesday 7:20 a.m. nonstop remains documented as an unbooked fallback that would add an estimated $132 in combined airfare, hotel, and rental cost at the last checked prices.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0050",
+      "session_index": 50,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund and rental documentation remain pending. Washington, Sonoma, Bothell, Chicago, Carlsbad, Palm Springs, Cypress Spa Lodge, Indianapolis, and the July supplier-audit arrangements remain as previously recorded, with their noted documentation follow-ups. Scottsdale November 6-10 remains selected but unbooked. Boston September 15-20 airfare is purchased on separate linked records; retain the business-only comparison. The Westin work stay transitions Friday to a linked personal extension through Sunday in the same room. Separate folios and payment methods are confirmed in writing, the spouse may obtain a key with identification, the $371.48 personal deposit is paid, and $371.47 remains due Sunday. Retain both confirmations and final folios, refresh keys Friday, and verify the personal card before new charges post. For the October 27-29 Clayton manufacturing audit, business-class airfare is purchased for $1,674: SFO-RDU Sunday via Denver, arriving 4:12 p.m., and a Tuesday 7:25 p.m. nonstop return after the 4:30 p.m. closing meeting. The Denver connection is 1 hour 18 minutes. A Wednesday 7:20 a.m. nonstop remains an unbooked fallback estimated to add $132 after airfare, hotel, and rental differences. Live hotel totals, airport-shuttle hours, and rental billing still require confirmation.",
+  "verification": {
+    "50": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Please show business class first where it is available and feasible; coach is acceptable if that is what makes the schedule work.",
+          "habit_id": "tm_pd_v05_user_003_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly prioritizes business class when feasible and accepts coach as a schedule-driven fallback for this trip. No other candidate habit is established with sufficiently exact user-language evidence."
+    }
+  }
+}

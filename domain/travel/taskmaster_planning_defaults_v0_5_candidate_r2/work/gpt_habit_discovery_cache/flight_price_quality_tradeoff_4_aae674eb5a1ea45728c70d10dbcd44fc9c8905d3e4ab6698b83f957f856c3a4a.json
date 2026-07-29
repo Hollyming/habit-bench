@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "aae674eb5a1ea45728c70d10dbcd44fc9c8905d3e4ab6698b83f957f856c3a4a",
+  "habits": [
+    {
+      "boundary_condition": "Do not infer that nonstop service, Wi-Fi, or the absolute shortest duration is always optional; treat such requirements according to the current trip.",
+      "bundle_id": "tm_v04_e2e_bundle_1c15f55c338a",
+      "condition": "When comparing flight options that satisfy any explicitly stated essential needs",
+      "confidence": 0.85,
+      "decision": "accept",
+      "default_action": "Choose the cheapest suitable option, using duration or convenience only as secondary criteria.",
+      "exception_condition": "Select a more expensive option only when the user explicitly makes another feature essential for the current search.",
+      "family": "flight_price_quality_tradeoff",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_1c15f55c338a",
+      "induced_at": "2026-07-25T10:17:34.637252+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prioritize the lowest fare over itinerary quality",
+      "preference_value": "lowest-priced suitable flight",
+      "rationale": "Across three independent flight searches, the user repeatedly returns to the cheapest option even when discussing nonstop service, duration, or other amenities.",
+      "reasoning_effort": "high",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Makes lowest price the controlling criterion while considering a nonstop option.",
+          "conversation_id": "dlg-5136f25d-dddb-49a1-874d-b5cbbcf9169b",
+          "exact_user_quote": "Yeah, that'll work. As long as Whatever's the cheapest.",
+          "instruction_id": "flight-13",
+          "turn_index": 12
+        },
+        {
+          "contribution": "Reaffirms cheapest as a primary criterion, with duration used alongside it after a costly nonstop option is presented.",
+          "conversation_id": "dlg-7e73b4de-45f6-4d6c-962c-3cd4d3132e38",
+          "exact_user_quote": "Let's go cheapest and shortest duration.",
+          "instruction_id": "flight-12",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Directly requests the cheapest ticket, independently supporting lowest fare as the default selection policy.",
+          "conversation_id": "dlg-7372d8fc-b362-4f04-845b-78046b14b3bd",
+          "exact_user_quote": "Could you get me the cheapest ticket? And then, when I will be leaving San Francisco?",
+          "instruction_id": "flight-14",
+          "turn_index": 11
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Yeah, that'll work. As long as Whatever's the cheapest.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-5136f25d-dddb-49a1-874d-b5cbbcf9169b",
+          "habitual_language": false,
+          "instruction_id": "flight-13",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 12,
+          "user_utterance": "Yeah, that'll work. As long as Whatever's the cheapest."
+        },
+        {
+          "annotated_segment": "Let's go cheapest and shortest duration.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-7e73b4de-45f6-4d6c-962c-3cd4d3132e38",
+          "habitual_language": false,
+          "instruction_id": "flight-12",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 17,
+          "user_utterance": "Let's go cheapest and shortest duration."
+        },
+        {
+          "annotated_segment": "Could you get me the cheapest ticket? And then, when I will be leaving San Francisco?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-7372d8fc-b362-4f04-845b-78046b14b3bd",
+          "habitual_language": false,
+          "instruction_id": "flight-14",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 11,
+          "user_utterance": "Could you get me the cheapest ticket? And then, when I will be leaving San Francisco?"
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-5136f25d-dddb-49a1-874d-b5cbbcf9169b",
+    "dlg-7e73b4de-45f6-4d6c-962c-3cd4d3132e38",
+    "dlg-7372d8fc-b362-4f04-845b-78046b14b3bd"
+  ]
+}

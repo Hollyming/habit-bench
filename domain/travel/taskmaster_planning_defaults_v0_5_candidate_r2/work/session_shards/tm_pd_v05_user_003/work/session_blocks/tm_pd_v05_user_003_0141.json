@@ -1,0 +1,129 @@
+{
+  "cache_fingerprint": "48664c7c140866f188af9cf0e56e3ebefbad2ba025b8970ea06d5e76eec7b109",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Priya established a reusable scope boundary for hotel-review thresholds: use a 4.0 minimum when she explicitly requests a nice, upscale, or resort-style stay, but do not apply that floor to routine practical audit or conference lodging unless she explicitly frames the work stay that way.",
+        "evidence_topology": {
+          "boundary_kind": "scope_limit",
+          "episode_id": "conference-philadelphia-01",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 141,
+          "target_habit_id": "tm_pd_v05_user_003_h04",
+          "target_signal_type": "boundary",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly establishes a durable 4.0 rating floor for nice, upscale, or resort-style stays and limits its application for routine practical work travel.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "One standing distinction for future searches: when I ask for a nice, upscale, or resort-style stay, keep hotel ratings at 4.0 or above. But don't apply that floor to routine work trips like audits or conferences when I'm simply asking for the most practical hotel; only use it there if I explicitly describe the work stay as nice or upscale.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_003_h04",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I want to sanity-check the Philadelphia and Newark hotels now that the flights are fixed. Compare keeping the conference block and moving Wednesday with using one nearby Philadelphia hotel for all three nights. Also compare the Hampton with the airport Marriott for Wednesday night. Show me the exact totals and how much transfer effort each version creates.",
+          "role": "user"
+        },
+        {
+          "content": "I found the nearby Philadelphia alternative at the Notary Hotel for Sunday through Wednesday: $1,086.72 total, refundable until 6:00 p.m. local time on September 15. It is about a six-minute walk from the Convention Center. The current Philadelphia Marriott block is $912.48 and keeps you in the conference hotel, so the Notary costs $174.24 more without eliminating Wednesday's move to Newark.\n\nFor Wednesday night, the Hampton remains $214.36; it is about 12 minutes by car from Newark Penn, 18-25 minutes to the Linden supplier site Thursday morning, and 12-18 minutes from EWR afterward. The airport Marriott is $287.41; it is about 15-20 minutes from Newark Penn, 25-35 minutes to Linden, and then only a few minutes from the terminal by hotel shuttle. That is $73.05 more.",
+          "role": "assistant"
+        },
+        {
+          "content": "Calculate all four hotel combinations and include the full trip estimate, not just the room difference.",
+          "role": "user"
+        },
+        {
+          "content": "Using the $676 airfare, $30 Amtrak allowance, and $134 rideshare allowance already in the working budget:\n\nPhiladelphia Marriott + Hampton: hotels $1,126.84; booked total $1,802.84; working trip estimate $1,966.84.\nPhiladelphia Marriott + airport Marriott: hotels $1,199.89; booked total $1,875.89; working estimate $2,039.89.\nNotary + Hampton: hotels $1,301.08; booked total $1,977.08; working estimate $2,141.08.\nNotary + airport Marriott: hotels $1,374.13; booked total $2,050.13; working estimate $2,214.13.\n\nThe rideshare allowance is held constant for comparison. Actual Wednesday costs may vary slightly because the Notary is a few blocks farther from 30th Street than the conference hotel.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does Wednesday look like in practice with the current pair versus the Notary and airport Marriott? I care about whether either upgrade actually removes a transfer or materially improves Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "With the current pair, check out of the Philadelphia Marriott Wednesday morning, leave luggage with the bell desk, attend the conference through 4:15 p.m., collect the bag, and allow about 20 minutes to 30th Street. The 5:59 p.m. train reaches Newark Penn at 7:04 p.m.; a rideshare to the Hampton should put you there around 7:25-7:35 p.m. Thursday departure for Linden remains about 7:35 a.m.\n\nThe Notary changes only the luggage pickup point and adds roughly 5-10 minutes before the station. The airport Marriott provides the easier airport leg after Thursday's meeting, but it lengthens Wednesday's ride from Newark Penn and Thursday morning's drive to Linden. Neither alternative removes the Wednesday hotel change or rail transfer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then the current pair still looks better. Before we leave it alone, confirm every cancellation deadline and whether either hotel charges anything now.",
+          "role": "user"
+        },
+        {
+          "content": "The Philadelphia Marriott confirmation PM6D41 remains cancelable without penalty through 6:00 p.m. Philadelphia time on September 14. After that, the penalty is one night's room and tax. The card is only guaranteeing the reservation; no room charge has posted.\n\nThe Hampton confirmation HN8K27 remains refundable through 11:59 p.m. local time on September 19. A cancellation after that point carries a one-night room-and-tax penalty. It also is guaranteed by card with payment due at the property.\n\nThe unbooked Notary rate is refundable through 6:00 p.m. September 15, and the unbooked airport Marriott rate through 6:00 p.m. September 19. Neither alternative has been charged or reserved.",
+          "role": "assistant"
+        },
+        {
+          "content": "One standing distinction for future searches: when I ask for a nice, upscale, or resort-style stay, keep hotel ratings at 4.0 or above. But don't apply that floor to routine work trips like audits or conferences when I'm simply asking for the most practical hotel; only use it there if I explicitly describe the work stay as nice or upscale.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. For this trip, I will evaluate the work hotels on logistics, terms, and cost without imposing a 4.0 rating minimum, since the request is for the most practical arrangement rather than an upscale stay.",
+          "role": "assistant"
+        },
+        {
+          "content": "For completeness, what are the published ratings and sources for these four? I don't want class stars mixed up with review scores.",
+          "role": "user"
+        },
+        {
+          "content": "The current published guest-review scores are: Philadelphia Marriott Downtown 4.1/5 on Google, Notary Hotel 4.4/5 on Google, Hampton Inn Newark Airport 4.0/5 on Google, and Newark Liberty International Airport Marriott 4.2/5 on Google. Those are customer-review ratings, not hotel class designations. The Marriott Downtown and Notary are generally listed as four-star-class hotels, while the Hampton's class listing is lower; those class labels are separate from the review scores.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the Philadelphia Marriott and Hampton, and make sure nothing new was booked during this comparison. Restate the confirmed plan and the deadline I need to act on first.",
+          "role": "user"
+        },
+        {
+          "content": "The existing reservations remain unchanged, and neither the Notary nor the airport Marriott was booked. Philadelphia Marriott Downtown confirmation PM6D41 covers Sunday, September 17 through Wednesday, September 20 for $912.48. Hampton Inn Newark Airport confirmation HN8K27 covers Wednesday, September 20 through Thursday, September 21 for $214.36. Together with ticket record C4P8VN at $676, the booked total is $1,802.84; the working estimate remains $1,966.84 including $30 for Amtrak and $134 for rideshares.\n\nOn Wednesday, retrieve your luggage after the conference, leave for 30th Street around 5:10 p.m., take the 5:59 p.m. train to Newark Penn, and rideshare to the Hampton. The first deadline is the Philadelphia Marriott cancellation cutoff at 6:00 p.m. Philadelphia time on September 14. The Hampton deadline follows at 11:59 p.m. local time on September 19. The rail ticket is still unbooked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0141",
+      "session_index": 141,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund documentation remains pending. Phoenix is completed at a projected $1,459.40 with a $28.40 authorization increase required. Puerto Vallarta is arranged for November 28-December 4, 2026, with K7M4QX, PV8R26, TR-PV8R26, and SP4017; projected total $7,098. Clayton is arranged for January 19-22, 2027, with R7Q2LM, NC4D81, and RDU6K83; projected total $1,582.84. Washington is arranged for March 1-5, 2027, with W4N8JP and CB6K91; projected total $2,802.40. Sedona is booked for November 11-14, 2027, with H6T9QK, CL4N82, SPA7714, and PXR5D27; projected total $4,094.60. Maple Grove remains arranged with Westline WB4K92, rental MSL9P42, and the Thursday 9:10 a.m. flight; projected total $1,871.18. Kauai is fully booked for June 10-17, 2028, with H7K2QM, KB8F41, and LIH6R28; projected total $6,475.73. The corrected resort confirmation includes breakfast for two and self-parking at no added charge; the $1,270.85 deposit is refundable through June 3 at 6:00 p.m. Hawaii time. The Hillsboro audit trip is arranged for August 14-18, 2028, with United record P8L4TR, Aloft confirmation AL7H26, and compact rental PDX3C84; projected total $1,858.44. Aloft includes daily breakfast, four nights of self-parking, and a Friday cold takeaway breakfast at 6:35 a.m.; cancellation remains available through August 13 at 11:59 p.m. local time. Rental pickup is stated as 1:25 p.m., with a documented hold until 2:30 p.m. Philadelphia/Newark remains booked for September 17-21, 2028. Record C4P8VN covers the Sunday 8:05 a.m. American SFO-PHL nonstop and Thursday 5:10 p.m. United EWR-SFO nonstop for $676. Philadelphia Marriott Downtown confirmation PM6D41 is $912.48 for September 17-20 and cancelable through September 14 at 6:00 p.m. Philadelphia time. Hampton Inn Newark Airport confirmation HN8K27 is $214.36 for September 20-21 and refundable through September 19 at 11:59 p.m. local time. The booked total is $1,802.84 and the working estimate with rail and rideshares is $1,966.84. The Notary Hotel and Newark Liberty International Airport Marriott were compared but not booked. Wednesday rail remains unbooked.",
+  "verification": {
+    "141": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "One standing distinction for future searches: when I ask for a nice, upscale, or resort-style stay, keep hotel ratings at 4.0 or above. But don't apply that floor to routine work trips like audits or conferences when I'm simply asking for the most practical hotel; only use it there if I explicitly describe the work stay as nice or upscale.",
+          "habit_id": "tm_pd_v05_user_003_h04",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly establishes a durable 4.0 rating floor for nice, upscale, or resort-style stays and limits its application for routine practical work travel."
+    }
+  }
+}

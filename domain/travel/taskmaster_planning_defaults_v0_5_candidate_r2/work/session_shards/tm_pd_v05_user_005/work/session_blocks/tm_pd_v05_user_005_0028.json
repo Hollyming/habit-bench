@@ -1,0 +1,179 @@
+{
+  "cache_fingerprint": "6cf1980e425a2fb353e980af6159c8dd74005816888a478c4916d2c6c8ebc822",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves only the current St. Louis assignment: Monday arrival is required by the revised Tuesday review, and a Wednesday return is viable with direct travel from the museum to the airport. No recurring travel preference is established.",
+        "evidence_topology": {
+          "episode_id": "atlanta_st_louis_exhibition_installation_01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 28,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requires nonstop flights for this trip and endorses a later-day Wednesday return. The Delta references are tied to selecting schedule-compatible concrete flights and do not independently establish a durable carrier preference. Asking to check the seat map does not establish a window-seat preference, and asking for hotel ratings does not establish a rating threshold.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Nonstop only.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "The 8:28 Delta is late enough if I go directly from the museum to the airport.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The museum has moved Tuesday's condition review to 9:00 a.m., so the early Tuesday flight is no longer workable. Please revise this to a Monday evening arrival and see whether I can still come home Wednesday after the installation instead of staying until Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll rework it for Monday, July 20 through Wednesday, July 22. What time can you leave Atlanta on Monday, and should I limit the search to nonstop flights?",
+          "role": "assistant"
+        },
+        {
+          "content": "I can leave for the airport after 3:30 p.m. Nonstop only. On Wednesday, the installation is scheduled to finish at 5:00, but I need enough time to get from the museum to the airport without assuming everything ends a few minutes early.",
+          "role": "user"
+        },
+        {
+          "content": "The strongest outbound is Delta 1427, departing ATL at 6:18 p.m. Monday and arriving STL at 6:54 p.m. local time. It is nonstop, with a scheduled duration of 1 hour 36 minutes. Main Cabin is currently $347 round trip when paired with the late Wednesday return. There is also a 7:55 p.m. departure arriving at 8:31 p.m. for $369 round trip.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the 6:18 option. What are the Wednesday returns that do not put me in a rush after a 5:00 finish?",
+          "role": "user"
+        },
+        {
+          "content": "Allowing about 25 minutes from the museum to STL under ordinary traffic, plus time to retrieve anything left at the hotel and clear security, the 6:42 p.m. nonstop is too tight. The viable options are Delta 1736 at 8:28 p.m., arriving ATL at 11:02 p.m., for $347 round trip, or Southwest 2219 at 9:15 p.m., arriving at 11:50 p.m., for $382 round trip. Pairing different airlines would require separate tickets and raises the combined fare to $401.",
+          "role": "assistant"
+        },
+        {
+          "content": "The 8:28 Delta is late enough if I go directly from the museum to the airport. I will bring my luggage to the museum Wednesday morning. Check the seat map before we settle on it.",
+          "role": "user"
+        },
+        {
+          "content": "The current seat map for the Delta pairing shows standard Main Cabin seats available on both flights. On Monday, aisle seats are open in rows 18, 20, and 22. On Wednesday, aisles are open in rows 17 and 21, with several middle and window seats elsewhere. Seat inventory can change until ticketing, but the itinerary is presently bookable at $347 including taxes.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Now compare hotels for Monday and Tuesday nights. I need a dependable trip to the museum Tuesday morning, not necessarily the closest building.",
+          "role": "user"
+        },
+        {
+          "content": "I found three practical two-night options. Drury Plaza Hotel St. Louis at the Arch is $391.64 total, including taxes; it is about 2.4 miles from the museum, roughly 9-14 minutes by car in the morning. The Magnolia Hotel is $358.22 total and about 2.1 miles away, usually 8-13 minutes by car. The Last Hotel is $332.08 total and about 1.5 miles away, around 7-11 minutes by car. All three have rooms available for check-in Monday and checkout Wednesday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are those refundable rates, and what is included?",
+          "role": "user"
+        },
+        {
+          "content": "The Drury rate is refundable until 6:00 p.m. local time on Sunday, July 19, and includes breakfast and an evening reception. Magnolia’s rate is refundable until 11:59 p.m. Saturday, July 18; breakfast is not included. The Last Hotel rate is refundable until 6:00 p.m. Sunday, July 19; breakfast is also extra. None of the totals includes parking, which should not matter if you use airport transportation and rideshare.",
+          "role": "assistant"
+        },
+        {
+          "content": "How do the routes look at 8:15 Tuesday morning? I cannot have the estimate depend on a street that is often blocked near the Arch.",
+          "role": "user"
+        },
+        {
+          "content": "From Drury, the most reliable route avoids the immediate Arch access roads: west on Market, then south via Tucker and onto the museum corridor. The planning estimate is 12-18 minutes at 8:15 a.m. Magnolia uses essentially the same approach and is estimated at 10-16 minutes. The Last Hotel has the simplest route, generally 8-14 minutes, though Washington Avenue can slow near downtown intersections. I would schedule pickup at 8:25 from Last Hotel or 8:20 from either Drury or Magnolia for a comfortable arrival before 9:00.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the guest ratings and room types at those totals?",
+          "role": "user"
+        },
+        {
+          "content": "Drury is rated 9.2/10 from about 2,800 verified reviews, and the quoted room has one king bed. Magnolia is 8.4/10 from roughly 1,100 reviews, also with one king bed. The Last Hotel is 8.2/10 from about 900 reviews; its quoted room has one queen bed. Drury’s total is $33.42 more than Magnolia and $59.56 more than The Last Hotel.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Drury sounds more predictable, and breakfast before the review is useful. Is there any issue getting a car there after the installation on Wednesday, when I need to head straight to STL?",
+          "role": "user"
+        },
+        {
+          "content": "Pickup at the Drury entrance is generally straightforward, but you would not need to return there Wednesday if you take your luggage to the museum. From the museum to STL, the scheduled ride at 5:15 p.m. should take about 22-35 minutes in weekday traffic. Even at the upper end, you would reach the terminal around 5:50, leaving more than two and a half hours before the 8:28 departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then use Drury for the comparison. Please total the flight and hotel, add realistic ground transportation, and show the schedule I can send for approval. Do not book any part of it yet.",
+          "role": "user"
+        },
+        {
+          "content": "Using the Delta round trip at $347 and Drury’s refundable two-night total of $391.64, the booked components would be $738.64. A working ground-transportation allowance of $118 covers STL to the hotel Monday, hotel to the museum Tuesday, local travel after Tuesday’s review, hotel to the museum Wednesday, and museum to STL Wednesday evening. The estimated trip total is therefore $856.64, excluding meals not provided by the hotel and any airline bag charge.",
+          "role": "assistant"
+        },
+        {
+          "content": "Include the actual daily sequence, especially the Wednesday timing and the hotel cancellation deadline.",
+          "role": "user"
+        },
+        {
+          "content": "Monday, July 20: Delta 1427 departs ATL at 6:18 p.m. and arrives STL at 6:54 p.m.; transfer to Drury Plaza Hotel St. Louis at the Arch and check in. Tuesday, July 21: breakfast at the hotel, rideshare pickup around 8:20 a.m., and arrival before the 9:00 a.m. condition review. Wednesday, July 22: check out with luggage, travel to the museum, complete the installation scheduled through 5:00 p.m., request airport pickup for about 5:15 p.m., and take Delta 1736 from STL at 8:28 p.m., arriving ATL at 11:02 p.m. The hotel rate can be canceled without penalty until 6:00 p.m. local time Sunday, July 19.",
+          "role": "assistant"
+        },
+        {
+          "content": "That resolves the extra night. Keep the seat availability note in the approval summary and make clear that Wednesday works because I am leaving directly from the museum, not returning to the hotel.",
+          "role": "user"
+        },
+        {
+          "content": "The approval itinerary is assembled at an estimated total of $856.64. It uses Delta’s Monday 6:18 p.m. ATL-STL nonstop and Wednesday 8:28 p.m. STL-ATL nonstop, with standard Main Cabin aisle seats currently visible on both flights. Lodging is Drury Plaza Hotel St. Louis at the Arch for July 20-22 at $391.64, refundable through 6:00 p.m. local time July 19. Wednesday’s timing assumes checkout in the morning, luggage kept with you at the museum, a 5:15 p.m. direct departure for STL after the planned 5:00 p.m. finish, and no return to the hotel. Nothing has been booked or held, so fares, rooms, and seats remain subject to availability until approval and purchase.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0028",
+      "session_index": 28,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "Avery's Atlanta-Chicago museum trip was completed as arranged for October 14-18. The Atlanta-Raleigh family trip for Avery and her wife is confirmed for November 14-16 at a combined total of $864, with hotel cancellation available through 11:59 p.m. November 12. For the December 9-13 museum assignment, Club Quarters Hotel Faneuil Hall remains the proposed Boston replacement, bringing the quoted trip total to $1,236.18 before local transportation and airline bag fees; registrar approval is pending and nothing has been booked or held. Avery and her wife will drive from Atlanta to St. George Island for September 20-27. St. George Inn confirmation SGI-927416 is confirmed for seven nights at $1,968.24 total; $1,705.06 remains due at check-in, and cancellation is free through 3:00 p.m. local hotel time September 13. For the Denver gallery installation, Delta confirmation H7Q4LM and Catbird confirmation CB-481730 remain in place; the expected total is $1,273.22, which is $23.22 above prior employer approval and may require follow-up. The Minneapolis graduation, Dallas collection pickup, and June 18-22 Carlsbad anniversary reservations remain confirmed as previously recorded. For the St. Louis museum assignment, the proposed approval itinerary now runs July 20-22: a Monday evening nonstop to STL, two nights at Drury Plaza Hotel St. Louis at the Arch, and a Wednesday 8:28 p.m. nonstop return after direct travel from the museum to the airport. The estimated trip total is $856.64, including a ground-transportation allowance. Standard Main Cabin aisle seats were visible on both flights when checked. The hotel rate is refundable through 6:00 p.m. local time July 19. Nothing has been booked or held; approval and purchase remain pending.",
+  "verification": {
+    "28": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Nonstop only.",
+          "habit_id": "tm_pd_v05_user_005_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "The 8:28 Delta is late enough if I go directly from the museum to the airport.",
+          "habit_id": "tm_pd_v05_user_005_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requires nonstop flights for this trip and endorses a later-day Wednesday return. The Delta references are tied to selecting schedule-compatible concrete flights and do not independently establish a durable carrier preference. Asking to check the seat map does not establish a window-seat preference, and asking for hotel ratings does not establish a rating threshold."
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "15803c2acb84410e589edabcb67ece93c8c6d7764daffb6c74e3a610347b6108",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_recreation_amenity_bundle",
+      "boundary_condition": "Do not infer other amenities, destination, dates, price, views, balcony access, or indoor versus outdoor facility type.",
+      "canonical_value": "Prefer hotels with a pool, hot tub, and fitness facility.",
+      "condition": "When selecting or evaluating hotel options.",
+      "default_action": "Prioritize hotels with a pool, hot tub, and fitness or exercise facility, and verify that each is available.",
+      "exception_condition": "If no suitable property offers all three, ask whether a missing amenity or a reasonable substitute is acceptable.",
+      "input_ids": [
+        "tm_v04_e2e_habit_020c4625aa8b"
+      ],
+      "name": "prefer_pool_hot_tub_and_fitness_access",
+      "preference_value": "Prefers hotels with a pool, hot tub, and fitness or exercise facility.",
+      "rationale": "Repeated, well-grounded hotel amenity preference across three conversations; the evidence consistently supports requiring or prioritizing a pool, hot tub, and exercise facility while leaving facility type flexible.",
+      "representative_id": "tm_v04_e2e_habit_020c4625aa8b"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_breakfast_inclusion_preference",
+      "boundary_condition": "Do not let free breakfast override explicit trip constraints such as location, price, room setup, or required amenities.",
+      "canonical_value": "Softly prefer hotels with free breakfast.",
+      "condition": "When comparing otherwise suitable hotels.",
+      "default_action": "Rank hotels advertising free breakfast above comparable options that do not include it.",
+      "exception_condition": "If suitable options do not include free breakfast, present the best matches without treating breakfast as mandatory.",
+      "input_ids": [
+        "tm_v04_e2e_habit_f94c5af6a3b1"
+      ],
+      "name": "prefers_free_breakfast",
+      "preference_value": "Softly prefer hotels that include free breakfast.",
+      "rationale": "Free breakfast recurs across three conversations, but wording ranges from tentative to explicit, so retaining it as a soft ranking preference preserves the mixed evidence without overstating it as mandatory.",
+      "representative_id": "tm_v04_e2e_habit_f94c5af6a3b1"
+    }
+  ]
+}

@@ -28,12 +28,23 @@ memory_context + current request + response choices
 | `food` | food | 30 | 4,500 | 1,470 | `domain/food/food_habit_lifelines_stress_v4` |
 | `finance` | finance | 36 | 19,440 | 1,368 | `domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3` |
 | `software` | software | 18 | 9,720 | 680 | `domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3` |
+| `travel`（candidate） | travel | 6 | 808 | 128 | `domain/travel/taskmaster_planning_defaults_v0_5_candidate_r2` |
 
 Finance 和 Software 在 v1.3 中共用同一个物理数据包，但正式评测把它们视为两个独立
 dataset alias。`shard_plan.tsv` 分别写入 `domain_filter=finance` 和
 `domain_filter=software`；loader 在用户分片之前过滤 sessions、probes 和 private
 keys，合并时再次核验 domain filter。旧的 `finance_software` 无过滤别名仅为兼容已有
 plan 保留，不属于默认正式 suite。
+
+Travel v0.5 candidate r2 是基于 Taskmaster grounded source cards 构建的旅行规划偏好
+候选域。当前数据包包含 6 个用户、808 个 sessions 和 128 个 probes，覆盖 35 个习惯；
+probe 分为 `direct_use`（18）、`cross_context_transfer`（27）、
+`evidence_disambiguation`（29）、`conflict_resolution`（30）、`exception`（23）和
+`boundary`（1）。其 public/private 数据可通过统一 loader 和 validator，但尚未加入
+`create_shard_plan.py` 与 ClusterX launcher 的默认正式三域 suite；运行时需用
+`--dataset travel=domain/travel/taskmaster_planning_defaults_v0_5_candidate_r2`
+显式注册。生成溯源、质量审计、人工复核和当前模型评测交付物分别保存在 `sources/`、
+`reports/`、`review/` 和 `model_eval/`。
 
 每个数据包主要包含：
 
@@ -372,8 +383,10 @@ HABIT-bench/
 ├── domain/
 │   ├── food/
 │   │   └── food_habit_lifelines_stress_v4/
-│   └── finance-software/
-│       └── habit_bench_multidogo_finance_software_scope_consistent_v1.3/
+│   ├── finance-software/
+│   │   └── habit_bench_multidogo_finance_software_scope_consistent_v1.3/
+│   └── travel/
+│       └── taskmaster_planning_defaults_v0_5_candidate_r2/
 ├── eval/
 │   ├── context_windows.py
 │   ├── controls.py

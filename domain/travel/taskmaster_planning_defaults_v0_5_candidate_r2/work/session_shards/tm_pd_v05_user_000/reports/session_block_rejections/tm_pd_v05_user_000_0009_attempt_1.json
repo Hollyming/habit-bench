@@ -1,0 +1,88 @@
+{
+  "reason": "unnatural_habit_leakage_session_9:The user explicitly directs ranking acceptable options by lower fare, matching the habit's built-in condition rather than adding a boundary. The assistant filtered the initial shortlist to nonstop itineraries before the user established a nonstop preference, so leakage is present. The instruction is framed for this trip, not as a durable cross-trip default.",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support evidence: after confirming that the Friday itineraries met the required schedule, nonstop routing, Wi-Fi, and fare-flexibility needs, Maya selected the lower-priced acceptable option as the lead.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I have a three-day client workshop in downtown Denver. It starts Wednesday at 8:00 a.m. and ends Friday at 2:00 p.m. I can leave Minneapolis Tuesday after 4:30, and airfare needs to stay under $650.",
+          "role": "user"
+        },
+        {
+          "content": "What are the travel dates? Also, should I compare Friday-evening returns with Saturday-morning returns, or treat Saturday only as a fallback?",
+          "role": "assistant"
+        },
+        {
+          "content": "Fly out Tuesday, June 9. The workshop is June 10 through June 12. Saturday the 13th is a fallback if getting to DEN after the workshop is too tight.",
+          "role": "user"
+        },
+        {
+          "content": "I found three nonstop economy combinations worth comparing. All totals are round trip and below the project limit:\n\n1. United: Tuesday 5:35 p.m.-6:47 p.m.; Friday 6:30 p.m.-9:28 p.m.; $412.\n2. Delta: Tuesday 7:05 p.m.-8:18 p.m.; Friday 7:20 p.m.-10:19 p.m.; $458.\n3. Delta: Tuesday 7:05 p.m.-8:18 p.m.; Saturday 8:10 a.m.-11:08 a.m.; $389.\n\nThe Tuesday arrivals leave ample time before Wednesday's session. The main question is how much airport margin you want Friday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Test that 6:30 Friday flight realistically. I won't be able to leave the client site before 2:00, and I may need 15 minutes to wrap up and get downstairs.",
+          "role": "user"
+        },
+        {
+          "content": "Leaving downtown around 2:15 gives roughly four hours fifteen minutes before departure. A car to DEN often takes about 35-50 minutes then, but Friday traffic or a pickup delay could push it past an hour. Even with a 60-minute ride, you would reach the terminal around 3:15, more than three hours before the flight. That is a comfortable margin for a domestic departure. The 7:20 option adds another 50 minutes but does not appear necessary based on the scheduled workshop end.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do the two Friday choices both include Wi-Fi? I need to be able to work on the way home.",
+          "role": "user"
+        },
+        {
+          "content": "Both flights are listed with Wi-Fi. The United itinerary shows streaming-capable Wi-Fi available for purchase, while the Delta itinerary lists complimentary messaging and paid browsing. Availability can still change with an aircraft swap, so the equipment and amenity listing should be checked again at checkout.",
+          "role": "assistant"
+        },
+        {
+          "content": "And these aren't basic economy fares, correct? I may have to adjust the return if the workshop agenda changes.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The quoted totals are standard economy, not basic economy. Both permit changes without a change fee, though a fare difference would apply. The $389 Saturday combination is also standard economy.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there any reason to pay $46 more for the later Friday flight besides the extra airport cushion?",
+          "role": "user"
+        },
+        {
+          "content": "Not a strong one for this schedule. Delta arrives 51 minutes later, and its messaging benefit is modest if you need full internet access. United's 6:30 departure already leaves substantial transfer margin, is nonstop, and meets the Wi-Fi and fare-flexibility requirements. The later flight mainly buys additional protection against a workshop overrun or unusually severe traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then make the $412 United itinerary the lead. Once the schedule and work requirements are covered, use the lower fare. Keep Saturday as the backup, but don't book anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "The leading itinerary is United nonstop standard economy: MSP to DEN Tuesday, June 9, 5:35 p.m.-6:47 p.m., returning Friday, June 12, 6:30 p.m.-9:28 p.m., for $412 round trip. It provides a practical airport transfer window after the 2:00 p.m. workshop finish and is listed with Wi-Fi.\n\nThe backup is the $389 Delta nonstop itinerary returning Saturday morning, June 13. That option would require an additional hotel night, so its lower airfare may not reduce the total trip cost.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Give me the final two options cleanly and flag what still needs verification.",
+          "role": "user"
+        },
+        {
+          "content": "Primary: United nonstop standard economy, Tuesday June 9 at 5:35 p.m. from MSP, arriving DEN at 6:47 p.m.; Friday June 12 at 6:30 p.m. from DEN, arriving MSP at 9:28 p.m.; $412 round trip.\n\nBackup: Delta nonstop standard economy, Tuesday June 9 at 7:05 p.m. from MSP, arriving DEN at 8:18 p.m.; Saturday June 13 at 8:10 a.m. from DEN, arriving MSP at 11:08 a.m.; $389 round trip, plus the cost of one more hotel night.\n\nBefore purchase, confirm the live fare, standard-economy rules, Wi-Fi listing on both segments, and whether the client will cover Friday-night lodging if the backup becomes necessary. Nothing has been booked or held.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0009",
+      "session_index": 9,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya has a downtown Denver client workshop June 10-12, 2026. A $412 United nonstop round trip for June 9-12 is the leading itinerary, with a $389 Delta nonstop itinerary returning June 13 as the backup if the workshop schedule changes. Both are standard economy and remain below the $650 airfare limit. Live fares, fare rules, onboard Wi-Fi listings, and possible coverage for an additional hotel night still need confirmation. Nothing has been booked or held."
+}

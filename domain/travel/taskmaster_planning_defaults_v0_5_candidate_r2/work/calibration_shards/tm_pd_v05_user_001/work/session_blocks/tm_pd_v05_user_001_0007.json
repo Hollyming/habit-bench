@@ -1,0 +1,87 @@
+{
+  "cache_fingerprint": "100bc85df765578a4c39a7b17863ff8cfda0087afbe52ade5140690d95b138ac",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Elena chose the lower-cost, more predictable Saturday plan of using round-trip car service between the downtown Marriott and the wedding shuttle hotel. This is a trip-specific ground-transport decision and does not establish a recurring preference.",
+        "evidence_topology": {
+          "episode_id": "ep_002_raleigh_family_wedding",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 7,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user only discusses Saturday ground transportation and explicitly asks to leave the confirmed hotel room and flights unchanged. No utterance establishes any candidate flight timing, connection, carrier, seat, bed, or hotel amenity habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The wedding shuttle details finally came through. It leaves the Hyatt Place Raleigh/Cary at 2:45 Saturday and returns there after the reception around 10:30. Since our Marriott downtown and flights are confirmed, I only want to settle Saturday transportation. Should we take a car service to the shuttle hotel and back, or go directly to the ceremony?",
+          "role": "user"
+        },
+        {
+          "content": "The shuttle plan means arranging two rides: Marriott to the Hyatt Place before 2:45, then Hyatt Place back downtown around 10:30. Going direct means one ride to the ceremony and another from the reception, but the return could be harder to time if many guests request cars at once. Do you have the ceremony and reception addresses, and are they at the same venue?",
+          "role": "assistant"
+        },
+        {
+          "content": "They are both at the same venue, about ten minutes from the Hyatt. The hosts said rideshare pickup after the reception is possible but may involve a wait. We do not need to change anything Friday or Sunday.",
+          "role": "user"
+        },
+        {
+          "content": "Then the shuttle is the more predictable option. It adds a short transfer on each side, but the hosts handle the venue leg and you avoid arranging a late pickup during the reception exit. Direct service is simpler outbound, though likely less reliable and potentially more expensive on the return.",
+          "role": "assistant"
+        },
+        {
+          "content": "The current estimates are $32-$42 each way between the Marriott and Hyatt, versus $48-$65 each way between downtown and the venue. Is the shuttle still worth it for two people?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The round-trip shuttle connection is roughly $64-$84 total, while direct rides are roughly $96-$130. That is a $32-$66 difference, and the shuttle also reduces uncertainty after the reception. I would use car service to and from the Hyatt.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please give me a short Saturday schedule. Include enough buffer before the shuttle, but leave our confirmed room and flights alone.",
+          "role": "user"
+        },
+        {
+          "content": "Saturday, May 3: have lunch downtown and be back at the Raleigh Marriott City Center by 1:45 p.m. Request the car around 1:55 and plan to leave no later than 2:05 for the Hyatt Place Raleigh/Cary. Arrive around 2:25, allowing about 20 minutes before the 2:45 wedding shuttle. Attend the 4:00 ceremony and reception, then take the host shuttle back to the Hyatt at about 10:30. Request the return car once the shuttle is close to the hotel, and expect to reach the Marriott around 11:15. Recheck same-day traffic and ride availability before leaving. No changes are needed to the confirmed flights or downtown room.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0007",
+      "session_index": 7,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena’s solo Chicago rights conference trip remains March 27-30 with the booked Embassy Suites Chicago Downtown Magnificent Mile, Midway arrival, and O’Hare return. For the Raleigh family wedding, Elena and her spouse have confirmed May 2-4 flights and a two-night stay at the Raleigh Marriott City Center. Friday dinner is at 6:30 p.m. near Moore Square, Saturday’s ceremony is at 4:00 p.m. near Cary, and Sunday brunch is at 10:30 a.m. For Saturday, they plan car service from the Marriott to the Hyatt Place Raleigh/Cary around 2:05 p.m., the host shuttle departing at 2:45, the return shuttle after the reception around 10:30, and car service back downtown. They should recheck traffic and ride availability that day; no flight or hotel changes are needed.",
+  "verification": {
+    "7": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user only discusses Saturday ground transportation and explicitly asks to leave the confirmed hotel room and flights unchanged. No utterance establishes any candidate flight timing, connection, carrier, seat, bed, or hotel amenity habit."
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "cache_fingerprint": "e9a0ce5ee20e59c2b8ac367bfbe2280e8bac567fa8abdd873b7bf6b18e2189ca",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves only this Chicago trip's post-checkout luggage handling and Sunday transfer schedule; it introduces no recurring travel preference.",
+        "evidence_topology": {
+          "episode_id": "ep_011_chicago_academic_conference",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 42,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly reaffirms the current trip's 5:30 p.m. departure by asking that the ground itinerary preserve adequate margin for it. No user utterance evidences the listed layover, carrier, seat, bed, or hotel-amenity habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.94,
+            "evidence_quote": "I do not want the 5:30 flight to become tight.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The downtown hotel is now confirmed for Thursday through Sunday, but the confirmation says noon checkout. My last convention appointment ends at 11:30 Sunday. Did the office get a definite answer about holding my suitcase?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The hotel confirmed that registered guests may leave luggage with the bell desk after checkout on Sunday at no charge. The office noted your name and confirmation number, and the hotel recommends allowing about 10 minutes to retrieve it.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Work out the sequence from the convention site back to the hotel and then to O'Hare. I do not want the 5:30 flight to become tight.",
+          "role": "user"
+        },
+        {
+          "content": "From an 11:30 finish, allow about 15 minutes to leave the convention site and walk the six blocks to the hotel. You should reach the bell desk around noon, collect the suitcase by 12:10, and then walk to the Monroe Blue Line station. A conservative train estimate puts you at O'Hare around 1:20 to 1:35 p.m., roughly four hours before the 5:30 departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is earlier than I need. Could I have lunch downtown after collecting the bag and still leave with a reasonable margin?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. If you collect the suitcase first and leave the hotel area by 2:15 p.m., the Blue Line should get you to O'Hare around 3:05 to 3:20. That leaves about two hours before departure. Service disruptions could reduce the cushion, so checking train status before lunch would be sensible.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use 2:00 as the target departure from the hotel instead. Please give me a concise itinerary for the office file, including the confirmed Thursday arrival and all three hotel nights.",
+          "role": "user"
+        },
+        {
+          "content": "I will list the booked travel, Sunday bag arrangement, and transfer timing, and keep the operational checks separate.",
+          "role": "assistant"
+        },
+        {
+          "content": "Also note that the suitcase should be left with the bell desk before I go to the appointment, not carried to the convention site.",
+          "role": "user"
+        },
+        {
+          "content": "Office itinerary: Thursday, March 12, United 234 Denver-O'Hare, scheduled 11:20 a.m.-2:48 p.m.; transfer downtown and check in for three nights, checking out Sunday, March 15. Sunday morning, check out by noon and leave the suitcase with the hotel bell desk before the final convention appointment. The appointment ends at 11:30 a.m.; walk six blocks back to the hotel, retrieve the stored bag, and plan to leave for Monroe station by 2:00 p.m. Take the Blue Line to O'Hare for United 611, scheduled 5:30-7:12 p.m. The hotel has confirmed complimentary post-checkout luggage storage and advised allowing about 10 minutes for retrieval. Check Blue Line service status before leaving downtown.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0042",
+      "session_index": 42,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "The March 12-15 Chicago conference trip is confirmed with Thursday arrival on United 234, a three-night downtown hotel stay, and Sunday return on United 611 at 5:30 p.m. The hotel confirmed complimentary Sunday luggage storage after checkout. Elena will leave the suitcase with the bell desk before her final appointment, retrieve it after the 11:30 a.m. finish, and target a 2:00 p.m. departure for the Monroe Blue Line to O'Hare after checking service status. The May Raleigh-area wedding trip and June Seattle work trip remain booked with their noted local details unresolved. The July Philadelphia, September Portland and Bar Harbor, October Atlanta, November Carlsbad, January Phoenix, April Boston, and August Santa Fe arrangements retain their previously confirmed plans and outstanding follow-ups.",
+  "verification": {
+    "42": {
+      "habit_signals": [
+        {
+          "confidence": 0.94,
+          "evidence_quote": "I do not want the 5:30 flight to become tight.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly reaffirms the current trip's 5:30 p.m. departure by asking that the ground itinerary preserve adequate margin for it. No user utterance evidences the listed layover, carrier, seat, bed, or hotel-amenity habits."
+    }
+  }
+}

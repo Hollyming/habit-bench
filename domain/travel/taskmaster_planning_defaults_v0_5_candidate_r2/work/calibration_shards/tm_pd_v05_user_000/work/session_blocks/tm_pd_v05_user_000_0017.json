@@ -1,0 +1,123 @@
+{
+  "cache_fingerprint": "0bc368e9c78b7294809660a4464bd2f4c68b81a505892c5f9fc30870e1ce0837",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves only the disrupted Philadelphia return comparison. No recurring travel preference or policy evidence is introduced.",
+        "evidence_topology": {
+          "episode_id": "client-philadelphia-003",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 17,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly rules out the earlier return timing because of a current-trip work constraint and directly requests comparison of a nonstop return option. Cost questions do not by themselves reaffirm the cheapest-acceptable-flight habit, and the user does not explicitly choose either replacement itinerary.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.93,
+            "evidence_quote": "The client just extended final validation Thursday from 4:30 to 6:15. I can't responsibly make the 9:05 flight now.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.91,
+            "evidence_quote": "Compare the late Thursday nonstop with leaving Friday morning, including every added cost.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The client just extended final validation Thursday from 4:30 to 6:15. I can't responsibly make the 9:05 flight now. Compare the late Thursday nonstop with leaving Friday morning, including every added cost.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare the flight changes and check whether the Sheraton can extend your current room. For Thursday, the remaining nonstop leaves PHL at 11:10 p.m. and arrives MSP at 12:53 a.m.; only a few Main Cabin seats remain. The current fare can be changed for $214 more, with no separate change fee.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does the timing look like from the client office after 6:15? And what is the Friday option?",
+          "role": "user"
+        },
+        {
+          "content": "Allowing 20 minutes to wrap up, a 6:35 departure from the King of Prussia office should reach PHL around 7:20–7:50 in typical evening traffic. That leaves at least 3 hours 20 minutes before the 11:10 flight. Friday’s nonstop departs at 8:25 a.m. and arrives MSP at 10:09 a.m.; the airfare increase is $47.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the extra Sheraton night and whether either flight change can be reversed after approval.",
+          "role": "user"
+        },
+        {
+          "content": "The Sheraton can keep you in the same standard king through Friday for $228.44 including estimated tax. Because the extension begins tonight, that added night becomes nonrefundable once confirmed and remains payable at checkout. Both replacement flights are Main Cabin: there is no change fee, but any later change would require paying the new fare difference. The Thursday flight’s limited inventory means its $214 difference is not held.",
+          "role": "assistant"
+        },
+        {
+          "content": "So calculate the actual additions side by side. Include any transportation difference.",
+          "role": "user"
+        },
+        {
+          "content": "Late Thursday: $214 airfare increase and no added hotel night. The existing hotel-to-airport rideshare remains within the transportation estimate, so the known added cost is $214. Friday morning: $47 airfare increase plus $228.44 lodging, totaling $275.44. The airport ride is still required either way; shifting it to Friday morning does not add a separate ride, though the final fare may vary by demand. Friday therefore costs $61.44 more than Thursday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Which is the more feasible approval request? I don't want to risk missing another flight, but I need the cleaner case.",
+          "role": "user"
+        },
+        {
+          "content": "Request approval for Friday morning at an added $275.44. It costs $61.44 more, but it avoids ending a full client day with a late airport transfer and gets you to the airport after an overnight stay already near the worksite. The approval should explicitly cover the $228.44 same-day, nonrefundable hotel extension and the $47 flight difference. The Thursday 11:10 p.m. nonstop is the lower-cost fallback at $214, but availability is limited. Neither change has been submitted.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0017",
+      "session_index": 17,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. The April 23–28 coastal trip flights and hotels are booked; two quoted private rides remain unreserved. The June 9–12 Denver trip return has been changed to the Friday 6:40 p.m. nonstop, with the hotel unchanged. For the August 10–13 Philadelphia workshop, the Delta round trip is booked at $572 and the Sheraton Valley Forge stay is confirmed at $742.36. The client extended Thursday validation to 6:15 p.m., making the booked 9:05 p.m. return unusable. Two replacements remain unsubmitted: a Thursday 11:10 p.m. nonstop for $214 additional, or the recommended Friday 8:25 a.m. nonstop plus one more Sheraton night for $275.44 additional. The Friday plan requires approval for a $47 fare increase and a $228.44 same-day, nonrefundable hotel extension. The Thursday flight has limited availability. Rideshares remain planned but unreserved.",
+  "verification": {
+    "17": {
+      "habit_signals": [
+        {
+          "confidence": 0.93,
+          "evidence_quote": "The client just extended final validation Thursday from 4:30 to 6:15. I can't responsibly make the 9:05 flight now.",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.91,
+          "evidence_quote": "Compare the late Thursday nonstop with leaving Friday morning, including every added cost.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly rules out the earlier return timing because of a current-trip work constraint and directly requests comparison of a nonstop return option. Cost questions do not by themselves reaffirm the cheapest-acceptable-flight habit, and the user does not explicitly choose either replacement itinerary."
+    }
+  }
+}

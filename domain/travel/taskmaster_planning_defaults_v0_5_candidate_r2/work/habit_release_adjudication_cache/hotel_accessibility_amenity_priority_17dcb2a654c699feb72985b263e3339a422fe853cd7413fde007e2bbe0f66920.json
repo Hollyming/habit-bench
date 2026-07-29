@@ -1,0 +1,51 @@
+{
+  "cache_fingerprint": "17dcb2a654c699feb72985b263e3339a422fe853cd7413fde007e2bbe0f66920",
+  "decisions": [
+    {
+      "action": "merge",
+      "alternative_group_key": "",
+      "boundary_condition": "Treat pool and exercise access as the durable baseline preference and the hot tub as an additional preference. Do not infer indoor versus outdoor pool requirements, specific facility types, or trip-specific price and room constraints.",
+      "canonical_value": {
+        "fallback_amenities": [
+          "pool",
+          "fitness_center_or_comparable_exercise_facility"
+        ],
+        "preferred_amenities": [
+          "pool",
+          "fitness_center_or_comparable_exercise_facility",
+          "hot_tub"
+        ]
+      },
+      "condition": "When choosing or comparing hotels for a stay",
+      "default_action": "Prefer hotels offering a pool, a fitness center or comparable exercise facility, and a hot tub when suitable options are available.",
+      "exception_condition": "If no suitable hotel offers all three amenities, fall back to hotels offering both a pool and a fitness center or comparable exercise facility; relax further when the user explicitly waives an amenity or stronger current-trip constraints favor another hotel.",
+      "input_ids": [
+        "tm_v04_e2e_habit_051d8fbc7334",
+        "tm_v04_e2e_habit_1a978ad43f4e"
+      ],
+      "name": "prefers_hotels_with_pool_fitness_and_when_available_hot_tub",
+      "preference_value": "Hotels with a pool and fitness or exercise facility, preferably also a hot tub",
+      "rationale": "These policies express overlapping hotel wellness-amenity priorities and form a coherent default/fallback policy. The repeated evidence supports pool and exercise access as the softer baseline, while hot-tub availability is a stronger preference in some stays. Merging preserves that distinction without turning the hot tub into an unconditional requirement.",
+      "representative_id": "tm_v04_e2e_habit_051d8fbc7334"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "",
+      "boundary_condition": "Treat restaurant access as a soft preference; do not infer cuisine, rating, bar service, or family-suitability requirements unless stated for the current trip.",
+      "canonical_value": {
+        "priority": "soft",
+        "restaurant_access": "on_site_or_conveniently_nearby"
+      },
+      "condition": "When comparing hotels",
+      "default_action": "Prefer hotels with an on-site restaurant or conveniently nearby restaurants when other constraints are comparable.",
+      "exception_condition": "Ignore this preference when the user deprioritizes dining access or stronger current-trip constraints favor another hotel.",
+      "input_ids": [
+        "tm_v04_e2e_habit_11cb153da985"
+      ],
+      "name": "prefers_convenient_restaurant_access_near_hotel",
+      "preference_value": "Convenient access to restaurants at or near the hotel",
+      "rationale": "The evidence supports a recurring, soft preference for convenient restaurant access, including either an on-site restaurant or nearby dining. The policy appropriately avoids inferring unsupported cuisine or service requirements.",
+      "representative_id": "tm_v04_e2e_habit_11cb153da985"
+    }
+  ]
+}

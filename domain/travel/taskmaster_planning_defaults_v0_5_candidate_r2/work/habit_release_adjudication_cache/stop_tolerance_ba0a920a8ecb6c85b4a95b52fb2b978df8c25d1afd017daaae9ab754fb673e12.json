@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "ba0a920a8ecb6c85b4a95b52fb2b978df8c25d1afd017daaae9ab754fb673e12",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_stop_tolerance",
+      "boundary_condition": "Apply only to flight stop selection; do not infer airline, cabin, destination, travel date, party size, or price preferences from this policy.",
+      "canonical_value": "prefer_nonstop_when_available",
+      "condition": "When searching for flight itineraries for a trip, if a straight/nonstop option is available for the requested route and date.",
+      "default_action": "Search for and prefer straight/nonstop flights before considering itineraries with stops.",
+      "exception_condition": "If no straight/nonstop flight satisfies the required trip constraints, present itineraries with stops as fallback options and ask for confirmation before selecting one.",
+      "input_ids": [
+        "tm_v04_habit_d175c2eb1d60"
+      ],
+      "name": "Prefers straight/nonstop flights when available",
+      "preference_value": "straight/nonstop flight",
+      "rationale": "Supported by multiple examples that request a straight/nonstop flight. This is distinct from merely allowing up to one layover, so it should remain a separate soft default rather than be merged with other stop-tolerance thresholds.",
+      "representative_id": "tm_v04_habit_d175c2eb1d60"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_stop_tolerance",
+      "boundary_condition": "For round trips or multi-leg searches, apply the one-layover maximum separately to each flight or direction; this policy only governs stop count, not cabin, airline, departure time, destination, date, or exact price.",
+      "canonical_value": "at_most_one_layover_per_flight",
+      "condition": "When searching or comparing flight itineraries and no stricter nonstop-only requirement has been stated.",
+      "default_action": "Prefer itineraries with zero or one layover only; filter out flights with two or more stops unless the user explicitly agrees to relax the cap.",
+      "exception_condition": "If no zero- or one-layover itinerary satisfies the trip constraints, ask the user before considering flights with two or more stops.",
+      "input_ids": [
+        "tm_v04_habit_eb9dc6b737f2"
+      ],
+      "name": "Caps flight itineraries at one layover",
+      "preference_value": "at_most_one_layover_per_flight",
+      "rationale": "Supported by multiple examples asking for no more than one layover or accepting one stop. This is a different stop-tolerance threshold from a nonstop preference and should remain separate.",
+      "representative_id": "tm_v04_habit_eb9dc6b737f2"
+    }
+  ]
+}

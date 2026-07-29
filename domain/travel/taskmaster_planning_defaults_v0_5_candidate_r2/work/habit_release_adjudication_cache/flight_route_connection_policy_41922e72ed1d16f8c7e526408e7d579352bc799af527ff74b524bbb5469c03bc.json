@@ -1,0 +1,21 @@
+{
+  "cache_fingerprint": "41922e72ed1d16f8c7e526408e7d579352bc799af527ff74b524bbb5469c03bc",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_route_connection_policy",
+      "boundary_condition": "Treat this as a preference rather than an absolute requirement unless the user explicitly says no layovers for the current trip.",
+      "canonical_value": "Prefer nonstop flights, with a one-stop itinerary as a conditional fallback.",
+      "condition": "When searching for outbound or return flights, prioritize nonstop options.",
+      "default_action": "Search for and present a nonstop itinerary first.",
+      "exception_condition": "If no suitable nonstop flight is available, a one-stop option may be acceptable, but confirm the tradeoff before booking.",
+      "input_ids": [
+        "tm_v04_e2e_habit_ca360da1d426"
+      ],
+      "name": "Prefer nonstop flights",
+      "preference_value": "Nonstop flights are generally preferred.",
+      "rationale": "The frozen representative is supported by repeated requests for nonstop travel. The evidence also supports treating nonstop as a preference rather than an unconditional rule because one example explicitly allows at most one stop.",
+      "representative_id": "tm_v04_e2e_habit_ca360da1d426"
+    }
+  ]
+}

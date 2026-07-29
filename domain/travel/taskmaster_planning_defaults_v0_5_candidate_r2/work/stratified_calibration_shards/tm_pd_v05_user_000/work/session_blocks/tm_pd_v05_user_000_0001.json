@@ -1,0 +1,187 @@
+{
+  "cache_fingerprint": "dfdcea21f3ff5071ace27256990db52a9979deecd3e1099d6c19c06d719e37b0",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "{'policy': 'flight_airline_preference', 'evidence_kind': 'exception', 'summary': 'Maya explicitly made a trip-specific exception to her soft Delta preference, choosing another carrier’s $689 nonstop because Delta’s short, already-delayed connection posed materially greater arrival risk before an important workshop.'}",
+        "evidence_topology": {
+          "episode_id": "client-columbus-011",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 65,
+          "target_habit_id": "tm_pd_v05_user_000_h02",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v2_eligibility_v2",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user states a durable soft preference to include Delta for Minneapolis-origin travel, then explicitly overrides it for this trip. The user also chooses the materially more expensive nonstop over the free connecting replacement to protect workshop readiness, supporting the nonstop default and establishing a trip-specific exception to choosing the cheapest acceptable flight.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "The other carrier’s nonstop is worth it because I need to be functional for the workshop.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "The other carrier’s nonstop is worth it because I need to be functional for the workshop.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h03",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "but for this trip I do not want to take their connection just to stay with them.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h02",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "My flight to Columbus was just canceled, and I have not left for MSP yet. The airline is offering a 6:20 p.m. replacement with a connection, landing at 10:48. I also see a $689 nonstop on another carrier that gets in at 9:15. Can you help me decide quickly?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I’ll compare the real out-of-pocket cost, the likelihood of arriving tonight, connection exposure, and whether either option creates a hotel problem. Is the canceled ticket being preserved if you accept the airline’s replacement, and is the $689 fare fully separate?",
+          "role": "assistant"
+        },
+        {
+          "content": "Correct. The replacement costs nothing extra and keeps the original ticket in use. If I buy the nonstop, I pay the full $689 and the canceled ticket becomes a credit. I would need to use that credit later.",
+          "role": "user"
+        },
+        {
+          "content": "Then the choices are: spend $0 now and arrive at 10:48 p.m. after one connection, or spend $689 now for a nonstop arriving 93 minutes earlier while retaining the original value as a future credit. Both preserve Tuesday’s 8:30 a.m. workshop, but the connection adds another flight that can delay or strand you tonight. Do you have the connecting airport and layover length?",
+          "role": "assistant"
+        },
+        {
+          "content": "Detroit, 52 minutes. The first leg currently shows on time, but the Columbus leg is already delayed by 18 minutes.",
+          "role": "user"
+        },
+        {
+          "content": "That weakens the free option. A 52-minute Detroit connection is workable when operations are normal, but there is little recovery room if the MSP departure slips. The existing delay on the second leg also moves the practical arrival closer to 11:06 p.m., before any further changes. What is the nonstop’s current status, and when does it leave?",
+          "role": "assistant"
+        },
+        {
+          "content": "It leaves MSP at 7:05 and is still on time. The seat map has several seats open. The hotel said they will hold my room until midnight if I contact them.",
+          "role": "user"
+        },
+        {
+          "content": "The nonstop is the stronger arrival plan. It leaves later, arrives earlier, avoids the Detroit handoff, and gives you almost three hours of margin before the hotel’s midnight cutoff. The connecting itinerary has under an hour of hotel margin even before ground transportation, based on its already-delayed arrival.",
+          "role": "assistant"
+        },
+        {
+          "content": "I generally like having Delta in the mix from Minneapolis, but for this trip I do not want to take their connection just to stay with them. The other carrier’s nonstop is worth it because I need to be functional for the workshop.",
+          "role": "user"
+        },
+        {
+          "content": "That is a reasonable trip-specific exception. The $689 charge is substantial, but it buys a materially more reliable path tonight and protects the client commitment. The later-use credit reduces the long-term net cost only if you can apply it before expiration, so we should verify its value and deadline before purchase.",
+          "role": "assistant"
+        },
+        {
+          "content": "The credit will be $412 and expires one year from today. It is issued in my name. I can realistically use it for another client trip.",
+          "role": "user"
+        },
+        {
+          "content": "That makes the economic comparison clearer: $689 leaves your card now, while $412 remains recoverable through future travel. Assuming you use all of it, the effective added cost is $277. For 93 minutes earlier arrival, no connection, and much lower disruption risk, I recommend the nonstop.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. Check the booking details before I commit. The fare says standard economy, one carry-on included, changes allowed for a fare difference, and no refund.",
+          "role": "user"
+        },
+        {
+          "content": "Before purchase, confirm the flight date is today, the route is MSP to CMH nonstop, departure is 7:05 p.m., arrival is 9:15 p.m., and the total is $689 including taxes. Also verify the traveler name matches your ID and that the seat assignment is included rather than charged later. Since you are traveling tonight, confirm the ticket is issued immediately rather than held for manual review.",
+          "role": "assistant"
+        },
+        {
+          "content": "All of that matches. Seat 8C is included, and the confirmation page says ticketing is immediate. Go ahead with the $689 nonstop using the work card ending in 1842.",
+          "role": "user"
+        },
+        {
+          "content": "The nonstop is booked. The confirmation shows MSP to CMH today at 7:05 p.m., arriving 9:15 p.m., seat 8C, with a total charge of $689 to the card ending in 1842. Save the separate $412 airline credit details and expiration date with the expense record; do not cancel or modify the new ticket through the original airline.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now update the arrival logistics. I had a rideshare pickup planned for the old arrival time, and the hotel needs the late-arrival note. I should have only a carry-on.",
+          "role": "user"
+        },
+        {
+          "content": "Cancel the old scheduled pickup and request a new pickup for about 9:35 p.m., allowing roughly 20 minutes to deplane and reach the rideshare area with no checked bag. If the service requires a fixed time, 9:40 is safer. Tell the hotel your revised flight arrives at 9:15 p.m., your estimated check-in is around 10:00 p.m., and ask them to retain the room for late arrival regardless of flight delay.",
+          "role": "assistant"
+        },
+        {
+          "content": "The hotel is about 15 minutes from CMH. The rideshare app lets me schedule 9:40 for an estimated $31. Please set that plan, and draft the exact hotel message.",
+          "role": "user"
+        },
+        {
+          "content": "Use the 9:40 p.m. rideshare at the estimated $31, with the airport pickup zone selected. Hotel message: “My inbound flight was canceled and I have rebooked. My new flight is scheduled to arrive at CMH at 9:15 p.m. tonight, and I expect to check in at approximately 10:00 p.m. Please keep my reservation active for late arrival, including if the replacement flight is delayed. I will still attend Tuesday’s 8:30 a.m. workshop as planned.”",
+          "role": "assistant"
+        },
+        {
+          "content": "Sent. They replied that the room is guaranteed and the night desk is staffed continuously. The rideshare is scheduled. Anything else before I head out?",
+          "role": "user"
+        },
+        {
+          "content": "You are covered. Check in for the new flight, download the boarding pass, and take screenshots of the cancellation notice, the $412 credit, the new $689 receipt, and the hotel confirmation for reimbursement. Leave enough time for the new carrier’s check-in cutoff, and cancel any remaining check-in or seat request tied to the connecting replacement without forfeiting the original credit. The Wednesday return, hotel stay, and Tuesday workshop remain unchanged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0065",
+      "session_index": 65,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "For the Columbus client trip, Maya’s original Monday outbound was canceled before she left for MSP. She booked a separate $689 nonstop arriving at CMH at 9:15 p.m.; the canceled $412 ticket value remains as a named credit expiring one year from issuance. A rideshare is scheduled for 9:40 p.m. at an estimated $31. The hotel confirmed the room is guaranteed for late arrival and the night desk is continuously staffed. Tuesday’s 8:30 a.m. workshop, the hotel stay, and the Wednesday return remain unchanged. Cancellation evidence, credit details, replacement receipt, and hotel confirmation should be retained for expenses.",
+  "verification": {
+    "65": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "but for this trip I do not want to take their connection just to stay with them.",
+          "habit_id": "tm_pd_v05_user_000_h02",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "The other carrier’s nonstop is worth it because I need to be functional for the workshop.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "The other carrier’s nonstop is worth it because I need to be functional for the workshop.",
+          "habit_id": "tm_pd_v05_user_000_h03",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user states a durable soft preference to include Delta for Minneapolis-origin travel, then explicitly overrides it for this trip. The user also chooses the materially more expensive nonstop over the free connecting replacement to protect workshop readiness, supporting the nonstop default and establishing a trip-specific exception to choosing the cheapest acceptable flight."
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "cache_fingerprint": "346abd9239989df3fb15423a923b89de3606815b6fc0944ee416763a1c517313",
+  "sessions": [
+    {
+      "domain": "flights_and_hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Avery set a reusable scope boundary: the 4.0 hotel-rating floor applies to coastal vacations framed as nice or resort-style stays, but not to work trips or ordinary family visits. The revised return nonstop was accepted for both travelers, and the outbound arrival information was added to the condo reservation.",
+        "evidence_topology": {
+          "boundary_kind": "scope_limit",
+          "episode_id": "atlanta_st_thomas_coastal_vacation_01",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 119,
+          "target_habit_id": "tm_pd_v05_user_005_h06",
+          "target_signal_type": "boundary",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user endorses a nonstop for this trip, explicitly chooses a noon return as a one-trip departure-time exception, and durably limits the 4.0 hotel-rating rule to nice or resort-style coastal vacations. No exact user evidence establishes Delta as a general carrier preference, a window-seat preference, a queen-bed preference, or beach proximity in this dialogue.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "The earlier nonstop still sounds better.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Good. Accept the 12:05 nonstop for both travelers.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h01",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 1.0,
+            "evidence_quote": "Also, keep the four-point hotel-rating floor limited to our coastal vacations when we're looking for a nice or resort-style stay. Don't carry that rule into my work trips or ordinary family visits.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_005_h06",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Delta says our May 30 nonstop has been moved up by ninety minutes. Can you compare accepting that with the evening connection before I choose? I also want to know what each option does to checkout and the airport ride.",
+          "role": "user"
+        },
+        {
+          "content": "The free choices are: accept the revised nonstop, now departing St. Thomas at 12:05 p.m. and arriving Atlanta at 4:01 p.m., or switch to a 5:20 p.m. departure connecting in Miami and arriving Atlanta at 10:18 p.m. The nonstop keeps the trip simple and gets you home more than six hours earlier. The connection gives you most of Sunday at the property, but adds a 1-hour-42-minute layover and about seven hours of total travel time.",
+          "role": "assistant"
+        },
+        {
+          "content": "What time do we actually need to leave Sapphire Shore for the earlier flight? Their checkout is 10:00, correct?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, the reservation lists checkout at 10:00 a.m. The usual drive to the airport is about 20 to 30 minutes, but Sunday traffic and the rental-car return can add time. For a 12:05 p.m. departure, leaving the condo by 9:10 a.m. would give you a reasonable buffer to return the car and reach the terminal around 9:45. You would need to check out roughly fifty minutes early rather than using the room until 10:00.",
+          "role": "assistant"
+        },
+        {
+          "content": "And if we took the evening connection?",
+          "role": "user"
+        },
+        {
+          "content": "You could check out at 10:00, store the luggage only if Sapphire Shore confirms it can hold bags, and leave for the airport around 2:25 p.m. That creates several unstructured hours after checkout. Keeping the rental car longer could help, though any later-return charge would need to be checked. The connection also increases disruption risk because both segments must operate on time.",
+          "role": "assistant"
+        },
+        {
+          "content": "The earlier nonstop still sounds better. Before changing anything, make sure this is for both of us, our adjacent seats survive, and the checked bag stays attached to my ticket.",
+          "role": "user"
+        },
+        {
+          "content": "I checked the proposed reissue under G6R2QK. It covers both travelers at no additional fare. Seats 19A and 19B remain adjacent on the revised nonstop, and the prepaid checked bag remains assigned to your ticket. The outbound flight and seats 20A and 20B are unchanged.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Accept the 12:05 nonstop for both travelers.",
+          "role": "user"
+        },
+        {
+          "content": "The schedule change has been accepted for both travelers. Your return is now Delta flight 1832 on Sunday, May 30, departing St. Thomas at 12:05 p.m. and arriving Atlanta at 4:01 p.m. Seats 19A and 19B and your checked bag are confirmed. There was no additional charge.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now add our outbound arrival to Sapphire Shore. They said they need it to hold the room for Saturday. Use the booked flight, not the changed return.",
+          "role": "user"
+        },
+        {
+          "content": "I have the outbound as Delta flight 1950 on Saturday, May 22, arriving St. Thomas at 11:49 a.m. The condo's standard check-in begins at 4:00 p.m. I can add the flight number and arrival time to reservation SS4K92 and note that the reservation is for two adults. This does not request early check-in unless you want me to add that separately.",
+          "role": "assistant"
+        },
+        {
+          "content": "Just add the arrival details; do not request early check-in. Also, keep the four-point hotel-rating floor limited to our coastal vacations when we're looking for a nice or resort-style stay. Don't carry that rule into my work trips or ordinary family visits.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I added Delta flight 1950 and its 11:49 a.m. arrival on May 22 to Sapphire Shore reservation SS4K92 for both guests, without requesting early check-in. The property acknowledged the update and will hold the room for your Saturday arrival. I’ll limit the four-point hotel-rating floor to coastal vacations framed as nice or resort-style stays, not work travel or ordinary family visits.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0119",
+      "session_index": 119,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "Avery’s January 11-15, 2027 Kansas City installation trip is complete. Delta round-trip flights are booked for Avery and her wife for their St. Thomas vacation, May 22-30, 2027, under confirmation G6R2QK. The outbound remains Delta flight 1950 on May 22, arriving St. Thomas at 11:49 a.m. Following an airline schedule change, both travelers are confirmed on Delta flight 1832 on May 30, departing St. Thomas at 12:05 p.m. and arriving Atlanta at 4:01 p.m.; adjacent seats and the prepaid checked bag remain confirmed, with no additional charge. Sapphire Shore Condominiums is booked for two adults for all eight nights under confirmation SS4K92 at a complete price of $3,468. A $1,734 deposit was charged to the Visa ending in 6027, and the remaining $1,734 is due April 22. Cancellation is available through May 10 with a $75 fee and is nonrefundable afterward. The condo reservation now includes the outbound flight’s 11:49 a.m. arrival information; no early check-in was requested. The previously outstanding Boston hotel approval remains unresolved.",
+  "verification": {
+    "119": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "The earlier nonstop still sounds better.",
+          "habit_id": "tm_pd_v05_user_005_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Good. Accept the 12:05 nonstop for both travelers.",
+          "habit_id": "tm_pd_v05_user_005_h01",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 1.0,
+          "evidence_quote": "Also, keep the four-point hotel-rating floor limited to our coastal vacations when we're looking for a nice or resort-style stay. Don't carry that rule into my work trips or ordinary family visits.",
+          "habit_id": "tm_pd_v05_user_005_h06",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user endorses a nonstop for this trip, explicitly chooses a noon return as a one-trip departure-time exception, and durably limits the 4.0 hotel-rating rule to nice or resort-style coastal vacations. No exact user evidence establishes Delta as a general carrier preference, a window-seat preference, a queen-bed preference, or beach proximity in this dialogue."
+    }
+  }
+}

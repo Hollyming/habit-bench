@@ -1,0 +1,119 @@
+{
+  "cache_fingerprint": "7947109cac3796cab4bb0662e02f6972f69b48abcb7e2379d69d68b625698628",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For this San Diego trip, Maya selected the $1,142 nonstop round trip because it remains under the $1,200 airfare ceiling and the later Wednesday return preserves nearly five additional coastal hours. Two checked bags each way add $140 outside the airfare limit.",
+        "evidence_topology": {
+          "episode_id": "partner-san-diego-018",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 110,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user sets current-trip budget and baggage-accounting constraints and explores the value of nonstop and later-return options, but does not explicitly choose or endorse any candidate habit's exact default action. The assistant makes the final itinerary choice, so that recommendation is not user-originated evidence.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I have the three San Diego flight combinations now. Can you compare the actual travel time, connections, bag fees, and how much time we'd really get there? Our airfare cap is $1,200 total for both of us.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. I’ll compare them against the five-night Friday-to-Wednesday schedule. Are you expecting to check one bag each, or one shared bag?",
+          "role": "assistant"
+        },
+        {
+          "content": "Assume one checked bag each. We can choose seats on all three fares, so that part is fine.",
+          "role": "user"
+        },
+        {
+          "content": "Option 1 is $1,086 total: nonstop MSP-SAN Friday 9:20 a.m.-11:15 a.m., 3 hours 55 minutes, then nonstop SAN-MSP Wednesday 12:40-6:10 p.m., 3 hours 30 minutes. The first checked bag is $35 per person each way, so two bags add $140 round trip. Airfare plus bags would be $1,226.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the tickets fit the cap, but not if I count bags. What does the cheaper connection actually look like?",
+          "role": "user"
+        },
+        {
+          "content": "Option 2 is $914 total. Friday it leaves MSP at 12:05 p.m., connects in Denver from 1:18 to 5:42 p.m., and reaches SAN at 7:06 p.m. The full outbound is 9 hours 1 minute, including a 4-hour-24-minute layover. Wednesday it leaves SAN at 11:30 a.m., has a 1-hour-18-minute Denver connection, and reaches MSP at 7:02 p.m.; total return time is 5 hours 32 minutes. Its bag charge is also $35 per person each way, making the combined flight-and-bag cost $1,054.",
+          "role": "assistant"
+        },
+        {
+          "content": "That Friday is mostly gone. Compare the usable hours with the first one, including a realistic airport departure time Wednesday.",
+          "role": "user"
+        },
+        {
+          "content": "For Option 1, arriving at 11:15 a.m. should put you in Coronado around 12:15 p.m. Friday. For the 12:40 p.m. Wednesday flight, plan to leave La Jolla around 9:30 a.m. to return the rental car and check bags. That gives roughly 117 usable destination hours. Option 2 would put you in Coronado around 8:10 p.m. Friday and requires leaving La Jolla around 8:20 a.m. Wednesday, for about 108 usable hours. The $172 fare savings costs about nine hours in San Diego, mostly on arrival day.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the $1,142 option is the same Friday nonstop but comes home at 5:35 Wednesday, right?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. It uses the 9:20 a.m.-11:15 a.m. Friday nonstop. Wednesday’s nonstop is 5:35-11:05 p.m., with 3 hours 30 minutes in the air. You could leave La Jolla around 2:25 p.m. for the rental return and bag check, giving about 122 usable hours in San Diego.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does that later pairing stay under $1,200 for both tickets? And what happens once bags are included?",
+          "role": "user"
+        },
+        {
+          "content": "The airfare is $1,142 for both travelers, so it is $58 under the $1,200 airfare ceiling. Two checked bags each way add $140, bringing the flight-and-bag total to $1,282. That is $56 more than Option 1 including bags and $228 more than Option 2.",
+          "role": "assistant"
+        },
+        {
+          "content": "The extra Wednesday time sounds useful, but I don't want to overvalue it. How much later can we actually stay by the coast?",
+          "role": "user"
+        },
+        {
+          "content": "About 4 hours 55 minutes later than with Option 1: leave La Jolla near 2:25 p.m. instead of 9:30 a.m. In practical terms, that preserves breakfast, a walk or beach stop, and an early lunch before heading to SAN. It adds about five usable hours for $56 more in airfare, or roughly $11 per added destination hour for the two of you.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose the best round trip for this five-night plan. Keep the airfare limit separate from baggage when you summarize it.",
+          "role": "user"
+        },
+        {
+          "content": "Choose the $1,142 nonstop pairing: MSP-SAN Friday 9:20-11:15 a.m. and SAN-MSP Wednesday 5:35-11:05 p.m. Both legs are nonstop, with elapsed times of 3 hours 55 minutes outbound and 3 hours 30 minutes return. It stays within the $1,200 combined airfare limit by $58 and provides about 122 usable hours in San Diego, roughly five more than the $1,086 pairing and fourteen more than the $914 connecting option. Checked bags are separate: one per traveler each way adds $140, making the all-in flight cost $1,282. Nothing is booked yet.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0110",
+      "session_index": 110,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The February 5-7, 2030 Raleigh client trip is confirmed after the canceled Tuesday outbound was replaced with a separately ticketed 6:10 p.m. nonstop MSP-RDU arriving at 9:44 p.m. The canceled outbound shows a refund issued to the original card, and the new ticket added $184 to the trip cost. The North Hills hotel remains reserved for Tuesday and Wednesday nights and has confirmed that check-in around 10:30 p.m. is acceptable. Wednesday's workshop begins at 8:00 a.m. On Thursday, Maya will check out before the client session, store the suitcase at the hotel unless the client confirms storage, retrieve it after the 3:30 p.m. finish, and reach RDU before the 5:10 p.m. bag cutoff. The original 5:55 p.m. nonstop RDU-MSP return remains confirmed. Revised working trip total: $1,459 before meals, tips, or rideshare surge pricing. Unresolved accounting follow-ups include the Raleigh corrected folio, Philadelphia deposit release, and Nashville refund reconciliation. The September 12-16 Monterey Peninsula trip for Maya Lian Chen and Jordan Avery Lee remains confirmed at $2,849, with whale-watching booking status and exact hotel cancellation cutoffs unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2, 2029 Baltimore client trip and November 6-8, 2029 Raleigh client trip remain recorded as confirmed, with their noted ground-transportation items unresolved. The October 4-9, 2030 San Diego leisure trip remains under consideration and nothing is booked. The selected air plan is the $1,142 total nonstop pairing, departing MSP Friday at 9:20 a.m. and returning from SAN Wednesday at 5:35 p.m.; one checked bag per traveler each way would add $140. The working itinerary still has two nights in Coronado, three nights in La Jolla, rideshare for Saturday's Little Italy dinner, and a Sunday-through-Wednesday rental car. Recheck fare availability, baggage terms, hotel cancellation deadlines, rental pickup hours, and La Jolla parking cost before confirmation.",
+  "verification": {
+    "110": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user sets current-trip budget and baggage-accounting constraints and explores the value of nonstop and later-return options, but does not explicitly choose or endorse any candidate habit's exact default action. The assistant makes the final itinerary choice, so that recommendation is not user-originated evidence."
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "cache_fingerprint": "e50cf7a76786586b63e6e9689f62299f862bb05cb4123cbb02672e966e8a6c97",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_location_default_area_anchor",
+      "boundary_condition": "Apply only to hotel sub-location selection; do not infer a destination, airport choice, flight route, shuttle requirement, or ground-transport route.",
+      "canonical_value": "favor airport-adjacent hotels when airport access is relevant",
+      "condition": "When choosing a hotel location and convenient airport access is relevant, with no competing required neighborhood, landmark, venue, or area specified.",
+      "default_action": "Prioritize hotels described as near the airport or convenient to the airport.",
+      "exception_condition": "If the user requests a different required area such as downtown, beachfront, near a venue, or says airport proximity is not needed, follow that stated location instead.",
+      "input_ids": [
+        "tm_v04_habit_86a9320b4802"
+      ],
+      "name": "Prefers hotels near the airport",
+      "preference_value": "hotel near the airport",
+      "rationale": "Repeated examples support a soft preference for airport-proximate hotels, but only as a hotel sub-location priority when airport convenience matters. This is distinct from downtown or attraction-walkability alternatives and should not be treated as a destination or transport preference.",
+      "representative_id": "tm_v04_habit_86a9320b4802"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_location_default_area_anchor",
+      "boundary_condition": "Apply only to hotel sub-location selection; do not persist specific landmarks such as Times Square or one-off distance ranges such as 5 to 10 miles.",
+      "canonical_value": "favor downtown-area hotels when no other location anchor is specified",
+      "condition": "When choosing a hotel location within a city and no conflicting location anchor has been specified.",
+      "default_action": "Favor hotels located downtown or near the downtown area over outlying options.",
+      "exception_condition": "Do not apply if the user specifies another anchor such as an airport, event venue, beach area, named neighborhood, or if downtown options fail explicit constraints.",
+      "input_ids": [
+        "tm_v04_habit_c1b7a7936bf5"
+      ],
+      "name": "Prefers hotels near downtown",
+      "preference_value": "near downtown",
+      "rationale": "Multiple examples support preferring downtown-area lodging. The policy is kept as a soft default and does not preserve one-off details such as Times Square or a specific 5-to-10-mile range.",
+      "representative_id": "tm_v04_habit_c1b7a7936bf5"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_location_anchor_access_preference",
+      "boundary_condition": "If the request only names a broad destination city or gives no specific attraction, venue, beach, or area to access, do not invent a walkable anchor location.",
+      "canonical_value": "favor hotels within easy walking distance of the specified trip anchor",
+      "condition": "When the hotel search includes a specific trip anchor such as an attraction, beach, venue, or named area that the stay is meant to access.",
+      "default_action": "Filter or rank hotels that are within easy walking distance of the specified anchor; use a specific walk-time limit such as five minutes only when the user states one or when it is clearly feasible as a soft preference.",
+      "exception_condition": "If no suitable hotel is available within walking distance of the specified anchor or walkability conflicts with hard constraints, ask whether to relax the walkability requirement or use nearby transit or driving access instead.",
+      "input_ids": [
+        "tm_v04_habit_271e77a8b7dc"
+      ],
+      "name": "Prefers hotels walkable to the trip anchor",
+      "preference_value": "easy walking distance to the trip's main attraction or venue",
+      "rationale": "The examples consistently support prioritizing hotels that are walkable to a specified trip anchor such as a beach, venue, ballpark, or named area. The five-minute detail is treated only as an example or stated constraint, not as a universal hard threshold.",
+      "representative_id": "tm_v04_habit_271e77a8b7dc"
+    }
+  ]
+}

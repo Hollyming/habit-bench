@@ -1,0 +1,119 @@
+{
+  "cache_fingerprint": "82c4c9e32741105fb01c7059d09399c1970fd6363054216547eed06d62469170",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves only the current Cary hotel comparison. Maya selects the $204 flexible Hampton rate as the leading option because its commute, breakfast schedule, and Sunday cancellation deadline balance well while the flight remains unpurchased; no durable travel preference is established.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-001",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 1,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user makes a current-trip hotel choice based on cancellation timing, breakfast cost, commute, and price, but none of the candidate habits is established by the user's utterances. The referenced 7:10 p.m. flight is not identified as a return leg and does not evidence an afternoon-return default. No durable or cross-trip preference language appears.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Let’s look at hotels before I buy the Raleigh flight. I’d need four nights, Monday through Friday, near the Cary office on Regency Parkway. The room rate has to stay at or below $210 before tax.",
+          "role": "user"
+        },
+        {
+          "content": "I found three practical options within the cap. For the morning commute estimates, I used a rideshare departure around 7:00 a.m. for a 7:30 arrival.\n\nHampton Inn Raleigh/Cary: $196 nightly, usually 6–10 minutes to the office, breakfast included starting at 6:00 a.m., and free cancellation until 3:00 p.m. Saturday.\n\nCourtyard Raleigh Cary/Crossroads: $184 nightly, about 9–14 minutes, breakfast available for purchase starting at 6:30 a.m., and free cancellation until 6:00 p.m. Sunday.\n\nHomewood Suites by Hilton Raleigh Cary I-40: $205 nightly, about 11–16 minutes, breakfast included starting at 6:30 a.m., and free cancellation until 11:59 p.m. Sunday.\n\nAll three have rideshare pickup areas and are available for the four-night stay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you show the four-night room total before tax and flag whether breakfast timing would actually work? I don’t want to be walking into the first meeting at 7:30 sharp.",
+          "role": "user"
+        },
+        {
+          "content": "Hampton: $784 before tax. Breakfast at 6:00 gives you time to eat and request a car around 6:50, with a typical arrival near 7:00.\n\nCourtyard: $736 before tax. Its 6:30 opening is workable, but only for a quick meal; leaving around 6:50 would put you at the office roughly 7:00–7:10. Breakfast costs extra.\n\nHomewood Suites: $820 before tax. The 6:30 breakfast plus the longer drive makes the morning tighter, with a likely arrival around 7:10–7:20.\n\nThe Hampton has the cleanest morning schedule. The Courtyard saves $48 over the stay but gives up included breakfast and a few minutes of commute margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the Hampton’s Saturday cancellation cutoff really 48 hours before check-in? That seems much earlier than the other two.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. This Hampton rate uses a 48-hour cancellation rule measured from the hotel’s 3:00 p.m. Monday check-in time, so the penalty-free deadline is Saturday at 3:00 p.m. local time. After that, the listed penalty is one night’s room charge plus tax. The other two rates have later deadlines because they are separate flexible-rate offers.",
+          "role": "assistant"
+        },
+        {
+          "content": "The flight is still not purchased, so that deadline matters. Are there later-canceling rates at the Hampton that remain under $210?",
+          "role": "user"
+        },
+        {
+          "content": "There is a second Hampton rate at $204 per night, or $816 for four nights before tax. It includes the same breakfast and allows free cancellation until 6:00 p.m. Sunday. A cancellation after that is charged at one night plus tax.",
+          "role": "assistant"
+        },
+        {
+          "content": "That makes the comparison closer. What would you put second behind the Hampton at $204?",
+          "role": "user"
+        },
+        {
+          "content": "I’d rank the Courtyard second. Its $184 rate is the lowest, its Sunday 6:00 p.m. cancellation deadline matches the later Hampton rate, and the commute is still reasonable. The tradeoffs are paid breakfast and a slightly less predictable morning drive from the Crossroads area.\n\nHomewood Suites comes third: it is only $1 below the nightly cap, has the longest estimated ride, and its included breakfast does not open until 6:30.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much should I expect to spend on Courtyard breakfast? I’m trying to tell whether the $20 nightly difference is meaningful.",
+          "role": "user"
+        },
+        {
+          "content": "The current menu pricing is roughly $12–$18 for an entrée and coffee. Over four mornings, that would add about $48–$72 if you eat there each day. On that basis, the Courtyard’s $80 room-rate savings versus the $204 Hampton shrinks to roughly $8–$32, before considering the longer rideshare trips.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then the Hampton at $204 looks better. Any issue with a late Monday arrival if I take the 7:10 p.m. flight we shortlisted?",
+          "role": "user"
+        },
+        {
+          "content": "That itinerary reaches RDU around 10:45 p.m. A rideshare to the Hampton should take about 20–25 minutes at that hour, putting you there around 11:20 p.m. The front desk is staffed overnight, but I would add the arrival time to the reservation so the room is not treated as a no-show during night audit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Make that the leading option, but don’t book it yet. Give me the exact rate and deadline I should verify when I’m ready.",
+          "role": "user"
+        },
+        {
+          "content": "Leading option: Hampton Inn Raleigh/Cary, four nights from Monday through Friday, at $204 per night and $816 total before tax. Breakfast is included from 6:00 a.m., and the estimated morning rideshare to the Regency Parkway office is 6–10 minutes. Verify that the selected rate still shows free cancellation through 6:00 p.m. local time on Sunday, with a one-night-plus-tax penalty afterward. Also add an approximately 11:20 p.m. Monday arrival note if you choose the evening flight. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0001",
+      "session_index": 1,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya is planning a Tuesday-through-Friday healthcare software go-live in Cary, traveling from Minneapolis to Raleigh under a $700 economy airfare authorization. She must be onsite by 12:30 p.m. Tuesday and can leave after the 3:00 p.m. Friday close. Two nonstop itineraries remain: Monday evening outbound at about $548 or Tuesday early-morning outbound at about $612, both returning Friday at 5:35 p.m.; the Monday itinerary remains the lower-risk choice. For a four-night Monday-through-Friday stay, the $204 nightly flexible rate at Hampton Inn Raleigh/Cary is the leading hotel option, totaling $816 before tax with free cancellation until Sunday at 6:00 p.m. local time. Neither the flight nor hotel has been booked.",
+  "verification": {
+    "1": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user makes a current-trip hotel choice based on cancellation timing, breakfast cost, commute, and price, but none of the candidate habits is established by the user's utterances. The referenced 7:10 p.m. flight is not identified as a return leg and does not evidence an afternoon-return default. No durable or cross-trip preference language appears."
+    }
+  }
+}

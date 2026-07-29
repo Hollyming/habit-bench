@@ -1,0 +1,159 @@
+{
+  "cache_fingerprint": "9b41e124a88ef1935f7800dce4a842ef8d1556170da93f4d2a04d257dc500fa4",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary current-trip planning only. The session compares Monday-through-Thursday and Monday-through-Friday audit itineraries, selects a practical RTP-area hotel for estimates, evaluates rideshares against a rental car, and prepares an authorization recommendation without booking.",
+        "evidence_topology": {
+          "episode_id": "audit-durham-02",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 91,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user makes trip-specific choices about arrival timing, return-day risk, total cost, hotel location, and ground transportation, but does not establish or reaffirm any candidate habit's exact recurring default action with confidence >= 0.90.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I have a new audit in Durham. The opening meeting is Tuesday, June 17 at 8:30 a.m., and we should finish the closing meeting by 4:00 Thursday. I can travel Monday. Please compare coming home Thursday night with staying until Friday, including flights, hotel, and transportation.",
+          "role": "user"
+        },
+        {
+          "content": "I can build both versions. Which Durham location should I use for hotel and drive-time estimates, and is there a required arrival time on Monday?",
+          "role": "assistant"
+        },
+        {
+          "content": "The laboratory is near TW Alexander Drive and Miami Boulevard. There is no Monday commitment, but I need enough time to check in, eat, and be ready for an early start Tuesday. Departure is from SFO.",
+          "role": "user"
+        },
+        {
+          "content": "For Monday, June 16, the best two one-stop choices are a United itinerary through Denver, departing SFO at 8:20 a.m. and reaching RDU at 6:18 p.m., with 6 hours 58 minutes elapsed travel time, and a Delta itinerary through Atlanta, departing at 7:05 a.m. and arriving at 5:27 p.m., with 7 hours 22 minutes elapsed. The Delta connection is longer but gets you in 51 minutes earlier. I’ll compare each against the Thursday and Friday returns. Do you need a checked bag included?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, include one checked bag. The earlier arrival Monday is more useful unless it makes the total unreasonable.",
+          "role": "user"
+        },
+        {
+          "content": "With one checked bag, the Delta round trip returning Thursday is $612. The outbound is SFO 7:05 a.m.-ATL 2:47 p.m., then ATL 4:05 p.m.-RDU 5:27 p.m. The latest workable Thursday return is RDU 6:35 p.m.-CLT 7:42 p.m., then CLT 8:35 p.m.-SFO 11:14 p.m.; total return travel time is 7 hours 39 minutes. That departure leaves little margin after a 4:00 p.m. closing meeting. A Friday return using the same Delta outbound is $548 including the bag: RDU 9:10 a.m.-ATL 10:37 a.m., then ATL 12:05 p.m.-SFO 2:24 p.m., 8 hours 14 minutes elapsed.",
+          "role": "assistant"
+        },
+        {
+          "content": "Quantify the Thursday risk. Assume the meeting really ends at 4:00, not earlier.",
+          "role": "user"
+        },
+        {
+          "content": "From the lab area to RDU, the normal drive is about 15-20 minutes, but weekday traffic and terminal access can push it to 30 minutes. Leaving the site at 4:10 after packing up would likely put you at the terminal between 4:30 and 4:45. The checked-bag cutoff for a 6:35 departure is expected to be 5:50, leaving 65-80 minutes before that cutoff. A meeting overrun of 30 minutes, heavier traffic, or time spent waiting for a rideshare would materially narrow the margin. It is possible, but not robust.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check whether there is anything later Thursday. I do not want to assume that 6:35 is the only choice.",
+          "role": "user"
+        },
+        {
+          "content": "There is a 7:12 p.m. United departure through Washington Dulles, arriving SFO at 12:18 a.m. Friday. It costs $731 round trip with the bag and takes 8 hours 6 minutes on the return. That adds 37 minutes of airport margin but costs $119 more than the 6:35 option and arrives after midnight. There is also an 8:05 p.m. itinerary, but it has an overnight connection and does not reach SFO until 8:42 a.m. Friday, so it offers no practical advantage over a Durham hotel night.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. Use the 6:35 flight for the Thursday version and the 9:10 flight for Friday. Now look at practical hotels close to the laboratory, not downtown Durham.",
+          "role": "user"
+        },
+        {
+          "content": "Three suitable options near Research Triangle Park are: Home2 Suites Raleigh Durham Airport RTP, about 4 miles from the lab area, at an estimated $168 per night including tax and breakfast; Delta Hotels Raleigh-Durham at Research Triangle Park, about 3 miles away, at $176 including tax, with an on-site restaurant and airport shuttle; and Marriott Raleigh Durham Research Triangle Park, about 2 miles away, at $194 including tax, also with an on-site restaurant. All three include Wi-Fi. The Delta is the strongest practical middle option because it is close, has dinner on site, and can cover the airport transfer during shuttle hours.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does the Delta shuttle run early enough for the Friday flight, and can it be reserved?",
+          "role": "user"
+        },
+        {
+          "content": "The published shuttle hours are 5:00 a.m. to midnight, and the hotel recommends arranging the airport trip with the front desk the night before. For a 9:10 a.m. departure with a checked bag, a 6:45 a.m. shuttle request would be appropriate. The shuttle is complimentary, but timing is not guaranteed until the hotel confirms the request at check-in.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the shuttle out of the cost comparison, then. Price rideshares for everything so authorization does not depend on it.",
+          "role": "user"
+        },
+        {
+          "content": "Using rideshares throughout, I estimate $32 each way between RDU and the hotel, including a moderate surge allowance, and $25 each way between the Delta hotel and the laboratory. Airport transfers total $64. Six hotel-site trips across Tuesday, Wednesday, and Thursday total $150, so the working transportation estimate is $214 for either itinerary. If the hotel shuttle is available, the actual total could be lower.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would a rental car be cheaper? Include parking and fuel, and check whether the hotel charges for parking.",
+          "role": "user"
+        },
+        {
+          "content": "The Delta hotel lists complimentary self-parking. A compact rental picked up Monday evening and returned Thursday would be about $268 including taxes, plus roughly $30 for fuel, or $298 total. Returning Friday raises the rental estimate to $326, plus $30 fuel, or $356. Rideshares are therefore about $84 less for the Thursday plan and $142 less for the Friday plan. The rental gives more control on Thursday, but it does not remove the risk from a late closing meeting.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use rideshares. Please give me complete totals for the Delta hotel, and also show how much more Friday costs despite the lower airfare.",
+          "role": "user"
+        },
+        {
+          "content": "Monday-through-Thursday: airfare $612, three hotel nights at $176 for $528, and estimated rideshares $214, totaling $1,354. Monday-through-Friday: airfare $548, four hotel nights at $176 for $704, and estimated rideshares $214, totaling $1,466. Staying Friday costs $112 more overall. The $64 airfare saving offsets part of the extra $176 hotel night.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are those hotel numbers fully loaded? I need the authorization request to include tax and any mandatory destination or parking fees.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The $176 nightly estimate includes the currently displayed room rate, occupancy taxes, and mandatory hotel charges. Self-parking is complimentary, and no destination fee is listed. The three-night lodging estimate is $528 and the four-night estimate is $704. Meals and incidental holds are not included.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put the schedules side by side in prose, including when I would likely reach the hotel Monday and when I would leave it Friday.",
+          "role": "user"
+        },
+        {
+          "content": "Both plans begin Monday, June 16 with Delta departing SFO at 7:05 a.m., connecting in Atlanta, and arriving RDU at 5:27 p.m. Allowing for the checked bag and rideshare pickup, you would likely reach the Delta hotel around 6:30-6:45 p.m. The Thursday plan has the audit Tuesday through Thursday, then a target departure from the lab no later than 4:10 p.m. for the 6:35 p.m. flight through Charlotte, arriving SFO at 11:14 p.m. The Friday plan returns to the hotel after Thursday’s close, adds a fourth night, and leaves the hotel around 6:45 a.m. Friday for the 9:10 a.m. flight through Atlanta, arriving SFO at 2:24 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Prepare the authorization recommendation for the Friday plan, but retain the Thursday plan as the lower-cost alternative. Do not book anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "Authorization recommendation: Monday, June 16 through Friday, June 20, using the Delta one-stop outbound arriving RDU at 5:27 p.m., four nights at Delta Hotels Raleigh-Durham at Research Triangle Park, rideshares for airport and laboratory transportation, and the Friday 9:10 a.m. return arriving SFO at 2:24 p.m. Estimated total is $1,466: $548 airfare with one checked bag, $704 lodging including taxes and mandatory charges, and $214 ground transportation. Rationale: the extra hotel night avoids tying a 6:35 p.m. departure to a 4:00 p.m. closing meeting. Lower-cost alternative: return Thursday for $1,354, saving $112, with a target site departure by 4:10 p.m. No flights, hotel, or transportation have been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0091",
+      "session_index": 91,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund and rental documentation remain pending. Washington, Sonoma, Bothell, Chicago, Carlsbad, Palm Springs, Cypress Spa Lodge, Indianapolis, July supplier-audit, prior Scottsdale, Clayton, Plymouth, Denver, Coastal Sonoma, Holly Springs, Puerto Rico, Lenexa, and Boston arrangements remain as recorded. Boston conference and workshop registration totals $1,690; United airfare is $486; Westin Boston Seaport is reserved September 14-18 for $1,268 including tax, with cancellation until 6:00 p.m. Boston time September 11; trip subtotal is $3,444. For the March 12-16 Scottsdale wellness trip, two nonstop SFO-PHX tickets remain booked for $556. Montelucia is reserved for $2,018 including taxes and mandatory fees; $504.90 is paid and $1,513.10 is due at the resort. The $60 daily breakfast credit is per room. Separate Friday massages at 10:00 and 11:30 a.m. total $805.20; two $100 deposits were charged and $605.20 remains due. A private round-trip PHX transfer is confirmed for $248, including a March 16 resort pickup at 3:45 p.m. Current trip total is $3,627.20 before meals and incidentals. A Durham quality systems audit is planned for June 17-19 near Research Triangle Park. Authorization is to be requested for June 16-20 at an estimated $1,466, including Delta airfare with one checked bag, four nights at Delta Hotels Raleigh-Durham at Research Triangle Park, and rideshares. A June 16-19 alternative is estimated at $1,354 but has limited margin after the Thursday closing meeting. Nothing for Durham has been booked.",
+  "verification": {
+    "91": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user makes trip-specific choices about arrival timing, return-day risk, total cost, hotel location, and ground transportation, but does not establish or reaffirm any candidate habit's exact recurring default action with confidence >= 0.90."
+    }
+  }
+}

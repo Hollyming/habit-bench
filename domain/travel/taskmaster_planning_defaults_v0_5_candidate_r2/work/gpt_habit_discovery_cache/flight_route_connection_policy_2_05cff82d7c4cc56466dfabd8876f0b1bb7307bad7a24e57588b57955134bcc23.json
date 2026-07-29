@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "05cff82d7c4cc56466dfabd8876f0b1bb7307bad7a24e57588b57955134bcc23",
+  "habits": [
+    {
+      "boundary_condition": "Treat this as a preference rather than an absolute requirement unless the user explicitly says no layovers for the current trip.",
+      "bundle_id": "tm_v04_e2e_bundle_ca360da1d426",
+      "condition": "When searching for outbound or return flights, prioritize nonstop options.",
+      "confidence": 0.85,
+      "decision": "accept",
+      "default_action": "Search for and present a nonstop itinerary first.",
+      "exception_condition": "If no suitable nonstop flight is available, a one-stop option may be acceptable, but confirm the tradeoff before booking.",
+      "family": "flight_route_connection_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_ca360da1d426",
+      "induced_at": "2026-07-25T08:46:59.615645+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer nonstop flights",
+      "preference_value": "Nonstop flights are generally preferred.",
+      "rationale": "Across three independent flight requests, the user asks for nonstop service. Two dialogues also show that one stop can be accepted when a nonstop option is unavailable or when stated as the maximum.",
+      "reasoning_effort": "high",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Directly supports prioritizing nonstop flights, including for a return itinerary.",
+          "conversation_id": "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+          "exact_user_quote": "Just leave in the morning and no layovers non-stop.",
+          "instruction_id": "flight-14",
+          "turn_index": 19
+        },
+        {
+          "contribution": "Directly states the nonstop preference; later acceptance of the offered one-stop flight shows it can be relaxed when nonstop is unavailable.",
+          "conversation_id": "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748",
+          "exact_user_quote": "Economy and I'd like to have a non-stop flight.",
+          "instruction_id": "flight-11",
+          "turn_index": 14
+        },
+        {
+          "contribution": "Supports nonstop as the default and explicitly bounds the acceptable fallback at one stop.",
+          "conversation_id": "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+          "exact_user_quote": "I would like a non-stop flight or if at the most one stop in coach.",
+          "instruction_id": "flight-8",
+          "turn_index": 9
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Just leave in the morning and no layovers non-stop.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+          "habitual_language": false,
+          "instruction_id": "flight-14",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 19,
+          "user_utterance": "Just leave in the morning and no layovers non-stop."
+        },
+        {
+          "annotated_segment": "Economy and I'd like to have a non-stop flight.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 14,
+          "user_utterance": "Economy and I'd like to have a non-stop flight."
+        },
+        {
+          "annotated_segment": "I would like a non-stop flight or if at the most one stop in coach.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545",
+          "habitual_language": false,
+          "instruction_id": "flight-8",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 9,
+          "user_utterance": "I would like a non-stop flight or if at the most one stop in coach."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-d741629f-4b70-44ef-8955-6b9b7f08216a",
+    "dlg-b8cd7a56-b3a6-419e-8841-a1ddfbe55748",
+    "dlg-ac0892b3-0d9a-4df7-8ec5-1cf86fe7f545"
+  ]
+}

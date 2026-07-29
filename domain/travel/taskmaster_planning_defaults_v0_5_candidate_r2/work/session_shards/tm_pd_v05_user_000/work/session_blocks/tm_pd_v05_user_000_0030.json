@@ -1,0 +1,147 @@
+{
+  "cache_fingerprint": "cebc48ef49b5604484cd052e02621ac56188a1525a856043fef6cca6250a702f",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya confirmed that Friday client obligations end at 3:30 p.m., accepted the selected evening return margin, reconciled the trip to an estimated $1,511.49, and asked that the itinerary remain unbooked pending final approval that afternoon.",
+        "evidence_topology": {
+          "episode_id": "client-denver-006",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 30,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selected nonstop flights for this trip and overrode the usual afternoon return preference with a Friday evening return because the client session ends at 3:30. No durable preference change was stated.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "use the Tuesday evening nonstop and the Friday evening return",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "use the Tuesday evening nonstop and the Friday evening return",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The client confirmed the Friday session ends at 3:30, so use the Tuesday evening nonstop and the Friday evening return. Before anything is purchased, reconcile the full Denver cost and make sure the timing works.",
+          "role": "user"
+        },
+        {
+          "content": "I have the trip as Minneapolis to Denver on Tuesday, January 12, returning Friday, January 15, 2027, with three nights at Hotel Indigo Denver Downtown. The current airfare is $548, and the room is $255 per night before tax. I’ll check the meeting margins and total the quoted and estimated charges separately.",
+          "role": "assistant"
+        },
+        {
+          "content": "Correct. I need to know whether it actually stays within the $1,520 authorization once tax and transportation are included.",
+          "role": "user"
+        },
+        {
+          "content": "The hotel base is $765 for three nights. Its quoted total with tax is $885.49, so lodging tax and fees account for $120.49. Adding the $548 airfare brings the confirmed travel charges to $1,433.49 before ground transportation.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are you carrying for ground transportation?",
+          "role": "user"
+        },
+        {
+          "content": "The working estimate is $22 for round-trip airport rail and $56 for local transportation during the visit, or $78 total. That produces an estimated trip total of $1,511.49, leaving $8.51 under the authorization.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is very tight. Does the hotel breakfast reduce any separate meal estimate in that number?",
+          "role": "user"
+        },
+        {
+          "content": "There is no meal allowance included in the $1,511.49 calculation. Breakfast for one is included in the hotel rate, but any other reimbursable meals would sit outside this travel total unless the project authorization is meant to cover them too.",
+          "role": "assistant"
+        },
+        {
+          "content": "The $1,520 is airfare, hotel, and transportation only, so that’s fine. Confirm the actual schedule around the meetings.",
+          "role": "user"
+        },
+        {
+          "content": "The Tuesday nonstop arrives in Denver early enough for hotel check-in that evening and leaves the full Wednesday morning available before the client work begins. On Friday, the meeting ends at 3:30 p.m.; the selected evening nonstop allows just over two hours from the meeting site to scheduled departure. With the hotel near Union Station and rail access to the airport, that is workable, though there is not much room for a long wrap-up.",
+          "role": "assistant"
+        },
+        {
+          "content": "Two hours is acceptable now that 3:30 is firm. What are the fare and room restrictions?",
+          "role": "user"
+        },
+        {
+          "content": "The $548 airfare is the current quoted total for the Tuesday and Friday nonstops. It is not refundable; changes are permitted subject to any fare difference. The quote expires this evening and must be repriced if it is not ticketed by then. The Hotel Indigo total is $885.49 including tax and breakfast for one. It can be canceled without penalty until 6:00 p.m. Denver time on Sunday, January 10; after that, the penalty is one night’s room and tax.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please give me the final booking-ready breakdown, and flag anything that could push it over.",
+          "role": "user"
+        },
+        {
+          "content": "Booking-ready estimate: airfare $548.00; Hotel Indigo, three nights January 12-15, $885.49 including tax; airport rail $22.00 estimated; local transportation $56.00 estimated. Total: $1,511.49, which is $8.51 below the $1,520 authorization. The itinerary qualifies as priced, but any airfare increase or more than $8.51 in additional transportation would exceed the limit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Keep it ready, but don’t purchase until I send the final approval this afternoon.",
+          "role": "user"
+        },
+        {
+          "content": "The January 12-15 Denver itinerary is prepared for booking with the Tuesday evening nonstop, Friday evening return, and Hotel Indigo stay. I have not purchased or reserved anything. The airfare must be rechecked before approval because the $548 quote expires this evening; the hotel rate, availability, and cancellation terms should be reconfirmed at the same time.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0030",
+      "session_index": 30,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya's Denver trip remains ticketed for June 16-19, 2026; the revised Friday departure still needs confirmation. The Philadelphia return was exchanged to Friday, July 31, 2026 at 8:10 a.m., and the Hyatt House stay was extended through Friday morning; those changes added $348.56. The Sonesta deposit release remains pending, and Hyatt shuttle details remain unconfirmed. The coastal Georgia trip remains unbooked at a working total of $3,647. For Nashville, the replacement outbound adds a net $168 after the canceled-segment refund; the hotel and Thursday return remain unchanged, and the revised total still needs reconciliation after the refund posts. The two-person San Diego trip for November 8-13, 2026 remains booked at a reconciled estimate of $3,284. The November 13 return is confirmed on the 5:00 p.m. Alaska nonstop arriving MSP at 10:37 p.m., at no additional fare; the outbound, shared checked bag, Wayfarer reservation, and 2:35 p.m. airport ride are unchanged. The hotel remains refundable through 6:00 p.m. local time on November 3. The Denver client trip for January 12-15, 2027 remains unbooked pending Maya's final approval. Friday obligations are confirmed to end at 3:30 p.m. The prepared itinerary uses the Tuesday evening nonstop, Friday evening return, and Hotel Indigo Denver Downtown for three nights. Airfare is quoted at $548 and expires that evening; the hotel total is $885.49 including tax and breakfast for one, with free cancellation until 6:00 p.m. Denver time on January 10 and a one-night room-and-tax penalty afterward. With $78 estimated for airport rail and local transportation, the trip totals $1,511.49, leaving $8.51 within the $1,520 authorization. Airfare, hotel rate, availability, and terms must be rechecked before purchase.",
+  "verification": {
+    "30": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "use the Tuesday evening nonstop and the Friday evening return",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "use the Tuesday evening nonstop and the Friday evening return",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selected nonstop flights for this trip and overrode the usual afternoon return preference with a Friday evening return because the client session ends at 3:30. No durable preference change was stated."
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "cache_fingerprint": "ac423b7ee50b74b29650ed4f826c7fec2c39a7642197c7a695cd3c42125787f5",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya chose a trip-specific mixed ground-transportation plan: rideshare from Savannah to Tybee on Saturday afternoon and a prebooked private car from Tybee to SAV on Tuesday. No recurring preference was established.",
+        "evidence_topology": {
+          "episode_id": "partner-coast-001",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 8,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user’s utterances establish only current-trip ground-transport choices and constraints; none provide strong semantic evidence for any candidate flight or hotel habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I found out DeSoto charges $25 a night to park. Can you compare a rental car, scheduled rides both ways, and some combination of rideshare and shuttle? We check out of Perry Lane Saturday but want to stay in Savannah until around 3:00 before going to Tybee. Tuesday’s flight leaves SAV at 7:20 p.m.",
+          "role": "user"
+        },
+        {
+          "content": "For Saturday afternoon and a Tuesday evening airport return, the cleanest comparison is: rental car for roughly three days plus three hotel parking nights; a prebooked car from downtown to Tybee and another from Tybee to SAV; or rideshare Saturday followed by a scheduled airport shuttle Tuesday. I’ll compare total cost and the pickup windows each requires. Are you planning any off-island driving after check-in?",
+          "role": "assistant"
+        },
+        {
+          "content": "No. Once we reach Tybee, we can walk or use a short local ride if needed.",
+          "role": "user"
+        },
+        {
+          "content": "Then the rental car is hard to justify. A compact picked up downtown Saturday and returned at SAV Tuesday is currently about $205 before fuel, and DeSoto parking adds $75, putting it near $295-$315 total. It also means collecting the car before the downtown counter closes, likely by 1:00 p.m., which interferes with your afternoon in Savannah.",
+          "role": "assistant"
+        },
+        {
+          "content": "What do the other two look like?",
+          "role": "user"
+        },
+        {
+          "content": "Two scheduled private rides price around $225-$255 total: about $95-$110 from central Savannah to DeSoto and $130-$145 from Tybee to SAV. A Saturday rideshare plus Tuesday shared shuttle is about $135-$175: rideshare roughly $45-$65, then $90-$110 for two shuttle seats. The shuttle needs advance booking and may use a broader pickup window.",
+          "role": "assistant"
+        },
+        {
+          "content": "I don’t want a shared shuttle making several stops before an evening flight. Could we rideshare out and schedule a private pickup back?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. That mixed plan is about $175-$210 total: request the Savannah-to-Tybee rideshare around 3:00 p.m. Saturday, then reserve a private Tybee-to-SAV car for Tuesday. For a 7:20 p.m. departure, I’d set hotel pickup for 4:45 p.m.; that allows roughly 45 minutes for traffic and leaves close to two hours at the airport.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use that arrangement. Is 3:00 too risky for finding a ride to Tybee, and does this change the trip budget much?",
+          "role": "user"
+        },
+        {
+          "content": "Saturday at 3:00 should be workable, but availability can thin out for the island trip. Start checking around 2:40 and be ready to request by 2:50; if no driver accepts within 10 minutes, have the hotel call a taxi. Reserve Tuesday’s 4:45 private pickup at least several days ahead and confirm the quoted fare includes gratuity, tolls, and any island surcharge. Using the midpoint estimate of $193 makes the trip total about $3,647, only $3 above the prior $190 transportation allowance and still about $153 below the $3,800 ceiling. No transportation has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0008",
+      "session_index": 8,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya and her partner are planning a five-night coastal Georgia trip, April 23-28, 2026. The reviewed itinerary includes nonstop round-trip airfare for two at $1,184, Perry Lane Hotel for April 23-25 at $899.34, and DeSoto Beach Hotel for April 25-28 at $1,370.66. They plan to spend Saturday afternoon in Savannah, request a rideshare to Tybee around 2:50-3:00 p.m., and prebook a private car from DeSoto to SAV for 4:45 p.m. Tuesday ahead of the 7:20 p.m. flight. Estimated ground transportation is now $193, producing a working trip total of $3,647, about $153 below the $3,800 ceiling. The Tuesday car fare must be checked for gratuity, tolls, and island surcharges, and the booking should be reconfirmed before travel. Final checkout screens still need confirmation for live prices, dates, fees, charge schedules, and cancellation terms. Nothing has been purchased, charged, held, or reserved.",
+  "verification": {
+    "8": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user’s utterances establish only current-trip ground-transport choices and constraints; none provide strong semantic evidence for any candidate flight or hotel habit."
+    }
+  }
+}

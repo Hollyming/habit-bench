@@ -1,0 +1,88 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h02', 'exception') actual=[('tm_pd_v05_user_000_h01', 'exception'), ('tm_pd_v05_user_000_h03', 'support'), ('tm_pd_v05_user_000_h02', 'exception')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya made a trip-specific exception by retaining the Alaska SFO itinerary over Delta: although Delta offered the cleaner nonstop, Alaska's savings brought this vacation under the transportation ceiling without sacrificing enough usable time to justify the premium.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "Now compare the flights and rental car together for San Francisco versus San Jose. We’re staying in one place near Monterey, so include the real drive and airport time, especially on the last day. Keep the transportation total under $1,700 for both of us if possible.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare same-airport round trips first, since mixing airports adds a one-way rental fee. Are the Thursday-to-Monday dates unchanged, and should I price one checked bag each?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes on the dates. Include one checked bag each. We can leave the hotel around 10:30 Monday, but I don’t want the whole final day to become a rush to the airport.",
+          "role": "user"
+        },
+        {
+          "content": "For SFO, the nonstop is $612 per person and lands Thursday at 11:20 a.m. With bags and rental pickup, you should be driving by about 12:35 p.m. The realistic drive to the Monterey area is 2 hours 15 minutes to 3 hours, so arrival at the hotel is roughly 2:50-3:35 p.m. The Monday return departs at 6:40 p.m.; allowing 2.5-3 hours to SFO, fuel and return time, and a two-hour terminal buffer means leaving around 12:30 p.m. That works comfortably after a 10:30 hotel departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the full SFO total, including the bags and car?",
+          "role": "user"
+        },
+        {
+          "content": "Airfare is $1,224 for two. Checked bags add $140 round trip, and the SFO rental is $286 base plus $132 in taxes and airport fees, or $418. Total transportation is $1,782, which is $82 over the ceiling.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. Run San Jose the same way.",
+          "role": "user"
+        },
+        {
+          "content": "The SJC itinerary is $498 per person with one connection and arrives Thursday at 2:45 p.m. Bags add $140. After baggage claim and rental pickup, expect to leave around 4:00 p.m.; the drive is usually 1 hour 20 minutes to 1 hour 50 minutes, putting you at the hotel around 5:20-5:50 p.m. The rental is $326 all-in. Total transportation is $1,462.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the Monday timing? I remember that return being much earlier.",
+          "role": "user"
+        },
+        {
+          "content": "It departs SJC at 2:55 p.m., nearly four hours before the SFO flight. From the hotel, I’d allow up to 1 hour 45 minutes for traffic, 30 minutes for fuel and rental return, and two hours in the terminal. That calls for leaving by 10:40 a.m. A 10:30 departure is workable, but there is almost no room for a late breakfast or a traffic surprise.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there a mixed-airport version that gives us the early San Jose arrival cost and the later SFO return?",
+          "role": "user"
+        },
+        {
+          "content": "The workable open-jaw combination arrives at SJC Thursday and departs SFO Monday. Flights total $1,076 for two, including the fare difference between the separate legs, and bags are $140. The rental is $354 plus a $175 different-airport drop fee, for $529. Combined transportation is $1,745. It improves Thursday versus the SJC round trip and preserves Monday afternoon, but it is $45 over the ceiling and requires the longer drive to SFO.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then keep the best two combinations that actually fit. Is there another SFO carrier that gets the total down?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Alaska has an SFO round trip at $548 per person, with a short Seattle connection outbound and a nonstop return at 6:35 p.m. It lands at 12:40 p.m. Thursday. With $140 in bag fees and the same $418 rental, the total is $1,654. Thursday hotel arrival would be about 4:15-5:00 p.m., and Monday still allows a 12:25 p.m. airport departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "For this vacation, keep Alaska even though Delta has the cleaner SFO nonstop. The $128 airfare savings gets that route under the cap, and the connection doesn’t cost enough usable time to justify going over. What are the two finalists?",
+          "role": "user"
+        },
+        {
+          "content": "The two finalists are retained, not booked:\n\n1. SFO on Alaska: one connection outbound, arriving Thursday at 12:40 p.m.; nonstop return Monday at 6:35 p.m. Estimated hotel arrival is 4:15-5:00 p.m., and you can leave the hotel around 12:25 p.m. Monday. Flights for two plus bags are $1,236; rental is $418; total is $1,654, leaving $46 under the ceiling.\n\n2. SJC round trip: one connection each way, arriving Thursday at 2:45 p.m.; return Monday at 2:55 p.m. Estimated hotel arrival is 5:20-5:50 p.m., and you need to leave around 10:40 a.m. Monday. Flights for two plus bags are $1,136; rental is $326; total is $1,462, leaving $238 under the ceiling.\n\nSFO costs $192 more but gives you a much more usable final day. SJC is the lowest total, though Monday morning has little scheduling margin. The Delta SFO nonstop and mixed-airport plan are excluded because both exceed $1,700.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0056",
+      "session_index": 56,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "For the Monterey-area coastal vacation, Maya and her partner will use one lodging base and have two unbooked transportation finalists. The SFO combination uses Alaska, arrives Thursday at 12:40 p.m., returns Monday at 6:35 p.m., and totals $1,654 for two travelers with checked bags and a same-airport rental; expected hotel arrival is 4:15-5:00 p.m., with a Monday airport departure around 12:25 p.m. The SJC round trip arrives Thursday at 2:45 p.m., returns Monday at 2:55 p.m., and totals $1,462; expected hotel arrival is 5:20-5:50 p.m., with a Monday airport departure around 10:40 a.m. Both fit the $1,700 transportation ceiling. The SFO Delta nonstop and mixed-airport combination were excluded for exceeding the ceiling. Nothing has been booked. The Carolinas client-trip hotels remain selected but unbooked: Queen City SouthPark for Tuesday at $276.40 complete and West Broad Suites for Wednesday and Thursday at $519.83, totaling $796.23. The earlier Aurora trip still has two unbooked flight finalists at $676 and $622."
+}

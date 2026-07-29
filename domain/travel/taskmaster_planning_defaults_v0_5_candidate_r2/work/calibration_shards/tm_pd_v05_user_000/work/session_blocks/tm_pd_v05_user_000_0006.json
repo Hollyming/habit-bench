@@ -1,0 +1,139 @@
+{
+  "cache_fingerprint": "5e24de2b22d7c860490e49dc9c1e42377565167ec097b3e1f7bf8390ce30a778",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For this Savannah and Tybee trip, Maya chose the lower-cost one-stop itinerary after confirming that it preserves nearly all first-day destination time and moves most added travel time to the return evening.",
+        "evidence_topology": {
+          "episode_id": "partner-coast-001",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 6,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chose the lowest-priced acceptable itinerary after confirming the time cost, layover lengths, baggage fee, and full-trip budget. Choosing the one-stop itinerary is a current-trip exception to prioritizing nonstop service, not a durable change. No user utterance establishes a recurring preference or any other candidate habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Carry forward the cheapest connection itinerary with one shared checked bag.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Carry forward the cheapest connection itinerary with one shared checked bag.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h03",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Now compare flights for the Savannah and Tybee dates. Two people, MSP to Savannah Thursday April 23 and back Tuesday April 28. I want to see what saving money with a connection actually costs us in time.",
+          "role": "user"
+        },
+        {
+          "content": "I found three practical round trips for two at current displayed economy fares. Option 1 is nonstop both ways: Thursday 8:40 a.m.–12:18 p.m. and Tuesday 1:45 p.m.–3:42 p.m., $1,184 total. Option 2 connects in Atlanta: Thursday 7:10 a.m.–12:46 p.m. and Tuesday 2:35 p.m.–7:48 p.m., $874 total. Option 3 connects in Detroit outbound but is nonstop back: Thursday 9:25 a.m.–3:36 p.m. and Tuesday 1:45 p.m.–3:42 p.m., $1,018 total. These are fare quotes before optional bags or seat fees.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put those against the whole trip. The hotels were estimated at $2,502 with taxes and fees, and the total ceiling is $3,800.",
+          "role": "user"
+        },
+        {
+          "content": "With lodging at $2,502, the nonstop itinerary brings air plus lodging to $3,686, leaving $114 for local transportation. The connecting itinerary totals $3,376, leaving $424. The mixed itinerary totals $3,520, leaving $280. Estimated rideshares between SAV, Savannah, Tybee, and back to SAV are about $160–$220, so the nonstop option would likely exceed the ceiling by $46–$106. The connection option leaves $204–$264 after transportation, while the mixed option leaves $60–$120.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much destination time are we really giving up with the cheapest one? Include getting to Tybee on Saturday, since the hotel switch is part of this.",
+          "role": "user"
+        },
+        {
+          "content": "Compared with the nonstop plan, the cheapest itinerary lands only 28 minutes later Thursday, so the first day is nearly unchanged. Its larger drawback is Tuesday: it leaves SAV 50 minutes later but reaches Minneapolis 4 hours 6 minutes later because of the Atlanta connection. The Saturday Savannah-to-Tybee transfer is unaffected because all three options use the same trip dates and you would already be in Savannah. In practical terms, the cheapest itinerary preserves Thursday afternoon and the full coastal stay; most of the lost time is spent traveling home Tuesday evening.",
+          "role": "assistant"
+        },
+        {
+          "content": "That makes the connection sound more reasonable. Is it one stop each way, and are the layovers decent rather than risky or excessive?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The outbound has one Atlanta stop of 1 hour 14 minutes, and the return has one Atlanta stop of 1 hour 9 minutes. Both are ordinary connection windows at the same airport, with no airport change or overnight segment. They are long enough to be workable but do not leave much cushion for a substantial inbound delay.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about checked bags? We may share one, but don’t assume it’s included.",
+          "role": "user"
+        },
+        {
+          "content": "The $874 quote does not include a checked bag. At the currently displayed $35 each direction, one shared checked bag would add $70, making the flight total $944. Air plus lodging would then be $3,446, leaving $354 for transportation. After the $160–$220 rideshare estimate, the trip would remain about $134–$194 under the $3,800 ceiling.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the mixed option with that same bag? I’m deciding whether the easier return is worth it.",
+          "role": "user"
+        },
+        {
+          "content": "Adding one round-trip checked bag brings the mixed itinerary to $1,088. Combined with lodging, that is $3,590, leaving $210. After estimated rideshares, the remaining cushion is about negative $10 to positive $50. You would pay $144 more than the connecting itinerary with the bag and arrive in Minneapolis 4 hours 6 minutes earlier Tuesday; the outbound would arrive 50 minutes later than the cheapest itinerary.",
+          "role": "assistant"
+        },
+        {
+          "content": "So mixed is basically at the limit, and its outbound is actually worse. Carry forward the cheapest connection itinerary with one shared checked bag. Give me the exact setup and the all-in estimate, but don’t book it.",
+          "role": "user"
+        },
+        {
+          "content": "Carry forward the one-stop round trip for two: MSP to SAV Thursday, April 23, departing 7:10 a.m. and arriving 12:46 p.m. via Atlanta; SAV to MSP Tuesday, April 28, departing 2:35 p.m. and arriving 7:48 p.m. via Atlanta. The current economy fare is $874 for two, plus $70 for one shared checked bag round trip, for an air estimate of $944. With the $2,502 lodging estimate and $160–$220 for rideshares, the full trip estimate is $3,606–$3,666, leaving $134–$194 below the $3,800 ceiling. Optional seat charges and fare changes are not included. Nothing has been booked or charged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0006",
+      "session_index": 6,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. For the April 23–28 coastal trip, Maya and her partner are carrying forward The Drayton Hotel for two Savannah nights and Beachview Inn & Spa for three Tybee Island nights, estimated at $2,502 including taxes and current mandatory fees. The flight plan carried forward is a one-stop MSP–SAV round trip via Atlanta for two, departing April 23 at 7:10 a.m. and returning April 28 at 2:35 p.m., estimated at $944 including one shared checked bag. With estimated rideshares, the trip is projected at $3,606–$3,666. No leisure travel has been booked.",
+  "verification": {
+    "6": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Carry forward the cheapest connection itinerary with one shared checked bag.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Carry forward the cheapest connection itinerary with one shared checked bag.",
+          "habit_id": "tm_pd_v05_user_000_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chose the lowest-priced acceptable itinerary after confirming the time cost, layover lengths, baggage fee, and full-trip budget. Choosing the one-stop itinerary is a current-trip exception to prioritizing nonstop service, not a durable change. No user utterance establishes a recurring preference or any other candidate habit."
+    }
+  }
+}

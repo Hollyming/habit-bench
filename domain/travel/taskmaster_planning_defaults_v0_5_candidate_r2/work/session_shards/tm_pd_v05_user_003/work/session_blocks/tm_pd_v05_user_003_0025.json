@@ -1,0 +1,151 @@
+{
+  "cache_fingerprint": "656c470821ca93b5a395fe015cc6e9c81246f419a879db62256c7411d417c6a7",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip-specific planning only. Priya chose Sunday outbound travel to protect the required Monday dinner and Thursday return travel to avoid an impractical post-audit airport transfer; no recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "audit-raleigh-01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 25,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user made trip-specific timing, routing, and reliability choices for the Raleigh audit, but did not establish or reaffirm any exact candidate habit at confidence >= 0.90.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to sort out the Raleigh audit flights. The supplier visit is Tuesday, January 14 and Wednesday, January 15, starting at 8:00 a.m. both days. We should finish around 5:00 Wednesday. There is also a required team dinner near the site at 6:30 Monday evening. I will be flying from San Francisco and need to collect a rental car at RDU.",
+          "role": "user"
+        },
+        {
+          "content": "The Monday dinner is the limiting piece. San Francisco is three hours behind Raleigh, and even a morning departure can consume most of the day. Roughly how far is the supplier site from RDU, and how much margin do you want before dinner for the rental counter, drive, and hotel check-in?",
+          "role": "assistant"
+        },
+        {
+          "content": "The site and hotel are in the same area, about 40 to 45 minutes from the airport without heavy traffic. I would like to be at the hotel by 5:30 if possible. Check whether Monday travel can work before moving me to Sunday.",
+          "role": "user"
+        },
+        {
+          "content": "To reach the hotel by 5:30 Monday, I would target an RDU arrival no later than 4:00 p.m. That allows about 30 minutes to deplane and reach the rental facility, 15 to 25 minutes for pickup, and up to an hour for the drive. A delay would still put dinner at risk, but the schedule would be workable. I’ll compare an early Monday nonstop, early one-stop itineraries, and a Sunday alternative. For the return, should I first test Wednesday night, or is Thursday acceptable?",
+          "role": "assistant"
+        },
+        {
+          "content": "Test Wednesday night. I do not want to add another hotel night unless the airport timing is genuinely unreasonable.",
+          "role": "user"
+        },
+        {
+          "content": "A Wednesday departure needs more care than the outbound. Leaving the site at 5:00 p.m. puts you at the rental return around 5:45 in normal traffic and likely inside the terminal around 6:05 to 6:20. I would not consider a flight before 7:30 p.m., and 8:00 p.m. or later is more defensible. Late RDU-to-SFO choices commonly involve a connection and can arrive after midnight or the next morning. Would a red-eye-style itinerary with one connection be acceptable if it avoids Thursday lodging?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, but show me the practical consequence. I have no reason to take a miserable connection just to avoid one night.",
+          "role": "user"
+        },
+        {
+          "content": "There are three useful schedule patterns to compare. First, a Monday nonstop leaving SFO around 8:30 a.m. and reaching RDU around 4:30 p.m.; that misses your 4:00 target and would likely get you to the hotel between 5:50 and 6:20, leaving almost no dinner margin. Second, a Monday itinerary leaving around 6:00 a.m., connecting once, and reaching RDU around 3:30 to 3:50 p.m.; that can reach the hotel near 5:15 but introduces connection risk. Third, travel Sunday afternoon or evening, which protects the dinner and gives you a normal Monday. The exact flight numbers and prices need a live recheck before purchase.",
+          "role": "assistant"
+        },
+        {
+          "content": "The early Monday one-stop sounds possible. What are the connection choices? I would rather not discover that the layover is only 35 minutes.",
+          "role": "user"
+        },
+        {
+          "content": "The viable versions are typically through Denver, Dallas-Fort Worth, or Atlanta. I would eliminate anything with less than about an hour between flights for this trip. A Denver option leaving SFO near 6:00 a.m., with roughly 75 to 95 minutes between flights and arrival at RDU around 3:40 p.m., is the cleanest Monday pattern. Dallas can produce a similar arrival but often requires more terminal movement. Atlanta gives more recovery options if the first segment is delayed, although it sends you past Raleigh and back north.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare that Denver itinerary with going Sunday. I can leave Sunday after lunch, but I do not need to arrive extremely late just to preserve the day.",
+          "role": "user"
+        },
+        {
+          "content": "The Monday Denver connection saves one hotel night but has two failure points before a required dinner. On schedule, an arrival around 3:40 p.m. should put you at the hotel around 5:00 to 5:20. A delay of 45 minutes would consume nearly all of the margin. For Sunday, a nonstop in the early afternoon would generally reach Raleigh in the late evening because of the time change, while a late-morning departure could arrive around 7:00 to 8:00 p.m. The Sunday trip costs another hotel night and rental day, but it removes the dinner risk and avoids beginning Tuesday’s 8:00 a.m. audit after a pre-dawn travel day.",
+          "role": "assistant"
+        },
+        {
+          "content": "That last point matters. Use Sunday, but do not choose an unnecessarily early flight. Give me a reasonable nonstop and one backup with a connection.",
+          "role": "user"
+        },
+        {
+          "content": "For the primary outbound, I would shortlist a Sunday nonstop leaving SFO around 11:00 a.m. and arriving at RDU around 7:15 p.m. local time. With rental pickup and the drive, hotel arrival should be about 8:45 to 9:15 p.m. The backup is a one-stop itinerary leaving around 9:30 a.m., connecting in Denver for about 90 minutes, and arriving around 7:00 p.m. The nonstop starts later, has less disruption exposure, and still leaves a full night before Monday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the nonstop. Now resolve Wednesday night versus Thursday morning. Assume I cannot leave the site before 5:00, and I need to refuel and return the car.",
+          "role": "user"
+        },
+        {
+          "content": "With refueling, I would plan on reaching the terminal between 6:15 and 6:30 p.m. if traffic is normal. A Wednesday itinerary departing around 8:10 p.m. could work, but it would likely connect in Atlanta or another hub, include a late layover, and reach San Francisco around 12:30 to 1:30 a.m. Thursday. If the first departure is closer to 7:30, your check-in margin is too thin. A Thursday nonstop around 7:00 a.m. would require leaving the hotel near 4:45 a.m. and returning the car before dawn, arriving SFO around 10:00 a.m. Pacific. A later Thursday nonstop, if operating, would trade a better morning for arrival closer to midday or early afternoon.",
+          "role": "assistant"
+        },
+        {
+          "content": "I do not like either the late connection or a 4:45 hotel departure. Is there a Thursday option around 9:00 a.m., even with one stop?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. A Thursday one-stop leaving RDU around 9:00 a.m., with a connection of roughly 75 to 100 minutes in Denver, Dallas, or Houston, would usually reach SFO around 2:00 to 3:30 p.m. Pacific. You could leave the hotel around 6:30 a.m., refuel near the airport, return the car, and be in the terminal about two hours before departure. It adds a connection but is substantially less compressed than Wednesday night and less punishing than the earliest nonstop.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the tradeoff against a Thursday nonstop later in the morning. I care more about a reliable return than arriving an hour earlier.",
+          "role": "user"
+        },
+        {
+          "content": "A later Thursday nonstop is the stronger choice if it is operating on that date. A departure around 10:30 to 11:30 a.m. would let you leave the hotel near 7:30 or 8:00, return the car without rushing, and arrive in San Francisco around 1:30 to 2:30 p.m. Pacific. Compared with the 9:00 a.m. one-stop, it may arrive at a similar time despite departing later, and it removes the missed-connection exposure. The only caution is that this route may have limited frequency, so there may be no same-airline nonstop recovery if it is canceled.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then make the later Thursday nonstop the first choice and the 9:00 a.m. Denver connection the backup. What trip length and hotel nights does that create?",
+          "role": "user"
+        },
+        {
+          "content": "That creates a Sunday-through-Thursday trip with four hotel nights: Sunday, Monday, Tuesday, and Wednesday. The rental car would run from Sunday evening pickup through Thursday morning return. Your working flight plan is the Sunday late-morning SFO-to-RDU nonstop, arriving Sunday evening, and the Thursday late-morning RDU-to-SFO nonstop, arriving early or midafternoon Pacific. The Thursday 9:00 a.m. Denver connection remains the return backup.",
+          "role": "assistant"
+        },
+        {
+          "content": "Summarize the timing logic and flag what has to be rechecked before authorization. Do not book anything.",
+          "role": "user"
+        },
+        {
+          "content": "Selected, not booked: depart San Francisco Sunday, January 12 on a late-morning nonstop to Raleigh-Durham, targeting an arrival around 7:15 p.m. Collect the rental car and expect to reach the hotel near the supplier site around 9:00 p.m. This avoids relying on a Monday connection before the required 6:30 p.m. dinner and gives you Monday locally before the two 8:00 a.m. audit starts. After the expected 5:00 p.m. Wednesday finish, stay Wednesday night rather than attempt a tight airport run and late connecting itinerary. Return Thursday, January 16 on a late-morning RDU-to-SFO nonstop; use the roughly 9:00 a.m. Denver connection only if the nonstop is unavailable or materially worse. Plan for four hotel nights and a Sunday-evening-through-Thursday-morning rental. Before authorization, recheck the exact flight numbers, operating carriers, current departure and arrival times, nonstop operation on both dates, connection duration for the backup, fares and change terms, baggage costs, seat availability, and rental-counter hours. Also verify the actual hotel-to-RDU drive at the planned Thursday departure time. Nothing has been purchased.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0025",
+      "session_index": 25,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh supplier-audit itinerary is selected but unbooked pending authorization and a final schedule and fare recheck: Sunday, January 12 late-morning nonstop SFO-RDU, four hotel nights near the site, rental car from Sunday evening through Thursday morning, and Thursday, January 16 late-morning nonstop RDU-SFO, with a roughly 9:00 a.m. Denver connection as backup. The plan protects the required Monday 6:30 p.m. dinner, Tuesday and Wednesday 8:00 a.m. site starts, and Wednesday 5:00 p.m. finish. The Fairmont Sonoma stay is booked; written confirmation of the Sunday facial remains outstanding before May 10. The Bothell audit travel is booked with the revised return and complimentary late checkout noted. Chicago conference travel and lodging are booked and corrected; reimbursement records still require the specified receipts, adjustment evidence, and available folios, and the Sunday workshop requires a separate UIC transfer. Carlsbad audit travel is booked; written hotel confirmation of late arrival, guarantee, no parking charge, and the $537.76 total remains due before cancellation. Scottsdale for November 6-10 remains selected but unbooked pending final flight, lodging, spa, and transfer checks. Palm Springs November 14-18 is paid for Priya Nair and Rohan Mehta: flights cost $758 including four checked-bag charges, and Arroyo House charged the expected $1,166.40 deposit against a $2,332.80 lodging total. The complete trip total is $3,430.80 before gratuities. The resort confirmation incorrectly lists one adult and omits both Saturday 2:00 p.m. massages; a revised written confirmation must show two adults, both treatments, the $150 spa credit, breakfast for two, cancellation and refund terms, and the pool-maintenance schedule.",
+  "verification": {
+    "25": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user made trip-specific timing, routing, and reliability choices for the Raleigh audit, but did not establish or reaffirm any exact candidate habit at confidence >= 0.90."
+    }
+  }
+}

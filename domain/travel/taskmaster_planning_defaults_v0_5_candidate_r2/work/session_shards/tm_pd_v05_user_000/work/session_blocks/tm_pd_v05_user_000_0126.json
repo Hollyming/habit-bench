@@ -1,0 +1,127 @@
+{
+  "cache_fingerprint": "61afd697e0e7307acc11ad3edb20b0933950b09c2ab2eb3b035375033dc5e720",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya established a reusable boundary for return-flight selection: afternoon departures remain preferred, but a realistic airport arrival margin below 75 minutes makes a safer later option take priority. She applied that rule to replace the moved 5:25 p.m. nonstop with the 7:15 p.m. connection.",
+        "evidence_topology": {
+          "boundary_kind": "tradeoff_threshold",
+          "episode_id": "client-cleveland-020",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 126,
+          "target_habit_id": "tm_pd_v05_user_000_h00",
+          "target_signal_type": "boundary",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user durably states an afternoon return default while adding a 75-minute safety threshold that can outrank it. For this disrupted return, the user explicitly chooses a one-stop itinerary, constituting a current-trip exception to the established nonstop preference.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Rebook the 7:15 connection. I don't want to add a night or arrange a separate ticket after taking the refund.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I generally want the return to leave in the afternoon, but use a 75-minute airport margin as the cutoff. If the realistic arrival would be less than 75 minutes before departure, put the safer later option ahead of an afternoon flight.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The airline moved my Wednesday Cleveland nonstop from 6:05 to 5:25. The review still ends at 3:30 near University Circle and could run 20 minutes late. Compare the alternatives before changing anything.",
+          "role": "user"
+        },
+        {
+          "content": "With a 3:50 finish, allow 10-15 minutes to retrieve the stored suitcase and about 30-40 minutes to CLE in late-afternoon traffic. Leaving University Circle around 4:05 puts you at the terminal about 4:40-4:50, only 35-45 minutes before the 5:25 departure. That is not a dependable bag-drop and security margin. The protected choices are a 7:15 p.m. connection arriving MSP at 11:38 p.m., or the 8:10 a.m. Thursday nonstop. The airline also permits a refund of the return segment.",
+          "role": "assistant"
+        },
+        {
+          "content": "What schedule would the 7:15 require, and what happens to the fare?",
+          "role": "user"
+        },
+        {
+          "content": "You could let the review run to 3:50, collect the bag by about 4:05, and leave University Circle by 4:20. A realistic CLE arrival is 4:55-5:10, leaving just over two hours. Under the schedule-change waiver, the 7:15 connection can replace the disrupted return with no additional fare. Your Monday outbound remains unchanged. The Thursday nonstop also has no fare difference, but it would require another hotel night and a morning airport trip. The refund applies only to the unused return segment; the airline currently shows $287 back to the original payment method.",
+          "role": "assistant"
+        },
+        {
+          "content": "I generally want the return to leave in the afternoon, but use a 75-minute airport margin as the cutoff. If the realistic arrival would be less than 75 minutes before departure, put the safer later option ahead of an afternoon flight.",
+          "role": "user"
+        },
+        {
+          "content": "Under that rule, the 5:25 is out: even the on-time meeting scenario produces only about 55-65 minutes at the airport, and a 20-minute overrun reduces it further. The 7:15 connection clears the cutoff comfortably and preserves Wednesday's client schedule. The Thursday nonstop is operationally safer but adds an overnight and delays your return until Thursday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Rebook the 7:15 connection. I don't want to add a night or arrange a separate ticket after taking the refund.",
+          "role": "user"
+        },
+        {
+          "content": "Before I finalize: Wednesday departure at 7:15 p.m., one connection, MSP arrival at 11:38 p.m.; no fare increase; Monday's 4:25 p.m. nonstop and the hotel reservation stay unchanged. Correct?",
+          "role": "assistant"
+        },
+        {
+          "content": "Correct. Make the change and give me the revised Wednesday plan.",
+          "role": "user"
+        },
+        {
+          "content": "The return is rebooked under confirmation H7K4Q2 for Wednesday at 7:15 p.m., arriving MSP at 11:38 p.m. after one connection, with no added airfare. On Wednesday, check out by noon and leave the suitcase at the front desk. Attend the review through 3:30, allowing it to run until 3:50 if needed. Retrieve the bag by 4:05 and request the ride by 4:15; leave University Circle no later than 4:20. Expect CLE around 4:55-5:10, giving at least 125 minutes before departure. The hotel booking and Monday outbound are unchanged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0126",
+      "session_index": 126,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Pittsburgh client trip is complete and its expense report is ready at $1,203.68; a separate $75 hotel incidental authorization remains pending. The May 13-15 Cleveland client trip remains confirmed under flight confirmation H7K4Q2 and hotel confirmation UC58319. The Monday MSP-CLE nonstop is unchanged. Following an airline schedule change, the Wednesday return has been rebooked to a 7:15 p.m. connecting itinerary arriving MSP at 11:38 p.m., with no additional airfare. Wednesday checkout remains due by noon, luggage storage is confirmed, and the requested late checkout remains unconfirmed and should not be used for planning. Maya should retrieve her suitcase by 4:05 p.m., request a ride by 4:15, and leave University Circle by 4:20. The hotel remains refundable until 6:00 p.m. Eastern Sunday, May 12; a later cancellation may cost about $290.23. The February 5-7, 2030 Raleigh trip remains confirmed at $1,459; the corrected Raleigh folio, Philadelphia deposit release, and Nashville refund reconciliation remain unresolved. The September 12-16 Monterey Peninsula trip remains confirmed at $2,849, with whale-watching status and exact hotel cancellation cutoffs unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2 Baltimore and November 6-8 Raleigh trips remain recorded as confirmed, with ground-transportation items unresolved. The October 4-9, 2030 San Diego trip remains reconciled at a projected $3,665.71.",
+  "verification": {
+    "126": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I generally want the return to leave in the afternoon, but use a 75-minute airport margin as the cutoff. If the realistic arrival would be less than 75 minutes before departure, put the safer later option ahead of an afternoon flight.",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "boundary"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Rebook the 7:15 connection. I don't want to add a night or arrange a separate ticket after taking the refund.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user durably states an afternoon return default while adding a 75-minute safety threshold that can outrank it. For this disrupted return, the user explicitly chooses a one-stop itinerary, constituting a current-trip exception to the established nonstop preference."
+    }
+  }
+}

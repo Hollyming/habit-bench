@@ -1,0 +1,151 @@
+{
+  "cache_fingerprint": "e672a03d99f6aa371967cd60c6ffb1d23abf64045ac96e9e29e2ad25a3a3890d",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves only the current Raleigh lodging decision. Maya compares exact two-night costs, verifies that the advertised AC Hotel walk is impractical, confirms late arrival and luggage handling, and selects the adjacent Renaissance standard room within the stated nightly limit. No recurring travel preference is introduced.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-015",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 88,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user makes a current-trip hotel choice based on total cost, transportation practicality, and adjacency to the client building. None of the candidate flight timing, routing, carrier, flight-price, hotel amenity, hotel rating, or beach-proximity habits is directly evidenced by the user's own utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I have the three North Hills hotel quotes now. Can you compare the real two-night totals, including tax and parking where it applies? I also want to know whether the places described as walkable are actually practical for getting to the client building.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Send me the nightly rates, the parking terms, and either the hotel names or addresses. I’ll compare the full Tuesday-through-Thursday cost and check the actual route rather than relying on the distance shown in the listing.",
+          "role": "assistant"
+        },
+        {
+          "content": "Option one is beside the client building at $249 a night. Option two is $218 a night, eleven minutes away by car, and parking is $16 nightly. Option three is $236 a night across the major road. Its listing calls the client office a short walk away, but I don’t see a crossing. My hotel limit is $250 per night before tax.",
+          "role": "user"
+        },
+        {
+          "content": "All three room rates are within the $250 nightly limit. Using the 13.25% lodging tax shown for these quotes, option one is $498 in room charges plus $65.99 tax, or $563.99 for two nights. Option two is $436 plus $57.77 lodging tax and $32 parking, or $525.77; if the parking charge is taxed at checkout, the final total could be a few dollars higher. Option three is $472 plus $62.54 tax, or $534.54. I’ll need the exact properties to verify the routes and guest-service details.",
+          "role": "assistant"
+        },
+        {
+          "content": "They are the Renaissance Raleigh North Hills beside the office, the $218 hotel on Wake Towne Drive, and the AC Hotel Raleigh North Hills across Six Forks Road.",
+          "role": "user"
+        },
+        {
+          "content": "The Renaissance is the only one that provides a straightforward walk to the client building: they are in the same North Hills complex, so the route stays on internal sidewalks and does not require crossing Six Forks Road. The Wake Towne Drive property is a driving or rideshare option, not a sensible walk. The AC is geographically close, but the direct-looking route is interrupted by Six Forks Road and the surrounding intersections; I would not treat the listing’s short distance as a dependable office walk.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you be more specific about the AC route? I don’t want to discover Wednesday morning that I have to walk along a shoulder or make a huge detour.",
+          "role": "user"
+        },
+        {
+          "content": "The direct line between the AC and the client building is misleading. There is no direct pedestrian crossing at the point closest to the buildings. A legal walking route would require following the sidewalk to a controlled intersection, crossing multiple lanes, and then doubling back into the office side of North Hills. It is exposed to busy traffic and takes materially longer than the map’s straight-line estimate. You would not need to walk on a shoulder if you follow the sidewalks, but this is better treated as a short car trip than an easy walk.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then compare transportation. I’ll arrive at the hotel around 7:15 Tuesday, go to the office Wednesday morning, and on Thursday I’ll check out, take my suitcase to the client, and leave from there for RDU after training.",
+          "role": "user"
+        },
+        {
+          "content": "For the Renaissance, the expected local rides are RDU to the hotel Tuesday and the client building to RDU Thursday. Those are roughly $28-$42 each depending on demand, for about $56-$84 total; the Wednesday commute is on foot. For the Wake Towne Drive hotel, add rides to and from North Hills Wednesday and a ride to the client Thursday morning, about $12-$20 per trip. That puts the trip’s rideshare estimate around $92-$144. The AC would likely require three short office transfers as well, bringing the estimate to roughly $86-$132 despite its apparent proximity.",
+          "role": "assistant"
+        },
+        {
+          "content": "So option two is only about $38 cheaper than the Renaissance before any extra tax on parking, but it could add at least $36 in rides.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. At the low end, option two’s hotel savings are almost entirely consumed by the extra office transfers. Its combined hotel-and-rideshare estimate is about $617.77-$669.77, compared with approximately $619.99-$647.99 at the Renaissance. The Renaissance also avoids three commute pickups and the uncertainty of morning traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "What if I rent a car instead? That is why I included the parking charge.",
+          "role": "user"
+        },
+        {
+          "content": "Option two would then be $525.77 before any tax on parking, plus the rental rate, rental taxes and fees, fuel, and any parking charged at the client site. Even a modest two-day rental is likely to erase the remaining hotel difference. The Renaissance does not require a car for this schedule, so rideshare remains the simpler and likely less expensive setup unless your workday adds another off-site stop.",
+          "role": "assistant"
+        },
+        {
+          "content": "No other stops. Please check the practical details at the Renaissance: late arrival Tuesday, luggage storage after checkout Thursday, and whether $249 is for a normal room rather than a premium category.",
+          "role": "user"
+        },
+        {
+          "content": "The $249 quote is for a standard guest room, not a suite or club-level category, so it meets the nightly limit. The hotel operates a staffed front desk for late arrivals, and a 7:15 p.m. arrival is within normal check-in operations. I would still attach your estimated arrival time because the inbound flight lands at 6:12 p.m. The hotel also confirms complimentary luggage storage for registered guests after Thursday checkout.",
+          "role": "assistant"
+        },
+        {
+          "content": "The client already said they can hold my suitcase Thursday. Does using the hotel storage make any sense?",
+          "role": "user"
+        },
+        {
+          "content": "No. Leaving the suitcase with the client is more efficient because you will depart for RDU directly from that building. Hotel storage is useful only as a fallback; retrieving the bag from the Renaissance would add a stop even though it is nearby.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do any resort or destination fees change the Renaissance total? And is parking accidentally included even though I won’t have a car?",
+          "role": "user"
+        },
+        {
+          "content": "There is no resort or destination fee in the quoted rate. Parking is not part of your room total and should not be charged without a vehicle. Your expected hotel charge remains $563.99 for two nights: $498 room subtotal and $65.99 lodging tax. An incidental authorization may appear temporarily at check-in, but it is not an additional trip cost unless you charge something to the room.",
+          "role": "assistant"
+        },
+        {
+          "content": "That makes the adjacent property the better choice even though its room rate is highest. Select the standard room at the Renaissance for Tuesday and Wednesday nights, checking out Thursday. Keep the arrival note at about 7:15 p.m.",
+          "role": "user"
+        },
+        {
+          "content": "Selected: a standard room at the Renaissance Raleigh North Hills for Tuesday, November 6 through Thursday, November 8, at $249 nightly. The expected two-night total is $563.99 including lodging tax, with no parking or destination fee, and the arrival note is 7:15 p.m. Thursday checkout remains compatible with leaving your suitcase at the client site.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before I confirm booking, give me the whole Raleigh trip cost using that hotel, the $632 flight, the checked bag, and realistic rides. Also tell me exactly what is and isn’t reserved.",
+          "role": "user"
+        },
+        {
+          "content": "The working total is $1,321.99-$1,349.99: $632 airfare, $70 for one checked suitcase round trip, $563.99 for the Renaissance, and an estimated $56-$84 for two airport rides. The selected flights are the Tuesday 2:40 p.m. MSP-RDU nonstop and Thursday 5:55 p.m. RDU-MSP nonstop. The selected hotel is the Renaissance standard room for two nights with a 7:15 p.m. arrival note. Nothing has been booked yet: the flights, hotel, checked bag, and rides all remain unreserved. The client’s Thursday luggage holding is confirmed, so there is no remaining checkout-logistics question.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0088",
+      "session_index": 88,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The August 25-31, 2029 Naples trip remains fully confirmed for two travelers at $4,428. The Baltimore client trip September 30-October 2, 2029 is confirmed: Sunday nonstop MSP-BWI, two nights at the Inner Harbor hotel with late-arrival notation, complimentary Tuesday luggage storage, and the active 7:40 p.m. BWI-DTW-MSP return arriving 11:18 p.m.; airport transfers remain unbooked at an estimated $76. For the November 6-8, 2029 Raleigh client trip, the selected but unbooked itinerary is a $632 round trip: MSP-RDU Tuesday at 2:40 p.m., arriving 6:12 p.m., and RDU-MSP Thursday at 5:55 p.m., arriving 7:48 p.m.; one checked suitcase adds $70. A standard room at the Renaissance Raleigh North Hills is now selected but unbooked for two nights at an expected $563.99 including lodging tax, with no parking or destination fee and a 7:15 p.m. arrival note. The hotel provides late check-in and complimentary post-checkout luggage storage, though the client’s confirmed Thursday suitcase storage will be used. Two airport rides remain unbooked at an estimated $56-$84. The working Raleigh trip total is $1,321.99-$1,349.99, and no component has been reserved. The August 2028 Cary trip is confirmed; the July 2028 Columbus trip retains a travel credit and unresolved office bag-storage question. Coastal Georgia and January 2027 Denver remain unbooked. The Raleigh corrected folio, Philadelphia deposit release, and earlier Nashville refund reconciliation remain unresolved.",
+  "verification": {
+    "88": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user makes a current-trip hotel choice based on total cost, transportation practicality, and adjacency to the client building. None of the candidate flight timing, routing, carrier, flight-price, hotel amenity, hotel rating, or beach-proximity habits is directly evidenced by the user's own utterances."
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "cache_fingerprint": "cf2d03598053e0202c7586d10aabcbdc33ee0a89f4a5c58964944e5a82f6e701",
+  "events": [
+    {
+      "continuity_hook": "This opens the first planning episode and establishes the fixed onsite window that later lodging and booking decisions must fit.",
+      "days_after_previous": 0,
+      "domain": "flights",
+      "episode_id": "client-raleigh-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+      ],
+      "interaction_goal": "Compare viable round-trip flight schedules, including total travel time and arrival margin, and narrow the choice to two practical itineraries.",
+      "scenario_brief": "Maya needs to travel from Minneapolis to Raleigh for a healthcare software go-live scheduled Tuesday through Friday. She must reach the client site in Cary by 12:30 p.m. Tuesday, can leave Monday after 5:30 p.m. or very early Tuesday, and expects to return Friday after the 3:00 p.m. project close. The project has authorized economy airfare up to $700, while the exact outbound day and airport-to-site timing remain unresolved.",
+      "session_index": 0,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The hotel search uses the arrival plan and onsite schedule established in the prior session; the flight has not yet been purchased.",
+      "days_after_previous": 1,
+      "domain": "hotels",
+      "episode_id": "client-raleigh-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218"
+      ],
+      "interaction_goal": "Compare the most practical hotels by rate, morning travel time, cancellation deadline, and breakfast availability, then identify a leading option.",
+      "scenario_brief": "With a Monday evening arrival now looking more workable, Maya needs four hotel nights near the Cary client office. Her reimbursable room limit is $210 per night before tax, the first onsite meeting begins at 7:30 a.m., and she will use rideshare rather than rent a car. Several nearby properties are available, but their commute times, cancellation terms, and included breakfast differ.",
+      "session_index": 1,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The earlier client start resolves the outbound-day question and brings the flight and hotel selections into one purchase decision.",
+      "days_after_previous": 2,
+      "domain": "combined_trip",
+      "episode_id": "client-raleigh-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218"
+      ],
+      "interaction_goal": "Verify the selected itinerary against the new start time, calculate the trip total, surface restrictive terms, and prepare the chosen flight and hotel for purchase.",
+      "scenario_brief": "The client has moved Tuesday's first working session from 12:30 p.m. to 9:00 a.m., eliminating Tuesday morning flight options. Maya now needs a Monday evening flight and the previously shortlisted Cary hotel for four nights. She has the traveler details and corporate card ready, but wants the full airfare, lodging total, and cancellation conditions checked before purchase.",
+      "session_index": 2,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This session uses the purchased Raleigh itinerary and responds to a concrete schedule change received before departure.",
+      "days_after_previous": 6,
+      "domain": "booking_administration",
+      "episode_id": "client-raleigh-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-e8d5e35e-44dd-49e5-b024-dc7548187e4f"
+      ],
+      "interaction_goal": "Check earlier Friday flight availability, determine the fare difference and change conditions, and confirm whether the revised airport timing works before modifying the ticket.",
+      "scenario_brief": "The flight and hotel are booked, but the client has confirmed that Friday's work will end at noon instead of 3:00 p.m. Maya wants to know whether her ticket can be moved from the evening departure to a midafternoon flight without exceeding the remaining project travel allowance. Her hotel checkout and airport transfer timing also need to remain feasible.",
+      "session_index": 3,
+      "session_length": "short",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "This begins a separate leisure episode after the Raleigh work trip, with destination and trip structure still open.",
+      "days_after_previous": 31,
+      "domain": "combined_trip",
+      "episode_id": "partner-coast-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+        "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078"
+      ],
+      "interaction_goal": "Compare the two destination plans using realistic flight times, lodging costs, ground transportation, and time spent near the beach, then recommend which plan better fits five nights and the stated budget.",
+      "scenario_brief": "Maya and her partner are considering a five-night coastal break in late April, departing Minneapolis on a Thursday and returning Tuesday. They are deciding between Savannah with time on Tybee Island and Charleston with time near Folly Beach. Their combined flight-and-lodging ceiling is $3,800 for two travelers, and they have not decided whether to stay in one place or split the nights between a city and the coast.",
+      "session_index": 4,
+      "session_length": "long",
+      "user_id": "tm_pd_v05_user_000"
+    },
+    {
+      "continuity_hook": "The destination decision carries forward from the prior comparison and narrows the work to a two-property lodging plan.",
+      "days_after_previous": 4,
+      "domain": "hotels",
+      "episode_id": "partner-coast-001",
+      "event_first_provenance": {
+        "dossier_habits_visible": false,
+        "habit_blind_identity_conditioned": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "grounding_source_ids": [
+        "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218"
+      ],
+      "interaction_goal": "Build a concise pairing of Savannah and Tybee lodging options, compare total cost and payment terms, and identify the strongest combination without purchasing yet.",
+      "scenario_brief": "Maya and her partner have chosen Savannah and Tybee Island after reviewing the two coastal options. They want two nights in Savannah followed by three nights on Tybee, with one room and a total lodging target of $2,300 before taxes. The city dates have several refundable choices, while the island inventory is tighter and some rates require full prepayment; they have not selected either property.",
+      "session_index": 5,
+      "session_length": "medium",
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ]
+}

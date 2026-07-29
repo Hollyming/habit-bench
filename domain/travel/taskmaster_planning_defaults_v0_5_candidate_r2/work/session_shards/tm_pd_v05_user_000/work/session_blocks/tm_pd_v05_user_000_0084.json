@@ -1,0 +1,131 @@
+{
+  "cache_fingerprint": "c297bba98f929cd8fc456a3af408d0189f4331ceb677cc5b232b6342c900abfa",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya explicitly makes a trip-specific exception to afternoon return timing because the Baltimore workshop ends at 4:30 p.m., choosing the 7:40 p.m. connecting return.",
+        "evidence_topology": {
+          "episode_id": "client-baltimore-014",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 84,
+          "target_habit_id": "tm_pd_v05_user_000_h00",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly overrides the afternoon-return preference for this trip, accepts a connection when the nonstop costs $173 more, and selects the no-cost acceptable itinerary. No durable preference revision is stated.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.94,
+            "evidence_quote": "The other carrier's 6:50 nonstop isn't worth another $173 after all. Switch me to the no-cost 7:40 p.m. return through Detroit",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "boundary"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "The other carrier's 6:50 nonstop isn't worth another $173 after all. Switch me to the no-cost 7:40 p.m. return through Detroit",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h03",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For this trip, ignore the afternoon-return timing because the workshop runs until 4:30.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The other carrier's 6:50 nonstop isn't worth another $173 after all. Switch me to the no-cost 7:40 p.m. return through Detroit, but first check the connection and what happens to my checked bag.",
+          "role": "user"
+        },
+        {
+          "content": "The 7:40 p.m. itinerary leaves BWI Tuesday, connects in Detroit for 52 minutes, and arrives at MSP at 11:18 p.m. It is on one ticket, so a checked bag will be tagged through to Minneapolis; you will not need to collect it in Detroit. The connection is above the airline's published minimum for that airport.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is it the same terminal, or would I need to take a shuttle?",
+          "role": "user"
+        },
+        {
+          "content": "Both flights are scheduled in Detroit's McNamara Terminal. A gate change could require a walk or the terminal tram, but there is no landside shuttle and you would remain inside security.",
+          "role": "assistant"
+        },
+        {
+          "content": "That works. For this trip, ignore the afternoon-return timing because the workshop runs until 4:30. Confirm the 7:40 connection and remove the 6:50 nonstop without changing anything else.",
+          "role": "user"
+        },
+        {
+          "content": "The 7:40 p.m. BWI-DTW-MSP return is confirmed at no additional fare. The 6:50 p.m. nonstop has been removed, and the $173 additional charge has been reversed to the original payment method. Your Sunday outbound and Inner Harbor hotel remain unchanged.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the revised ticket details and confirm the bag arrangement one more time.",
+          "role": "user"
+        },
+        {
+          "content": "Revised Tuesday, October 2 ticket: depart BWI at 7:40 p.m., connect at DTW for 52 minutes in the McNamara Terminal, and arrive MSP at 11:18 p.m. The flights are issued on one ticket under the same confirmation, and checked baggage will transfer automatically to MSP. Sunday’s outbound, the two-night Inner Harbor reservation, and Tuesday luggage storage through 8:00 p.m. are intact. Airport transfers remain unbooked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0084",
+      "session_index": 84,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The August 25-31, 2029 Naples trip remains fully confirmed for two travelers at $4,428 with no arrival follow-up. The Baltimore client trip September 30-October 2, 2029 remains confirmed: Sunday’s outbound and the Inner Harbor hotel for two nights at $549.78 after tax are unchanged, including the later check-in note, refund terms, and complimentary Tuesday luggage storage until 8:00 p.m. The Tuesday return is now ticketed BWI-DTW-MSP at 7:40 p.m., with a 52-minute Detroit connection and 11:18 p.m. arrival; checked baggage transfers through to Minneapolis. The previously selected 6:50 p.m. nonstop was removed and its $173 additional charge reversed. Airport transfers remain unbooked at an estimated $76. The August 2028 Cary client trip is confirmed; the July 2028 Columbus trip retains a separate travel credit and unresolved office bag-storage question. Earlier Monterey Peninsula, Charlotte, Richmond, Nashville, central Oregon coast, Denver, and San Diego trips remain reserved or completed. Coastal Georgia and January 2027 Denver remain unbooked. The Raleigh corrected folio, Philadelphia deposit release, and earlier Nashville refund reconciliation remain unresolved.",
+  "verification": {
+    "84": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For this trip, ignore the afternoon-return timing because the workshop runs until 4:30.",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.94,
+          "evidence_quote": "The other carrier's 6:50 nonstop isn't worth another $173 after all. Switch me to the no-cost 7:40 p.m. return through Detroit",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "boundary"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "The other carrier's 6:50 nonstop isn't worth another $173 after all. Switch me to the no-cost 7:40 p.m. return through Detroit",
+          "habit_id": "tm_pd_v05_user_000_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly overrides the afternoon-return preference for this trip, accepts a connection when the nonstop costs $173 more, and selects the no-cost acceptable itinerary. No durable preference revision is stated."
+    }
+  }
+}

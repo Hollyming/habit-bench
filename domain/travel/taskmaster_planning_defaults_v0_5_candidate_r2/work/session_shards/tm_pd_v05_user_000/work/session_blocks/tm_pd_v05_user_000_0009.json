@@ -1,0 +1,142 @@
+{
+  "cache_fingerprint": "d19896efb6947ae19aaa1b88dd95c2b69c700ced1e3be2eeb573117463790f3f",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya selected the $438 itinerary after confirming that it met the trip’s departure timing, nonstop, and Wi-Fi requirements, explicitly favoring the lowest fare among acceptable flights.",
+        "evidence_topology": {
+          "episode_id": "client-denver-002",
+          "mode": "evidence",
+          "phase": "early",
+          "session_index": 9,
+          "target_habit_id": "tm_pd_v05_user_000_h03",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requires nonstop routing for this trip and ranks acceptable itineraries by lowest fare after schedule, nonstop, and Wi-Fi constraints are met. Neither statement clearly establishes a durable cross-trip default.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Nonstop both ways.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Once the flights meet the schedule, nonstop, and Wi-Fi requirements, I’d rather take the lowest fare.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h03",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I need flights for a Denver client workshop June 17 through 19. I can leave Minneapolis Tuesday the 16th after 4:30, and the workshop downtown starts at 8:00 Wednesday. Friday ends at 2:00. Compare coming home Friday evening with Saturday morning; airfare can be up to $650.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare round trips and allow for the trip from downtown to DEN on Friday. Do you need nonstop flights or any onboard feature, and would staying Friday night create an extra hotel cost the project will cover?",
+          "role": "assistant"
+        },
+        {
+          "content": "Nonstop both ways. I need Wi-Fi on the outbound because I’ll still have work to finish. The project would cover Friday night if the flight schedule makes that the sensible option.",
+          "role": "user"
+        },
+        {
+          "content": "Three outbound nonstops after 4:30 fit. The best pairings start with a 5:35 p.m. departure arriving Denver at 6:43 p.m.; Wi-Fi is listed. A 7:10 p.m. flight arrives at 8:21, also with Wi-Fi, while the 9:05 p.m. option does not arrive until 10:18. I’d avoid the last one given the 8:00 a.m. start. What time could you realistically leave the client site Friday?",
+          "role": "assistant"
+        },
+        {
+          "content": "Probably 2:10 if we finish on time, but I should assume 2:20 in case people have final questions. The office is near Union Station.",
+          "role": "user"
+        },
+        {
+          "content": "From Union Station, reaching DEN commonly takes about 40 minutes on the A Line plus walking and wait time; a car can vary sharply with traffic. Leaving at 2:20 makes a 4:35 flight too exposed, with less than an hour at the airport if the transfer takes 70 minutes. The later Friday nonstops at 6:25 and 8:15 are practical.",
+          "role": "assistant"
+        },
+        {
+          "content": "Show me the best Friday return against a Saturday morning return. I don’t want a connection just to save money.",
+          "role": "user"
+        },
+        {
+          "content": "Friday option: outbound Tuesday at 5:35 p.m., MSP-DEN nonstop, arriving 6:43; return Friday at 6:25 p.m., arriving MSP at 9:18. Economy round trip is $472, and both segments list Wi-Fi. Leaving Union Station around 2:20 gives roughly three hours at DEN before departure if the transfer takes an hour. Saturday option: the same outbound, then an 8:05 a.m. nonstop returning Saturday and arriving MSP at 10:58. That round trip is $519 and also lists Wi-Fi. Both are below the $650 limit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there any reason the 6:25 Friday flight is still too close? I can’t walk out before the workshop is actually over.",
+          "role": "user"
+        },
+        {
+          "content": "It is viable without requiring an early exit. Even if you leave at 2:30 and the airport trip takes 75 minutes, you would reach DEN around 3:45, about 2 hours 40 minutes before departure. The main risk is an unusually prolonged workshop or a major rail or traffic disruption, not the scheduled 2:00 finish. I would not use the 4:35 flight under the same assumptions.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about the 7:10 outbound? Does pairing that with Friday lower the fare?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Pairing Tuesday’s 7:10 p.m. nonstop with Friday’s 6:25 p.m. return is $438. It arrives Denver at 8:21 p.m., lists Wi-Fi, and still leaves enough time to get downtown and sleep before the 8:00 session. The 5:35 outbound at $472 buys an extra hour and a half in Denver but does not improve the Friday return margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then rank the $438 itinerary first. Once the flights meet the schedule, nonstop, and Wi-Fi requirements, I’d rather take the lowest fare. Keep the earlier outbound as the second choice in case the price moves.",
+          "role": "user"
+        },
+        {
+          "content": "First choice: Tuesday June 16, 7:10 p.m. MSP-DEN nonstop, arriving 8:21 p.m.; Friday June 19, 6:25 p.m. DEN-MSP nonstop, arriving 9:18 p.m.; economy, Wi-Fi listed, $438 round trip. Second choice: the same Friday return with Tuesday’s 5:35 p.m. outbound arriving 6:43 p.m.; $472 round trip. Both support the full Friday workshop and remain under the $650 cap. The Saturday 8:05 a.m. return is a workable fallback at $519 but is not needed for schedule margin. Before purchase, confirm live pricing, Wi-Fi notation on the exact aircraft, fare restrictions, and that the Friday workshop location remains near Union Station. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0009",
+      "session_index": 9,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya is planning client travel from Minneapolis to Denver for a downtown configuration workshop June 17-19, 2026. Two viable round trips use the Friday 6:25 p.m. return: the leading itinerary leaves Tuesday at 7:10 p.m. for $438, while the backup leaves at 5:35 p.m. for $472. A Saturday 8:05 a.m. return remains a $519 fallback but appears unnecessary because the Friday flight leaves adequate airport-transfer margin after the 2:00 p.m. workshop finish near Union Station. Live fares, exact-flight Wi-Fi notation, fare restrictions, and the final workshop location still need confirmation. Nothing has been booked. The separate coastal Georgia trip for April 23-28 remains unbooked, with a working total of $3,647 and final flight, hotel, and transportation terms still to be checked.",
+  "verification": {
+    "9": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Nonstop both ways.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Once the flights meet the schedule, nonstop, and Wi-Fi requirements, I’d rather take the lowest fare.",
+          "habit_id": "tm_pd_v05_user_000_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requires nonstop routing for this trip and ranks acceptable itineraries by lowest fare after schedule, nonstop, and Wi-Fi constraints are met. Neither statement clearly establishes a durable cross-trip default."
+    }
+  }
+}

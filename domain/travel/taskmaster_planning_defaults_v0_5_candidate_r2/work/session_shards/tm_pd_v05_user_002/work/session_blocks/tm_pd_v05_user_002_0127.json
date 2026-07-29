@@ -1,0 +1,128 @@
+{
+  "cache_fingerprint": "27db349595ea77a2cd012959973e793d4625fd06b8fb175c860d452b8e2fe75b",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marcus selected the later Friday nonstop over a less expensive midafternoon connecting return because the connection saved little arrival time, supporting the established preference to prioritize nonstop itineraries. No purchase was made.",
+        "evidence_topology": {
+          "episode_id": "houston-restaurant-summit-01",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 127,
+          "target_habit_id": "tm_pd_v05_user_002_h03",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chose nonstop flights for this itinerary. The other user utterances do not independently establish the exact candidate timing, cabin, seat, breakfast, or balcony habits at confidence >= 0.90.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I'd rather keep both flights nonstop for the extra $68.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_002_h03",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Let's finish comparing the Houston flights against the actual schedule. The leadership summit starts Thursday at 1:30 p.m. at the Hilton Americas, and my Friday site visit is from 9:00 to 11:30 near I-10 and Beltway 8. I want enough detail to price the hotel and ground transportation, but don't buy anything.",
+          "role": "user"
+        },
+        {
+          "content": "The Thursday morning nonstop is possible, but tight. It leaves ORD at 7:05 a.m., reaches IAH at 9:52 a.m., and costs $294 round trip when paired with Friday's connecting return. Allowing 45 to 75 minutes to get off the plane and reach downtown puts you at the Hilton around 10:40 a.m. to 11:10 a.m.; a serious delay could cut into the summit. The Wednesday nonstops are 5:40-8:27 p.m. and 8:15-11:01 p.m. The earlier one costs $418 with the connecting return, while the later one costs $356.",
+          "role": "assistant"
+        },
+        {
+          "content": "The 8:15 arrival is too late once I add the drive and check-in. Compare Wednesday at 5:40 with Thursday morning. What does the extra hotel night do to the total?",
+          "role": "user"
+        },
+        {
+          "content": "A refundable king room at the Hilton Americas is $238 Wednesday and $261 Thursday, or $580.42 total with taxes for two nights. Arriving Thursday requires only the Thursday night, $292.18 with taxes. So Wednesday's 5:40 flight plus two hotel nights is $998.42 using the midafternoon connecting return. Thursday morning plus one night is $586.18. The Wednesday plan costs $412.24 more but gives you a full night's rest and removes the same-day flight risk.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now factor in Friday. I won't leave the site before 11:30, and I need time for a quick wrap-up with the manager.",
+          "role": "user"
+        },
+        {
+          "content": "The 3:25 p.m. return connects in Dallas and arrives ORD at 8:58 p.m. From the site, leaving around noon should get you to IAH between 12:35 and 1:10 p.m., so it is workable. The later nonstop leaves IAH at 7:10 p.m. and reaches ORD at 9:54 p.m. It leaves ample margin for the wrap-up but creates several hours to fill after the visit.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much more is the later nonstop with the Wednesday 5:40 outbound?",
+          "role": "user"
+        },
+        {
+          "content": "That all-nonstop combination is $486 round trip. Compared with $418 for the Wednesday outbound and 3:25 connecting return, the difference is $68. With the two-night Hilton total, airfare and lodging would be $1,066.42 before local transportation.",
+          "role": "assistant"
+        },
+        {
+          "content": "I'd rather keep both flights nonstop for the extra $68. The connection gets me home only about an hour earlier anyway. Price the ground plan around that itinerary.",
+          "role": "user"
+        },
+        {
+          "content": "For Wednesday, an IAH-to-downtown rideshare after the 8:27 p.m. arrival should run $42-$62 and take roughly 30-50 minutes. Friday morning, downtown to the site is about $35-$50 and 25-45 minutes if you leave by 8:00. After the visit, the site to IAH is approximately $32-$48 and 30-45 minutes. A reasonable rideshare budget is $109-$160.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would staying near the Friday site save enough to justify moving hotels after the summit?",
+          "role": "user"
+        },
+        {
+          "content": "Not meaningfully. A comparable refundable hotel near the site is $214.76 for Thursday night. Splitting the stay would lower lodging by about $46, but Thursday's rideshare from downtown to that hotel would add roughly $30-$45, and you would have to move bags between meetings. The net savings is likely $1-$16. Staying downtown both nights is simpler and still gives you a manageable Friday drive.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. Keep the Hilton for both nights. Give me the complete working plan and the high-end total, still unbooked.",
+          "role": "user"
+        },
+        {
+          "content": "Working plan, with nothing purchased: fly nonstop ORD-IAH Wednesday at 5:40 p.m., arriving 8:27 p.m.; rideshare to the Hilton Americas and stay Wednesday and Thursday nights. Attend the Thursday 1:30 p.m. summit there. Leave the hotel around 8:00 a.m. Friday for the 9:00-11:30 site visit near I-10 and Beltway 8, allow time for the manager wrap-up, then rideshare to IAH. Return nonstop Friday at 7:10 p.m., arriving ORD at 9:54 p.m. Airfare is $486, refundable hotel pricing is $580.42, and the high-end rideshare estimate is $160, for a planning total of $1,226.42. The hotel and fare remain subject to availability until booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0127",
+      "session_index": 127,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "The San Diego family trip for Marcus, Daniel, and Owen remains booked for June 14-20 under flight SD7K4P and Best Western Coronado confirmation BW-583174, totaling $4,498.26 before the arrival rideshare. The Columbus-Cincinnati operations trip is booked for July 21-23 under K7LM2Q, ALF-731904, CY-448217, and ENT-6R29PL, totaling $1,126.54 before fuel, tolls, and optional coverage. The Richmond operations trip is booked for August 12-14 under R8V4LM and OM-628451; airfare and hotel total $908.20, with a $1,009.20 estimate including rideshares. The Boston family trip is booked for October 9-13 under B7Q2LN and CAM-804731; confirmed airfare, lodging, and paid seats total $2,863.32, and the arrival rideshare is not prepaid. The Houston operations trip is planned but unbooked: Wednesday 5:40 p.m. ORD-IAH, Friday 7:10 p.m. IAH-ORD, two nights at the Hilton Americas, and rideshares between IAH, downtown, and the Friday site near I-10 and Beltway 8. The current high-end estimate is $1,226.42, comprising $486 airfare, $580.42 lodging, and $160 transportation.",
+  "verification": {
+    "127": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I'd rather keep both flights nonstop for the extra $68.",
+          "habit_id": "tm_pd_v05_user_002_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chose nonstop flights for this itinerary. The other user utterances do not independently establish the exact candidate timing, cabin, seat, breakfast, or balcony habits at confidence >= 0.90."
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "cache_fingerprint": "eafd2c7d3bfd0eea9d1284199991f3bf04367a0eea5d789de090a39fe46367a2",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya compared equivalent economy fares for the current Savannah and Tybee trip and chose the nonstop as the leading option because its schedule benefits outweighed a $162 premium over the Atlanta itinerary. This was a trip-specific decision; no recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "partner-coast-001",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 6,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selects the nonstop as the leading option for this trip. The dialogue does not establish a durable cross-trip preference, and the other candidate habits lack sufficiently explicit user-originated evidence.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Then make the nonstop the leading choice, but don't buy it.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Let's do the flights next. We have about $1,530 left under the $3,800 cap after the estimated hotel tax, and that still has to cover getting around. What are the sensible round trips for two from Minneapolis?",
+          "role": "user"
+        },
+        {
+          "content": "For Thursday, April 23 through Tuesday, April 28, I found three workable economy choices for two. The best schedule is a nonstop at $1,184 total: MSP at 8:05 a.m. Thursday, SAV at 11:42 a.m.; SAV at 1:15 p.m. Tuesday, MSP at 3:08 p.m. A one-stop itinerary through Atlanta is $1,022 total, leaving MSP at 7:10 a.m. and reaching Savannah at 12:34 p.m.; the return runs 2:20-7:18 p.m. The lowest practical option is $914 total through Charlotte, departing at 9:25 a.m. and arriving at 3:06 p.m.; Tuesday's return is 11:05 a.m.-4:48 p.m. All prices are current round-trip totals for two before checked bags.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put those against the whole-trip number. Use $190 for local transportation so we're comparing them the same way.",
+          "role": "user"
+        },
+        {
+          "content": "Using $2,270 for Perry Lane plus DeSoto and $190 for local transportation: the nonstop produces an estimated trip total of $3,644, leaving $156 below the ceiling. The Atlanta option totals $3,482, leaving $318. The Charlotte option totals $3,374, leaving $426. These figures cover lodging, airfare, and local transportation, but not meals, checked bags, or optional hotel charges.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much usable time do we actually give up with the connections? The Charlotte fare is tempting, but arriving after three changes the first day.",
+          "role": "user"
+        },
+        {
+          "content": "Compared with the nonstop, Charlotte costs about 3 hours 24 minutes on Thursday and requires leaving Tybee roughly two hours earlier Tuesday. Across both travel days, that is about five and a half hours less at the destination. Atlanta gives up only 52 minutes on arrival day, but gets you back to Minneapolis about four hours later Tuesday, so the total schedule penalty is just under five hours, mostly on the return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the nonstop basic economy, or can we choose seats?",
+          "role": "user"
+        },
+        {
+          "content": "The $1,184 nonstop quote is standard economy, not basic economy. Seat selection is included from the available standard seats, and the fare can be changed without a separate change fee, although a fare difference could apply. It remains nonrefundable. One carry-on and one personal item per traveler are included; checked bags would be extra unless covered by status or a card benefit.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the two connecting prices? I don't want a comparison where one of them is stripped down.",
+          "role": "user"
+        },
+        {
+          "content": "The $914 Charlotte itinerary is basic economy. The comparable standard-economy fare is $1,006 for two. The $1,022 Atlanta itinerary is already standard economy. Using equivalent fare types, Charlotte's full-trip estimate becomes $3,466, only $16 less than Atlanta and $178 less than the nonstop.",
+          "role": "assistant"
+        },
+        {
+          "content": "That makes Charlotte much less interesting. Between Atlanta and the nonstop, does the $162 difference buy enough to matter?",
+          "role": "user"
+        },
+        {
+          "content": "For this itinerary, yes. The nonstop removes two connections, gets you to Savannah before noon, and returns you to Minneapolis around midafternoon instead of evening. It also avoids exposing both travel days to missed-connection risk. The tradeoff is the thinner budget margin: $156 rather than $318 before bags or fare movement.",
+          "role": "assistant"
+        },
+        {
+          "content": "We would each have a carry-on, no checked bags. Is there any reason the $156 cushion is unrealistic?",
+          "role": "user"
+        },
+        {
+          "content": "It is workable but tight. The $190 transportation allowance sits within the earlier $150-$230 range, so a few longer rides could consume part of the cushion. Hotel taxes are still estimates, and mandatory property fees have not had a final checkout-screen review. A $40 increase in lodging and $40 more for transportation would still leave about $76, but a meaningful airfare change could erase the rest.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then make the nonstop the leading choice, but don't buy it. Give me the exact working total and what needs checking before we commit to everything.",
+          "role": "user"
+        },
+        {
+          "content": "The leading flight choice is the $1,184 standard-economy nonstop for two. Combined with estimated lodging of $2,270 and $190 for local transportation, the working trip total is $3,644, leaving $156 under the $3,800 ceiling. Before purchase, reprice both nonstop segments together, confirm standard seat availability and the no-change-fee fare terms, then verify the hotels' final taxes, mandatory fees, deposit schedule, and cancellation deadlines. The flight should be finalized before taking any lodging rate that becomes nonrefundable. Nothing has been booked or reserved.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0006",
+      "session_index": 6,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya and her partner are planning Thursday, April 23 through Tuesday, April 28, with two nights in Savannah followed by three nights on Tybee Island. Perry Lane Hotel plus DeSoto Beach Hotel remains the leading lodging combination at $2,000 before tax and about $2,270 including estimated tax. Approximately $390 would be charged as a refundable deposit, with the remaining balance collected at the properties. The flight shortlist has been narrowed, and the current combined estimate for lodging, airfare, and local transportation is $3,644 against the $3,800 ceiling. Before purchase, the live airfare and fare rules must be rechecked along with hotel taxes, mandatory fees, deposit terms, and cancellation deadlines. No flight or hotel has been selected, modified, or booked.",
+  "verification": {
+    "6": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Then make the nonstop the leading choice, but don't buy it.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selects the nonstop as the leading option for this trip. The dialogue does not establish a durable cross-trip preference, and the other candidate habits lack sufficiently explicit user-originated evidence."
+    }
+  }
+}

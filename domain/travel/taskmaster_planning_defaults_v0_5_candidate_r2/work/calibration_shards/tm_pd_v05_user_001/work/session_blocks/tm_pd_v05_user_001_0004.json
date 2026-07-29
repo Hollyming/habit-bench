@@ -1,0 +1,187 @@
+{
+  "cache_fingerprint": "0c80de3a7a41b64ec7f1354c577040b9b642c483cfb56790724edfc57d442f25",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session addresses only the Raleigh wedding trip. Elena selected an earlier Friday nonstop, a downtown hotel, and a full-trip rental car based on this event's dinner, ceremony, and Sunday brunch schedule; no recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "ep_002_raleigh_family_wedding",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 4,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user makes current-trip choices for a morning outbound and nonstop flights because of Friday timing. These are trip-specific overrides, not durable preferences. No user utterance establishes the carrier, seat, bed, or hotel-amenity habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Let's use the earlier flight as the working choice.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Start with nonstops. We can fly economy. I don't want to spend half of Friday traveling just to save a small amount.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h01",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to start planning a separate trip for my niece's wedding in Raleigh. My spouse is coming, so this is for two people. The wedding is Saturday, May 3, and we need to be there for a family dinner downtown Friday evening.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. Would you like to fly from Denver on Friday and return Sunday? Also, what time is the dinner, and where is the Saturday ceremony relative to downtown Raleigh?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, Friday to Sunday. Dinner is at 6:30 p.m. Friday. The ceremony is at 4:00 Saturday at a venue near Cary, maybe twenty or twenty-five minutes from downtown. We need one room for two nights.",
+          "role": "user"
+        },
+        {
+          "content": "That makes a Friday flight arriving at RDU by about 3:30 p.m. the practical latest target. It leaves time to collect bags, get transportation, check in, and reach dinner without depending on a perfect arrival. Do you want me to compare nonstop flights only, or include one-stop itineraries if they save a meaningful amount?",
+          "role": "assistant"
+        },
+        {
+          "content": "Start with nonstops. We can fly economy. I don't want to spend half of Friday traveling just to save a small amount.",
+          "role": "user"
+        },
+        {
+          "content": "For the May 2-4 dates, two workable nonstop patterns are showing in the current search snapshot. One leaves Denver around 7:15 a.m. Friday and reaches RDU about 12:30 p.m.; its Sunday return leaves around 5:35 p.m. and reaches Denver about 7:25 p.m. The other leaves Denver about 9:45 a.m., arrives around 3:05 p.m., and returns Sunday around 4:20 p.m. The first is roughly $812 total for two in regular economy, while the later outbound is about $846 total. Exact fares and flight numbers need verification before purchase.",
+          "role": "assistant"
+        },
+        {
+          "content": "The 3:05 arrival sounds tighter than I would like with the dinner. Is 12:30 unnecessarily early, or does it make the rest easier?",
+          "role": "user"
+        },
+        {
+          "content": "The 12:30 arrival is the stronger fit. RDU to downtown is commonly about 20-30 minutes by car, but Friday traffic, baggage claim, and a rental-car line can extend that. Arriving at 12:30 should put you at a downtown hotel well before standard check-in; even if the room is not ready, the hotel can generally hold your bags. The 3:05 arrival has little recovery time after a delay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Let's use the earlier flight as the working choice. For Sunday, is 5:35 late enough that we won't be rushed? There is a family brunch at 10:30, probably ending around noon.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. A 5:35 p.m. departure gives you several hours after brunch. With a rental car, I would plan to leave central Raleigh or Cary around 2:30 p.m. so you can refuel, return the car, and be at the terminal about two hours before departure. That still leaves room for brunch to run long.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now the hotel question. Most of the family seems to be staying downtown because of dinner, but the wedding itself is near Cary. Would staying halfway between the two be more sensible?",
+          "role": "user"
+        },
+        {
+          "content": "A halfway location reduces Saturday's drive but makes Friday dinner less convenient and may leave you dependent on driving or rideshares for the evening. Since you have only one wedding trip to Cary and both Friday dinner and much of the family gathering are downtown, downtown is the more coherent base. A rental car can remain parked until Saturday, and the drive to Cary can be planned with extra time.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please compare a few downtown hotels. Nothing elaborate; I care more about a straightforward room and not making Friday complicated.",
+          "role": "user"
+        },
+        {
+          "content": "Three plausible choices are the Residence Inn Raleigh Downtown, Raleigh Marriott City Center, and The Longleaf Hotel. In the current rate snapshot, one room for two nights is approximately $239, $271, and $205 per night before tax, respectively. The Residence Inn and Marriott are closest to the central downtown restaurant area. The Longleaf is still near downtown but may mean a longer walk or short rideshare depending on the dinner address. Parking charges and cancellation terms vary and need to be checked with the exact rate.",
+          "role": "assistant"
+        },
+        {
+          "content": "The dinner is near Moore Square. Which one is best for that, and do we need a car from the airport?",
+          "role": "user"
+        },
+        {
+          "content": "The Marriott City Center is about a 10-15 minute walk from Moore Square, while the Residence Inn is closer to 15-20 minutes depending on the exact restaurant. The Longleaf is less convenient on foot. You do not need a car solely for the airport transfer or Friday dinner, but the Saturday venue near Cary makes a car useful. The main choice is whether to rent at RDU Friday and pay downtown parking, or use a rideshare Friday and collect a car Saturday morning.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would Saturday-only rental actually save much once we add another trip to the airport rental center?",
+          "role": "user"
+        },
+        {
+          "content": "Probably not enough to justify the extra logistics unless downtown parking is unusually expensive. A Friday-to-Sunday rental may cost roughly $150-$210 before fuel, plus two nights of hotel parking. A Saturday-only rental avoids one or two parking nights but adds rideshares to and from RDU and consumes part of Saturday morning. A neighborhood rental office could change the calculation, but weekend hours and vehicle availability are often more restrictive.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then keep the car for the whole trip. Between the Residence Inn and Marriott, the Marriott sounds easier for dinner, but is it worth the higher rate?",
+          "role": "user"
+        },
+        {
+          "content": "The difference is about $64 before tax over two nights at the displayed rates. For that amount, the Marriott gives you the shorter Friday walk, a full-service front desk, and a very central base. The Residence Inn offers more room and could be the better value, but its advantage matters less on a two-night stay. Parking could reverse the comparison, so the final decision should use the combined room-and-parking total rather than room rate alone.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you estimate the full trip for the earlier nonstop, Marriott, and rental car? Just a planning number, not a booking.",
+          "role": "user"
+        },
+        {
+          "content": "Using the current figures: flights are about $812 total for two; the Marriott is about $542 before tax for two nights; estimated hotel tax brings lodging to roughly $615; and a compact rental with taxes plus fuel is reasonably budgeted at $210-$270. Add approximately $60-$90 for two nights of downtown parking. That puts the transportation-and-hotel planning total around $1,700-$1,790, excluding meals and any airline bag or seat-selection charges.",
+          "role": "assistant"
+        },
+        {
+          "content": "That's workable. Before we settle on it, could staying in Cary cut enough from the hotel and parking to matter?",
+          "role": "user"
+        },
+        {
+          "content": "A comparable Cary hotel might reduce the two-night lodging and parking total by roughly $150-$250, but you would give back some of that in Friday driving, parking or rideshare costs, and inconvenience around the dinner. It would also separate you from family staying downtown. For a larger price gap Cary could be worthwhile, but at that estimated difference I would keep downtown as the working plan.",
+          "role": "assistant"
+        },
+        {
+          "content": "All right. Give me the clean recommendation and flag what still needs to be verified. We are not ready to purchase yet.",
+          "role": "user"
+        },
+        {
+          "content": "Use the Friday, May 2 nonstop leaving Denver around 7:15 a.m. and arriving at RDU around 12:30 p.m., with the Sunday, May 4 nonstop leaving RDU around 5:35 p.m. and arriving in Denver around 7:25 p.m. Hold regular economy for two as the working flight choice, currently estimated at $812 total. Plan on one room for two nights at the Raleigh Marriott City Center, currently about $271 per night before tax, and a compact rental car from Friday arrival through Sunday departure. This combination supports the 6:30 p.m. Friday dinner near Moore Square, allows a comfortable Saturday drive to the Cary-area ceremony, and leaves ample time after Sunday brunch. Before booking, verify flight numbers and schedules, total airfare including bags and seat selection, fare change and cancellation terms, the hotel's full after-tax total and cancellation deadline, room configuration, nightly parking charge, and the rental-car total and pickup hours. No flight, hotel, or car has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0004",
+      "session_index": 4,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena's solo Chicago rights conference trip remains March 27-30, with the booked Embassy Suites Chicago Downtown Magnificent Mile and the previously selected Midway arrival and O'Hare return. For a separate Raleigh family wedding trip, Elena and her spouse are planning to travel May 2-4 for a Saturday, May 3 wedding near Cary. Their working plan is an early Friday nonstop from Denver arriving at RDU around 12:30 p.m., a Sunday nonstop departing around 5:35 p.m., one room for two nights at the Raleigh Marriott City Center, and a rental car for the full stay. Friday family dinner is at 6:30 p.m. near Moore Square, the Saturday ceremony is at 4:00 p.m., and Sunday brunch begins at 10:30 a.m. Estimated trip cost for flights, hotel, rental car, fuel, and parking is about $1,700-$1,790. Nothing for Raleigh has been booked; schedules, final totals, fare conditions, hotel cancellation terms, room configuration, parking, and rental details remain to be verified.",
+  "verification": {
+    "4": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Let's use the earlier flight as the working choice.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Start with nonstops. We can fly economy. I don't want to spend half of Friday traveling just to save a small amount.",
+          "habit_id": "tm_pd_v05_user_001_h01",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user makes current-trip choices for a morning outbound and nonstop flights because of Friday timing. These are trip-specific overrides, not durable preferences. No user utterance establishes the carrier, seat, bed, or hotel-amenity habits."
+    }
+  }
+}

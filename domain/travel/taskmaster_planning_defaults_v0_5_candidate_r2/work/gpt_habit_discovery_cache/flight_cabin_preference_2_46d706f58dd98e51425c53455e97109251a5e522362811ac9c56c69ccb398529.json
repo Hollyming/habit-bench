@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "46d706f58dd98e51425c53455e97109251a5e522362811ac9c56c69ccb398529",
+  "habits": [
+    {
+      "boundary_condition": "Treat business class as preferred rather than mandatory, and compare the fare against the stated budget",
+      "bundle_id": "tm_v04_e2e_bundle_d520608d6978",
+      "condition": "When selecting a flight and the premium fare fits the trip budget",
+      "confidence": 0.9,
+      "decision": "accept",
+      "default_action": "Search business class first",
+      "exception_condition": "Fall back to economy when business class exceeds the budget; consider first class only when its price is acceptable",
+      "family": "flight_cabin_preference",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_d520608d6978",
+      "induced_at": "2026-07-25T08:47:12.342961+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "budget-conditioned business-class preference",
+      "preference_value": "business class",
+      "rationale": "Across three independent flight requests, the user selects or initially requests business class, explicitly ties an upgrade to affordability, and accepts economy when business class is too expensive.",
+      "reasoning_effort": "high",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Establishes business class as the requested cabin, with subsequent turns making higher-cabin options conditional on price.",
+          "conversation_id": "dlg-e7144fce-d05c-4e9d-a41d-217cc88aece8",
+          "exact_user_quote": "I would like the business class.",
+          "instruction_id": "flight-4",
+          "turn_index": 6
+        },
+        {
+          "contribution": "Directly supports choosing business class when the upgrade remains within budget.",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "exact_user_quote": "Okay. What if I upgraded to business class. Could I do that within my budget?",
+          "instruction_id": "flight-11",
+          "turn_index": 8
+        },
+        {
+          "contribution": "Supports economy as the fallback after the requested business-class fare was shown to exceed the budget.",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "exact_user_quote": "Let's go with economy seating. Do you have something that? And, I would like Aisle seats, if that's possible.",
+          "instruction_id": "flight-3",
+          "turn_index": 13
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I would like the business class.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-e7144fce-d05c-4e9d-a41d-217cc88aece8",
+          "habitual_language": false,
+          "instruction_id": "flight-4",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 6,
+          "user_utterance": "I would like the business class."
+        },
+        {
+          "annotated_segment": "Okay. What if I upgraded to business class. Could I do that within my budget?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 8,
+          "user_utterance": "Okay. What if I upgraded to business class. Could I do that within my budget?"
+        },
+        {
+          "annotated_segment": "Let's go with economy seating. Do you have something that? And, I would like Aisle seats, if that's possible.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218",
+          "habitual_language": false,
+          "instruction_id": "flight-3",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 13,
+          "user_utterance": "Let's go with economy seating. Do you have something that? And, I would like Aisle seats, if that's possible."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-e7144fce-d05c-4e9d-a41d-217cc88aece8",
+    "dlg-d268f9c5-da4d-4d30-a895-70cdd0342078",
+    "dlg-c59c3a33-b7fc-42f4-84d9-f28aab13e218"
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "cache_fingerprint": "6ccad8d6d51b448a2496b5a9e67ede35da8148fe45a5f22e4108a593033c8b89",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For the February 20-25 Andaz Scottsdale trip, the user compared four nonstop round trips and rejected the cheaper late Thursday arrival because it would miss the property restaurant and consume the first evening. The selected itinerary uses the Thursday 11:00 a.m. outbound and Tuesday 5:15 p.m. return for $1,016 total for two, subject to final fare and terms verification. This is an ordinary trip-specific decision and establishes no recurring travel preference.",
+        "evidence_topology": {
+          "episode_id": "leisure-desert-resort-01",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 55,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly rejects the cheaper late outbound and chooses a more expensive itinerary because it preserves usable resort time, establishing a one-trip timing/value exception to choosing the cheapest acceptable flight. The dialogue does not establish a durable morning-departure rule or any other candidate habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "I do not want the late Thursday arrival. Between the two combinations with the midday outbound, choose one. Account for the fact that we have already paid for five nights and Tuesday is otherwise barely usable.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h01",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Now compare the actual flight combinations for Scottsdale. We have five nights, Thursday February 20 through Tuesday February 25, and I want to understand what we gain at the resort rather than looking at airfare in isolation.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare the Thursday outbound and Tuesday return choices as complete round trips for two, including realistic airport-to-resort timing. Please give me the current flight times and fares you are seeing, and confirm whether the fares include the same baggage and change terms.",
+          "role": "assistant"
+        },
+        {
+          "content": "All are nonstop SFO-PHX and standard economy. One carry-on each is included; checked bags and seat assignments are extra. Thursday option A leaves at 11:00 a.m., lands at 2:05 p.m., and costs $263 per person. Option B leaves at 6:45 p.m., lands at 9:48 p.m., and costs $188. The Andaz restaurant closes at 10:00 p.m.",
+          "role": "user"
+        },
+        {
+          "content": "Option A should put you at the resort around 3:00 to 3:30 p.m., allowing for deplaning, the terminal walk, and a 20- to 30-minute car ride. That preserves check-in, the first evening, and dinner on property. Option B would likely reach the resort around 10:35 to 11:05 p.m.; the restaurant would already be closed, and any delay would push arrival later. It saves $150 for two but effectively converts Thursday into transportation only.",
+          "role": "assistant"
+        },
+        {
+          "content": "For Tuesday, the earlier flight leaves Phoenix at 12:40 p.m., arrives SFO at 1:50 p.m., and is $210 per person. The later flight leaves at 5:15 p.m., arrives at 6:27 p.m., and is $245. Checkout is noon, but I have not confirmed whether we can keep using the pool or spa facilities afterward.",
+          "role": "user"
+        },
+        {
+          "content": "The 12:40 p.m. return would require leaving the resort about 10:20 to 10:30 a.m. That permits breakfast and a short final walk, but not a relaxed resort morning. For the 5:15 p.m. flight, departure from the resort around 3:00 p.m. should be comfortable. It adds roughly four and a half hours in Scottsdale, although the value depends on bag storage and post-checkout facility access.",
+          "role": "assistant"
+        },
+        {
+          "content": "Lay out all four round trips with the total airfare for both of us. Also show the likely resort arrival Thursday and the time we would need to leave Tuesday.",
+          "role": "user"
+        },
+        {
+          "content": "Here are the four combinations:\n\n1. Midday outbound and early return: $946 total. Resort arrival Thursday about 3:00-3:30 p.m.; leave Tuesday about 10:20-10:30 a.m.\n2. Midday outbound and late return: $1,016 total. Resort arrival Thursday about 3:00-3:30 p.m.; leave Tuesday about 3:00 p.m.\n3. Late outbound and early return: $796 total. Resort arrival Thursday about 10:35-11:05 p.m.; leave Tuesday about 10:20-10:30 a.m.\n4. Late outbound and late return: $866 total. Resort arrival Thursday about 10:35-11:05 p.m.; leave Tuesday about 3:00 p.m.\n\nThese totals exclude checked bags, paid seats, and airport transportation.",
+          "role": "assistant"
+        },
+        {
+          "content": "The $946 estimate already in the trip total was evidently combination one. Compare combination two against it. Is the later return really buying enough usable time for another $70?",
+          "role": "user"
+        },
+        {
+          "content": "Combination two costs $70 more for two and keeps you at the resort about 4 hours 35 minutes longer on Tuesday. At minimum, that buys an unhurried breakfast, the full morning, and lunch before leaving. If Andaz stores bags and permits post-checkout pool or spa access, most of that extension is genuinely usable. Without facility access, you would still gain time for lunch and nearby activities, but the benefit would be less resort-focused.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about the outbound difference? Put a value on choosing midday rather than the cheap late flight.",
+          "role": "user"
+        },
+        {
+          "content": "The midday outbound costs $150 more for two and gets you to Andaz roughly seven and a half hours earlier. More importantly, it preserves a complete first evening: settled check-in, dinner before the restaurant closes, and a normal night before Friday’s 3:30 p.m. massages. The late flight saves more money than the early Tuesday return, but it sacrifices nearly all usable value from the first night of a five-night booking.",
+          "role": "assistant"
+        },
+        {
+          "content": "The hike starts early Saturday, not Friday, so the late arrival would not threaten the hike directly.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Neither Thursday flight conflicts directly with the Saturday hike. The midday arrival instead improves Thursday evening and Friday morning, and reduces the risk that a flight delay turns the first night into a very late arrival. Your Friday massages remain workable with either outbound.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the ground-transfer assumptions more carefully. We will use a rideshare and will not check bags.",
+          "role": "user"
+        },
+        {
+          "content": "With carry-ons only, the midday arrival could reach the pickup area around 2:25 to 2:40 p.m. A normal drive to the resort is about 20 to 30 minutes, so 3:00 to 3:20 p.m. is a reasonable target. For the 9:48 p.m. arrival, reaching rideshare around 10:05 to 10:20 p.m. and the resort around 10:30 to 10:50 p.m. is plausible. Even under the faster case, the 10:00 p.m. restaurant closing is not realistically attainable.",
+          "role": "assistant"
+        },
+        {
+          "content": "And for Tuesday, how much airport margin are you building in?",
+          "role": "user"
+        },
+        {
+          "content": "About two hours before departure at PHX, plus 25 to 35 minutes for the ride and pickup variability. Leaving at 10:20 a.m. for the 12:40 p.m. flight gives roughly that margin. Leaving at 3:00 p.m. for the 5:15 p.m. flight is similarly sound; I would move it to 2:45 p.m. if weekday traffic or rideshare wait estimates rise that afternoon.",
+          "role": "assistant"
+        },
+        {
+          "content": "I do not want the late Thursday arrival. Between the two combinations with the midday outbound, choose one. Account for the fact that we have already paid for five nights and Tuesday is otherwise barely usable.",
+          "role": "user"
+        },
+        {
+          "content": "Choose the midday outbound with the later Tuesday return for $1,016 total for two. The extra $70 over the earlier return is modest relative to the four-plus additional hours it preserves, and it makes Tuesday a meaningful final resort day rather than breakfast followed immediately by the airport. The midday Thursday flight also protects the first evening of the stay.",
+          "role": "assistant"
+        },
+        {
+          "content": "Select those flights for both of us, but before you treat this as final, state the remaining checks and update the expected trip total.",
+          "role": "user"
+        },
+        {
+          "content": "Selected for both travelers: Thursday’s 11:00 a.m. nonstop SFO-PHX, arriving 2:05 p.m., and Tuesday’s 5:15 p.m. nonstop PHX-SFO, arriving 6:27 p.m. Airfare is $1,016 total, excluding optional seats and checked bags. Before purchase, verify that the displayed fare remains available for two passengers, confirm the exact change and cancellation terms, and review the final payment page for added seat or service charges. Also confirm Tuesday bag storage and post-checkout pool or spa access with Andaz; those do not change the flight choice but determine how the final hours can be used. Replacing the prior $946 airfare estimate with $1,016 raises the expected trip total from $4,871.65 to $4,941.65 for two. Airport rides remain outside that figure.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0055",
+      "session_index": 55,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund and rental documentation remain pending. Washington, Sonoma, Bothell, Chicago, Carlsbad, Palm Springs, Cypress Spa Lodge, Indianapolis, and the July supplier-audit arrangements remain as previously recorded, with their noted documentation follow-ups. Scottsdale November 6-10 remains selected but unbooked. For the February 20-25 Scottsdale resort trip, Andaz Scottsdale is booked on a breakfast-inclusive refundable package for $3,286.25 including mandatory fee and tax. A $600.25 deposit is paid and remains refundable through February 13 at 6:00 p.m. resort local time; after that deadline it is the room cancellation exposure. Two Friday 3:30 p.m. massages are reserved for $573.40 and carry a full charge inside 24 hours. The Saturday Gateway Trailhead hike remains planned, with $66 estimated transportation. Flights are selected but still require final fare and terms verification: Thursday 11:00 a.m. nonstop SFO-PHX arriving 2:05 p.m., and Tuesday 5:15 p.m. nonstop PHX-SFO arriving 6:27 p.m., for $1,016 total for two before optional seats or checked bags. The revised expected trip total is $4,941.65 for two; airport rides are not included. Confirm Tuesday bag storage and post-checkout pool or spa access. CIVANA was not booked. Boston September 15-20 airfare is purchased on separate linked records; retain the business-only comparison. The Westin work stay transitions Friday to a linked personal extension through Sunday in the same room. Separate folios and payment methods are confirmed in writing, the spouse may obtain a key with identification, the $371.48 personal deposit is paid, and $371.47 remains due Sunday. Retain both confirmations and final folios, refresh keys Friday, and verify the personal card before new charges post. For the October 27-29 Clayton manufacturing audit, business-class airfare is purchased for $1,674, arriving Sunday at 4:12 p.m. via Denver and returning Tuesday at 7:25 p.m. nonstop. A Wednesday 7:20 a.m. nonstop remains an unbooked fallback estimated to add $132. Clayton Site Hotel is reserved for $438.16 including taxes; late arrival, Tuesday early folio, and bag storage are confirmed. Estimated rides are $126, for a combined hotel-and-ride total of $564.16. Cancellation carries a $219.08 penalty. Retain the hotel confirmation and verify final ride pricing.",
+  "verification": {
+    "55": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "I do not want the late Thursday arrival. Between the two combinations with the midday outbound, choose one. Account for the fact that we have already paid for five nights and Tuesday is otherwise barely usable.",
+          "habit_id": "tm_pd_v05_user_003_h01",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly rejects the cheaper late outbound and chooses a more expensive itinerary because it preserves usable resort time, establishing a one-trip timing/value exception to choosing the cheapest acceptable flight. The dialogue does not establish a durable morning-departure rule or any other candidate habit."
+    }
+  }
+}

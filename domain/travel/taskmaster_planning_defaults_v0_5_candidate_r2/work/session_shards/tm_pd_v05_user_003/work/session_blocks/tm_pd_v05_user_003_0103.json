@@ -1,0 +1,166 @@
+{
+  "cache_fingerprint": "bb94b83c8a74a7509ca98593ba71caae59dfb3e9a493d185ca9f93b22d6efd44",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip planning only: Priya selected the Thursday return and Westin for this conference after comparing schedule risk, lodging totals, and local transportation. No recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "conference-boston-01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 103,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chose United for this itinerary, supporting United as an acceptable carrier option. The other utterances establish trip-specific timing, hotel, and cost decisions but do not strongly evidence the exact defaults of the remaining candidate habits or any durable recurring preference.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Use the $486 United fare and registration.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h02",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The Boston quality-systems conference is confirmed for September 15 through 17. The Monday workshop starts at 8:30 a.m., and the program ends Wednesday at 4:00 p.m. I need Sunday travel from San Francisco. Compare returning Wednesday evening with staying until Thursday morning, and include the conference hotels before the block closes.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll build both schedules around arrival Sunday, September 14. Before I total them, is the conference at the Boston Convention and Exhibition Center, and should I include the $1,690 registration and workshop fee in the authorization amount?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes to both. I need to be present for the entire workshop and closing session, so do not show a Wednesday flight that requires leaving early.",
+          "role": "user"
+        },
+        {
+          "content": "The practical outbound choices are a United nonstop leaving SFO at 8:30 a.m. and reaching BOS at 5:08 p.m., or a Delta nonstop from 10:20 a.m. to 7:05 p.m. The United itinerary leaves more time for a normal hotel check-in and Sunday dinner. Paired with a Wednesday 6:45 p.m. return, United is $486 round trip; paired with Thursday’s 7:15 a.m. return, it is also $486. Delta is $512 with a Wednesday 7:25 p.m. return or $528 with a Thursday 8:10 a.m. return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is 6:45 Wednesday genuinely workable after a 4:00 finish? I do not want a plan that works only if everything runs exactly on time.",
+          "role": "user"
+        },
+        {
+          "content": "It is possible but tight. From the convention center, you would need to retrieve your bag immediately and leave around 4:15. A taxi or rideshare to Logan commonly takes 15 to 30 minutes then, but traffic or a delayed closing session could reduce the airport margin. The Silver Line is more predictable on cost, though the transfer and walking make it slower with luggage. I would treat the 6:45 flight as feasible, not comfortable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then show the hotels and the full cost difference. The lowest conference rate looked farther away, but I could not tell whether the savings survived transportation.",
+          "role": "user"
+        },
+        {
+          "content": "Three conference-block options remain. The Westin Boston Seaport is about a five-minute covered or mostly covered walk from the convention center and totals $951 for Sunday through Wednesday or $1,268 through Thursday. The Omni Boston at the Seaport is roughly a seven-minute walk and totals $1,098 for three nights or $1,464 for four. The Aloft Boston Seaport is the least expensive at $884 for three nights or $1,176 for four, but it is about a 15-minute walk and less convenient with a conference bag or poor weather. All totals include room tax.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the Westin and Aloft more carefully. Include airport transportation in both directions, and assume I will take a car to Logan if I fly Wednesday.",
+          "role": "user"
+        },
+        {
+          "content": "For the Wednesday-return version, I would allow $35 for a rideshare or taxi from either hotel to Logan after the conference. On Sunday, the free inbound Silver Line from Logan serves the Seaport; from the World Trade Center stop, the Westin is the easier walk. Reaching Aloft generally adds another short walk or a local transit connection. Allowing $5 for incidental transit, ground transportation is about $40 for Westin and about $45 for Aloft. The Aloft therefore saves about $62 overall: $884 plus $45 versus $951 plus $40.",
+          "role": "assistant"
+        },
+        {
+          "content": "And for Thursday morning? I assume the early flight changes the airport plan.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. For a 7:15 a.m. departure, plan to leave the hotel around 5:15 a.m. by taxi or rideshare. I would budget $35 for that trip. Sunday can still use the free Silver Line, with a small transit allowance if needed. Estimated local transportation is $40 from the Westin and $45 from Aloft. The four-night lodging difference remains $92, so Aloft saves about $87 after the transportation allowance.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me complete totals for four combinations: Westin Wednesday, Aloft Wednesday, Westin Thursday, and Aloft Thursday. Use the $486 United fare and registration.",
+          "role": "user"
+        },
+        {
+          "content": "Using registration at $1,690, airfare at $486, and the ground estimates: Westin with Wednesday return is $3,168 ($1,690 + $486 + $951 + $40). Aloft with Wednesday return is $3,105 ($1,690 + $486 + $884 + $45). Westin with Thursday return is $3,484 ($1,690 + $486 + $1,268 + $40). Aloft with Thursday return is $3,397 ($1,690 + $486 + $1,176 + $45). Meals and any airline bag fee are not included.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Wednesday options are cheaper, but I am concerned about carrying luggage into the last day and then watching the clock. Can the Westin hold the bag after checkout, and how late would I reach San Francisco on each return?",
+          "role": "user"
+        },
+        {
+          "content": "The Westin confirms complimentary luggage storage for registered guests after checkout. The Wednesday nonstop leaves BOS at 6:45 p.m. and arrives SFO at 10:25 p.m. local time. The Thursday nonstop leaves at 7:15 a.m. and arrives at 10:55 a.m. Thursday. The Thursday plan adds one hotel night but removes the need to leave promptly after the closing session.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check whether the Thursday United fare includes a standard seat and carry-on. Also, is the 8:30 Sunday flight nonstop?",
+          "role": "user"
+        },
+        {
+          "content": "The quoted $486 itinerary is regular economy, not basic economy. It includes a standard seat assignment and one full-size carry-on plus a personal item; a checked bag would cost extra. Both segments are nonstop: SFO to BOS Sunday from 8:30 a.m. to 5:08 p.m., and BOS to SFO Thursday from 7:15 a.m. to 10:55 a.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use Thursday and the Westin. The covered walk and not having to manage a rushed airport departure after the conference are worth the difference. Reconcile the authorization figure, but separate the core bookings from estimated local transportation.",
+          "role": "user"
+        },
+        {
+          "content": "The core booking subtotal is $3,444: $1,690 conference and workshop registration, $486 round-trip United airfare, and $1,268 for four nights at the Westin Boston Seaport. Estimated local transportation is $40, making the authorization request $3,484 before meals and any checked-bag charge. Compared with Westin and a Wednesday return, the Thursday plan costs $316 more, entirely from the additional hotel night; the airfare and transportation estimate are unchanged.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the Westin block still cancellable, and when does the rate expire? I need enough detail to send this for approval today.",
+          "role": "user"
+        },
+        {
+          "content": "The conference rate is currently available for September 14 through 18. It requires a card guarantee, with cancellation permitted without penalty until 6:00 p.m. Boston time on September 11; after that, one night plus tax is charged. The lodging block is scheduled to close Friday at 5:00 p.m. Boston time, but rooms can sell out earlier. The United fare is currently ticketable at $486 and may change until purchased.",
+          "role": "assistant"
+        },
+        {
+          "content": "Summarize the authorization-ready itinerary and identify what is reserved versus only quoted.",
+          "role": "user"
+        },
+        {
+          "content": "Authorization-ready plan: fly United nonstop from SFO Sunday, September 14 at 8:30 a.m., arriving BOS at 5:08 p.m. Take the free Silver Line to the Seaport and check in at the Westin Boston Seaport for four nights. Attend the 8:30 a.m. workshop Monday and the full conference through 4:00 p.m. Wednesday. Check out Thursday, September 18, leave by taxi or rideshare around 5:15 a.m., and fly United nonstop from BOS at 7:15 a.m., arriving SFO at 10:55 a.m.\n\nThe conference and workshop registration is confirmed at $1,690. The United itinerary is quoted at $486 but not ticketed. The Westin room is available at a quoted $1,268 including tax but is not yet reserved. Core bookings total $3,444; adding $40 estimated local transportation produces a $3,484 authorization request. Meals and a checked bag, if used, remain outside that figure.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0103",
+      "session_index": 103,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund and rental documentation remain pending. Washington, Sonoma, Bothell, Chicago, Carlsbad, Palm Springs, Cypress Spa Lodge, Indianapolis, July supplier-audit, prior Scottsdale, Clayton, Plymouth, Denver, Coastal Sonoma, Holly Springs, Puerto Rico, Lenexa, and earlier Boston arrangements remain as recorded. For the September 15-17 Boston quality-systems conference, registration and workshop are confirmed at $1,690. The authorization-ready plan uses quoted $486 United nonstops, departing SFO September 14 at 8:30 a.m. and returning from BOS September 18 at 7:15 a.m. The Westin Boston Seaport is quoted September 14-18 at $1,268 including tax and remains unreserved; its block closes Friday at 5:00 p.m. Boston time, subject to earlier sellout. Core trip subtotal is $3,444, or $3,484 with estimated local transportation. Airfare and lodging still require approval and booking. The March 12-16 Scottsdale wellness trip remains confirmed at $3,627.20 before meals and incidentals. For the June 17-19 Durham audit, airfare is ticketed at $514; lodging is confirmed June 16-20 for $676, and the trip total is $1,404. The October 24-November 1 Hawaii vacation remains confirmed or reserved as recorded, with a revised estimate of $10,221.61. For the January 20-21 Chesterfield Valley audit, airfare is ticketed at $568 including one checked bag; the Residence Inn Chesterfield Valley is confirmed January 19-22 for $552 including tax plus $45 parking; and the compact rental is confirmed at $238 with pickup at 5:15 p.m. January 19. With estimated fuel and meals, that trip totals $1,659, and an $84 authorization increase remains pending.",
+  "verification": {
+    "103": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Use the $486 United fare and registration.",
+          "habit_id": "tm_pd_v05_user_003_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chose United for this itinerary, supporting United as an acceptable carrier option. The other utterances establish trip-specific timing, hotel, and cost decisions but do not strongly evidence the exact defaults of the remaining candidate habits or any durable recurring preference."
+    }
+  }
+}

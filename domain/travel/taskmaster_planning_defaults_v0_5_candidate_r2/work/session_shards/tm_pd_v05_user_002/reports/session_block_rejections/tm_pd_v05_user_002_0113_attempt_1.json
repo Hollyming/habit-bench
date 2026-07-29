@@ -1,0 +1,120 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_002_h06', 'boundary') actual=[('tm_pd_v05_user_002_h06', 'support'), ('tm_pd_v05_user_002_h05', 'support')]",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marcus established a reusable boundary for family leisure room selection: a balcony should be prioritized when available, but a first-floor room with direct outdoor access remains acceptable, and an otherwise suitable hotel should not be rejected solely because it lacks a balcony.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "Move the hotel comparison to the Saturday-through-Friday schedule. Six nights, three of us, and still no reservation or hold. Compare the Mission Bay two-queen room with the Coronado king suite we saw.",
+          "role": "user"
+        },
+        {
+          "content": "For Saturday, June 13 through Friday, June 19, I have The Dana on Mission Bay in a Water's Edge Two Queens room and Glorietta Bay Inn in a King One-Bedroom Suite. I’ll verify that each quote accepts two adults and one 12-year-old, then compare every mandatory charge, breakfast, parking, cancellation, beach access, and travel time.",
+          "role": "assistant"
+        },
+        {
+          "content": "Start with the beds. I don't want to discover that the Coronado sofa is decorative or that they priced it for two people.",
+          "role": "user"
+        },
+        {
+          "content": "The Dana lists two standard queen beds and a maximum occupancy of four, so all three travelers are covered without a rollaway. The Glorietta quote displays a king bedroom plus a sofa bed and permits three guests, but the public description does not identify the sofa-bed size or explicitly show Owen's age in the rate details.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you verify both points with the property before we treat it as a real option?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The property confirmed that the living-room sofa opens to a queen-size bed. It also confirmed that the quoted suite rate covers two adults and one child age 12; there is no additional-person charge. Bedding can be requested before arrival, though the sofa bed would still need to be opened by the guest or evening staff.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Now give me the full six-night math, not just an average nightly number.",
+          "role": "user"
+        },
+        {
+          "content": "The Dana: room charges are $329 per night for six nights, or $1,974. The resort charge is $39 nightly, totaling $234; self-parking is $42 nightly, totaling $252; taxes are $312.18. The complete lodging total is $2,772.18. Breakfast is not included. The room has a mini-fridge, and the current quote guarantees a furnished balcony.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Coronado?",
+          "role": "user"
+        },
+        {
+          "content": "Glorietta Bay Inn: the suite is $399 per night for six nights, or $2,394. Self-parking is $35 nightly, totaling $210; taxes are $377.06; there is no resort or destination charge. The complete lodging total is $2,981.06. Continental breakfast for all three is included each morning. The quoted suite is on the first floor and has a small outdoor sitting area, but no balcony.",
+          "role": "assistant"
+        },
+        {
+          "content": "So Coronado is $208.88 more, correct?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The lodging difference is $208.88 for the stay. That comparison includes all mandatory taxes, six nights of parking, and hotel fees. It does not assign a cash value to Glorietta’s included breakfast or add breakfast spending at The Dana.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep breakfast outside the math for now. What are the cancellation deadlines?",
+          "role": "user"
+        },
+        {
+          "content": "The Dana rate can be canceled without penalty through 6:00 p.m. local time on Wednesday, June 10; after that, the penalty is one night plus tax. Glorietta can be canceled without penalty through 11:59 p.m. local time on Saturday, June 6; after that, the full stay becomes nonrefundable. Neither quote requires a charge or hold today.",
+          "role": "assistant"
+        },
+        {
+          "content": "That earlier Coronado cutoff matters. Compare access to the beach and the things we're likely to do on the waterfront.",
+          "role": "user"
+        },
+        {
+          "content": "At The Dana, the room is directly on Mission Bay; the bayfront path and small beach are about a 2-minute walk. Belmont Park and Mission Beach are roughly 7-12 minutes by car. The Embarcadero and USS Midway area are about 15-22 minutes outside heavier traffic. At Glorietta, Coronado Beach is about a 5-7-minute walk, and the Hotel del area is similarly close. The Coronado Ferry Landing is about 8-12 minutes by car; from there, the ferry crossing to the downtown waterfront takes about 15 minutes, excluding wait time.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much extra driving does Coronado create for the zoo and airport?",
+          "role": "user"
+        },
+        {
+          "content": "From The Dana, allow about 15-22 minutes to the San Diego Zoo and 12-18 minutes to the airport. From Glorietta, allow about 18-28 minutes to the zoo and 15-25 minutes to the airport. Coronado therefore adds roughly 3-7 minutes in ordinary conditions, but bridge congestion can widen the difference, especially on the airport run.",
+          "role": "assistant"
+        },
+        {
+          "content": "The balcony is useful, but don't eliminate Glorietta over that. In general, prioritize a balcony when we're choosing a room for this kind of family leisure stay, but a first-floor room is a different case: direct outdoor access can be enough even without one. An otherwise good hotel should stay in the comparison.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll keep the first-floor Glorietta suite in contention because its outdoor sitting area provides direct access, while recognizing that The Dana has the stronger room setup on that feature with a guaranteed balcony.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now compare how the rooms actually work for six nights. We need more than a bed count.",
+          "role": "user"
+        },
+        {
+          "content": "The Dana’s two queens avoid nightly sofa-bed setup, but all three of you share one open room. It has the balcony, mini-fridge, and about 350 square feet. Glorietta’s roughly 520-square-foot suite separates the king bedroom from the living room, so Owen has his own sleeping area; it also has a mini-fridge and microwave. The tradeoff is folding out the sofa each night and using the living room as his bedroom.",
+          "role": "assistant"
+        },
+        {
+          "content": "I think the separation and included breakfast outweigh $208.88, assuming we can live with the earlier cancellation date. Make Coronado the lead and The Dana the fallback, but do not book either.",
+          "role": "user"
+        },
+        {
+          "content": "Glorietta Bay Inn is now the lead at $2,981.06 for six nights, with the confirmed king bedroom, queen sofa bed, three-person occupancy, breakfast for three, and first-floor outdoor sitting area. Its penalty-free cancellation deadline is June 6 at 11:59 p.m. The Dana remains the fallback at $2,772.18, with two queens, a guaranteed balcony, and cancellation through June 10 at 6:00 p.m. Nothing has been held, reserved, or charged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0113",
+      "session_index": 113,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Charleston remains confirmed for Marcus, Daniel, and Owen for March 27-31 under flights H7Q4LM and A6N9RP, Hyatt House HH-729461, and rides R-48271 and R-48296; the $501 canceled-return refund remains pending. Louisville is confirmed April 7-8 under L8V2KD and GH-684217; four local rides remain unbooked at an expected $124-$171. Cleveland is confirmed May 13-14 under C7M4QP, AB-417286, HZ-638205, and LF-290184. Dallas is confirmed June 16-17 under U6D9KF, HP-583194, and AV-741620, estimated at $683. Southern California is confirmed July 19-27 under N4K8TZ, SV-731904, AVD-904671, and BM-558217, total $5,739. Boston is confirmed January 22-26 under J7R4NX and RV-621847; Tuesday car pickup is 4:30 a.m. Norfolk and Virginia Beach are confirmed under N6R3PV, CY-842619, and AV-395742; expected total is $1,112.56 before fuel, tolls, meals, and Tuesday parking. St. Louis is confirmed March 23-28 under DT-573826; expected hotel, parking, fuel, and tolls total is $1,149.40. Sacramento is confirmed under S6K9TR, CY-519384, and AL-728541; estimated total is $1,235.08. Oregon coast is confirmed under UA-8K4R2M, BZ-761943, TI-846291, AR-593817, and HP-274608; current exposure is $4,989.68 before meals and activities. Atlanta-Birmingham September 16-17 is confirmed under Q7L3VD, H2-846317, and AV-592804; expected total is $1,141.06 before meals. The Pittsburgh family weekend is complete under P6T8RM and SH-418672; revised charges total $2,171.46, with rides still unbooked at an estimated $210. Nashville-Memphis October 18-20 is confirmed under NM8Q2L, HN-640281, BZ-815406, and HP-397154 for $1,043.94 before fuel, parking, tolls, and meals. Home2 Suites is cancellable by 6:00 p.m. October 17; Hyatt Place is cancellable by 6:00 p.m. October 19. The Budget total includes the $75 one-way charge; BNA pickup is available until 11:00 p.m. Sunday and MEM return hours are 4:00 a.m.-11:00 p.m. Monday's 9:30 a.m. meeting is followed by a target 1:00 p.m. departure and an approximately 3-hour-15-minute drive to Memphis. Tuesday's inspection is 1:30-3:30 p.m.; leave the hotel by 1:05 p.m. and target the MEM terminal for 4:05-4:10 p.m. The booked return is 6:05-7:49 p.m.; the 8:15-9:59 p.m. fallback was not booked. For the San Diego family break, the working schedule is Saturday, June 13 through Friday, June 19, for six nights; flights and hotels remain unheld and unbooked. Glorietta Bay Inn is the lodging lead at $2,981.06 including taxes and six nights of parking; its king suite has a confirmed queen sofa bed, covers two adults and one 12-year-old, includes breakfast for three, and is cancellable without penalty through 11:59 p.m. June 6. The Dana on Mission Bay is the fallback at $2,772.18 including taxes, resort charges, and six nights of parking; its room has two queens and is cancellable through 6:00 p.m. June 10. Glorietta is about 5-7 minutes on foot from Coronado Beach, 18-28 minutes from the zoo, and 15-25 minutes from the airport. The Dana has direct Mission Bay access, is 15-22 minutes from the zoo, and 12-18 minutes from the airport."
+}

@@ -1,0 +1,136 @@
+{
+  "cache_fingerprint": "4176e211c2b70825ad3d6f99ef91ca6fe20d9c415cdef6dec582feb0640dfce4",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support evidence: when Delta and United both met the trip's timing, connection, and Wi-Fi needs, Priya explicitly directed the agent to choose the lower total price and approved the $1,626 Delta itinerary.",
+        "evidence_topology": {
+          "episode_id": "leisure-puerto-rico-01",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 74,
+          "target_habit_id": "tm_pd_v05_user_003_h01",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly establishes lowest total price as the default ranking rule among flights meeting essential constraints. The remaining candidate habits are not directly endorsed by the user's words in this dialogue.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For flights that satisfy the timing, connection, and Wi-Fi requirements, choose the lowest total price.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_003_h01",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Please do the detailed flight pass for Puerto Rico now. Compare the Friday-night and Saturday-morning departures as complete round trips for two, including what they do to the seven resort nights and the SJU transfers. Nothing should be purchased until I approve the exact itinerary.",
+          "role": "user"
+        },
+        {
+          "content": "I found three workable economy combinations for February 20-28. Option A is Delta: leave SFO Friday at 10:35 p.m., connect in ATL for 1 hour 24 minutes, and reach SJU Saturday at 1:18 p.m.; return Saturday at 2:40 p.m. through ATL, arriving SFO at 10:48 p.m. Total is $1,486 for two, with one checked bag each included in my trip estimate but not in the base fare. Option B is American at $1,418: Saturday 6:10 a.m. via DFW, reaching SJU at 11:36 p.m.; the return reaches SFO Sunday at 12:22 a.m. Option C is United at $1,612: Friday 11:20 p.m. via IAH, arriving Saturday at 2:06 p.m.; it returns through IAH and reaches SFO at 9:34 p.m. I have not held anything.",
+          "role": "assistant"
+        },
+        {
+          "content": "Break down elapsed time and connection margins. Also clarify whether the American fare effectively wastes Saturday night at the Hyatt even though we would still be paying for it.",
+          "role": "user"
+        },
+        {
+          "content": "Delta outbound is 11 hours 43 minutes with a 1 hour 24 minute ATL connection; return is 11 hours 8 minutes with 1 hour 37 minutes in ATL. American outbound is 14 hours 26 minutes with 3 hours 8 minutes at DFW; return is 13 hours 42 minutes with 2 hours 51 minutes there. United outbound is 11 hours 46 minutes with 1 hour 16 minutes at IAH; return is 10 hours 49 minutes with 1 hour 22 minutes at IAH. Yes. With American, landing at 11:36 p.m., collecting bags, and transferring to Rio Grande would put you at the resort around 1:15-1:45 a.m. Sunday. You would pay for Saturday night while using little more than the bed, and the late arrival would need to be guaranteed.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the bag-inclusive totals, and are those connection margins legal without being reckless? We will each check one standard bag.",
+          "role": "user"
+        },
+        {
+          "content": "With one checked bag per traveler each way, Delta totals $1,626, American $1,558, and United $1,752. All connections are legal. Delta's 1 hour 24 minutes in ATL is comfortable for a domestic connection into the SJU flight. United's 1 hour 16 minutes at IAH is workable but gives less recovery room if the overnight departure is delayed. American has ample connection time, but its much longer travel day and near-midnight arrival create the hotel and transfer drawbacks.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check Wi-Fi on every segment and make sure none of these are separate tickets. Then compare the actual vacation time, not just the fares.",
+          "role": "user"
+        },
+        {
+          "content": "All three are single-ticket round trips. Delta and United list Wi-Fi on every scheduled segment. American lists Wi-Fi on three segments, but the DFW-SJU outbound currently shows no Wi-Fi confirmation, so I would not treat it as meeting that requirement. Delta should put you at the Rio Grande resort around 2:45-3:15 p.m. Saturday. United is roughly 3:30-4:00 p.m. American is around 1:15-1:45 a.m. Sunday. On the return, Delta requires leaving the resort around 10:45 a.m.; United around 9:35 a.m. because its flight departs earlier. Delta therefore preserves about two more usable hours at the resort across the week than United and nearly a full day compared with American.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there a later Saturday return that still gets us into San Francisco that night? I do not want an overnight airport connection or a Sunday arrival.",
+          "role": "user"
+        },
+        {
+          "content": "There is a Delta return at 4:05 p.m. via JFK, but its 46-minute connection is too exposed and the scheduled SFO arrival is 11:58 p.m. A 4:32 p.m. American option arrives Sunday morning, and the remaining later choices involve overnight connections. The 2:40 p.m. Delta return is the latest sensible same-calendar-day arrival among these choices.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then compare Delta and United one last time, including fare difference, transfer timing, and any extra hotel night caused by the flights.",
+          "role": "user"
+        },
+        {
+          "content": "Delta is $1,626 for two with the stated bags; United is $1,752, so Delta is $126 less. Both depart Friday night, arrive Saturday afternoon, and return Saturday night, so neither adds a hotel night beyond the February 21-28 resort booking. Both require leaving home for SFO Friday evening, but not booking Friday lodging. Delta's SJU arrival supports an estimated 1:45 p.m. private-transfer pickup and resort arrival by about 3:00 p.m.; United shifts those estimates about 45 minutes later. For departure, Delta supports an approximately 10:45 a.m. resort pickup, while United would require about 9:35 a.m. Delta also has slightly longer connection margins and a later SFO departure on the return day.",
+          "role": "assistant"
+        },
+        {
+          "content": "For flights that satisfy the timing, connection, and Wi-Fi requirements, choose the lowest total price. Here that is clearly Delta. Please purchase Option A for both of us with one checked bag each, but do not select paid seats or change anything at the Hyatt yet.",
+          "role": "user"
+        },
+        {
+          "content": "Before purchase, the exact itinerary is Delta from SFO at 10:35 p.m. Friday, February 20, arriving SJU at 1:18 p.m. Saturday after a 1 hour 24 minute ATL connection; return from SJU at 2:40 p.m. Saturday, February 28, arriving SFO at 10:48 p.m. after 1 hour 37 minutes in ATL. The total for two travelers with one standard checked bag each way is $1,626. Shall I issue it at that price?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, issue exactly that itinerary at $1,626.",
+          "role": "user"
+        },
+        {
+          "content": "The Delta round trip is issued for both travelers at $1,626 total, including one standard checked bag per person in each direction. Departure is SFO Friday, February 20 at 10:35 p.m., arriving SJU Saturday at 1:18 p.m. via ATL. Return is SJU Saturday, February 28 at 2:40 p.m., arriving SFO at 10:48 p.m. via ATL. All flights are on one ticket and currently list Wi-Fi. No paid seats were selected, and the Hyatt reservation remains unbooked and unchanged. The working transfer windows are 1:45 p.m. pickup at SJU on arrival and 10:45 a.m. pickup from the resort on departure; neither transfer has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0074",
+      "session_index": 74,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund and rental documentation remain pending. Washington, Sonoma, Bothell, Chicago, Carlsbad, Palm Springs, Cypress Spa Lodge, Indianapolis, and the July supplier-audit arrangements remain as recorded with documentation follow-ups. Scottsdale November 6-10 remains selected but unbooked; February 20-25 is booked at an expected $5,221.65, with Tuesday bag storage and post-checkout pool or spa access still to confirm. Boston September 15-20, Clayton October 27-29, Plymouth, Denver, and Coastal Sonoma remain confirmed as recorded. For the December 8-10 Holly Springs audit, the issued flights, split Hampton and Hyatt stay, midsize rental, luggage handling, airport pickup, and 4:55 a.m. Thursday shuttle remain confirmed at an expected reimbursable total of $2,041; the Wednesday Denver routing remains an unbooked backup. For the Puerto Rico vacation, Delta flights are issued for two from SFO Friday, February 20 through SJU arrival Saturday, February 21, returning February 28, at $1,626 including one checked bag per traveler each way. The Hyatt Regency Grand Reserve remains the working resort for February 21-28 but is not booked. Its refundable ocean-view king total and cancellation deadline, Monday or Tuesday afternoon spa appointments, private transfers, and timed El Yunque arrangements still require verification. Working private-transfer times are 1:45 p.m. from SJU on arrival and 10:45 a.m. from the resort on departure; neither is booked.",
+  "verification": {
+    "74": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For flights that satisfy the timing, connection, and Wi-Fi requirements, choose the lowest total price.",
+          "habit_id": "tm_pd_v05_user_003_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly establishes lowest total price as the default ranking rule among flights meeting essential constraints. The remaining candidate habits are not directly endorsed by the user's words in this dialogue."
+    }
+  }
+}

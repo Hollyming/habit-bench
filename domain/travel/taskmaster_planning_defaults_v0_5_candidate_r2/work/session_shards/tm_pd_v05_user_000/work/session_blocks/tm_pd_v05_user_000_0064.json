@@ -1,0 +1,102 @@
+{
+  "cache_fingerprint": "0227fb9d006733bbec865555c4a0e3fb6227da6b7138606f3cc1a7e69e8169e6",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Completed the current Columbus trip administration by reconciling the $1,172 estimate, confirming dates and times, recording the late-arrival note, and booking airfare before lodging. No recurring preference was introduced.",
+        "evidence_topology": {
+          "episode_id": "client-columbus-011",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 64,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chose the nonstop itinerary for this trip. No other candidate habit is strongly evidenced by the user's own utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Book the held nonstop first, then the client-rate room.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Before the airfare hold runs out, reconcile the whole Columbus trip for me. I have $552 for the flights, $526 for the hotel after tax, and $94 estimated for rideshares. Please verify the dates and times too.",
+          "role": "user"
+        },
+        {
+          "content": "Those figures total $1,172: $552 airfare, $526 lodging, and $94 estimated round-trip rideshare costs. The held nonstop itinerary leaves MSP Monday, July 17 at 3:55 p.m. Central and arrives CMH at 6:50 p.m. Eastern. The return leaves CMH Wednesday, July 19 at 7:05 p.m. Eastern and arrives MSP at 8:03 p.m. Central. The hotel stay is July 17 through July 19 for two nights.",
+          "role": "assistant"
+        },
+        {
+          "content": "That matches my notes. Is the hotel total definitely $526? The prior figure I saw was lower.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The earlier $479.40 figure was the preliminary quote; the client-rate checkout now shows $526 as the final two-night total after taxes and fees. I’ll use $526 for both the reservation and the trip estimate.",
+          "role": "assistant"
+        },
+        {
+          "content": "Okay. Add that I’ll arrive after 8:00 p.m. What are the deadlines, in order?",
+          "role": "user"
+        },
+        {
+          "content": "First, the $552 airfare hold expires today at 7:30 p.m. The hotel does not have an immediate booking deadline, but after reservation it remains cancellable without penalty until 6:00 p.m. local time Sunday, July 16. I’ll add an arrival-after-8:00-p.m. note to the room.",
+          "role": "assistant"
+        },
+        {
+          "content": "Proceed with both now. Book the held nonstop first, then the client-rate room. Don’t reserve rideshares.",
+          "role": "user"
+        },
+        {
+          "content": "The $552 nonstop airfare has been purchased for July 17–19, followed by the two-night client-rate hotel reservation at $526 after tax. The room record notes arrival after 8:00 p.m.; free cancellation remains available until 6:00 p.m. local time July 16. Rideshares were not reserved, and the $94 amount remains an estimate. The finalized trip estimate is $1,172. The later Wednesday nonstop is still only a backup, and bag storage at the client office remains unconfirmed.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0064",
+      "session_index": 64,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The July 17-19, 2028 Columbus client trip is confirmed with a $552 nonstop itinerary departing MSP at 3:55 p.m. Central Monday, arriving CMH at 6:50 p.m. Eastern, and returning Wednesday at 7:05 p.m. Eastern with an 8:03 p.m. Central arrival. The two-night client-rate hotel is confirmed at $526 after tax, includes an arrival-after-8:00-p.m. note, and is cancellable until 6:00 p.m. local time July 16. Estimated rideshares remain unreserved at $94, for a total trip estimate of $1,172. The later Wednesday nonstop remains an unbooked backup, and bag storage at the client office remains unconfirmed. The May 20-26, 2028 Monterey Peninsula trip remains fully reserved at a planned total of $3,720, including the later Denver connection on the return, the ground-floor king with step-free access note, and the SJC rental. The December 13-16, 2027 Charlotte and Richmond client trip remains confirmed. The Nashville April 2027, central Oregon coast September 2027, Denver October 2027, and San Diego November 2026 trips remain booked. The coastal Georgia trip and separate January 2027 Denver client trip remain unbooked. The Raleigh breakfast refund and corrected folio, Philadelphia deposit release and shuttle details, and an earlier Nashville refund reconciliation remain unresolved.",
+  "verification": {
+    "64": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Book the held nonstop first, then the client-rate room.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chose the nonstop itinerary for this trip. No other candidate habit is strongly evidenced by the user's own utterances."
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "cache_fingerprint": "e6d70b6536b3b3c77f924160ed5022d8850a28832ed393742853210c29678aec",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support evidence: when cabin options were directly compared, Marcus endorsed considering business class first when feasible while explicitly accepting coach as a fallback. The large current-trip premium led him to approve coach for this San Diego comparison without turning price into a standing threshold.",
+        "evidence_topology": {
+          "episode_id": "southern-california-family-01",
+          "mode": "evidence",
+          "phase": "early",
+          "session_index": 32,
+          "target_habit_id": "tm_pd_v05_user_002_h02",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly endorses business class when available and feasible, with coach as the fallback, for this comparison. The other utterances make trip-specific date choices but do not themselves establish the exact reusable timing, routing, seat, breakfast, or balcony preferences.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Lead with business class when it’s available and the numbers are feasible. Coach is fine as the fallback; I don’t want the cabin choice to distort the whole vacation.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_002_h02",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Run the San Diego flight comparison now. I want all four Friday-or-Saturday combinations for the three of us, including what the extra hotel night does to the real total.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare Friday, June 20 after work versus Saturday, June 21 in the morning, paired with Friday, June 27 or Saturday, June 28 returns. Before I rank them, should I lead with business class where it is practical, or keep the first pass entirely in coach?",
+          "role": "assistant"
+        },
+        {
+          "content": "Lead with business class when it’s available and the numbers are feasible. Coach is fine as the fallback; I don’t want the cabin choice to distort the whole vacation.",
+          "role": "user"
+        },
+        {
+          "content": "The nonstop business-class totals are currently $5,640 to $7,110 for three, versus $1,437 to $1,806 in standard coach. That premium materially changes the comparison, so I’m using coach for the four date patterns while keeping the strongest business option visible: United, Saturday morning out and Saturday afternoon back, $5,640 total.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. Show me the coach combinations and include an estimated Mission Bay night, not just airfare.",
+          "role": "user"
+        },
+        {
+          "content": "Using $410 including tax as a working estimate for one Mission Bay night: 1. Fri Jun 20-Fri Jun 27: American nonstop, ORD 6:20 p.m.-SAN 8:45 p.m.; return 1:10 p.m.-7:15 p.m. Airfare $1,587, seven hotel nights, combined flight-plus-lodging baseline $4,457. 2. Fri Jun 20-Sat Jun 28: same outbound; United return 2:05 p.m.-8:08 p.m. Airfare $1,806, eight nights, baseline $5,086. 3. Sat Jun 21-Fri Jun 27: United 8:10 a.m.-10:35 a.m.; American return 1:10 p.m.-7:15 p.m. Airfare $1,437, six nights, baseline $3,897. 4. Sat Jun 21-Sat Jun 28: United 8:10 a.m.-10:35 a.m. and 2:05 p.m.-8:08 p.m. Airfare $1,536, seven nights, baseline $4,406. All totals are for three travelers.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Friday-to-Friday option costs $51 more than Saturday-to-Saturday but gives us Friday night and almost all of Saturday in San Diego. Is that right?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The Friday departure lands at 8:45 p.m., so after bags and the airport transfer you would likely reach Mission Bay around 9:45 to 10:15. It adds a hotel night but preserves Saturday as a full vacation day. Saturday-to-Saturday is $51 less on the current combined estimate and gets you home at 8:08 p.m., leaving Sunday clear before Monday commitments.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about Friday out and Saturday back? It is the longest trip, but I suspect the eighth hotel night makes it poor value.",
+          "role": "user"
+        },
+        {
+          "content": "That pattern buys the most time, but it is $680 above Saturday-to-Saturday and $629 above Friday-to-Friday on the current baseline. Most of the increase is the eighth lodging night plus the more expensive Saturday return. Unless the hotel search comes in substantially below $410 per night, it is difficult to justify.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Saturday to Friday is cheapest because we lose both ends?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. It saves $509 against Friday-to-Friday, but you give up the full Saturday at the start and return a day earlier. You would have roughly five full destination days between arrival and departure, which compresses the beach time, Disneyland day, and San Diego attraction day.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep Friday June 20 through Friday June 27 as the primary. Keep Saturday June 21 through Saturday June 28 as the nearby fallback while we price actual hotels. Drop the other two combinations for now.",
+          "role": "user"
+        },
+        {
+          "content": "Done. Nothing has been booked. Primary: American nonstop Friday, June 20, ORD 6:20 p.m. to SAN 8:45 p.m., returning Friday, June 27, SAN 1:10 p.m. to ORD 7:15 p.m.; airfare is $1,587 for three. Fallback: United nonstop Saturday, June 21, ORD 8:10 a.m. to SAN 10:35 a.m., returning Saturday, June 28, SAN 2:05 p.m. to ORD 8:08 p.m.; airfare is $1,536. The current flight-plus-lodging estimates are $4,457 and $4,406 respectively using $410 per night. Next we should compare actual Mission Bay lodging for seven nights under both date patterns before choosing the flights.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0032",
+      "session_index": 32,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Marcus's Atlanta, Minneapolis, Dallas, San Diego, and Nashville plans remain unchanged. The Washington family trip for Marcus Lee, Daniel Lee, and Owen Lee remains confirmed for October 10-14 under American confirmation W6P9KT and Embassy Suites confirmation ESW-481762. They will rideshare from DCA to Embassy Suites Washington DC Convention Center, 900 10th Street NW. The first Smithsonian entry is at 8:30 a.m.; leave the hotel at 7:55 a.m. and arrive around 8:15. For Seattle Thanksgiving, American confirmation R4K8VN covers American 2367 from ORD to SEA on November 26. Coast Gateway Hotel confirmation CGH-730194 remains for November 26-27 with late arrival noted. United confirmation H7LM2Q covers United 1847 from SEA to ORD on November 30; seats 22D, 22E, and 22F and one checked bag are confirmed. The Phoenix work trip runs January 12-15. United confirmation N8Q4LS covers United 2248 from ORD to PHX on January 12. American confirmation K3R7DX covers American 447 from PHX to ORD on January 15. Hilton confirmation HTM-593184 covers January 12-15 in the same standard king room at $627.93. Hertz confirmation J84219673 covers the midsize car through a 5:00 a.m. Thursday return at $338.58. The revised Phoenix trip total is $1,651.45; leave the Hilton at 4:35 a.m. Thursday. For the late-June family coastal vacation, San Diego remains selected with Mission Bay as the lodging base, one Disneyland day trip, substantial beach time, and likely one San Diego attraction day. Nothing is booked. The primary flight pattern is June 20-27 on American nonstops at $1,587 for three; the fallback is June 21-28 on United nonstops at $1,536 for three. Using a temporary $410 nightly lodging estimate, their respective flight-plus-hotel baselines are $4,457 and $4,406. Next compare actual seven-night Mission Bay lodging costs for both date patterns before selecting flights.",
+  "verification": {
+    "32": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Lead with business class when it’s available and the numbers are feasible. Coach is fine as the fallback; I don’t want the cabin choice to distort the whole vacation.",
+          "habit_id": "tm_pd_v05_user_002_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly endorses business class when available and feasible, with coach as the fallback, for this comparison. The other utterances make trip-specific date choices but do not themselves establish the exact reusable timing, routing, seat, breakfast, or balcony preferences."
+    }
+  }
+}

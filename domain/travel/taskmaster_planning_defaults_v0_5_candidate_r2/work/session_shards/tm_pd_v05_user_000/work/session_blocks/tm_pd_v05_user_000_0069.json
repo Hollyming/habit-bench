@@ -1,0 +1,136 @@
+{
+  "cache_fingerprint": "cc63b177c2d0b4a2f07b33c2d35e0ba38d26372feab8404f0332cb9db6b8f7a9",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya endorsed a 4.0 minimum specifically on Google ratings for this nice business-hotel search and explicitly distinguished that metric from hotel star class. The selected property meets it with a 4.1 Google rating.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-012",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 69,
+          "target_habit_id": "tm_pd_v05_user_000_h05",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly sets a 4.0 Google-rating floor for this nice business stay and distinguishes that metric from hotel star classification. No other candidate habit is directly evidenced by the user's utterances.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "This should still be a nice business stay, so keep the options at 4.0 or better on Google. Don’t mix that up with hotel stars.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h05",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Now compare the three Cary hotels for the two nights. I need the totals with tax, late-arrival handling, Friday checkout, and realistic rideshare costs to the client office.",
+          "role": "user"
+        },
+        {
+          "content": "I can do that. I’m using a 13.25% combined lodging-tax estimate for Cary, so the final charge could vary slightly. What is the nightly room cap, and should I screen on any particular hotel rating source?",
+          "role": "assistant"
+        },
+        {
+          "content": "The cap is $225 before tax. This should still be a nice business stay, so keep the options at 4.0 or better on Google. Don’t mix that up with hotel stars.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. The $229 property is over the nightly cap even though it is beside the office. The $196 and $219 properties are within the cap, but the $219 option cannot hold the quoted rate for both nights and requires prepayment. I’ll compare the viable choices using Google’s rating specifically.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the actual two-night numbers?",
+          "role": "user"
+        },
+        {
+          "content": "For the office-adjacent hotel: $229 × 2 = $458 room charge, estimated tax $60.69, total $518.69. For the hotel 15 minutes away: $196 × 2 = $392, estimated tax $51.94, total $443.94. The third hotel cannot produce a valid two-night total at $219 because that rate is unavailable Thursday night; even the first-night charge would be prepaid.",
+          "role": "assistant"
+        },
+        {
+          "content": "And both of the first two clear 4.0 on Google?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The office-adjacent property is 4.3 on Google and the $196 property is 4.1 on Google. Those are Google user ratings, not star classifications. The third property is also above 4.0, but its split availability and prepayment make it a poor fit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Work out transport. I’ll have the airport ride Wednesday night, hotel-office trips Thursday and Friday, then office to RDU Friday afternoon.",
+          "role": "user"
+        },
+        {
+          "content": "Estimated rideshares for the office-adjacent hotel are about $68 total: roughly $35 from RDU late Wednesday, $8 each way Thursday, $7 to the office Friday, and $10 from the office toward the airport after accounting for the office’s closer position. For the hotel 15 minutes away, allow about $132: $32 from RDU, four local legs totaling about $68, and $32 from the office to RDU. Surge pricing could add around $15–$25.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the cheaper room isn’t much cheaper once rides are included.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Estimated lodging plus planned rideshares is $586.69 at the adjacent hotel and $575.94 at the $196 hotel, only $10.75 apart before any surge. However, the adjacent hotel misses the $225 nightly cap by $4 per night, while the $196 hotel remains $29 under it.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the arrival and checkout issue before choosing. I probably won’t reach the hotel until 10:50 Wednesday, and I need somewhere for my bag Friday if late checkout isn’t available.",
+          "role": "user"
+        },
+        {
+          "content": "The adjacent hotel accepts arrivals until midnight, so 10:50 p.m. works but leaves less recovery time if the flight or baggage claim runs late; a late-arrival note and direct call would be prudent. Its standard checkout is 11:00 a.m., with late checkout subject to availability, and it offers same-day luggage storage. The $196 hotel has a 24-hour front desk, standard noon checkout, late checkout by request, and complimentary same-day bag storage. Neither should be treated as guaranteeing late checkout until the hotel confirms it.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose the $196 hotel. The 24-hour desk and noon checkout are better for this schedule, it stays within the nightly cap, and the total is still a little lower. Keep late checkout as a request, not a requirement.",
+          "role": "user"
+        },
+        {
+          "content": "Selected, still unbooked: the $196-per-night hotel for Wednesday and Thursday nights. Estimated lodging is $443.94 including 13.25% tax; planned rideshares are about $132, bringing hotel plus local transport to approximately $575.94. It has a 4.1 Google rating, a 24-hour front desk for the expected 10:50 p.m. arrival, noon Friday checkout, request-only late checkout, and complimentary same-day luggage storage. I’ll attach a late-arrival note and a late-checkout request at booking, without making the reservation dependent on late checkout.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0069",
+      "session_index": 69,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The July 17–19, 2028 Columbus client trip is underway: the replacement outbound arrived at 9:18 p.m., Maya checked in before midnight, current-trip charges are $1,861, and net exposure is $1,309 after separately recognizing a $552 nontransferable travel credit valid for travel completed by July 18, 2029. The Wednesday 7:05 p.m. return and workshop schedule remain unchanged; client-office bag storage is unconfirmed. The August 30–September 1 Cary client trip remains unbooked. Flights are the $584 nonstop combination: Wednesday MSP–RDU departing 6:45 p.m. and arriving 10:18 p.m., and Friday RDU–MSP departing 5:35 p.m. and arriving 7:48 p.m. The selected hotel is the $196-per-night property with a 24-hour front desk, expected 10:50 p.m. arrival, noon checkout, complimentary same-day luggage storage, and late checkout to be requested but not required. Estimated lodging is $443.94 including tax, rideshares are about $132, and hotel plus local transport is approximately $575.94. The May 2028 Monterey Peninsula, December 2027 Charlotte and Richmond, April 2027 Nashville, September 2027 central Oregon coast, October 2027 Denver, and November 2026 San Diego trips remain reserved or completed as previously recorded. Coastal Georgia and January 2027 Denver remain unbooked. The Raleigh breakfast refund and corrected folio, Philadelphia deposit release and shuttle details, and an earlier Nashville refund reconciliation remain unresolved.",
+  "verification": {
+    "69": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "This should still be a nice business stay, so keep the options at 4.0 or better on Google. Don’t mix that up with hotel stars.",
+          "habit_id": "tm_pd_v05_user_000_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly sets a 4.0 Google-rating floor for this nice business stay and distinguishes that metric from hotel star classification. No other candidate habit is directly evidenced by the user's utterances."
+    }
+  }
+}

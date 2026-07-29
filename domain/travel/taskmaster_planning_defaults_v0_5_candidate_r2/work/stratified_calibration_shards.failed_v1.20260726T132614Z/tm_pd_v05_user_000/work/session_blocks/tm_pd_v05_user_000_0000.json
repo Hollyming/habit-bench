@@ -1,0 +1,136 @@
+{
+  "cache_fingerprint": "10fcfe24cfec04363edf0f88cb540882faf4f61b7f87417e3e83d96bf353b2d1",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya explicitly treated a one-stop itinerary as an option only for this Denver trip if the savings justified it, while ultimately retaining two nonstop finalists.",
+        "evidence_topology": {
+          "episode_id": "client-denver-009",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 46,
+          "target_habit_id": "tm_pd_v05_user_000_h01",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user states a general preference for nonstop flights, then explicitly allows a one-trip fallback to a one-stop itinerary under a meaningful-savings condition. No other candidate habit is established strongly enough by the user’s own words.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.97,
+            "evidence_quote": "for this trip I’ll consider the one-stop if the savings are meaningful and the connection isn’t the only thing keeping the fare under budget.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I need to get to Denver for a rollout review that starts Wednesday at 10:30 a.m. and wraps up Friday at noon. I can leave Minneapolis after 4:00 Tuesday. Economy airfare needs to stay under $690 round trip.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare outbound and return combinations and account for the trip from the client site to DEN on Friday. Where is the review being held, and how much airport buffer are you comfortable with?",
+          "role": "assistant"
+        },
+        {
+          "content": "It’s at the hospital campus by Anschutz in Aurora. I’d like to be at the airport about 90 minutes before departure, especially on a Friday.",
+          "role": "user"
+        },
+        {
+          "content": "From Anschutz to DEN, I’d budget 25–35 minutes in ordinary traffic and up to 45 minutes if traffic builds. With a noon finish, a few minutes to get out of the meeting, and your 90-minute buffer, I would target flights departing no earlier than about 2:30 p.m. I found three Tuesday choices after 4:00: a nonstop arriving at 7:15 p.m., a nonstop arriving at 10:05 p.m., and a cheaper one-stop itinerary with a 42-minute connection. Do you want me to exclude the connection?",
+          "role": "assistant"
+        },
+        {
+          "content": "Not automatically. I’d rather fly nonstop, but for this trip I’ll consider the one-stop if the savings are meaningful and the connection isn’t the only thing keeping the fare under budget.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. The one-stop is $118 less than the earlier nonstop, but the 42-minute transfer leaves little recovery time if MSP departure is delayed. It arrives Denver at 9:05 p.m. The two nonstops arrive at 7:15 p.m. and 10:05 p.m.; both can be paired with a Friday return within the $690 limit.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the Friday options? I saw something early afternoon and something much later.",
+          "role": "user"
+        },
+        {
+          "content": "The early option departs DEN at 2:05 p.m. To make your 90-minute target, you would need to reach the terminal by 12:35, which means leaving Anschutz around noon or shortly after. That is too tight if the meeting actually runs until noon. The evening nonstop departs at 7:10 p.m., leaving roughly five and a half hours between the meeting and takeoff, and arrives MSP at 10:05 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there anything between those two, even if it has a stop?",
+          "role": "user"
+        },
+        {
+          "content": "There is a 4:20 p.m. one-stop return arriving MSP at 8:45 p.m. It gives you enough airport margin, but its 48-minute connection makes the total travel time 4 hours 25 minutes. Paired with the 7:15 p.m. Tuesday nonstop, the round trip is $648. The evening nonstop return is longer on the ground in Denver but only 1 hour 55 minutes in the air; paired with that same outbound, it totals $676.",
+          "role": "assistant"
+        },
+        {
+          "content": "How do the totals look if I take the cheaper connecting flight Tuesday instead?",
+          "role": "user"
+        },
+        {
+          "content": "The Tuesday connection paired with the 4:20 p.m. Friday connection is $512. Paired with the 7:10 p.m. Friday nonstop, it is $540. Both are comfortably under allowance, but the first puts a short connection in each direction. The Tuesday itinerary also gets you to the hotel about two hours later than the 7:15 p.m. nonstop.",
+          "role": "assistant"
+        },
+        {
+          "content": "The double connection isn’t worth it. Please narrow this to the best two, including the late Tuesday nonstop if that combination makes sense.",
+          "role": "user"
+        },
+        {
+          "content": "The late Tuesday nonstop is cheaper than the early nonstop by $54, but it reaches DEN at 10:05 p.m. and would likely put you at an Aurora hotel close to 11:00. Paired with Friday’s 7:10 p.m. nonstop, it costs $622. That is viable, though it trades Tuesday rest for savings.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the two finalists with the practical tradeoff. Don’t book yet.",
+          "role": "user"
+        },
+        {
+          "content": "Finalist 1: Tuesday nonstop arriving 7:15 p.m., then Friday nonstop departing 7:10 p.m. and arriving MSP at 10:05 p.m., $676 round trip. This is the easiest itinerary and preserves a safe Friday airport margin, but it leaves several free hours after the meeting.\n\nFinalist 2: Tuesday nonstop arriving 10:05 p.m., with the same Friday 7:10 p.m. nonstop, $622 round trip. It saves $54 and avoids connection risk, but gives you a much later hotel arrival before Wednesday’s 10:30 meeting.\n\nI excluded the 2:05 p.m. Friday flight because the transfer from Anschutz would be too tight, and the 4:20 p.m. one-stop because its shorter wait does not offset the added travel time and connection risk. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0046",
+      "session_index": 46,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya is planning a client trip from Minneapolis to a hospital-system rollout review near the Anschutz campus in Aurora, beginning Wednesday at 10:30 a.m. and ending Friday at noon. Economy airfare allowance is $690. Two unbooked finalists remain: a $676 round trip with Tuesday arrival at 7:15 p.m. and Friday departure at 7:10 p.m., and a $622 round trip with Tuesday arrival at 10:05 p.m. and the same Friday return. The 2:05 p.m. Friday flight was ruled out because travel from the client site would leave too little airport margin.",
+  "verification": {
+    "46": {
+      "habit_signals": [
+        {
+          "confidence": 0.97,
+          "evidence_quote": "for this trip I’ll consider the one-stop if the savings are meaningful and the connection isn’t the only thing keeping the fare under budget.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user states a general preference for nonstop flights, then explicitly allows a one-trip fallback to a one-stop itinerary under a meaningful-savings condition. No other candidate habit is established strongly enough by the user’s own words."
+    }
+  }
+}

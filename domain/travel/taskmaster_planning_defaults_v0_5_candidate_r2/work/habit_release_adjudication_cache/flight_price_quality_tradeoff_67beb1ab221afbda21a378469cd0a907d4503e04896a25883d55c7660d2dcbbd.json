@@ -1,0 +1,22 @@
+{
+  "cache_fingerprint": "67beb1ab221afbda21a378469cd0a907d4503e04896a25883d55c7660d2dcbbd",
+  "decisions": [
+    {
+      "action": "merge",
+      "alternative_group_key": "flight_price_quality_tradeoff",
+      "boundary_condition": "Apply the price preference only among options that meet explicit trip requirements; price does not override requested timing, nonstop service, Wi-Fi, or acceptable layover constraints",
+      "canonical_value": "Prefer the lowest-priced flight among options that satisfy the trip's explicit requirements, while allowing a more expensive option when the cheapest violates a must-have or entails an unacceptable itinerary tradeoff.",
+      "condition": "When comparing flight options for a trip after accounting for stated timing, routing, connectivity, and onboard-feature requirements",
+      "default_action": "Rank acceptable options by total price and prefer the cheapest",
+      "exception_condition": "Prefer a more expensive option when the cheapest option violates a stated must-have or has an explicitly unacceptable layover or itinerary tradeoff",
+      "input_ids": [
+        "tm_v04_e2e_habit_3d9911f270e8",
+        "tm_v04_e2e_habit_cfc55e51f18b"
+      ],
+      "name": "Cheapest acceptable flight",
+      "preference_value": "lowest-priced flight that satisfies explicit itinerary and amenity requirements",
+      "rationale": "Both candidates express the same recurring price-first policy within an acceptable option set; the second candidate makes explicit the constraints and fallback already implicit in the first candidate's boundary.",
+      "representative_id": "tm_v04_e2e_habit_cfc55e51f18b"
+    }
+  ]
+}

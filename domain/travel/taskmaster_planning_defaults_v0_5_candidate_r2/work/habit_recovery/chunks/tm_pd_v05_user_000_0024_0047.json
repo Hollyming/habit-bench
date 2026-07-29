@@ -1,0 +1,391 @@
+{
+  "cache_fingerprint": "36ba985d6b2ae3ff2d5aeca30a17ac9795771a576f5fb9276e376e0844de7c0a",
+  "raw_candidates": {
+    "candidate_habits": [
+      {
+        "boundary_condition": "Use the user's stated scope for the cap; some authorizations exclude meals or incidental holds.",
+        "default_action": "Reconcile the complete cost and show the remaining budget margin before booking.",
+        "evidence": [
+          {
+            "quote": "I pulled the live hotel screens again. Can we settle the San Diego structure now? I want the real five-night totals, not just the nightly rates.",
+            "session_id": "tm_pd_v05_user_000_s0025"
+          },
+          {
+            "quote": "Correct. I need to know whether it actually stays within the $1,520 authorization once tax and transportation are included.",
+            "session_id": "tm_pd_v05_user_000_s0030"
+          },
+          {
+            "quote": "I’m ready to compare the Nashville hotels for April 12 through 15. I have three quotes, and I want the actual three-night totals rather than just the room rates.",
+            "session_id": "tm_pd_v05_user_000_s0039"
+          },
+          {
+            "quote": "What is the unlimited option, all in? And compare the real totals, not just the base rates.",
+            "session_id": "tm_pd_v05_user_000_s0043"
+          }
+        ],
+        "exception_condition": "None stated.",
+        "family": "budgeting",
+        "local_confidence": 0.99,
+        "name": "Compare complete trip costs against the applicable budget",
+        "preference_value": "Use all-in totals, including taxes, mandatory fees, baggage, parking, ground transportation, and other required trip costs, rather than headline rates.",
+        "scope_condition": "When comparing or finalizing travel options under a trip budget or authorization."
+      },
+      {
+        "boundary_condition": "Costs outside the user's requested comparison scope may be kept separate but should be identified.",
+        "default_action": "Verify mandatory charges and inclusions before ranking options.",
+        "evidence": [
+          {
+            "quote": "Is there any reservation fee or destination fee hiding in one of these totals?",
+            "session_id": "tm_pd_v05_user_000_s0029"
+          },
+          {
+            "quote": "Are there any destination fees or other mandatory charges missing from those numbers?",
+            "session_id": "tm_pd_v05_user_000_s0033"
+          },
+          {
+            "quote": "What happens on the other dates? I don’t want to shift just because the nightly rate is lower if there’s some fee hiding in it.",
+            "session_id": "tm_pd_v05_user_000_s0041"
+          },
+          {
+            "quote": "Did the $924 fare keep the same inclusions, and are there any seat charges hiding outside that number?",
+            "session_id": "tm_pd_v05_user_000_s0043"
+          }
+        ],
+        "exception_condition": "None stated.",
+        "family": "budgeting",
+        "local_confidence": 0.98,
+        "name": "Check for hidden mandatory charges",
+        "preference_value": "Explicitly identify destination or resort fees, parking charges, reservation fees, taxes, and other mandatory costs that can make a low rate misleading.",
+        "scope_condition": "When evaluating lodging, fares, or rentals."
+      },
+      {
+        "boundary_condition": "A connection may remain if nonstop choices fail schedule or budget requirements.",
+        "default_action": "Lead with practical nonstop itineraries and remove connections that add risk or very late arrival for modest savings.",
+        "evidence": [
+          {
+            "quote": "Start with the nonstops. I’d only take a connection if the nonstop choices don’t work; getting into Denver near midnight would make Wednesday harder than it needs to be.",
+            "session_id": "tm_pd_v05_user_000_s0028"
+          },
+          {
+            "quote": "Drop the connection. Getting in after midnight before a 9:00 workshop is not worth the savings.",
+            "session_id": "tm_pd_v05_user_000_s0037"
+          },
+          {
+            "quote": "That savings is not worth risking the first morning. Keep the two nonstops. How should I think about the Friday gap before 6:35?",
+            "session_id": "tm_pd_v05_user_000_s0046"
+          }
+        ],
+        "exception_condition": "No blanket ban on connections was stated.",
+        "family": "air_schedule",
+        "local_confidence": 0.96,
+        "name": "Prefer nonstop flights when practical",
+        "preference_value": "Start with nonstop options and accept a connection only when nonstops do not work or the tradeoff is compelling.",
+        "scope_condition": "For work and leisure flight searches where nonstop service is available."
+      },
+      {
+        "boundary_condition": "The premium still has to fit the applicable trip budget.",
+        "default_action": "Compare usable destination time, not only fare and elapsed flight time, and favor the schedule-preserving option when the premium is justified.",
+        "evidence": [
+          {
+            "quote": "For this trip I’d rather protect that first afternoon. The dates are firm, and getting there before lunch is worth more than the extra flexibility. Select Alaska, but don’t purchase it yet.",
+            "session_id": "tm_pd_v05_user_000_s0024"
+          },
+          {
+            "quote": "Take the 5:00 nonstop. No reason to give up the afternoon or arrive after midnight. Please confirm it and update the itinerary.",
+            "session_id": "tm_pd_v05_user_000_s0027"
+          },
+          {
+            "quote": "No checked bags. We’ll each have a carry-on. The rental car is separate. I’d rather not lose Tuesday entirely just to get the lowest fare.",
+            "session_id": "tm_pd_v05_user_000_s0042"
+          },
+          {
+            "quote": "Select the Medical Center Hotel with airport rideshares and the 7:00 shuttle plan. Don’t reserve it yet. Also, with that settled, the earlier flight is worth the extra $36; keep that round trip as the flight choice.",
+            "session_id": "tm_pd_v05_user_000_s0047"
+          }
+        ],
+        "exception_condition": "Do not add a hotel night merely because the earlier arrival feels easier when same-day travel risk is acceptable.",
+        "family": "air_schedule",
+        "local_confidence": 0.97,
+        "name": "Protect usable destination time when the price difference is reasonable",
+        "preference_value": "Value an earlier arrival or later departure when it preserves a meaningful afternoon or adds breathing room, even at a modest premium.",
+        "scope_condition": "When dates are fixed or the saved destination time materially improves the trip or meeting readiness."
+      },
+      {
+        "boundary_condition": "The acceptable margin depends on whether meeting end time is firm and on airport or rental logistics.",
+        "default_action": "State the required departure time from the actual origin and reject itineraries with fragile margins.",
+        "evidence": [
+          {
+            "quote": "Drop that one. For Friday, is 6:35 realistic after a 3:30 finish? The meeting is downtown, and I’ll need to get back to the hotel for my bag before heading to DEN.",
+            "session_id": "tm_pd_v05_user_000_s0028"
+          },
+          {
+            "quote": "How should I think about airport timing Thursday? I don’t want the itinerary to imply I can stay at the office indefinitely.",
+            "session_id": "tm_pd_v05_user_000_s0037"
+          },
+          {
+            "quote": "And for Monday, assume we need three hours at the airport before departure for returning the car, getting through security, and a little buffer. When would we have to leave the coast?",
+            "session_id": "tm_pd_v05_user_000_s0042"
+          },
+          {
+            "quote": "Please include the actual travel time from the office, not just the flight schedule. The 2:05 return sounds questionable.",
+            "session_id": "tm_pd_v05_user_000_s0046"
+          }
+        ],
+        "exception_condition": "A tighter margin can be accepted when the end time is confirmed and the user explicitly accepts it.",
+        "family": "schedule_risk",
+        "local_confidence": 0.99,
+        "name": "Build realistic airport margins from the actual origin",
+        "preference_value": "Evaluate airport timing from the meeting site or hotel, including bag retrieval, ground travel, rental return, security, and buffer time.",
+        "scope_condition": "For departures after meetings and fly-drive itineraries."
+      },
+      {
+        "boundary_condition": "Avoid an extra night when same-day travel has acceptable risk; assess the actual risk rather than assuming earlier is always better.",
+        "default_action": "Compare cancellation backups, arrival time, and commute reliability, then select the option with adequate first-session protection.",
+        "evidence": [
+          {
+            "quote": "Compare the totals and the actual Monday risk. I don't want to spend another night just because Sunday feels easier.",
+            "session_id": "tm_pd_v05_user_000_s0032"
+          },
+          {
+            "quote": "Then keep Sunday despite the extra $78 overall. I can't risk missing the opening. Is there any Sunday flight a little later without pushing the price over $640?",
+            "session_id": "tm_pd_v05_user_000_s0032"
+          },
+          {
+            "quote": "That savings is not worth risking the first morning. Keep the two nonstops. How should I think about the Friday gap before 6:35?",
+            "session_id": "tm_pd_v05_user_000_s0046"
+          }
+        ],
+        "exception_condition": "Same-day arrival remains acceptable when schedule, backup options, and transfer margin are sufficient.",
+        "family": "schedule_risk",
+        "local_confidence": 0.95,
+        "name": "Prioritize reliable arrival before the first work session",
+        "preference_value": "Pay a moderate premium or add a night when needed to reduce the risk of missing the opening of an important workshop or review.",
+        "scope_condition": "For business travel with a fixed first meeting or workshop start."
+      },
+      {
+        "boundary_condition": "Meaningful savings can keep a less convenient option in contention if its commute remains workable.",
+        "default_action": "Price the practical commute and choose the option that supports predictably early arrival when cost differences are small.",
+        "evidence": [
+          {
+            "quote": "The Hyatt is meaningfully cheaper, but I don't want three mornings dependent on the train when we're starting in the client office. Between the two walkable choices, which is stronger?",
+            "session_id": "tm_pd_v05_user_000_s0029"
+          },
+          {
+            "quote": "Then compare the practical morning schedule. I need to be at the office by 8:15 Monday and 8:30 Tuesday and Wednesday.",
+            "session_id": "tm_pd_v05_user_000_s0033"
+          },
+          {
+            "quote": "Price the practical setup for each. The review starts at 8:00 Wednesday through Friday, and I don’t want a fragile morning commute. The room cap is $245 per night before tax.",
+            "session_id": "tm_pd_v05_user_000_s0047"
+          },
+          {
+            "quote": "Then drop downtown. Between the other two, I care more about being predictably early than saving two dollars. Is there a backup if the campus shuttle is full or delayed?",
+            "session_id": "tm_pd_v05_user_000_s0047"
+          }
+        ],
+        "exception_condition": "A backup such as rideshare can support a shuttle-based plan if the shuttle is delayed or full.",
+        "family": "ground_transport",
+        "local_confidence": 0.99,
+        "name": "Prefer predictable work commutes over small savings",
+        "preference_value": "Favor walkable lodging or a dependable early shuttle over options dependent on trains, driving, or uncertain rides when morning starts are important.",
+        "scope_condition": "For business trips with early, fixed start times."
+      },
+      {
+        "boundary_condition": "A rental remains appropriate when needed for substantial driving or when rideshares do not serve the itinerary well.",
+        "default_action": "Compare all-in rental and rideshare plans, including operational constraints, then use rideshares when simpler and within authorization.",
+        "evidence": [
+          {
+            "quote": "Use rideshares. It's the simplest Sunday night and removes the Monday pickup issue. Cancel the original rental and make sure there's no fee.",
+            "session_id": "tm_pd_v05_user_000_s0035"
+          },
+          {
+            "quote": "Select the Medical Center Hotel with airport rideshares and the 7:00 shuttle plan. Don’t reserve it yet. Also, with that settled, the earlier flight is worth the extra $36; keep that round trip as the flight choice.",
+            "session_id": "tm_pd_v05_user_000_s0047"
+          }
+        ],
+        "exception_condition": "None stated.",
+        "family": "ground_transport",
+        "local_confidence": 0.91,
+        "name": "Use rideshares when they simplify logistics without breaking the budget",
+        "preference_value": "Choose rideshares over a rental when they remove pickup, desk-hours, parking, or timing complications and remain cost-effective.",
+        "scope_condition": "For trips where a car is not essential for the itinerary."
+      },
+      {
+        "boundary_condition": "Once dates and approval are firm, a less flexible option may be acceptable if its other benefits justify it.",
+        "default_action": "Translate cancellation terms into exact deadlines and discount apparently cheap options with high cancellation exposure.",
+        "evidence": [
+          {
+            "quote": "The Courtyard saves real money, but losing the whole stay after February 21 is too much exposure. Between the other two, which one is strongest under the project rules?",
+            "session_id": "tm_pd_v05_user_000_s0033"
+          },
+          {
+            "quote": "A queen or two doubles is fine for this trip. I’m more concerned about getting stuck with the reservation if the client moves the dates. Spell out the cancellation deadlines using the April 12 arrival.",
+            "session_id": "tm_pd_v05_user_000_s0039"
+          },
+          {
+            "quote": "Good. The cottage sounds appealing, but be careful about the payment schedule. We’re still several months out.",
+            "session_id": "tm_pd_v05_user_000_s0041"
+          },
+          {
+            "quote": "And the rental’s full-payment issue?",
+            "session_id": "tm_pd_v05_user_000_s0041"
+          }
+        ],
+        "exception_condition": "A slightly better cancellation deadline does not justify a materially more expensive plan by itself.",
+        "family": "booking_flexibility",
+        "local_confidence": 0.98,
+        "name": "Favor flexible cancellation over fragile low rates",
+        "preference_value": "Treat cancellation deadlines and forfeiture exposure as material decision factors, especially while approvals or dates may change.",
+        "scope_condition": "For hotel and lodging choices before plans are firm."
+      },
+      {
+        "boundary_condition": "This amenity preference can be relaxed when trip logistics, especially early work starts, matter more.",
+        "default_action": "Rank pool plus on-site gym above hot-tub availability and avoid paying materially more solely for a hot tub.",
+        "evidence": [
+          {
+            "quote": "For hotels, keep prioritizing the combination of a pool and an on-site gym. A hot tub is a nice extra when the rest is close, but it isn't worth forcing a more expensive plan here.",
+            "session_id": "tm_pd_v05_user_000_s0025"
+          },
+          {
+            "quote": "For this trip, I’m willing to give up the pool because the 8:00 starts matter more. Keep the fitness room in the comparison, but don’t reject this hotel over the missing pool or hot tub.",
+            "session_id": "tm_pd_v05_user_000_s0047"
+          }
+        ],
+        "exception_condition": "For the Denver rollout trip, the user explicitly accepted giving up the pool and did not require a hot tub, while retaining the fitness room in the comparison.",
+        "family": "hotel_amenities",
+        "local_confidence": 0.97,
+        "name": "Do not force costly lodging changes for a hot tub",
+        "preference_value": "For leisure hotels, prioritize having both a pool and an on-site gym; treat a hot tub only as a tiebreaker when other factors are close.",
+        "scope_condition": "For leisure hotel comparisons where amenities matter."
+      },
+      {
+        "boundary_condition": "Walking distance is the cutoff, not direct ocean frontage.",
+        "default_action": "Filter out lodging that is not walkable to the beach; compare oceanfront status as an optional location benefit.",
+        "evidence": [
+          {
+            "quote": "That location is fine. For beach trips with my partner, walking distance to the beach is the cutoff I want you to use. It doesn’t have to be directly oceanfront unless I specifically ask for that.",
+            "session_id": "tm_pd_v05_user_000_s0041"
+          }
+        ],
+        "exception_condition": "Direct oceanfront should be required only when the user explicitly asks for it.",
+        "family": "leisure_location",
+        "local_confidence": 0.99,
+        "name": "Require walkable beach access for partner beach trips",
+        "preference_value": "For beach trips with the user's partner, lodging must be within walking distance of the beach, but need not be directly oceanfront unless specifically requested.",
+        "scope_condition": "Beach leisure trips with the user's partner."
+      },
+      {
+        "boundary_condition": "The unlimited option should still fit the total trip budget.",
+        "default_action": "Compare all-in capped and unlimited options, including likely overage, and choose unlimited mileage when it materially reduces exposure.",
+        "evidence": [
+          {
+            "quote": "Good. We’ll be driving from Portland to the coast and back, and we want room for a couple of day trips. Six hundred miles sounds questionable.",
+            "session_id": "tm_pd_v05_user_000_s0043"
+          },
+          {
+            "quote": "So the unlimited car costs $68 more than the quoted one, but probably only around $28 to $36 more after likely overage?",
+            "session_id": "tm_pd_v05_user_000_s0043"
+          },
+          {
+            "quote": "Use the unlimited one. Now verify the actual flight and driving schedule. I don’t want the return drive cutting it close.",
+            "session_id": "tm_pd_v05_user_000_s0043"
+          }
+        ],
+        "exception_condition": "None stated.",
+        "family": "rental_car",
+        "local_confidence": 0.96,
+        "name": "Use unlimited-mileage rentals when planned driving makes caps risky",
+        "preference_value": "Prefer unlimited mileage when round-trip transfers and day trips could approach or exceed a mileage allowance and the effective premium is modest.",
+        "scope_condition": "For fly-drive trips with uncertain or substantial mileage."
+      },
+      {
+        "boundary_condition": "Schedule feasibility and material price differences take precedence.",
+        "default_action": "Include and favor Delta in close comparisons without forcing it into every trip.",
+        "evidence": [
+          {
+            "quote": "Include Delta when it works for the schedule and is reasonably comparable on price. I tend to favor it in that situation, but I don't need it forced into every trip.",
+            "session_id": "tm_pd_v05_user_000_s0032"
+          }
+        ],
+        "exception_condition": "Do not include Delta solely because of airline preference when it does not work for the trip.",
+        "family": "airline_preference",
+        "local_confidence": 0.99,
+        "name": "Prefer Delta only when schedule and price are reasonably comparable",
+        "preference_value": "Delta is a soft preference, not a requirement.",
+        "scope_condition": "When Delta offers a schedule that works and a price reasonably comparable to alternatives."
+      },
+      {
+        "boundary_condition": "All compared rooms should remain non-smoking where specified.",
+        "default_action": "Do not pay extra solely to guarantee a king when acceptable alternatives are a queen or two doubles.",
+        "evidence": [
+          {
+            "quote": "A queen or two doubles is fine for this trip. I’m more concerned about getting stuck with the reservation if the client moves the dates. Spell out the cancellation deadlines using the April 12 arrival.",
+            "session_id": "tm_pd_v05_user_000_s0039"
+          }
+        ],
+        "exception_condition": "No general rule was stated for partner leisure trips.",
+        "family": "hotel_room",
+        "local_confidence": 0.93,
+        "name": "Accept basic bed-type flexibility on solo work trips",
+        "preference_value": "A queen or two doubles is acceptable; guaranteed king bedding is less important than cancellation flexibility and logistics.",
+        "scope_condition": "For the cited solo business trip and similar work lodging comparisons."
+      },
+      {
+        "boundary_condition": "Include an add-on only when the user explicitly requested it, such as a shared checked bag on the San Diego booking.",
+        "default_action": "Keep standard seats and the selected room or vehicle class; do not add optional products.",
+        "evidence": [
+          {
+            "quote": "Good. Ticket the airfare today, reserve the hotel, and book that exact rental setup. No upgrades or extras.",
+            "session_id": "tm_pd_v05_user_000_s0034"
+          },
+          {
+            "quote": "All right. Book the flight and hotel at those amounts. Don’t add insurance, upgrades, or any prepaid extras.",
+            "session_id": "tm_pd_v05_user_000_s0040"
+          },
+          {
+            "quote": "Standard seats are fine. What about the inn terms and early arrival?",
+            "session_id": "tm_pd_v05_user_000_s0043"
+          },
+          {
+            "quote": "Proceed with both reservations at those amounts. Use the traveler names I gave you, and keep the shared checked bag on the air booking.",
+            "session_id": "tm_pd_v05_user_000_s0026"
+          }
+        ],
+        "exception_condition": "User-requested necessities or inclusions are not treated as unwanted extras.",
+        "family": "purchase_controls",
+        "local_confidence": 0.97,
+        "name": "Avoid optional booking add-ons unless requested",
+        "preference_value": "Book the selected base arrangements without insurance, upgrades, extras, or prepaid add-ons.",
+        "scope_condition": "When finalizing travel reservations."
+      },
+      {
+        "boundary_condition": "Once the user clearly says to book and confirms, complete the specified reservations.",
+        "default_action": "Hold the selected itinerary as the lead choice, provide booking-ready details, and wait for explicit purchase confirmation.",
+        "evidence": [
+          {
+            "quote": "For this trip I’d rather protect that first afternoon. The dates are firm, and getting there before lunch is worth more than the extra flexibility. Select Alaska, but don’t purchase it yet.",
+            "session_id": "tm_pd_v05_user_000_s0024"
+          },
+          {
+            "quote": "Good. Keep it ready, but don’t purchase until I send the final approval this afternoon.",
+            "session_id": "tm_pd_v05_user_000_s0030"
+          },
+          {
+            "quote": "Use the $986 combination as the flight choice, but don’t book it yet. Give me the practical schedule and what needs verification.",
+            "session_id": "tm_pd_v05_user_000_s0042"
+          },
+          {
+            "quote": "Select the Medical Center Hotel with airport rideshares and the 7:00 shuttle plan. Don’t reserve it yet. Also, with that settled, the earlier flight is worth the extra $36; keep that round trip as the flight choice.",
+            "session_id": "tm_pd_v05_user_000_s0047"
+          }
+        ],
+        "exception_condition": "None stated.",
+        "family": "purchase_controls",
+        "local_confidence": 0.99,
+        "name": "Require explicit approval before purchase",
+        "preference_value": "Selection, narrowing, or booking readiness does not authorize purchase; reservations should remain unbooked until the user explicitly approves finalization.",
+        "scope_condition": "Across flight, hotel, and rental planning."
+      }
+    ]
+  }
+}

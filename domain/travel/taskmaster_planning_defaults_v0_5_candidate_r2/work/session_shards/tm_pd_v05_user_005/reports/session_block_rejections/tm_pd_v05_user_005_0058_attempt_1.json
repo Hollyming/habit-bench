@@ -1,0 +1,80 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_005_h02', 'exception') actual=[('tm_pd_v05_user_005_h01', 'support'), ('tm_pd_v05_user_005_h02', 'support')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For this trip, Avery explicitly chose the 5:20 p.m. Southwest return instead of Delta because the 3:55 p.m. Delta lacked enough contingency margin after the inspection and the 7:35 p.m. Delta arrived home too late. The Sunday Delta option was retained and booked.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "The Thursday inspection is confirmed for 9:00 a.m. and should be over by noon, so I need the four-night version now. Please compare the Sunday flight we noted with sensible Thursday afternoon returns and leave enough room for traffic and airport security.",
+          "role": "user"
+        },
+        {
+          "content": "For Sunday, January 11, the Delta nonstop already under consideration still works well: ATL 5:35 p.m. to MSY 6:10 p.m. Allowing about 45 minutes for deplaning and baggage, then 25 to 35 minutes by car, you should reach the Cambria around 7:30 p.m. That leaves a comfortable evening before the 8:00 a.m. Monday report time.\n\nFor Thursday, January 15, these are the practical nonstops after a noon finish at 900 Camp Street:\n\n- Delta: 3:55 p.m.-6:23 p.m., $238 one way. You would need to leave the museum around 12:30 p.m. to preserve roughly two hours at MSY after the drive.\n- Southwest: 5:20 p.m.-7:50 p.m., $201 one way. Leaving around 1:45 p.m. provides a similar airport margin and time for the inspection to run over.\n- Delta: 7:35 p.m.-10:03 p.m., $214 one way. This has ample margin but adds more than two hours of waiting compared with Southwest.\n\nThe Southwest 5:20 p.m. return gives the best balance if noon is only an estimate.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the 3:55 Delta actually safe if the inspection ends at noon? I don't want to book around a perfect traffic day.",
+          "role": "user"
+        },
+        {
+          "content": "It is possible, but I would not call it robust. If you leave by 12:30 p.m., an ordinary drive could put you at MSY around 1:05 p.m., nearly three hours before departure. However, a 45-minute overrun, time needed to close out with the host, or a traffic delay could reduce that quickly. The 5:20 p.m. Southwest keeps about 80 additional minutes of usable buffer while avoiding the much later Delta flight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then Southwest is the better return for this trip. Delta is fine when it fits, but I don't want the 3:55 just for the carrier, and the 7:35 gets me home too late. What fare is that Southwest option, and does it include a checked case?",
+          "role": "user"
+        },
+        {
+          "content": "The $201 Southwest Wanna Get Away fare includes one checked bag under the fare terms shown for this itinerary; a second checked item would cost extra. The ticket is nonrefundable, but the value can be retained as a flight credit if canceled. There is no change fee, though a fare difference can apply. Your exhibition case is within the listed standard size and weight limits based on the dimensions previously supplied for this shipment.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Check the full itinerary once more, including when I should leave home Sunday and when I should leave the museum Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "The complete flight plan is:\n\nSunday, January 11: Delta nonstop, ATL 5:35 p.m. to MSY 6:10 p.m. For a domestic departure with a checked case, plan to leave home at 2:15 p.m. That allows approximately 35 to 50 minutes to reach ATL and gets you there around 2 hours 30 minutes before departure even with moderate traffic. Estimated arrival at the Cambria is 7:20 to 7:40 p.m.\n\nThursday, January 15: Southwest nonstop, MSY 5:20 p.m. to ATL 7:50 p.m. Plan to leave the museum at 1:45 p.m. The normal drive is about 25 minutes, but budgeting 45 minutes puts you at MSY around 2:30 p.m., nearly three hours before departure. If the inspection runs until 12:45 p.m., you still have an hour for wrap-up before leaving.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are both flights sold as separate one-ways? I don't want a mixed-carrier itinerary that causes trouble if one side changes.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. They would be issued as two independent one-way tickets: Delta for the outbound and Southwest for the return. A disruption to one reservation would not automatically rebook or cancel the other, so each carrier would need to be handled separately. Since the flights occur four days apart, that operational risk is limited, and the separate bookings are necessary for this combination.",
+          "role": "assistant"
+        },
+        {
+          "content": "That's acceptable. Book those two flights. Use the four-night dates, not the Wednesday version, and don't change the hotel yet.",
+          "role": "user"
+        },
+        {
+          "content": "Before purchase, the totals are $189.40 for the Delta outbound and $201.00 for the Southwest return, for a combined airfare of $390.40. The travel dates are Sunday, January 11 through Thursday, January 15. The Cambria has not been changed or booked. Shall I complete both flight purchases at those prices?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, complete both at those prices.",
+          "role": "user"
+        },
+        {
+          "content": "Both flights are booked.\n\nDelta confirmation D6Q4LM: Sunday, January 11, nonstop from ATL at 5:35 p.m., arriving MSY at 6:10 p.m.; total $189.40.\n\nSouthwest confirmation 8K2RTP: Thursday, January 15, nonstop from MSY at 5:20 p.m., arriving ATL at 7:50 p.m.; total $201.00. One standard checked item is included under the purchased fare terms.\n\nCombined airfare is $390.40. Plan to leave home at 2:15 p.m. Sunday and the museum at 1:45 p.m. Thursday. No hotel reservation or modification was made; the Cambria four-night stay for January 11-15 remains the next item to finalize.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0058",
+      "session_index": 58,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "For the January 12-15 New Orleans exhibition installation, Avery must report to the Contemporary Arts Center at 900 Camp Street by 8:00 a.m. Monday, and a contingency inspection is confirmed for 9:00 a.m. Thursday with an expected noon finish. Delta confirmation D6Q4LM is booked for Sunday, January 11, departing ATL at 5:35 p.m. and arriving MSY at 6:10 p.m., for $189.40. Southwest confirmation 8K2RTP is booked for Thursday, January 15, departing MSY at 5:20 p.m. and arriving ATL at 7:50 p.m., for $201.00 with one standard checked item included. Combined airfare is $390.40. Planned departure times are 2:15 p.m. from home Sunday and 1:45 p.m. from the museum Thursday. The proposed Cambria stay is now January 11-15, but no New Orleans hotel has been booked. Midtown Lodge Raleigh confirmation MLR-582041 remains booked for November 14-16 at $421.64 with guaranteed late arrival; Hampton confirmation RHM-731946 was canceled under HCX-90428. Registrar approval remains pending for the proposed Boston hotel replacement. The St. George Island, Denver, Minneapolis, Dallas, Carlsbad, Columbus, Detroit, St. Louis, Jekyll Island, and Baltimore arrangements remain as previously confirmed."
+}

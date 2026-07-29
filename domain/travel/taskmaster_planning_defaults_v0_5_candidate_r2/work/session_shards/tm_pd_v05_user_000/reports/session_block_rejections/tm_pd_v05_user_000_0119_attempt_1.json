@@ -1,0 +1,136 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h05', 'boundary') actual=[('tm_pd_v05_user_000_h05', 'revision')]",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya established a reusable scope boundary: on client trips, no hotel-rating cutoff should be applied unless she explicitly supplies one for that search, even when a property is described as upscale. The current selection was based on complete cost and schedule reliability; ratings were reported only as sourced information.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "Flights are settled at $612. Now compare the three hotel choices using the full two-night cost, including the 14% lodging tax, breakfast, and the rides we would actually need. I want the complete trip under $1,300 if possible.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll price them consistently. Before I rank them, should I apply a customer-rating cutoff here, or is this client trip mainly about schedule reliability and total cost?",
+          "role": "assistant"
+        },
+        {
+          "content": "For client trips, don’t apply a hotel-rating cutoff unless I give you one for that search, even if a property is described as upscale. Just report the rating and source when you have it. This one is about getting to the workshop reliably and staying under budget.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. Using the current refundable rates, the room-and-tax totals are: Bakery Square at $268 nightly: $536 plus $75.04 tax, or $611.04. East Liberty at $231 nightly: $462 plus $64.68 tax, or $526.68. Shadyside at $218 nightly: $436 plus $61.04 tax, or $497.04.",
+          "role": "assistant"
+        },
+        {
+          "content": "Add breakfast and realistic transportation. Don’t make the cheaper two look better by leaving out the Thursday bag retrieval.",
+          "role": "user"
+        },
+        {
+          "content": "For two breakfasts, I used $36 where breakfast is not included. Estimated rides are $88 at Bakery Square, $136 at East Liberty, and $148 at Shadyside. Those figures include Tuesday airport pickup, workshop transportation as needed, the Thursday hotel return for stored luggage at the two farther properties, and the final airport ride.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me each complete total with the airfare.",
+          "role": "user"
+        },
+        {
+          "content": "Bakery Square: $612 airfare + $611.04 lodging with tax + $36 breakfast + $88 rides = $1,347.04. East Liberty: $612 + $526.68 + $0 breakfast + $136 rides = $1,274.68. Shadyside: $612 + $497.04 + $36 breakfast + $148 rides = $1,293.04. East Liberty is $25.32 under the ceiling; Shadyside is only $6.96 under; Bakery Square is $47.04 over.",
+          "role": "assistant"
+        },
+        {
+          "content": "What assumptions are inside the East Liberty rides? I count several separate trips.",
+          "role": "user"
+        },
+        {
+          "content": "Tuesday airport to hotel, about $45. Wednesday hotel to workshop and back, about $12 each way. Thursday hotel to workshop, $12; workshop back to the hotel for the bag, $12; then hotel to PIT, about $43. That is $136 total. It includes four local workshop-related rides plus the two airport rides.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the morning routes. The workshop starts at 8:30, and I cannot arrive right at the start.",
+          "role": "user"
+        },
+        {
+          "content": "Bakery Square is beside the client site, roughly a 3- to 5-minute walk; leaving at 8:10 gives ample margin. East Liberty is usually an 8- to 12-minute drive, but weekday traffic can make it 15 to 25 minutes, so I would request the ride at 7:50 and target arrival by 8:15. Shadyside is about 15 minutes in ordinary traffic and can reach 20 to 30 minutes in the morning, so I would request that ride at 7:40.",
+          "role": "assistant"
+        },
+        {
+          "content": "East Liberty still sounds workable. Verify that a late Tuesday arrival won’t cancel the room and that they will hold luggage Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "The East Liberty property has a staffed front desk overnight and accepts check-in after 10:00 p.m. The reservation should still be marked for late arrival, with the hotel called if the inbound flight is materially delayed. The front desk also confirmed complimentary luggage storage after Thursday checkout for registered guests; they issue a claim tag, and retrieval is available continuously through the afternoon.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about the other two, in case the rate moves?",
+          "role": "user"
+        },
+        {
+          "content": "Bakery Square also has a 24-hour desk and complimentary same-day luggage storage. Shadyside accepts late arrivals and will hold bags Thursday, but its desk asked that arrivals after midnight be noted on the reservation. None of the three charges separately for same-day storage based on the current policies.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the ratings, just as information? Keep the metric clear.",
+          "role": "user"
+        },
+        {
+          "content": "The current Google listing snapshots are 4.3 for Bakery Square, 4.1 for the East Liberty hotel, and 4.2 for Shadyside. Those are Google user ratings, not hotel class or ratings from the booking site. They should be rechecked at booking because listing scores can change.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now walk me through Thursday from checkout to the 6:20 flight if I use East Liberty.",
+          "role": "user"
+        },
+        {
+          "content": "Check out around 7:35 a.m., leave the suitcase with the front desk, and request the workshop ride at 7:50. After the workshop, be in the rideshare by 4:05 p.m. The normal return to the hotel is 12 to 18 minutes. Allow 5 minutes to claim the bag, then leave for PIT around 4:28. The airport drive is typically 25 to 35 minutes, putting you there around 4:55 to 5:05, about 75 to 85 minutes before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is tighter than the direct airport plan. What is the trigger for skipping the hotel detour?",
+          "role": "user"
+        },
+        {
+          "content": "Check both legs at 3:45 p.m. If the combined estimate from the client site to the hotel and then PIT exceeds 55 minutes, or the workshop will release later than 4:05, do not rely on the detour. Retrieve the bag before the workshop only if the client can securely hold it; otherwise East Liberty is no longer a reliable choice for that day and Bakery Square becomes the safer lodging option.",
+          "role": "assistant"
+        },
+        {
+          "content": "The client cannot store luggage. Is there still enough buffer to choose East Liberty without pretending traffic will cooperate?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, but the schedule needs discipline: leave the workshop at 4:00, have the ride arrive by 4:05, and use mobile check-in for the flight. A 5:05 airport arrival leaves 75 minutes with a carry-on and no bag drop. If the live forecast at 3:45 shows arrival after 5:10, leave the workshop early enough to preserve that 5:10 latest target. If leaving early is impossible, Bakery Square is the operational fallback despite exceeding the budget.",
+          "role": "assistant"
+        },
+        {
+          "content": "What cancellation terms are attached to the rates you used?",
+          "role": "user"
+        },
+        {
+          "content": "The East Liberty $231 rate is refundable until 6:00 p.m. local time the day before arrival; after that, the penalty is one night plus tax. Bakery Square’s $268 rate has a 48-hour cancellation deadline. Shadyside’s $218 rate is refundable until 6:00 p.m. one day before arrival. These are the terms displayed with the quoted room types, so the final confirmation page still needs to match them exactly.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose East Liberty. Keep Bakery Square as the fallback if either the refundable rate disappears or Thursday timing becomes unsafe. Do not book yet.",
+          "role": "user"
+        },
+        {
+          "content": "Selected, not booked: the refundable East Liberty room at $231 per night with breakfast included. Estimated complete trip total is $1,274.68: $612 airfare, $526.68 lodging with estimated tax, and $136 transportation. Tuesday late arrival and Thursday luggage storage are supported. Thursday checkout is 7:35 a.m., workshop ride at 7:50, departure from the client site by 4:05, bag pickup around 4:20, and airport arrival targeted for 4:55-5:05. Recheck traffic at 3:45 and preserve a 5:10 latest airport-arrival target. Bakery Square remains the fallback if the refundable East Liberty rate changes or that Thursday route no longer works.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0119",
+      "session_index": 119,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The February 5-7, 2030 Raleigh client trip remains confirmed at a working total of $1,459; the corrected Raleigh folio, Philadelphia deposit release, and Nashville refund reconciliation remain unresolved. The September 12-16 Monterey Peninsula trip remains confirmed at $2,849, with whale-watching status and exact hotel cancellation cutoffs unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2 Baltimore and November 6-8 Raleigh client trips remain recorded as confirmed, with noted ground-transportation items unresolved. The October 4-9, 2030 San Diego trip remains fully reconciled for Maya Chen and Jordan Lee at a projected $3,665.71 including bags, with the Monday traffic fallback and downtown rental return plan intact. For the Tuesday-through-Thursday Pittsburgh client trip, Maya selected but did not book the $612 nonstop round trip and a refundable East Liberty room at $231 per night with breakfast included. The projected complete trip total is $1,274.68. Late Tuesday check-in and complimentary Thursday luggage storage were confirmed. The Thursday plan is to leave the workshop by 4:05 p.m., retrieve luggage, and target PIT arrival by 5:05 for the 6:20 p.m. flight, with a 3:45 traffic check and 5:10 latest-arrival threshold. Bakery Square remains the lodging fallback if the refundable rate disappears or Thursday timing becomes unsafe. Final flight rules, live hotel availability, taxes, and booking-page cancellation terms remain to be verified."
+}

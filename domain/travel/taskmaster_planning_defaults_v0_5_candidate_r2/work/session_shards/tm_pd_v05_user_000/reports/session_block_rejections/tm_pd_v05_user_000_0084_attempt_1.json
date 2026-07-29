@@ -1,0 +1,56 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h00', 'exception') actual=[('tm_pd_v05_user_000_h01', 'exception'), ('tm_pd_v05_user_000_h03', 'support')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Exception evidence: Maya explicitly chose an evening connecting return only for this Baltimore trip because the workshop ends at 4:30 p.m.; she did not revise her broader return-time preference.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to correct yesterday's change. Cancel the extra-cost 6:50 nonstop and use the no-cost 7:40 option through Detroit instead. This is just for this trip because the workshop runs until 4:30.",
+          "role": "user"
+        },
+        {
+          "content": "The 7:40 p.m. BWI departure is still available at no additional fare. It connects in Detroit and arrives at MSP at 11:18 p.m. Before I finalize it, would you like me to verify the connection and checked-bag handling?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. How long is the Detroit connection, and will I need to collect and recheck my bag?",
+          "role": "user"
+        },
+        {
+          "content": "The itinerary reaches Detroit at 9:16 p.m. and departs for Minneapolis at 10:01 p.m., giving you 45 minutes. Both segments are on the same ticket, so a checked bag will be tagged through to MSP; you will not collect or recheck it in Detroit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is 45 minutes considered valid, and are the flights in the same terminal?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. It meets the airline's published minimum connection time. Both flights use Detroit's McNamara Terminal, though the departure gate can change and may require a walk or a ride on the terminal tram.",
+          "role": "assistant"
+        },
+        {
+          "content": "That works. Finalize the 7:40 connection, remove the $173 nonstop, and don't touch the Sunday flight or hotel.",
+          "role": "user"
+        },
+        {
+          "content": "The return has been reissued at no additional cost: Tuesday, October 2, depart BWI at 7:40 p.m., arrive DTW at 9:16 p.m., depart DTW at 10:01 p.m., and arrive MSP at 11:18 p.m. The connection is 45 minutes, and checked baggage will transfer automatically to MSP. The $173 6:50 p.m. nonstop has been removed, so that surcharge no longer applies. Your revised ticket receipt and itinerary have been issued. Sunday's outbound, the Inner Harbor hotel, and complimentary Tuesday luggage storage remain unchanged; airport transfers are still unbooked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0084",
+      "session_index": 84,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The August 25-31, 2029 Naples trip remains fully confirmed for two travelers at $4,428 with no arrival follow-up. The Baltimore client trip September 30-October 2, 2029 remains confirmed. The Sunday outbound and Inner Harbor hotel for two nights at $549.78 after tax remain unchanged, including the later check-in note, refund terms, and complimentary Tuesday luggage storage until 8:00 p.m. The Tuesday return is now ticketed at no additional cost via Detroit, departing BWI at 7:40 p.m. and arriving MSP at 11:18 p.m.; the previously selected $173 nonstop has been removed. Airport transfers remain unbooked at an estimated $76. The August 2028 Cary client trip is confirmed; the July 2028 Columbus trip retains a separate travel credit and unresolved office bag-storage question. Earlier Monterey Peninsula, Charlotte, Richmond, Nashville, central Oregon coast, Denver, and San Diego trips remain reserved or completed. Coastal Georgia and January 2027 Denver remain unbooked. The Raleigh corrected folio, Philadelphia deposit release, and earlier Nashville refund reconciliation remain unresolved."
+}

@@ -1,0 +1,71 @@
+{
+  "cache_fingerprint": "e1a932f6e5022c6e6290caf39640edd52abd39032f99c777ef25d82ab8155226",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The user selected direct cars for this Friday event only; no recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "ep_017_atlanta_rights_workshop",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 67,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user only selects direct car transportation for this trip and asks about a 6:15 workshop departure; neither utterance evidences any candidate flight or hotel habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The Friday author event has moved to A Cappella Books. Please verify the address, compare the two routes the host sent, and update the itinerary without changing any bookings.",
+          "role": "user"
+        },
+        {
+          "content": "A Cappella Books is at 208 Haralson Avenue NE, Atlanta, GA 30307. The host's direct-car option from the workshop should take about 20–30 minutes in Friday traffic; the bus-and-walk route is closer to 45–60 minutes and involves a transfer. After the 7:30 p.m. finish, a car back to the Emory Inn should take roughly 15–25 minutes.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the direct car both ways in the trip record. Is leaving the workshop at 6:15 reasonable?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. A 6:15 p.m. departure leaves useful traffic margin for the relocated event. I updated the itinerary to show a car from the workshop to A Cappella Books at 6:15 p.m., then a car to the Emory Inn after the 7:30 p.m. finish. No transportation was booked, and the Wednesday arrival, three-night hotel stay, and Saturday morning flight remain unchanged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0067",
+      "session_index": 67,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "For the November 18-21 Atlanta rights workshop, Elena's Wednesday arrival, three-night Emory Inn booking, and Saturday morning nonstop return remain unchanged. The Friday author event is now at A Cappella Books, 208 Haralson Avenue NE, Atlanta, with a planned 6:15 p.m. car from the workshop and a car back to the hotel after the 7:30 p.m. finish; transportation remains unbooked. Flight numbers, operating carriers, exact schedules, fare terms, baggage charges, and seats still require verification. Other ongoing trips and follow-ups remain unchanged.",
+  "verification": {
+    "67": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user only selects direct car transportation for this trip and asks about a 6:15 workshop departure; neither utterance evidences any candidate flight or hotel habit."
+    }
+  }
+}

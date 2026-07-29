@@ -1,0 +1,139 @@
+{
+  "cache_fingerprint": "3fe06b9439c33a20026012d024716a83ce9c0b15389e64ef70373e6cfe08699f",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marcus compared four nonstop flight combinations against a Monday Midtown review and Tuesday Roswell site visit, rejected the operationally tight early return, and selected the Monday morning outbound with Tuesday evening return for further lodging and transportation research. No booking was made.",
+        "evidence_topology": {
+          "episode_id": "atlanta-district-review-01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 136,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user chose a morning outbound and an evening return for this trip. No user utterance independently establishes the business-class, nonstop, window-seat, included-breakfast, or balcony habits, and the choices are not framed as durable defaults.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Use Monday morning out and Tuesday evening back for the hotel search.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Use Monday morning out and Tuesday evening back for the hotel search.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to work out Atlanta for September 14 and 15. The district review starts Monday at 1:30 p.m. in Midtown, and Tuesday I have a restaurant visit north of downtown from 9:00 to 11:00. Compare flying Sunday evening versus Monday morning, then an early or evening flight home Tuesday. Don't book anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "I'll compare nonstop round trips from Chicago O'Hare to Atlanta. What is the Monday address, and where is Tuesday's restaurant? Those locations will determine whether the tighter flights are realistic.",
+          "role": "assistant"
+        },
+        {
+          "content": "Monday is at 1100 Peachtree Street NE. Tuesday is in Roswell near Holcomb Bridge Road and Alpharetta Highway.",
+          "role": "user"
+        },
+        {
+          "content": "The useful outbound nonstops are Sunday, September 13, departing ORD at 7:10 p.m. and arriving ATL at 10:14 p.m., or Monday, September 14, departing at 8:10 a.m. and arriving at 11:15 a.m. Both are main-cabin fares. From ATL to 1100 Peachtree, allow roughly 25-50 minutes by car midday, plus pickup time. MARTA to Midtown takes about 30 minutes, followed by a short walk.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the Monday flight is viable, but not with much room for a serious delay.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. A normal arrival should put you at the review around noon to 12:20 p.m., leaving 70-90 minutes. A 45-minute flight or baggage delay would consume most of that margin. Sunday adds a hotel night but removes the same-day flight risk.",
+          "role": "assistant"
+        },
+        {
+          "content": "What do the Tuesday returns look like after Roswell?",
+          "role": "user"
+        },
+        {
+          "content": "The early nonstop leaves ATL at 1:40 p.m. and arrives ORD at 2:55 p.m. The evening nonstop leaves at 6:30 p.m. and arrives at 7:45 p.m. After an 11:00 a.m. finish in Roswell, the airport drive is typically 45-70 minutes before rental-car return or terminal access. The 1:40 departure would leave little tolerance for a late meeting or traffic; the 6:30 departure provides several hours.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the totals for all four combinations. Same cabin and include the standard carry-on.",
+          "role": "user"
+        },
+        {
+          "content": "Current round-trip totals are: Sunday evening out and Tuesday early back, $412; Sunday evening out and Tuesday evening back, $438; Monday morning out and Tuesday early back, $389; Monday morning out and Tuesday evening back, $416. Each is nonstop in main cabin with one standard carry-on. Checked baggage and seat-selection charges are not included.",
+          "role": "assistant"
+        },
+        {
+          "content": "The early return doesn't make sense. Between the other two, does Sunday buy me anything besides avoiding the Monday flight risk?",
+          "role": "user"
+        },
+        {
+          "content": "It also lets you start Monday near Midtown without carrying luggage into the review. The tradeoff is one additional hotel night and $22 more airfare. With the Monday flight, you would need either an early bag drop at the hotel or luggage storage near the meeting. Ground cost from ATL is similar either way, though Sunday-night rideshare traffic may be lighter.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use Monday morning out and Tuesday evening back for the hotel search. I want the lodging comparison to account for Monday bag storage, the review, Tuesday's Roswell drive, and getting back to ATL. Still no purchase.",
+          "role": "user"
+        },
+        {
+          "content": "Selected for planning only: Monday, September 14, ORD-ATL nonstop, 8:10-11:15 a.m.; Tuesday, September 15, ATL-ORD nonstop, 6:30-7:45 p.m.; $416 round trip in main cabin with a carry-on. Monday's review is at 1:30 p.m. at 1100 Peachtree Street NE, with an estimated 25-50-minute airport transfer and about 70-90 minutes of normal-arrival margin. Tuesday's Roswell visit runs 9:00-11:00 a.m.; Roswell to ATL is approximately 45-70 minutes, giving ample time for the evening flight. I'll use early luggage storage, Midtown access, the Roswell drive, airport-return timing, and the $416 airfare in the hotel and ground-transportation comparison. Nothing has been purchased.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0136",
+      "session_index": 136,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "The San Diego family trip remains booked for June 14-20 under SD7K4P and BW-583174, totaling $4,498.26 before the arrival rideshare. Columbus-Cincinnati is booked for July 21-23 under K7LM2Q, ALF-731904, CY-448217, and ENT-6R29PL, totaling $1,126.54 before fuel, tolls, and optional coverage. Richmond is booked for August 12-14 under R8V4LM and OM-628451; airfare and hotel total $908.20, with a $1,009.20 estimate including rideshares. Boston is booked for October 9-13 under B7Q2LN and CAM-804731; airfare, lodging, and seats total $2,863.32, excluding the arrival rideshare. Houston is booked for November 5-7 under H6T9QK and HA-917604; fixed charges are $1,092.42 and the planning total with rideshares is $1,218.42-$1,275.42. The Maine coast family trip for Marcus Lee, Daniel Lee, and Owen Lee is fully booked for July 10-19, 2026. Flights under M7Q4LP include the July 10 ORD-DCA-PWM outbound and July 19 PWM-ORD nonstop; return seats 18A-18C and one checked bag per traveler each way are confirmed. Lodging is booked under HGI-726418, OGT-591274, and HYP-843106, and the SUV under AV-618395. Fixed booked charges total $7,842.74, with a $7,866.74 working total including estimated garage parking. For Atlanta September 14-15, the working flights are the Monday 8:10 a.m. ORD-ATL nonstop arriving 11:15 a.m. and Tuesday 6:30 p.m. ATL-ORD nonstop arriving 7:45 p.m., totaling $416 with a carry-on; nothing is booked. Lodging and ground transportation still need comparison around the Monday 1:30 p.m. Midtown review, luggage storage, Tuesday 9:00-11:00 a.m. Roswell visit, and evening airport return.",
+  "verification": {
+    "136": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Use Monday morning out and Tuesday evening back for the hotel search.",
+          "habit_id": "tm_pd_v05_user_002_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Use Monday morning out and Tuesday evening back for the hotel search.",
+          "habit_id": "tm_pd_v05_user_002_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user chose a morning outbound and an evening return for this trip. No user utterance independently establishes the business-class, nonstop, window-seat, included-breakfast, or balcony habits, and the choices are not framed as durable defaults."
+    }
+  }
+}

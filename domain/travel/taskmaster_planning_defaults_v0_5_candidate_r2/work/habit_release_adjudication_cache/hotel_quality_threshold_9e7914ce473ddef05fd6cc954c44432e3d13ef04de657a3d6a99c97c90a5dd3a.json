@@ -1,0 +1,22 @@
+{
+  "cache_fingerprint": "9e7914ce473ddef05fd6cc954c44432e3d13ef04de657a3d6a99c97c90a5dd3a",
+  "decisions": [
+    {
+      "action": "merge",
+      "alternative_group_key": "hotel_quality_threshold",
+      "boundary_condition": "Use a 3.5 minimum when the search is explicitly budget-focused. Apply the applicable threshold only to the metric under discussion, and do not conflate hotel class, Google ratings, and customer-review ratings.",
+      "canonical_value": "Use a soft 4.0 hotel-rating floor for nice, upscale, resort-style, or otherwise well-rated hotel searches, with a 3.5 floor for explicitly budget-focused searches.",
+      "condition": "When a hotel search calls for a well-rated property, including a nice, upscale, resort-style, or explicitly budget-focused stay, and a rating or hotel-quality metric is available.",
+      "default_action": "Filter or prioritize options meeting a 4.0 minimum and identify the rating source when known.",
+      "exception_condition": "Follow any newly stated threshold or metric. If no suitable option meets the applicable floor while satisfying more important trip constraints, ask before relaxing it.",
+      "input_ids": [
+        "tm_v04_e2e_habit_2f7cf6d5b85d",
+        "tm_v04_e2e_habit_704f0266b376"
+      ],
+      "name": "contextual_hotel_rating_floor",
+      "preference_value": "Prefer hotels rated at least 4.0 when seeking a nice, upscale, resort-style, or generally well-rated stay; for explicitly budget-focused searches, prefer at least 3.5.",
+      "rationale": "The generic 4.0 hotel-quality floor is semantically covered by the calibrated contextual policy's default branch, while the latter also preserves the separately evidenced 3.5 budget fallback and metric distinctions. Keeping both would duplicate the same longitudinal default.",
+      "representative_id": "tm_v04_e2e_habit_2f7cf6d5b85d"
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "cache_fingerprint": "4acc4699e0769af01d5a55426a56b80c77f81b8b8783b492c3907165f95ce09a",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session completed a booking-stage validation for the current coastal trip only. It reconciled the five hotel nights to the flight dates, itemized air, lodging, bag, and ground-transfer costs, and identified payment and cancellation timing without making a purchase.",
+        "evidence_topology": {
+          "episode_id": "partner-coast-001",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 7,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user confirms only current-trip booking details and payment handling. None of the user utterances establishes or reaffirms a candidate habit's concrete recurring preference, boundary, exception, or revision.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I’m ready for one booking-stage review of the Savannah and Tybee trip. Check that the hotel split actually matches the flights, give me the full estimate including the transfer to Tybee, and spell out what gets charged when. Don’t submit anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "The dates align. You fly MSP to SAV on Thursday, April 23, arriving at 12:46 p.m. The Drayton stay is April 23–25 for two nights, then Beachview Inn & Spa is April 25–28 for three nights. Your return flight leaves SAV Tuesday, April 28 at 2:35 p.m. That accounts for all five nights with no gap or overlap.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Put the flights into the same review too, including the connection and bag.",
+          "role": "user"
+        },
+        {
+          "content": "Flights for two are: Thursday, April 23, MSP departure at 7:10 a.m., connection in Atlanta, SAV arrival at 12:46 p.m.; Tuesday, April 28, SAV departure at 2:35 p.m., connection in Atlanta, MSP arrival at 7:48 p.m. The current ticket total is $874 for two in economy. One shared checked bag adds $35 each direction, so the air estimate is $944.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the hotels are still the rooms we carried forward? I don’t want a cheaper room substituted at this point.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The review is using the selected room at The Drayton Hotel at $365 per night for two nights and the selected room at Beachview Inn & Spa at $465 per night for three nights. The room subtotal is $2,125. Estimated lodging taxes and current mandatory fees add $377, bringing lodging to about $2,502.",
+          "role": "assistant"
+        },
+        {
+          "content": "Break that out by property, even if the tax numbers are estimates.",
+          "role": "user"
+        },
+        {
+          "content": "The Drayton is $730 in room charges and approximately $96 in taxes and fees, for an estimated $826 total. Beachview is $1,395 in room charges and approximately $281 in taxes and fees, for an estimated $1,676 total. Those estimates reconcile to the $2,502 lodging total; the checkout pages remain the final authority for tax and fee amounts.",
+          "role": "assistant"
+        },
+        {
+          "content": "What should I use for transportation? I mainly care that the Savannah-to-Tybee move isn’t missing from the total.",
+          "role": "user"
+        },
+        {
+          "content": "Use a $160–$220 transportation allowance. That includes the SAV-to-downtown ride on Thursday, the Saturday transfer from The Drayton to Beachview on Tybee, and the Tuesday ride from Tybee to SAV, with a little room for one short local ride. The Savannah-to-Tybee portion is included, not an extra charge outside the estimate.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then give me the complete number again.",
+          "role": "user"
+        },
+        {
+          "content": "Air with one shared checked bag: $944. Lodging with estimated taxes and mandatory fees: $2,502. Ground transportation: $160–$220. Estimated trip total: $3,606–$3,666. That leaves $134–$194 under the $3,800 ceiling. Meals, optional seat fees, tips, and any price changes before purchase are not included.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now the payment timing. The Tybee hotel was the one with money due up front, correct?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The current Beachview terms require an estimated one-night deposit of $559 including tax at booking. The estimated remaining $1,117 is due at the property. The Drayton is secured by card but is not expected to charge the estimated $826 until the stay, unless its late-cancellation terms are triggered.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about the airfare and bag? Is the whole $944 charged now?",
+          "role": "user"
+        },
+        {
+          "content": "The $874 ticket price is charged when the flights are purchased. The $70 round-trip bag estimate is normally paid when the bag is added through the airline or at check-in, so it does not have to be part of today’s charge. If you add it during purchase and the airline offers that option, today’s air charge would instead be the full $944.",
+          "role": "assistant"
+        },
+        {
+          "content": "List the cancellation deadlines in plain English. I want to know the point where each piece becomes nonrefundable.",
+          "role": "user"
+        },
+        {
+          "content": "Flights: after the airline’s 24-hour risk-free cancellation window, the economy tickets become nonrefundable under the displayed fare terms; the trip is far enough away for that window to apply. The Drayton: cancel by the property’s stated cutoff on April 20 to avoid the late-cancellation charge; after that cutoff, the displayed penalty is one night plus tax. Beachview: cancel by April 9 for the deposit to be returned; after that date, the deposit becomes nonrefundable under the displayed terms. The remaining Beachview balance is due at the property.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the Drayton reservation itself doesn’t become fully prepaid on April 20. It just picks up the one-night penalty if we cancel late?",
+          "role": "user"
+        },
+        {
+          "content": "That is correct based on the current terms. April 20 is the penalty cutoff, not a scheduled prepayment date. A late cancellation or no-show can trigger one night plus tax, while the ordinary stay balance remains payable at the hotel.",
+          "role": "assistant"
+        },
+        {
+          "content": "And for Beachview, are you saying the entire three nights become nonrefundable on April 9, or only the deposit?",
+          "role": "user"
+        },
+        {
+          "content": "Only the deposit is explicitly shown as becoming nonrefundable after April 9. I would not characterize the full three-night balance as nonrefundable without that language on the final checkout page. Before purchase, the last review should confirm whether a late cancellation also authorizes any charge beyond the deposit.",
+          "role": "assistant"
+        },
+        {
+          "content": "That distinction matters. Give me what would be charged today if we bought everything as currently staged, and what would remain later.",
+          "role": "user"
+        },
+        {
+          "content": "With the bag left for check-in, today’s estimated charges would be $874 for the two tickets plus the $559 Beachview deposit, or $1,433 total. Later estimated costs would be $826 at The Drayton, $1,117 remaining at Beachview, $70 for the shared checked bag, and $160–$220 for transportation, or $2,173–$2,233. Together those amounts produce the $3,606–$3,666 trip estimate.",
+          "role": "assistant"
+        },
+        {
+          "content": "Prepare that exact package for purchase. Keep the bag in the estimate but don’t prepay it, and flag the Beachview late-cancellation language for one last check. Nothing should be charged or reserved in this session.",
+          "role": "user"
+        },
+        {
+          "content": "The purchase package is staged as follows: the April 23–28 one-stop MSP–SAV itinerary for two at $874; one shared checked bag budgeted at $70 but left for check-in; The Drayton for April 23–25 at an estimated $826; and Beachview Inn & Spa for April 25–28 at an estimated $1,676, including an estimated $559 deposit. Estimated transportation is $160–$220, for a complete total of $3,606–$3,666. Before submission, the Beachview checkout language is flagged to verify whether cancellation after April 9 risks only the deposit or any additional balance. The flight 24-hour window and The Drayton’s April 20 cutoff are also noted. Nothing has been reserved, ticketed, or charged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0007",
+      "session_index": 7,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. For the April 23–28 coastal trip, the complete purchase package is staged but unbooked: one-stop MSP–SAV flights via Atlanta for two, departing April 23 at 7:10 a.m. and returning April 28 at 2:35 p.m.; The Drayton Hotel April 23–25; and Beachview Inn & Spa April 25–28. The estimated total is $3,606–$3,666, including a $70 allowance for one shared checked bag and $160–$220 for transportation. Estimated charges at purchase are $874 for tickets and a $559 Beachview deposit; later estimated costs are $826 at The Drayton, $1,117 at Beachview, the bag, and transportation. Flight tickets become nonrefundable after the 24-hour cancellation window. The Drayton can be canceled through April 20 before a one-night-plus-tax penalty applies. The Beachview deposit is refundable through April 9; its final checkout language still needs confirmation on whether a later cancellation can trigger charges beyond the deposit. Nothing has been reserved, ticketed, or charged.",
+  "verification": {
+    "7": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user confirms only current-trip booking details and payment handling. None of the user utterances establishes or reaffirms a candidate habit's concrete recurring preference, boundary, exception, or revision."
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h02', 'support') actual=[('tm_pd_v05_user_000_h01', 'support'), ('tm_pd_v05_user_000_h02', 'support'), ('tm_pd_v05_user_000_h03', 'exception')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya chose the Delta itinerary over a comparable American itinerary because the $22 difference bought a more comfortable post-workshop airport-transfer margin; Delta was favored without being treated as exclusive.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to sort out Philadelphia next. The workshop is Tuesday through Thursday in Center City, starting at 8:30 Tuesday and ending at 4:30 Thursday. I can leave Minneapolis after 3:30 Monday, and airfare needs to stay under $700.",
+          "role": "user"
+        },
+        {
+          "content": "What are the travel dates, and do you want me to limit this to nonstops or include a connection if it improves the timing or fare?",
+          "role": "assistant"
+        },
+        {
+          "content": "Monday, July 20 through Thursday, July 23. A nonstop is better, but show me a connection if it is meaningfully cheaper. I mostly need a realistic Thursday departure after the workshop.",
+          "role": "user"
+        },
+        {
+          "content": "I found three workable economy combinations. The strongest Monday outbound choices are a Delta nonstop leaving MSP at 5:15 p.m. and reaching PHL at 8:48 p.m., or an American nonstop from 4:40 p.m. to 8:16 p.m. There is also a United itinerary through Chicago from 4:25 p.m. to 9:38 p.m., but the savings are modest and the connection adds risk before an 8:30 start.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed, skip the connection. What does Thursday look like once you account for getting out of the workshop and reaching PHL?",
+          "role": "user"
+        },
+        {
+          "content": "From central Philadelphia, I would allow 35 to 55 minutes by car at that hour, then target arrival at PHL at least 90 minutes before departure. If the workshop ends promptly at 4:30 and your bag is with you, a car around 4:40 makes 5:20 to 5:35 a reasonable airport-arrival range. That makes departures before 7:00 tight. The practical nonstop returns are American at 7:12 p.m., arriving MSP at 9:10 p.m., and Delta at 7:45 p.m., arriving at 9:42 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "I will have my suitcase with me, so no hotel stop. Are both round trips within the allowance?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Pairing the American flights is $548 round trip: Monday 4:40–8:16 p.m. and Thursday 7:12–9:10 p.m. Pairing Delta is $570: Monday 5:15–8:48 p.m. and Thursday 7:45–9:42 p.m. Both are nonstop standard economy and include a regular carry-on. Checked-bag charges, if any, are separate.",
+          "role": "assistant"
+        },
+        {
+          "content": "The American return leaves less room than I would like if the last workshop discussion runs over.",
+          "role": "user"
+        },
+        {
+          "content": "That is the main tradeoff. For the 7:12 flight, I would want you in a car no later than 4:50; a 20-minute overrun would start consuming the airport buffer. The 7:45 Delta departure gives about 33 more minutes and still stays $130 below the airfare cap.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then favor Delta here. The extra $22 is worth the better Thursday margin, assuming there is no schedule catch.",
+          "role": "user"
+        },
+        {
+          "content": "There is no timing catch in the displayed itinerary. Monday’s 5:15 departure clears your 3:30 constraint by 1 hour 45 minutes and gets you to Philadelphia the night before the workshop. Thursday’s 7:45 departure gives you a sensible transfer window after the 4:30 finish. The fare is nonrefundable, with changes allowed subject to fare difference; the displayed cancellation window is 24 hours after purchase.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before we go any further, give me that one and the best backup in a clean comparison. Do not book either.",
+          "role": "user"
+        },
+        {
+          "content": "Primary: Delta nonstop, $570 round trip. Depart MSP Monday, July 20 at 5:15 p.m.; arrive PHL at 8:48 p.m. Return Thursday, July 23 at 7:45 p.m.; arrive MSP at 9:42 p.m. After the workshop, leave the Center City site around 4:40 p.m.; expected PHL arrival is 5:20–5:35, leaving roughly 2 hours 10 minutes before departure.\n\nBackup: American nonstop, $548 round trip. Depart MSP Monday at 4:40 p.m.; arrive PHL at 8:16 p.m. Return Thursday at 7:12 p.m.; arrive MSP at 9:10 p.m. The same transfer estimate leaves about 1 hour 37 minutes to 1 hour 52 minutes at PHL, so it is workable but less forgiving of an overrun or traffic.\n\nBoth are standard economy, both remain under the $700 allowance, and neither has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0013",
+      "session_index": 13,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. The April 23–28 coastal trip flights and hotels are booked; two quoted private rides remain unreserved. The June 9–12 Denver workshop trip is complete, including the changed Friday 6:40 p.m. DEN–MSP return. For the July 20–23 Philadelphia workshop trip, two nonstop flight combinations are shortlisted and unbooked. The primary is $570 round trip, departing MSP Monday at 5:15 p.m. and returning from PHL Thursday at 7:45 p.m. The $548 backup departs Monday at 4:40 p.m. and returns Thursday at 7:12 p.m. Thursday’s workshop ends at 4:30 p.m. in Center City; Maya will have her suitcase and should leave around 4:40 p.m., with estimated PHL arrival at 5:20–5:35 p.m."
+}

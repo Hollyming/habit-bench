@@ -1,0 +1,150 @@
+{
+  "cache_fingerprint": "315b5c3ed362b99fd505e63b073368edd0882c110b005b8ce4c63156fc7a3cbc",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya chose the in-policy $204 hotel after confirming that it has both a pool and an on-site fitness room. She explicitly treated the hot tub as optional when the otherwise stronger hotel choice stayed within the nightly limit, supporting the durable amenity priority and its softer hot-tub component.",
+        "evidence_topology": {
+          "episode_id": "client-columbus-011",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 63,
+          "target_habit_id": "tm_pd_v05_user_000_h04",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly reaffirms the selected nonstop itinerary and chooses a hotel with both core wellness amenities while treating the hot tub as optional. These are current-trip endorsements, not durable recurring-language claims.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Now that the nonstop is selected",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "The pool and fitness room cover what I need, and the hot tub isn't worth breaking the rate limit.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h04",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Now that the nonstop is selected, can we finish the hotel? I need two nights, Monday through Wednesday, and the room rate has to stay at or below $225 per night before tax.",
+          "role": "user"
+        },
+        {
+          "content": "I have three workable listings. The client-rate hotel two blocks from the workshop is $231 nightly with breakfast, so it is $6 over the nightly limit. Its front desk closes at 10:00 p.m. Monday. The second is $204 nightly with 24-hour check-in and is about a 12-minute rideshare from the workshop. The third is $238 nightly and advertises an airport shuttle, but it is also over the limit. I can calculate the full totals and check the arrival details before we choose.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please do. Use the actual taxes, not a rough estimate. Also check whether the first place would still let me in if the flight is delayed.",
+          "role": "user"
+        },
+        {
+          "content": "All three quote a combined lodging tax of 17.5%. For two nights, the client-rate hotel is $462 before tax and $542.85 after tax. The 24-hour hotel is $408 before tax and $479.40 after tax. The shuttle hotel is $476 before tax and $559.30 after tax. I am checking the first property's late-arrival procedure and the third property's shuttle schedule now.",
+          "role": "assistant"
+        },
+        {
+          "content": "While you're checking, do any of them have a pool and a fitness room? Those both matter for a two-night stay. A hot tub would be nice too, but I wouldn't rule out the best option over that.",
+          "role": "user"
+        },
+        {
+          "content": "The client-rate property lists an indoor pool, fitness center, and hot tub. The $204 hotel has an indoor pool and on-site fitness room but no hot tub. The $238 hotel has a fitness room and seasonal outdoor pool; no hot tub is listed. The pool and exercise facilities are confirmed as operating during your dates.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. What did you find out about arriving late at the client-rate place? My scheduled arrival should be fine, but I don't want a delay to strand me.",
+          "role": "user"
+        },
+        {
+          "content": "The property confirmed it can hold a guaranteed reservation after the desk closes. You would need to call before 10:00 p.m.; staff would place the key in a coded lockbox and send access instructions to the phone number on the reservation. A card guarantee is required. So a late arrival can be accommodated, but it depends on contacting them that evening.",
+          "role": "assistant"
+        },
+        {
+          "content": "And how do transportation and Wednesday checkout compare? I'll be at the workshop both mornings, and I expect to leave for CMH around 4:30 Wednesday.",
+          "role": "user"
+        },
+        {
+          "content": "From the client-rate hotel, the workshop is a two-block walk. It offers luggage storage after its 11:00 a.m. checkout, so you could collect your bag after the workshop and take a rideshare to CMH. The $204 hotel has noon checkout, luggage storage, and a roughly 12-minute rideshare to the workshop; expect about $18-$24 each direction. The $238 hotel has an 11:00 a.m. checkout and luggage storage. Its last airport shuttle leaves at 3:00 p.m., so it does not work for your planned 4:30 departure and you would still need a rideshare.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the first is closest and has the hot tub, but it misses the cap. The third costs even more and its shuttle doesn't help. Is that the right read?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The client-rate property's location, breakfast, and hot tub are useful, but its $231 base rate exceeds the $225 nightly limit and its late check-in takes coordination. The third is $13 over the limit, has the highest two-night total, and provides no usable airport-transfer advantage. The $204 hotel is $21 under the nightly cap, has the pool and fitness room, guarantees check-in at any hour, and has the lowest after-tax total. Even allowing about $36-$48 for two workshop rides, it remains less expensive than the client-rate room.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose the $204 hotel. The pool and fitness room cover what I need, and the hot tub isn't worth breaking the rate limit. Before you reserve it, confirm the cancellation deadline and that a late Monday arrival won't cancel the room.",
+          "role": "user"
+        },
+        {
+          "content": "The $204 rate can be canceled without penalty until 6:00 p.m. local time on Sunday, July 16. After that, the penalty is one night's room and tax. The hotel has 24-hour reception, and a card-guaranteed booking will be held through the night; I will also add your 6:50 p.m. flight arrival as a late-arrival note. The two-night total is $479.40 after tax. Shall I reserve it at that rate?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, reserve that one and leave the flights exactly as selected.",
+          "role": "user"
+        },
+        {
+          "content": "The $204 hotel is reserved for Monday, July 17 through Wednesday, July 19. The confirmed lodging total is $479.40 after tax, with free cancellation until 6:00 p.m. local time Sunday, July 16. The reservation is card-guaranteed, 24-hour check-in is available, and the late-arrival note references the 6:50 p.m. flight arrival. The selected $552 nonstop itinerary and later Wednesday backup flight were not changed. Bag storage at the client office is still unconfirmed, though the hotel can store luggage after Wednesday's noon checkout.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0063",
+      "session_index": 63,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The July 17-19, 2028 Columbus client trip now has a selected $552 nonstop itinerary arriving CMH at 6:50 p.m. Monday and departing at 7:05 p.m. Wednesday, with a later Wednesday nonstop retained as backup. A two-night hotel is confirmed at $479.40 after tax, with free cancellation until 6:00 p.m. local time July 16, card-guaranteed 24-hour check-in, a late-arrival note, noon checkout, and post-checkout luggage storage. Bag storage at the client office remains unconfirmed. The May 20-26, 2028 Monterey Peninsula trip remains fully reserved at a planned total of $3,720, including the later Denver connection on the return, the ground-floor king with step-free access note, and the SJC rental. The December 13-16, 2027 Charlotte and Richmond client trip remains confirmed. The Nashville April 2027, central Oregon coast September 2027, Denver October 2027, and San Diego November 2026 trips remain booked. The coastal Georgia trip and separate January 2027 Denver client trip remain unbooked. The Raleigh breakfast refund and corrected folio, Philadelphia deposit release and shuttle details, and an earlier Nashville refund reconciliation remain unresolved.",
+  "verification": {
+    "63": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Now that the nonstop is selected",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "The pool and fitness room cover what I need, and the hot tub isn't worth breaking the rate limit.",
+          "habit_id": "tm_pd_v05_user_000_h04",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly reaffirms the selected nonstop itinerary and chooses a hotel with both core wellness amenities while treating the hot tub as optional. These are current-trip endorsements, not durable recurring-language claims."
+    }
+  }
+}

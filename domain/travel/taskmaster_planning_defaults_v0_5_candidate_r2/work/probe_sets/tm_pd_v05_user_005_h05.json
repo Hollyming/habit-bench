@@ -1,0 +1,322 @@
+{
+  "cache_fingerprint": "f8805ff2341a344560f8bd6f12391e5974d86f1bf95b31418d171fd06d8a5962",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B have nearly identical totals and exchange a guaranteed view for a shorter route, so generic hotel reasoning cannot separate them. The item requires classifying conflicting historical evidence by persistence and then applying only the durable instruction to the new trip.",
+      "gold_action": "Choose the close-walk hotel and treat the prior view-first instruction as a one-trip exception, not a permanent revision.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_005_s0063",
+        "tm_pd_v05_user_005_s0097",
+        "tm_pd_v05_user_005_s0120"
+      ],
+      "habit_family": "hotel_location_price_tradeoff",
+      "habit_id": "tm_pd_v05_user_005_h05",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_location_beach_proximity",
+        "boundary_condition": "Treat walking distance as the reusable threshold; use a stricter walk-time limit only when the current request explicitly supplies one",
+        "condition": "When searching for a hotel in a coastal or beach-oriented area",
+        "default_action": "Prioritize properties on the beach or close enough to walk while also filtering to the trip's stated budget",
+        "exception_condition": "Do not apply this preference to non-coastal trips or when the current trip names a different location priority",
+        "family": "hotel_location_price_tradeoff",
+        "habit_id": "tm_pd_v05_user_005_h05",
+        "name": "Prefer beach-proximate hotels",
+        "preference_value": "A hotel on or near the beach, ideally within walking distance",
+        "scope_condition": "The couple's recurring beach-oriented vacation when comparing hotels within the stated trip budget.",
+        "scope_key": "annual_coastal_hotel_location",
+        "source_bundle_id": "tm_v04_e2e_bundle_9872ac91d495",
+        "source_habit_instance_id": "tm_v04_e2e_habit_9872ac91d495",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Hotel B's guaranteed ocean-view balcony is attractive and remains in budget, but the supplied history does not make guaranteed views a recurring preference, while walkable beach access is expressly recurring.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "The longitudinal coastal-vacation policy prioritizes practical walkable beach access within the full-stay budget. The ocean-view unit discussion was tied to its specific trip and does not establish a general rule that a balcony view should displace closer beach access.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Session s0063 explicitly confined the view-first override to one stay, whereas s0097 and s0120 support the reusable coastal default. With no new override, Hotel A is the in-budget option that follows the durable rule; Hotel B incorrectly promotes a temporary exception into a permanent preference.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_005_h05_p00",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "Choices A and B reveal that an earlier view-centered instruction existed.",
+          "Choice A asserts that the earlier instruction was trip-limited, but that assertion is itself the disputed historical fact and cannot be verified from the query."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rationale": "A trades a much shorter beach walk for B's guaranteed view, while C offers savings at the cost of a bus ride. Determining whether the earlier view instruction was trip-specific or persistent requires the missing longitudinal history.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "C",
+      "generator_difficulty_rationale": "B and C create a real personalized tradeoff: C is substantially cheaper, more flexible, and better appointed, while B has the stronger location. The history is necessary to know that the user does not want a cheaper inland option surfaced at the expense of practical access.",
+      "gold_action": "Book the walkable Property B, preserving the recurring location preference while staying below the firm total cap.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_005_s0024",
+        "tm_pd_v05_user_005_s0097",
+        "tm_pd_v05_user_005_s0120"
+      ],
+      "habit_family": "hotel_location_price_tradeoff",
+      "habit_id": "tm_pd_v05_user_005_h05",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_location_beach_proximity",
+        "boundary_condition": "Treat walking distance as the reusable threshold; use a stricter walk-time limit only when the current request explicitly supplies one",
+        "condition": "When searching for a hotel in a coastal or beach-oriented area",
+        "default_action": "Prioritize properties on the beach or close enough to walk while also filtering to the trip's stated budget",
+        "exception_condition": "Do not apply this preference to non-coastal trips or when the current trip names a different location priority",
+        "family": "hotel_location_price_tradeoff",
+        "habit_id": "tm_pd_v05_user_005_h05",
+        "name": "Prefer beach-proximate hotels",
+        "preference_value": "A hotel on or near the beach, ideally within walking distance",
+        "scope_condition": "The couple's recurring beach-oriented vacation when comparing hotels within the stated trip budget.",
+        "scope_key": "annual_coastal_hotel_location",
+        "source_bundle_id": "tm_v04_e2e_bundle_9872ac91d495",
+        "source_habit_instance_id": "tm_v04_e2e_habit_9872ac91d495",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "Property D is also in budget and walkable, making it the closest alternative, but its kitchenette is not an established priority and its eleven-minute walk is weaker than Property B's seven-minute access.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "Property B stays under the firm complete-hotel cap and provides a short, straightforward walk to the beach. Property A exceeds the cap, while Property C replaces practical beach access with a daily drive.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The policy jointly requires practical access and compliance with the trip's stated hotel budget. Property A satisfies location but violates the cap, while Property C satisfies price strongly but abandons practical access; Property B is the option that preserves both parts of the policy.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_005_h05_p01",
+      "probe_type": "conflict_resolution",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The wording 'reconciles the user's history' and 'No other location priority is stated' suggests a stored beach-access rule.",
+          "Choice B's reference to 'relevant access' points toward the likely intended rule, but does not disclose its threshold or strength sufficiently to eliminate C and D."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The firm cap excludes A. B, C, and D then present reasonable tradeoffs among walkability, savings, room quality, cancellation flexibility, and a kitchenette; no stated objective selects one of them.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_005"
+    },
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "A and B are comparably priced, refundable, and useful for different halves of the stated itinerary. Nothing in the current request ranks the local days above the rail excursions; only the longitudinal coastal-hotel policy breaks the tie in favor of A.",
+      "gold_action": "Transfer the established coastal-hotel policy to the Algarve segment and select the in-budget hotel with walkable beach access.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_005_s0024",
+        "tm_pd_v05_user_005_s0097",
+        "tm_pd_v05_user_005_s0120"
+      ],
+      "habit_family": "hotel_location_price_tradeoff",
+      "habit_id": "tm_pd_v05_user_005_h05",
+      "hidden_habit_graph": {
+        "alternative_group_key": "hotel_location_beach_proximity",
+        "boundary_condition": "Treat walking distance as the reusable threshold; use a stricter walk-time limit only when the current request explicitly supplies one",
+        "condition": "When searching for a hotel in a coastal or beach-oriented area",
+        "default_action": "Prioritize properties on the beach or close enough to walk while also filtering to the trip's stated budget",
+        "exception_condition": "Do not apply this preference to non-coastal trips or when the current trip names a different location priority",
+        "family": "hotel_location_price_tradeoff",
+        "habit_id": "tm_pd_v05_user_005_h05",
+        "name": "Prefer beach-proximate hotels",
+        "preference_value": "A hotel on or near the beach, ideally within walking distance",
+        "scope_condition": "The couple's recurring beach-oriented vacation when comparing hotels within the stated trip budget.",
+        "scope_key": "annual_coastal_hotel_location",
+        "source_bundle_id": "tm_v04_e2e_bundle_9872ac91d495",
+        "source_habit_instance_id": "tm_v04_e2e_habit_9872ac91d495",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_005",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "B",
+        "closest_distractor_rationale": "Hotel B is compelling because half the segment includes rail day trips and it is beside the station, but it requires shuttle access to the beach and no trip-specific instruction overrides the recurring walkable-beach policy.",
+        "difficulty": "hard",
+        "model": "gpt-5.6-sol",
+        "rationale": "All leading options fit the cap, but the established coastal-hotel preference resolves the tradeoff in favor of Hotel A's walkable beach access. Its refundable rate also avoids Hotel C's locked-in payment, and the station taxi is needed only on the two rail-excursion days.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The Algarve stay falls within the user's recurring coastal-vacation scope even though it is one segment of a rail itinerary. Hotels A and B have nearly identical totals and exchange beach access for station convenience, so the stored preference for an on-beach or walkable property within budget selects A.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_005_h05_p02",
+      "probe_type": "cross_context_transfer",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The phrase 'when relevant established hotel preferences are used to resolve the tradeoff' explicitly signals that the intended tie-breaker may come from unavailable user history."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The stated itinerary gives equal prominence to local days and rail day trips, but it does not rank beach walkability, station access, refundability, breakfast, room size, or savings. Each option represents a defensible tradeoff, so selecting one would require an unstated preference or private history.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Recommend Hotel A because the prior view-centered decision was limited to its own trip, leaving the recurring policy applicable here."
+        },
+        {
+          "choice_id": "B",
+          "text": "Recommend Hotel B because the earlier emphasis on a guaranteed balcony view should govern later coastal stays as well."
+        },
+        {
+          "choice_id": "C",
+          "text": "Recommend Hotel C because the lowest in-budget total should control when no new instruction repeats an older preference."
+        },
+        {
+          "choice_id": "D",
+          "text": "Recommend Hotel D because direct access should override the budget whenever the overage is relatively small."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "evidence_disambiguation"
+      },
+      "probe_id": "tm_pd_v05_user_005_h05_p00",
+      "query": "For a new five-night beach vacation on Madeira, the total lodging budget is $1,750 and the current request contains no special location instruction. Hotel A costs $1,710, has no guaranteed ocean view, and is a five-minute walk from the swimming beach. Hotel B costs $1,700, guarantees an ocean-view balcony, and is a fourteen-minute walk from the same beach. Hotel C costs $1,620 and requires a short bus ride. Hotel D costs $1,790 and has direct access but no balcony. Which recommendation correctly interprets the user's longitudinal instructions?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_005",
+      "visible_history_scope": {
+        "max_session_index": 128
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book Property A because direct access justifies a limited overage on a once-a-year trip."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book Property B because it keeps the relevant access practical without exceeding the all-in budget."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book Property C because its savings, room upgrade, and cancellation flexibility outweigh the daily drive."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Property D because the kitchenette and lower price provide a middle-ground package despite the longer walk."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "conflict_resolution"
+      },
+      "probe_id": "tm_pd_v05_user_005_h05_p01",
+      "query": "The couple is planning a week in the Outer Banks with a firm $2,400 complete-hotel budget. Property A is $2,465 and sits directly on the sand. Property B is $2,350 and is a seven-minute walk from the public beach entrance. Property C is $2,080, has more flexible cancellation and upgraded rooms, but requires a twelve-minute drive to the beach. Property D is $2,265, includes a kitchenette, and is an eleven-minute walk away. No other location priority is stated. Which booking action best reconciles the user's history with the current cap?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_005",
+      "visible_history_scope": {
+        "max_session_index": 128
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Book Hotel A for its walkable beach access, accepting the longer taxi trip on rail-excursion days."
+        },
+        {
+          "choice_id": "B",
+          "text": "Book Hotel B for its immediate station access and quieter room, using the shuttle for beach visits."
+        },
+        {
+          "choice_id": "C",
+          "text": "Book Hotel C for its balanced travel times and included breakfast, accepting the locked-in payment."
+        },
+        {
+          "choice_id": "D",
+          "text": "Book Hotel D for its larger room and $120-plus savings, accepting bus travel for both main destinations."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "cross_context_transfer"
+      },
+      "probe_id": "tm_pd_v05_user_005_h05_p02",
+      "query": "A multi-city Portugal itinerary includes four nights in the Algarve before the couple continues by rail. During this segment they expect to spend two days locally and make two day trips by train. The complete hotel cap is $1,600. Hotel A is $1,570, seven minutes on foot from the beach and fifteen minutes by taxi from the station, with a refundable rate and a partial-view balcony. Hotel B is $1,565, two minutes on foot from the station and sixteen minutes from the beach by hotel shuttle, with a refundable rate and a quieter courtyard room. Hotel C is $1,585, ten minutes by taxi from both places and includes breakfast, but requires full nonrefundable payment. Hotel D is $1,445, has a larger room in the old town, and is about twenty minutes by bus from both the beach and station. Which booking best fits the traveler when relevant established hotel preferences are used to resolve the tradeoff?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_005",
+      "visible_history_scope": {
+        "max_session_index": 128
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 3,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 2
+    },
+    "query_only_unresolved_count": 5,
+    "selected_count": 3,
+    "selected_difficulty_counts": {
+      "hard": 1,
+      "medium": 2
+    },
+    "selected_type_counts": {
+      "conflict_resolution": 1,
+      "cross_context_transfer": 1,
+      "evidence_disambiguation": 1
+    }
+  }
+}

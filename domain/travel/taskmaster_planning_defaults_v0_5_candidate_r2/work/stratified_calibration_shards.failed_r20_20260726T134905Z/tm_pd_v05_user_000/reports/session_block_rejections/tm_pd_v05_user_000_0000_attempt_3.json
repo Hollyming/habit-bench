@@ -1,0 +1,80 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h00', 'exception') actual=[('tm_pd_v05_user_000_h00', 'exception'), ('tm_pd_v05_user_000_h01', 'support'), ('tm_pd_v05_user_000_h03', 'support')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya explicitly made a trip-specific exception on the return leg: for this Denver trip, she chose the evening departure over an early-afternoon option because the earlier flight left too little margin after the client meeting.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to get to Denver for a rollout review next week. The meeting starts Wednesday at 10:30 a.m. and wraps Friday at noon. I can leave Minneapolis after 4:00 Tuesday, and airfare needs to stay under $690 in economy.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare round trips that fit those hours. Before I narrow them down, what part of Denver is the meeting in, and will you be checking a bag? That affects how much airport time I’d allow Friday.",
+          "role": "assistant"
+        },
+        {
+          "content": "It’s at the client’s office near Anschutz Medical Campus. Carry-on only. I’m fine using a rideshare.",
+          "role": "user"
+        },
+        {
+          "content": "From Anschutz to DEN, I’d budget about 25–35 minutes in ordinary traffic, but Friday midday can run longer. With a carry-on, I’d still aim to reach the airport around 75–90 minutes before departure. I found three viable outbound choices after 4:00 p.m.: two nonstops arriving at 7:15 p.m. and 10:05 p.m., plus a cheaper itinerary with a 42-minute connection. Do you want the connection kept in consideration?",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep it in for the price comparison, but 42 minutes sounds fragile. What do the full round trips look like?",
+          "role": "user"
+        },
+        {
+          "content": "The early Friday return is the main constraint. It departs at 2:05 p.m. To make it comfortably, you would need to leave the client site around 12:10, essentially as the meeting ends; a traffic delay or an overrun would erode the margin quickly. The other return departs at 6:20 p.m., which leaves several open hours but is much safer. Pairings currently price as follows: 7:15 p.m. Tuesday arrival with the 2:05 p.m. Friday return, $648; 7:15 p.m. arrival with the 6:20 p.m. return, $672; 10:05 p.m. arrival with the 6:20 p.m. return, $611; connecting outbound with the 6:20 p.m. return, $554.",
+          "role": "assistant"
+        },
+        {
+          "content": "Drop the early Friday flight. For this trip I’d rather take the evening return than risk missing a flight after the client meeting. How late does the connecting outbound get in?",
+          "role": "user"
+        },
+        {
+          "content": "The connection arrives Denver at 9:35 p.m. Tuesday if it runs on schedule. The 42-minute transfer is at Salt Lake City, and there is no later same-airline flight to Denver that night with confirmed availability. A modest delay out of Minneapolis could therefore turn into an overnight disruption.",
+          "role": "assistant"
+        },
+        {
+          "content": "That’s not worth saving $57 compared with the 10:05 arrival. Is the late nonstop really leaving Minneapolis after 4:00?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. It departs MSP at 8:18 p.m. Tuesday and arrives DEN at 10:05 p.m. The earlier nonstop departs at 5:25 p.m. and arrives at 7:15 p.m. Both give you ample time before Wednesday’s 10:30 meeting.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you compare the two nonstop round trips beyond price? Include when I’d likely reach a hotel near Anschutz and the Friday timing.",
+          "role": "user"
+        },
+        {
+          "content": "Option 1 is the 5:25 p.m. outbound and 6:20 p.m. return for $672. Allowing roughly 15–25 minutes from the gate to the rideshare pickup and 25–35 minutes to Anschutz, you would likely reach the hotel around 8:00–8:20 p.m. Tuesday. On Friday, leaving the client around 3:45–4:00 p.m. should put you at DEN with a reasonable cushion.\n\nOption 2 is the 8:18 p.m. outbound and the same 6:20 p.m. return for $611. Hotel arrival would more likely be around 10:50–11:15 p.m. Friday logistics are identical. The tradeoff is $61 versus nearly three extra hours Tuesday evening in Denver.",
+          "role": "assistant"
+        },
+        {
+          "content": "Both are within policy. Narrow it to those two, but I’m leaning toward the $611 itinerary since Wednesday doesn’t start especially early. Are there any fare restrictions that materially separate them?",
+          "role": "user"
+        },
+        {
+          "content": "Both are standard economy fares with a carry-on included and seat selection available. The $611 itinerary has a $75 same-day confirmed-change fee; the $672 fare permits same-day changes without that fee, subject to seat availability. Neither is refundable, and both provide a travel credit if canceled before departure. Given your fixed Tuesday departure window and Wednesday start time, the $611 round trip is the stronger value unless schedule flexibility is worth $61 to you. I’ve kept the two finalists as: 8:18 p.m. Tuesday nonstop / 6:20 p.m. Friday nonstop at $611, and 5:25 p.m. Tuesday nonstop / 6:20 p.m. Friday nonstop at $672.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0046",
+      "session_index": 46,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya is planning a Minneapolis–Denver client trip for a rollout review near Anschutz Medical Campus, Wednesday at 10:30 a.m. through Friday at noon. She will travel carry-on only and use rideshare transportation. Two nonstop round trips remain under the $690 airfare allowance: a $611 itinerary departing MSP at 8:18 p.m. Tuesday and a $672 itinerary departing at 5:25 p.m.; both return from DEN at 6:20 p.m. Friday. She is leaning toward the $611 itinerary, but no booking has been completed."
+}

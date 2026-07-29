@@ -1,0 +1,168 @@
+{
+  "cache_fingerprint": "6474937636841dce23f39f2c8a3f9a896d10e024afc60ba9a1aabe2ec5d4be64",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya explicitly made a trip-specific exception to the pool preference because dependable transportation to early meetings was more important, while selecting a hotel that retained an on-site gym. The exception was confined to this Denver rollout review.",
+        "evidence_topology": {
+          "episode_id": "client-denver-009",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 47,
+          "target_habit_id": "tm_pd_v05_user_000_h04",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v3_eligibility_v3",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly makes a one-trip override of the usual pool requirement while retaining the gym requirement; no other candidate habit is established by the user's utterances.",
+          "reasoning_effort": "high",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For this trip, I’m willing to give up the pool because the campus shuttle matters more during an early rollout review. I still want the gym available, so Campus Lodge clears that bar. I don’t think the hot tub at Parkside is enough to outweigh six separate rideshare pickups.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h04",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I have the Denver flights narrowed down, so I need to settle the hotel for Tuesday through Friday. The review is at the medical campus east of downtown, and the project cap is $245 per night before tax.",
+          "role": "user"
+        },
+        {
+          "content": "Send me the nightly rates, taxes or fee details, parking charges, and what each property offers for getting to the campus. I’ll calculate the three-night totals and compare the practical morning commute.",
+          "role": "assistant"
+        },
+        {
+          "content": "Option one is Campus Lodge at $238 a night. It has a shuttle to the medical campus, but parking is $24 per night. Option two is Parkside Inn at $199, with free parking but no shuttle. Option three is Central Station Hotel downtown at $214. It is close to the airport train, but parking is $42 nightly.",
+          "role": "user"
+        },
+        {
+          "content": "All three room rates fit the $245 pre-tax limit. Do you have the lodging tax rate, and are those parking prices inclusive of tax? Also, would you rent a car or use rideshare if the hotel transportation is sufficient?",
+          "role": "assistant"
+        },
+        {
+          "content": "Use 15.75% lodging tax for all three. The parking figures are the final nightly amounts. Parking is reimbursable outside the room cap, but a rental car requires advance approval. I’d rather avoid requesting one unless it clearly improves the plan.",
+          "role": "user"
+        },
+        {
+          "content": "The complete hotel charges for three nights are:\n\n- Campus Lodge: $238 x 3 = $714. Tax is $112.46, so lodging totals $826.46. With three nights of parking, it would be $898.46 before the rental itself.\n- Parkside Inn: $199 x 3 = $597. Tax is $94.03, so the total is $691.03. Parking remains included.\n- Central Station Hotel: $214 x 3 = $642. Tax is $101.12, so lodging totals $743.12. With parking, it would be $869.12 before the rental.\n\nWithout a car, those lodging totals remain $826.46, $691.03, and $743.12 respectively.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Campus Lodge shuttle runs every 30 minutes from 6:30 to 9:30 in the morning. They said the ride is usually 8 to 12 minutes, but I have to reserve it the day before. My meetings start at 8:00 Wednesday and Thursday and 8:30 Friday.",
+          "role": "user"
+        },
+        {
+          "content": "That schedule works well. The 7:00 shuttle gives you roughly 35 to 45 minutes of margin on the 8:00 days, while the 7:30 shuttle should work Friday. I would still use 7:00 Friday if checkout or luggage storage could take time. The main operational risk is remembering the reservation and confirming whether the shuttle also brings guests back after meetings.",
+          "role": "assistant"
+        },
+        {
+          "content": "They have return trips until 6:00 p.m., also by reservation. Parkside is about 3.5 miles from the campus. Rideshare estimates are $12 to $18 each way, with a 12- to 20-minute drive depending on traffic.",
+          "role": "user"
+        },
+        {
+          "content": "For three meeting days, six rideshare legs from Parkside would be about $72 to $108. That puts lodging plus campus transportation at $763.03 to $799.03. It is still less expensive than Campus Lodge’s $826.46, but it introduces daily pickup waits, surge exposure, and more variability before the morning sessions.",
+          "role": "assistant"
+        },
+        {
+          "content": "For airport transportation, estimate $45 from the airport to either of those hotels Tuesday and $40 back Friday. The downtown hotel would be $10 each way on the train.",
+          "role": "user"
+        },
+        {
+          "content": "Including airport transportation and assuming no rental car:\n\n- Campus Lodge: $826.46 lodging + $85 airport rideshares = $911.46. Campus shuttle is included.\n- Parkside Inn: $691.03 lodging + $85 airport rideshares + $72 to $108 for campus trips = $848.03 to $884.03.\n- Central Station Hotel: $743.12 lodging + $20 airport rail = $763.12 before travel between downtown and the campus.\n\nThe downtown figure looks low only until the campus commute is added.",
+          "role": "assistant"
+        },
+        {
+          "content": "Right. Downtown to the campus is showing $28 to $38 each way by rideshare. Transit is around an hour and involves a transfer. I don’t want to spend that much time commuting three mornings.",
+          "role": "user"
+        },
+        {
+          "content": "Six downtown rideshare legs would add $168 to $228, bringing Central Station to $931.12 to $991.12. That makes it the most expensive no-car option at the likely prices, as well as the longest and least predictable morning trip. The airport train does not compensate for the repeated campus commute.",
+          "role": "assistant"
+        },
+        {
+          "content": "There is one more difference. Parkside has a pool, gym, and hot tub. Central Station has a pool and gym. Campus Lodge has a gym but no pool.",
+          "role": "user"
+        },
+        {
+          "content": "That strengthens Parkside on facilities and price. The decision is now Parkside at roughly $848 to $884 overall with six rideshare trips, versus Campus Lodge at $911.46 with short scheduled transportation. Campus Lodge costs about $27 to $63 more for a more controlled commute.",
+          "role": "assistant"
+        },
+        {
+          "content": "For this trip, I’m willing to give up the pool because the campus shuttle matters more during an early rollout review. I still want the gym available, so Campus Lodge clears that bar. I don’t think the hot tub at Parkside is enough to outweigh six separate rideshare pickups.",
+          "role": "user"
+        },
+        {
+          "content": "Then Campus Lodge is the stronger plan for this trip. The room rate complies with policy, the projected no-car total is $911.46, and the shuttle reduces morning uncertainty without requiring rental approval. The missing pool is a deliberate local tradeoff rather than a reason to move to the less dependable commute.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you also compare that with renting a car? Assume the rental would be $176 total plus about $18 in fuel.",
+          "role": "user"
+        },
+        {
+          "content": "With a rental and fuel, the trip totals would be:\n\n- Campus Lodge: $898.46 hotel and parking + $176 rental + $18 fuel = $1,092.46.\n- Parkside Inn: $691.03 hotel with included parking + $176 + $18 = $885.03.\n- Central Station Hotel: $869.12 hotel and parking + $176 + $18 = $1,063.12.\n\nParkside with a rental is close to its upper no-car estimate, but it adds approval, driving, and parking logistics. Campus Lodge without a car remains $181 cheaper than Campus Lodge with one.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the sensible request is Campus Lodge, no rental, correct? I can use the hotel shuttle for the review and rideshare only between the airport and hotel.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Request Campus Lodge for three nights at $238 per night before tax, with an estimated lodging total of $826.46. State that no rental or hotel parking is needed and estimate $85 for the two airport rideshares. Reserve the 7:00 a.m. campus shuttle for Wednesday and Thursday; for Friday, use 7:00 as well unless the hotel confirms that 7:30 leaves enough time for luggage handling and the 8:30 meeting.",
+          "role": "assistant"
+        },
+        {
+          "content": "The cancellation deadline is Monday at 6:00 p.m. local time. Is there anything else I should verify before I submit it?",
+          "role": "user"
+        },
+        {
+          "content": "Verify that the campus shuttle serves your exact building, reserve both outbound and return trips, and confirm that the shuttle remains complimentary. Also confirm the quoted $238 rate applies to all three nights and that the estimated tax contains every mandatory lodging charge. Subject to those checks, Campus Lodge with no rental is the best fit: $911.46 including estimated airport transportation, dependable access to the review, and no approval request for a car.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0047",
+      "session_index": 47,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Denver client rollout review: Tuesday-to-Friday flights are leading, requiring three hotel nights near the medical campus east of downtown. Maya selected Campus Lodge at $238 nightly, estimated at $826.46 including lodging tax and $911.46 with airport rideshares. Plan is no rental car or hotel parking; use reserved hotel transportation to the campus. Before submission, verify the shuttle serves the exact building, covers return trips, remains complimentary, and confirm all mandatory charges. Cancellation deadline is Monday at 6:00 p.m. local time.",
+  "verification": {
+    "47": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For this trip, I’m willing to give up the pool because the campus shuttle matters more during an early rollout review. I still want the gym available, so Campus Lodge clears that bar. I don’t think the hot tub at Parkside is enough to outweigh six separate rideshare pickups.",
+          "habit_id": "tm_pd_v05_user_000_h04",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "verifier_notes": "The user explicitly makes a one-trip override of the usual pool requirement while retaining the gym requirement; no other candidate habit is established by the user's utterances."
+    }
+  }
+}

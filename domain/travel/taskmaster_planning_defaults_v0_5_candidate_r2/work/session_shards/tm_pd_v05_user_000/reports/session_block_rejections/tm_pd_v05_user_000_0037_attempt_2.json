@@ -1,0 +1,88 @@
+{
+  "reason": "ordinary_session_excessive_incidental_policy_matches:tm_pd_v05_user_000_h00,tm_pd_v05_user_000_h01,tm_pd_v05_user_000_h03",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For this Nashville workshop, Maya rejected an after-midnight connecting itinerary, compared two feasible Monday nonstops and two Thursday returns, and retained two round trips using the 6:10 p.m. outbound. The $552 itinerary with the 5:12 p.m. return is preferred, while the $575 itinerary with the 7:38 p.m. return remains as the higher-margin alternative. Nothing was booked.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need flights for a Nashville workshop. It starts Tuesday, April 20 at 9:00 a.m. and ends Thursday, April 22 at 2:30 p.m. I can leave Minneapolis after 3:30 Monday. Economy airfare needs to stay under $670.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare Monday evening arrivals and Thursday returns with enough time for the trip between the client site and BNA. Is the workshop downtown, and will you be leaving directly from the client site Thursday?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, it’s near Music Row. I’ll have my luggage with me Thursday and can leave as soon as the workshop ends.",
+          "role": "user"
+        },
+        {
+          "content": "From Music Row, I’d allow about 25–35 minutes to BNA in ordinary afternoon traffic, plus some buffer for pickup. Leaving at 2:30 would likely put you at the terminal around 3:10–3:25. I found three relevant Monday options: a 4:35 p.m. nonstop arriving 6:42 p.m. for $618 round trip, a 6:10 p.m. nonstop arriving 8:17 p.m. for $552, and a $431 itinerary connecting in Chicago that arrives at 12:24 a.m. Tuesday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Drop the connection. Arriving after midnight before a 9:00 workshop isn’t useful.",
+          "role": "user"
+        },
+        {
+          "content": "Agreed. Both nonstops leave enough time to get to a Music Row hotel Monday evening. The 4:35 departure has only a 65-minute margin after your stated 3:30 availability, while the 6:10 departure is easier to make and still gets you to the hotel around 9:00 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the Thursday choices? I don’t want a flight that requires leaving before the workshop is done.",
+          "role": "user"
+        },
+        {
+          "content": "The earliest workable nonstop departs BNA at 5:12 p.m. and arrives MSP at 7:23 p.m. It gives roughly 1 hour 45 minutes at the airport if you reach the terminal by 3:25. A later nonstop leaves at 7:38 p.m. and arrives at 9:49 p.m., giving considerably more margin. There is also a 4:18 p.m. departure, but reaching it would be too tight after a 2:30 finish, so I excluded it.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can either Monday flight pair with either of those returns? Show me the useful combinations and total prices.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The four combinations are: 4:35 p.m. Monday with 5:12 p.m. Thursday for $618; 4:35 with 7:38 for $641; 6:10 Monday with 5:12 Thursday for $552; and 6:10 with 7:38 for $575. All are economy round trips and currently below the $670 allowance.",
+          "role": "assistant"
+        },
+        {
+          "content": "The $618 option doesn’t seem worth paying more for if the return is identical. Is there any practical benefit to the earlier outbound?",
+          "role": "user"
+        },
+        {
+          "content": "It gets you to Nashville 1 hour 35 minutes earlier, so you would likely reach the hotel around 7:30 p.m. instead of 9:00 p.m. Otherwise, it adds no schedule advantage for the workshop. It also gives you less time to reach MSP Monday after you become available.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then narrow it to the 6:10 outbound. I’m deciding between getting home earlier Thursday and having more airport cushion.",
+          "role": "user"
+        },
+        {
+          "content": "The $552 round trip is the efficient choice: Monday 6:10–8:17 p.m., then Thursday 5:12–7:23 p.m. To protect that return, request the rideshare immediately at 2:30 and aim to leave Music Row by 2:40; a serious traffic delay would reduce the margin. The $575 round trip keeps the same Monday flight but returns Thursday 7:38–9:49 p.m., leaving more than four hours between the workshop finish and departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep both as finalists. Label the earlier return as the preferred option, but note the departure timing from the client site clearly. Don’t book yet.",
+          "role": "user"
+        },
+        {
+          "content": "Two finalists retained, with no booking made:\n\nPreferred — $552 round trip: MSP–BNA Monday, April 19, 6:10–8:17 p.m.; BNA–MSP Thursday, April 22, 5:12–7:23 p.m. Leave the Music Row client site promptly at 2:30 p.m., request the ride immediately, and target arrival at BNA by 3:25 p.m.\n\nMore-buffer option — $575 round trip: the same Monday 6:10–8:17 p.m. outbound; Thursday 7:38–9:49 p.m. return. This adds $23 and arrives home 2 hours 26 minutes later, but provides substantially more protection against traffic or a late workshop release.\n\nBoth remain within the $670 economy airfare allowance.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0037",
+      "session_index": 37,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh client workshop trip for February 28-March 3, 2027 is complete. The replacement rideshare plan worked, and the room, taxes, flights, and ground expenses match the updated itinerary. The AC folio incorrectly added two $24.60 breakfast charges despite breakfast being included; Maya has a drafted request for a $49.20 refund and a corrected itemized receipt showing a $744.38 hotel total. Resolution remains pending. A Nashville client workshop is scheduled for April 20-22, 2027 near Music Row. Two flight finalists remain unbooked: both use the April 19 6:10-8:17 p.m. MSP-BNA outbound; the preferred $552 round trip returns April 22 at 5:12-7:23 p.m. and requires leaving the client site promptly at 2:30 p.m., while the $575 alternative returns at 7:38-9:49 p.m. with more airport margin. The Denver trip for June 16-19, 2026 is fully updated at $1,756.40. The Philadelphia July 2026 return and hotel extension added $348.56; the Sonesta deposit release and Hyatt shuttle details remain unresolved. The coastal Georgia trip remains unbooked at $3,647. Nashville still needs total reconciliation after its refund posts. The two-person San Diego trip for November 8-13, 2026 remains booked at an estimated $3,284, with hotel cancellation available through November 3 at 6:00 p.m. local time. The Denver client trip for January 12-15, 2027 remains unbooked pending final approval, with a prepared total of $1,511.49 that must be rechecked before purchase."
+}

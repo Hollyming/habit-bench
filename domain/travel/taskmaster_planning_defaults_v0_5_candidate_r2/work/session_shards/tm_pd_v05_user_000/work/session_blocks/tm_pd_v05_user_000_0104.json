@@ -1,0 +1,150 @@
+{
+  "cache_fingerprint": "3123dd4c9983652a1c8665447f22e28d50ddb26089b71175dca489219846d230",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support: while choosing the return leg, Maya selected the 5:55 p.m. afternoon nonstop over a later connecting option, accepting the higher fare and bag cost to avoid a much longer trip.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-017",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 104,
+          "target_habit_id": "tm_pd_v05_user_000_h00",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chooses an afternoon return and nonstop routing for this trip, but does not state either as a durable cross-trip default.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Then use the nonstop both ways.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I would rather take the afternoon nonstop home and avoid turning Thursday into a five-hour trip.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I rechecked the Raleigh flights and the choices have shifted. Can we compare the real travel time, connection points, fare restrictions, and bag fees before I buy? I also need to know whether the Thursday 5:55 nonstop is honestly workable after a 3:30 finish.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. What airfare ceiling should I hold, and will you check a bag or travel with a carry-on only? Those two details could change which fare is actually cheaper and how much airport margin you need.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the ticket at $550 or less. I expect one checked suitcase. North Hills and rideshares are settled, so focus on the flights.",
+          "role": "user"
+        },
+        {
+          "content": "The strongest afternoon-return pairings are: (1) nonstop both ways for $548, departing MSP Tuesday at 4:05 p.m., arriving RDU at 7:42 p.m., then returning Thursday nonstop at 5:55 p.m.; (2) a $462 round trip with one connection each way, reaching Raleigh at 10:18 p.m. Tuesday and leaving RDU at 7:10 p.m. Thursday. The first connection is in Atlanta and the return connection is in Detroit.",
+          "role": "assistant"
+        },
+        {
+          "content": "How different are they in total elapsed time? And are those basic economy prices?",
+          "role": "user"
+        },
+        {
+          "content": "The nonstop takes 2 hours 37 minutes outbound and 2 hours 23 minutes returning. The cheaper itinerary takes 5 hours 13 minutes outbound, including 1 hour 8 minutes in Atlanta, and 5 hours 2 minutes returning, including 57 minutes in Detroit. The $548 fare is standard economy: seat selection is included, changes are allowed without a change fee but any fare difference applies, and cancellation produces an airline credit. The $462 fare is basic economy: no voluntary changes, no credit after the 24-hour cancellation window, and seats are assigned unless you pay where permitted.",
+          "role": "assistant"
+        },
+        {
+          "content": "What does the suitcase do to the comparison?",
+          "role": "user"
+        },
+        {
+          "content": "The nonstop pairing charges $40 each way for the first checked bag, making its practical total $628. The connecting pairing charges $35 each way, making it $532. Both ticket prices meet your $550 airfare ceiling, but only the connecting option remains below $550 after baggage. Your ceiling was stated for the ticket, so the nonstop still qualifies unless you want baggage included in that limit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Ticket only is fine. Now stress-test that 5:55 departure. I don't want a recommendation based on perfect traffic.",
+          "role": "user"
+        },
+        {
+          "content": "With sessions ending at 3:30, requesting the ride immediately and leaving around 3:40 gives a likely RDU arrival between 4:00 and 4:20. That is 95 to 115 minutes before departure. The airline's checked-bag cutoff is 45 minutes before departure, or 5:10, and boarding is expected to close around 5:40. Even at the slow end of the stated 20-to-40-minute drive, you have about 50 minutes of cushion before the bag cutoff.",
+          "role": "assistant"
+        },
+        {
+          "content": "What if the session runs fifteen minutes late and traffic is at the bad end?",
+          "role": "user"
+        },
+        {
+          "content": "If you leave at 3:55 and the ride takes 40 minutes, you reach the terminal around 4:35. That leaves 35 minutes before the bag cutoff and about 65 minutes before boarding closes. It is still realistic, though a rideshare delay of more than about 20 minutes or a meeting extending past roughly 4:15 would make the checked bag the first concern. Checking in online and having the client keep the suitcase ready near the exit would protect the margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the 7:10 connecting return meaningfully safer, or does the short Detroit connection create a different risk?",
+          "role": "user"
+        },
+        {
+          "content": "It gives you substantially more departure margin at RDU: even a 4:15 meeting finish should be comfortable. The tradeoff is the 57-minute Detroit connection. That is legal and normally manageable, but a delay from Raleigh could jeopardize the final leg, and the itinerary gets you home roughly two and a half hours later than the nonstop. The airline would rebook you after an operational disruption, but basic economy would not let you change proactively just because the meeting runs long.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then use the nonstop both ways. I would rather take the afternoon nonstop home and avoid turning Thursday into a five-hour trip. The $548 ticket is under the cap, and the bag fee is acceptable.",
+          "role": "user"
+        },
+        {
+          "content": "Selected round trip: Tuesday, February 5, nonstop MSP-RDU from 4:05 p.m. to 7:42 p.m.; Thursday, February 7, nonstop RDU-MSP departing at 5:55 p.m. The standard-economy airfare is $548, plus $80 round trip for one checked suitcase, for $628 in flight and baggage costs. Thursday's plan is to have the suitcase ready at the client site, request the rideshare as the 3:30 session ends, and leave near 3:40. A 4:00-4:20 airport arrival provides a workable margin ahead of the 5:10 bag cutoff. Before purchase, verify the displayed flight numbers and times, standard-economy change and credit terms, the first-bag price, and the operating carrier's exact bag and boarding cutoffs. Nothing is booked yet.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0104",
+      "session_index": 104,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "A February 5-7, 2030 Raleigh client trip is being planned but nothing is booked. Maya selected a standard-economy nonstop round trip: MSP-RDU Tuesday 4:05-7:42 p.m. and RDU-MSP Thursday 5:55 p.m., quoted at $548 plus $80 for one checked suitcase. Thursday sessions are expected to end at 3:30 p.m.; the working plan is to have the client store the suitcase, request a rideshare immediately, leave near 3:40, and reach RDU around 4:00-4:20. The checked-bag cutoff is currently shown as 5:10 p.m., but flight details, fare terms, bag charges, operating carrier cutoffs, and client-site luggage storage require confirmation before purchase. The working North Hills hotel remains $229 per night for Tuesday and Wednesday, approximately $518.69 after estimated tax, and rideshares remain estimated at $103. With airfare and baggage, the projected trip total is $1,249.69 before meals, tips, or surge pricing. The airport-hotel and rental alternative remains rejected. Unresolved accounting follow-ups include the Raleigh corrected folio, Philadelphia deposit release, and Nashville refund reconciliation. The September 12-16 Monterey Peninsula trip for Maya Lian Chen and Jordan Avery Lee remains confirmed at $2,849, with whale-watching booking status and exact hotel cancellation cutoffs unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2, 2029 Baltimore client trip and November 6-8, 2029 Raleigh client trip remain recorded as confirmed, with their noted ground-transportation items unresolved.",
+  "verification": {
+    "104": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I would rather take the afternoon nonstop home and avoid turning Thursday into a five-hour trip.",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Then use the nonstop both ways.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chooses an afternoon return and nonstop routing for this trip, but does not state either as a durable cross-trip default."
+    }
+  }
+}

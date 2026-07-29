@@ -1,0 +1,163 @@
+{
+  "cache_fingerprint": "82beb2347f9b5c26c37eaed4471dd99a53f779d1ebfb1e38ce5bf7af2e28ac92",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marcus chose a window seat for his own flights whenever seat selection becomes available, with selection deferred to the earliest available point if it cannot be assigned during booking.",
+        "evidence_topology": {
+          "episode_id": "nashville-memphis-ops-01",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 109,
+          "target_habit_id": "tm_pd_v05_user_002_h04",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user makes a trip-specific Sunday-evening outbound choice to protect the Monday meeting, endorses an evening return from Memphis, and explicitly requests a window seat. No user utterance establishes a cabin, nonstop-routing, breakfast, or balcony preference.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Use the Sunday 6:20 flight and the 6:05 out of Memphis. The extra night is worth protecting Monday, and I’d rather be home before eight Tuesday.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Use the Sunday 6:20 flight and the 6:05 out of Memphis. The extra night is worth protecting Monday, and I’d rather be home before eight Tuesday.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 1.0,
+            "evidence_quote": "For my seat, make it a window whenever seat selection opens.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_002_h04",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I need to compare flights for Nashville and Memphis, October 18 through 20. The Nashville meeting starts Monday at 9:30 a.m., and the Memphis inspection is Tuesday at 1:30 p.m. I can either fly round-trip to Nashville or come home from Memphis.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare a Sunday flight to Nashville with an early Monday arrival, then price both the Nashville round trip and an open-jaw return from Memphis. About what time will the Memphis inspection finish?",
+          "role": "assistant"
+        },
+        {
+          "content": "Allow two hours, so 3:30. I’ll have a rental car either way.",
+          "role": "user"
+        },
+        {
+          "content": "The drive from central Nashville to the Memphis location is about 3 hours 15 minutes without a long stop. Returning the car and clearing security add roughly an hour, so driving back to Nashville after the inspection would put you at BNA around 7:45 p.m. at best. Flying from Memphis gives you considerably more margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Show me the actual schedules and totals. I don’t want to create a problem for the Monday meeting just to save a little.",
+          "role": "user"
+        },
+        {
+          "content": "For ORD-BNA, the viable Sunday nonstop leaves at 6:20 p.m. and arrives at 7:55 p.m. The lowest workable Monday nonstop leaves at 6:05 a.m. and arrives at 7:36 a.m., giving you 1 hour 54 minutes before the meeting if the flight is on time.\n\nUsing the Sunday outbound, the Nashville round trip is $318 with a Tuesday 9:35-11:12 p.m. BNA-ORD return. The open-jaw itinerary is $417 with a Tuesday 6:05-7:49 p.m. MEM-ORD nonstop, or $451 with an 8:15-9:59 p.m. nonstop. All amounts are standard economy totals.",
+          "role": "assistant"
+        },
+        {
+          "content": "And if I take the Monday morning flight instead?",
+          "role": "user"
+        },
+        {
+          "content": "The Monday-outbound versions are $274 round-trip through Nashville, $373 with the 6:05 p.m. Memphis return, and $407 with the 8:15 p.m. Memphis return. That saves $44 in every structure, but a modest delay Monday would leave little time to get from BNA to the 9:30 meeting.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Nashville round trip looks cheap, but is that Tuesday return honestly workable after Memphis?",
+          "role": "user"
+        },
+        {
+          "content": "It is possible only with a tight sequence: finish at 3:30, leave Memphis immediately, reach the Nashville airport area around 6:45, return the car, and check in for the 9:35 flight. Ordinary traffic still leaves a buffer, but an inspection overrun or congestion on I-40 could consume it. You would also spend more than six hours driving Tuesday between Nashville and Memphis and back.",
+          "role": "assistant"
+        },
+        {
+          "content": "No. Compare the two Memphis returns more closely.",
+          "role": "user"
+        },
+        {
+          "content": "The 6:05 p.m. flight requires leaving the restaurant around 3:45. The airport is about 20 minutes away, so you should reach the rental return near 4:05 and the terminal around 4:25. That leaves roughly 1 hour 40 minutes before departure. The 8:15 p.m. flight adds $34 and about two hours of waiting, but it absorbs a substantial inspection overrun and still gets you to Chicago before 10:00 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "The inspection should end on time. Use the Sunday 6:20 flight and the 6:05 out of Memphis. The extra night is worth protecting Monday, and I’d rather be home before eight Tuesday.",
+          "role": "user"
+        },
+        {
+          "content": "That is the $417 open-jaw schedule: ORD-BNA Sunday 6:20-7:55 p.m., then MEM-ORD Tuesday 6:05-7:49 p.m. It supports the Monday 9:30 meeting, allows the Nashville-to-Memphis drive before Tuesday’s 1:30 inspection, and gives about 1 hour 40 minutes at MEM after a 3:30 finish. Would you like me to hold that flight structure for the hotel and rental-car comparison, or ticket it now?",
+          "role": "assistant"
+        },
+        {
+          "content": "Hold it for the complete-trip pricing. For my seat, make it a window whenever seat selection opens. Carry the later Memphis flight as the fallback, too.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll carry forward the preferred $417 open-jaw schedule and the $451 Memphis-return fallback. No flight has been ticketed. The next comparison will include a Sunday-night Nashville hotel, a rental car picked up at BNA and returned at MEM, the roughly 3-hour-15-minute Nashville-to-Memphis drive, and lodging positioned for Tuesday’s 1:30 p.m. inspection. For the preferred flights, I’ll select or request a window seat for you when seat selection is available; if it is deferred until check-in, that will remain pending until the earliest selection window.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0109",
+      "session_index": 109,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Charleston remains confirmed for Marcus, Daniel, and Owen for March 27-31 under flights H7Q4LM and A6N9RP, Hyatt House HH-729461, and rides R-48271 and R-48296; the $501 canceled-return refund remains pending. Louisville is confirmed for Marcus April 7-8 under flight L8V2KD and Galt House GH-684217; four local rides remain unbooked at an expected $124-$171. Cleveland is confirmed May 13-14 under United C7M4QP, Aloft AB-417286, Hertz HZ-638205, and ORD Lot F LF-290184. Dallas is confirmed June 16-17 under United U6D9KF, Hyatt Place HP-583194, and Avis AV-741620, estimated at $683. Southern California is confirmed for the family July 19-27 under United N4K8TZ, Sea View SV-731904, Avis AVD-904671, and Bahia BM-558217, total $5,739. Boston is confirmed for the family January 22-26 under JetBlue J7R4NX and Revere Hotel RV-621847; Tuesday car pickup is 4:30 a.m. Norfolk and Virginia Beach are confirmed under flights N6R3PV, Courtyard CY-842619, and Avis AV-395742; expected total is $1,112.56 before fuel, tolls, meals, and Tuesday parking. St. Louis is confirmed March 23-28 under DoubleTree DT-573826; expected hotel, parking, fuel, and tolls total is $1,149.40. Sacramento is confirmed under flights S6K9TR, Courtyard CY-519384, and Alamo AL-728541; estimated total is $1,235.08. Oregon coast is fully confirmed under United UA-8K4R2M, Budget BZ-761943, Tolovana TI-846291, Adobe AR-593817, and Hampton HP-274608; current exposure is $4,989.68 before meals and activities. The September 16-17 Atlanta-Birmingham trip is confirmed under flights Q7L3VD, Home2 Suites H2-846317, and Avis AV-592804; expected total is $1,141.06 before meals. The June 12-15 Pittsburgh family weekend is complete under P6T8RM and Schenley House SH-418672. Monday checkout is 11:00 a.m.; the hotel will store the bags before an 11:45 a.m. departure for PIT. The ticketed return is PIT-ORD 2:10-2:53 p.m. with seats 3A, 3C, and 3D. Revised charges total $2,171.46; rides remain unbooked and unpaid at an estimated $210. For the October 18-20 Nashville-Memphis trip, the flight structure selected for complete-trip pricing is ORD-BNA Sunday 6:20-7:55 p.m. and MEM-ORD Tuesday 6:05-7:49 p.m., totaling $417. The Monday meeting begins at 9:30 a.m.; the Memphis inspection runs Tuesday from 1:30 to about 3:30 p.m. The drive from Nashville to Memphis is estimated at 3 hours 15 minutes. A Tuesday 8:15-9:59 p.m. MEM-ORD return totaling $451 remains the fallback. Flights are not ticketed; Nashville and Memphis lodging and a BNA-to-MEM rental car still need pricing.",
+  "verification": {
+    "109": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Use the Sunday 6:20 flight and the 6:05 out of Memphis. The extra night is worth protecting Monday, and I’d rather be home before eight Tuesday.",
+          "habit_id": "tm_pd_v05_user_002_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Use the Sunday 6:20 flight and the 6:05 out of Memphis. The extra night is worth protecting Monday, and I’d rather be home before eight Tuesday.",
+          "habit_id": "tm_pd_v05_user_002_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 1.0,
+          "evidence_quote": "For my seat, make it a window whenever seat selection opens.",
+          "habit_id": "tm_pd_v05_user_002_h04",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user makes a trip-specific Sunday-evening outbound choice to protect the Monday meeting, endorses an evening return from Memphis, and explicitly requests a window seat. No user utterance establishes a cabin, nonstop-routing, breakfast, or balcony preference."
+    }
+  }
+}

@@ -1,0 +1,369 @@
+{
+  "cache_fingerprint": "b7ef4f67303a8289cd3492fbcec690cdceccc9122c66722dd291d478df38cd0a",
+  "rows": [
+    {
+      "boundary_condition": "Treat this as a time-of-day preference for flight departures, without tying it to a particular route, date, or leg type",
+      "bundle_id": "tm_v04_e2e_bundle_30d15d26d331",
+      "canonical_value": "morning_departure",
+      "condition": "When choosing a flight departure time and no trip-specific timing requirement applies",
+      "confidence": 0.94,
+      "decision": "revise",
+      "default_action": "Present morning departure options first",
+      "exception_condition": "No reusable fallback is established; ask before relaxing the preference when morning options are unavailable",
+      "family": "flight_departure_arrival_timing",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_30d15d26d331",
+      "induced_at": "2026-07-25T10:01:59.773682+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer morning flight departures",
+      "preference_value": "morning flight departures",
+      "rationale": "Three independent flight-booking dialogues repeatedly request morning departures across different routes and legs. One dialogue explicitly relaxes the preference to afternoon when morning service is unavailable, indicating a soft default rather than a hard requirement.",
+      "reasoning_effort": "high",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.91,
+        "reason": "Three distinct instruction_ids support a recurring preference for morning flight departures, but the outbound/return/multi-leg scope and proposed fallback behavior are broader than the evidence establishes.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Directly requests a morning departure after reviewing flight timing.",
+          "conversation_id": "dlg-0f7945ca-668b-4c4c-892d-47f94f5ae8bf",
+          "exact_user_quote": "What time does it leave? Let's try for a morning flights.",
+          "instruction_id": "flight-5",
+          "turn_index": 26
+        },
+        {
+          "contribution": "The word 'again' and repeated use across legs support a recurring morning-departure default.",
+          "conversation_id": "dlg-16bc9bb3-c60e-4858-8e82-5ba517d9ff84",
+          "exact_user_quote": "And I need Preferably on American Airlines in the morning again.",
+          "instruction_id": "flight-8",
+          "turn_index": 14
+        },
+        {
+          "contribution": "Applies the morning preference to both outbound and return departures; later negotiation shows it can be relaxed when unavailable.",
+          "conversation_id": "dlg-05b7672d-c352-496c-8115-d8d2271b1059",
+          "exact_user_quote": "I would like to return on June 10th. And I'm looking to depart in the morning and return in the morning.",
+          "instruction_id": "flight-10",
+          "turn_index": 5
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "What time does it leave? Let's try for a morning flights.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-0f7945ca-668b-4c4c-892d-47f94f5ae8bf",
+          "habitual_language": false,
+          "instruction_id": "flight-5",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 26,
+          "user_utterance": "What time does it leave? Let's try for a morning flights."
+        },
+        {
+          "annotated_segment": "And I need Preferably on American Airlines in the morning again.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-16bc9bb3-c60e-4858-8e82-5ba517d9ff84",
+          "habitual_language": false,
+          "instruction_id": "flight-8",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 14,
+          "user_utterance": "And I need Preferably on American Airlines in the morning again."
+        },
+        {
+          "annotated_segment": "I would like to return on June 10th. And I'm looking to depart in the morning and return in the morning.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-05b7672d-c352-496c-8115-d8d2271b1059",
+          "habitual_language": false,
+          "instruction_id": "flight-10",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 5,
+          "user_utterance": "I would like to return on June 10th. And I'm looking to depart in the morning and return in the morning."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Apply this to the return flight's departure time, not necessarily its arrival time; a stricter after-6:00-p.m. preference should only be applied when explicitly stated for the trip.",
+      "bundle_id": "tm_v04_e2e_bundle_65f6cf011815",
+      "canonical_value": "none",
+      "condition": "When choosing the return leg of a round-trip flight.",
+      "confidence": 0.9,
+      "decision": "reject",
+      "default_action": "Search and present return departures in the afternoon or evening first.",
+      "exception_condition": "No reusable fallback or exception is established by this evidence; relax the timing only after checking with the traveler if later return options are unavailable.",
+      "family": "flight_departure_arrival_timing",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_65f6cf011815",
+      "induced_at": "2026-07-25T08:46:41.462936+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "return_departure_afternoon_or_later",
+      "preference_value": "Return flights tend to be preferred in the afternoon or evening rather than the morning.",
+      "rationale": "All three independent dialogues place the return flight in the afternoon or evening, while only one supports a consistent after-6:00-p.m. threshold. The reusable default is therefore afternoon-or-later, expressed softly.",
+      "reasoning_effort": "high",
+      "semantic_review": {
+        "decision": "reject",
+        "quality_score": 0.95,
+        "reason": "Only two source examples clearly concern return departures; the third states a general afternoon-or-evening preference. The evidence therefore does not establish the proposed return-leg default across at least three distinct instruction_ids, and broadening it to all flight departures would over-generalize the return-specific examples.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Clarifies that the return-leg departure, rather than arrival, should be in the evening after 6:00 p.m.",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "exact_user_quote": "No, I want to leave SFO after 6:00 p.m. and arrive back at LaGuardia or any airport in New York whenever, the earliest I can guess from leaving 6:00 p.m. SFO.",
+          "instruction_id": "flight-7",
+          "turn_index": 51
+        },
+        {
+          "contribution": "Independently supports an afternoon return-flight preference.",
+          "conversation_id": "dlg-e0d4e503-ca59-464f-9ee8-ab9eb7be53ab",
+          "exact_user_quote": "I'm looking to get a flight in the morning from 6:00 AM to 10:00 AM and the one that comes back that it could be in the afternoon.",
+          "instruction_id": "flight-4",
+          "turn_index": 10
+        },
+        {
+          "contribution": "Directly states an afternoon-or-evening preference for the return flight.",
+          "conversation_id": "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+          "exact_user_quote": "I'd prefer a afternoon or evening flight.",
+          "instruction_id": "flight-14",
+          "turn_index": 11
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "No, I want to leave SFO after 6:00 p.m. and arrive back at LaGuardia or any airport in New York whenever, the earliest I can guess from leaving 6:00 p.m. SFO.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "habitual_language": false,
+          "instruction_id": "flight-7",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 51,
+          "user_utterance": "No, I want to leave SFO after 6:00 p.m. and arrive back at LaGuardia or any airport in New York whenever, the earliest I can guess from leaving 6:00 p.m. SFO."
+        },
+        {
+          "annotated_segment": "I'm looking to get a flight in the morning from 6:00 AM to 10:00 AM and the one that comes back that it could be in the afternoon.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-e0d4e503-ca59-464f-9ee8-ab9eb7be53ab",
+          "habitual_language": false,
+          "instruction_id": "flight-4",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 10,
+          "user_utterance": "I'm looking to get a flight in the morning from 6:00 AM to 10:00 AM and the one that comes back that it could be in the afternoon."
+        },
+        {
+          "annotated_segment": "I'd prefer a afternoon or evening flight.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-db1c0227-6b94-4cc3-90cd-2b977ac370d0",
+          "habitual_language": false,
+          "instruction_id": "flight-14",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 11,
+          "user_utterance": "I'd prefer a afternoon or evening flight."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Apply the preference only within the current set of options; do not infer that price overrides explicit trip requirements",
+      "bundle_id": "tm_v04_e2e_bundle_3d9911f270e8",
+      "canonical_value": "lowest_price_flight",
+      "condition": "When comparing flight options already under consideration",
+      "confidence": 0.86,
+      "decision": "revise",
+      "default_action": "Rank those options by total price and prefer the cheapest",
+      "exception_condition": "No more specific reusable exception is established by these examples",
+      "family": "flight_price_quality_tradeoff",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_3d9911f270e8",
+      "induced_at": "2026-07-25T09:51:44.073770+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer the cheapest flight option",
+      "preference_value": "lowest-priced flight option",
+      "rationale": "Across the dialogues, the user repeatedly asks for the cheapest option within an already narrowed acceptable set. One dialogue accepts a one-stop itinerary because it is cheapest, while the others use price after amenity or duration constraints have defined the eligible choices.",
+      "reasoning_effort": "high",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.9,
+        "reason": "Three distinct instruction_ids support choosing the cheapest flight option under consideration, but these examples do not establish the candidate's detailed list of required timing, itinerary, cabin, service, and amenity constraints or its specific exceptions.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Directly supports selecting the cheapest acceptable itinerary even when it includes a stop and is overnight.",
+          "conversation_id": "dlg-76731d2b-8f4b-4dcb-a579-f507685c9b02",
+          "exact_user_quote": "If that's the cheapest version, let's do it.",
+          "instruction_id": "flight-10",
+          "turn_index": 23
+        },
+        {
+          "contribution": "Supports choosing by lowest price after the dialogue has established required service and itinerary constraints.",
+          "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+          "exact_user_quote": "Which one's cheapest?",
+          "instruction_id": "flight-8",
+          "turn_index": 52
+        },
+        {
+          "contribution": "Supports using price to choose among options after flight-duration and itinerary preferences have narrowed the set.",
+          "conversation_id": "dlg-e11de364-0a20-46dc-9ee7-fcf9aa4ca5b8",
+          "exact_user_quote": "Go for the cheapest time. How much are the times?",
+          "instruction_id": "flight-3",
+          "turn_index": 35
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "If that's the cheapest version, let's do it.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-76731d2b-8f4b-4dcb-a579-f507685c9b02",
+          "habitual_language": false,
+          "instruction_id": "flight-10",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 23,
+          "user_utterance": "If that's the cheapest version, let's do it."
+        },
+        {
+          "annotated_segment": "Which one's cheapest?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-706c066c-6db6-416d-962d-eea858e726a0",
+          "habitual_language": false,
+          "instruction_id": "flight-8",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 52,
+          "user_utterance": "Which one's cheapest?"
+        },
+        {
+          "annotated_segment": "Go for the cheapest time. How much are the times?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-e11de364-0a20-46dc-9ee7-fcf9aa4ca5b8",
+          "habitual_language": false,
+          "instruction_id": "flight-3",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 35,
+          "user_utterance": "Go for the cheapest time. How much are the times?"
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Do not treat price as overriding explicit requirements such as Wi-Fi, an acceptable layover length, nonstop service when requested, or required departure/return timing.",
+      "bundle_id": "tm_v04_e2e_bundle_cfc55e51f18b",
+      "canonical_value": "lowest_price_acceptable_flight",
+      "condition": "When comparing flights that meet the trip's required timing, connectivity, and onboard-feature needs.",
+      "confidence": 0.9,
+      "decision": "keep",
+      "default_action": "Rank acceptable options by price and choose the cheapest one.",
+      "exception_condition": "A more expensive option may be appropriate when the cheapest option violates a stated must-have or has an unacceptably long or inconvenient layover.",
+      "family": "flight_price_quality_tradeoff",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_cfc55e51f18b",
+      "induced_at": "2026-07-25T08:46:32.645531+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Cheapest acceptable flight",
+      "preference_value": "Prefer the lowest-priced flight that still satisfies essential itinerary and amenity constraints.",
+      "rationale": "Across the dialogues, the user repeatedly seeks the cheapest option while continuing to impose minimum quality constraints, indicating a reusable preference for minimizing price within an acceptable set rather than choosing the absolute cheapest flight regardless of quality.",
+      "reasoning_effort": "high",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.94,
+        "reason": "Three distinct instruction_ids consistently support selecting the cheapest flight within explicit acceptability constraints, with layover characteristics, nonstop service, and Wi-Fi providing independent examples of constraints that can qualify price ranking.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows price is the default comparison criterion while layover quality remains relevant to acceptability.",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "exact_user_quote": "Oh, okay. Alright. Whichever one's the cheapest or Well, what are their layover differences?",
+          "instruction_id": "flight-7",
+          "turn_index": 33
+        },
+        {
+          "contribution": "Directly requests the cheapest option within a constrained acceptable category rather than the cheapest flight overall.",
+          "conversation_id": "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+          "exact_user_quote": "Okay. Tell me the cheapest nonstop.",
+          "instruction_id": "flight-4",
+          "turn_index": 38
+        },
+        {
+          "contribution": "Explicitly combines lowest-price preference with a hard amenity requirement.",
+          "conversation_id": "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a",
+          "exact_user_quote": "Cheapest and Wi-Fi is a must.",
+          "instruction_id": "flight-11",
+          "turn_index": 5
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Oh, okay. Alright. Whichever one's the cheapest or Well, what are their layover differences?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-830d8604-ff6e-4909-b37f-e67049c9ffcc",
+          "habitual_language": false,
+          "instruction_id": "flight-7",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 33,
+          "user_utterance": "Oh, okay. Alright. Whichever one's the cheapest or Well, what are their layover differences?"
+        },
+        {
+          "annotated_segment": "Okay. Tell me the cheapest nonstop.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-302fc04e-6d21-4826-b462-2a475325a94e",
+          "habitual_language": false,
+          "instruction_id": "flight-4",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 38,
+          "user_utterance": "Okay. Tell me the cheapest nonstop."
+        },
+        {
+          "annotated_segment": "Cheapest and Wi-Fi is a must.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-85e84e23-9b9d-40ca-aef5-6f5d7596157a",
+          "habitual_language": false,
+          "instruction_id": "flight-11",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 5,
+          "user_utterance": "Cheapest and Wi-Fi is a must."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "fa4019648fdb3776eecf0a337bde003dd0ecb0527ebafdd71ec5c3a4c23ece20",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "return_flight_departure_time_of_day",
+      "boundary_condition": "Treat this as a soft default: options close to afternoon may be acceptable when true afternoon return departures are limited or otherwise unattractive.",
+      "canonical_value": "Prefer afternoon return-flight departures, or nearby times when afternoon options are unattractive.",
+      "condition": "When booking or comparing round-trip flights, especially when specifying the return leg departure time.",
+      "default_action": "Search for return-flight options that leave in the afternoon; if multiple afternoon options are available, present those first and let the user choose a specific time.",
+      "exception_condition": "Do not apply to outbound legs as a universal rule, because one supporting dialogue explicitly used a morning outbound departure while still preferring an afternoon return.",
+      "input_ids": [
+        "tm_v04_e2e_habit_26cf0aa15c48"
+      ],
+      "name": "afternoon_return_departure_preference",
+      "preference_value": "Prefer the return flight to depart in the afternoon.",
+      "rationale": "Repeated evidence across three dialogues supports a reusable soft preference for afternoon return departures. The evidence also explicitly limits this policy from becoming a universal outbound-leg rule.",
+      "representative_id": "tm_v04_e2e_habit_26cf0aa15c48"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "general_flight_departure_time_of_day",
+      "boundary_condition": "Treat this as a time-of-day preference for flight departures, without tying it to a particular route, date, or leg type",
+      "canonical_value": "Prefer morning flight departures when no trip-specific timing requirement overrides the preference.",
+      "condition": "When choosing a flight departure time and no trip-specific timing requirement applies",
+      "default_action": "Present morning departure options first",
+      "exception_condition": "No reusable fallback is established; ask before relaxing the preference when morning options are unavailable",
+      "input_ids": [
+        "tm_v04_e2e_habit_30d15d26d331"
+      ],
+      "name": "Prefer morning flight departures",
+      "preference_value": "morning flight departures",
+      "rationale": "Three dialogues support a reusable morning departure preference across flight searches. It contrasts with, but is not an alias of, the leg-specific afternoon return preference, so it remains a separate policy.",
+      "representative_id": "tm_v04_e2e_habit_30d15d26d331"
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "cache_fingerprint": "e2d5fb70b437a1a0574ac4499a9b8662019221451b05b93eafe1217d6334641f",
+  "habits": [
+    {
+      "boundary_condition": "Treat this as a recurring preference, not an unconditional requirement; if the current user explicitly accepts paid Wi-Fi or prioritizes speed over cost, follow the current request.",
+      "bundle_id": "tm_v04_e2e_bundle_636b8c2aaf4b",
+      "condition": "When searching for or choosing a hotel and the current request does not say otherwise.",
+      "confidence": 0.86,
+      "decision": "accept",
+      "default_action": "Prefer or confirm hotels that advertise free Wi-Fi before booking or recommending them.",
+      "exception_condition": "Do not infer this for trips where the user says Wi-Fi is unnecessary or chooses another constraint over Wi-Fi.",
+      "family": "hotel_included_services",
+      "grounding_contract": {
+        "complete_dialogues_seen_by_discovery_model": true,
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_636b8c2aaf4b",
+      "induced_at": "2026-07-16T06:16:42.722199+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefer_hotels_with_free_wifi",
+      "preference_value": "Hotels that include free Wi-Fi",
+      "rationale": "Multiple independent hotel dialogues show the user explicitly asking for free Wi-Fi or checking whether a candidate hotel includes it before selecting.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "States free Wi-Fi as a needed hotel feature.",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "exact_user_quote": "I need the one that has free Wi-Fi.",
+          "instruction_id": "hotel-11",
+          "turn_index": 13
+        },
+        {
+          "contribution": "Expresses a clear preference for free Wi-Fi when available.",
+          "conversation_id": "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+          "exact_user_quote": "And also if they have free WiFi. If you can find a place that has it, I would prefer that.",
+          "instruction_id": "hotel-13",
+          "turn_index": 9
+        },
+        {
+          "contribution": "Includes free Wi-Fi as an explicit hotel search criterion.",
+          "conversation_id": "dlg-3b822668-4f71-4578-9a87-94d1f556dd8c",
+          "exact_user_quote": "Yeah. I'm looking for something that has free Wi-Fi, and I would also like to have free breakfast.",
+          "instruction_id": "hotel-16",
+          "turn_index": 6
+        },
+        {
+          "contribution": "Checks that the candidate hotel has free Wi-Fi before choosing it.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "Did the second one have free Wi-Fi?",
+          "instruction_id": "hotel-8",
+          "turn_index": 42
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I need the one that has free Wi-Fi.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 13,
+          "user_utterance": "I need the one that has free Wi-Fi."
+        },
+        {
+          "annotated_segment": "And also if they have free WiFi. If you can find a place that has it, I would prefer that.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+          "habitual_language": false,
+          "instruction_id": "hotel-13",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 9,
+          "user_utterance": "And also if they have free WiFi. If you can find a place that has it, I would prefer that."
+        },
+        {
+          "annotated_segment": "Yeah. I'm looking for something that has free Wi-Fi, and I would also like to have free breakfast.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-3b822668-4f71-4578-9a87-94d1f556dd8c",
+          "habitual_language": false,
+          "instruction_id": "hotel-16",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 6,
+          "user_utterance": "Yeah. I'm looking for something that has free Wi-Fi, and I would also like to have free breakfast."
+        },
+        {
+          "annotated_segment": "Did the second one have free Wi-Fi?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 42,
+          "user_utterance": "Did the second one have free Wi-Fi?"
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Use as a soft default; do not infer a specific breakfast type or quality standard unless the current user states one.",
+      "bundle_id": "tm_v04_e2e_bundle_444e193687d0",
+      "condition": "When booking or evaluating hotels and the current request does not deprioritize breakfast.",
+      "confidence": 0.88,
+      "decision": "accept",
+      "default_action": "Prefer hotels with free breakfast, and ask or verify breakfast inclusion when candidate details are incomplete.",
+      "exception_condition": "Do not force this preference if the current trip prioritizes other hotel constraints or the user says breakfast is not needed.",
+      "family": "hotel_included_services",
+      "grounding_contract": {
+        "complete_dialogues_seen_by_discovery_model": true,
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_444e193687d0",
+      "induced_at": "2026-07-16T06:16:42.722658+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefer_hotels_with_free_breakfast",
+      "preference_value": "Hotels that include free breakfast",
+      "rationale": "Several independent hotel searches explicitly add free breakfast as a desired included service.",
+      "reasoning_effort": "xhigh",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Strongly requests free breakfast as a hotel feature.",
+          "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+          "exact_user_quote": "I want it to have a free breakfast, not like a little drink one. I want it to have a good breakfast as well.",
+          "instruction_id": "hotel-10",
+          "turn_index": 13
+        },
+        {
+          "contribution": "Lists free breakfast among desired hotel criteria.",
+          "conversation_id": "dlg-5aa1cf5c-121b-435d-9234-277161743eac",
+          "exact_user_quote": "Free breakfast. Queen-size bed. Oh, no problem. And my price point Okay.",
+          "instruction_id": "hotel-14",
+          "turn_index": 10
+        },
+        {
+          "contribution": "Explicitly requests free breakfast in a hotel search.",
+          "conversation_id": "dlg-3b822668-4f71-4578-9a87-94d1f556dd8c",
+          "exact_user_quote": "Yeah. I'm looking for something that has free Wi-Fi, and I would also like to have free breakfast.",
+          "instruction_id": "hotel-16",
+          "turn_index": 6
+        },
+        {
+          "contribution": "Adds free breakfast as a requested hotel amenity.",
+          "conversation_id": "dlg-0ee82b47-d16f-4b64-9647-0550832a9a2b",
+          "exact_user_quote": "And a free breakfast, please.",
+          "instruction_id": "hotel-12",
+          "turn_index": 20
+        },
+        {
+          "contribution": "Softly indicates free breakfast would be preferred.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "And also one that maybe has free breakfast but and I think that's it?",
+          "instruction_id": "hotel-8",
+          "turn_index": 15
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I want it to have a free breakfast, not like a little drink one. I want it to have a good breakfast as well.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 13,
+          "user_utterance": "I want it to have a free breakfast, not like a little drink one. I want it to have a good breakfast as well."
+        },
+        {
+          "annotated_segment": "Free breakfast. Queen-size bed. Oh, no problem. And my price point Okay.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-5aa1cf5c-121b-435d-9234-277161743eac",
+          "habitual_language": false,
+          "instruction_id": "hotel-14",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 10,
+          "user_utterance": "Free breakfast. Queen-size bed. Oh, no problem. And my price point Okay."
+        },
+        {
+          "annotated_segment": "Yeah. I'm looking for something that has free Wi-Fi, and I would also like to have free breakfast.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-3b822668-4f71-4578-9a87-94d1f556dd8c",
+          "habitual_language": false,
+          "instruction_id": "hotel-16",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 6,
+          "user_utterance": "Yeah. I'm looking for something that has free Wi-Fi, and I would also like to have free breakfast."
+        },
+        {
+          "annotated_segment": "And a free breakfast, please.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-0ee82b47-d16f-4b64-9647-0550832a9a2b",
+          "habitual_language": false,
+          "instruction_id": "hotel-12",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 20,
+          "user_utterance": "And a free breakfast, please."
+        },
+        {
+          "annotated_segment": "And also one that maybe has free breakfast but and I think that's it?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 15,
+          "user_utterance": "And also one that maybe has free breakfast but and I think that's it?"
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-f3c1fdfb-ee31-4344-8b00-d3e78df841c6",
+    "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+    "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+    "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+    "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+    "dlg-404d6044-0d20-4796-9302-e8a356029e3a",
+    "dlg-51856634-23f6-4305-984f-a938c71a938b",
+    "dlg-5aa1cf5c-121b-435d-9234-277161743eac",
+    "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+    "dlg-3b822668-4f71-4578-9a87-94d1f556dd8c",
+    "dlg-0ee82b47-d16f-4b64-9647-0550832a9a2b",
+    "dlg-00131332-f7b3-4227-9672-652dd3a2c39e"
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "cache_fingerprint": "860b8f83c1378260eabf9a86c46f32eb3ca308e43e3f2acedcaf55596a0a372f",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session addresses only the New Orleans conference trip. Elena retains two unbooked Wednesday-to-Saturday air-and-hotel finalists after rejecting the riskier late-Friday return and late-Wednesday arrival; no recurring travel preference is established.",
+        "evidence_topology": {
+          "episode_id": "ep_022_new_orleans_regional_booksellers_conference",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 83,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requires a morning departure for this trip because of the setup deadline, establishing a one-trip override to the afternoon-departure default. No user utterance strongly establishes the exact connection, carrier, seat, bed, or room-amenity habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Then keep the 8:10 Wednesday flight in every serious option.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to start planning a New Orleans conference trip. Setup closes at 5:00 p.m. Wednesday, October 7, programming is Thursday and Friday, and the author reception ends at 8:30 Friday night. I’ll be flying alone from Denver. Can you compare flying home late Friday with staying until Saturday morning?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Before I build combinations, what arrival margin do you want before Wednesday setup, and is the conference hotel worth considering if it costs more than places a streetcar or rideshare away?",
+          "role": "assistant"
+        },
+        {
+          "content": "I need enough time to reach the hotel, leave my bag, and get to the exhibit hall without rushing. Include the conference hotel, but also show me what I save by staying elsewhere. Nothing should be booked.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll use 90 minutes from scheduled landing to the 5:00 p.m. deadline as the minimum workable margin, though two hours would be more comfortable. I’ll compare Friday flights that are actually possible after the reception with Saturday morning departures, then pair them with three hotel locations.",
+          "role": "assistant"
+        },
+        {
+          "content": "Go ahead. The exhibit hall is at the Riverside Convention Hotel by the convention center, and the reception is there too.",
+          "role": "user"
+        },
+        {
+          "content": "For Wednesday, the strongest nonstop leaves Denver at 8:10 a.m. and reaches New Orleans at 11:45 a.m. At a typical 25 to 35 minutes to exit with a carry-on plus 25 to 40 minutes by car, you would reach the Riverside around 12:45 to 1:00 p.m. That leaves about four hours before setup closes. A cheaper nonstop arriving at 2:28 p.m. leaves only 2 hours 32 minutes to the deadline; after airport transfer and bag drop, its practical cushion is closer to 75 to 100 minutes.",
+          "role": "assistant"
+        },
+        {
+          "content": "The morning flight sounds better. What are the return choices after 8:30 Friday?",
+          "role": "user"
+        },
+        {
+          "content": "The last plausible Friday itinerary departs at 10:15 p.m. and connects in Houston, arriving Denver at 1:38 a.m. Saturday. To make it, you would need to leave the reception at 8:30 sharp, collect your bag immediately, and depart the hotel around 8:40. With a 25- to 35-minute ride, arrival at the airport would be about 9:05 to 9:15, only 60 to 70 minutes before departure. That is vulnerable to reception overrun, traffic, or a slow bag pickup. There is no later nonstop in the current comparison.",
+          "role": "assistant"
+        },
+        {
+          "content": "So Friday works on paper but not comfortably. What does Saturday look like?",
+          "role": "user"
+        },
+        {
+          "content": "Saturday has a 9:05 a.m. nonstop arriving Denver at 10:58 a.m., plus an 11:40 a.m. nonstop arriving at 1:34 p.m. For the 9:05 flight, leaving the convention area around 6:45 a.m. gives roughly two hours at the airport after an estimated 20- to 30-minute ride. The 11:40 option allows a normal breakfast and departure around 9:15. In the displayed examples, the Wednesday morning plus Friday-night connection is $487 round trip, the Saturday 9:05 nonstop is $462, and the Saturday 11:40 nonstop is $506.",
+          "role": "assistant"
+        },
+        {
+          "content": "Interesting that Saturday morning is cheaper even with the extra hotel night. Show me the lodging comparison before drawing that conclusion.",
+          "role": "user"
+        },
+        {
+          "content": "For Wednesday through Saturday, three nights: Riverside Convention Hotel is $289 nightly and about $1,006 including estimated taxes. It is attached to the event space. The Warehouse Arts Hotel is six blocks away, $224 nightly and about $781 total; walking is roughly 12 minutes, with a short rideshare as a rain backup. The St. Charles Garden Hotel is $176 nightly and about $616 total; reaching the conference generally takes 20 to 30 minutes by streetcar plus walking, or 10 to 20 minutes by rideshare depending on traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "And if I force the Friday flight, those are only two hotel nights, correct?",
+          "role": "user"
+        },
+        {
+          "content": "Correct, assuming you check out Friday morning and have the hotel hold your bag through the reception. Estimated two-night totals are $671 at the Riverside, $521 at Warehouse Arts, and $411 at St. Charles Garden. Late luggage retrieval must be confirmed, especially if you need to leave for the airport immediately at 8:30.",
+          "role": "assistant"
+        },
+        {
+          "content": "Calculate complete air-and-hotel combinations for Riverside and Warehouse Arts. Leave the streetcar hotel as a reference, but I doubt the commute is worth it for setup and reception.",
+          "role": "user"
+        },
+        {
+          "content": "Using displayed airfare and estimated lodging totals: Friday return with Riverside is $1,158; Friday return with Warehouse Arts is $1,008. Saturday 9:05 nonstop with Riverside is $1,468; Saturday 9:05 with Warehouse Arts is $1,243. Saturday 11:40 nonstop with Riverside is $1,512; Saturday 11:40 with Warehouse Arts is $1,287. For reference, St. Charles Garden produces totals of $898 Friday, $1,078 Saturday at 9:05, or $1,122 Saturday at 11:40. These exclude airport transfers, hotel destination fees if any, and baggage charges.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Saturday Warehouse option is $235 more than Friday Warehouse, then. How much of that is the hotel and how much is airfare?",
+          "role": "user"
+        },
+        {
+          "content": "Exactly $260 is the third hotel night: $781 versus $521. Airfare is $25 less for the Saturday 9:05 nonstop: $462 versus $487. Net difference is therefore $235. You are effectively paying for the extra night while also getting a nonstop and removing the tight post-reception airport transfer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare Riverside Saturday morning against Warehouse Arts Saturday morning in practical terms, not just price.",
+          "role": "user"
+        },
+        {
+          "content": "Riverside costs $225 more for the same flights. It eliminates event commuting, makes Wednesday bag drop straightforward, and lets you return to your room between programming and the reception. On Saturday, it also simplifies the 6:45 a.m. departure. Warehouse Arts requires a roughly 12-minute walk each way, but the route is short enough that a rideshare can cover bad weather or luggage. Its main uncertainty is whether early check-in or pre-check-in bag storage is available when you arrive Wednesday around 12:45.",
+          "role": "assistant"
+        },
+        {
+          "content": "Could I take the later Wednesday arrival if I stayed at Riverside? I want to understand whether the location fixes that risk.",
+          "role": "user"
+        },
+        {
+          "content": "It helps, but it does not fully fix it. A 2:28 p.m. scheduled landing leaves 152 minutes before setup closes. Allowing 30 minutes to exit and 30 minutes to reach the hotel puts you there around 3:28, with about 92 minutes remaining. A modest delay of 45 minutes cuts that to 47 minutes. The morning arrival gives roughly four hours and protects the purpose of the trip much better, regardless of hotel.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then keep the 8:10 Wednesday flight in every serious option. Between the two Saturday flights, is the 9:05 departure creating another unnecessary squeeze?",
+          "role": "user"
+        },
+        {
+          "content": "Not to the same degree as Friday night. A 6:45 a.m. hotel departure for 9:05 provides about a two-hour airport margin under ordinary traffic, and both hotels can arrange an early car. The tradeoff is the early start after a late reception. The 11:40 flight costs $44 more and shifts Denver arrival 2 hours 36 minutes later, but allows departure from the hotel around 9:15.",
+          "role": "assistant"
+        },
+        {
+          "content": "Narrow it to two combinations for the next session: Riverside with the 9:05 Saturday nonstop, and Warehouse Arts with the 11:40 Saturday nonstop. Give me the exact margins and the decisions still unresolved. Don’t select or reserve either one yet.",
+          "role": "user"
+        },
+        {
+          "content": "Two unbooked finalists, both using the Wednesday 8:10 a.m. Denver nonstop arriving New Orleans at 11:45 a.m. Estimated arrival at either hotel is 12:45 to 1:00 p.m., leaving 4 hours to 4 hours 15 minutes before the 5:00 p.m. setup deadline. Option one is Riverside Convention Hotel for three nights plus Saturday’s 9:05 a.m. nonstop, arriving Denver at 10:58 a.m., estimated combined total $1,468. Leave the hotel around 6:45 a.m.; after a 20- to 30-minute ride, the airport margin is about 1 hour 50 minutes to 2 hours. Option two is Warehouse Arts Hotel for three nights plus Saturday’s 11:40 a.m. nonstop, arriving Denver at 1:34 p.m., estimated combined total $1,287. Leave around 9:15 a.m.; the airport margin is about 1 hour 55 minutes to 2 hours 5 minutes. The second option saves $181 but adds the six-block event commute. Next session should resolve whether on-site convenience is worth that difference and whether the later Saturday arrival home matters. Also verify live schedules and fares, operating carriers, baggage rules, hotel taxes and fees, cancellation terms, Wednesday bag storage or early check-in, the Warehouse walking route, and early Saturday car availability. Nothing has been selected or booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0083",
+      "session_index": 83,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "The January 25-31 Nashville and Raleigh press circuit remains confirmed, including the January 31 Raleigh closing schedule, luggage pickup, and nonstop return to Denver. The November 18-21 Atlanta trip remains unchanged: the Emory Inn is booked for three nights, Friday cars are recorded but unbooked, and flight details still require verification. The May 12-17 San Juan anniversary trip remains confirmed, including flights, five hotel nights, the excursion, anniversary dinner, contingency, checkout sequence, and return. The solo Boston work trip remains confirmed at Boston Park Plaza for June 11-14 at $1,146; the $382 deposit posted as two correct charges, free cancellation ends at 6:00 p.m. Boston time June 8, and flight and ground details still require verification. For the two-adult Philadelphia family graduation trip May 14-18, the Thursday afternoon arrival and Monday morning departure are confirmed. The Study at University City is selected but unbooked for four nights at a normalized total of $1,172 without parking; a $293 deposit is expected at booking, and cancellation is available until 3:00 p.m. Philadelphia time two days before arrival. Friday dinner and Sunday brunch transportation remains to be arranged, while Saturday’s campus ceremony is walkable. Final hotel inventory, taxes, deposit, cancellation terms, bed type, and late-arrival notation still require verification. For the solo New Orleans regional booksellers conference October 7-10, two unbooked finalists remain, both using the Wednesday 8:10 a.m. Denver nonstop arriving at 11:45 a.m.: Riverside Convention Hotel with the Saturday 9:05 a.m. nonstop at an estimated $1,468 combined, or Warehouse Arts Hotel with the Saturday 11:40 a.m. nonstop at an estimated $1,287. The hotel choice and Saturday departure remain unresolved. Live flight details, fares, baggage terms, lodging inventory, taxes and fees, cancellation terms, Wednesday bag handling, the Warehouse route, and early airport transportation require verification.",
+  "verification": {
+    "83": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Then keep the 8:10 Wednesday flight in every serious option.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requires a morning departure for this trip because of the setup deadline, establishing a one-trip override to the afternoon-departure default. No user utterance strongly establishes the exact connection, carrier, seat, bed, or room-amenity habits."
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "cache_fingerprint": "e31cfb81f3f98df846ed60acc80615a04c41084d3181f634c29570a967a3e6d2",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Elena explicitly made the Friday morning departure a one-trip exception because the afternoon nonstop left too little margin before the wedding welcome dinner; she did not revise the broader departure-time policy.",
+        "evidence_topology": {
+          "episode_id": "ep_016_chicago_family_wedding",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 61,
+          "target_habit_id": "tm_pd_v05_user_001_h00",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly overrides the afternoon-departure preference for this trip's outbound leg. The later Sunday flight is also a current-trip timing choice, but the quoted outbound statement is the clearest explicit exception. No user utterance strongly evidences the exact connection, carrier, window-seat, queen-bed, or hotel-amenity defaults.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For this wedding, make the morning outbound the exception.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Before the office books Chicago, compare the two realistic flight combinations for both of us. I want the total airfare and the actual hotel timing, not just the schedules.",
+          "role": "user"
+        },
+        {
+          "content": "The lower-cost combination is the Friday 1:20 p.m. Denver nonstop arriving Midway at 4:45 p.m., paired with the Sunday 1:40 p.m. return arriving Denver at 3:20 p.m. The current total for two economy tickets is $438. The other combination uses Friday's 9:10 a.m.-12:35 p.m. nonstop and Sunday's 7:10 p.m.-8:50 p.m. nonstop, totaling $544 for two. Both totals exclude checked bags and paid seat assignments.",
+          "role": "assistant"
+        },
+        {
+          "content": "Walk me through Friday. Dinner is still 6:30 at Aba, and we need to leave bags at the Hyatt House and change there.",
+          "role": "user"
+        },
+        {
+          "content": "With the morning flight, allow roughly 15 to 25 minutes to get out of Midway and 35 to 55 minutes by car to the hotel. You would likely reach Hyatt House around 1:30 to 1:55 p.m. That leaves more than four hours for bag drop, lunch, changing, and any traffic to dinner. With the 4:45 p.m. arrival, a normal hotel arrival would be about 5:35 to 6:00. Even if a room is ready, that leaves little time to change and reach the 6:30 dinner; a modest flight or traffic delay would make you late.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the afternoon flight saves $106 for the pair but puts dinner at risk.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. The savings are $106 compared with the morning-outbound and late-return combination, but some of that difference also reflects the Sunday flight choice. Friday's early-afternoon departure creates the main schedule risk.",
+          "role": "assistant"
+        },
+        {
+          "content": "For this wedding, make the morning outbound the exception. The extra margin before the welcome dinner matters more than leaving Denver later.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. Keep the Friday 9:10 a.m. nonstop, arriving Midway at 12:35 p.m., for this trip.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now compare Sunday. Brunch ends close to noon, checkout is at 11, and our bags will be at the hotel.",
+          "role": "user"
+        },
+        {
+          "content": "The 1:40 p.m. flight is not workable without disrupting brunch. You would need to collect the bags before brunch or leave brunch around 11:30, then head straight to Midway. The 7:10 p.m. nonstop allows brunch to finish, an unhurried return to the hotel, and ample airport time, though it gets you home at 8:50 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Could we retrieve the luggage right after brunch and still avoid sitting at the airport all afternoon?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Plan to leave brunch around 12:10, reach Hyatt House near 12:25 to 12:40, and collect the stored bags by about 1:00. You could keep the luggage with the hotel longer and spend part of the afternoon nearby, then return for pickup around 3:45. Leaving the hotel by 4:00 should put you at Midway around 4:40 to 5:00, comfortably ahead of the 7:10 departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the later Sunday flight. Set the official pickup for 3:45, but make sure the hotel confirms storage after checkout.",
+          "role": "user"
+        },
+        {
+          "content": "Selected itinerary: two economy tickets on the Friday 9:10 a.m.-12:35 p.m. Denver-Midway nonstop and the Sunday 7:10 p.m.-8:50 p.m. Midway-Denver nonstop, currently quoted at $544 total before optional charges. Friday, plan hotel arrival around 1:30 to 1:55 for bag drop and changing before the 6:30 dinner. Sunday, check out by 11:00, leave the bags with the hotel, finish brunch near noon, and retrieve luggage at 3:45 for a 4:00 departure to Midway. Retain the Hyatt House king room for two adults, Friday through Sunday, at the quoted $612 including displayed taxes.",
+          "role": "assistant"
+        },
+        {
+          "content": "What exactly still needs verification before payment?",
+          "role": "user"
+        },
+        {
+          "content": "For the flights, verify flight numbers, operating carriers, nonstop status, exact schedules, the $544 two-ticket total, fare restrictions, change and cancellation terms, and charges for two checked bags and any seat selection. For Hyatt House, verify the king room category, itemized two-night tax-inclusive total, any mandatory destination charge, cancellation deadline, Friday pre-check-in bag storage, and Sunday storage from the 11:00 a.m. checkout until the planned 3:45 p.m. pickup. Local cars remain unbooked, including Friday from Midway, Saturday to and from Bridgeport Art Center, and Sunday's 4:00 p.m. hotel departure.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0061",
+      "session_index": 61,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "The March Chicago, April Atlanta, May San Diego, June Boston-New York, and other later planned trips retain their existing arrangements and follow-ups. For the September 17-19 Minneapolis conference, the selected Thursday nonstop, two-night Hilton Minneapolis stay, and Saturday 8:05 p.m. return remain in place; the office still needs to verify booking details and a later Saturday fallback because a substantial panel overrun, slow luggage retrieval, or heavy traffic could threaten the return. For the October 9-11 Chicago family wedding, Elena and her spouse selected the Friday 9:10 a.m.-12:35 p.m. Denver-Midway nonstop and Sunday 7:10 p.m.-8:50 p.m. return at a quoted total of $544 for two before optional charges. The Hyatt House Chicago/West Loop-Fulton Market king room remains selected for two nights at a quoted $612 including displayed taxes. Friday hotel arrival is expected around 1:30 to 1:55 p.m. before the 6:30 p.m. dinner. Saturday's 3:30 p.m. ceremony and 2:30 p.m. hotel departure remain fixed. Sunday checkout is at 11:00 a.m.; bags should be stored through a 3:45 p.m. pickup, followed by hotel departure at 4:00. Flight identifiers, carriers, schedules, fare terms, bag and seat charges, hotel room category, itemized total, mandatory charges, cancellation deadline, and both luggage-storage arrangements still require verification. Local cars remain unbooked.",
+  "verification": {
+    "61": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For this wedding, make the morning outbound the exception.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly overrides the afternoon-departure preference for this trip's outbound leg. The later Sunday flight is also a current-trip timing choice, but the quoted outbound statement is the clearest explicit exception. No user utterance strongly evidences the exact connection, carrier, window-seat, queen-bed, or hotel-amenity defaults."
+    }
+  }
+}

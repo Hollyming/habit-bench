@@ -1,0 +1,177 @@
+{
+  "cache_fingerprint": "06249b13c6dec47cb36330eb78bcfd14a95202d206da7a5e0cff1fb241026171",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya established a reusable scope boundary: work hotel searches governed by logistics and company caps are not automatically budget-focused, and the budget rating floor applies only when she explicitly frames the hotel search as budget-focused.",
+        "evidence_topology": {
+          "boundary_kind": "scope_limit",
+          "episode_id": "client-pittsburgh-019",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 119,
+          "target_habit_id": "tm_pd_v05_user_000_h05",
+          "target_signal_type": "boundary",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly establishes a durable scope boundary for the budget-focused hotel rating floor. No other candidate habit is strongly evidenced by the user's utterances in this dialogue.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "More generally, work searches driven by logistics and company caps should not count as budget-focused hotel searches just because I’m watching the total. Only apply the budget rating floor when I actually describe the hotel search as budget-focused.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h05",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Flights are set at $612. Now compare the three hotels on the full two-night cost, not just the room rate. Use 14 percent lodging tax, include breakfast and all likely rides, and keep the whole trip under $1,300 if possible.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll price the property beside the client site at $268, the East Liberty hotel at $231 with breakfast included, and the Shadyside hotel at $218. Before I screen them further, should this be treated as an explicitly budget-focused hotel search with a customer-rating floor, or mainly as a schedule-and-total-cost decision?",
+          "role": "assistant"
+        },
+        {
+          "content": "Mainly schedule and total cost. More generally, work searches driven by logistics and company caps should not count as budget-focused hotel searches just because I’m watching the total. Only apply the budget rating floor when I actually describe the hotel search as budget-focused.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll compare these on the stated rates, refundability, timing, and complete trip cost without adding a rating cutoff. Is the $250 nightly room limit measured before tax?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, before tax. The total-trip ceiling includes the $612 airfare. Show me the arithmetic first.",
+          "role": "user"
+        },
+        {
+          "content": "Here is the lodging portion. Beside the client site: $268 x 2 = $536, plus $75.04 tax, for $611.04. East Liberty: $231 x 2 = $462, plus $64.68 tax, for $526.68. Shadyside: $218 x 2 = $436, plus $61.04 tax, for $497.04. The closest hotel is $18 per night over the room limit; the other two comply.",
+          "role": "assistant"
+        },
+        {
+          "content": "Add breakfast and rides. Assume I arrive at PIT at 6:52 Tuesday, attend the workshop both mornings, finish Thursday at 4:00, and fly at 6:20.",
+          "role": "user"
+        },
+        {
+          "content": "Using conservative rideshare estimates: the closest hotel needs about $89 total for Tuesday airport pickup and Thursday airport transfer. Breakfast is not included, so allow $34 for two mornings. That puts lodging, breakfast, and ground transportation at $734.04, or $1,346.04 with airfare. It exceeds both the nightly limit and the $1,300 trip ceiling.",
+          "role": "assistant"
+        },
+        {
+          "content": "East Liberty next.",
+          "role": "user"
+        },
+        {
+          "content": "East Liberty includes breakfast. Allow $42 from PIT Tuesday, four local rides at about $13 each for Wednesday and Thursday workshop travel, and $45 from the hotel to PIT after retrieving the bag. Ground transportation is about $139. Added to $526.68 lodging, that is $665.68 on the ground and $1,277.68 including airfare. It clears the total ceiling by $22.32.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Shadyside? Don’t leave breakfast out just because the room is cheaper.",
+          "role": "user"
+        },
+        {
+          "content": "For Shadyside, allow $34 for breakfast, $44 from PIT Tuesday, four local rides averaging $16 each, and $47 to PIT Thursday. That is $155 in rides, $34 in breakfast, and $497.04 in lodging, totaling $686.04 on the ground or $1,298.04 with airfare. It is technically under the ceiling by $1.96, with almost no protection against surge pricing.",
+          "role": "assistant"
+        },
+        {
+          "content": "So East Liberty is actually cheaper all-in. Verify the operational pieces: Tuesday check-in, Thursday luggage storage, and a refundable rate.",
+          "role": "user"
+        },
+        {
+          "content": "The East Liberty option has a staffed front desk through the night, so an expected arrival around 7:45 to 8:15 p.m. Tuesday is acceptable. The hotel will hold luggage after Thursday checkout at no charge; the desk recommends collecting it by 4:30 for this flight. The $231 rate is refundable through 6:00 p.m. Monday, the day before arrival. After that, the penalty is one night plus tax. No deposit beyond the card guarantee is due now.",
+          "role": "assistant"
+        },
+        {
+          "content": "Check the same details for the other two so I understand what I’m trading away.",
+          "role": "user"
+        },
+        {
+          "content": "The hotel beside the client site also has overnight reception and complimentary Thursday storage. Its $268 flexible rate can be canceled through 11:59 p.m. Monday. Shadyside accepts the Tuesday arrival but asks that arrivals after 10:00 p.m. be noted in advance; luggage storage is available Thursday until 6:00 p.m. Its $218 refundable rate has the tightest cutoff, 4:00 p.m. Monday. All three can accommodate the expected Tuesday arrival.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the morning routes. I need to be at the client site by 8:15 for an 8:30 start, and I don’t want optimistic travel times.",
+          "role": "user"
+        },
+        {
+          "content": "From the closest hotel, it is about a three-minute walk; leaving at 8:10 is sufficient. From East Liberty, plan on an 8- to 12-minute rideshare, but allow 20 minutes for pickup and traffic: request the car at 7:50 and target arrival by 8:10. From Shadyside, the drive is normally 12 to 18 minutes; allowing for pickup and morning congestion, request at 7:40. East Liberty has the shorter and more predictable off-site route.",
+          "role": "assistant"
+        },
+        {
+          "content": "Thursday is the part I’m worried about. Map the bag pickup and airport timing for East Liberty versus Shadyside.",
+          "role": "user"
+        },
+        {
+          "content": "For East Liberty, have the rideshare ready at the client entrance at 4:00. Reach the hotel around 4:10, collect the bag by 4:15, and leave immediately. The airport drive should be budgeted at 35 to 45 minutes, giving an arrival around 4:50 to 5:00, or 80 to 90 minutes before departure. For Shadyside, the bag detour is longer: hotel arrival around 4:15 to 4:20, departure around 4:25, and PIT around 5:00 to 5:10. That leaves only 70 to 80 minutes and less room for traffic.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there a safer Thursday variation for East Liberty without paying for another ride?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Bring the bag to the workshop Thursday if the client can store it securely. Then you can leave directly at 4:00 and reach PIT around 4:35 to 4:50, matching the original airport plan and removing one $13 local ride. The revised projected trip total would be about $1,264.68. If the client cannot hold it, keep the hotel-storage route at $1,277.68 and check traffic at 3:30.",
+          "role": "assistant"
+        },
+        {
+          "content": "Don’t assume the client will store it. Use the hotel plan for the budget, but give me a clear trigger for changing course Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "Keep the East Liberty hotel-storage plan as the baseline. At 3:30 Thursday, check the combined client-to-hotel-to-PIT estimate. If it is 55 minutes or less, leave at 4:00, retrieve the bag, and continue to PIT. If it exceeds 55 minutes, ask the client to hold the bag before the workshop begins; if that is unavailable, leave the workshop by 3:45. A forecast above 70 minutes at 3:30 means a 4:00 departure with the hotel detour is too risky.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose East Liberty at the refundable rate. Keep it unbooked with the flights, and give me the final numbers and timing in one place.",
+          "role": "user"
+        },
+        {
+          "content": "Selected, not booked: the East Liberty hotel at $231 per night for Tuesday and Wednesday nights. Room is $462; estimated lodging tax is $64.68; breakfast is included; estimated rides are $139. Hotel and ground total is $665.68, and the complete trip with the $612 airfare is $1,277.68, leaving $22.32 under the $1,300 ceiling. Tuesday arrival at the hotel is approximately 7:45 to 8:15 p.m., supported by overnight reception. Request morning rides at 7:50 for arrival by 8:10. Thursday, check the combined route at 3:30, leave the workshop at 4:00, retrieve the stored bag around 4:10 to 4:15, and target PIT by 4:50 to 5:00 for the 6:20 flight. The room is refundable until 6:00 p.m. Monday; after that, the penalty is one night plus tax. Flight schedule, fare rules, room availability, and the quoted cancellation terms still require final confirmation before booking.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0119",
+      "session_index": 119,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The February 5-7, 2030 Raleigh client trip remains confirmed at a working total of $1,459; the corrected Raleigh folio, Philadelphia deposit release, and Nashville refund reconciliation remain unresolved. The September 12-16 Monterey Peninsula trip remains confirmed at $2,849, with whale-watching status and exact hotel cancellation cutoffs unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2 Baltimore and November 6-8 Raleigh client trips remain recorded as confirmed, with noted ground-transportation items unresolved. The October 4-9, 2030 San Diego trip remains fully reconciled for Maya Chen and Jordan Lee at a projected $3,665.71 including bags, with the Monday traffic fallback and downtown rental return plan intact. For the Tuesday-through-Thursday Pittsburgh client trip, Maya has selected but not booked the $612 nonstop round trip, departing MSP Tuesday at 3:45 p.m., arriving PIT at 6:52 p.m., and returning Thursday at 6:20 p.m. She also selected but did not book the refundable East Liberty hotel at $231 nightly. Estimated room and tax are $526.68, breakfast is included, estimated rides are $139, and the projected complete trip is $1,277.68. The hotel supports the expected Tuesday arrival, complimentary Thursday luggage storage, and cancellation through 6:00 p.m. Monday. Thursday’s baseline is a 4:00 p.m. workshop departure, hotel bag retrieval around 4:10-4:15, and PIT arrival around 4:50-5:00; check the combined route at 3:30 and change course if it exceeds 55 minutes. Flight schedule, fare rules, hotel availability, and cancellation terms remain to be confirmed before booking.",
+  "verification": {
+    "119": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "More generally, work searches driven by logistics and company caps should not count as budget-focused hotel searches just because I’m watching the total. Only apply the budget rating floor when I actually describe the hotel search as budget-focused.",
+          "habit_id": "tm_pd_v05_user_000_h05",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly establishes a durable scope boundary for the budget-focused hotel rating floor. No other candidate habit is strongly evidenced by the user's utterances in this dialogue."
+    }
+  }
+}

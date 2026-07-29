@@ -1,0 +1,88 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_001_h03', 'boundary') actual=[('tm_pd_v05_user_001_h00', 'exception'), ('tm_pd_v05_user_001_h02', 'support'), ('tm_pd_v05_user_001_h03', 'boundary')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Boundary evidence: while selecting this trip, Elena asks for a window seat when selection is available but explicitly says not to change the fare or itinerary if seat assignment is deferred, directing the agent to try again at check-in.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "Let's settle the flights for our Friday-to-Monday Chicago arts weekend. There are two of us, and the Saturday concert and Sunday museum visit are fixed. I want to see whether the cheaper late flight is worth losing Friday evening.",
+          "role": "user"
+        },
+        {
+          "content": "I found two nonstop outbound choices from Denver. The midday United flight leaves Friday at 11:05 a.m. and reaches O'Hare at 2:32 p.m.; it is $398 total for two. The Southwest option leaves at 7:10 p.m. and reaches Midway at 10:24 p.m.; it is $252 total. Which hotel area are you leaning toward, the Loop or River North?",
+          "role": "assistant"
+        },
+        {
+          "content": "River North is slightly ahead, but the Loop hotel is still possible. How different are the transfers?",
+          "role": "user"
+        },
+        {
+          "content": "From O'Hare, allow roughly 45 to 70 minutes by car to River North and 50 to 75 minutes to the Loop at that time Friday. From Midway late in the evening, estimate 30 to 45 minutes to either area. The midday flight should put you at a hotel around 3:45 to 4:15 p.m. after collecting bags. The late flight likely means arriving around 11:10 p.m., assuming no delay.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the late flight saves $146 but effectively gives us only bedtime on Friday. What are the Monday choices?",
+          "role": "user"
+        },
+        {
+          "content": "The early United nonstop leaves O'Hare at 8:25 a.m. and arrives in Denver at 10:12 a.m.; it is $286 total for two. The Southwest nonstop leaves Midway at 3:10 p.m. and arrives at 4:54 p.m.; it is $326 total. The later return costs $40 more and preserves time for lunch downtown.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put all four round-trip combinations side by side, including what Monday morning would look like.",
+          "role": "user"
+        },
+        {
+          "content": "Midday outbound plus early return is $684 for two. Midday plus midafternoon return is $724. Late outbound plus early return is $538, the minimum. Late plus midafternoon return is $578. For the early O'Hare flight, you would need to leave either hotel around 5:30 a.m. The 3:10 p.m. Midway flight lets you check out, store your bags, have lunch, retrieve them around 12:30 p.m., and leave downtown near 1:00 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "The $538 combination is cheap, but it strips time from both ends. Is there any practical issue with flying into O'Hare and home from Midway?",
+          "role": "user"
+        },
+        {
+          "content": "No significant issue. You are not renting a car, so there is nothing to return to the original airport. Arriving at O'Hare works well for the midday timing, and departing Midway is convenient after lunch downtown. The only operational point is to label the airports clearly in your itinerary so Monday's ride is booked to MDW, not ORD.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then I think the $724 combination is the sensible one. It costs $186 above the minimum, but we get Friday evening and most of Monday.",
+          "role": "user"
+        },
+        {
+          "content": "That is the strongest time-value choice. You should reach the hotel with enough time for an unhurried Friday dinner, and Monday remains useful without interfering with the Saturday concert or Sunday museum plan. Bag storage after Monday checkout is the only hotel detail to confirm.",
+          "role": "assistant"
+        },
+        {
+          "content": "Before selecting, are checked bags included on either airline? We will each have one.",
+          "role": "user"
+        },
+        {
+          "content": "Southwest includes the two checked bags on the Monday flight. The quoted United fare does not include checked luggage; adding one bag per traveler is $80 total for the Friday outbound. That raises the selected combination from $724 to $804 for two. The minimum combination would also need the same $80 United bag charge on Monday, making it $618, so the difference remains $186.",
+          "role": "assistant"
+        },
+        {
+          "content": "Understood. Select the Friday midday United flight into O'Hare and the Monday 3:10 Southwest flight from Midway for both of us, with the two United bag fees. For my seat, choose a window when selection is available. If that has to wait until check-in, don't switch fares or flights just for the seat; try for the window then.",
+          "role": "user"
+        },
+        {
+          "content": "Selected pending payment for two adults: Friday United nonstop from Denver at 11:05 a.m., arriving O'Hare at 2:32 p.m.; Monday Southwest nonstop from Midway at 3:10 p.m., arriving Denver at 4:54 p.m. Airfare plus two United checked bags totals $804. Plan to reach the hotel around 4:00 p.m. Friday. On Monday, store the bags after checkout, have lunch downtown, retrieve them around 12:30 p.m., and leave for Midway near 1:00 p.m. I will request a window for your United seat if selection is offered; if it is deferred, the request should be handled at check-in. Southwest seating is assigned at boarding under its applicable process, so a window cannot be guaranteed now. Nothing has been charged yet.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0088",
+      "session_index": 88,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena and her spouse's Friday-to-Monday Chicago arts weekend flights are selected pending payment: Friday 11:05 a.m. Denver-O'Hare nonstop arriving 2:32 p.m., and Monday 3:10 p.m. Midway-Denver nonstop arriving 4:54 p.m. Airfare plus two Friday checked bags totals $804. The Saturday concert and Sunday museum visit remain fixed. They expect to reach their hotel around 4:00 p.m. Friday and need Monday luggage storage after checkout before leaving downtown around 1:00 p.m. The River North hotel is slightly ahead of the Loop option, but lodging is not yet resolved. The solo Boston academic publishing trip remains pending payment with Thursday arrival, a two-night hotel stay, Saturday luggage storage, and a Saturday evening return through Minneapolis. The Chicago family wedding trip and River North hotel logistics remain pending payment. The four-night San Diego getaway with its Saturday evening performance also remains pending payment."
+}

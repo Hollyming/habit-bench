@@ -1,0 +1,179 @@
+{
+  "cache_fingerprint": "313d5c18e34204f991abd353c91a9af7dc7560609f26fe9eca6b3754619796fd",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "No durable preference evidence was intentionally established. The session resolved only current-trip choices: a $3,600 airfare-and-lodging ceiling, a nonstop airfare baseline, and two unbooked hotel structures for the fixed San Diego week.",
+        "evidence_topology": {
+          "episode_id": "partner-coast-005",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 23,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chose a nonstop flight for this trip and explicitly prioritized walkable beach proximity for the single-hotel option. These are current-trip endorsements, not durable cross-trip statements. No other candidate habit is established with confidence at or above 0.90, and the assistant's prior questions and comparisons are ordinary option elicitation rather than leakage.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I would rather have the nonstop and stay within the number.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "For the single-hotel version, being able to walk to the beach and restaurants matters more than a guaranteed view.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h06",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "We finally have a week approved for San Diego: Sunday, November 8 through Friday, November 13, so five nights. It will be the two of us. I need help setting a realistic ceiling before we get attached to anything. We could stay near the beach the whole time, or do three cheaper nights in the city and finish with two nights somewhere genuinely waterfront.",
+          "role": "user"
+        },
+        {
+          "content": "I can compare those on the same basis. Is the ceiling meant to cover airfare and lodging only, including taxes and mandatory hotel fees, or should I also leave room for meals, rental car, and activities? And are you flying from Minneapolis?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, MSP. Use $3,600 for flights plus hotels, with taxes and required fees included. Keep meals and activities outside that number. We probably will not rent a car, but include the cost of moving between hotels if we split.",
+          "role": "user"
+        },
+        {
+          "content": "That gives us a workable target of roughly $1,000 to $1,200 for two round-trip tickets and $2,400 to $2,600 for lodging and one transfer. Before I price the combinations, should I include basic economy and one-stop flights, or keep the flight comparison narrower?",
+          "role": "assistant"
+        },
+        {
+          "content": "No basic economy for this trip. One stop is acceptable if it saves enough, but show me the best nonstop too. We will check one suitcase between us.",
+          "role": "user"
+        },
+        {
+          "content": "The current working quotes produce three useful flight benchmarks. Southwest has a nonstop at $497 per person round trip, or $994 total, with two checked bags per traveler included. Delta main cabin is nonstop at $556 per person, or $1,112 total, plus $35 each way for the shared checked bag, bringing it to $1,182. United has a Denver connection in each direction at $438 per person, or $876 total, plus $70 for the bag, for $946. The United itinerary saves only $48 against Southwest while adding about three hours of total travel time and two connection points.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use Southwest for the hotel math. Forty-eight dollars is not enough to make the connections useful. Do not book it yet.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I will use $994 as the airfare baseline without purchasing it. For the hotel side, what matters more for these five nights: direct beach access, a water-view room, or being in a neighborhood where you can walk to restaurants? Those lead to fairly different properties in San Diego.",
+          "role": "assistant"
+        },
+        {
+          "content": "For the single-hotel version, being able to walk to the beach and restaurants matters more than a guaranteed view. For the split, the last two nights need to feel like an upgrade, not just a different address with a glimpse of the bay.",
+          "role": "user"
+        },
+        {
+          "content": "I found a coherent option for each structure. The single stay is at The Wayfarer San Diego in Pacific Beach: five nights in a standard king, $1,895 including estimated taxes and the mandatory destination fee. It is directly on the boardwalk and close to restaurants, though the quoted room does not guarantee an ocean view. With Southwest, the trip total is $2,889.\n\nThe initial split option uses three nights at Courtyard San Diego Downtown for $684 total, then two nights at Kona Kai Resort on Shelter Island for $1,046 total in a standard room, including estimated taxes and resort fees. A rideshare between them is about $30 to $40, making the combined trip about $2,764. Kona Kai is waterfront and resort-like, but the standard-room quote does not guarantee a water view.",
+          "role": "assistant"
+        },
+        {
+          "content": "Interesting that the split is cheaper, but that Kona Kai version may not meet the point of moving. Is there a stronger final-two-night option that still keeps us under $3,600?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Replacing Kona Kai with Hotel del Coronado makes the finish materially different. Three nights at the Courtyard remain $684. Two nights at Hotel del Coronado in a resort-view king are approximately $1,616 after estimated taxes and the mandatory resort charge. The downtown-to-Coronado rideshare allowance is $45. With the $994 airfare, the working total is $3,339, leaving $261 below your ceiling. The room is not oceanfront, but the property is directly on Coronado Beach and the resort itself is the upgrade.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would an actual ocean-view room at the Del fit, or does that blow the budget?",
+          "role": "user"
+        },
+        {
+          "content": "The ocean-view category is currently about $190 more per night before tax. For two nights, the estimated hotel total rises by roughly $430, putting the complete trip near $3,769. That is about $169 over the ceiling before any quote movement. It would require either raising the budget or taking the connecting flights, and even the cheaper flights would only bring it down to about $3,721.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then keep the resort-view room. I would rather have the nonstop and stay within the number. How disruptive is the transfer in practice? We do not want to lose most of a day repacking and waiting for rooms.",
+          "role": "user"
+        },
+        {
+          "content": "It is manageable if you treat Thursday as the transition day rather than a full sightseeing day. Courtyard checkout is 11:00 a.m.; Hotel del Coronado check-in is 4:00 p.m. The drive is usually around 15 to 25 minutes outside heavy traffic. The Del can hold bags before check-in, so you could leave downtown around 10:30, drop luggage near 11:00, and use the beach and public areas until the room is ready. The main cost is packing twice and having several hours without room access, not the drive itself.",
+          "role": "assistant"
+        },
+        {
+          "content": "Wait, the dates are Sunday through Friday. The move after three nights would be Wednesday morning, not Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. I mapped the nights incorrectly in that explanation. The Courtyard stay would be Sunday, Monday, and Tuesday nights, with checkout Wednesday morning. Hotel del Coronado would be Wednesday and Thursday nights, followed by Friday checkout. The same luggage-hold plan applies on Wednesday, and it gives you almost two full days at the resort rather than only one.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Now compare just two finalists: all five nights at the Wayfarer, and the Courtyard plus Del split. Include the exact working totals, budget cushion, and what we gain or give up with each.",
+          "role": "user"
+        },
+        {
+          "content": "Option 1, one hotel: Southwest nonstop airfare is $994 and five nights at The Wayfarer are estimated at $1,895, for a working total of $2,889. The cushion below $3,600 is $711. You gain one check-in, immediate boardwalk access, nearby casual restaurants, and the simplest week. You give up the distinct resort finish, and the standard room has no guaranteed ocean view.\n\nOption 2, split stay: Southwest airfare is $994; three Courtyard nights are $684; two Hotel del Coronado resort-view nights are $1,616; and the hotel-transfer allowance is $45. The working total is $3,339, leaving $261. You gain lower-cost access to downtown for the first part and two nights at a true beachfront resort. You give up $450 of budget cushion, pack twice, and have a Wednesday interval when luggage is stored but the second room may not be ready.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does either total omit anything that could realistically turn into a required charge? I do not need food or optional parking included, but I do not want a fake cushion.",
+          "role": "user"
+        },
+        {
+          "content": "The estimates include displayed room taxes and mandatory destination or resort fees, and neither assumes a car or parking. The transfer allowance is included only in the split. The main remaining exposure is quote movement before purchase and any refundable deposit authorization, which is not an added final cost if released properly. I would also verify whether the Del applies its resort fee once per room per night at the quoted amount and confirm that the Wayfarer total has not separated any property fee at checkout.",
+          "role": "assistant"
+        },
+        {
+          "content": "Which structure would you recommend for this trip? Give me the booking-stage checklist, but leave both finalists unbooked.",
+          "role": "user"
+        },
+        {
+          "content": "I would carry the split stay forward as the first choice. At $3,339, it stays within the defined airfare-and-hotel ceiling and makes the last two nights meaningfully different. The $261 cushion is adequate for modest price movement, but not large enough to skip a final reconciliation. Keep The Wayfarer plan at $2,889 as the simpler fallback if the Del rises by more than about $200 or the transfer starts to feel burdensome.\n\nBefore booking, reprice the Southwest nonstop for two passengers, confirm the fare is not basic economy and that the shared checked bag remains included, then verify each hotel’s full after-tax total, mandatory fees, room category, cancellation deadline, and deposit terms. For the split, confirm Wednesday luggage storage at the Del and reserve about $45 for the transfer. No flight or hotel has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0023",
+      "session_index": 23,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya’s Denver trip remains ticketed for June 16-19, 2026; the revised Friday departure still needs confirmation. The Philadelphia return was exchanged to Friday, July 31, 2026 at 8:10 a.m., and the Hyatt House stay was extended through Friday morning; those changes added $348.56. The Sonesta deposit release remains pending, and Hyatt shuttle details remain unconfirmed. The coastal Georgia trip remains unbooked at a working total of $3,647. For Nashville, meetings run September 15-17, 2026. Delta canceled the booked September 14 outbound; its replacement departs MSP at 4:10 p.m. and arrives at 6:18 p.m., adding a net $168 after the canceled-segment refund. Home2 Suites remains booked September 14-17, and the Thursday 7:50 p.m. return remains unchanged. The revised trip cost still needs reconciliation after the refund posts. A two-person San Diego trip is being considered for November 8-13, 2026, with a $3,600 airfare-and-lodging ceiling. Two unbooked structures remain: a five-night single-property plan estimated at $2,889 total and a three-plus-two-night split estimated at $3,339 including the hotel transfer. Airfare and hotel totals, fees, cancellation terms, and luggage storage must be rechecked before booking.",
+  "verification": {
+    "23": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I would rather have the nonstop and stay within the number.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "For the single-hotel version, being able to walk to the beach and restaurants matters more than a guaranteed view.",
+          "habit_id": "tm_pd_v05_user_000_h06",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chose a nonstop flight for this trip and explicitly prioritized walkable beach proximity for the single-hotel option. These are current-trip endorsements, not durable cross-trip statements. No other candidate habit is established with confidence at or above 0.90, and the assistant's prior questions and comparisons are ordinary option elicitation rather than leakage."
+    }
+  }
+}

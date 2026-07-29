@@ -1,0 +1,150 @@
+{
+  "cache_fingerprint": "3af939bc05aa2ef54b3637bae52812a73a7b997c2944e9260b3ac3195c180887",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Elena made an explicit one-trip exception for the Atlanta workshop, accepting a 4-hour 18-minute overnight connection on the Friday return to avoid a third hotel night; she did not change her broader approach to connecting itineraries.",
+        "evidence_topology": {
+          "episode_id": "ep_017_atlanta_rights_workshop",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 65,
+          "target_habit_id": "tm_pd_v05_user_001_h01",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user states that the overnight connection is longer than normally acceptable, then explicitly makes a trip-specific exception for it. The same trip-only instruction selects a morning Wednesday departure instead of the default afternoon period.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "For this Atlanta trip only, I’ll accept the long overnight connection to avoid paying for the third night. Keep the morning nonstop Wednesday and use the late one-stop Friday, provided the luggage arrangements work.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For this Atlanta trip only, I’ll accept the long overnight connection to avoid paying for the third night.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_001_h01",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I want to revisit Atlanta before anything is booked. Compare the Wednesday choices and the realistic returns after the Friday author event, including the extra hotel night.",
+          "role": "user"
+        },
+        {
+          "content": "The Wednesday morning nonstop leaves Denver at 8:05 a.m. and reaches Atlanta at 1:04 p.m. It gives you time to reach the Emory Inn, leave your bag, and get to the 5:00 p.m. opening without rushing. The lower-priced option leaves at 11:15 a.m., connects once in Nashville, and arrives at 4:18 p.m., which is too close to registration once the airport transfer is included.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much is the difference? And keep the Friday event fixed at 7:30 p.m.; I am not leaving it early.",
+          "role": "user"
+        },
+        {
+          "content": "Using the morning nonstop outbound, the fare is $318 with the late Friday return or $361 with the Saturday nonstop. The Wednesday connecting outbound lowers either combination by $42. I would rule it out because even a small delay could make you miss the opening.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed. What exactly happens Friday night?",
+          "role": "user"
+        },
+        {
+          "content": "The author event is expected to end around 8:40 p.m. The last nonstop to Denver departs at 8:55 p.m., so it is unusable. The remaining Friday itinerary departs Atlanta at 10:50 p.m., connects in Dallas, and reaches Denver at 7:35 a.m. Saturday. It has a 4-hour 18-minute overnight layover and 10 hours 45 minutes of total travel time.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is a much longer connection than I would normally consider. Is the airport timing actually workable from Decatur?",
+          "role": "user"
+        },
+        {
+          "content": "It is workable but not generous. Leaving the event by 8:45 p.m. gives roughly 55 to 70 minutes for the drive and about 55 to 70 minutes at ATL before departure, depending on traffic. A checked bag would make that tight because of the airline cutoff. Traveling with a carry-on would reduce the risk.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the Saturday alternative?",
+          "role": "user"
+        },
+        {
+          "content": "The Saturday nonstop leaves Atlanta at 12:40 p.m. and arrives in Denver at 2:09 p.m. You could leave the inn around 9:40 a.m. The third hotel night is displayed at $201 including tax, so airfare plus lodging would be $964: $361 for flights and $603 for three nights. Local transportation remains about $90.",
+          "role": "assistant"
+        },
+        {
+          "content": "What would the two-night total be with the Friday flight?",
+          "role": "user"
+        },
+        {
+          "content": "Two hotel nights are displayed at $402 including tax. With the $318 airfare, that is $720 before local transportation, meals, or bag fees. Using the same $90 transportation allowance, the working trip estimate is $810. That is $244 less than the Saturday plan, but the return is substantially less comfortable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can the inn hold my luggage after Friday checkout until I leave for the event or airport?",
+          "role": "user"
+        },
+        {
+          "content": "That has not been confirmed. The plan would require storage from the Friday 11:00 a.m. checkout until about 7:00 p.m., followed by taking the bag to the author event. We also need to confirm whether the event venue permits a carry-on-sized bag and whether the fare includes one.",
+          "role": "assistant"
+        },
+        {
+          "content": "For this Atlanta trip only, I’ll accept the long overnight connection to avoid paying for the third night. Keep the morning nonstop Wednesday and use the late one-stop Friday, provided the luggage arrangements work. Do not book yet.",
+          "role": "user"
+        },
+        {
+          "content": "Revised proposal: Wednesday, November 18, Denver to Atlanta nonstop, 8:05 a.m. to 1:04 p.m.; two nights at the Emory Inn, checking out Friday, November 20; Friday Atlanta to Denver via Dallas, departing 10:50 p.m. and arriving 7:35 a.m. Saturday. The displayed airfare is $318, lodging is $402, and the estimated total is $810 with local cars but before meals or bag fees. Before booking, verify flight numbers, operating carriers, schedules, fare restrictions, carry-on and checked-bag terms, and the 4-hour 18-minute connection. Also confirm the inn’s tax-inclusive total, cancellation deadline, absence of mandatory fees, Friday luggage storage, and permission to bring the bag into the author venue. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0065",
+      "session_index": 65,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "The March Chicago, April Atlanta, May San Diego, June Boston-New York, and other later planned trips retain their existing arrangements and follow-ups. For the September 17-19 Minneapolis conference, the selected Thursday nonstop, two-night Hilton Minneapolis stay, and Saturday 8:05 p.m. return remain in place; booking details and a later Saturday fallback still need verification. For the October 9-11 Chicago family wedding, Elena and Mateo Ruiz are booked on the Friday Denver-Midway flight and updated Sunday evening Midway-Denver flight; the venue hotel remains selected through Sunday. Hotel charges, cancellation terms, breakfast, storage, updated flight details, bags, seats, and local cars still need checking. For the November 18-21 Atlanta rights workshop, the revised unbooked proposal is the Wednesday 8:05 a.m.-1:04 p.m. Denver-Atlanta flight, two nights at the Emory Inn at a displayed $402 total, and the Friday 10:50 p.m. Atlanta-Dallas-Denver itinerary arriving 7:35 a.m. Saturday at a displayed $318 airfare. Estimated trip total is $810 including local-car allowances but excluding meals and bag fees. Flight details, fare and bag terms, hotel charges, cancellation deadline, Friday luggage storage, and permission to bring luggage into the author venue require verification; nothing has been booked.",
+  "verification": {
+    "65": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For this Atlanta trip only, I’ll accept the long overnight connection to avoid paying for the third night.",
+          "habit_id": "tm_pd_v05_user_001_h01",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "For this Atlanta trip only, I’ll accept the long overnight connection to avoid paying for the third night. Keep the morning nonstop Wednesday and use the late one-stop Friday, provided the luggage arrangements work.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user states that the overnight connection is longer than normally acceptable, then explicitly makes a trip-specific exception for it. The same trip-only instruction selects a morning Wednesday departure instead of the default afternoon period."
+    }
+  }
+}

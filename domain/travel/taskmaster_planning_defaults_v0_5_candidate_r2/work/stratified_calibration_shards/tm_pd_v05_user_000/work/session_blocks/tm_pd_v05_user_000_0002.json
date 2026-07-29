@@ -1,0 +1,151 @@
+{
+  "cache_fingerprint": "351f572e26613fbea2d124f11b848087125c3bffa732f40eb07df3830a909735",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "{'policy_context': 'flight_departure_arrival_timing', 'evidence_kind': 'boundary', 'user_evidence': 'Maya establishes a reusable threshold: continue prioritizing afternoon return options, but rank a later option that stays within the airfare cap first when the best workable afternoon return exceeds that cap by more than $40, unless she gives trip-specific instructions.'}",
+        "evidence_topology": {
+          "boundary_kind": "tradeoff_threshold",
+          "episode_id": "client-raleigh-017",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 104,
+          "target_habit_id": "tm_pd_v05_user_000_h00",
+          "target_signal_type": "boundary",
+          "topology_revision": "travel_sparse_evidence_topology_v2_eligibility_v2",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user durably reaffirms afternoon returns as the default while adding a $40-over-cap boundary. The user also chooses the itinerary that avoids the outbound Atlanta connection despite its higher price, supporting the nonstop preference for this trip. No other candidate habit is established by the user's words.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "I care more about not losing Tuesday evening to Atlanta than saving the $87.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "For future comparisons, still put afternoon returns first, but if the best workable afternoon return is more than $40 over my stated airfare cap, move the later under-cap option ahead of it. That is the point where budget should win unless I give you a different instruction for the trip.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I have the North Hills hotel and rideshares figured out. Can we settle the Raleigh flights now? My airfare cap is $500, and I want to understand what I am giving up between the $476 and $389 choices, plus whether the 5:55 Thursday nonstop is actually safe after a 3:30 finish.",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Send me the connection cities, fare types, bag prices, and the full Thursday pairings shown for each option. I will compare elapsed time and realistic airport margin, not just departure times.",
+          "role": "assistant"
+        },
+        {
+          "content": "The $476 trip has the Tuesday nonstop, MSP 4:05 p.m. to RDU 7:42 p.m., then Thursday at 7:10 p.m. through Detroit, arriving MSP 11:48 p.m. The $389 trip connects in Atlanta Tuesday and reaches Raleigh at 10:18 p.m.; its Thursday return also leaves at 7:10 and connects in Detroit. The all-nonstop pairing with the 5:55 p.m. return is $548.",
+          "role": "user"
+        },
+        {
+          "content": "That makes the tradeoff fairly clear. The $476 pairing preserves the manageable Tuesday arrival and is $72 cheaper than flying nonstop both ways. The $389 itinerary saves another $87 but turns Tuesday into a long travel day and gets you to the hotel close to 11:00 p.m. or later. Thursday's 7:10 connection adds travel time, but it gives you substantially more departure margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "The detailed totals are 2 hours 37 minutes for Tuesday nonstop, 5 hours 58 minutes through Atlanta, 3 hours 3 minutes for the 5:55 nonstop home, and 5 hours 38 minutes through Detroit at 7:10. How does the 5:55 look if North Hills traffic runs toward 40 minutes?",
+          "role": "user"
+        },
+        {
+          "content": "Assuming the client releases you at 3:30, ten minutes to wrap up and meet the car puts departure near 3:40. A 40-minute ride reaches RDU around 4:20, leaving 95 minutes before takeoff. That is normally workable: roughly 50 minutes before boarding begins and well ahead of a typical 45-minute checked-bag cutoff. The weak point is any meeting overrun or a rideshare delay; a combined 30-minute slip would reduce the cushion to about 65 minutes.",
+          "role": "assistant"
+        },
+        {
+          "content": "I will have one checked suitcase. The $476 fare is standard economy, changes allowed for a credit, with a $35 bag each way. The $389 is basic economy, no changes or credit, and bags are $40 each way. The $548 fare has the same standard rules as the $476 one.",
+          "role": "user"
+        },
+        {
+          "content": "Including the suitcase, the totals are $546 for the $476 itinerary, $469 for basic economy, and $618 for the all-nonstop trip. Your stated $500 cap sounds like airfare rather than trip cost; if it includes bags, only the $389 fare qualifies. Is the ceiling ticket-only or all-in?",
+          "role": "assistant"
+        },
+        {
+          "content": "Ticket-only. Baggage can go on expenses separately. I care more about not losing Tuesday evening to Atlanta than saving the $87.",
+          "role": "user"
+        },
+        {
+          "content": "Then the $476 mixed itinerary is the strongest fit under the airfare ceiling. Compared with basic economy, the $87 buys back 3 hours 21 minutes on Tuesday, avoids a connection before the client visit, and retains change-credit flexibility. You still get a generous Thursday airport buffer. The cost is the late arrival home and the exposure to a Detroit connection.",
+          "role": "assistant"
+        },
+        {
+          "content": "Would you pay the extra $72 over my cap for the 5:55 nonstop home? I could probably explain it if the schedule is reliable.",
+          "role": "user"
+        },
+        {
+          "content": "I would not choose it here. The 5:55 flight is realistically reachable on the expected schedule, but it is not reliably protected from a late client session. You would pay $72 above the airfare cap for a shorter trip while also accepting the tighter operational margin. The 7:10 departure is less convenient but better aligned with both the budget and the uncertainty Thursday afternoon.",
+          "role": "assistant"
+        },
+        {
+          "content": "That makes sense. For future comparisons, still put afternoon returns first, but if the best workable afternoon return is more than $40 over my stated airfare cap, move the later under-cap option ahead of it. That is the point where budget should win unless I give you a different instruction for the trip.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. For this trip, that rule also points to the $476 pairing: Tuesday nonstop at 4:05 p.m., Thursday at 7:10 p.m. through Detroit, $476 airfare and $70 in checked-bag charges.",
+          "role": "assistant"
+        },
+        {
+          "content": "Select that round trip. What should I verify on the final screen before I pay?",
+          "role": "user"
+        },
+        {
+          "content": "Select the $476 standard-economy itinerary. Before payment, confirm both flights are on one ticket; the Tuesday flight is nonstop and arrives RDU at 7:42 p.m.; the Thursday flight leaves at 7:10 p.m. with the displayed Detroit connection and arrives MSP at 11:48 p.m.; the fare remains changeable for credit; seat selection is included or clearly priced; and the checked-bag fee is still $35 each way. Also check that the Detroit layover has not shortened, then save the receipt and fare-rule page for expenses.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0104",
+      "session_index": 104,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "For the Columbus client trip, Maya’s canceled ticket remains as a named credit expiring one year from issuance, and the replacement-flight receipt, cancellation evidence, credit details, and hotel confirmation should be retained for expenses. For the Raleigh client trip, North Hills lodging and rideshares are provisionally settled. A complete round trip within the airfare ceiling has been selected, with standard-economy change-credit eligibility and one checked suitcase; final payment remains subject to verifying that both legs are on one ticket, the displayed layover remains viable, and fare, seat, and baggage terms have not changed.",
+  "verification": {
+    "104": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "For future comparisons, still put afternoon returns first, but if the best workable afternoon return is more than $40 over my stated airfare cap, move the later under-cap option ahead of it. That is the point where budget should win unless I give you a different instruction for the trip.",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "boundary"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "I care more about not losing Tuesday evening to Atlanta than saving the $87.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user durably reaffirms afternoon returns as the default while adding a $40-over-cap boundary. The user also chooses the itinerary that avoids the outbound Atlanta connection despite its higher price, supporting the nonstop preference for this trip. No other candidate habit is established by the user's words."
+    }
+  }
+}

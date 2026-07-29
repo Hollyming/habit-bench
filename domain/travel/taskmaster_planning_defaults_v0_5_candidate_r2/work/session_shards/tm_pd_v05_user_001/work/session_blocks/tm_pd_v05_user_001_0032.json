@@ -1,0 +1,150 @@
+{
+  "cache_fingerprint": "2a936ac0836909927a07afa06edc6d9644edbe2c4f131e53d31b8e88490c3f6c",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support evidence: while retaining the selected nonstop, Elena naturally instructed that any connecting alternatives introduced during repricing have no more than one short layover, with enough time for a practical transfer and brief break.",
+        "evidence_topology": {
+          "episode_id": "ep_009_boston_spring_publishing_meeting",
+          "mode": "evidence",
+          "phase": "early",
+          "session_index": 32,
+          "target_habit_id": "tm_pd_v05_user_001_h01",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The 7:10 a.m. outbound is an explicit current-trip override of the established afternoon-departure preference. The user independently establishes the exact one-short-layover connection policy for any connecting alternatives added during repricing; this remains scoped to the current trip and is not stated as a durable recurring default.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Keep the 7:10 outbound.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 1.0,
+            "evidence_quote": "Also, if any connecting alternatives get added during repricing, keep them to one short layover at most, with enough time for a practical transfer and a brief break.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_001_h01",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "Before I send this to the office, compare the two Wednesday flights and both Saturday returns as complete round trips. I want the actual usable time, not just the schedules.",
+          "role": "user"
+        },
+        {
+          "content": "Using the current quotes, the Wednesday choices are the 7:10 a.m. Denver nonstop arriving Boston at 12:55 p.m. and the 9:25 a.m. nonstop arriving at 3:08 p.m. The first can be paired with Saturday’s 4:05 p.m. return for $487 round trip or the 6:10 p.m. return for $529. The later Wednesday flight prices at $438 with the 4:05 p.m. return and $480 with the 6:10 p.m. return. All figures still need live verification before purchase.",
+          "role": "assistant"
+        },
+        {
+          "content": "Work through Wednesday first. The reception is at 5:30 in Back Bay, and hotel check-in is probably 3:00.",
+          "role": "user"
+        },
+        {
+          "content": "For the 12:55 p.m. arrival, allow roughly 25 to 35 minutes to deplane and reach the pickup area with a carry-on, then about 20 to 45 minutes by car to Copley Square depending on traffic. That puts you at the hotel around 1:40 to 2:15, leaving 45 minutes to 1 hour 20 minutes before standard check-in and more than three hours before the reception. The 3:08 p.m. arrival likely puts you at the hotel around 3:55 to 4:35, leaving approximately 55 to 95 minutes before 5:30.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the later one saves $49 with the early Saturday return, but one ordinary delay could consume most of that reception margin.",
+          "role": "user"
+        },
+        {
+          "content": "Correct. A 45-minute flight delay plus heavier Logan traffic could move hotel arrival toward 5:00 or later. The early outbound creates an inconvenient pre-check-in gap, but the hotel can be asked to hold your bag, and even a moderate delay would leave a more workable reception buffer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the 7:10 outbound. Also, if any connecting alternatives get added during repricing, keep them to one short layover at most, with enough time for a practical transfer and a brief break.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I’ll keep the 7:10 a.m. nonstop as the selected outbound and treat connecting results only as secondary comparisons meeting that limit. Now for Saturday: your panel ends at 12:30 p.m., possibly 12:40, and the hotel is holding your bag after checkout.",
+          "role": "assistant"
+        },
+        {
+          "content": "Calculate the 4:05 honestly. Assume I have to walk back, retrieve the bag, and then get to Logan.",
+          "role": "user"
+        },
+        {
+          "content": "If the panel ends at 12:30, allow about 10 to 15 minutes to exit and walk back, then 5 to 10 minutes for bag retrieval. You could request a car around 12:50 and leave by roughly 1:00. With a 20-to-45-minute drive, airport arrival would be about 1:20 to 1:45, giving 2 hours 20 minutes to 2 hours 45 minutes before departure. If the panel runs to 12:40 and retrieval is slow, a 1:10 departure could mean reaching Logan around 1:55 in heavier traffic, still 2 hours 10 minutes before the flight but with less protection against further delay.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the 6:10 return? I know it means waiting, but quantify the difference.",
+          "role": "user"
+        },
+        {
+          "content": "Following the same sequence, you would likely reach Logan between 1:30 and 2:00, leaving about 4 hours 10 minutes to 4 hours 40 minutes before departure. You could instead have a late lunch near Back Bay and leave around 2:45 to 3:00, targeting Logan around 3:15 to 3:45. That still provides roughly 2 hours 25 minutes to 2 hours 55 minutes. The later flight costs $42 more with the selected outbound but removes the need to leave immediately after the panel.",
+          "role": "assistant"
+        },
+        {
+          "content": "The early return is usable if everything is verified, but it makes the panel ending on time part of the airport plan. Is the $42 premium the only fare difference now?",
+          "role": "user"
+        },
+        {
+          "content": "On the quoted combinations, yes: $487 for the 7:10 Wednesday outbound with the 4:05 Saturday return, versus $529 with the 6:10 return. Baggage, seat charges, and any fare change at ticketing could alter the totals. Ground transportation should be similar unless you use the extra time before the later flight elsewhere in Boston.",
+          "role": "assistant"
+        },
+        {
+          "content": "Select the $487 pair, with the 6:10 held as the fallback. That fixes the hotel at Wednesday April 14 through Saturday April 17, three nights. Give me the decision and the trigger for switching.",
+          "role": "user"
+        },
+        {
+          "content": "Selected for office verification: Wednesday, April 14, Denver to Boston nonstop, departing 7:10 a.m. and arriving 12:55 p.m.; Saturday, April 17, Boston to Denver nonstop, departing 4:05 p.m. and arriving 6:45 p.m.; quoted round-trip fare $487. The hotel dates are fixed at check-in April 14 and checkout April 17, three nights in Back Bay. Wednesday, plan on luggage storage if the room is not ready and retain a substantial margin before the 5:30 p.m. reception. Saturday, check out before the panel, store the bag, and leave the hotel for Logan at about 1:00 p.m. after the 12:30 p.m. finish. Switch to the 6:10 p.m. return, quoted at a $529 round-trip total, if the office cannot confirm the panel location and finish, prompt hotel bag retrieval, the airline’s bag-drop cutoff, or a sound Logan arrival margin under current traffic and security guidance. Before purchase, the office must also verify flight numbers, operating carriers, exact times, nonstop status, final fares, change and cancellation terms, baggage and seat charges, and the hotel’s exact dates, total, check-in time, and Saturday storage arrangement.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0032",
+      "session_index": 32,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "Elena's March Chicago conference arrangements remain based at the Palmer House; flight issuance and cancellation-credit handling still need confirmation. The May Raleigh-area wedding trip is confirmed, with the Saturday ride scheduled; other local transfers, seats, and bags remain unarranged. The June Seattle work trip is booked; relocated meeting details, Tuesday's venue sequence, and cancellation of the conflicting dinner remain open. The July Philadelphia board trip is confirmed, including Saturday bag storage before the evening flight. The September Portland and Bar Harbor trip is confirmed, with the Portland round-trip rental retained and the Bangor-return rental canceled. The October Atlanta trip is confirmed; Saturday luggage storage and the airline bag cutoff still need reconfirmation. For November 5-9, Elena and her spouse have confirmed Beach Terrace for four nights and an airport rental car; revised flight details and any rental return-time or billing update still need confirmation after the schedule change. For January 19-21, Elena's Phoenix summit plan has a confirmed Hampton Inn & Suites Phoenix Downtown reservation for Tuesday and Wednesday nights, with Thursday checkout; hotel storage and final charges, the ticketed flight record, seat and baggage details, traffic, terminal, and security conditions remain to be verified. For April 14-17, Elena selected the quoted $487 Denver-Boston round trip with Wednesday arrival at 12:55 p.m. and Saturday departure at 4:05 p.m.; the 6:10 p.m. Saturday flight remains the fallback. The Copley Square Hotel dates are fixed for three nights, April 14-17. Flight identity and terms, hotel total and storage, event addresses, panel timing, bag retrieval, airline cutoff, and Saturday traffic and security margin still require office verification.",
+  "verification": {
+    "32": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Keep the 7:10 outbound.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 1.0,
+          "evidence_quote": "Also, if any connecting alternatives get added during repricing, keep them to one short layover at most, with enough time for a practical transfer and a brief break.",
+          "habit_id": "tm_pd_v05_user_001_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The 7:10 a.m. outbound is an explicit current-trip override of the established afternoon-departure preference. The user independently establishes the exact one-short-layover connection policy for any connecting alternatives added during repricing; this remains scoped to the current trip and is not stated as a durable recurring default."
+    }
+  }
+}

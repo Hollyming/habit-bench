@@ -1,0 +1,80 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h02', 'exception') actual=[('tm_pd_v05_user_000_h01', 'support'), ('tm_pd_v05_user_000_h03', 'exception')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "For this Naples trip, Maya explicitly chose a materially more expensive Sun Country nonstop over an available Delta itinerary because Delta’s connection produced a near-midnight hotel arrival and added another connection on the return. This is a trip-local exception to favoring Delta when reasonably comparable, not a durable carrier-policy revision.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I have the three flight combinations now. Compare the full timelines, not just the fare. I want to know what each one really costs for two people with one checked bag each, how long the connections are, and about when we would reach Naples.",
+          "role": "user"
+        },
+        {
+          "content": "Send me the three sets of flights and the fare basis if it is shown. I’ll carry each one through to estimated Naples arrival and recalculate what remains under the $4,800 flight-and-hotel ceiling.",
+          "role": "assistant"
+        },
+        {
+          "content": "First is Sun Country, $1,086 total. Saturday nonstop MSP 4:10 p.m. to RSW 8:32 p.m. Friday nonstop back 6:35 p.m. to 9:11 p.m. Bags are not included.",
+          "role": "user"
+        },
+        {
+          "content": "Using $45 per checked bag per direction, that adds $180, so the flight cost becomes $1,266. With a normal deplaning and bag claim, a rideshare should leave RSW around 9:05–9:20 p.m. and reach a Naples hotel around 9:50–10:10 p.m. The two nonstop flights total 3 hours 22 minutes outbound and 3 hours 36 minutes home. That leaves $3,534 for the six hotel nights within the flight-and-hotel ceiling.",
+          "role": "assistant"
+        },
+        {
+          "content": "Second is Delta at $914. Outbound is MSP 4:05 to Atlanta 7:30, then 8:42 to RSW 10:18. Return is RSW 3:20 to Atlanta 5:05, then 6:28 to MSP 8:09. Basic economy, and the listing says $35 per bag each way.",
+          "role": "user"
+        },
+        {
+          "content": "Delta totals $1,054 after $140 for four checked-bag charges. The outbound Atlanta connection is 1 hour 12 minutes; the return connection is 1 hour 23 minutes. Scheduled air travel is 5 hours 13 minutes outbound and 5 hours 49 minutes home. After landing at 10:18 p.m., you would likely reach Naples around 11:35 p.m. to midnight. It leaves $3,746 for lodging, $212 more than Sun Country does.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the $1,174 option is American. Saturday 7:05 a.m. MSP to Charlotte 10:35, 11:40 to RSW 1:35. Friday RSW 2:10 to Washington National 4:32, then 5:54 to MSP 7:45. Same $35 bag charge.",
+          "role": "user"
+        },
+        {
+          "content": "American becomes $1,314 with bags. The Charlotte connection is 1 hour 5 minutes and the Washington connection is 1 hour 22 minutes. Total travel time is 5 hours 30 minutes outbound and 5 hours 35 minutes home. You would probably reach the Naples hotel around 2:50–3:15 p.m. Saturday. It leaves $3,486 for lodging, the smallest hotel allowance of the three.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the practical choice is between saving $212 with Delta and getting to the hotel almost two hours earlier on the nonstop?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Sun Country costs $212 more after bags but avoids both connections and advances the likely hotel arrival by roughly 1 hour 35 minutes to 2 hours. American buys a much earlier first day, but it costs $260 more than Delta, has two connections across the round trip, and leaves only $3,486 for the hotel.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does the nonstop still leave enough for the kind of lodging comparison we planned?",
+          "role": "user"
+        },
+        {
+          "content": "It does, but the hotel cap should move from the earlier $3,600 target to $3,534 all-in for six nights. That is $589 per night after taxes and mandatory fees. Estimated RSW–Naples rideshares of $150–$220 round trip remain separate, so the broader trip projection would be about $4,950–$5,020 if the hotel uses the full allowance.",
+          "role": "assistant"
+        },
+        {
+          "content": "For this Naples trip, take Sun Country over Delta. Delta is cheaper, but arriving near midnight after a connection makes the first hotel night poor value, and I don’t want that return connection either. Keep the rideshares outside the paid flight-and-hotel ceiling.",
+          "role": "user"
+        },
+        {
+          "content": "Retain the Sun Country nonstop pairing for the booking step: Saturday, August 25, MSP 4:10 p.m.–RSW 8:32 p.m., with likely Naples arrival around 9:50–10:10 p.m.; Friday, August 31, RSW 6:35–MSP 9:11 p.m. Fare for two is $1,086, and estimated checked bags add $180, for a $1,266 flight total. The revised six-night lodging ceiling is $3,534 all-in. Estimated airport rideshares remain $150–$220, unpaid and outside the $4,800 flight-and-hotel ceiling. Nothing is reserved yet.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0074",
+      "session_index": 74,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The August 25–31, 2029 Naples leisure trip remains unreserved. The retained flight option is a nonstop round trip for two via RSW, priced at $1,086 plus an estimated $180 for checked bags, with likely Naples arrival around 9:50–10:10 p.m. The revised six-night lodging ceiling is $3,534 all-in within the $4,800 flight-and-hotel ceiling. Estimated RSW–Naples rideshares of $150–$220 remain unpaid and separate. Detailed lodging comparison is still pending. The August 30–September 1, 2028 Cary client trip is confirmed with a Detroit connection arriving RDU at 10:42 p.m., the unchanged Friday nonstop home, and two hotel nights; paid reservations total $1,105 and rideshares remain unpaid and separate. The July 17–19, 2028 Columbus client trip has current-trip charges of $1,861 and net exposure of $1,309 after separately recognizing a $552 travel credit valid for completed travel by July 18, 2029; client-office bag storage is unconfirmed. The May 2028 Monterey Peninsula, December 2027 Charlotte and Richmond, April 2027 Nashville, September 2027 central Oregon coast, October 2027 Denver, and November 2026 San Diego trips remain reserved or completed. Coastal Georgia and January 2027 Denver remain unbooked. The Raleigh breakfast refund and corrected folio, Philadelphia deposit release and shuttle details, and an earlier Nashville refund reconciliation remain unresolved."
+}

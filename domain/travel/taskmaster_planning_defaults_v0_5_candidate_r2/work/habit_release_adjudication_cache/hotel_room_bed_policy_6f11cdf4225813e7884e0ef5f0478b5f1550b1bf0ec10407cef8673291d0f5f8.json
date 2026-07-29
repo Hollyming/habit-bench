@@ -1,0 +1,21 @@
+{
+  "cache_fingerprint": "6f11cdf4225813e7884e0ef5f0478b5f1550b1bf0ec10407cef8673291d0f5f8",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_room_bed_size_preference",
+      "boundary_condition": "Treat this as a soft queen-bed preference, not a general queen-or-larger rule and not an inference from party size.",
+      "canonical_value": "soft_queen_bed_default",
+      "condition": "When selecting a hotel room and the current trip does not require a different bed configuration.",
+      "default_action": "Prioritize or request a queen-size bed.",
+      "exception_condition": "Honor an explicit request for twin beds, a king bed, or another room-specific sleeping arrangement instead.",
+      "input_ids": [
+        "tm_v04_e2e_habit_90a7ff1f51d8"
+      ],
+      "name": "hotel_queen_bed_preference",
+      "preference_value": "Prefers a queen-size bed for hotel rooms when no different sleeping arrangement is requested.",
+      "rationale": "Multiple hotel-room examples support queen-size accommodation as a recurring preference, while also showing that explicit trip-specific bed configurations override it. The evidence is mixed between an exact queen request and queen-or-king acceptability, so this remains a soft queen default rather than a minimum-size rule.",
+      "representative_id": "tm_v04_e2e_habit_90a7ff1f51d8"
+    }
+  ]
+}

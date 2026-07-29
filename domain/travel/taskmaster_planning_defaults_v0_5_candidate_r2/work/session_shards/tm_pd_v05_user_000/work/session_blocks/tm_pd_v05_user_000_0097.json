@@ -1,0 +1,110 @@
+{
+  "cache_fingerprint": "bf8b31da7b37ebcf879c4c479ebf1464df9388fa8971a95a3d6247963a739832",
+  "sessions": [
+    {
+      "domain": "booking_administration",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The airline replacement was accepted for both travelers, the outbound was preserved, reissued tickets and seats were verified, bag entries carried over, the rental return was moved to 12:45 p.m. without a price change, and the chronological itinerary was updated to a $2,849 flight-car-hotel total.",
+        "evidence_topology": {
+          "episode_id": "leisure-monterey-004",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 97,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selected a 2:50 p.m. return departure, directly supporting the afternoon return option for this trip. The user did not state a durable cross-trip preference. The one-stop routing and other itinerary details do not, by themselves, establish support, an exception, or a revision for the remaining candidate habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Go ahead with the 2:50 return.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Go ahead with the 2:50 return. I want the exchange, car timing, and itinerary record cleaned up together.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll keep Thursday’s outbound untouched and apply the change only to Monday. Before I finalize the record, what does the airline confirmation screen show for the new airfare total and seats?",
+          "role": "assistant"
+        },
+        {
+          "content": "It shows $1,236 total airfare for both of us, with an additional collection of $148. Thursday is unchanged. Monday has us in 18A and 18B from San Jose to Denver, then 21A and 21B from Denver to Minneapolis.",
+          "role": "user"
+        },
+        {
+          "content": "That reconciles correctly: the exchange adds $148 total, and both travelers have seats on each replacement segment. Does the receipt show new ticket numbers and confirm any existing checked-bag arrangements carried forward?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. Both tickets say reissued, the ticket numbers are listed, and the bag entries carried over. I accepted the change.",
+          "role": "user"
+        },
+        {
+          "content": "The flight exchange is complete. I’ll record Monday as SJC-DEN-MSP at 2:50 p.m., arriving MSP at 10:18 p.m., with a 1 hour 24 minute connection. The original Thursday itinerary remains intact.",
+          "role": "assistant"
+        },
+        {
+          "content": "I also moved the rental return from noon to 12:45 p.m. The company emailed a revised confirmation and there was no price change.",
+          "role": "user"
+        },
+        {
+          "content": "Good. That aligns the reservation with the plan to leave Carmel at 10:45 a.m., refuel near SJC, and return the car at 12:45 p.m. The rental total is unchanged.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the final chronological record and the revised trip cost. Keep any genuinely unresolved items visible.",
+          "role": "user"
+        },
+        {
+          "content": "Thursday, September 12: fly MSP-SLC-SJC on the existing outbound, collect the rental, and check in for two Monterey nights. Friday: keep the morning whale-watching plan and return to the same hotel. Saturday: check out and move to Carmel for two nights. Sunday: remain based in Carmel. Monday, September 16: check out around 10:30 a.m., leave at 10:45, refuel near SJC, return the car at 12:45 p.m., and fly SJC-DEN-MSP at 2:50 p.m., arriving 10:18 p.m. Seats are 18A/18B and 21A/21B; both tickets were reissued and bag entries carried over. The confirmed flight-car-hotel total is $2,849, including the $148 exchange increase. Fuel, meals, activities, checked-bag charges if collected, and rental counter adjustments remain outside that figure. Still unresolved: whether the whale-watching tour is actually booked and the exact local-time cancellation cutoffs for both hotels. Keep the airline, rental, and hotel confirmation numbers with the tour record once issued.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0097",
+      "session_index": 97,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The September 12-16 Monterey Peninsula trip for Maya Lian Chen and Jordan Avery Lee is confirmed at a flight-car-hotel total of $2,849. Thursday’s MSP-SLC-SJC outbound, both hotels, and the Friday morning whale-watching plan remain unchanged. The airline schedule-change exchange is complete: Monday’s return is SJC-DEN-MSP at 2:50 p.m., arriving MSP at 10:18 p.m., with a 1 hour 24 minute connection; both tickets were reissued, seat assignments were confirmed, bag entries carried over, and the added collection was $148 total. Monday checkout is planned around 10:30 a.m., departure from Carmel at 10:45, fuel near SJC, and rental-car return at 12:45 p.m.; the rental reservation was updated without a price change. The tour’s booking status and exact local-time hotel cancellation cutoffs remain unconfirmed. Confirmation numbers should be retained together. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2, 2029 Baltimore client trip is confirmed, with airport transfers unbooked at an estimated $76. The November 6-8, 2029 Raleigh trip remains confirmed at a projected $1,288; rides remain unbooked and no checked bag is attached. Earlier unresolved follow-ups include the Raleigh corrected folio, Philadelphia deposit release, and Nashville refund reconciliation.",
+  "verification": {
+    "97": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Go ahead with the 2:50 return.",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selected a 2:50 p.m. return departure, directly supporting the afternoon return option for this trip. The user did not state a durable cross-trip preference. The one-stop routing and other itinerary details do not, by themselves, establish support, an exception, or a revision for the remaining candidate habits."
+    }
+  }
+}

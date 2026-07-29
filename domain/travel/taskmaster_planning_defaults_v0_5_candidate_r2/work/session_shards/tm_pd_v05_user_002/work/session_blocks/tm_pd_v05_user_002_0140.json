@@ -1,0 +1,171 @@
+{
+  "cache_fingerprint": "14272f171e74cadfecf57d6cf6eaa2db93592ca4283b510d98c03e3ff61e22b7",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session completed the Washington family weekend booking using trip-specific cost, room-layout, breakfast, cancellation, transit, luggage-storage, airport-timing, traveler, baggage, and seat details. It introduced no recurring travel preference.",
+        "evidence_topology": {
+          "episode_id": "washington-family-weekend-01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 140,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly approved the previously specified itinerary, including the 7:40 p.m. return and nonstop routing. The current-trip choice does not establish recurring language. The seat choice does not clearly establish Marcus's own window-seat preference, and choosing Dupont does not support included breakfast because that hotel excludes it.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Proceed with the flights and the Dupont room for $2,754.08. No insurance or other add-ons.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Proceed with the flights and the Dupont room for $2,754.08. No insurance or other add-ons.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h03",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Put the two hotels side by side now. I need the real three-night total, where everyone sleeps, and how much time each one adds Friday and Saturday.",
+          "role": "user"
+        },
+        {
+          "content": "For October 22-25, the Dupont Circle option is $987 in room charges plus $146.08 in required taxes, totaling $1,133.08. The room has two queen beds, so Marcus and Daniel can use one and Owen the other. Breakfast is not included; the hotel restaurant charges from $24 per adult and $15 for a child, or there are several less expensive places within two blocks. Free cancellation ends October 20 at 6:00 p.m. Eastern.\n\nThe Capitol Hill option is $837 plus $123.88 in required taxes, totaling $960.88. Its room has one king bed and a double sofa bed; the hotel confirms the sofa bed can be prepared for Owen before the 9:00-9:30 p.m. Thursday arrival. A continental breakfast for all three guests is included. Free cancellation ends October 19 at 4:00 p.m. Eastern.\n\nCapitol Hill saves $172.20 before accounting for breakfast.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the actual travel difference? Friday is the zoo and Georgetown. Saturday is Air and Space, the Capitol grounds, and the American History museum.",
+          "role": "user"
+        },
+        {
+          "content": "From Dupont Circle, Friday is about 14 minutes to the zoo, 18 minutes from the zoo to Georgetown, and 12 minutes back to the hotel: roughly 44 minutes in transit. From Capitol Hill, the same sequence is about 30, 27, and 25 minutes: roughly 82 minutes. Dupont saves about 38 minutes Friday.\n\nSaturday reverses the advantage. From Dupont, allow about 22 minutes to Air and Space, 13 minutes to the Capitol grounds, 18 minutes to American History, and 20 minutes back: roughly 73 minutes. From Capitol Hill, those legs total about 46 minutes. Capitol Hill saves about 27 minutes Saturday. Across both days, Dupont is about 11 minutes faster overall, with most of its benefit on Friday.",
+          "role": "assistant"
+        },
+        {
+          "content": "How are you calculating that? Metro plus walking, not rideshares?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Those are typical Metro-and-walking estimates, including reasonable station access and one ordinary train wait, but not unusually long service delays. The zoo leg uses Woodley Park, Georgetown requires a walk because it has no Metro station, and the Saturday estimates use L'Enfant Plaza, Capitol South, and Smithsonian as appropriate.",
+          "role": "assistant"
+        },
+        {
+          "content": "The two queens are cleaner, especially getting in late. What would breakfast likely cost us at Dupont for all three mornings?",
+          "role": "user"
+        },
+        {
+          "content": "A full hotel breakfast for three would likely run $63-$75 per morning before tip, or about $225-$270 over three mornings with tax and tip. Using nearby counter-service places, a practical estimate is $35-$45 per morning, or $105-$135 total. Even at the lower nearby-food estimate, Dupont remains about $277-$307 more than Capitol Hill.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the nearby places, not the hotel restaurant. Also walk me through Sunday. We should not be dragging bags around, and I don't want the airport timing vague.",
+          "role": "user"
+        },
+        {
+          "content": "After Sunday checkout, the Dupont hotel will store all three travelers' luggage at no charge; collect a claim ticket at the front desk. Leave the bags around 9:00 a.m., continue sightseeing without them, and return to the hotel by 4:35 p.m. Collecting the luggage should take about 10 minutes.\n\nFor the 7:40 p.m. DCA departure, leave the hotel at 4:50 p.m. A taxi or rideshare typically takes 20-30 minutes then, making expected airport arrival 5:15-5:25 p.m. That leaves about 2 hours 15 minutes before departure and comfortably precedes the 6:55 p.m. checked-bag cutoff. If road conditions deteriorate, the fallback is Metro from Dupont Circle with one transfer, about 35-45 minutes.",
+          "role": "assistant"
+        },
+        {
+          "content": "So we can stay out until roughly four and still return for the bags. What time do we need to leave the last museum?",
+          "role": "user"
+        },
+        {
+          "content": "Leave the National Gallery area by 4:00 p.m. Metro and walking should put you back at the Dupont hotel around 4:25-4:35. That preserves the 4:50 airport departure. I would not move the museum departure later because the shared bag has to be checked.",
+          "role": "assistant"
+        },
+        {
+          "content": "All right. Choose Dupont. Before anything is charged, repeat the flight, baggage, room, cancellation, and grand total.",
+          "role": "user"
+        },
+        {
+          "content": "Flights for Marcus Lee, Daniel Lee, and Owen Lee: Thursday, October 22, ORD-DCA nonstop, 6:05-8:02 p.m.; Sunday, October 25, DCA-ORD nonstop, 7:40-9:02 p.m. Base airfare is $1,311. Three carry-ons plus one shared checked bag are $310 round trip, making the flight total $1,621.\n\nHotel: Dupont Circle, October 22-25, three nights, one room with two queen beds for two adults and one child. Required room charges and taxes total $1,133.08. Breakfast is not included. Free cancellation ends October 20 at 6:00 p.m. Eastern.\n\nCombined charge: $2,754.08. Optional insurance, paid breakfast, and ground transportation are not included.",
+          "role": "assistant"
+        },
+        {
+          "content": "Verify the reservation isn't treating Owen as an adult and that the two queens are guaranteed, not a request.",
+          "role": "user"
+        },
+        {
+          "content": "Verified: the occupancy is entered as two adults and one child, age 12. The selected inventory is explicitly a two-queen room for three guests; two queen beds are part of the booked room category, not a preference request. The hotel also confirms complimentary luggage storage after Sunday checkout.",
+          "role": "assistant"
+        },
+        {
+          "content": "Traveler names should be Marcus Lee, Daniel Lee, and Owen Lee exactly. Same traveler records already used for the Washington flight search. One shared checked bag under Marcus. Any seat assignments included?",
+          "role": "user"
+        },
+        {
+          "content": "The traveler records match those names exactly, and the shared checked bag is attached to Marcus Lee in both directions. Standard seat selection is included. The available adjacent set is 18D, 18E, and 18F outbound and 20A, 20B, and 20C inbound. No extra seat fee applies.",
+          "role": "assistant"
+        },
+        {
+          "content": "Take those seats. Last issue: Sunday gets us home late. Keep the expected home arrival in the finished itinerary because Owen has school Monday.",
+          "role": "user"
+        },
+        {
+          "content": "Seats 18D-18F outbound and 20A-20C inbound are selected at no additional cost. The return lands at ORD at 9:02 p.m.; after deplaning, retrieving the checked bag, and traveling home, expected arrival is approximately 10:30-11:15 p.m. Sunday. I will keep that visible in the completed itinerary.",
+          "role": "assistant"
+        },
+        {
+          "content": "Proceed with the flights and the Dupont room for $2,754.08. No insurance or other add-ons.",
+          "role": "user"
+        },
+        {
+          "content": "Both bookings are complete. The flights for Marcus Lee, Daniel Lee, and Owen Lee are confirmed under W7K4QD: Thursday, October 22, ORD-DCA nonstop at 6:05-8:02 p.m., seats 18D-18F; Sunday, October 25, DCA-ORD nonstop at 7:40-9:02 p.m., seats 20A-20C. Three carry-ons and one shared checked bag under Marcus are included. The flight charge is $1,621.\n\nThe Dupont Circle hotel is confirmed under DPH-582731 for October 22-25: three nights, two adults and Owen listed as a 12-year-old child, in a guaranteed two-queen room. The total with required taxes is $1,133.08; breakfast is not included. Free cancellation ends October 20 at 6:00 p.m. Eastern. Thursday hotel arrival is expected around 9:00-9:30 p.m.\n\nFriday's zoo-and-Georgetown route is about 44 minutes in transit; Saturday's museum-and-Capitol route is about 73 minutes. On Sunday, leave luggage with the hotel after checkout, depart the final museum by 4:00 p.m., collect the bags around 4:35, and leave for DCA at 4:50 for an expected 5:15-5:25 arrival. Expected arrival home is 10:30-11:15 p.m. before Owen's Monday school day. Total charged is $2,754.08. No insurance or other add-ons were purchased.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0140",
+      "session_index": 140,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "The San Diego, Columbus-Cincinnati, Richmond, Boston, Houston, Maine coast, and Atlanta trips remain booked as previously summarized. Atlanta's revised Tuesday flight remains at 5:35-6:50 p.m. with seat 14A. The Washington family weekend is now booked for Marcus Lee, Daniel Lee, and Owen Lee under flight confirmation W7K4QD and hotel confirmation DPH-582731. Flights are October 22 ORD-DCA 6:05-8:02 p.m. and October 25 DCA-ORD 7:40-9:02 p.m.; seats are 18D-18F outbound and 20A-20C inbound. Three carry-ons and one shared checked bag under Marcus are included; flight cost is $1,621. The Dupont Circle hotel is booked October 22-25 for two adults and one 12-year-old child in a guaranteed two-queen room, totaling $1,133.08 with taxes. Breakfast is excluded, complimentary Sunday luggage storage is confirmed, and free cancellation ends October 20 at 6:00 p.m. Eastern. Thursday hotel arrival is expected at 9:00-9:30 p.m. Friday transit is about 44 minutes and Saturday transit about 73 minutes. Sunday plans call for leaving the final museum by 4:00 p.m., collecting stored bags around 4:35, leaving the hotel at 4:50, and reaching DCA around 5:15-5:25 p.m. Expected home arrival is 10:30-11:15 p.m. before Owen's Monday school day. Combined charge was $2,754.08; no insurance or add-ons were purchased.",
+  "verification": {
+    "140": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Proceed with the flights and the Dupont room for $2,754.08. No insurance or other add-ons.",
+          "habit_id": "tm_pd_v05_user_002_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Proceed with the flights and the Dupont room for $2,754.08. No insurance or other add-ons.",
+          "habit_id": "tm_pd_v05_user_002_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly approved the previously specified itinerary, including the 7:40 p.m. return and nonstop routing. The current-trip choice does not establish recurring language. The seat choice does not clearly establish Marcus's own window-seat preference, and choosing Dupont does not support included breakfast because that hotel excludes it."
+    }
+  }
+}

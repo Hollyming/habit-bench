@@ -1,0 +1,155 @@
+{
+  "cache_fingerprint": "03bd7858b7896c6544c711d2f87df1a716fe8501050ebb01c0899e4788a22823",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip planning only. Maya selected a trip-specific flight and hotel shortlist, requested rideshare cost estimates, and left all reservations unbooked pending confirmation of Thursday luggage storage.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-015",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 86,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user establishes a current-trip routing tradeoff by accepting a connection only for sufficient savings, then explicitly selects the offered Delta nonstop itinerary. This also supports Delta as an acceptable preferred carrier option for the trip. The utterances do not establish a recurring cross-trip default, an afternoon return preference, cheapest-acceptable-flight behavior, or any candidate hotel amenity, rating, or beach-proximity habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.94,
+            "evidence_quote": "Pair the Hyatt Place with the Delta flights and estimate the whole trip.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Pair the Hyatt Place with the Delta flights and estimate the whole trip.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h02",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to set up a Raleigh trip for next week. I can leave Minneapolis Tuesday after 1:00 p.m., have a client review Wednesday morning, and training in North Hills until 3:30 Thursday. I need to be home Thursday night. Airfare has to stay at or below $700, and the hotel limit is $255 a night before tax.",
+          "role": "user"
+        },
+        {
+          "content": "For Tuesday, November 6 through Thursday, November 8, I’ll compare complete round trips rather than separate one-way prices. Is a connection acceptable, and how soon after 3:30 Thursday could you realistically leave the client site?",
+          "role": "assistant"
+        },
+        {
+          "content": "A connection is acceptable if it saves enough, but I don’t want an itinerary that gets me in extremely late Tuesday. On Thursday I could leave North Hills around 3:45 if I have my bag with me.",
+          "role": "user"
+        },
+        {
+          "content": "Three workable economy itineraries are showing within the limit. Option 1 is Delta nonstop: MSP 2:20 p.m.-RDU 5:55 p.m. Tuesday, then RDU 6:25 p.m.-MSP 8:12 p.m. Thursday, $668 round trip. Option 2 is American through Charlotte: MSP 1:48 p.m.-RDU 6:37 p.m., then RDU 5:36 p.m.-MSP 9:28 p.m. through Charlotte, $594. Option 3 is United through Chicago: MSP 3:05 p.m.-RDU 7:42 p.m., then RDU 5:55 p.m.-MSP 10:06 p.m. through Chicago, $561. All are single-ticket itineraries. The Delta return gives you the cleanest timing, while American’s 5:36 departure leaves little margin after training.",
+          "role": "assistant"
+        },
+        {
+          "content": "How tight is the Delta return once I account for the drive and airport security? And is that $668 the full round trip, not each direction?",
+          "role": "user"
+        },
+        {
+          "content": "Yes, $668 is the total displayed round-trip fare before any optional seat or checked-bag charges. North Hills to RDU is commonly about 20-25 minutes without heavy traffic, but Thursday afternoon can push that closer to 35 minutes. Leaving at 3:45 should put you at the terminal around 4:20, about two hours before the 6:25 departure. That is a reasonable buffer.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Compare transportation. I won’t need a car during the client days unless that is somehow cheaper overall.",
+          "role": "user"
+        },
+        {
+          "content": "A rental car for two days is roughly $145-$190 after taxes and facility fees, plus hotel parking if charged. App-based rides are likely less: about $28-$40 each way between RDU and North Hills, and usually $8-$16 for short trips within the North Hills area. If the hotel is close to the client, a realistic trip total is $75-$115. A taxi would be similar or slightly higher for the airport legs. Rideshare is the more economical fit unless your meetings require additional travel.",
+          "role": "assistant"
+        },
+        {
+          "content": "The review and training are at the same client site. What hotel areas should I look at? I need somewhere practical for both mornings, not downtown sightseeing.",
+          "role": "user"
+        },
+        {
+          "content": "North Hills itself is the strongest location: several hotels are within a few minutes of the client area, with restaurants nearby, but rates can approach your cap. Midtown along Wake Forest Road is the value alternative, generally a 7-12 minute ride to North Hills. Crabtree Valley has more inventory, though the commute is typically 12-20 minutes and can vary with traffic. Downtown would add unnecessary travel for this schedule.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me a few actual hotel comparisons for North Hills and Midtown, including the two-night total before tax.",
+          "role": "user"
+        },
+        {
+          "content": "In North Hills, the Renaissance Raleigh North Hills is $249 per night, or $498 for two nights, and the AC Hotel Raleigh North Hills is $239 per night, or $478. Both are close to dining and a short ride from most North Hills offices. In Midtown, the Hyatt Place Raleigh Midtown is $189 per night, or $378, with breakfast included, and the Courtyard Raleigh Midtown is $174 per night, or $348. Midtown would add modest ride costs but still keeps both client mornings straightforward. These totals are before tax and assume standard refundable rates.",
+          "role": "assistant"
+        },
+        {
+          "content": "The AC is close enough to the ceiling that taxes don’t matter for the policy, but I’d rather leave room for rate changes. Pair the Hyatt Place with the Delta flights and estimate the whole trip.",
+          "role": "user"
+        },
+        {
+          "content": "The working combination is $668 for the Delta round trip, $378 for two hotel nights before tax, and approximately $90 for airport and local rides. That is about $1,136 before hotel tax and any airline extras. Tuesday would be MSP 2:20 p.m.-RDU 5:55 p.m.; after baggage claim, allow roughly 25-35 minutes for the ride to the Hyatt Place Raleigh Midtown. Thursday, leave North Hills around 3:45 p.m. for the 6:25 p.m. nonstop, arriving MSP at 8:12 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does the Hyatt Place create any problem getting to North Hills for an 8:30 Wednesday review? Also, I may need to leave a suitcase there Thursday until training ends.",
+          "role": "user"
+        },
+        {
+          "content": "It should not create a problem. Plan to request a ride around 7:55 Wednesday; the drive is often under 15 minutes, leaving some cushion for traffic and building entry. On Thursday, the hotel can generally hold luggage after checkout, but returning there after 3:30 would add time before the airport. A better plan is to take the suitcase to the client site if they can store it. If they cannot, the North Hills hotels become more convenient despite the higher rate.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep Hyatt Place as the leading hotel for now. I’ll ask the client whether they can hold the bag. Don’t reserve the flight, hotel, or rides yet; just give me the shortlist and the one open question.",
+          "role": "user"
+        },
+        {
+          "content": "Shortlist retained, with nothing booked. Leading flights: Delta nonstop for $668 round trip, departing MSP Tuesday at 2:20 p.m. and arriving RDU at 5:55 p.m.; returning Thursday at 6:25 p.m. and arriving MSP at 8:12 p.m. Leading hotel: Hyatt Place Raleigh Midtown at $189 per night, $378 for two nights before tax. Estimated rides total $75-$115. The open question is whether the North Hills client site can store your suitcase through Thursday’s training; that determines whether Midtown remains practical for departure day.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0086",
+      "session_index": 86,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The August 25-31, 2029 Naples trip remains fully confirmed for two travelers at $4,428. The Baltimore client trip September 30-October 2, 2029 is confirmed: Sunday nonstop MSP-BWI, two nights at the Inner Harbor hotel with late-arrival notation, complimentary Tuesday luggage storage, and the active 7:40 p.m. BWI-DTW-MSP return arriving 11:18 p.m.; airport transfers remain unbooked at an estimated $76. A November 6-8, 2029 Raleigh client trip is being planned but nothing is booked. The leading combination is a $668 Delta nonstop round trip and two nights at Hyatt Place Raleigh Midtown for $378 before tax, with local rides estimated at $75-$115. Maya must confirm whether the North Hills client site can store her suitcase through Thursday training before finalizing the Midtown hotel. The August 2028 Cary trip is confirmed; the July 2028 Columbus trip retains a travel credit and unresolved office bag-storage question. Coastal Georgia and January 2027 Denver remain unbooked. The Raleigh corrected folio, Philadelphia deposit release, and earlier Nashville refund reconciliation remain unresolved.",
+  "verification": {
+    "86": {
+      "habit_signals": [
+        {
+          "confidence": 0.94,
+          "evidence_quote": "Pair the Hyatt Place with the Delta flights and estimate the whole trip.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Pair the Hyatt Place with the Delta flights and estimate the whole trip.",
+          "habit_id": "tm_pd_v05_user_000_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user establishes a current-trip routing tradeoff by accepting a connection only for sufficient savings, then explicitly selects the offered Delta nonstop itinerary. This also supports Delta as an acceptable preferred carrier option for the trip. The utterances do not establish a recurring cross-trip default, an afternoon return preference, cheapest-acceptable-flight behavior, or any candidate hotel amenity, rating, or beach-proximity habit."
+    }
+  }
+}

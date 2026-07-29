@@ -1,0 +1,71 @@
+{
+  "cache_fingerprint": "412687ccd291ee68352f6c8efa2edb2dacaeb8efbd0f8351a11464fb42457fe0",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Resolved a trip-specific occupancy conflict, confirmed the complete mandatory-fee total, and converted the cancellation deadline to Chicago time. No recurring preference was established.",
+        "evidence_topology": {
+          "episode_id": "southern-california-family-01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 34,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user only establishes current-trip occupancy, total-price, cancellation-time, and fallback-hotel requirements. None provides strong semantic evidence for any candidate habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Before we choose Mission Bay, I need the discrepancy cleared up. The room page says two queens for four, but the last screen looks like it only accepts two guests. Can Daniel, Owen, and I all be named on it? Also confirm the $4,150.92 includes the resort fee and give me the cancellation cutoff in Chicago time.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll verify the occupancy against the actual rate terms, then reconcile every mandatory charge and convert the deadline from San Diego time.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. If all three of us cannot be on the reservation, remove it and we’ll use Coronado.",
+          "role": "user"
+        },
+        {
+          "content": "Mission Bay is cleared. The Bay View Two Queens with Balcony permits four occupants, and Marcus Lee, Daniel Lee, and Owen Lee can all be listed on the reservation. The complete seven-night total is $4,150.92, including the room, mandatory nightly resort fee, estimated taxes and assessments, and self-parking. Free cancellation ends June 15 at 11:59 p.m. in San Diego, which is June 16 at 1:59 a.m. in Chicago. Nothing has been booked; Mission Bay remains the lead option.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0034",
+      "session_index": 34,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Marcus's Atlanta, Minneapolis, Dallas, San Diego, and Nashville plans remain unchanged. The Washington family trip is confirmed for October 10-14 under American W6P9KT and Embassy Suites ESW-481762; rideshare from DCA, and leave the hotel at 7:55 a.m. for the first Smithsonian entry. Seattle Thanksgiving remains confirmed under American R4K8VN, Coast Gateway CGH-730194, and United H7LM2Q, with seats 22D-22F and one checked bag. The Phoenix work trip remains confirmed for January 12-15 under United N8Q4LS, American K3R7DX, Hilton HTM-593184, and Hertz J84219673; total $1,651.45 and Thursday hotel departure at 4:35 a.m. For the June 20-27 family coastal vacation, nothing is booked. American airfare remains $1,587 for three, with June 21-28 United flights at $1,536 as fallback. San Diego Mission Bay Resort is now fully cleared for Marcus, Daniel, and Owen in a Bay View Two Queens with Balcony. Its complete total is $4,150.92 including the mandatory resort fee, estimated taxes and assessments, and parking. Free cancellation ends June 15 at 11:59 p.m. San Diego time, equivalent to June 16 at 1:59 a.m. Chicago time. Loews Coronado Bay remains the alternative at $3,966.76 complete, with free cancellation through June 13 at 4:00 p.m. local time. Mission Bay still leads; Marcus and Daniel have not yet selected flights or lodging.",
+  "verification": {
+    "34": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user only establishes current-trip occupancy, total-price, cancellation-time, and fallback-hotel requirements. None provides strong semantic evidence for any candidate habit."
+    }
+  }
+}

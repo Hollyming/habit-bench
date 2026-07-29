@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "b8c057a5b33ba9770850b33689061ae40f81b3459c3663a43b9761ef976cff75",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "",
+      "boundary_condition": "Do not infer a fixed numeric floor, hotel class, review platform, upscale style, resort style, or budget fallback from this habit.",
+      "canonical_value": "prefer_well_rated_hotels",
+      "condition": "When selecting or evaluating a hotel.",
+      "default_action": "Favor hotels with strong ratings or quality signals while applying any threshold and rating metric stated for the current trip.",
+      "exception_condition": "Follow the current request when it specifies a rating threshold, quality metric, or a different price-versus-quality tradeoff.",
+      "input_ids": [
+        "tm_v04_e2e_habit_2f7cf6d5b85d"
+      ],
+      "name": "prefer_well_rated_hotels",
+      "preference_value": "Prefers well-rated, good-quality hotels.",
+      "rationale": "The examples consistently support a soft preference for well-rated hotels, while their differing thresholds and quality descriptions do not justify a fixed numeric floor or hotel style. This general quality preference is useful alongside, and is not an alias of, the Google-specific threshold.",
+      "representative_id": "tm_v04_e2e_habit_2f7cf6d5b85d"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "hotel_google_rating_floor",
+      "boundary_condition": "Apply the threshold specifically to Google ratings; do not reinterpret it as a hotel-class requirement or transfer it to unrelated rating scales.",
+      "canonical_value": "google_rating_at_least_4",
+      "condition": "When evaluating hotels using Google ratings.",
+      "default_action": "Prioritize or filter for hotels rated at least 4 stars on Google.",
+      "exception_condition": "If no suitable option meets the threshold alongside more important trip constraints, ask before relaxing it.",
+      "input_ids": [
+        "tm_v04_e2e_habit_704f0266b376"
+      ],
+      "name": "hotel_google_rating_floor",
+      "preference_value": "Prefers hotels with a Google rating of at least 4 stars.",
+      "rationale": "Repeated evidence supports a distinct, metric-specific preference for a Google rating floor of 4 stars. It is more specific than the general quality preference but does not conflict with or duplicate it.",
+      "representative_id": "tm_v04_e2e_habit_704f0266b376"
+    }
+  ]
+}

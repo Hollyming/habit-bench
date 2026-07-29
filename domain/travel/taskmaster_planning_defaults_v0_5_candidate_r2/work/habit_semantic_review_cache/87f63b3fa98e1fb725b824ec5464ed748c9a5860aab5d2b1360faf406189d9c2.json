@@ -1,0 +1,96 @@
+{
+  "cache_fingerprint": "87f63b3fa98e1fb725b824ec5464ed748c9a5860aab5d2b1360faf406189d9c2",
+  "rows": [
+    {
+      "boundary_condition": "Treat this as a soft default unless the user explicitly makes breakfast mandatory. The evidence supports a preference for free breakfast across trips, but not always a hard filter or a specific breakfast quality standard.",
+      "bundle_id": "tm_v04_e2e_bundle_6239e8f18e7a",
+      "canonical_value": "hotel_free_breakfast",
+      "condition": "When searching for or comparing hotels for an overnight trip, consider free breakfast a reusable amenity preference after satisfying explicit core constraints such as location, room or bed needs, budget, and required hotel class.",
+      "confidence": 0.74,
+      "decision": "keep",
+      "default_action": "Rank or surface hotels with free breakfast higher, and confirm whether a candidate includes it when the amenity is not clear.",
+      "exception_condition": "Relax or ignore this preference if the user says breakfast is unimportant, if no suitable hotel meets higher-priority constraints with free breakfast, or if the user knowingly chooses a hotel without it.",
+      "family": "trip_context_hotel_policy",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_6239e8f18e7a",
+      "induced_at": "2026-07-16T08:05:13.541052+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer hotels with included breakfast",
+      "preference_value": "Prefer a hotel that includes free breakfast.",
+      "rationale": "The three independent hotel instruction IDs hotel-11, hotel-8, and hotel-10 each include a user-initiated request or check for free breakfast. Because one source says 'maybe' and another asks about it after considering a hotel, the reusable habit should be inferred as a preference rather than an unconditional requirement.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.86,
+        "reason": "Supported by three distinct hotel instruction_ids with consistent positive interest in free breakfast. The evidence establishes a reusable soft hotel amenity preference, not a hard requirement or a recurring breakfast-quality standard.",
+        "reviewed_by": "gpt-5.5"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Shows the user checks whether a proposed hotel includes free breakfast, indicating the amenity matters in hotel selection.",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "exact_user_quote": "Okay. I guess that's okay. Do they have a free breakfast there?",
+          "instruction_id": "hotel-11",
+          "turn_index": 42
+        },
+        {
+          "contribution": "Independently states a soft preference for a hotel that has free breakfast.",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "exact_user_quote": "And also one that maybe has free breakfast but and I think that's it?",
+          "instruction_id": "hotel-8",
+          "turn_index": 15
+        },
+        {
+          "contribution": "Independently gives a stronger hotel requirement for free breakfast, supporting the same amenity preference.",
+          "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+          "exact_user_quote": "I want it to have a free breakfast, not like a little drink one. I want it to have a good breakfast as well.",
+          "instruction_id": "hotel-10",
+          "turn_index": 13
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "Okay. I guess that's okay. Do they have a free breakfast there?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-a1bdb4ae-71ad-4643-882e-1e81b01533c7",
+          "habitual_language": false,
+          "instruction_id": "hotel-11",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 42,
+          "user_utterance": "Okay. I guess that's okay. Do they have a free breakfast there?"
+        },
+        {
+          "annotated_segment": "And also one that maybe has free breakfast but and I think that's it?",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-71e04dea-b9a2-444d-8257-5b6098acf377",
+          "habitual_language": false,
+          "instruction_id": "hotel-8",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 15,
+          "user_utterance": "And also one that maybe has free breakfast but and I think that's it?"
+        },
+        {
+          "annotated_segment": "I want it to have a free breakfast, not like a little drink one. I want it to have a good breakfast as well.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-51856634-23f6-4305-984f-a938c71a938b",
+          "habitual_language": false,
+          "instruction_id": "hotel-10",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 13,
+          "user_utterance": "I want it to have a free breakfast, not like a little drink one. I want it to have a good breakfast as well."
+        }
+      ]
+    }
+  ]
+}

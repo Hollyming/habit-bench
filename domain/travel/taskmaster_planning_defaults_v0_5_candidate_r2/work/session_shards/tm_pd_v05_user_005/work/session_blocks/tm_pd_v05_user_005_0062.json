@@ -1,0 +1,139 @@
+{
+  "cache_fingerprint": "7e11b178428a209f9d3cdb65622ea9098126424a2af8a9cb2655996212949957",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip-specific hotel comparison only. Avery and her wife changed this vacation from Jekyll Island to Amelia Island and requested a three-property shortlist based on verified beach access, exact room balcony and view wording, complete costs, and cancellation terms. No recurring preference was established.",
+        "evidence_topology": {
+          "episode_id": "georgia_florida_coastal_vacation_01",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 62,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The king-room request is an explicit current-trip override of the shared-room queen default. Prioritizing the two oceanfront properties supports the beach-proximity preference for this coastal trip. No user utterance provides strong evidence for the flight or hotel-rating habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "We are sharing one king room.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h04",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Start with the two oceanfront ones.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h05",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "We talked it over and are switching from Jekyll Island to Amelia Island. Keep September 12 through 18 and the Saturday drive from Atlanta. I want to sort out which hotels are truly on the beach and which balcony rooms actually face the ocean.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare availability for six nights for two adults, separating direct beach access from properties that require crossing a road. For balcony rooms, I’ll verify whether the room category guarantees a private balcony and an ocean view rather than relying on a general amenities list. Should I include parking and mandatory fees in the totals?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. Give me the complete six-night amount with taxes, parking, and any resort or destination fee. We are sharing one king room.",
+          "role": "user"
+        },
+        {
+          "content": "Four available properties illustrate the differences. Omni Amelia Island Resort and Elizabeth Pointe Lodge are oceanfront with direct access. Courtyard Amelia Island and Residence Inn Amelia Island are near the beach, but neither has direct access from the hotel grounds. The Courtyard is by Main Beach Park with a road and public area between the building and sand; the Residence Inn requires crossing South Fletcher Avenue.",
+          "role": "assistant"
+        },
+        {
+          "content": "Start with the two oceanfront ones. What exactly do their balcony descriptions say?",
+          "role": "user"
+        },
+        {
+          "content": "At the Omni, the available category is “Deluxe Ocean View, 1 King.” It guarantees a private furnished balcony and an angled ocean view; it is not described as full or unobstructed oceanfront. The resort has paths from the grounds over the dunes to the beach. At Elizabeth Pointe, the available “Oceanfront King with Balcony” guarantees a private balcony facing the Atlantic and is described as a direct oceanfront view. Its boardwalk leads straight from the property to the beach.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the full costs for those exact rooms?",
+          "role": "user"
+        },
+        {
+          "content": "The Omni totals $2,884.62 for six nights: $2,118.00 in room charges, $254.16 resort fee, $180.00 self-parking, and $332.46 in taxes and assessments. Free cancellation runs through 11:59 p.m. local time on September 5; after that, the penalty is one night plus tax and the associated nightly resort fee. Elizabeth Pointe totals $3,126.40: $2,610.00 in room charges, $396.40 in taxes, and $120.00 parking. There is no resort fee. It is cancellable without charge through 6:00 p.m. local time on September 4; afterward, the two-night deposit is forfeited.",
+          "role": "assistant"
+        },
+        {
+          "content": "That makes the Elizabeth Pointe view clearer, but it is more than I expected. Check the other two carefully. I do not want a hotel-wide balcony amenity treated as a balcony in our room.",
+          "role": "user"
+        },
+        {
+          "content": "The Courtyard’s available “King, Balcony” room guarantees a private balcony, but the room description does not promise an ocean view. A separate “Ocean View King” is available, yet its listing does not guarantee a balcony. There is no category available for all six nights that guarantees both. The Residence Inn’s available king studio has no private balcony in its room description; balcony references appear only in general property information and guest photos. Neither should be represented as an ocean-view balcony option.",
+          "role": "assistant"
+        },
+        {
+          "content": "Still give me their totals so we can judge the savings against the compromises.",
+          "role": "user"
+        },
+        {
+          "content": "The Courtyard King Balcony totals $2,071.54, including taxes and $150.00 for parking; there is no destination fee. Cancellation is free through 11:59 p.m. September 6, then one night plus tax. The Residence Inn king studio totals $1,894.76, including taxes and $90.00 parking, with no resort fee. It is free to cancel through 11:59 p.m. September 5, then one night plus tax. Both rates include breakfast only at the Residence Inn.",
+          "role": "assistant"
+        },
+        {
+          "content": "Drop the Residence Inn. Shortlist the Omni, Elizabeth Pointe, and Courtyard, but make the beach and balcony distinctions impossible to miss. Also tell me whether our driving plan still works.",
+          "role": "user"
+        },
+        {
+          "content": "The shortlist is now three properties for September 12-18, one king room for two adults.\n\n1. Elizabeth Pointe Lodge — $3,126.40 complete. Direct oceanfront property and direct boardwalk beach access. The exact room guarantees a private balcony with a direct Atlantic-facing oceanfront view. Free cancellation through 6:00 p.m. September 4; two-night deposit forfeited afterward.\n\n2. Omni Amelia Island Resort — $2,884.62 complete. Oceanfront resort with direct dune-path beach access. The exact room guarantees a private furnished balcony with an angled ocean view, not a full oceanfront view. Free cancellation through 11:59 p.m. September 5; afterward, one night plus tax and the related resort fee.\n\n3. Courtyard Amelia Island — $2,071.54 complete. Near Main Beach, but the hotel does not have direct beach access; reaching the sand involves the road and public beach-park area. The exact room guarantees a private balcony but no ocean view. Free cancellation through 11:59 p.m. September 6; afterward, one night plus tax.\n\nThe Saturday drive still works, but Amelia Island adds roughly 45 to 60 minutes compared with Jekyll Island. Leaving Atlanta at 8:30 a.m., stopping near Pooler around noon, and getting back on the road about 12:45 p.m. should put you at the hotel around 3:15 to 3:45 p.m., depending on traffic into the island. Nothing has been booked.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0062",
+      "session_index": 62,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "For the September 12-18 coastal vacation, Avery and her wife will drive from Atlanta and share one king room for six nights. They changed the destination from Jekyll Island to Amelia Island. Three unbooked options remain: Elizabeth Pointe Lodge Oceanfront King with Balcony at $3,126.40 complete, with direct beach access, a private balcony, and direct oceanfront view, cancellable through 6:00 p.m. September 4; Omni Amelia Island Resort Deluxe Ocean View King at $2,884.62 complete, with direct beach access, a private furnished balcony, and angled ocean view, cancellable through September 5; and Courtyard Amelia Island King Balcony at $2,071.54 complete, with no direct beach access and no guaranteed ocean view, cancellable through September 6. The Residence Inn was dropped. The revised arrival plan is an 8:30 a.m. Atlanta departure, lunch near Pooler around noon, departure around 12:45 p.m., and Amelia Island arrival around 3:15-3:45 p.m. No lodging has been booked. For the January 12-15 New Orleans exhibition installation, Delta DL 2147 and Southwest WN 1862 are booked under G7K4QP and 4J9LTX, with combined airfare and bag charges of $417. Cambria Hotel New Orleans Downtown is confirmed January 11-15 under CNO-418672 for $785.85, with payment scheduled January 7 and free cancellation through January 6; Thursday storage is confirmed for the exhibition case and roller bag, with pickup by 1:15 p.m. Midtown Lodge Raleigh remains booked for November 14-16 under MLR-582041; the Hampton reservation was canceled under HCX-90428. Registrar approval remains pending for the proposed Boston hotel replacement. The St. George Island, Denver, Minneapolis, Dallas, Carlsbad, Columbus, Detroit, St. Louis, earlier Jekyll Island, and Baltimore arrangements remain as previously confirmed.",
+  "verification": {
+    "62": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "We are sharing one king room.",
+          "habit_id": "tm_pd_v05_user_005_h04",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Start with the two oceanfront ones.",
+          "habit_id": "tm_pd_v05_user_005_h05",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The king-room request is an explicit current-trip override of the shared-room queen default. Prioritizing the two oceanfront properties supports the beach-proximity preference for this coastal trip. No user utterance provides strong evidence for the flight or hotel-rating habits."
+    }
+  }
+}

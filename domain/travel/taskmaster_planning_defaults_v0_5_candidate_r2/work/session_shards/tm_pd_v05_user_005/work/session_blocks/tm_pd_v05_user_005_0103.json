@@ -1,0 +1,166 @@
+{
+  "cache_fingerprint": "1ac39e60b7fc67dbfbb454ae317bdfa9175a0373fe7c26f41f68ee9bc9f903f3",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Avery arranged only the confirmed Sunday outbound for this Philadelphia installation and deliberately left the Thursday return unbooked because the lender signoff could end at either 2:00 or 5:00 p.m. Three return candidates were saved for later repricing; no recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "atlanta_philadelphia_lender_install_01",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 103,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requests nonstop return options for this trip. The dialogue does not provide sufficiently strong user-originated evidence for a recurring later-day return preference, Delta preference, window-seat default, or any hotel habit. Selecting seat 14A depends on assistant-provided seat-map context and the user's quoted words do not themselves identify it as a window-seat preference.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "What Thursday nonstops could work if the signoff ends at two?",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h00",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to set up Philadelphia for the lender installation. I have to be there in time for a mount inspection at 8:30 Monday morning, so I want to fly from Atlanta on Sunday, October 18. The lender signoff is Thursday the 22nd, but no one has told me whether it will finish at two or closer to five.",
+          "role": "user"
+        },
+        {
+          "content": "I can compare Sunday arrivals first, then map Thursday flights to both possible signoff times. Are you traveling alone, and should I look at economy fares from ATL to PHL?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, just me in economy. The cases and components are going by truck, so I will only have my suitcase and work bag.",
+          "role": "user"
+        },
+        {
+          "content": "For Sunday, the strongest nonstop choices are: Delta departing ATL at 1:35 p.m. and arriving PHL at 3:39 p.m. for $219 one way; American departing at 3:10 p.m. and arriving at 5:14 p.m. for $203; or Delta departing at 5:25 p.m. and arriving at 7:29 p.m. for $197. All three leave enough time to settle in before Monday, though the first gives you the most margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there anything in the morning that is not much more expensive? I do not need to lose the whole day, but I would rather not have a late disruption put me into Philadelphia at midnight.",
+          "role": "user"
+        },
+        {
+          "content": "There is an American nonstop at 10:05 a.m., arriving at 12:09 p.m., for $236. An earlier Delta flight at 8:20 a.m. arrives at 10:24 a.m. but is $287. The 10:05 American is only $17 above the 1:35 Delta and gives you substantially more recovery time if operations slip.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the 10:05 American with the 1:35 Delta, including change terms and what the seat map looks like.",
+          "role": "user"
+        },
+        {
+          "content": "The American fare is Main Cabin at $236. It can be changed without a change fee, with any fare difference due, and it includes standard seat selection. The current seat map has several aisle and window seats from rows 12 through 20. The Delta option is Main Cabin at $219 with the same general change structure, and standard seats are available mostly from row 18 back. Both fares are nonrefundable but retain ticket value if canceled before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "The extra $17 is worth the earlier arrival. What Thursday nonstops could work if the signoff ends at two? Assume I need time to get from the museum to the airport.",
+          "role": "user"
+        },
+        {
+          "content": "Allowing roughly 30 minutes to reach PHL and aiming to arrive at least 75 minutes before departure, a 2:00 p.m. finish makes these realistic: American at 4:50 p.m., arriving ATL at 7:10 p.m., for $228; Delta at 6:05 p.m., arriving at 8:24 p.m., for $214; and American at 7:35 p.m., arriving at 9:54 p.m., for $196. The 4:50 flight is workable but leaves little cushion if the signoff runs beyond about 2:30.",
+          "role": "assistant"
+        },
+        {
+          "content": "And if it runs until five?",
+          "role": "user"
+        },
+        {
+          "content": "The 6:05 departure would be too tight. The 7:35 American could work if you leave promptly, but it still gives limited margin for traffic or security. A Delta nonstop at 8:45 p.m., arriving ATL at 11:04 p.m., is the safer choice at $221. There is also an American flight at 9:30 p.m., arriving at 11:48 p.m., for $205.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the 7:35 is the middle option, but it is not really comfortable for a five o'clock finish. Can that fare be held while I wait for the lender's schedule?",
+          "role": "user"
+        },
+        {
+          "content": "American offers a complimentary 24-hour hold on this itinerary, but that would expire well before the signoff time is confirmed. A longer hold is available for $14 through October 16, though it locks only the selected 7:35 p.m. flight, not the other Thursday choices.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then do not pay for a hold. Could we buy the Sunday flight by itself and leave Thursday open, or does that make the total unreasonable?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The Sunday 10:05 a.m. American flight is $236 one way. Pairing it later with the currently listed Thursday returns would put the trip between $432 and $464 before any seat or bag charges. Booking both legs together today would cost between $401 and $429, so waiting may cost roughly $31 to $35 at current prices, plus any later fare movement.",
+          "role": "assistant"
+        },
+        {
+          "content": "That difference is acceptable. Before you book Sunday, check whether the American ticket includes a carry-on and whether there are any decent seats without another charge.",
+          "role": "user"
+        },
+        {
+          "content": "The Main Cabin ticket includes one carry-on and one personal item. Checked baggage would be extra. At no additional charge, the seat map currently shows window seats 14A and 17F, aisle seats 15C and 18D, and several middle seats. Preferred seats closer to the front have an added fee.",
+          "role": "assistant"
+        },
+        {
+          "content": "Book the 10:05 Sunday flight and put me in 14A. Do not purchase anything for Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "The outbound is booked: American Airlines nonstop from Atlanta to Philadelphia on Sunday, October 18, departing at 10:05 a.m. and arriving at 12:09 p.m. You are in Main Cabin seat 14A. The ticket total is $236, and no Thursday flight has been purchased.",
+          "role": "assistant"
+        },
+        {
+          "content": "Please keep the useful Thursday choices together so I can decide as soon as the lender confirms. I want to see which one fits a two o'clock release and which one fits a five o'clock release.",
+          "role": "user"
+        },
+        {
+          "content": "I have saved three Thursday, October 22 options for comparison: American at 4:50 p.m., arriving 7:10 p.m., currently $228, suitable for a firm 2:00 p.m. release; American at 7:35 p.m., arriving 9:54 p.m., currently $196, comfortable after an earlier release but tight after 5:00 p.m.; and Delta at 8:45 p.m., arriving 11:04 p.m., currently $221, the practical choice if signoff lasts until 5:00 p.m. These are saved options only, and prices and availability can change.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Send me the outbound confirmation and a separate note with those three return options. Make it clear that the return is still unbooked.",
+          "role": "user"
+        },
+        {
+          "content": "Sent. The confirmation shows the booked American outbound on October 18, ATL to PHL, 10:05 a.m. to 12:09 p.m., seat 14A, total $236. The separate planning note lists the three October 22 return choices and states prominently that no return ticket or paid hold exists. Once the lender gives you the signoff window, we can recheck live fares and select the appropriate flight.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0103",
+      "session_index": 103,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "The Chicago installation trip, Omni Amelia Island stay, Nashville stay, Denver collection trip, January New Orleans trip, Cambria Hotel, Midtown Lodge Raleigh, Milwaukee retirement visit, and February 9-13 exhibition-transfer arrangements remain as previously recorded. Registrar approval is still pending for the proposed Boston hotel replacement. Avery and her wife completed their September 12-19, 2026 St. Simons Island stay under confirmation KPB-761284; the hotel corrected the erroneous room adjustments, issued a $184.02 refund, and provided an itemized receipt with a zero balance. For the Philadelphia lender installation, Avery is booked outbound from Atlanta on Sunday, October 18, arriving early that afternoon for the Monday mount inspection. The Thursday, October 22 return remains unbooked pending confirmation of whether lender signoff ends around 2:00 or 5:00 p.m.; three candidate flights have been saved for repricing.",
+  "verification": {
+    "103": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "What Thursday nonstops could work if the signoff ends at two?",
+          "habit_id": "tm_pd_v05_user_005_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requests nonstop return options for this trip. The dialogue does not provide sufficiently strong user-originated evidence for a recurring later-day return preference, Delta preference, window-seat default, or any hotel habit. Selecting seat 14A depends on assistant-provided seat-map context and the user's quoted words do not themselves identify it as a window-seat preference."
+    }
+  }
+}

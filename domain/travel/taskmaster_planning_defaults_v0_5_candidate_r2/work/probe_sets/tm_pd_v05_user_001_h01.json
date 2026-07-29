@@ -1,0 +1,319 @@
+{
+  "cache_fingerprint": "935fcf1a0cd7d94b8c58c800785874b3a2dad1ef17fd7550648880133c7cabe8",
+  "private": [
+    {
+      "generator_closest_distractor_choice_id": "B",
+      "generator_difficulty_rationale": "B arrives 50 minutes earlier and avoids D's $40 surcharge, while D avoids a second transfer. Because the next commitment is not until the following morning, the query itself does not privilege either arrival. The solver must both preserve the nonstop-versus-connection boundary and apply the remembered policy only to the backup comparison.",
+      "gold_action": "Keep the confirmed nonstop unchanged and record the one-stop, 1-hour 15-minute itinerary as the cancellation backup.",
+      "gold_choice_id": "D",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_001_s0032",
+        "tm_pd_v05_user_001_s0073",
+        "tm_pd_v05_user_001_s0088"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v05_user_001_h01",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_count_duration_preference",
+        "boundary_condition": "Apply this only when comparing connecting itineraries; do not infer a general preference for either nonstop flights or flights with a layover.",
+        "condition": "When evaluating flight itineraries with connections.",
+        "default_action": "Prioritize itineraries with at most one layover and a short connection that permits a practical transfer and brief break.",
+        "exception_condition": "Follow explicit current-trip requirements for a different number or duration of stops.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v05_user_001_h01",
+        "name": "flight_connection_limit_preference",
+        "preference_value": "When a flight connection is needed, prefer no more than one short layover.",
+        "scope_condition": "Professional or personal flight searches in which Elena is evaluating itineraries that require a connection.",
+        "scope_key": "connecting_itinerary_comparisons",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "A",
+        "closest_distractor_rationale": "A offers a credit and an earlier same-day arrival, but its 3-hour-30-minute connection is substantially longer than the preferred short layover.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "D best matches the standing backup policy: one short, practical connection. The history permits a long overnight connection only as an explicit Atlanta-trip exception, so that exception does not apply here.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "The history does not establish that Elena generally prefers connecting service over or under nonstop service. It does consistently govern the narrower task here: choosing among connecting replacements. Within that scope, s0032, s0073, and s0088 support D's single usable connection, while the confirmed nonstop remains untouched.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_001_h01_p00",
+      "probe_type": "evidence_disambiguation",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The statement that the nonstop is Elena's first choice weakly favors fewer stops, but it does not distinguish A from D or fully resolve the tradeoff with B."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "D"
+        ],
+        "rationale": "A offers an earlier arrival and credit, B avoids a long layover at the cost of an extra stop, and D offers the shortest one-stop connection for a small surcharge. The overnight option leaves little disruption buffer before the 10:00 a.m. obligation, but the remaining three still require an unstated tradeoff.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "D",
+      "generator_difficulty_rationale": "D saves $136, avoids another hotel night, and gets Elena home earlier, so it has strong generic utility and superficially resembles the prior Atlanta decision. The hard step is recognizing that the Atlanta statement was expressly local to that trip. Transferring it to Denver would erase the difference between a one-trip exception and a durable revision.",
+      "gold_action": "Recommend the Saturday return with the single 1-hour 15-minute connection.",
+      "gold_choice_id": "B",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_001_s0032",
+        "tm_pd_v05_user_001_s0065",
+        "tm_pd_v05_user_001_s0073",
+        "tm_pd_v05_user_001_s0088"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v05_user_001_h01",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_count_duration_preference",
+        "boundary_condition": "Apply this only when comparing connecting itineraries; do not infer a general preference for either nonstop flights or flights with a layover.",
+        "condition": "When evaluating flight itineraries with connections.",
+        "default_action": "Prioritize itineraries with at most one layover and a short connection that permits a practical transfer and brief break.",
+        "exception_condition": "Follow explicit current-trip requirements for a different number or duration of stops.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v05_user_001_h01",
+        "name": "flight_connection_limit_preference",
+        "preference_value": "When a flight connection is needed, prefer no more than one short layover.",
+        "scope_condition": "Professional or personal flight searches in which Elena is evaluating itineraries that require a connection.",
+        "scope_key": "connecting_itinerary_comparisons",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "C",
+        "closest_distractor_rationale": "C also avoids two stops and costs less, but its 2-hour-50-minute connection is not as consistent with the repeated preference for a short layover.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "With every option funded and no need to return Friday, B is the only return using one short, practical connection. The long overnight-routing exception was expressly limited to the Atlanta trip.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "Session s0065 authorized a long overnight transfer only for the Atlanta trip; it was not a permanent policy revision. The support before and after it in s0032, s0073, and s0088 confirms the durable default. Because the Denver query contains no comparable current-trip instruction and B is feasible within the stated budget and schedule, B is the personalized recommendation.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_001_h01_p01",
+      "probe_type": "exception",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "With no obligation before Sunday and all costs approved, leaving Friday, staying in a hotel, minimizing cost, minimizing connections, and avoiding an overnight connection are all defensible priorities. No option dominates across them.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_001"
+    },
+    {
+      "generator_closest_distractor_choice_id": "C",
+      "generator_difficulty_rationale": "C saves $100 and arrives 1 hour 15 minutes earlier, while A substantially reduces idle connection time. Since both have exactly one stop and meet every stated constraint, the comparison isolates the duration component of Elena's history. Generic cost and arrival-time reasoning points toward C, making memory necessary for A.",
+      "gold_action": "Choose the itinerary with one 1-hour 30-minute connection.",
+      "gold_choice_id": "A",
+      "gold_evidence_session_ids": [
+        "tm_pd_v05_user_001_s0032",
+        "tm_pd_v05_user_001_s0073",
+        "tm_pd_v05_user_001_s0088"
+      ],
+      "habit_family": "trip_context_flight_policy",
+      "habit_id": "tm_pd_v05_user_001_h01",
+      "hidden_habit_graph": {
+        "alternative_group_key": "flight_connection_count_duration_preference",
+        "boundary_condition": "Apply this only when comparing connecting itineraries; do not infer a general preference for either nonstop flights or flights with a layover.",
+        "condition": "When evaluating flight itineraries with connections.",
+        "default_action": "Prioritize itineraries with at most one layover and a short connection that permits a practical transfer and brief break.",
+        "exception_condition": "Follow explicit current-trip requirements for a different number or duration of stops.",
+        "family": "trip_context_flight_policy",
+        "habit_id": "tm_pd_v05_user_001_h01",
+        "name": "flight_connection_limit_preference",
+        "preference_value": "When a flight connection is needed, prefer no more than one short layover.",
+        "scope_condition": "Professional or personal flight searches in which Elena is evaluating itineraries that require a connection.",
+        "scope_key": "connecting_itinerary_comparisons",
+        "source_bundle_id": "tm_v04_e2e_bundle_a7725793148c",
+        "source_habit_instance_id": "tm_v04_e2e_habit_a7725793148c",
+        "strength": "primary",
+        "testable": true,
+        "user_id": "tm_pd_v05_user_001",
+        "version": 1
+      },
+      "independent_gold_judge": {
+        "closest_distractor_choice_id": "D",
+        "closest_distractor_rationale": "D has one connection, acceptable timing, and refundable terms, but its 2-hour-20-minute layover is longer and its refundability is not needed under the prompt.",
+        "difficulty": "medium",
+        "model": "gpt-5.6-sol",
+        "rationale": "A is within budget, arrives before 8:00 p.m., and is the only option with one connection that is reasonably short and practical under the stated policy.",
+        "reasoning_effort": "high"
+      },
+      "label_rationale": "All options are within the explicit deadline and budget, so the remembered connecting-itinerary policy resolves the choice. The repeated evidence in s0032, s0073, and s0088 supports A's single, bounded transfer rather than buying a lower fare or earlier arrival with materially more connection time or an extra stop.",
+      "label_source": "llm_generation_from_hidden_habit_and_verified_evidence",
+      "probe_id": "tm_pd_v05_user_001_h01_p02",
+      "probe_type": "direct_use",
+      "query_only_judge": {
+        "answerable_without_history": false,
+        "choice_id": "UNRESOLVED",
+        "generic_best_exists": false,
+        "leakage_signals": [
+          "The same-terms wording removes some fare-comparison ambiguity but preserves the explicit refundability distinction for D."
+        ],
+        "model": "gpt-5.6-sol",
+        "plausible_choice_ids": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "C is cheapest, earliest, and one-stop but has a long layover; A has a much shorter layover, B has shorter waits split across two stops, and D adds refundability. Those are materially different but reasonable travel tradeoffs, so the query does not determine one choice.",
+        "reasoning_effort": "high"
+      },
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "public": [
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Record the one-stop backup with a 3-hour 30-minute connection, a $70 credit, and a 4:45 p.m. arrival."
+        },
+        {
+          "choice_id": "B",
+          "text": "Record the two-stop backup with 50- and 55-minute connections, no fare change, and a 5:15 p.m. arrival."
+        },
+        {
+          "choice_id": "C",
+          "text": "Record the one-stop overnight backup with a 2-hour 10-minute connection, a $140 credit, and an 8:10 a.m. arrival."
+        },
+        {
+          "choice_id": "D",
+          "text": "Record the one-stop backup with a 1-hour 15-minute connection, a $40 additional fare, and a 6:05 p.m. arrival."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "evidence_disambiguation"
+      },
+      "probe_id": "tm_pd_v05_user_001_h01_p00",
+      "query": "Elena's confirmed nonstop to Vancouver remains her first choice, but the airline asks her to name one replacement itinerary in case that flight is canceled. Her first obligation is at 10:00 a.m. the following day, and all replacement fares are acceptable. Which backup should the planner record?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_001",
+      "visible_history_scope": {
+        "max_session_index": 123
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Leave Friday evening for $442 with two connections of 55 minutes and 1 hour 5 minutes, reaching home at 12:25 a.m."
+        },
+        {
+          "choice_id": "B",
+          "text": "Stay Friday night and spend $604 including the hotel for a Saturday flight with one 1-hour 15-minute connection, reaching home at 1:30 p.m."
+        },
+        {
+          "choice_id": "C",
+          "text": "Stay Friday night and spend $552 including the hotel for a Saturday flight with one 2-hour 50-minute connection, reaching home at 11:40 a.m."
+        },
+        {
+          "choice_id": "D",
+          "text": "Leave late Friday for $468 with one 4-hour 20-minute overnight connection, reaching home at 7:15 a.m."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "exception"
+      },
+      "probe_id": "tm_pd_v05_user_001_h01_p01",
+      "query": "After a Denver grant review ends Friday, Elena has no obligation before Sunday and has given no trip-specific routing instruction. The approved budget covers every option, including one more hotel night. Which return should the planner recommend?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_001",
+      "visible_history_scope": {
+        "max_session_index": 123
+      }
+    },
+    {
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "Choose the $690 itinerary with one 1-hour 30-minute connection, arriving at 7:10 p.m."
+        },
+        {
+          "choice_id": "B",
+          "text": "Choose the $615 itinerary with two connections of 55 minutes and 1 hour 5 minutes, arriving at 6:20 p.m."
+        },
+        {
+          "choice_id": "C",
+          "text": "Choose the $590 itinerary with one 4-hour 10-minute connection, arriving at 5:55 p.m."
+        },
+        {
+          "choice_id": "D",
+          "text": "Choose the $735 fully refundable itinerary with one 2-hour 20-minute connection, arriving at 6:00 p.m."
+        }
+      ],
+      "evaluation_contract": {
+        "answer_format": "return one choice_id",
+        "validator_type": "choice_equals"
+      },
+      "metadata": {
+        "blind_recovery_role": "diagnostic_only",
+        "dataset_version": "travel_v0.5_r2_six_user_canary",
+        "generated_by": "gpt-5.6-sol",
+        "probe_type": "direct_use"
+      },
+      "probe_id": "tm_pd_v05_user_001_h01_p02",
+      "query": "For a Reykjavik research retreat, every available itinerary connects and any arrival before 8:00 p.m. works. Elena's cap is $750, and the fares below include the same baggage and change terms unless noted. Which itinerary should the planner choose?",
+      "split": "test",
+      "user_id": "tm_pd_v05_user_001",
+      "visible_history_scope": {
+        "max_session_index": 123
+      }
+    }
+  ],
+  "selection_stats": {
+    "accepted_before_diversity_selection": 3,
+    "candidate_count": 7,
+    "candidate_rejection_reasons": {
+      "easy_or_ambiguous": 3
+    },
+    "query_only_unresolved_count": 6,
+    "selected_count": 3,
+    "selected_difficulty_counts": {
+      "medium": 3
+    },
+    "selected_type_counts": {
+      "direct_use": 1,
+      "evidence_disambiguation": 1,
+      "exception": 1
+    }
+  }
+}

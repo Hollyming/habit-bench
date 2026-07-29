@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "b1557be6c91e883ddb869d2cda88afaa2f06c2b72499e1f38592b8f9094e8340",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "",
+      "boundary_condition": "Treat this as a durable amenity preference, not a destination-, date-, party-size-, or price-specific requirement. Do not infer indoor versus outdoor pool preference unless the user states it for the current trip.",
+      "canonical_value": "Prioritize hotels with a pool, hot tub, and fitness or exercise facility.",
+      "condition": "When choosing or evaluating a hotel for a stay.",
+      "default_action": "Prioritize hotel options that include all three wellness/recreation amenities: a pool, a hot tub, and a fitness center or comparable place to exercise.",
+      "exception_condition": "Relax the preference or ask for clarification if no suitable hotel offers all three amenities, or if the user explicitly deprioritizes recreation or exercise amenities for the current booking.",
+      "input_ids": [
+        "tm_v04_e2e_habit_051d8fbc7334"
+      ],
+      "name": "prefers_hotels_with_pool_hot_tub_and_fitness_options",
+      "preference_value": "Hotels that offer a pool, a hot tub, and a fitness center or comparable exercise facility.",
+      "rationale": "Multiple hotel-search examples independently state a preference for a pool, hot tub, and exercise/fitness facility. Indoor versus outdoor pool details are mixed and should not be promoted to a hard memory, but the shared wellness/recreation amenity bundle is durable enough to keep.",
+      "representative_id": "tm_v04_e2e_habit_051d8fbc7334"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "",
+      "boundary_condition": "Do not infer specific cuisine, star rating, bar service, kid-friendliness, downtown location, ski access, or wooded setting unless stated for the current trip.",
+      "canonical_value": "Value hotel options with convenient on-site or nearby restaurant access.",
+      "condition": "When searching for, comparing, or summarizing hotel options.",
+      "default_action": "Mention on-site or nearby restaurant availability and use convenient dining access as a soft tie-breaker rather than a hard filter.",
+      "exception_condition": "Do not apply if the user explicitly deprioritizes dining access or if stronger current-trip constraints override it.",
+      "input_ids": [
+        "tm_v04_e2e_habit_11cb153da985"
+      ],
+      "name": "hotel_restaurant_access",
+      "preference_value": "Hotels with on-site or nearby restaurant access, with restaurant availability noted during comparisons.",
+      "rationale": "Several hotel-related examples mention wanting on-site or nearby restaurant access or information. Because some evidence is contextual and varies in specificity, this should remain a soft dining-access preference rather than a hard filter or a claim about particular cuisine, rating, or setting.",
+      "representative_id": "tm_v04_e2e_habit_11cb153da985"
+    }
+  ]
+}

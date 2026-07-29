@@ -1,0 +1,139 @@
+{
+  "cache_fingerprint": "f7cf223e6978fc18acec100911569821c0fa59875c959ccb2a083aba45ace4c9",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Avery compared Atlanta-Denver flights for a fixed Monday arrival and evaluated separate Thursday and Friday returns because the gallery review end time remains uncertain. No durable travel preference was established, and no flight was held or booked.",
+        "evidence_topology": {
+          "episode_id": "atlanta_denver_gallery_installation_01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 13,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requests a late Thursday return and selects Delta as the leading carrier for this trip. These are current-trip choices, not durable cross-trip defaults. The user never explicitly endorses nonstop routing as an attribute, and no seat or hotel habit is evidenced.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Please compare a sensible outbound and both a late Thursday return and a Friday return.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Keep Delta first and United second.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h02",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "I need to start looking at flights from Atlanta to Denver for a gallery installation. I have to be at the venue by 8:00 a.m. Tuesday, August 19, so I’ll fly out Monday the 18th. The review on Thursday may end at 3:00, but it could run until 6:00. Please compare a sensible outbound and both a late Thursday return and a Friday return. I’m traveling alone, and don’t book anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll keep both return dates open. For Monday, what time would you like to reach Denver, and will you be checking equipment or only ordinary luggage? That affects how much airport time I should leave before the flight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Ordinary luggage, probably one checked suitcase. I’d like to be in central Denver by about 5:00 p.m. Monday so I can check in and get dinner before the early call.",
+          "role": "user"
+        },
+        {
+          "content": "The strongest Monday choices currently showing are: Delta nonstop, ATL 11:05 a.m. to DEN 12:25 p.m., $428 round trip with the Friday return; United nonstop, 1:10 p.m. to 2:30 p.m., $401; and Southwest nonstop, 2:05 p.m. to 3:25 p.m., $386 including two checked bags. All times are local. The Southwest arrival could put you downtown near 5:00 if baggage and ground transportation move normally, but it leaves little cushion. Delta gives you the most comfortable margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Set Delta aside as the leading outbound. Is the United flight enough of a cushion, or would traffic from the airport make that tight too?",
+          "role": "user"
+        },
+        {
+          "content": "United should ordinarily leave enough time. A 2:30 p.m. arrival allows about two and a half hours to collect a bag and reach central Denver by 5:00. That is workable, though a delay of roughly an hour would consume most of the margin. Delta’s 12:25 p.m. arrival is safer and also gives you time to deal with any luggage issue before evening.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep Delta first and United second. Now show me what Thursday night actually looks like if I cannot leave the gallery until 6:00.",
+          "role": "user"
+        },
+        {
+          "content": "From central Denver, a 6:00 p.m. departure from the gallery makes flights before about 9:00 p.m. impractical with a checked bag. The viable nonstop is a Frontier departure at 11:18 p.m., arriving Atlanta at 4:03 a.m. Friday. Paired with the Delta outbound, the current total is $472 before Frontier seat and checked-bag charges. There is also a United flight at 8:55 p.m., but you would need to leave the gallery around 5:30 at the latest, so it does not cover the 6:00 p.m. scenario reliably.",
+          "role": "assistant"
+        },
+        {
+          "content": "That overnight arrival is rough, and extra Frontier charges make the comparison unclear. What if the review ends at 3:00?",
+          "role": "user"
+        },
+        {
+          "content": "If you can leave at 3:00 p.m., Delta has a 6:40 p.m. nonstop arriving Atlanta at 11:32 p.m. The round-trip fare with the Monday Delta outbound is $446, and the checked bag is $35 each way unless your fare status or card benefit covers it. United has a 7:15 p.m. nonstop arriving at 11:59 p.m.; paired with its Monday flight, the round trip is $419, plus applicable bag fees. Both allow a reasonable trip to DEN after a 3:00 p.m. finish.",
+          "role": "assistant"
+        },
+        {
+          "content": "And give me two Friday options that do not require leaving Denver at dawn. I could work remotely for part of the morning.",
+          "role": "user"
+        },
+        {
+          "content": "For Friday, Delta departs at 10:20 a.m. and arrives Atlanta at 3:14 p.m.; with the Monday Delta flight, the round trip is $428 plus the checked-bag fees noted earlier. United departs at 12:05 p.m. and arrives at 4:58 p.m.; paired with Monday United, it is $401 plus its checked-bag charge. There is also a Delta 1:35 p.m. departure arriving at 6:29 p.m. for $451 round trip, which preserves more of the morning but gets you home later.",
+          "role": "assistant"
+        },
+        {
+          "content": "For now, summarize the two plans I should take to the gallery: Delta out Monday with the Thursday evening Delta return if they guarantee a 3:00 finish, or Delta out Monday with the 10:20 Friday return if they cannot. Mention the late Frontier only as an emergency possibility. No hold and no purchase.",
+          "role": "user"
+        },
+        {
+          "content": "Plan A, if the gallery guarantees the review will finish at 3:00 p.m.: Delta nonstop from Atlanta at 11:05 a.m. Monday, August 18, arriving Denver at 12:25 p.m.; return Thursday, August 21, at 6:40 p.m., arriving Atlanta at 11:32 p.m. Current round-trip fare is $446, plus $35 each way for a checked bag if no waiver applies. Plan B, if the review may continue until 6:00 p.m.: take the same Monday outbound and return Friday, August 22, at 10:20 a.m., arriving Atlanta at 3:14 p.m. Current round-trip fare is $428, with the same bag-fee qualification. A Thursday 11:18 p.m. Frontier flight remains an emergency option, arriving at 4:03 a.m., but its $472 combined fare excludes Frontier seat and bag charges. Fares and availability can change. Nothing has been held or purchased.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0013",
+      "session_index": 13,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "Avery's Atlanta-Chicago museum trip was completed as arranged for October 14-18. The Atlanta-Raleigh family trip for Avery and her wife is confirmed for November 14-16 at a combined total of $864, with hotel cancellation available through 11:59 p.m. November 12. For the December 9-13 museum assignment, Club Quarters Hotel Faneuil Hall remains the proposed Boston replacement, bringing the quoted trip total to $1,236.18 before local transportation and airline bag fees; registrar approval is pending and nothing has been booked or held. Avery and her wife will drive from Atlanta to St. George Island for September 20-27. St. George Inn confirmation SGI-927416 is for one deluxe king room for two adults for seven nights at $1,968.24 total; a $263.18 deposit is applied, $1,705.06 is due at check-in, and cancellation remains free through 3:00 p.m. local hotel time September 13, after which the full stay is nonrefundable. For the Denver gallery installation beginning Tuesday, August 19, Avery is considering a Delta flight from Atlanta on Monday, August 18. If Thursday's review is guaranteed to end at 3:00 p.m., the proposed return is Thursday at 6:40 p.m.; otherwise, the proposed return is Friday at 10:20 a.m. The gallery's review schedule is pending, and no flight has been held or purchased.",
+  "verification": {
+    "13": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Please compare a sensible outbound and both a late Thursday return and a Friday return.",
+          "habit_id": "tm_pd_v05_user_005_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Keep Delta first and United second.",
+          "habit_id": "tm_pd_v05_user_005_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requests a late Thursday return and selects Delta as the leading carrier for this trip. These are current-trip choices, not durable cross-trip defaults. The user never explicitly endorses nonstop routing as an attribute, and no seat or hotel habit is evidenced."
+    }
+  }
+}

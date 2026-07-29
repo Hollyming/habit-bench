@@ -1,0 +1,110 @@
+{
+  "contract_version": "habitbench.shard_plan.v2",
+  "created_at": "2026-07-28T17:12:38.164942+00:00",
+  "datasets": {
+    "travel": {
+      "dataset_dir": "/plm-shared/haosun/habit-bench/domain/travel/travel_habit_lifelines_v0.5",
+      "domain_filter": null,
+      "manifest": {
+        "domain_filter": null,
+        "name": "travel_habit_lifelines_v0.5",
+        "private_probe_key_sha256": "f21f0b4b7fc318bc3df9a0059a060c5dc1bf3fe96222c0bca72123e9a06528f7",
+        "probes": 128,
+        "public_lifelines_sha256": "f69e49fe6cc77adccefa4e2a17143d980655010b45db43f6d9d0f4ae9b3b5bb8",
+        "public_probes_sha256": "9499bc94e540822b7284213636859cfa8201316ec4be61c9d69ce76363908629",
+        "sessions": 808,
+        "source_format": "session_rows",
+        "source_name": "travel_habit_lifelines_v0.5",
+        "subset": {
+          "domain_filter": null,
+          "max_probes": null,
+          "max_users": null,
+          "user_shard_count": null,
+          "user_shard_index": null
+        },
+        "users": 6
+      },
+      "max_probes": null,
+      "max_users": null
+    }
+  },
+  "launcher": {
+    "cluster": "cluster-t",
+    "clusterx_job_name": "haosun-tv05-secom-1g6u",
+    "cpus": "16",
+    "gpus": "1",
+    "image": "registry.pjlab.org.cn/ccr-lepton-official-images/ngc-pytorch:26.04-cu13.2-py3.12-ubuntu24.04",
+    "machine_type": "n3ls.ii.i60a",
+    "memory_gib": "128",
+    "queue": "queue-t-reserved-plm",
+    "shm_gib": "16"
+  },
+  "methods": {
+    "secom": {
+      "config": {
+        "embedding": {
+          "dim": 1024,
+          "model": "BAAI/bge-m3",
+          "model_path": "/plm-shared/zhangjunming/Workspace/models/bge-m3",
+          "provider": "local",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181"
+        },
+        "ingestion": {
+          "order": "chronological",
+          "unit": "one newly visible HABIT session"
+        },
+        "kind": "official_adapted",
+        "memory": {
+          "compression_rate": 0.9,
+          "compressor": "LLMLingua2",
+          "compressor_model_path": "/plm-shared/zhangjunming/Workspace/models/llmlingua-2-xlm-roberta-large-meetingbank",
+          "granularity": "segment",
+          "segmentor": "official"
+        },
+        "method_name": "secom",
+        "model": {
+          "name": "Qwen3-8B",
+          "thinking": false
+        },
+        "retrieval": {
+          "storage": "FAISS",
+          "topk": 5
+        },
+        "revision": "1738e563b5dc7c51df762247e3d0379f1132ad23",
+        "source": "https://github.com/microsoft/SeCom"
+      },
+      "name": "secom_bge_m3_qwen3",
+      "path": "/plm-shared/haosun/habit-bench/configs/methods/secom_bge_m3_qwen3.yaml",
+      "sha256": "ef21aa508ab792d24d4125675052306832cfa7507c1dea1c99eb9af240a1d93b"
+    }
+  },
+  "models": {
+    "embedding": {
+      "identity": {
+        "dense_embedding_dimension": 1024,
+        "local_path": "/plm-shared/zhangjunming/Workspace/models/bge-m3",
+        "max_sequence_length": 8192,
+        "model_id": "BAAI/bge-m3",
+        "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+        "verified_at": "2026-07-25",
+        "verified_with": "sentence-transformers 5.1.1",
+        "weight_file": "pytorch_model.bin"
+      },
+      "identity_path": "/plm-shared/zhangjunming/Workspace/models/bge-m3/HABIT_MODEL_INFO.json",
+      "identity_sha256": "6a9614e0c922776d0dc0e4059014fad6ae26183e6e5ce6112b622238c70b4cab",
+      "transformers_config_sha256": "26159e7ad065073448460117eb24b7a4572f6f4e78eadff65dc0a11c052449fa",
+      "weight_path": "/plm-shared/zhangjunming/Workspace/models/bge-m3/pytorch_model.bin",
+      "weight_size_bytes": 2271145830
+    }
+  },
+  "output_root": "/plm-shared/haosun/habit-bench/results/travel_v05_1g6u_20260728/secom",
+  "plan": "/plm-shared/haosun/habit-bench/results/travel_v05_1g6u_20260728/secom/shard_plan.tsv",
+  "plan_sha256": "1a375423b2119b927183762fb4c4aa5be68d8c38ea3d255db8bcddb02acd3c31",
+  "project": {
+    "dirty": true,
+    "revision": "7af033a75a70f353718365a13972e803dbbefa35",
+    "root": "/plm-shared/haosun/habit-bench"
+  },
+  "shard_count": 1,
+  "task_count": 1
+}

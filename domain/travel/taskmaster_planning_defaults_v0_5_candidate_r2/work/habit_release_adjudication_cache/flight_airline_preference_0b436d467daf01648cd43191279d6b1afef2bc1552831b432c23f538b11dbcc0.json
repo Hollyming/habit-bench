@@ -1,0 +1,37 @@
+{
+  "cache_fingerprint": "0b436d467daf01648cd43191279d6b1afef2bc1552831b432c23f538b11dbcc0",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "preferred_flight_carrier",
+      "boundary_condition": "Do not rank United above other preferred carriers solely from this habit; the evidence only establishes repeated inclusion in multi-carrier sets.",
+      "canonical_value": "Include United as a soft preferred carrier option when it is otherwise competitive and compatible with current trip constraints.",
+      "condition": "When searching for commercial flights and no current-trip instruction specifies a different carrier set.",
+      "default_action": "Include United among the preferred carrier options when it is otherwise suitable and comparable.",
+      "exception_condition": "Use other carriers when United is unavailable, unsuitable for the itinerary, materially worse, or excluded by a current-trip instruction.",
+      "input_ids": [
+        "tm_v04_e2e_habit_95ce9d7fff28"
+      ],
+      "name": "united_soft_carrier_option",
+      "preference_value": "United is a recurring acceptable carrier to include among preferred flight options, but is not required or uniquely favored.",
+      "rationale": "Repeatedly supported across distinct flight requests as an acceptable member of a preferred carrier set. The evidence does not establish exclusivity or priority over other preferred carriers, so it remains a separate soft carrier preference rather than being merged with Delta.",
+      "representative_id": "tm_v04_e2e_habit_95ce9d7fff28"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "preferred_flight_carrier",
+      "boundary_condition": "This is a soft preference: the evidence supports Delta as a favored option, not as the only acceptable airline or an always-first choice over every other preferred carrier.",
+      "canonical_value": "Include and softly favor Delta when it is available, otherwise comparable, and compatible with current trip constraints.",
+      "condition": "When choosing among flight carriers and Delta is available while also satisfying the trip's schedule, route, price, and stop constraints.",
+      "default_action": "Search for or present Delta options as part of the preferred carrier set, and favor Delta when it is otherwise comparable to alternatives.",
+      "exception_condition": "Use another acceptable carrier when Delta is unavailable, materially worse, or does not meet the current trip constraints.",
+      "input_ids": [
+        "tm_v04_e2e_habit_9f7064c606c7"
+      ],
+      "name": "Delta as a soft preferred carrier option",
+      "preference_value": "Delta is a preferred airline to include in the flight shortlist, but not an exclusive carrier requirement.",
+      "rationale": "Repeatedly supported across distinct flight requests, including one direct statement of preference. Delta and United are contrasting carrier alternatives rather than aliases, so Delta remains a distinct soft preference in the same alternative group.",
+      "representative_id": "tm_v04_e2e_habit_9f7064c606c7"
+    }
+  ]
+}

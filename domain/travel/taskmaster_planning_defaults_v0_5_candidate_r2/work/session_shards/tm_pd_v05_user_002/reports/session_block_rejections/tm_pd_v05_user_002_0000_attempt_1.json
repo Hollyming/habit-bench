@@ -1,0 +1,56 @@
+{
+  "reason": "unnatural_habit_leakage_session_0:The user explicitly selected an early outbound and a later-evening return for this trip, but did not state either as a recurring preference. No user utterance independently establishes cabin, seat, breakfast, balcony, or nonstop preferences. The assistant surfaced only nonstop itineraries and later emphasized that both were nonstop before the user had established a routing preference, creating leakage for the dossier-specific nonstop habit.",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marcus compared nonstop Chicago-Atlanta round trips for an April 13-14 leadership meeting. He retained an early O’Hare outbound with a late Tuesday return as the leading candidate and a less expensive Midway itinerary as backup. No booking was made because the Atlanta venue and final Tuesday end time remain unresolved.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need flight options from Chicago to Atlanta for a regional leadership meeting Monday, April 13, through Tuesday, April 14. The first session starts at 2:00 p.m. Monday, so I need enough time to get from the airport to the meeting. We should finish around 5:30 Tuesday, but that may shift later.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare round trips that arrive by roughly noon Monday and return after 7:00 p.m. Tuesday to leave some ground-time margin. Are both O’Hare and Midway workable, and will you be checking a bag?",
+          "role": "assistant"
+        },
+        {
+          "content": "Both airports are workable. Carry-on only. The venue has not been confirmed, though it will probably be downtown or in Buckhead.",
+          "role": "user"
+        },
+        {
+          "content": "Two practical combinations stand out. Candidate 1 is a nonstop from O’Hare leaving about 7:10 a.m. Monday and arriving in Atlanta around 10:10 a.m., with a Tuesday return around 8:15 p.m. arriving at O’Hare near 9:30 p.m. It has the best schedule cushion and is currently about $338 round trip in regular economy.\n\nCandidate 2 leaves Midway nonstop around 8:25 a.m. and arrives near 11:20 a.m. The return departs Atlanta around 9:05 p.m. and reaches Midway near 10:10 p.m. It is about $276 round trip, but the Monday arrival leaves less room for traffic or a delayed flight.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there anything later than the 8:15 return for the O’Hare option? I don’t want to be watching the clock if the meeting runs over.",
+          "role": "user"
+        },
+        {
+          "content": "There is an O’Hare-bound nonstop at approximately 9:40 p.m., arriving around 10:55 p.m. Pairing it with the 7:10 a.m. outbound brings the round trip to about $361. That gives you roughly three hours after the scheduled finish. The 8:15 p.m. departure gives closer to ninety minutes once travel to the airport and security are considered.",
+          "role": "assistant"
+        },
+        {
+          "content": "Keep the early O’Hare outbound with the 9:40 return as the leading option. Keep the Midway itinerary as the lower-cost backup. Don’t book either until I know where the meeting is.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. The leading candidate is O’Hare to Atlanta around 7:10 a.m. Monday, returning about 9:40 p.m. Tuesday at roughly $361. The backup is the Midway itinerary around 8:25 a.m. outbound and 9:05 p.m. return at roughly $276. Both are nonstop and carry-on only. Once the venue is confirmed, we can reassess the airport timing and compare nearby hotels before booking.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0000",
+      "session_index": 0,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Marcus is planning an April 13-14 work trip from Chicago to Atlanta for a regional leadership meeting beginning at 2:00 p.m. Monday and expected to end around 5:30 p.m. Tuesday. The leading flight candidate leaves O’Hare around 7:10 a.m. Monday and returns from Atlanta around 9:40 p.m. Tuesday, estimated at $361 round trip. A Midway itinerary leaving around 8:25 a.m. Monday and returning around 9:05 p.m. Tuesday, estimated at $276, remains the backup. Both are nonstop, carry-on-only options. Nothing is booked. The meeting venue may be downtown or Buckhead; once confirmed, reassess airport timing and search nearby hotels."
+}

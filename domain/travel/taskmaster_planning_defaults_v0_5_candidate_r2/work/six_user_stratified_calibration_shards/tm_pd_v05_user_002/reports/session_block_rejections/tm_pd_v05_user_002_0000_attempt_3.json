@@ -1,0 +1,64 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_002_h02', 'exception') actual=[('tm_pd_v05_user_002_h03', 'support'), ('tm_pd_v05_user_002_h02', 'exception'), ('tm_pd_v05_user_002_h01', 'support'), ('tm_pd_v05_user_002_h04', 'exception')]",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Marcus stated that he prefers business class when feasible but explicitly chose coach for this short Dallas trip because the premium was not worthwhile, making the exception local to this itinerary.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need a round trip from Chicago to Dallas for a leadership meeting. Leave Tuesday, October 14, and return Thursday, October 16. The meeting starts Tuesday at 1:00 p.m. and ends Thursday at noon. Nonstop only.",
+          "role": "user"
+        },
+        {
+          "content": "Two ORD-DFW options fit. American departs Tuesday at 6:20 a.m., arrives 8:54 a.m., and returns Thursday at 3:15 p.m., arriving 5:42 p.m. United departs at 7:35 a.m., arrives 10:08 a.m., and returns at 4:20 p.m., arriving 6:52 p.m. Round-trip business fares are $1,067 on American and $984 on United; coach is $412 and $446, respectively.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is the later outbound safe for a 1:00 start, assuming the meeting is somewhere in central Dallas?",
+          "role": "user"
+        },
+        {
+          "content": "It is possible, but the margin is thin. A 10:08 arrival leaves 2 hours 52 minutes, and deplaning plus a typical 25- to 35-minute drive could reduce that quickly. The 8:54 arrival provides a little over four hours and is the safer choice while the venue is unknown.",
+          "role": "assistant"
+        },
+        {
+          "content": "I prefer business when it is feasible, but for this trip coach is fine. The premium is not worth it for a short flight. Use the early American outbound and the 3:15 return.",
+          "role": "user"
+        },
+        {
+          "content": "That itinerary is $412 total in Main Cabin. It is nonrefundable, changes are allowed without a change fee, and any fare difference would apply. The Thursday flight leaves enough time to finish at noon and reach DFW without rushing.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does that include a carry-on and advance seat selection?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. One carry-on and standard seat selection are included, and the total remains $412. Shall I ticket it using the traveler details and corporate card already on file?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes, purchase it. Any available standard seat is fine for both segments.",
+          "role": "user"
+        },
+        {
+          "content": "Ticketed for $412 on the corporate card. Confirmation: K7M4QP. Tuesday departs ORD at 6:20 a.m. and arrives DFW at 8:54 a.m.; Thursday departs DFW at 3:15 p.m. and arrives ORD at 5:42 p.m. The fare is nonrefundable with no change fee. Once the meeting hotel is confirmed, we can plan lodging and the DFW transfer around these times.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0061",
+      "session_index": 61,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "{\"identity\":{\"name\":\"Marcus Lee\",\"age\":43,\"home_base\":\"Chicago, Illinois\",\"occupation\":\"Regional operations director for a national restaurant group\",\"household\":\"Lives with his husband and their 12-year-old son.\"},\"ongoing_trips\":[{\"trip\":\"Dallas leadership meeting\",\"dates\":\"October 14-16\",\"status\":\"Flights ticketed\",\"itinerary\":\"Tuesday ORD 6:20 a.m. to DFW 8:54 a.m.; Thursday DFW 3:15 p.m. to ORD 5:42 p.m.\",\"fare\":\"$412 Main Cabin; nonrefundable; no change fee; fare difference applies\",\"confirmation\":\"K7M4QP\"}],\"unresolved_follow_ups\":[\"Meeting hotel and venue are pending; choose lodging and plan DFW transfers after confirmation.\"]}"
+}

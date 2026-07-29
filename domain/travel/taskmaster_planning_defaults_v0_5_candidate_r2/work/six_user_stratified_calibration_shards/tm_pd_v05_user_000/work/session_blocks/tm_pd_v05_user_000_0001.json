@@ -1,0 +1,177 @@
+{
+  "cache_fingerprint": "7ea56abe61a1e423019446b12bd681ee02184b83055cfc6525b39d59287470bc",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Boundary evidence: Maya established that a 4.0 Google-rating floor applies only when she frames a hotel search as nice, upscale, or resort-style, while explicitly budget-focused searches may use a 3.5 Google-rating floor. She also kept the rating metric distinct from hotel class.",
+        "evidence_topology": {
+          "boundary_kind": "scope_limit",
+          "episode_id": "client-pittsburgh-019",
+          "mode": "evidence",
+          "phase": "late",
+          "session_index": 119,
+          "target_habit_id": "tm_pd_v05_user_000_h05",
+          "target_signal_type": "boundary",
+          "topology_revision": "travel_sparse_evidence_topology_v3_eligibility_v3",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user directly establishes the 3.5 Google-rating floor for budget-focused stays and durably limits the 4.0 Google floor to searches described as nice, upscale, or resort-style. The assistant's earlier question about rating metrics was neutral elicitation, so it was not leakage. No other candidate habit is evidenced by the user's utterances.",
+          "reasoning_effort": "high",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Going forward, only apply the 4.0 Google floor when I describe a hotel search as nice, upscale, or resort-style; don’t carry that floor into every hotel search.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h05",
+            "signal_type": "boundary"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The Pittsburgh flights are booked at $612. Now I need to settle the two hotel nights without pushing the whole trip over $1,300. My room limit is $250 per night before tax.",
+          "role": "user"
+        },
+        {
+          "content": "I have the three candidates: $268 beside the client site, $231 in East Liberty with breakfast included, and $218 in Shadyside. I’ll compare lodging tax, breakfast, and the rides needed from Tuesday evening through Thursday’s airport departure. Are we using Google ratings, hotel class, or another review score when assessing them?",
+          "role": "assistant"
+        },
+        {
+          "content": "Use Google ratings for this search. This is explicitly a budget-focused work stay, so 3.5 or better is enough. Going forward, only apply the 4.0 Google floor when I describe a hotel search as nice, upscale, or resort-style; don’t carry that floor into every hotel search.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. These are Google user ratings, not hotel star classifications: the property beside the site is 4.1, East Liberty is 4.2, and Shadyside is 3.8. All three clear the 3.5 floor for this budget search.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. My flight gets in Tuesday at 10:05 p.m., so I probably won’t reach a hotel until around 11. Thursday’s workshop ends at 3:45, and the flight home is at 6:20 p.m.",
+          "role": "user"
+        },
+        {
+          "content": "That makes late check-in and the Thursday bag detour important. I’ll assume two breakfasts, airport transportation Tuesday, a ride to the workshop both mornings unless the hotel is walkable, and a Thursday trip back through the hotel for luggage before continuing to PIT.",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes. Show me the full arithmetic first.",
+          "role": "user"
+        },
+        {
+          "content": "Closest property: room is $268 x 2 = $536; 14% tax is $75.04, so lodging is $611.04. Two breakfasts at an estimated $22 each add $44. Airport rides are about $47 Tuesday and $49 Thursday, or $96. With the $612 flight, the expected trip total is $1,363.04.",
+          "role": "assistant"
+        },
+        {
+          "content": "So that one breaks both limits. What does East Liberty come to?",
+          "role": "user"
+        },
+        {
+          "content": "East Liberty: $231 x 2 = $462; tax is $64.68, making lodging $526.68. Breakfast is included. Expected rides are $44 from PIT Tuesday, $12 to the site Wednesday, $12 Thursday morning, $11 back to the hotel for luggage, and $47 to PIT. That is $126 in rides and $1,264.68 for the complete trip.",
+          "role": "assistant"
+        },
+        {
+          "content": "And Shadyside?",
+          "role": "user"
+        },
+        {
+          "content": "Shadyside: $218 x 2 = $436; tax is $61.04, so lodging is $497.04. Allow $36 for two breakfasts. Estimated rides are $45 from PIT, $18 each morning, $17 back for luggage, and $49 to PIT, totaling $147. The complete-trip estimate is $1,292.04.",
+          "role": "assistant"
+        },
+        {
+          "content": "That’s closer than I expected. How sensitive are those totals to rideshare pricing?",
+          "role": "user"
+        },
+        {
+          "content": "With a 20% rideshare cushion, East Liberty rises by $25.20 to $1,289.88. Shadyside rises by $29.40 to $1,321.44. The closest hotel remains well over budget even before adding a transportation cushion. East Liberty has the only practical margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the morning routes. I need to be at the client’s Bakery Square office by 8:15 both days.",
+          "role": "user"
+        },
+        {
+          "content": "From the closest property, it is roughly a four-minute walk. East Liberty is normally an 8-to-12-minute car ride, but I would request pickup by 7:50 because weekday traffic can stretch it toward 20 minutes. Shadyside is usually 12 to 18 minutes and can approach 25 in the morning, so pickup around 7:40 would be safer.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Thursday airport timing worries me more. Can East Liberty actually work if my suitcase is still there?",
+          "role": "user"
+        },
+        {
+          "content": "It can, but there is limited slack. If the workshop ends at 3:45, plan for a car already waiting. The trip back to East Liberty should take about 10 to 15 minutes, luggage retrieval about five minutes, and the drive to PIT about 35 to 50 minutes. That puts you at the airport roughly between 4:35 and 4:55, about 85 to 105 minutes before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Did you verify they will hold the bag and accept an arrival around 11 Tuesday?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The East Liberty property has a staffed front desk overnight and accepts a guaranteed late arrival; the reservation should include an arrival note because check-in will be after 10 p.m. It also confirmed complimentary same-day luggage storage after Thursday checkout. The Shadyside property will store luggage too, but arrivals after 11 require advance coordination with the desk.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about getting the bag quickly Thursday? I don’t want to stand in a check-in line.",
+          "role": "user"
+        },
+        {
+          "content": "Ask the East Liberty desk to tag it for a 4 p.m. express pickup and keep the claim ticket accessible. On Thursday morning, confirm the bag is stored at the front desk rather than in a remote room. You can also schedule the hotel-to-airport ride for 4:10 and message the driver as soon as you leave the workshop.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are we still comparing refundable rates?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The $231 East Liberty rate is refundable until 6 p.m. local time two days before arrival. The $218 Shadyside rate is also refundable, but its deadline is one day earlier. Neither total uses a prepaid discount.",
+          "role": "assistant"
+        },
+        {
+          "content": "Go with East Liberty. Give me the exact booking check and expected total one more time so I can submit it.",
+          "role": "user"
+        },
+        {
+          "content": "Select the refundable East Liberty room at $231 nightly for Tuesday through Thursday: $462 room plus $64.68 estimated tax, or $526.68 lodging. Add the $612 flights and $126 expected rides for a trip estimate of $1,264.68; with a 20% rideshare cushion, it is $1,289.88. Before submitting, confirm breakfast remains included for both mornings, add the late-arrival note, verify the cancellation deadline in Pittsburgh local time, and request complimentary Thursday luggage storage with pickup around 4 p.m.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0119",
+      "session_index": 119,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Denver client review: Campus Lodge remains selected pending confirmation of exact-building shuttle service, return transportation, complimentary status, and mandatory charges. Pittsburgh client trip: $612 nonstop flights are booked for a Tuesday evening arrival and Thursday 6:20 p.m. departure. Maya selected the refundable East Liberty room with breakfast included; the expected complete trip remains under the stated budget with a rideshare cushion. Before submission, confirm breakfast, the local cancellation deadline, late-arrival notation, and complimentary Thursday luggage storage. Thursday requires a waiting car after the 3:45 workshop, quick luggage retrieval, and immediate departure for PIT.",
+  "verification": {
+    "119": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Going forward, only apply the 4.0 Google floor when I describe a hotel search as nice, upscale, or resort-style; don’t carry that floor into every hotel search.",
+          "habit_id": "tm_pd_v05_user_000_h05",
+          "signal_type": "boundary"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "verifier_notes": "The user directly establishes the 3.5 Google-rating floor for budget-focused stays and durably limits the 4.0 Google floor to searches described as nice, upscale, or resort-style. The assistant's earlier question about rating metrics was neutral elicitation, so it was not leakage. No other candidate habit is evidenced by the user's utterances."
+    }
+  }
+}

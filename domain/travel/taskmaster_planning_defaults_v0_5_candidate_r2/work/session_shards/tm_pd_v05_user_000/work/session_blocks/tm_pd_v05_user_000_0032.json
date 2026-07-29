@@ -1,0 +1,150 @@
+{
+  "cache_fingerprint": "0c39d65eea714f3e25c62c7bd68fc6b3d4b43901c3c945f5e8187f4997b6b251",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya explicitly endorsed including and favoring Delta when it satisfies the trip constraints and is reasonably comparable, while clarifying that it is not mandatory. The current Raleigh finalists both use Delta because their nonstop schedules and prices fit the trip.",
+        "evidence_topology": {
+          "episode_id": "client-raleigh-007",
+          "mode": "evidence",
+          "phase": "early",
+          "session_index": 32,
+          "target_habit_id": "tm_pd_v05_user_000_h02",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selected a nonstop outbound finalist and independently established Delta as a durable soft preference conditioned on schedule and price comparability. Earlier assistant mentions of Delta were factual attributes of concrete options, so they do not constitute leakage.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.92,
+            "evidence_quote": "Narrow it to the earlier Sunday option and the Monday nonstop, both with the 7:32 Wednesday return.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Include Delta when it works for the schedule and is reasonably comparable on price. I tend to favor it in that situation, but I don't need it forced into every trip.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h02",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I have a Raleigh workshop Monday, March 1, starting at 1:00 p.m. It ends Wednesday at 4:00. I can leave Minneapolis Sunday evening or Monday morning, and airfare needs to stay under $640. Can you compare the sensible options?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Before I narrow it down: should I treat the extra Sunday hotel night as part of the comparison even though the $640 limit applies only to airfare? And how much arrival margin would you want on Monday?",
+          "role": "assistant"
+        },
+        {
+          "content": "Include the hotel so I can see the real tradeoff. I would want to be at the client site by 12:30, and it looks like the airport is about 25 minutes away without traffic.",
+          "role": "user"
+        },
+        {
+          "content": "That makes arrivals after roughly 11:15 uncomfortable once deplaning and ground travel are included. I found three representative plans: Sunday nonstop at $512, arriving 8:44 p.m.; Monday nonstop at $618, arriving 10:36 a.m.; and Monday with one connection at $438, arriving 11:41 a.m. The Sunday plan would require an additional hotel night, currently about $184 including tax.",
+          "role": "assistant"
+        },
+        {
+          "content": "The $438 one is too tight. What airlines are the other two, and what can I do for Wednesday after 4:00?",
+          "role": "user"
+        },
+        {
+          "content": "The Sunday nonstop is Delta, departing MSP at 6:18 p.m. The Monday nonstop is also Delta, departing at 7:12 a.m. For Wednesday, the workable nonstop departs RDU at 7:32 p.m. and arrives MSP at 9:28 p.m.; it can be paired with either outbound. There is a 6:05 p.m. return, but leaving the workshop at 4:00 would give you little protection against traffic or a late finish.",
+          "role": "assistant"
+        },
+        {
+          "content": "Include Delta when it works for the schedule and is reasonably comparable on price. I tend to favor it in that situation, but I don't need it forced into every trip.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. Here it is a genuine fit rather than a compromise: both Delta combinations are nonstop, meet the airfare cap, and use the safer 7:32 p.m. Wednesday return.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare the totals and the actual Monday risk. I don't want to spend another night just because Sunday feels easier.",
+          "role": "user"
+        },
+        {
+          "content": "Sunday plan: $512 round trip plus about $184 for the extra hotel night, or $696 before meals and ground transportation. You arrive the night before and avoid same-day flight risk. Monday plan: $618 round trip with no extra hotel night, so it is $78 cheaper overall. Scheduled arrival at 10:36 leaves 1 hour 54 minutes until your 12:30 site target. Allowing 15 minutes to deplane and 35-45 minutes for the ride at that hour leaves roughly 54-64 minutes of cushion.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does the Monday flight have an earlier backup if it cancels? And is $618 basic economy?",
+          "role": "user"
+        },
+        {
+          "content": "The $618 quote is regular Main Cabin, not basic economy. There is no earlier nonstop that morning. A connecting itinerary leaves at 5:40 a.m. and is scheduled to arrive at 10:18, but it would not be a dependable same-day substitute because seats and reaccommodation would be uncertain. A cancellation of the 7:12 nonstop could make the workshop start unattainable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then keep Sunday despite the extra $78 overall. I can't risk missing the opening. Is there any Sunday flight a little later without pushing the price over $640?",
+          "role": "user"
+        },
+        {
+          "content": "There is a 7:55 p.m. Sunday Delta nonstop arriving at 10:21 p.m. for $536 round trip. It remains under the airfare cap and raises the combined airfare-plus-extra-night estimate to $720. The earlier 6:18 p.m. option is $24 less and gives more recovery room if operations slip.",
+          "role": "assistant"
+        },
+        {
+          "content": "Narrow it to the earlier Sunday option and the Monday nonstop, both with the 7:32 Wednesday return. Don't book anything yet. I need the project manager to approve the extra hotel night.",
+          "role": "user"
+        },
+        {
+          "content": "The two finalists are: (1) Sunday, February 28, Delta nonstop at 6:18 p.m., arriving RDU at 8:44 p.m., with the Wednesday 7:32 p.m. nonstop return, $512 airfare plus an estimated $184 hotel night; and (2) Monday, March 1, Delta nonstop at 7:12 a.m., arriving at 10:36 a.m., with the same return, $618 airfare and no extra night. The Sunday plan costs about $78 more overall but removes the same-day arrival risk. Nothing has been booked; fares, hotel cost, and availability need rechecking after approval.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0032",
+      "session_index": 32,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya’s Raleigh client workshop runs Monday, March 1, 2027 at 1:00 p.m. through Wednesday, March 3 at 4:00 p.m.; she needs to reach the client site by 12:30 p.m. Airfare is authorized up to $640. Two unbooked round trips remain: a Sunday evening nonstop at $512 requiring an estimated $184 extra hotel night, and a Monday morning nonstop at $618 with meaningful same-day disruption risk. Both use the Wednesday 7:32 p.m. nonstop return. The Sunday plan is preferred for arrival reliability but requires project-manager approval for the extra hotel night; fares, lodging cost, and availability must then be rechecked. Maya’s Denver trip for June 16-19, 2026 is fully updated at $1,756.40. The Philadelphia July 2026 return and hotel extension added $348.56; the Sonesta deposit release and Hyatt shuttle details remain unresolved. The coastal Georgia trip remains unbooked at $3,647. Nashville still needs total reconciliation after its refund posts. The two-person San Diego trip for November 8-13, 2026 remains booked at an estimated $3,284, with hotel cancellation available through November 3 at 6:00 p.m. local time. The Denver client trip for January 12-15, 2027 remains unbooked pending final approval, with a prepared total of $1,511.49 that must be rechecked before purchase.",
+  "verification": {
+    "32": {
+      "habit_signals": [
+        {
+          "confidence": 0.92,
+          "evidence_quote": "Narrow it to the earlier Sunday option and the Monday nonstop, both with the 7:32 Wednesday return.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Include Delta when it works for the schedule and is reasonably comparable on price. I tend to favor it in that situation, but I don't need it forced into every trip.",
+          "habit_id": "tm_pd_v05_user_000_h02",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selected a nonstop outbound finalist and independently established Delta as a durable soft preference conditioned on schedule and price comparability. Earlier assistant mentions of Delta were factual attributes of concrete options, so they do not constitute leakage."
+    }
+  }
+}

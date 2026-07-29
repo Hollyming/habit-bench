@@ -1,0 +1,88 @@
+{
+  "reason": "sparse_evidence_mismatch expected=('tm_pd_v05_user_000_h05', 'support') actual=[('tm_pd_v05_user_000_h05', 'boundary')]",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya explicitly set a 4.0 minimum guest-rating threshold for this nice leisure stay and asked that the rating source be identified. The comparison applied that floor to Google guest ratings without conflating it with hotel class.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "We decided on Savannah and Tybee after all. Can you narrow the lodging to two good pairings for April 23–28? Two nights in Savannah, then three on Tybee, one room. Keep the room total under $2,300 before taxes, and don’t book yet.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare two-property combinations for April 23–25 in Savannah and April 25–28 on Tybee. Should I optimize mainly for the lowest total, or for nicer properties and better cancellation terms?",
+          "role": "assistant"
+        },
+        {
+          "content": "Nicer properties, but still sensible. For this kind of stay, only include hotels with at least a 4.0 guest rating, and say which site the rating comes from.",
+          "role": "user"
+        },
+        {
+          "content": "Two combinations clear that rating floor and the $2,300 pre-tax target. Pairing A uses the Perry Lane Hotel in Savannah, rated 4.6/5 on Google, with Hotel Tybee, rated 4.0/5 on Google. Pairing B uses the Drayton Hotel Savannah, rated 4.4/5 on Google, with DeSoto Beach Hotel, rated 4.1/5 on Google. I’m treating those as guest ratings, not hotel star classifications.",
+          "role": "assistant"
+        },
+        {
+          "content": "What are the actual room totals and fees?",
+          "role": "user"
+        },
+        {
+          "content": "Pairing A: Perry Lane is $389 per night for two nights, or $778, plus a $40 nightly destination fee. Hotel Tybee is $428 per night for three nights, or $1,284, plus a $35 nightly resort fee. Room charges total $2,062; mandatory fees add $185, making the pre-tax lodging total $2,247. Estimated taxes bring it to about $2,560.\n\nPairing B: Drayton is $335 per night for two nights, or $670, with no mandatory property fee shown. DeSoto Beach is $449 per night for three nights, or $1,347, plus a $25 nightly amenity fee. Room charges total $2,017; mandatory fees add $75, making the pre-tax total $2,092. Estimated total with taxes is about $2,378.",
+          "role": "assistant"
+        },
+        {
+          "content": "Pairing B is cheaper, but how do the payment and cancellation rules compare? Tybee inventory sounded tight.",
+          "role": "user"
+        },
+        {
+          "content": "Pairing A is more flexible overall. Perry Lane requires a card guarantee, charges at check-in, and allows cancellation until 3:00 p.m. local time two days before arrival. Hotel Tybee requires full payment when reserved; that rate is refundable until seven days before arrival, then the full stay becomes nonrefundable.\n\nFor Pairing B, Drayton also takes a card guarantee and is payable at the property, with free cancellation through 6:00 p.m. local time three days before arrival. DeSoto’s quoted rate requires full prepayment and is nonrefundable from the time of booking.",
+          "role": "assistant"
+        },
+        {
+          "content": "So B saves $155 before tax, but the island portion is locked immediately?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Pairing B is $155 less before tax, but $1,422 for the DeSoto room and mandatory fee would be charged immediately and could not be recovered. Pairing A’s Hotel Tybee portion is $1,389 including its mandatory fee, also prepaid, but remains refundable until seven days before check-in.",
+          "role": "assistant"
+        },
+        {
+          "content": "Interesting, the more flexible island hotel is actually $33 less once fees are included. Could we combine Drayton with Hotel Tybee?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. That mixed pairing is the strongest value: Drayton for $670 and Hotel Tybee for $1,389 including mandatory fees, totaling $2,059 before tax. Estimated taxes are about $271, for an estimated lodging total of $2,330. It is $188 below Pairing A before tax and $33 below Pairing B, while keeping the refundable-until-seven-days-out island rate.",
+          "role": "assistant"
+        },
+        {
+          "content": "Any drawback compared with Perry Lane plus Hotel Tybee?",
+          "role": "user"
+        },
+        {
+          "content": "The tradeoff is mostly the Savannah stay. Perry Lane has the higher Google guest rating, 4.6 versus Drayton’s 4.4, and a broader set of on-site services. Drayton still meets the 4.0 floor and keeps the same Tybee property, dates, and payment terms. The mixed plan also has no mandatory Savannah property fee in the rate currently shown.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me a concise final comparison and tell me which combination to carry forward. No charges.",
+          "role": "user"
+        },
+        {
+          "content": "Carry forward Drayton Hotel Savannah plus Hotel Tybee. Drayton is April 23–25 at $670 before tax, rated 4.4/5 on Google, payable at the property, with free cancellation through 6:00 p.m. local time three days before arrival. Hotel Tybee is April 25–28 at $1,284 plus a $105 resort fee, rated 4.0/5 on Google; $1,389 is prepaid, but refundable until seven days before arrival. Combined pre-tax lodging is $2,059, with an estimated after-tax total of $2,330.\n\nFor comparison, Perry Lane plus Hotel Tybee is $2,247 before tax and offers the higher-rated Savannah stay. Drayton plus DeSoto is $2,092 before tax, but its $1,422 island portion is immediately nonrefundable. The recommended mixed pairing is the lowest-priced of the three and preserves the better island cancellation terms. Nothing has been reserved or charged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0005",
+      "session_index": 5,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. For the April 23–28 coastal trip, Maya and her partner selected Savannah and Tybee Island, with two nights in Savannah followed by three nights on Tybee. The lodging plan carried forward is Drayton Hotel Savannah plus Hotel Tybee at $2,059 before tax and about $2,330 after estimated taxes. The Savannah stay is payable at the property with cancellation through three days before arrival; the Tybee stay requires $1,389 prepayment and is refundable until seven days before arrival. No leisure travel or lodging has been booked."
+}

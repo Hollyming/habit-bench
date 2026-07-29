@@ -1,0 +1,150 @@
+{
+  "cache_fingerprint": "c02a070f4e43bc4c556de88e7e22a45fc6b5a67a9276b216717463c151108790",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Elena made a trip-specific exception by explicitly excluding United only for this San Diego trip because its available schedules were worse and more expensive. The selected itinerary uses the suitable Southwest nonstops without changing any broader carrier practice.",
+        "evidence_topology": {
+          "episode_id": "ep_013_san_diego_spouse_getaway",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 48,
+          "target_habit_id": "tm_pd_v05_user_001_h02",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_001"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly requests morning outbound options for this trip, overriding the default afternoon-departure preference on that leg, and explicitly excludes United for this trip only. The dialogue does not establish the connection, window-seat, bed, or in-room amenity habits.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "I want to finish the San Diego flights. Compare the Thursday and Friday morning nonstops as complete round trips for two adults, including both Monday returns.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_001_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 1.0,
+            "evidence_quote": "For this trip only, leave United out.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_001_h02",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I want to finish the San Diego flights. Compare the Thursday and Friday morning nonstops as complete round trips for two adults, including both Monday returns.",
+          "role": "user"
+        },
+        {
+          "content": "Using the quoted options, the Thursday nonstop leaves Denver at 8:10 a.m. and reaches San Diego at 9:30 a.m.; the Friday nonstop leaves at 8:05 a.m. and arrives at 9:25 a.m. Monday's early return leaves San Diego at 8:35 a.m. and reaches Denver at 11:55 a.m. The later return leaves at 2:20 p.m. and arrives at 5:40 p.m. All four are nonstop. Should I compare every pairing, or exclude any carrier before I total them?",
+          "role": "assistant"
+        },
+        {
+          "content": "For this trip only, leave United out. Its available times are worse, and I don't want to pay more for them. Compare the Southwest choices we already found.",
+          "role": "user"
+        },
+        {
+          "content": "For two adults, the Thursday outbound paired with the early Monday return is $826 total. Thursday with the 2:20 p.m. return is $934. Friday with the early return is $684, and Friday with the 2:20 p.m. return is $792. Those are round-trip totals including taxes; Southwest includes two checked bags per traveler, so the one bag you plan to share adds nothing.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now put the hotels back in. I want to understand what the fourth night is really costing, not just hear that Thursday is more.",
+          "role": "user"
+        },
+        {
+          "content": "The four-night Hotel Republic quote is $958 complete, while the three-night Guild quote is $919 complete. In the actual leading combinations, Thursday plus the later return and Hotel Republic totals $1,892; Friday plus the later return and The Guild totals $1,711. The difference is $181. That is not the pure cost of one extra night because the properties and nightly rates differ. At Hotel Republic's quoted average, one night is about $239.50; the rest of the comparison is offset by the different hotel price and Friday's cheaper outbound.",
+          "role": "assistant"
+        },
+        {
+          "content": "What happens if we take the early return instead?",
+          "role": "user"
+        },
+        {
+          "content": "Each itinerary drops by $108: Thursday through Monday becomes $1,784, and Friday through Monday becomes $1,603. The early flight requires leaving the hotel around 6:15 a.m., so Monday is essentially only a travel day. The later flight permits a normal breakfast, checkout, and roughly two to three hours around the waterfront before heading to the airport around noon.",
+          "role": "assistant"
+        },
+        {
+          "content": "And how much usable time do we actually gain by going Thursday rather than Friday? We won't do anything ambitious right after landing.",
+          "role": "user"
+        },
+        {
+          "content": "Both flights arrive around 9:30 a.m. Allowing for bags, transit, and leaving luggage at the hotel, you could start lunch or light sightseeing around 11:30. Thursday therefore adds one calendar day, but about five practical leisure hours once you discount arrival logistics and keep the first day easy. It also leaves Friday fully open instead of making Friday the arrival and orientation day.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Saturday 7:30 performance is fixed. Does either flight pattern make that night meaningfully easier?",
+          "role": "user"
+        },
+        {
+          "content": "The return choice does not affect Saturday. The Thursday arrival makes the overall pace easier because you can do the waterfront Thursday, another area Friday, and keep Saturday afternoon light before Balboa Theatre. With Friday arrival, you still have ample time before the performance, but Friday and Saturday carry more of the sightseeing load. From Hotel Republic, plan on the trolley plus a short walk and leave around 6:35 p.m. for a comfortable margin.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the later Monday flight buys us most of a final morning for $108 total, and Thursday buys about five useful hours plus a less compressed weekend for $181 over the Friday package. Is that the fair reading?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The later return is the clearer value: $108 for two people preserves breakfast and a usable final morning. The Thursday package is a judgment call, but the $181 premium is buying both additional time and a more relaxed distribution of activities, not merely another night in the room.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose it. We would rather have the four nights and not make the theater weekend feel rushed.",
+          "role": "user"
+        },
+        {
+          "content": "Select the Thursday, May 28, 8:10 a.m. nonstop from Denver, arriving San Diego at 9:30 a.m., and the Monday, June 1, 2:20 p.m. nonstop back, arriving Denver at 5:40 p.m., for two adults on Southwest. Pair it with four nights at Hotel Republic. The working package total is $1,892, with the shared checked bag included at no charge. Before purchase, verify the flight numbers and operating carrier, exact fare and change terms, seat-selection rules, and current schedule. Also confirm Hotel Republic's itemized $958 total, room and bed type, cancellation deadline, and luggage storage before check-in and after Monday checkout.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_001_s0048",
+      "session_index": 48,
+      "user_id": "tm_pd_v05_user_001"
+    }
+  ],
+  "updated_continuity_summary": "The March 12-15 Chicago trip remains confirmed. The April 20-22 Atlanta workshop remains set with the Courtyard Atlanta Midtown, Monday dinner at Kimball House, and Wednesday evening nonstop return; flight details, fare terms, bag rules, and specified hotel storage confirmations remain unresolved. For the May 28-June 1 San Diego leisure trip, Elena and her spouse selected the four-night Hotel Republic package around the fixed Saturday, May 30, 7:30 p.m. performance at Balboa Theatre, with the later Monday return; the working total is $1,892 for two adults. Flight identifiers, operating carrier, current schedule, fare and change terms, seat rules, and the hotel's itemized total, room details, cancellation deadline, and luggage storage still require verification. The May Raleigh-area wedding, June Seattle work trip, and later Philadelphia, Portland and Bar Harbor, Atlanta, Carlsbad, Phoenix, Boston, and Santa Fe trips retain their existing plans and follow-ups.",
+  "verification": {
+    "48": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "I want to finish the San Diego flights. Compare the Thursday and Friday morning nonstops as complete round trips for two adults, including both Monday returns.",
+          "habit_id": "tm_pd_v05_user_001_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 1.0,
+          "evidence_quote": "For this trip only, leave United out.",
+          "habit_id": "tm_pd_v05_user_001_h02",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly requests morning outbound options for this trip, overriding the default afternoon-departure preference on that leg, and explicitly excludes United for this trip only. The dialogue does not establish the connection, window-seat, bed, or in-room amenity habits."
+    }
+  }
+}

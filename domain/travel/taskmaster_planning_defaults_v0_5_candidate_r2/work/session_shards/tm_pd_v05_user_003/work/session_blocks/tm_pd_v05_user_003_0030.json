@@ -1,0 +1,128 @@
+{
+  "cache_fingerprint": "dbe46c7bb7d2fd1070d380f72ba9c415f5a352a9b211caeaff3adf18523c3eb9",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Support evidence: while selecting the safer Sunday outbound, Priya states that morning departures work better when no trip-specific constraint requires a later departure. No other durable preference is established.",
+        "evidence_topology": {
+          "episode_id": "conference-washington-01",
+          "mode": "evidence",
+          "phase": "early",
+          "session_index": 30,
+          "target_habit_id": "tm_pd_v05_user_003_h00",
+          "target_signal_type": "support",
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly states a durable preference for morning departures while preserving trip-specific timing overrides. The assistant's earlier recommendation of the 8:35 a.m. option was justified by this trip's recovery time and delay margin, not by an attributed hidden preference.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": true
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Morning departures work better for me when there is no trip-specific reason to leave later.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_003_h00",
+            "signal_type": "support"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "The Washington times are now firm. The Rockville meeting starts Monday at 2:30 p.m., the facility visit is Tuesday at 8:00 a.m., and the forum ends Friday at 3:30 p.m. Please revisit the flights before I approve anything.",
+          "role": "user"
+        },
+        {
+          "content": "That makes the Monday arrival much tighter than it appeared. I have three viable outbound choices: Sunday SFO-IAD nonstop at 8:35 a.m.-4:42 p.m.; Sunday SFO-IAD nonstop at 11:05 a.m.-7:12 p.m.; or Monday SFO-DCA nonstop at 6:00 a.m.-2:08 p.m. The Monday flight saves one hotel night, but it lands only 22 minutes before the meeting begins, so it is not operationally viable even before baggage claim and the drive to Rockville.",
+          "role": "assistant"
+        },
+        {
+          "content": "Agreed, eliminate Monday. Compare the two Sunday flights in practical terms, including the hotel arrival.",
+          "role": "user"
+        },
+        {
+          "content": "The 8:35 a.m. flight should put you at the Rockville hotel around 6:15-6:45 p.m., allowing for baggage and normal Sunday traffic from IAD. The 11:05 a.m. flight likely means hotel arrival around 8:45-9:15 p.m. Both protect Monday’s meeting, but the earlier flight leaves more recovery time and a better margin for delays. It is $38 more.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose the 8:35 Sunday flight. Morning departures work better for me when there is no trip-specific reason to leave later. What are the return choices?",
+          "role": "user"
+        },
+        {
+          "content": "The best return candidates are Friday DCA-SFO nonstop at 6:35 p.m.-9:52 p.m. for $412, or Saturday DCA-SFO nonstop at 9:10 a.m.-12:18 p.m. for $327. The Friday flight allows 3 hours 5 minutes from the scheduled forum finish to departure. From the downtown venue, that is workable if you leave promptly, but the margin narrows if the program runs late or security is slow. Saturday costs one additional hotel night but removes that pressure.",
+          "role": "assistant"
+        },
+        {
+          "content": "The downtown hotel is the Capital Grand, and the forum is in the same building. I can check out Friday morning and have the hotel hold my bag. Does that make Friday reasonable?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. With no venue-to-hotel transfer, you could collect the bag at 3:30 p.m., leave by about 3:45, and normally reach DCA around 4:15-4:35. That leaves roughly two hours before departure. I would still verify late-afternoon traffic conditions, the hotel’s luggage desk hours, and whether the closing session is likely to overrun.",
+          "role": "assistant"
+        },
+        {
+          "content": "How does the total compare once the extra hotel night is included?",
+          "role": "user"
+        },
+        {
+          "content": "Friday return: $412 airfare and no Friday hotel night. Saturday return: $327 airfare plus an estimated $286 including tax for Friday night, making Saturday about $201 more overall. Saturday is less rushed, but Friday is the stronger value if the bag can be retrieved immediately after the program.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then use Friday. Does that change the hotel pattern we discussed?",
+          "role": "user"
+        },
+        {
+          "content": "Only the final night. The revised lodging plan is Rockville Sunday and Monday, then Capital Grand Tuesday through Thursday, checking out Friday morning. You would still transfer downtown after Tuesday’s facility visit. The Capital Grand stay drops from four nights to three, which should reduce the earlier trip estimate by approximately $286, subject to the forum rate and taxes.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the exact proposed itinerary, the rationale, and the remaining checks. Keep it unbooked pending approval.",
+          "role": "user"
+        },
+        {
+          "content": "Proposed, not booked: fly SFO-IAD Sunday, February 23, 8:35 a.m.-4:42 p.m.; transfer to Rockville and stay Sunday and Monday; attend the Monday 2:30 p.m. meeting and Tuesday 8:00 a.m. facility visit; retrieve stored luggage and move to the Capital Grand Tuesday afternoon; stay Tuesday through Thursday; attend the forum Wednesday through Friday, checking out Friday morning and storing luggage; then fly DCA-SFO Friday, February 28, 6:35 p.m.-9:52 p.m. The Sunday flight provides a substantial delay buffer before Monday, while the Friday return avoids an extra hotel night and remains workable because the forum and hotel are in the same building. Before approval, verify current fares and baggage terms, the Sunday IAD-Rockville transfer, both hotels’ rates, taxes, and cancellation deadlines, Tuesday luggage storage, Friday checkout and immediate bag retrieval, the forum’s actual closing-session end time, and the recommended DCA arrival time. Also confirm that both flights remain nonstop at the quoted combined fare.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0030",
+      "session_index": 30,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh audit flights are purchased for January 12 and January 16 at $684. Lodging is split between Cedar Park Suites Sunday through Tuesday and an airport hotel Wednesday; Cedar Park’s Wednesday refund remains pending. Retain both confirmations, the original charge receipt, refund notice, both final folios, and the United receipt. Reconfirm overnight checkout and airport transfer timing; the rental remains unconfirmed. Washington remains unbooked pending approval: proposed SFO-IAD Sunday, February 23, 8:35 a.m.-4:42 p.m.; Rockville hotel Sunday and Monday; Monday meeting at 2:30 p.m.; Tuesday facility visit at 8:00 a.m.; transfer to the Capital Grand Tuesday afternoon; forum Wednesday through Friday; and DCA-SFO Friday, February 28, 6:35 p.m.-9:52 p.m. Verify fares, baggage terms, hotel pricing and cancellation terms, luggage storage and retrieval, ground transfers, forum closing time, and nonstop status. Fairmont Sonoma is booked, with written confirmation of the Sunday facial outstanding before May 10. Bothell, Chicago, and Carlsbad are booked, with noted confirmations and reimbursement records pending. Scottsdale November 6-10 remains selected but unbooked. Palm Springs November 14-18 is paid; corrected resort documentation remains outstanding.",
+  "verification": {
+    "30": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Morning departures work better for me when there is no trip-specific reason to leave later.",
+          "habit_id": "tm_pd_v05_user_003_h00",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": true,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly states a durable preference for morning departures while preserving trip-specific timing overrides. The assistant's earlier recommendation of the 8:35 a.m. option was justified by this trip's recovery time and delay margin, not by an attributed hidden preference."
+    }
+  }
+}

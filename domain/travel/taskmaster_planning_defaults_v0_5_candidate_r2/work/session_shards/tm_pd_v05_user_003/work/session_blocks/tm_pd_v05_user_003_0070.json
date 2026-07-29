@@ -1,0 +1,155 @@
+{
+  "cache_fingerprint": "b84ce786dc4ed569798986be09b30e0de2ab728da1bac9e26086f3004f6179f3",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Priya compared three return strategies after the audit closing time became firm, rejected both Wednesday options because of airport and connection risk, and selected the Thursday nonstop itinerary for later purchase without authorizing booking.",
+        "evidence_topology": {
+          "episode_id": "audit-raleigh-01",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 70,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_003"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user makes current-trip choices rather than stating durable defaults. Selecting the Thursday 7:15 a.m. departure supports the morning-departure behavior for this itinerary. Choosing the $233-more-expensive nonstop while retaining the cheaper Denver connection only as backup is an explicit one-trip exception to cheapest-acceptable ranking because of the narrow departure margin and connection risk. No carrier, cabin, hotel-rating, room-amenity, or wellness-amenity habit is evidenced by the user's words.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.93,
+            "evidence_quote": "Select the Sunday midday outbound and the Thursday 7:15 nonstop as the purchase itinerary.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Select the Sunday midday outbound and the Thursday 7:15 nonstop as the purchase itinerary. Keep the Denver routing only as a backup and do not issue tickets yet.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_003_h01",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The audit manager has now confirmed that Wednesday's closing meeting may run until 4:30. Rework the return choices around that and compare the actual totals before I decide.",
+          "role": "user"
+        },
+        {
+          "content": "With a 4:30 p.m. finish, the original Wednesday nonstop is no longer a sound plan. It departs RDU at 7:05 p.m. and requires leaving Holly Springs by about 4:40; moderate traffic would put you at the terminal around 5:35-5:50, leaving only 75-90 minutes before departure and almost no recovery time if the meeting runs late. Its fare is now $684 round trip. The later Wednesday one-stop is $618 and the Thursday morning nonstop is $562. I can rebuild the full comparison using those fares.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do that. Include the connection details for Wednesday and don't hide the extra hotel and meal costs on Thursday.",
+          "role": "user"
+        },
+        {
+          "content": "The Wednesday one-stop leaves RDU at 6:42 p.m., connects in Denver, and reaches SFO at 11:47 p.m. The scheduled connection is 56 minutes. If you leave the site at 4:40, estimated terminal arrival is 5:35-5:50, giving 52-67 minutes before boarding is likely to close. The trip total is $1,808: $618 airfare, $624 for three Hampton nights, $248 rental car, $276 meals, and $42 fuel. There is no fourth hotel night, but the airport transfer home would be close to midnight.",
+          "role": "assistant"
+        },
+        {
+          "content": "That airport margin still sounds narrow. Is the 56-minute Denver transfer protected on one ticket?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Both segments are sold on one ticket, so the airline would be responsible for reaccommodation after a delay. The scheduled transfer is legal, but it is not generous: the RDU flight and SFO flight use different concourses, and the itinerary has no later same-airline Denver-to-San Francisco departure that night. A missed connection would probably mean an overnight disruption.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now lay out Thursday with the same level of detail.",
+          "role": "user"
+        },
+        {
+          "content": "The Thursday nonstop leaves RDU at 7:15 a.m. and arrives at SFO at 10:18 a.m. Its round-trip fare is $562. You would return the rental car Wednesday evening, stay at Hyatt Place RDU for $176, and use the hotel's 4:55 a.m. shuttle. The total is $2,041: $562 airfare, $624 for three Hampton nights, $176 for the airport hotel, $286 rental car, $345 meals, and $48 fuel.",
+          "role": "assistant"
+        },
+        {
+          "content": "Why is the rental higher if I return it Wednesday night?",
+          "role": "user"
+        },
+        {
+          "content": "The $286 reflects the revised quote for a Sunday pickup through Wednesday evening; the earlier $248 figure is tied to the Wednesday one-stop package rate and cannot be transferred to the Thursday itinerary. Taxes and the different return time account for the $38 difference. Both quotes are for the same midsize class.",
+          "role": "assistant"
+        },
+        {
+          "content": "Compare all three returns in one concise view, including the Wednesday nonstop even if you think it should be rejected.",
+          "role": "user"
+        },
+        {
+          "content": "Wednesday nonstop: $684 airfare, approximately $1,874 total, 7:05 p.m. departure, 10:20 p.m. SFO arrival, and only about 75-90 minutes from likely terminal arrival to departure. Wednesday one-stop: $618 airfare, $1,808 total, 6:42 p.m. departure, 56-minute Denver connection, and 11:47 p.m. SFO arrival; terminal margin is about 52-67 minutes before boarding closes. Thursday nonstop: $562 airfare, $2,041 total, added $176 airport hotel plus higher rental and meal costs, 7:15 a.m. departure, and 10:18 a.m. SFO arrival. It costs $167 more than the Wednesday nonstop and $233 more than the Wednesday one-stop.",
+          "role": "assistant"
+        },
+        {
+          "content": "And reimbursable cost is the full amount in each case, assuming the added night is approved?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Those are the expected reimbursable totals if the Wednesday airport hotel and Thursday travel-day meals are approved. They exclude SFO ground transportation, checked bags, and optional seat charges. The Thursday plan should be documented as risk mitigation for the confirmed 4:30 p.m. closing time.",
+          "role": "assistant"
+        },
+        {
+          "content": "Eliminate the Wednesday nonstop. Between the other two, is the extra $233 justified?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The one-stop saves $233, but it combines a tight departure margin with a short connection and no useful same-night recovery after Denver. The Thursday plan separates the audit from the flight, provides a predictable airport transfer, avoids a connection, and arrives in San Francisco before midday. Given the now-confirmed meeting window, I recommend the Thursday nonstop.",
+          "role": "assistant"
+        },
+        {
+          "content": "Select the Sunday midday outbound and the Thursday 7:15 nonstop as the purchase itinerary. Keep the Denver routing only as a backup and do not issue tickets yet.",
+          "role": "user"
+        },
+        {
+          "content": "The selected purchase itinerary is the Sunday midday nonstop from SFO to RDU and the Thursday 7:15 a.m. nonstop from RDU to SFO, currently $562 round trip. The working reimbursable estimate is $2,041, including the Hyatt Place RDU night, rental, meals, and separately stated $48 fuel. The Wednesday nonstop has been removed from consideration. The Wednesday evening Denver connection remains only as an unbooked $618 airfare backup, with an estimated $1,808 trip total. No tickets, hotel, or rental changes have been issued.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_003_s0070",
+      "session_index": 70,
+      "user_id": "tm_pd_v05_user_003"
+    }
+  ],
+  "updated_continuity_summary": "Raleigh refund and rental documentation remain pending. Washington, Sonoma, Bothell, Chicago, Carlsbad, Palm Springs, Cypress Spa Lodge, Indianapolis, and the July supplier-audit arrangements remain as recorded with their documentation follow-ups. Scottsdale November 6-10 remains selected but unbooked. The February 20-25 Scottsdale trip remains booked at an expected $5,221.65 excluding airport rides, optional seats, and checked bags; Tuesday bag storage and post-checkout pool or spa access remain to be confirmed. Boston September 15-20 airfare and linked Westin stays remain confirmed with folio and payment follow-ups. The October 27-29 Clayton audit remains booked, with an unbooked Wednesday fallback. Plymouth audit travel remains confirmed with its airport-hotel, shuttle, rental, and delayed-flight arrangements; revised reimbursable estimate is $1,966.75. Denver forum flights and hotel remain confirmed at $903.98 excluding airport transportation and optional airline charges. Coastal Sonoma September 26-29 remains confirmed for Priya and Arun Nair at an expected $2,136.62 excluding meals, with lodging, parking, kayak, spa, dinner, and late-arrival arrangements documented. For the December 8-10 Holly Springs supplier audit, the selected but unbooked itinerary uses the Sunday midday nonstop to RDU and Thursday 7:15 a.m. nonstop to SFO at $562 round trip. It includes three Hampton Holly Springs nights, a Wednesday Hyatt Place RDU night, a midsize rental returned Wednesday evening, and a 4:55 a.m. hotel shuttle; expected reimbursable cost is $2,041 including $48 fuel and excluding SFO ground transportation, checked bags, and optional seats. The Wednesday nonstop has been eliminated. A Wednesday evening Denver connection remains an unbooked backup at $618 airfare and an estimated $1,808 total.",
+  "verification": {
+    "70": {
+      "habit_signals": [
+        {
+          "confidence": 0.93,
+          "evidence_quote": "Select the Sunday midday outbound and the Thursday 7:15 nonstop as the purchase itinerary.",
+          "habit_id": "tm_pd_v05_user_003_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Select the Sunday midday outbound and the Thursday 7:15 nonstop as the purchase itinerary. Keep the Denver routing only as a backup and do not issue tickets yet.",
+          "habit_id": "tm_pd_v05_user_003_h01",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user makes current-trip choices rather than stating durable defaults. Selecting the Thursday 7:15 a.m. departure supports the morning-departure behavior for this itinerary. Choosing the $233-more-expensive nonstop while retaining the cheaper Denver connection only as backup is an explicit one-trip exception to cheapest-acceptable ranking because of the narrow departure margin and connection risk. No carrier, cabin, hotel-rating, room-amenity, or wellness-amenity habit is evidenced by the user's words."
+    }
+  }
+}

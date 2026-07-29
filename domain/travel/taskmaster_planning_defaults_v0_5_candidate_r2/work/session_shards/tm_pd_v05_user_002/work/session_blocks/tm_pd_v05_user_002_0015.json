@@ -1,0 +1,115 @@
+{
+  "cache_fingerprint": "c44ec35b65973ea5ff2b73aef0843088d36c8587398503d94570f7c0750dd075",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The Dallas schedule was finalized using trip-specific timing and cost considerations. No recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "dallas-ops-01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 15,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_002"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chose the later 9:45 p.m. return and, for this trip, selected a 6:05 p.m. outbound instead of the morning-departure default. No durable preference language was used. The dialogue does not provide user-originated evidence for cabin preference, nonstop routing, seat location, included breakfast, or a balcony.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.98,
+            "evidence_quote": "Take the 9:45.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h01",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Book the Monday 6:05 p.m. outbound, that return, and NYLO for the same Monday-through-Wednesday dates we have been holding.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_002_h00",
+            "signal_type": "exception"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The local team confirmed Wednesday's final meeting is at 3:30 p.m. at the DFW-area office and should finish by 4:30. Use NYLO Las Colinas, and check the schedule against the later return before you book everything.",
+          "role": "user"
+        },
+        {
+          "content": "With a 4:30 finish, leaving the office by 4:45 should put you at DFW around 5:00-5:20. Allowing time to return the rental car and clear security, the 9:45 p.m. nonstop has more than four hours of margin. It is comfortably workable even if the meeting runs an hour late.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Is there any reason to keep the 8:20 instead?",
+          "role": "user"
+        },
+        {
+          "content": "Only the earlier arrival. The 8:20 p.m. flight reaches O'Hare at 10:43 p.m., while the 9:45 reaches O'Hare at 12:08 a.m. The earlier flight is feasible with the stated finish, but its margin shrinks quickly if the meeting runs over or traffic and the rental return take longer than expected. The later flight is the safer operational choice.",
+          "role": "assistant"
+        },
+        {
+          "content": "Take the 9:45. Book the Monday 6:05 p.m. outbound, that return, and NYLO for the same Monday-through-Wednesday dates we have been holding. Make sure the hotel is two nights and keeps the cancellation terms we reviewed.",
+          "role": "user"
+        },
+        {
+          "content": "Before I complete it: one traveler, round-trip ORD-DFW in economy, and one room at NYLO Las Colinas for Monday and Tuesday nights, checking out Wednesday. The hotel total is $436.82 including taxes, mandatory fees, and parking, with cancellation allowed until 3:00 p.m. Sunday. Correct?",
+          "role": "assistant"
+        },
+        {
+          "content": "Correct. Complete both reservations.",
+          "role": "user"
+        },
+        {
+          "content": "Booked. Your round-trip flights are confirmed: Monday ORD-DFW departs at 6:05 p.m. and arrives at 8:42 p.m.; Wednesday DFW-ORD departs at 9:45 p.m. and arrives at 12:08 a.m. Thursday. Flight confirmation: D8R4LM. Total airfare: $487.60. NYLO Las Colinas is confirmed for two nights, Monday through Wednesday, at $436.82 total including taxes, mandatory fees, and parking. Hotel confirmation: NLC-593184. Cancellation remains available until 3:00 p.m. Sunday. After Wednesday's 4:30 finish, plan to leave the office by 4:45; even with an extended rental-car return, the 9:45 flight has ample margin.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_002_s0015",
+      "session_index": 15,
+      "user_id": "tm_pd_v05_user_002"
+    }
+  ],
+  "updated_continuity_summary": "Marcus's Atlanta trip and Minneapolis operations review remain confirmed with no itinerary changes. The San Diego family vacation remains confirmed for July 18-26 for Marcus Lee, Daniel Lee, and Owen Lee. On July 18, the car arrives at their front entrance at 6:05 a.m. and departs at 6:15 a.m. for ORD Terminal 3. American flight AA 1543, confirmation H7K3QP, departs ORD at 9:40 a.m. and arrives SAN at 11:58 a.m. Rental pickup remains targeted for 1:00 p.m. Glorietta Bay Inn is confirmed under GBI-847261 with all three guests listed. Rental car, checked bags, and seat assignments remain unbooked. The Dallas opening-review trip is now booked for Monday through Wednesday. The outbound ORD-DFW flight departs Monday at 6:05 p.m. and arrives at 8:42 p.m.; the return DFW-ORD flight departs Wednesday at 9:45 p.m. and arrives at 12:08 a.m. Thursday. Flight confirmation is D8R4LM and total airfare is $487.60. NYLO Las Colinas is confirmed for two nights under NLC-593184 at $436.82 total including taxes, mandatory fees, and parking; cancellation is available until 3:00 p.m. Sunday. Wednesday's final meeting is scheduled for 3:30 p.m. at the DFW-area office with an expected 4:30 finish, and departure for the airport is planned by 4:45 p.m.",
+  "verification": {
+    "15": {
+      "habit_signals": [
+        {
+          "confidence": 0.98,
+          "evidence_quote": "Take the 9:45.",
+          "habit_id": "tm_pd_v05_user_002_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Book the Monday 6:05 p.m. outbound, that return, and NYLO for the same Monday-through-Wednesday dates we have been holding.",
+          "habit_id": "tm_pd_v05_user_002_h00",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chose the later 9:45 p.m. return and, for this trip, selected a 6:05 p.m. outbound instead of the morning-departure default. No durable preference language was used. The dialogue does not provide user-originated evidence for cabin preference, nonstop routing, seat location, included breakfast, or a balcony."
+    }
+  }
+}

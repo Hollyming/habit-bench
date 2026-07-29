@@ -1,0 +1,21 @@
+{
+  "cache_fingerprint": "e85452766b1abf12f108d193a8ece2cc011b63ef3a465319f7154a3af7fad996",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_departure_time_of_day_preference",
+      "boundary_condition": "Applies only to flight departure time-of-day. Do not infer it for arrival times, dates, routes, every leg automatically, or earliest-afternoon departures as a recurring rule.",
+      "canonical_value": "Prefers afternoon flight departures as a soft default when no different departure-time constraint is specified.",
+      "condition": "When selecting or comparing flight departure times.",
+      "default_action": "Look first for departure options in the afternoon; follow any current explicit request for another time window or exact time.",
+      "exception_condition": "If acceptable afternoon departures are unavailable or conflict with other stated constraints, ask before broadening to nearby time windows.",
+      "input_ids": [
+        "tm_v04_e2e_habit_ff9a7f3c433c"
+      ],
+      "name": "prefers_afternoon_departures",
+      "preference_value": "Prefers flight departures in the afternoon when no different departure-time constraint is specified.",
+      "rationale": "Multiple examples across separate conversations show the user asking for afternoon flight departures. Keep as a soft departure-time default, limited to flight departure time and overridden by any explicit current constraint.",
+      "representative_id": "tm_v04_e2e_habit_ff9a7f3c433c"
+    }
+  ]
+}

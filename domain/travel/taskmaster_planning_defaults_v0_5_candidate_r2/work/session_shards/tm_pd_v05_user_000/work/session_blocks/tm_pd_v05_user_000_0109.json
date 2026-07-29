@@ -1,0 +1,187 @@
+{
+  "cache_fingerprint": "45e7c75123fb8570a860d85e1f4a7676dd802b275178da7ccf7b94282a6d15e3",
+  "sessions": [
+    {
+      "domain": "combined_trip",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The session resolves only the active San Diego trip comparison. Maya selects an early Friday nonstop for this itinerary, requests all-in lodging and transportation estimates, catches a car-cost inconsistency, and chooses a two-night Coronado plus three-night La Jolla working plan. Nothing is booked.",
+        "evidence_topology": {
+          "episode_id": "partner-san-diego-018",
+          "mode": "ordinary",
+          "phase": "late",
+          "session_index": 109,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selected the offered nonstop itinerary for this trip. That pair has an 11:15 a.m. return departure, so it is a trip-specific override of the recurring afternoon-return default, not a durable revision. No other candidate habit is established with sufficiently specific user-originated language.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.92,
+            "evidence_quote": "Yes for this trip. Use that pair in the comparison.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h00",
+            "signal_type": "exception"
+          },
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Yes for this trip. Use that pair in the comparison.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Let's start the San Diego trip. We have Friday, October 4 through Wednesday, October 9 for two people from Minneapolis. I need to understand flight windows and whether Coronado, La Jolla, or both makes sense.",
+          "role": "user"
+        },
+        {
+          "content": "I can compare those as one trip rather than treating air and hotel separately. What time can you leave Friday, and how much of Wednesday do you want to preserve in San Diego? Also, is the Saturday dinner in Little Italy at a fixed time?",
+          "role": "assistant"
+        },
+        {
+          "content": "We can leave Friday morning or around lunch, but I don't want to land so late that the first day is gone. Wednesday can mostly be travel. Dinner is Saturday at 7:30 p.m. Airfare needs to stay under $1,150 total for both of us, and hotel base rates should average no more than $390 a night before tax.",
+          "role": "user"
+        },
+        {
+          "content": "The workable nonstop pairs I see are: Friday 7:10 a.m.-9:05 a.m. with Wednesday 11:15 a.m.-4:45 p.m. for $986 total; Friday 11:35 a.m.-1:28 p.m. with that same return for $1,074; or Friday 3:25 p.m.-5:20 p.m. with a Wednesday 2:05 p.m.-7:34 p.m. return for $1,028. All are economy fares for two. The early Friday option creates the most usable coastal time and leaves $164 under the airfare ceiling. Would a 7:10 departure be realistic?",
+          "role": "assistant"
+        },
+        {
+          "content": "Yes for this trip. Use that pair in the comparison. What are the actual lodging totals? A $360 room that becomes $500 with fees and parking isn't really a $360 room.",
+          "role": "user"
+        },
+        {
+          "content": "Agreed. For a comparable estimate, I included room, mandatory property fees, estimated lodging tax, and parking only where a car would be kept overnight. A Coronado option averages $368 base per night: $1,840 room, $225 mandatory fees, about $290 tax, and $280 parking for five nights, or roughly $2,635. A La Jolla option averages $344 base: $1,720 room, $175 fees, about $266 tax, and $225 parking, or roughly $2,386. Both meet the stated base-rate cap, but their full costs differ by about $249.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do we actually need a car the whole time in either place? We want beach and coastal time, but Saturday dinner is the only fixed event.",
+          "role": "user"
+        },
+        {
+          "content": "Not necessarily. Coronado is easy without a car if you stay near the beach and use rideshare for the airport and Little Italy. La Jolla is also manageable near the Cove, but a car is useful for moving among Torrey Pines, La Jolla Shores, and other coastal stops. The strongest split is Coronado Friday and Saturday, then La Jolla Sunday through Wednesday, with a rental picked up Sunday and returned at the airport Wednesday.",
+          "role": "assistant"
+        },
+        {
+          "content": "Price that version, including the transfer. Don't assume the hotel will move our bags.",
+          "role": "user"
+        },
+        {
+          "content": "For the split: two Coronado nights at $374 base each, plus $90 in fees and about $118 tax, total about $956. Three La Jolla nights at $339 base each, plus $105 in fees and about $158 tax, total about $1,280. Lodging comes to approximately $2,236, averaging $353 per night before tax and mandatory fees. Transportation would be about $42 from SAN to Coronado, $48 round trip for Saturday's Little Italy dinner, $32 to a Sunday rental location with luggage, and $238 for a three-day rental including estimated taxes. With $60 for La Jolla hotel parking, local transportation is about $420.",
+          "role": "assistant"
+        },
+        {
+          "content": "Why is that lower than five nights in either area? Are the split rates refundable, or did you use prepaid prices?",
+          "role": "user"
+        },
+        {
+          "content": "I used refundable rates. The split is lower because the Coronado weekend rate falls after Saturday, while the La Jolla property has a better Sunday-through-Tuesday rate. Neither estimate uses a prepaid discount. The Coronado portion can be canceled until 6:00 p.m. local time three days before arrival; the La Jolla portion until 4:00 p.m. local time two days before its Sunday check-in. The rate should still be checked for those exact terms before confirmation.",
+          "role": "assistant"
+        },
+        {
+          "content": "How awkward is Coronado to Little Italy on Saturday night? Ferry versus rideshare?",
+          "role": "user"
+        },
+        {
+          "content": "The ferry is pleasant but adds schedule risk and walking at both ends. For a 7:30 dinner, rideshare is simpler: leave Coronado around 6:45, allowing roughly 20-30 minutes plus traffic margin. The return should be straightforward later in the evening. The $48 round-trip estimate could reach $70 if demand is high, so I would carry a $22 buffer.",
+          "role": "assistant"
+        },
+        {
+          "content": "And if we stayed only in La Jolla, what would Saturday look like?",
+          "role": "user"
+        },
+        {
+          "content": "From central La Jolla, plan on roughly 25-35 minutes each way by rideshare, longer with Saturday traffic. A round trip is likely $65-$90. It avoids changing hotels, but Friday's airport transfer is longer, and the five-night lodging estimate remains about $150 above the split even after accounting for the split's Sunday transfer.",
+          "role": "assistant"
+        },
+        {
+          "content": "What about all five nights on Coronado without a rental? That seems simpler than the first estimate with parking.",
+          "role": "user"
+        },
+        {
+          "content": "Removing the car changes it materially. Five Coronado nights would be about $2,355 including room, mandatory fees, and tax. Add approximately $42 airport-to-hotel, $48 for dinner, and $45 back to SAN, for about $135 in expected transportation, or $2,490 on the ground. It is the simplest coastal plan, but day trips to La Jolla would add roughly $100-$140 each by rideshare and consume more time.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put the three complete trip totals next to each other. Include airfare and a reasonable transportation buffer.",
+          "role": "user"
+        },
+        {
+          "content": "Using the $986 nonstop airfare: Coronado only without a car is about $3,546 total, made up of $2,355 lodging and $205 transportation including buffer. La Jolla only with a five-day car is about $3,957: $2,386 lodging, approximately $485 rental and fuel beyond the parking already included, plus airfare and a $100 buffer. The two-night Coronado/three-night La Jolla split is about $3,704: $2,236 lodging, $420 expected transportation, airfare, and a $62 buffer. Meals and optional activities are excluded from all three.",
+          "role": "assistant"
+        },
+        {
+          "content": "The La Jolla-only number looks inconsistent. You said its lodging total already included $225 parking, then added rental and fuel beyond parking. Is the car itself really $485?",
+          "role": "user"
+        },
+        {
+          "content": "You're right to flag it. The five-day rental with taxes and estimated fuel is about $375, not $485; the $225 parking is already in the lodging figure. With a $100 contingency, La Jolla only totals about $3,847: $986 airfare, $2,386 lodging with parking, $375 car and fuel, and $100 buffer.",
+          "role": "assistant"
+        },
+        {
+          "content": "So which plan best fits the dinner and gives us meaningful time in both coastal areas without turning the trip into constant packing?",
+          "role": "user"
+        },
+        {
+          "content": "The split is the best fit. Two nights in Coronado puts you there from Friday morning through Sunday, keeps Saturday dinner reasonably close, and requires only one hotel change. Three nights in La Jolla then gives you Sunday afternoon, two full days, and Wednesday morning there. Picking up the car after checkout Sunday avoids paying for it while it adds little value on Coronado.",
+          "role": "assistant"
+        },
+        {
+          "content": "Summarize the working itinerary and the numbers, but don't book anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "Working plan, not booked: fly nonstop MSP-SAN Friday, October 4, 7:10-9:05 a.m., and return nonstop Wednesday, October 9, 11:15 a.m.-4:45 p.m.; airfare is $986 total for two. Stay in Coronado Friday and Saturday nights, with Saturday's 7:30 p.m. Little Italy dinner reached by rideshare. Check out Sunday, take your luggage to the rental location, pick up a car, and move to La Jolla for Sunday through Tuesday nights. Return the car at SAN Wednesday morning. Estimated lodging is $2,236 including mandatory fees and tax, with an average base room rate of $353. Expected local transportation is $420; adding a $62 buffer gives a working trip total of $3,704 before meals and activities. Before any confirmation, recheck fare availability, baggage terms, both hotel cancellation deadlines, rental pickup hours, and whether parking is still $20 per night in La Jolla.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0109",
+      "session_index": 109,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The February 5-7, 2030 Raleigh client trip is confirmed after the canceled Tuesday outbound was replaced with a separately ticketed 6:10 p.m. nonstop MSP-RDU arriving at 9:44 p.m. The canceled outbound shows a refund issued to the original card, and the new ticket added $184 to the trip cost. The North Hills hotel remains reserved for Tuesday and Wednesday nights and has confirmed that check-in around 10:30 p.m. is acceptable. Wednesday's workshop begins at 8:00 a.m. On Thursday, Maya will check out before the client session, store the suitcase at the hotel unless the client confirms storage, retrieve it after the 3:30 p.m. finish, and reach RDU before the 5:10 p.m. bag cutoff. The original 5:55 p.m. nonstop RDU-MSP return remains confirmed on its separate reservation. Revised working trip total: $1,459 before meals, tips, or rideshare surge pricing. Unresolved accounting follow-ups include the Raleigh corrected folio, Philadelphia deposit release, and Nashville refund reconciliation. The September 12-16 Monterey Peninsula trip for Maya Lian Chen and Jordan Avery Lee remains confirmed at $2,849, with whale-watching booking status and exact hotel cancellation cutoffs unresolved. The August 25-31, 2029 Naples trip remains confirmed at $4,428 for two. The September 30-October 2, 2029 Baltimore client trip and November 6-8, 2029 Raleigh client trip remain recorded as confirmed, with their noted ground-transportation items unresolved. A new October 4-9, 2030 San Diego leisure trip for Maya and her partner is under consideration and nothing is booked. The working plan uses a Friday morning MSP-SAN flight and Wednesday return, two nights in Coronado followed by three nights in La Jolla, rideshare for the Saturday Little Italy dinner, and a Sunday-through-Wednesday rental car. Current estimated total is $3,704 before meals and activities. Fare availability, baggage terms, hotel cancellation deadlines, rental pickup hours, and La Jolla parking cost remain to be verified.",
+  "verification": {
+    "109": {
+      "habit_signals": [
+        {
+          "confidence": 0.92,
+          "evidence_quote": "Yes for this trip. Use that pair in the comparison.",
+          "habit_id": "tm_pd_v05_user_000_h00",
+          "signal_type": "exception"
+        },
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Yes for this trip. Use that pair in the comparison.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selected the offered nonstop itinerary for this trip. That pair has an 11:15 a.m. return departure, so it is a trip-specific override of the recurring afternoon-return default, not a durable revision. No other candidate habit is established with sufficiently specific user-originated language."
+    }
+  }
+}

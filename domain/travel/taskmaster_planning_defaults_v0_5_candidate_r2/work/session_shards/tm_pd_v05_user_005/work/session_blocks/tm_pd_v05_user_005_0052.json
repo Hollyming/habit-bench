@@ -1,0 +1,179 @@
+{
+  "cache_fingerprint": "670caa8e328c403ed487ce06581c58234b60de186913ed46c9822908202f3d3a",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Ordinary trip-specific scheduling and cost decisions only; no recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "atlanta_baltimore_deinstallation_01",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 52,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly selected a nonstop evening return for this trip. The utterances do not independently establish Delta as a general carrier preference, a seat preference, or any hotel bed, beach-proximity, or rating habit. The choice is trip-specific rather than recurring.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Use the 8:55 Thursday nonstop.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h00",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Use the 8:55 Thursday nonstop.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The Baltimore schedule changed again. The carrier cannot collect the final crate until 7:30 Wednesday evening, and I have to be present for a seal inspection early Thursday. That makes the Thursday morning flight unusable. Please look at Thursday evening and, if necessary, Friday returns to Atlanta. I also need to know whether the hotel has to be extended.",
+          "role": "user"
+        },
+        {
+          "content": "I’ll compare nonstop BWI-to-Atlanta returns for Thursday evening, August 21, and Friday, August 22, then price each against the ticket already held under DL8M4R. What time is the Thursday seal inspection expected to finish, and will you need to return to the museum afterward for paperwork?",
+          "role": "assistant"
+        },
+        {
+          "content": "The inspection is scheduled for 8:00 a.m. and should be finished by 10:30. I may need another hour for signatures and condition-report scans. Assume I can leave the Walters by noon, but I do not want a flight that depends on everything going perfectly.",
+          "role": "user"
+        },
+        {
+          "content": "That leaves ample room for an evening departure. The most workable nonstop choices are a Delta flight Thursday at 6:40 p.m., arriving Atlanta at 8:34 p.m., and another at 8:55 p.m., arriving at 10:49 p.m. The 6:40 change adds $87 to the existing airfare; the 8:55 adds $142. There is also a Friday nonstop at 7:10 a.m., arriving at 9:04 a.m., with a $36 fare increase. The Friday option would require adding Thursday night at Midtown Plaza.",
+          "role": "assistant"
+        },
+        {
+          "content": "What is the actual cost of keeping the room Thursday night? The hotel booking currently checks out Thursday, correct?",
+          "role": "user"
+        },
+        {
+          "content": "Correct. Midtown Plaza is booked for Monday, August 18 through Thursday, August 21, so the current reservation includes Wednesday night and requires checkout Thursday. The hotel can add Thursday night at the original nightly room rate. With taxes, the additional night would be $211.32, bringing the lodging total from $633.96 to $845.28.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then compare the full incremental cost of all three options, not just the airfare.",
+          "role": "user"
+        },
+        {
+          "content": "The Thursday 6:40 p.m. return adds $87 total and requires no extra hotel night. The Thursday 8:55 p.m. return adds $142 total and also requires no extra night. The Friday 7:10 a.m. return adds $36 in airfare plus $211.32 for lodging, for a combined increase of $247.32. Any meals or incidental charges remain outside those figures.",
+          "role": "assistant"
+        },
+        {
+          "content": "The Friday flight is not worth the room cost. For Thursday, how much airport margin would each departure provide if I leave the museum at noon? Include getting my bag from the hotel.",
+          "role": "user"
+        },
+        {
+          "content": "Midtown Plaza will store the bag after checkout. Allowing roughly 20 minutes to return from the Walters, 10 minutes to retrieve it, and 25 to 40 minutes by car to BWI, you could reasonably reach the terminal around 1:00 to 1:15 p.m. That gives more than five hours before the 6:40 departure and more than seven and a half hours before the 8:55 departure. Even if museum work runs two hours late, the 6:40 remains feasible, though its cushion would be closer to three hours before departure.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is there any reason other than schedule buffer to pay the extra $55 for the later flight?",
+          "role": "user"
+        },
+        {
+          "content": "No material reason. Both are nonstop Delta economy itineraries and both permit the same carry-on allowance attached to the current ticket. The later flight is priced higher because of its fare inventory, not because it includes a different cabin or added benefit. Its practical advantage is only the additional 2 hours 15 minutes in Baltimore.",
+          "role": "assistant"
+        },
+        {
+          "content": "I am concerned that a seal discrepancy could turn into several hours of calls. Check whether the 8:55 flight is still better than taking a connection earlier in the afternoon.",
+          "role": "user"
+        },
+        {
+          "content": "The available one-stop afternoon itineraries are not better. The shortest departs BWI at 3:25 p.m. and reaches Atlanta at 7:38 p.m. after a connection, but it adds $119 and would force you to leave the museum by about 1:00. Another departs at 4:50 p.m., arrives at 9:26 p.m., and adds $104, but its connection is only 42 minutes. The 8:55 nonstop costs $23 to $38 more than those choices and avoids both the early cutoff and connection risk.",
+          "role": "assistant"
+        },
+        {
+          "content": "Use the 8:55 Thursday nonstop. Before you change it, confirm that we do not need to touch the hotel reservation and that checkout will not interfere with the inspection.",
+          "role": "user"
+        },
+        {
+          "content": "No hotel amendment is needed. The room remains available through Thursday morning, and Midtown Plaza’s standard checkout is noon. You can leave for the 8:00 a.m. inspection with your belongings either in the room or already checked with the front desk. If the museum work approaches noon, the front desk can complete checkout and hold the bag for collection later; there is no storage charge.",
+          "role": "assistant"
+        },
+        {
+          "content": "Have them hold the bag. I do not want to have to return by noon just to check out. Change the flight and keep it on BAL-DEINST-820.",
+          "role": "user"
+        },
+        {
+          "content": "I’m changing the return segment to the Thursday, August 21 nonstop at 8:55 p.m. and applying the $142 fare difference to BAL-DEINST-820. The original Wednesday return will be exchanged rather than left active. I’ll leave Midtown Plaza unchanged and add a note requesting Thursday luggage storage after checkout.",
+          "role": "assistant"
+        },
+        {
+          "content": "Proceed.",
+          "role": "user"
+        },
+        {
+          "content": "The change is confirmed. Delta now departs BWI Thursday, August 21 at 8:55 p.m. and arrives in Atlanta at 10:49 p.m. The additional airfare is $142, making the revised round-trip total $418. Confirmation DL8M4R remains the active flight record; the former Wednesday 8:45 p.m. segment has been canceled and exchanged, so it is no longer usable.",
+          "role": "assistant"
+        },
+        {
+          "content": "And the hotel? I want to be certain no fourth night was accidentally added.",
+          "role": "user"
+        },
+        {
+          "content": "Midtown Plaza confirmation MPB-481726 remains three nights only: check-in Monday, August 18 and checkout Thursday, August 21. The total remains $633.96. No Thursday night was added. The reservation now notes luggage storage after checkout; breakfast for two remains included, and personal incidental charges are still to be kept off the museum folio.",
+          "role": "assistant"
+        },
+        {
+          "content": "Give me the full updated Baltimore itinerary in one place, including the work commitments, transportation assumptions, confirmations, and cost changes.",
+          "role": "user"
+        },
+        {
+          "content": "Updated Baltimore itinerary under BAL-DEINST-820: Fly Delta nonstop from Atlanta to BWI on Monday, August 18, departing at 6:35 p.m. and arriving at 8:27 p.m. Flight confirmation DL8M4R remains active. Stay at Midtown Plaza Baltimore, confirmation MPB-481726, for three nights from Monday through Thursday morning; lodging remains $633.96 with no fourth night added. Breakfast for two is included, while personal incidentals must remain separate from the museum folio. On Tuesday, report to the Walters Art Museum at 7:30 a.m. and plan a rideshare from the hotel around 7:05. On Wednesday, report at 9:00 a.m.; the final crate pickup is now scheduled for 7:30 p.m., and you will remain through handoff. On Thursday, attend the seal inspection at 8:00 a.m., allow work through noon for signatures and scans, and have the hotel hold your bag after checkout. Retrieve it later and travel to BWI with a target airport arrival no later than 7:00 p.m. Return on the revised Delta nonstop Thursday at 8:55 p.m., arriving Atlanta at 10:49 p.m. The former Wednesday 8:45 p.m. flight has been canceled and exchanged. The fare change is $142, raising total round-trip airfare from $276 to $418; lodging is unchanged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0052",
+      "session_index": 52,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "Avery’s Atlanta-Chicago museum trip was completed as arranged. The Atlanta-Raleigh family trip for Avery and her wife remains confirmed at $864, with hotel cancellation through November 12. Registrar approval remains pending for the proposed Boston hotel replacement; nothing there has been booked. The September St. George Island stay, Denver installation trip, Minneapolis graduation, Dallas collection pickup, June Carlsbad anniversary trip, October Columbus family visit, and November Detroit assignment remain as previously confirmed. The July St. Louis loan handoff is fully arranged under project code STL-LH-417: flights are confirmed under ATL7QK and MetroLink Hotel Central West End under MLCWE-716284. For August 22-28 on Jekyll Island, Seafarer confirmation SJI-6382049 remains the only active coastal reservation at $1,493.16; free cancellation runs through 4:00 p.m. local time August 20, and the canceled Westin deposit of $344.28 is expected back. For the August 19-21 Baltimore deinstallation at the Walters Art Museum, Delta confirmation DL8M4R now contains the original Monday, August 18 Atlanta-BWI outbound and a revised Thursday, August 21 BWI-Atlanta return departing at 8:55 p.m. and arriving at 10:49 p.m. The former Wednesday return was canceled and exchanged. Revised round-trip airfare is $418 under BAL-DEINST-820. Midtown Plaza Baltimore confirmation MPB-481726 remains unchanged for three nights, August 18-21, at $633.96; no Thursday night was added. Breakfast for two is included, personal incidentals must remain separate from the museum folio, and luggage storage is noted for after Thursday checkout. Tuesday reporting time is 7:30 a.m.; Wednesday reporting time is 9:00 a.m., followed by the delayed 7:30 p.m. crate pickup; Thursday’s seal inspection begins at 8:00 a.m., with signatures and scans expected to continue through noon.",
+  "verification": {
+    "52": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Use the 8:55 Thursday nonstop.",
+          "habit_id": "tm_pd_v05_user_005_h00",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Use the 8:55 Thursday nonstop.",
+          "habit_id": "tm_pd_v05_user_005_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly selected a nonstop evening return for this trip. The utterances do not independently establish Delta as a general carrier preference, a seat preference, or any hotel bed, beach-proximity, or rating habit. The choice is trip-specific rather than recurring."
+    }
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "cache_fingerprint": "547a8068164461f1af3140eccf818c86be258718eb682411930909ea53666514",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya compared three Philadelphia hotels for the active workshop trip and selected the walkable Notary option because its cost remained within the project limit, its booking terms required no prepayment, and it reduced morning travel time. No recurring travel preference was established.",
+        "evidence_topology": {
+          "episode_id": "client-philadelphia-003",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 14,
+          "topology_revision": "travel_sparse_evidence_topology_v1",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chooses the cheaper Delta itinerary for the current trip, supporting both Delta as an acceptable preferred carrier and selection of the cheaper acceptable flight. No user utterance establishes the other candidate habits, and the choice is trip-specific rather than durable default language.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.96,
+            "evidence_quote": "Pair it with the cheaper Delta round trip for now",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h02",
+            "signal_type": "support"
+          },
+          {
+            "confidence": 0.97,
+            "evidence_quote": "Pair it with the cheaper Delta round trip for now",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h03",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "Now compare the three hotel options for Monday August 10 through Thursday August 13. I need the full three-night cost, the morning route to the workshop near City Hall, and exactly when each one charges me or becomes nonrefundable.",
+          "role": "user"
+        },
+        {
+          "content": "I have three refundable king-room options, all below the $245 nightly reimbursement ceiling before tax. The Notary Hotel is $239 per night, $717 before tax and $828.14 total. The Study at University City is $214 nightly, $642 before tax and $741.51 total. Live! Casino & Hotel is $179 nightly, $537 before tax and $620.24 total. I’ll verify the commute and booking terms side by side next.",
+          "role": "assistant"
+        },
+        {
+          "content": "Start with the Notary. Is it actually walkable with a laptop bag?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The Notary is about a four-minute, mostly level walk from the City Hall workshop entrance: east on Filbert Street, then south toward the designated entrance. Allow 8–10 minutes from the room so there is time for the elevator and building check-in. The displayed rate requires a card guarantee but no advance deposit; the hotel charges at checkout. Cancellation is free until 6:00 p.m. local time on Saturday, August 8. After that, the penalty is one night plus tax, about $276.05.",
+          "role": "assistant"
+        },
+        {
+          "content": "And University City? Include how much walking is involved at both ends of the subway.",
+          "role": "user"
+        },
+        {
+          "content": "From The Study, walk about five minutes to 34th Street station, take the Market-Frankford Line east to 15th Street, then walk roughly six minutes to the workshop. Trains run frequently in the morning, but I would budget 25 minutes door to door and leave by 7:25 for an 8:00 start. The hotel collects a one-night deposit of $247.17 when booked. You can cancel through 6:00 p.m. on Friday, August 7 for a full refund; after that, the deposit is forfeited. The remaining $494.34 is charged at checkout.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is enough travel time that the savings may not matter. What is the route from Live, and are its terms worse?",
+          "role": "user"
+        },
+        {
+          "content": "Live! is the longest commute. It is about a seven-minute walk to NRG station, followed by a northbound Broad Street Line ride to City Hall and a short walk to the workshop. Allow 35–40 minutes door to door and leave around 7:10. It is the cheapest by $207.90 compared with the Notary, but its terms are tighter: the full $620.24 is charged when booked. Cancellation is free only through 11:59 p.m. on Wednesday, August 5; after that, the entire stay is nonrefundable.",
+          "role": "assistant"
+        },
+        {
+          "content": "Put the practical differences into one compact comparison. Also show how much of the room-rate allowance each uses, excluding tax.",
+          "role": "user"
+        },
+        {
+          "content": "The Notary: $828.14 total; $717 reimbursable room cost, leaving $18 of the $735 three-night room allowance; 8–10 minutes to the workshop; no deposit, charge at checkout; free cancellation until August 8 at 6:00 p.m. The Study: $741.51 total; $642 room cost, leaving $93; about 25 minutes by subway and walking; $247.17 deposit now, balance at checkout; refundable through August 7 at 6:00 p.m. Live!: $620.24 total; $537 room cost, leaving $198; 35–40 minutes by subway and walking; full prepayment; refundable through August 5 at 11:59 p.m.",
+          "role": "assistant"
+        },
+        {
+          "content": "Are there any extra destination fees or breakfast charges hidden in those totals?",
+          "role": "user"
+        },
+        {
+          "content": "No destination or resort fee appears on any of the three final price screens. The quoted totals include the displayed room taxes and mandatory charges. Breakfast is not included at the Notary or Live!, while The Study’s rate includes a $20 daily dining credit rather than breakfast itself. Parking is excluded, but it is irrelevant to the current flight-and-transit plan.",
+          "role": "assistant"
+        },
+        {
+          "content": "Then the Notary looks best for the project even though it is highest. The workshop has early starts all three days, and I do not want a prepaid room if the agenda changes. Is there any budget problem with choosing it?",
+          "role": "user"
+        },
+        {
+          "content": "No. Its room rate is $239 per night, which is $6 below the $245 nightly reimbursement cap. The $111.14 in taxes sits outside that room-rate comparison, making the full stay $828.14. It also avoids an advance charge and preserves cancellation until Saturday evening, so the added $86.63 over The Study buys the shortest commute and one more day of flexibility.",
+          "role": "assistant"
+        },
+        {
+          "content": "Choose the Notary, but do not book it yet. Pair it with the cheaper Delta round trip for now and state what remains undecided.",
+          "role": "user"
+        },
+        {
+          "content": "Selected but not booked: The Notary Hotel, standard king room, check-in Monday, August 10 and check-out Thursday, August 13, at $239 per night. The three-night total is $828.14 including tax; no deposit is due, payment is at checkout, and free cancellation ends Saturday, August 8 at 6:00 p.m. local time. It is paired provisionally with the $526 Delta round trip departing MSP Monday at 5:18 p.m. and returning from PHL Thursday at 9:05 p.m. The remaining decision is whether to keep that later return or switch to the $584 mixed-ticket option departing at 8:21 p.m. Neither the flight nor hotel has been purchased.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0014",
+      "session_index": 14,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "The Raleigh work-trip return change remains staged but unsubmitted: replace the purchased Friday 5:35 p.m. RDU–MSP segment with the 3:20 p.m.–5:12 p.m. nonstop for an additional $86. The April 23–28 coastal trip flights and hotels are booked: The Drayton April 23–25, Beachview Inn & Spa April 25–28, and the MSP–SAV round trip for two. Two scheduled private rides remain unreserved: The Drayton to Beachview Saturday at 3:30 p.m. and Beachview to SAV Tuesday at 3:15 p.m., quoted at $180 before optional gratuity. For the June 9–12 Denver workshop trip, the Friday return was changed to the 6:40 p.m. DEN–MSP nonstop, arriving at 9:34 p.m.; the change cost $58 with no change fee, and the Hampton Inn & Suites Denver-Downtown stay remains June 9–12. For the August 10–13 Philadelphia workshop, The Notary Hotel has been selected but not booked for three nights at $828.14 including tax, with no advance deposit and free cancellation until August 8 at 6:00 p.m. It is provisionally paired with the unbooked $526 Delta round trip returning Thursday at 9:05 p.m. The remaining flight alternative is the $584 mixed-ticket itinerary returning at 8:21 p.m. After the Thursday 4:30 p.m. finish near City Hall, the working plan is to leave around 4:40 and reach PHL at approximately 5:05–5:25.",
+  "verification": {
+    "14": {
+      "habit_signals": [
+        {
+          "confidence": 0.96,
+          "evidence_quote": "Pair it with the cheaper Delta round trip for now",
+          "habit_id": "tm_pd_v05_user_000_h02",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.97,
+          "evidence_quote": "Pair it with the cheaper Delta round trip for now",
+          "habit_id": "tm_pd_v05_user_000_h03",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chooses the cheaper Delta itinerary for the current trip, supporting both Delta as an acceptable preferred carrier and selection of the cheaper acceptable flight. No user utterance establishes the other candidate habits, and the choice is trip-specific rather than durable default language."
+    }
+  }
+}

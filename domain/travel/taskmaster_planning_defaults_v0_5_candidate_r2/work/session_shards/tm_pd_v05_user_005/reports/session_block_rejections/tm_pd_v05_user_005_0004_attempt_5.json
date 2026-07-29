@@ -1,0 +1,136 @@
+{
+  "reason": "unnatural_habit_leakage_session_4:The user explicitly selected an afternoon Sunday return for this trip. No user utterance establishes a recurring preference for nonstop flights, Delta, window seats, a queen bed, beach proximity, or a hotel rating floor. Leakage occurred because the assistant silently limited flight recommendations to nonstop options before the user established that routing preference.",
+  "sessions": [
+    {
+      "domain": "combined",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Avery narrowed this trip's comparison to one Friday outbound, two possible return dates, and two cancellable lodging candidates. No recurring travel preference was stated, and no flight or hotel was reserved.",
+        "pre_dialogue_signal_labels_used": false
+      },
+      "messages": [
+        {
+          "content": "I need to map out a Raleigh weekend for my aunt's retirement dinner. The dinner is Saturday, November 15 at 6:00 p.m. My wife and I would leave Atlanta after work on Friday the 14th. We thought we'd return Monday, but she may need to be back for work Monday morning, so I don't want to book anything yet.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. I'll compare Friday evening flights for two people, then show how the trip changes with either a Sunday or Monday return. I'll also compare a shared room for two nights versus three. Are you looking only at flights, or should I include driving as a reference point?",
+          "role": "assistant"
+        },
+        {
+          "content": "Include driving just so we know whether flying is actually worthwhile. For Friday, we couldn't get to the Atlanta airport before about 5:30 p.m.",
+          "role": "user"
+        },
+        {
+          "content": "Driving from Atlanta to Raleigh is roughly 410 miles and typically takes 6 hours 15 minutes to 7 hours before stops, depending on traffic. Leaving after work could put you in Raleigh around midnight or later. For flying, a 5:30 p.m. airport arrival makes departures after about 7:00 p.m. the practical range if you are checking no unusual items. I found three viable Friday choices: a 7:10 p.m. nonstop arriving Raleigh-Durham at 8:35 p.m.; an 8:25 p.m. nonstop arriving at 9:48 p.m.; and a 9:35 p.m. nonstop arriving at 10:58 p.m. Current round-trip pricing depends on the return date, so I can compare those next.",
+          "role": "assistant"
+        },
+        {
+          "content": "The 7:10 sounds tight. Assume the 8:25 or 9:35. What do Sunday returns look like? We shouldn't leave Raleigh before 1:00 p.m. because there may be a family brunch.",
+          "role": "user"
+        },
+        {
+          "content": "For Sunday, November 16, the useful nonstop returns after 1:00 p.m. are 2:20 p.m. to 3:48 p.m., 5:05 p.m. to 6:33 p.m., and 7:40 p.m. to 9:08 p.m. Pairing the Friday 8:25 p.m. outbound with those returns currently totals $438, $466, or $442 for both travelers in standard economy. The Friday 9:35 p.m. outbound lowers each total by $24.",
+          "role": "assistant"
+        },
+        {
+          "content": "Is that $24 total, not per person?",
+          "role": "user"
+        },
+        {
+          "content": "Correct, $24 less for the pair. With the 9:35 p.m. Friday departure, the Sunday combinations are $414 with the 2:20 p.m. return, $442 with the 5:05 p.m. return, and $418 with the 7:40 p.m. return.",
+          "role": "assistant"
+        },
+        {
+          "content": "The middle return gives us more time without getting home too late. Now compare Monday. She wouldn't want to land after about 4:00 p.m. if she does get Monday free.",
+          "role": "user"
+        },
+        {
+          "content": "For Monday, November 17, there are nonstop returns at 9:15 a.m., arriving 10:43 a.m.; 12:35 p.m., arriving 2:03 p.m.; and 2:25 p.m., arriving 3:53 p.m. With the Friday 8:25 p.m. outbound, totals for two are $404, $426, and $458 respectively. Using the 9:35 p.m. outbound reduces each by $24.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the Monday trip can actually cost less than the Sunday one?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. The lowest Monday pairing is currently $380 for two with the 9:35 p.m. Friday outbound and 9:15 a.m. Monday return. A more leisurely Monday option is $402 with the same outbound and the 12:35 p.m. return. The airfare savings could offset part of the third hotel night, but not necessarily all of it.",
+          "role": "assistant"
+        },
+        {
+          "content": "Let's look at hotels. The dinner is near North Hills, and we'd rather not spend the weekend going back and forth from an airport hotel. One room for both of us.",
+          "role": "user"
+        },
+        {
+          "content": "I found three practical properties in the North Hills area for one room and two adults. The Renaissance Raleigh North Hills is $486 total for Friday through Sunday or $722 through Monday. The AC Hotel Raleigh North Hills is $432 for two nights or $638 for three. The Hyatt House Raleigh North Hills is $398 for two nights or $584 for three. These totals include currently displayed taxes; parking is listed separately at the first two and included at the Hyatt House.",
+          "role": "assistant"
+        },
+        {
+          "content": "Do all three let us cancel if her Monday schedule isn't settled right away?",
+          "role": "user"
+        },
+        {
+          "content": "At the quoted rates, the Renaissance and Hyatt House allow cancellation without penalty until 48 hours before arrival. The AC Hotel quote is prepaid and nonrefundable, but a flexible rate is available at $461 for two nights or $681 for three. Because the uncertainty affects checkout day, booking a three-night stay and later shortening it would still depend on the hotel's modification terms and room availability; free cancellation does not always guarantee a partial-stay change at the same nightly rate.",
+          "role": "assistant"
+        },
+        {
+          "content": "That's important. Could we reserve Friday through Sunday now and add Sunday night later if Monday works?",
+          "role": "user"
+        },
+        {
+          "content": "You could, but the added night might be unavailable or priced differently, and the hotel could require a room change if the same room type is not open. Another option is to hold a flexible three-night reservation and cancel it before the deadline if Monday becomes impossible, then make a new two-night reservation. That protects the third night but exposes you to whatever two-night price remains when you rebook.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you put together the sensible combinations, including transportation from the airport? We won't need a car much once we're there.",
+          "role": "user"
+        },
+        {
+          "content": "Using an estimated $70 total for round-trip rides between Raleigh-Durham airport and North Hills, the strongest comparisons are: Sunday return with the 9:35 p.m. Friday outbound, 5:05 p.m. Sunday flight, and two nights at Hyatt House: about $910 total. The same flights with the flexible AC rate: about $973. Monday return with the 9:35 p.m. outbound, 12:35 p.m. Monday flight, and three nights at Hyatt House: about $1,056. The comparable flexible AC combination is about $1,153. These figures cover airfare for two, one shared room, estimated airport transfers, and displayed hotel taxes, but not meals or local rides during the weekend.",
+          "role": "assistant"
+        },
+        {
+          "content": "And driving with the hotel? Assume parking at the hotel and gas, but don't try to estimate wear on the car.",
+          "role": "user"
+        },
+        {
+          "content": "Using approximately $115 for round-trip fuel, the Hyatt House combinations would be about $513 for two nights or $699 for three nights because parking is included there. At the flexible AC rate, adding its displayed parking charge and fuel brings the estimates to about $624 for two nights and $892 for three. Driving is materially cheaper, though it adds roughly 13 to 15 hours of round-trip road time and puts the Friday arrival quite late.",
+          "role": "assistant"
+        },
+        {
+          "content": "We are not driving. Keep the Friday 9:35 flight in the comparison. For Sunday, use the 5:05 return. For Monday, use the 12:35 return. I want the Hyatt House and flexible AC numbers side by side, but still no reservation.",
+          "role": "user"
+        },
+        {
+          "content": "Here is the narrowed comparison for two travelers, with no reservation made. Sunday plan: Friday 9:35 p.m. outbound, Sunday 5:05 p.m. return, two hotel nights, and estimated airport transfers. The Hyatt House total is about $910; the flexible AC total is about $973. Monday plan: the same Friday outbound, Monday 12:35 p.m. return, three hotel nights, and estimated transfers. The Hyatt House total is about $1,056; the flexible AC total is about $1,153.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much more does keeping Monday open cost in each case?",
+          "role": "user"
+        },
+        {
+          "content": "The Monday version is about $146 more at Hyatt House and $180 more at the flexible AC. That difference includes the changed airfare and one additional hotel night. The flight portion is actually $40 less for the Monday pairing; the extra lodging creates the net increase.",
+          "role": "assistant"
+        },
+        {
+          "content": "Good. Leave both return dates open until my wife confirms her schedule. Just make sure I understand what is and isn't being held.",
+          "role": "user"
+        },
+        {
+          "content": "Nothing is being held or booked. The working outbound is Friday, November 14 at 9:35 p.m. from Atlanta to Raleigh-Durham. The two return candidates are Sunday, November 16 at 5:05 p.m. and Monday, November 17 at 12:35 p.m. The lodging comparison remains Hyatt House versus the flexible AC rate for either two or three nights. Prices and availability can change before you choose, so both airfare and lodging will need to be rechecked once your wife's Monday schedule is confirmed.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0004",
+      "session_index": 4,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "Avery's Atlanta-Chicago museum trip remains resolved: travel and the Silversmith reservation are confirmed for October 14-18, and no extra hotel night is needed. A new Atlanta-Raleigh family trip is under consideration for Avery and her wife for November 14-17, centered on her aunt's retirement dinner at 6:00 p.m. Saturday, November 15. They will fly and share one hotel room. Two-night and three-night combinations have been compared, but the return date remains unresolved pending the wife's Monday work schedule. No Raleigh transportation or lodging has been held or booked, and all availability and totals must be rechecked before purchase."
+}

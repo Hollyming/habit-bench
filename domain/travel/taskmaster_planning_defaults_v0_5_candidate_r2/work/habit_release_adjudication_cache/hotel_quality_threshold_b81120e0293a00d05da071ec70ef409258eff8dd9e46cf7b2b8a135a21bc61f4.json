@@ -1,0 +1,22 @@
+{
+  "cache_fingerprint": "b81120e0293a00d05da071ec70ef409258eff8dd9e46cf7b2b8a135a21bc61f4",
+  "decisions": [
+    {
+      "action": "merge",
+      "alternative_group_key": "hotel_quality_threshold.customer_rating_floor",
+      "boundary_condition": "This is a soft customer/review-rating default, not an exact 4-star-only rule, not a hotel-class-star requirement, and not a reusable 4.5-star or 3.5-star threshold by itself.",
+      "canonical_value": "soft_customer_rating_floor_at_least_4_0_stars",
+      "condition": "When searching for hotels and a Google rating, review score, or similar customer-facing rating is available, especially for nice, upscale, resort-style, or high-rated stays.",
+      "default_action": "Filter or rank toward hotels with customer-facing ratings of at least 4.0 stars and report the rating source when known.",
+      "exception_condition": "If the user specifies a different threshold, prioritizes a budget stay with an explicit lower floor such as 3.5 stars, asks for the cheapest option regardless of quality, only suitable options fall below 4.0, or the rating metric is unclear, follow or clarify the current trip-specific instruction instead of hard-enforcing the 4.0 default.",
+      "input_ids": [
+        "tm_v04_e2e_habit_2f7cf6d5b85d",
+        "tm_v04_e2e_habit_704f0266b376"
+      ],
+      "name": "hotel_four_star_customer_rating_floor",
+      "preference_value": "Prefer hotels with clearly good customer-facing ratings, normally at least 4.0 stars, while treating higher ratings such as 4.5 as a bonus and lower stated floors as trip-specific exceptions.",
+      "rationale": "Both candidates describe the same reusable hotel quality-threshold habit. The repeated, well-grounded signal is a soft 4.0+ customer-facing rating floor; the 4.5-star mention is only an ideal upgrade, and the 3.5-star mention is a trip-specific budget exception rather than a separate default.",
+      "representative_id": "tm_v04_e2e_habit_704f0266b376"
+    }
+  ]
+}

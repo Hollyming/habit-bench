@@ -1,0 +1,53 @@
+{
+  "cache_fingerprint": "650ae226671e62d4b97810191bfbd0fe9f426cd4a9e63ca5d29569cabf1dff44",
+  "decisions": [
+    {
+      "action": "keep",
+      "alternative_group_key": "return_flight_departure_time_of_day",
+      "boundary_condition": "Treat this as a soft default; departures close to afternoon may be considered when true afternoon options are limited or unattractive.",
+      "canonical_value": "Prefer afternoon departures for the return leg, considering departures close to afternoon when needed.",
+      "condition": "When booking or comparing round-trip flights and selecting the return leg departure time.",
+      "default_action": "Present return-flight options departing in the afternoon first and let the user choose among them.",
+      "exception_condition": "Do not generalize this return-leg preference to outbound legs, and follow any explicit timing requirement for the current trip.",
+      "input_ids": [
+        "tm_v04_e2e_habit_26cf0aa15c48"
+      ],
+      "name": "afternoon_return_departure_preference",
+      "preference_value": "Prefer the return flight to depart in the afternoon.",
+      "rationale": "Keep the calibrated representative as a distinct return-leg preference. Its leg-specific scope is not semantically interchangeable with the general afternoon-departure policy, and the evidence supports only a soft afternoon default with nearby times as a fallback.",
+      "representative_id": "tm_v04_e2e_habit_26cf0aa15c48"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_departure_time_of_day",
+      "boundary_condition": "Apply only as a general time-of-day preference without inferring a route, date, or leg-specific requirement.",
+      "canonical_value": "Prefer morning flight departures when no trip-specific timing constraint applies.",
+      "condition": "When choosing a flight departure time and no trip-specific timing constraint overrides the preference.",
+      "default_action": "Present morning departure options first.",
+      "exception_condition": "Follow an explicitly stated timing requirement for the current trip; no reusable fallback is established when morning options are unavailable.",
+      "input_ids": [
+        "tm_v04_e2e_habit_30d15d26d331"
+      ],
+      "name": "prefer_morning_flight_departures",
+      "preference_value": "Prefer morning flight departures.",
+      "rationale": "Keep the calibrated representative as a reusable general preference. Morning and afternoon are contrasting alternatives rather than aliases, and current-trip timing requirements continue to override this soft default.",
+      "representative_id": "tm_v04_e2e_habit_30d15d26d331"
+    },
+    {
+      "action": "keep",
+      "alternative_group_key": "flight_departure_time_of_day",
+      "boundary_condition": "Do not apply the preference to a leg for which another time of day is explicitly requested.",
+      "canonical_value": "Prefer afternoon flight departures when workable options are available.",
+      "condition": "When selecting a flight departure time and afternoon options are available.",
+      "default_action": "Prioritize departure options in the afternoon.",
+      "exception_condition": "Use another departure period when explicitly requested or when no workable afternoon option is available.",
+      "input_ids": [
+        "tm_v04_e2e_habit_ff9a7f3c433c"
+      ],
+      "name": "prefer_afternoon_flight_departures",
+      "preference_value": "Prefer afternoon flight departures.",
+      "rationale": "Keep the calibrated representative as the general afternoon alternative. It must remain separate from the morning preference and from the return-leg-specific afternoon policy because those policies differ in value or scope.",
+      "representative_id": "tm_v04_e2e_habit_ff9a7f3c433c"
+    }
+  ]
+}

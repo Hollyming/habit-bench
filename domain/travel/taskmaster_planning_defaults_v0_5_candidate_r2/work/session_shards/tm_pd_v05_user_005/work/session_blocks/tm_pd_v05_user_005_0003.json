@@ -1,0 +1,110 @@
+{
+  "cache_fingerprint": "abefb443dd73c0a64ab7e8159e8596c960b3e9fc4b8a4f78ef7b35a0ea971c2b",
+  "sessions": [
+    {
+      "domain": "flights",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "No recurring travel preference was established. Avery resolved the airline schedule conflict by accepting a later Friday nonstop under the carrier’s schedule-change waiver, without changing the outbound flight or hotel reservation.",
+        "evidence_topology": {
+          "episode_id": "atlanta_chicago_exhibition_opening_01",
+          "mode": "ordinary",
+          "phase": "early",
+          "session_index": 3,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_005"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chose the later Friday return for this trip. The dialogue does not independently establish a recurring preference, and the user's quoted words do not explicitly establish nonstop routing, Delta, a window seat, or any hotel preference.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "Go ahead and confirm the Friday 10:20 from Midway. Do not change anything else.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_005_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The airline just moved my Friday return to 5:40 p.m. That will not work with the museum handoff at 6:30. Can you find something later Friday, or Saturday morning if Friday is impossible? Please leave the outbound alone.",
+          "role": "user"
+        },
+        {
+          "content": "The Tuesday outbound is unchanged. For the return, there is a nonstop from Midway at 10:20 p.m. Friday that arrives in Atlanta at 1:15 a.m. Saturday. The airline can move you to it for $26 more. There is also an 8:10 a.m. Saturday nonstop from O’Hare, arriving at 11:05 a.m., with no additional fare.",
+          "role": "assistant"
+        },
+        {
+          "content": "How much time would the Midway flight leave after the handoff? I do not know whether it will take thirty minutes or an hour.",
+          "role": "user"
+        },
+        {
+          "content": "If the handoff runs until 7:30 p.m., you would still have about two hours and fifty minutes before departure. Allowing roughly 35 minutes by car to Midway at that hour would put you there around 8:05, a little over two hours before the flight. Traffic could lengthen that trip, but the timing is workable.",
+          "role": "assistant"
+        },
+        {
+          "content": "That is better than adding Saturday travel. Is the 10:20 flight still available in standard economy, and can the airline apply the schedule-change waiver?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Standard economy is still available, and because the airline changed your original departure, the waiver removes the $26 fare difference. Your advance seat selection remains available, though the exact seat from the original flight cannot carry over automatically.",
+          "role": "assistant"
+        },
+        {
+          "content": "Go ahead and confirm the Friday 10:20 from Midway. Do not change anything else.",
+          "role": "user"
+        },
+        {
+          "content": "The return has been changed to the nonstop departing Midway at 10:20 p.m. Friday, October 17 and arriving in Atlanta at 1:15 a.m. Saturday. There was no additional charge under the schedule-change waiver. The Tuesday outbound remains unchanged.",
+          "role": "assistant"
+        },
+        {
+          "content": "Does this affect the Silversmith reservation, or do I need another night because the arrival is after midnight?",
+          "role": "user"
+        },
+        {
+          "content": "No extension is needed. The Silversmith reservation already runs through checkout on Saturday, October 18, so you can keep the room through Friday evening and leave for Midway after the handoff. The hotel dates, occupants, billing contact, and cancellation terms remain unchanged.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_005_s0003",
+      "session_index": 3,
+      "user_id": "tm_pd_v05_user_005"
+    }
+  ],
+  "updated_continuity_summary": "Avery’s Atlanta-Chicago museum work trip runs October 14-18. Her Tuesday nonstop to O’Hare remains unchanged. After the airline moved the original Friday return into conflict with the 6:30 p.m. museum handoff, the return was rebooked under a schedule-change waiver to a 10:20 p.m. Friday nonstop from Midway, arriving in Atlanta at 1:15 a.m. Saturday, with no added charge. The Silversmith Hotel reservation remains confirmed for October 14-18 with Avery as primary guest and billing contact and her wife as second occupant; no extra hotel night is required. The standard checked installation-tool case remains about 42 pounds, with its removable drill battery traveling in hand luggage.",
+  "verification": {
+    "3": {
+      "habit_signals": [
+        {
+          "confidence": 0.99,
+          "evidence_quote": "Go ahead and confirm the Friday 10:20 from Midway. Do not change anything else.",
+          "habit_id": "tm_pd_v05_user_005_h01",
+          "signal_type": "support"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chose the later Friday return for this trip. The dialogue does not independently establish a recurring preference, and the user's quoted words do not explicitly establish nonstop routing, Delta, a window seat, or any hotel preference."
+    }
+  }
+}

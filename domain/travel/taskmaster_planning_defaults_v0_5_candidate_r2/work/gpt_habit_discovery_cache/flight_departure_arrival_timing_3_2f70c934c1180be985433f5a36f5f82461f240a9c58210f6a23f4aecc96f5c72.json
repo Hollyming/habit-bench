@@ -1,0 +1,94 @@
+{
+  "cache_fingerprint": "2f70c934c1180be985433f5a36f5f82461f240a9c58210f6a23f4aecc96f5c72",
+  "habits": [
+    {
+      "boundary_condition": "Apply this as a reusable time-of-day preference across flight legs, not as a requirement for any particular route or date",
+      "bundle_id": "tm_v04_e2e_bundle_30d15d26d331",
+      "condition": "When searching for outbound, return, or multi-leg flights and no trip-specific timing constraint overrides the preference",
+      "confidence": 0.94,
+      "decision": "accept",
+      "default_action": "Search for and present morning departure options first",
+      "exception_condition": "If no morning option is available, offer the earliest reasonable later departure; an afternoon departure may be acceptable after confirming the tradeoff",
+      "family": "flight_departure_arrival_timing",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_30d15d26d331",
+      "induced_at": "2026-07-25T10:01:59.773682+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "Prefer morning flight departures",
+      "preference_value": "morning departures",
+      "rationale": "Three independent flight-booking dialogues repeatedly request morning departures across different routes and legs. One dialogue explicitly relaxes the preference to afternoon when morning service is unavailable, indicating a soft default rather than a hard requirement.",
+      "reasoning_effort": "high",
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Directly requests a morning departure after reviewing flight timing.",
+          "conversation_id": "dlg-0f7945ca-668b-4c4c-892d-47f94f5ae8bf",
+          "exact_user_quote": "What time does it leave? Let's try for a morning flights.",
+          "instruction_id": "flight-5",
+          "turn_index": 26
+        },
+        {
+          "contribution": "The word 'again' and repeated use across legs support a recurring morning-departure default.",
+          "conversation_id": "dlg-16bc9bb3-c60e-4858-8e82-5ba517d9ff84",
+          "exact_user_quote": "And I need Preferably on American Airlines in the morning again.",
+          "instruction_id": "flight-8",
+          "turn_index": 14
+        },
+        {
+          "contribution": "Applies the morning preference to both outbound and return departures; later negotiation shows it can be relaxed when unavailable.",
+          "conversation_id": "dlg-05b7672d-c352-496c-8115-d8d2271b1059",
+          "exact_user_quote": "I would like to return on June 10th. And I'm looking to depart in the morning and return in the morning.",
+          "instruction_id": "flight-10",
+          "turn_index": 5
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "What time does it leave? Let's try for a morning flights.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-0f7945ca-668b-4c4c-892d-47f94f5ae8bf",
+          "habitual_language": false,
+          "instruction_id": "flight-5",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 26,
+          "user_utterance": "What time does it leave? Let's try for a morning flights."
+        },
+        {
+          "annotated_segment": "And I need Preferably on American Airlines in the morning again.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-16bc9bb3-c60e-4858-8e82-5ba517d9ff84",
+          "habitual_language": false,
+          "instruction_id": "flight-8",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 14,
+          "user_utterance": "And I need Preferably on American Airlines in the morning again."
+        },
+        {
+          "annotated_segment": "I would like to return on June 10th. And I'm looking to depart in the morning and return in the morning.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-05b7672d-c352-496c-8115-d8d2271b1059",
+          "habitual_language": false,
+          "instruction_id": "flight-10",
+          "preference_language": true,
+          "source_domain": "flights",
+          "turn_index": 5,
+          "user_utterance": "I would like to return on June 10th. And I'm looking to depart in the morning and return in the morning."
+        }
+      ]
+    }
+  ],
+  "selected_conversation_ids": [
+    "dlg-0f7945ca-668b-4c4c-892d-47f94f5ae8bf",
+    "dlg-16bc9bb3-c60e-4858-8e82-5ba517d9ff84",
+    "dlg-05b7672d-c352-496c-8115-d8d2271b1059"
+  ]
+}

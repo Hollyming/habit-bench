@@ -1,0 +1,71 @@
+{
+  "cache_fingerprint": "ae27ca395d3dfedae97ad6729803dcb2cee0c696cd43018c8ec68fb4e9952243",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "The hotel total was reconciled to $219.46, including a $24 destination charge payable at the property, and complimentary post-checkout bag storage was confirmed in writing.",
+        "evidence_topology": {
+          "episode_id": "ep_016_denver_corporate_partner_visit",
+          "mode": "ordinary",
+          "phase": "middle",
+          "session_index": 48,
+          "topology_revision": "travel_sparse_evidence_topology_v4_temporal",
+          "user_id": "tm_pd_v05_user_004"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user utterances concern the reimbursable hotel total and documented luggage storage. They do not evidence any candidate habit concerning flight timing, connections, price ranking, seat location, included breakfast, or balconies.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [],
+        "pre_dialogue_signal_labels_used": false,
+        "verified_habit_signals": []
+      },
+      "messages": [
+        {
+          "content": "The Denver hotel confirmation has the right date and room, but it only lists a $195.46 room-and-tax total. At checkout I was shown another $24 destination charge. What amount belongs in the reimbursement file?",
+          "role": "user"
+        },
+        {
+          "content": "Use $219.46 as the mandatory hotel total: $195.46 shown on the confirmation plus the $24 destination charge disclosed at checkout. The $24 is due at the property, so the confirmation is incomplete rather than a lower final price. An incidental authorization, if taken, is separate and should not be submitted as trip cost.",
+          "role": "assistant"
+        },
+        {
+          "content": "And is the Friday bag arrangement actually documented, or do I still need to call?",
+          "role": "user"
+        },
+        {
+          "content": "It is documented: the front desk confirmed complimentary luggage storage after Friday checkout. Leave the carry-on that morning, collect it around noon, and request the airport ride around 12:20 p.m. No further call is needed. Keep the hotel at $219.46, the trip estimate at $632.46, and the approval amount at $647.46.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_004_s0048",
+      "session_index": 48,
+      "user_id": "tm_pd_v05_user_004"
+    }
+  ],
+  "updated_continuity_summary": "Gulf Coast unit B remains reserved for August 10-15 for three guests at $2,098; $1,468.60 is due July 11, written parking confirmation remains outstanding, and a separate $300 security authorization is scheduled for August 8. The New Orleans Cambria reservation is confirmed for December 20-23 for three guests at $929.01; use the valet entrance and call with a revised ETA if arrival will be after 9:00 p.m. Approval remains pending for the May 13-15 Indian Wells return-flight change, which would raise the trip total to $1,243.62, or $43.62 above the reimbursement ceiling. The March 10-15 beachfront hotel is booked for three guests at a mandatory total of $1,978.20; an occupancy-only correction under the same confirmation number remains needed without repricing, and the cancellation deadline is February 24 at 6:00 p.m. Central. For the May 8-9 Denver partner visit, flights, transfers, and the Holiday Inn Express Denver Downtown are booked. The hotel total is $219.46: the confirmation shows $195.46 in room and tax, and a mandatory $24 destination charge is due at the property. Any incidental authorization is separate. Complimentary Friday post-checkout luggage storage is documented; retrieve the carry-on around noon and request the airport ride around 12:20 p.m. The trip estimate is $632.46 and the approval amount is $647.46.",
+  "verification": {
+    "48": {
+      "habit_signals": [],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user utterances concern the reimbursable hotel total and documented luggage storage. They do not evidence any candidate habit concerning flight timing, connections, price ranking, seat location, included breakfast, or balconies."
+    }
+  }
+}

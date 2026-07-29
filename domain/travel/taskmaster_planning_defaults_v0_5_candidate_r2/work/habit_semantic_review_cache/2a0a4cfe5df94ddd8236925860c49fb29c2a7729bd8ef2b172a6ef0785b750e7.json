@@ -1,0 +1,369 @@
+{
+  "cache_fingerprint": "2a0a4cfe5df94ddd8236925860c49fb29c2a7729bd8ef2b172a6ef0785b750e7",
+  "rows": [
+    {
+      "boundary_condition": "Do not infer that the pool or hot tub must be indoor or outdoor; the indoor preference appears in only one dialogue. Do not treat unrelated one-off trip details such as destination, dates, price, or beach proximity as part of this habit.",
+      "bundle_id": "tm_v04_e2e_bundle_fd8a73454935",
+      "canonical_value": "pool_hot_tub_fitness",
+      "condition": "When choosing or evaluating a hotel for a leisure stay.",
+      "confidence": 0.82,
+      "decision": "keep",
+      "default_action": "Prioritize or ask about hotels that offer the full pool-plus-hot-tub-plus-fitness/exercise amenity bundle, and call out clearly if one element is missing.",
+      "exception_condition": "If otherwise suitable hotels do not offer all three amenities, present close matches while explicitly noting which of pool, hot tub, or fitness/exercise facility is absent.",
+      "family": "hotel_included_services",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_fd8a73454935",
+      "induced_at": "2026-07-16T08:07:33.431665+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "hotel_recreation_and_exercise_amenities",
+      "preference_value": "Prefers hotels with a pool, hot tub, and fitness/exercise facility.",
+      "rationale": "Across three distinct hotel conversations and instruction IDs, the user independently requests the same recreation-plus-exercise amenity pattern. Because only one dialogue uses hard requirement wording, this should be modeled as a strong preference rather than an absolute rule.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "keep",
+        "quality_score": 0.97,
+        "reason": "All three distinct instruction_id values independently request the same pool, hot tub, and fitness/exercise bundle. The wording properly excludes the unsupported indoor-pool detail and unrelated trip-specific constraints.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports the default preference for a hotel pool, hot tub, and fitness center.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "a pool with a hot tub and a fitness center at the hotel.",
+          "instruction_id": "hotel-2",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Independently repeats the same pool, hot tub, and fitness center bundle, with hard wording in this instance.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "The hotel must have a pool with a hot tub and a fitness center.",
+          "instruction_id": "hotel-3",
+          "turn_index": 28
+        },
+        {
+          "contribution": "Independently supports seeking a pool, hot tub, and exercise facility while showing the indoor/outdoor detail should remain a boundary rather than the core habit.",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "exact_user_quote": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "instruction_id": "hotel-1c",
+          "turn_index": 16
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "a pool with a hot tub and a fitness center at the hotel.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "a pool with a hot tub and a fitness center at the hotel."
+        },
+        {
+          "annotated_segment": "The hotel must have a pool with a hot tub and a fitness center.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 28,
+          "user_utterance": "The hotel must have a pool with a hot tub and a fitness center."
+        },
+        {
+          "annotated_segment": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 16,
+          "user_utterance": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Do not carry forward a specific walk-time limit, destination, price cap, or rating requirement.",
+      "bundle_id": "tm_v04_e2e_bundle_1a3c05f3cd51",
+      "canonical_value": "coastal_water_proximity",
+      "condition": "When choosing lodging for a coastal or beach-oriented trip.",
+      "confidence": 0.9,
+      "decision": "revise",
+      "default_action": "Prioritize lodging near the ocean or beach; apply a walking-distance requirement only when the current request states one.",
+      "exception_condition": "Defer to a different location priority explicitly stated for the current trip.",
+      "family": "hotel_location_price_tradeoff",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_1a3c05f3cd51",
+      "induced_at": "2026-07-26T14:02:34.993026+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefer_coastal_water_proximity",
+      "preference_value": "Prefers coastal lodging near the ocean or beach.",
+      "rationale": "Three independent hotel searches consistently request beach or ocean proximity, with two explicitly asking for walkable access.",
+      "reasoning_effort": "high",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.84,
+        "reason": "Three distinct instruction_id values support proximity to coastal water, but only two specifically establish walkable beach access; the third says only near an ocean. The reusable default must therefore be narrower than a general walking-distance beach preference.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Supports prioritizing beachfront or very close beach access, preferably within a short walk.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "I would like to stay in Naples, Florida at the beachfront, very close to the beach. Less than 5-minute walk is preferable.",
+          "instruction_id": "hotel-3",
+          "turn_index": 3
+        },
+        {
+          "contribution": "Independently supports on-beach or walkable beach proximity alongside other selection criteria.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "And we want to be on the beach or close to, within walking distance. I want it to be $300 or less per night. 4 stars on Google.",
+          "instruction_id": "hotel-2",
+          "turn_index": 4
+        },
+        {
+          "contribution": "Independently supports coastal proximity as a hotel-location preference.",
+          "conversation_id": "dlg-ae59a0d7-ded6-4361-9eb9-f6ca47186758",
+          "exact_user_quote": "I need something that's near an ocean.",
+          "instruction_id": "hotel-4",
+          "turn_index": 5
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I would like to stay in Naples, Florida at the beachfront, very close to the beach. Less than 5-minute walk is preferable.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 3,
+          "user_utterance": "I would like to stay in Naples, Florida at the beachfront, very close to the beach. Less than 5-minute walk is preferable."
+        },
+        {
+          "annotated_segment": "And we want to be on the beach or close to, within walking distance. I want it to be $300 or less per night. 4 stars on Google.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 4,
+          "user_utterance": "And we want to be on the beach or close to, within walking distance. I want it to be $300 or less per night. 4 stars on Google."
+        },
+        {
+          "annotated_segment": "I need something that's near an ocean.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ae59a0d7-ded6-4361-9eb9-f6ca47186758",
+          "habitual_language": false,
+          "instruction_id": "hotel-4",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 5,
+          "user_utterance": "I need something that's near an ocean."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Do not infer a walking-distance threshold, specific walk time, destination, budget, or rating unless supplied for the current trip.",
+      "bundle_id": "tm_v04_e2e_bundle_9872ac91d495",
+      "canonical_value": "beach_proximity",
+      "condition": "When searching for lodging for a beach-oriented trip.",
+      "confidence": 0.9,
+      "decision": "revise",
+      "default_action": "Prioritize properties on or near the beach.",
+      "exception_condition": "Do not apply this default to non-beach trips or when the current trip specifies a different location priority.",
+      "family": "hotel_location_price_tradeoff",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_9872ac91d495",
+      "induced_at": "2026-07-25T10:19:25.539990+00:00",
+      "induced_by": "gpt-5.6-sol",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefer_beach_proximate_hotels",
+      "preference_value": "Prefers hotels on or near the beach.",
+      "rationale": "Three independent hotel searches consistently request beach proximity alongside a budget, but they do not establish a reusable exact price ceiling or a willingness to exceed budget for location.",
+      "reasoning_effort": "high",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.94,
+        "reason": "All three distinct instruction_id values support beach proximity, but only two support walking distance. The budget-filtering clause is trip-specific rather than part of this habit, and walking distance is over-generalized as a reusable threshold.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Directly supports prioritizing a beachfront or very short walking-distance location.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "I would like to stay in Naples, Florida at the beachfront, very close to the beach. Less than 5-minute walk is preferable.",
+          "instruction_id": "hotel-3",
+          "turn_index": 3
+        },
+        {
+          "contribution": "Independently supports beach access within walking distance while retaining a trip-specific budget constraint.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "And we want to be on the beach or close to, within walking distance. I want it to be $300 or less per night. 4 stars on Google.",
+          "instruction_id": "hotel-2",
+          "turn_index": 4
+        },
+        {
+          "contribution": "Independently supports beach proximity as a hotel-location preference in a search that later also specifies a price range.",
+          "conversation_id": "dlg-ae59a0d7-ded6-4361-9eb9-f6ca47186758",
+          "exact_user_quote": "Near beach.",
+          "instruction_id": "hotel-4",
+          "turn_index": 7
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "I would like to stay in Naples, Florida at the beachfront, very close to the beach. Less than 5-minute walk is preferable.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 3,
+          "user_utterance": "I would like to stay in Naples, Florida at the beachfront, very close to the beach. Less than 5-minute walk is preferable."
+        },
+        {
+          "annotated_segment": "And we want to be on the beach or close to, within walking distance. I want it to be $300 or less per night. 4 stars on Google.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 4,
+          "user_utterance": "And we want to be on the beach or close to, within walking distance. I want it to be $300 or less per night. 4 stars on Google."
+        },
+        {
+          "annotated_segment": "Near beach.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ae59a0d7-ded6-4361-9eb9-f6ca47186758",
+          "habitual_language": false,
+          "instruction_id": "hotel-4",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 7,
+          "user_utterance": "Near beach."
+        }
+      ]
+    },
+    {
+      "boundary_condition": "Do not infer other amenities, destination, dates, price, views, balcony access, or indoor versus outdoor facility type.",
+      "bundle_id": "tm_v04_e2e_bundle_020c4625aa8b",
+      "canonical_value": "pool_hot_tub_fitness",
+      "condition": "When selecting or evaluating hotel options.",
+      "confidence": 0.82,
+      "decision": "revise",
+      "default_action": "Prioritize hotels with a pool, hot tub, and fitness or exercise facility, and verify that each is available.",
+      "exception_condition": "If no suitable property offers all three, ask whether a missing amenity or a reasonable substitute is acceptable.",
+      "family": "hotel_property_atmosphere",
+      "grounding_contract": {
+        "minimum_distinct_source_instructions": 3,
+        "minimum_independent_source_conversations": 3,
+        "multi_turn_context_windows_seen_by_discovery_model": true,
+        "not_claimed_as_original_speaker_longitudinal_habit": true,
+        "synthetic_user_habit": true
+      },
+      "habit_instance_id": "tm_v04_e2e_habit_020c4625aa8b",
+      "induced_at": "2026-07-16T08:06:31.767326+00:00",
+      "induced_by": "gpt-5.5",
+      "induction_method": "gpt_semantic_discovery_from_complete_taskmaster_dialogues",
+      "name": "prefer_pool_hot_tub_and_fitness_access",
+      "preference_value": "Prefers hotels with a pool, hot tub, and fitness or exercise facility.",
+      "rationale": "All three independent hotel conversations ask for the same property-style amenity cluster: pool, hot tub, and exercise/fitness access. This supports a reusable preference for recreation-oriented, amenity-rich hotel properties.",
+      "reasoning_effort": "xhigh",
+      "semantic_review": {
+        "decision": "revise",
+        "quality_score": 0.96,
+        "reason": "The three distinct instruction_id values support the recurring pool, hot tub, and fitness/exercise cluster, but 'amenity-rich' over-generalizes beyond that specific bundle and could imply unrelated amenities.",
+        "reviewed_by": "gpt-5.6-sol"
+      },
+      "source_dataset": "google-research-datasets/Taskmaster-2",
+      "source_evidence": [
+        {
+          "contribution": "Directly states the hotel should include the pool, hot tub, and fitness-center cluster.",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "exact_user_quote": "The hotel must have a pool with a hot tub and a fitness center.",
+          "instruction_id": "hotel-3",
+          "turn_index": 28
+        },
+        {
+          "contribution": "Independently requests the same pool, hot tub, and fitness-center amenities at the hotel.",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "exact_user_quote": "I would like to have a restaurant with a bar at the hotel for there and to be a pool with a hot tub and a fitness center at the hotel.",
+          "instruction_id": "hotel-2",
+          "turn_index": 17
+        },
+        {
+          "contribution": "Independently asks for a pool, hot tub, and exercise access, matching the recurring amenity pattern.",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "exact_user_quote": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "instruction_id": "hotel-1c",
+          "turn_index": 16
+        }
+      ],
+      "source_examples": [
+        {
+          "annotated_segment": "The hotel must have a pool with a hot tub and a fitness center.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-f63b3257-bb9a-4475-b401-a9f8241afc0b",
+          "habitual_language": false,
+          "instruction_id": "hotel-3",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 28,
+          "user_utterance": "The hotel must have a pool with a hot tub and a fitness center."
+        },
+        {
+          "annotated_segment": "I would like to have a restaurant with a bar at the hotel for there and to be a pool with a hot tub and a fitness center at the hotel.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-6f516abb-88c3-4dd3-a53c-54515c85e3bd",
+          "habitual_language": false,
+          "instruction_id": "hotel-2",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 17,
+          "user_utterance": "I would like to have a restaurant with a bar at the hotel for there and to be a pool with a hot tub and a fitness center at the hotel."
+        },
+        {
+          "annotated_segment": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise.",
+          "annotation": "gpt_complete_dialogue_discovery",
+          "conversation_id": "dlg-ba798087-0c00-4fbe-a441-4a4c434f96b0",
+          "habitual_language": false,
+          "instruction_id": "hotel-1c",
+          "preference_language": true,
+          "source_domain": "hotels",
+          "turn_index": 16,
+          "user_utterance": "I'm looking for a pool and a hot tub. It doesn't matter if it's indoor or outdoor, But I prefer indoor. I'm also looking for a place to a place to exercise."
+        }
+      ]
+    }
+  ]
+}

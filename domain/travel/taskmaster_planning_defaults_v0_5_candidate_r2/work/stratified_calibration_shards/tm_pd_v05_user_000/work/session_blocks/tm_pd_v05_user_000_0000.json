@@ -1,0 +1,182 @@
+{
+  "cache_fingerprint": "ffc1cf245ada538b98cefaa575a6f4143e65bd60583552671b962a1bf2a0c796",
+  "sessions": [
+    {
+      "domain": "hotels",
+      "generation_provenance": {
+        "method": "llm_direct_from_grounded_dossier_and_chronological_arc",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium",
+        "template_or_rewrite_stage": false
+      },
+      "memory_annotations": {
+        "evidence_summary": "Maya explicitly made the beach-proximity criterion inapplicable only to this Denver client trip and substituted dependable medical-campus access as the trip-specific location priority. The selected plan is the nearby campus hotel for three nights, using airport rideshares and the client shuttle.",
+        "evidence_topology": {
+          "episode_id": "client-denver-009",
+          "mode": "evidence",
+          "phase": "middle",
+          "session_index": 47,
+          "target_habit_id": "tm_pd_v05_user_000_h06",
+          "target_signal_type": "exception",
+          "topology_revision": "travel_sparse_evidence_topology_v2_eligibility_v2",
+          "user_id": "tm_pd_v05_user_000"
+        },
+        "independent_verification": {
+          "independent_call": true,
+          "leakage": false,
+          "model": "gpt-5.6-sol",
+          "notes": "The user explicitly chose a nonstop outbound flight, supporting the nonstop preference for this trip. The user also explicitly made the beach-proximity criterion inapplicable only to this Denver client trip and substituted dependable medical-campus access, which is a one-trip exception rather than a durable revision. The Friday evening return choice does not itself establish an afternoon-return habit.",
+          "reasoning_effort": "medium",
+          "recurring_or_default_language": false
+        },
+        "observed_habit_matches": [
+          {
+            "confidence": 0.95,
+            "evidence_quote": "I think the Tuesday nonstop and Friday evening flight are the ones I'll use, so I need three hotel nights.",
+            "evidence_status": "nonbinding",
+            "habit_id": "tm_pd_v05_user_000_h01",
+            "signal_type": "support"
+          }
+        ],
+        "pre_dialogue_signal_labels_used": true,
+        "verified_habit_signals": [
+          {
+            "confidence": 0.99,
+            "evidence_quote": "This is a Denver client trip, so keep this exception local to this trip: don't use my beach or walk-to-the-beach location criterion here. Dependable access to the medical campus is the location priority.",
+            "evidence_status": "decisive",
+            "habit_id": "tm_pd_v05_user_000_h06",
+            "signal_type": "exception"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "content": "I think the Tuesday nonstop and Friday evening flight are the ones I'll use, so I need three hotel nights. Can we compare the three Denver hotels all the way through, including transportation?",
+          "role": "user"
+        },
+        {
+          "content": "Yes. Send me the nightly rates and any taxes or transportation details you have, and I'll put them on the same three-night basis.",
+          "role": "assistant"
+        },
+        {
+          "content": "The hotel by the medical campus is $229 a night before tax. It has a weekday shuttle to the client building, but parking is $24 a night. The cheaper hotel is $189, parking included, no shuttle. Downtown is $214 and close to the airport train. The hotel tax estimate is 15.75% for all three.",
+          "role": "user"
+        },
+        {
+          "content": "The room totals for three nights are: campus hotel $687 before tax, $795.20 after estimated tax; cheaper hotel $567 before tax, $656.30 after tax; downtown $642 before tax, $743.12 after tax. All three satisfy the $245-per-night pre-tax room limit. Next I need to account for whether you would rent a car or use rideshare and transit.",
+          "role": "assistant"
+        },
+        {
+          "content": "Assume a rental car would be about $196 all-in from Tuesday through Friday, plus maybe $28 in gas. Airport rideshares are roughly $55 each way. From the cheaper hotel to the campus, rideshare looks like $19 to $27 each direction.",
+          "role": "user"
+        },
+        {
+          "content": "That makes the cheaper hotel strongest with a rental car: $656.30 lodging + $196 rental + $28 gas = $880.30 total. Using rideshares instead would be much higher: $110 for airport trips plus roughly $114 to $162 for three campus round trips, for an estimated total of $880.30 to $928.30. The low end happens to match the rental plan, but the rental is more predictable.",
+          "role": "assistant"
+        },
+        {
+          "content": "For the campus hotel, I would not rent a car if the shuttle schedule actually works. It runs every half hour from 6:30 to 9:00 in the morning and 3:30 to 7:00 in the evening. My meetings should be 8:00 to 5:00 Wednesday and Thursday, then 8:00 to 3:00 Friday.",
+          "role": "user"
+        },
+        {
+          "content": "That schedule fits all three days. With airport rideshares and the included campus shuttle, the campus option is $795.20 + $110 = $905.20. Its parking fee does not apply because you would not have a car. It is $24.90 more than the cheaper-hotel rental plan.",
+          "role": "assistant"
+        },
+        {
+          "content": "What if a meeting runs late Thursday? I don't want the lower total to hide a fragile commute.",
+          "role": "user"
+        },
+        {
+          "content": "The campus hotel has the better fallback. If you miss the last shuttle, a short rideshare near the campus should be materially cheaper and faster than returning to the cheaper hotel. Allowing, say, $15 for one late ride puts the campus plan near $920.20. The cheaper hotel remains dependent on driving each day, and you would need to allow time for traffic and finding the correct visitor parking area.",
+          "role": "assistant"
+        },
+        {
+          "content": "Now do downtown. The airport train is $10 each way. Downtown-to-campus rideshares seem to run about $22 each way, and campus-to-airport Friday afternoon is around $50.",
+          "role": "user"
+        },
+        {
+          "content": "A practical downtown sequence would be: $10 airport train Tuesday, $88 for Wednesday and Thursday round trips, $22 to campus Friday morning, and about $50 from campus to the airport Friday afternoon. Transportation is about $170, making the complete estimate $913.12. That is before surge pricing and does not include a late-shuttle issue because every campus leg is already a rideshare.",
+          "role": "assistant"
+        },
+        {
+          "content": "How do the morning travel times compare?",
+          "role": "user"
+        },
+        {
+          "content": "The campus hotel shuttle should be the shortest and most consistent, likely around 10 to 15 minutes once aboard, though you should take the 7:00 or 7:30 departure rather than the last possible one. From the cheaper hotel, allow roughly 20 to 35 minutes by car plus parking and the walk into the building. Downtown is the least dependable for an 8:00 start: roughly 25 to 45 minutes by rideshare, with a wider traffic range.",
+          "role": "assistant"
+        },
+        {
+          "content": "This is a Denver client trip, so keep this exception local to this trip: don't use my beach or walk-to-the-beach location criterion here. Dependable access to the medical campus is the location priority.",
+          "role": "user"
+        },
+        {
+          "content": "Understood. For this trip, the campus access requirement favors the nearby hotel despite its slightly higher total. The downtown hotel's rail convenience helps only on arrival; it does not solve the repeated morning trip east to the client site.",
+          "role": "assistant"
+        },
+        {
+          "content": "Can you compare the final totals in one compact list, using the sensible transportation plan for each?",
+          "role": "user"
+        },
+        {
+          "content": "Campus hotel: $905.20 with airport rideshares and the client shuttle, or about $920.20 if one late rideshare is needed. Cheaper hotel: $880.30 with a rental car, included parking, and estimated gas. Downtown hotel: about $913.12 using the airport train on arrival, rideshares to and from campus, and a Friday ride from campus to the airport.",
+          "role": "assistant"
+        },
+        {
+          "content": "So the cheaper hotel saves only about $25 compared with the normal campus plan?",
+          "role": "user"
+        },
+        {
+          "content": "Correct: $905.20 minus $880.30 is $24.90. Even against the campus plan with one $15 fallback ride, the difference is $39.90. Those savings come with three days of driving, morning traffic exposure, and visitor-parking logistics.",
+          "role": "assistant"
+        },
+        {
+          "content": "One concern: does the $24 campus parking charge somehow get billed automatically with the room, even without a car?",
+          "role": "user"
+        },
+        {
+          "content": "It normally should not; hotel parking is generally charged only when a vehicle is registered or enters the paid facility. At booking, confirm that $229 is the room rate without a bundled parking package and decline any parking add-on. The lodging estimate remains $795.20 unless the property also has a separate mandatory destination or facility fee.",
+          "role": "assistant"
+        },
+        {
+          "content": "There is no destination fee listed. Pick the strongest plan and give me the booking-stage checks.",
+          "role": "user"
+        },
+        {
+          "content": "Choose the campus hotel for Tuesday through Friday at $229 per night before tax. Estimated lodging is $795.20, and the working trip total is $905.20 with two airport rideshares and the included client shuttle. Before booking, verify the shuttle serves the exact medical-campus building, reserve seats if required, confirm Friday's 3:00 pickup is available, and confirm there is no parking or facility fee without a vehicle. For the meetings, target the 7:00 or 7:30 morning shuttle and keep a short rideshare as the late-day fallback. The roughly $25 premium over the cheaper-hotel rental plan is justified by the more dependable campus access and simpler mornings.",
+          "role": "assistant"
+        }
+      ],
+      "session_id": "tm_pd_v05_user_000_s0047",
+      "session_index": 47,
+      "user_id": "tm_pd_v05_user_000"
+    }
+  ],
+  "updated_continuity_summary": "Maya's Denver client trip is expected to use the Tuesday nonstop outbound and Friday evening return, requiring three hotel nights. The leading lodging plan is the hotel near the medical campus at $229 per night before tax, estimated at $795.20 after tax and $905.20 including two airport rideshares. The client shuttle fits the planned Wednesday and Thursday 8:00-5:00 meetings and Friday 8:00-3:00 schedule. Before booking, confirm service to the exact client building, Friday afternoon shuttle availability, any reservation requirement, and that no parking or facility fee applies without a vehicle.",
+  "verification": {
+    "47": {
+      "habit_signals": [
+        {
+          "confidence": 0.95,
+          "evidence_quote": "I think the Tuesday nonstop and Friday evening flight are the ones I'll use, so I need three hotel nights.",
+          "habit_id": "tm_pd_v05_user_000_h01",
+          "signal_type": "support"
+        },
+        {
+          "confidence": 0.99,
+          "evidence_quote": "This is a Denver client trip, so keep this exception local to this trip: don't use my beach or walk-to-the-beach location criterion here. Dependable access to the medical campus is the location priority.",
+          "habit_id": "tm_pd_v05_user_000_h06",
+          "signal_type": "exception"
+        }
+      ],
+      "leakage": false,
+      "recurring_or_default_language": false,
+      "verified_by": {
+        "independent_call": true,
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "verifier_notes": "The user explicitly chose a nonstop outbound flight, supporting the nonstop preference for this trip. The user also explicitly made the beach-proximity criterion inapplicable only to this Denver client trip and substituted dependable medical-campus access, which is a one-trip exception rather than a durable revision. The Friday evening return choice does not itself establish an afternoon-return habit."
+    }
+  }
+}
