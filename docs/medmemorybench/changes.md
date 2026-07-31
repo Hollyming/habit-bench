@@ -17,7 +17,9 @@
 - Mem0：固定本地 vendored import、按任务隔离 Qdrant、原子归一化重复 mutation，并严格处理结构化输出失败。
 - A-MEM：保留调用方指定的本地 embedding 路径，并暴露原生 note retrieval。
 - LightMem：在关闭 pre-compression 时初始化可选 compressor；裁正越界 source ID 后再查询 timestamp 和 speaker。LightMem 是外部子模块，因此两处修改记录在 `patches/lightmem-medmemorybench.patch`。
-- MemOS、MemRL、Letta：隔离持久状态，并停止隐藏写入或检索错误。
+- MemOS、MemRL、Letta：隔离持久状态，并停止隐藏写入或检索错误。MemOS
+  `general_text` 还会在构造 Pydantic memory item 前丢弃 LLM 返回的非列表
+  `tags`，避免单条格式漂移终止整个用户 shard。
 - MemRL：把方法 YAML 声明的 BGE-M3 `embedding.dim=1024` 显式传到原生
   MemOS/Qdrant reader，避免用模型路径字符串误猜为 768；本地 cube ID 增加微秒与
   随机后缀，避免多 shard 的局部 context ID 在 7-worker 并发初始化时撞 SQLite

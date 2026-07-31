@@ -21,6 +21,13 @@ from memos.vec_dbs.item import VecDBItem
 logger = get_logger(__name__)
 
 
+def _normalize_tags(tags: Any) -> list[str]:
+    """Keep only schema-valid tags from an untrusted LLM response."""
+    if not isinstance(tags, list):
+        return []
+    return [tag for tag in tags if isinstance(tag, str)]
+
+
 class GeneralTextMemory(BaseTextMemory):
     """General textual memory implementation for storing and retrieving memories."""
 
@@ -74,7 +81,7 @@ class GeneralTextMemory(BaseTextMemory):
                 metadata={
                     "key": memory_dict["key"],
                     "source": "conversation",
-                    "tags": memory_dict["tags"],
+                    "tags": _normalize_tags(memory_dict.get("tags")),
                     "updated_at": datetime.now().isoformat(),
                 },
             )

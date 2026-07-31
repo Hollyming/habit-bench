@@ -1,6 +1,6 @@
 # HABIT-Bench AAAI 2027 补充实验方案
 
-本文把 `docs/HABIT-Bench_AAAI27_experiment_analysis.md` 中可以可靠落地的建议，
+本文把 `docs/supplementary_exp/HABIT-Bench_AAAI27_experiment_analysis.md` 中可以可靠落地的建议，
 转换为当前仓库的可执行实验。原则是：
 
 1. 不修改现有 `eval/core/scoring.py`、retrieval scorer、主指标定义和正式运行入口。

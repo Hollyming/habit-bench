@@ -117,6 +117,18 @@ class TestGeneralTextMemory(unittest.TestCase):
         self.assertEqual(result[0].memory, "Hello")
         self.assertEqual(result[0].metadata.key, "greeting")
 
+    def test_extract_discards_non_list_tags(self):
+        messages = [{"role": "user", "content": "How should I fry chicken?"}]
+        self.memory.extractor_llm.generate.return_value = (
+            '{"memory list": [{"key": "frying", "value": "Use hot oil", '
+            '"tags": "cooking, frying, oil, technique"}]}'
+        )
+
+        result = self.memory.extract(messages)
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0].metadata.tags, [])
+
     def test_add_memories(self):
         """Test adding memories."""
         memories_to_add = [
