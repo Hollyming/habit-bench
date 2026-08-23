@@ -388,6 +388,30 @@ class ProtocolTest(unittest.TestCase):
             _validate_mirix_vllm_profile(
                 {"HABITBENCH_VLLM_EXTRA_ARGS": "--dtype bfloat16"}
             )
+        with self.assertRaisesRegex(ValueError, "must not enable"):
+            _validate_mirix_vllm_profile(
+                {
+                    "HABITBENCH_VLLM_EXTRA_ARGS": (
+                        "--reasoning-parser qwen3 "
+                        "--structured-outputs-config "
+                        "'{\"backend\":\"xgrammar\","
+                        "\"disable_any_whitespace\":true}'"
+                    )
+                }
+            )
+
+    def test_default_vllm_profile_has_no_reasoning_parser(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        profile_source = (
+            project_root / "scripts/cluster/env.example.sh"
+        ).read_text(encoding="utf-8")
+        default_assignment = next(
+            line
+            for line in profile_source.splitlines()
+            if line.startswith("export HABITBENCH_VLLM_EXTRA_ARGS=")
+        )
+        self.assertNotIn("--reasoning-parser", default_assignment)
+        self.assertIn("--tool-call-parser hermes", default_assignment)
 
     def test_context_coverage(self) -> None:
         rows = [{"probe_id": "p1", "memory_context": "context"}]

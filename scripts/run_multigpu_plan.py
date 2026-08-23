@@ -89,6 +89,16 @@ def _split_csv(value: str) -> list[str]:
 def _validate_mirix_vllm_profile(env: dict[str, str]) -> dict[str, Any]:
     """Require the compact xgrammar profile used by the local MIRIX bridge."""
     arguments = shlex.split(env.get("HABITBENCH_VLLM_EXTRA_ARGS", ""))
+    if any(
+        argument == "--reasoning-parser"
+        or argument.startswith("--reasoning-parser=")
+        for argument in arguments
+    ):
+        raise ValueError(
+            "MIRIX must not enable --reasoning-parser when thinking is "
+            "disabled: the JSON bridge requires response_format output in "
+            "message.content"
+        )
     option = "--structured-outputs-config"
     if option not in arguments:
         raise ValueError(
@@ -110,6 +120,11 @@ def _validate_mirix_vllm_profile(env: dict[str, str]) -> dict[str, Any]:
         raise ValueError(
             "MIRIX requires structured output backend=xgrammar and "
             "disable_any_whitespace=true to keep bounded tool JSON finite"
+        )
+    if profile.get("reasoning_parser"):
+        raise ValueError(
+            "MIRIX must not configure a structured-output reasoning_parser "
+            "when thinking is disabled"
         )
     return profile
 

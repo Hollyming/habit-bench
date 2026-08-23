@@ -58,9 +58,10 @@ export HABITBENCH_ENABLE_PREFIX_CACHING="${HABITBENCH_ENABLE_PREFIX_CACHING:-1}"
 # MIRIX's local JSON-schema bridge requires compact structured output. Without
 # disable_any_whitespace, xgrammar permits unbounded whitespace between bounded
 # JSON fields and Qwen can waste the full completion budget before closing the
-# object. The option is harmless for requests without response_format and also
-# keeps other schema-constrained adapters finite.
-export HABITBENCH_VLLM_EXTRA_ARGS="${HABITBENCH_VLLM_EXTRA_ARGS:---dtype bfloat16 --max-num-seqs 32 --reasoning-parser qwen3 --generation-config vllm --enable-auto-tool-choice --tool-call-parser hermes --default-chat-template-kwargs '{\"enable_thinking\": false}' --structured-outputs-config '{\"backend\":\"xgrammar\",\"disable_any_whitespace\":true}' --attention-backend FLASH_ATTN}"
+# object. Keep the official MIRIX/vLLM tool-call parser, but do not install a
+# reasoning parser: this evaluation disables thinking and the bridge expects
+# schema-constrained JSON to remain in message.content.
+export HABITBENCH_VLLM_EXTRA_ARGS="${HABITBENCH_VLLM_EXTRA_ARGS:---dtype bfloat16 --max-num-seqs 32 --generation-config vllm --enable-auto-tool-choice --tool-call-parser hermes --default-chat-template-kwargs '{\"enable_thinking\": false}' --structured-outputs-config '{\"backend\":\"xgrammar\",\"disable_any_whitespace\":true}' --attention-backend FLASH_ATTN}"
 export VLLM_BATCH_INVARIANT="${VLLM_BATCH_INVARIANT:-1}"
 # Gate on aggregate decode throughput at MED_USER_WORKERS concurrent requests.
 export HABITBENCH_VLLM_MIN_TOKENS_PER_SEC="${HABITBENCH_VLLM_MIN_TOKENS_PER_SEC:-60}"

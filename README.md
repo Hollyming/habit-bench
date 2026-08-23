@@ -561,6 +561,12 @@ Vendored Letta 和 MIRIX 的 Python import graph 会在创建本地数据库时�
 已实际完成 Letta SQLite 与 MIRIX SQLite 的 `AgentManager` 初始化，而不只做静态
 `import` 检查。
 
+MIRIX 的 vLLM 启动方式参考官方 OpenAI-compatible 路径：保留
+`--enable-auto-tool-choice --tool-call-parser hermes`。本评测已通过 chat template 禁用
+thinking，因此不启用 `--reasoning-parser`；否则 schema-constrained JSON 可能被移出
+`message.content`，与本地 JSON bridge 的传输约定冲突。正式 launcher 会在 MIRIX
+preflight 中拒绝这类不兼容配置。
+
 常用环境变量：
 
 | 变量 | 默认值/用途 |

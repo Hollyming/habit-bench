@@ -82,6 +82,13 @@ default for all MedMemoryBench method clients, including clients that cannot
 send Qwen-specific `chat_template_kwargs`, and avoids truncated structured
 memory writes without changing the native memory algorithms.
 
+Following MIRIX's upstream vLLM integration, the server keeps
+`--enable-auto-tool-choice --tool-call-parser hermes` but does not install a
+reasoning parser. Since this protocol disables thinking, a reasoning parser is
+both unnecessary and unsafe for MIRIX's local `response_format` bridge: it can
+move the constrained JSON away from `message.content`. MIRIX preflight rejects
+profiles that reintroduce one.
+
 The default structured-output backend is xgrammar with
 `disable_any_whitespace=true`. MIRIX's JSON-tool bridge already bounds fields
 and arrays; this matching WJR launch option prevents unbounded whitespace
