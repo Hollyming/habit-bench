@@ -72,6 +72,7 @@ class MIRIXAgent(BaseAgent):
         bounded_memory_tool_schema: bool = False,
         required_tool_choice: bool = False,
         core_json_tool_bridge: bool = False,
+        json_tool_bridge_attempts: int = 3,
         normalize_missing_update_ids: bool = False,
         memory_tool_max_items: int = 4,
         memory_tool_max_string_chars: int = 1024,
@@ -117,6 +118,9 @@ class MIRIXAgent(BaseAgent):
         self.bounded_memory_tool_schema = bounded_memory_tool_schema
         self.required_tool_choice = required_tool_choice
         self.core_json_tool_bridge = core_json_tool_bridge
+        self.json_tool_bridge_attempts = max(
+            1, min(int(json_tool_bridge_attempts), 5)
+        )
         self.normalize_missing_update_ids = normalize_missing_update_ids
         self.memory_tool_max_items = memory_tool_max_items
         self.memory_tool_max_string_chars = memory_tool_max_string_chars
@@ -153,6 +157,9 @@ class MIRIXAgent(BaseAgent):
             os.environ["MIRIX_REQUIRED_TOOL_CHOICE"] = "1"
         if self.core_json_tool_bridge:
             os.environ["MIRIX_CORE_JSON_TOOL_BRIDGE"] = "1"
+            os.environ["MIRIX_JSON_TOOL_BRIDGE_ATTEMPTS"] = str(
+                self.json_tool_bridge_attempts
+            )
         if self.normalize_missing_update_ids:
             os.environ["MIRIX_NORMALIZE_MISSING_UPDATE_IDS"] = "1"
 
@@ -1345,6 +1352,7 @@ class MIRIXAgent(BaseAgent):
             "max_input_tokens": self.max_input_tokens,
             "core_memory_max_tokens": self.core_memory_max_tokens,
             "core_json_tool_bridge": self.core_json_tool_bridge,
+            "json_tool_bridge_attempts": self.json_tool_bridge_attempts,
             "normalize_missing_update_ids": self.normalize_missing_update_ids,
             "max_question_tokens": self.max_question_tokens,
             "max_context_tokens": self.max_context_tokens,

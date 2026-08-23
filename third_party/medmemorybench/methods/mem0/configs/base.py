@@ -60,6 +60,12 @@ class MemoryConfig(BaseModel):
         description="Constrain Mem0 fact/action JSON with provider-side schemas",
         default=False,
     )
+    fact_generation_attempts: int = Field(
+        description="Maximum fact-extraction JSON regeneration attempts",
+        default=3,
+        ge=1,
+        le=5,
+    )
     action_generation_attempts: int = Field(
         description="Maximum complete action-batch regeneration attempts",
         default=3,

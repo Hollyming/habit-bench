@@ -32,7 +32,11 @@ case "$METHOD" in
   full_memory|full_history)
     KIND="control"
     SOURCE="HABIT-Bench"
-    REVISION="memory_context.v3"
+    if [[ "$METHOD" == "full_memory" ]]; then
+      REVISION="memory_context.v5"
+    else
+      REVISION="memory_context.v3"
+    fi
     WINDOW_TIER="${HABITBENCH_CONTEXT_WINDOW_TIER:-auto}"
     MODEL_CONTEXT_TOKENS="${HABITBENCH_MAX_MODEL_LEN:-40960}"
     WINDOW_RESOLVER_ARGS=(
@@ -63,14 +67,20 @@ case "$METHOD" in
         "${WINDOW_RESOLVER_ARGS[@]}" \
         --field max_input_tokens
     )
-    COMMAND="$PYTHON_BIN -m eval.controls --input {input} --output {output} --mode $METHOD --tokenizer-path ${HABITBENCH_LLM_MODEL:-/plm-shared/zhangjunming/Workspace/models/Qwen3-8B} $WINDOW_ADAPTER_ARGS"
+    if [[ "$METHOD" == "full_memory" ]]; then
+      COMMAND="$PYTHON_BIN -m eval.compact_history --input {input} --output {output} --tokenizer-path ${HABITBENCH_LLM_MODEL:-/plm-shared/zhangjunming/Workspace/models/Qwen3-8B} $WINDOW_ADAPTER_ARGS"
+      CONFIG_PATH="$PROJECT_ROOT/configs/methods/full_memory.yaml"
+      NOTE="Query-independent online compact memory over all visible history plus a raw recent-session buffer; compactor never sees the probe query, choices, gold evidence, or hidden state."
+    else
+      COMMAND="$PYTHON_BIN -m eval.controls --input {input} --output {output} --mode full_history --tokenizer-path ${HABITBENCH_LLM_MODEL:-/plm-shared/zhangjunming/Workspace/models/Qwen3-8B} $WINDOW_ADAPTER_ARGS"
+      CONFIG_PATH="$PROJECT_ROOT/configs/methods/full_history.yaml"
+      NOTE="Capacity-aware raw-history control: all visible sessions when they fit, otherwise the most recent complete-session suffix."
+    fi
     EXTRA_EVAL_ARGS=(--max-input-tokens "$RESOLVED_MAX_INPUT_TOKENS")
-    CONFIG_PATH="$PROJECT_ROOT/configs/methods/full_memory.yaml"
     CONFIG_ARGS=(
-      --method-config-name "full_memory"
+      --method-config-name "$METHOD"
       --method-config-path "$CONFIG_PATH"
     )
-    NOTE="Capacity-aware long-context control: auto/explicit window tier, all visible history when it fits, otherwise recent complete sessions under the resolved tokenizer budget. full_history is a compatibility alias."
     ;;
   mem0|amem|memos|memrl|lightmem|letta|mirix)
     case "$METHOD" in

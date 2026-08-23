@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""No-memory and token-bounded long-context controls for HABIT-Bench."""
+"""No-memory and recency-truncated full-history controls for HABIT-Bench."""
 
 from __future__ import annotations
 
@@ -213,7 +213,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument(
         "--mode",
-        choices=["no_memory", "full_memory", "full_history"],
+        choices=["no_memory", "full_history"],
         required=True,
     )
     parser.add_argument(

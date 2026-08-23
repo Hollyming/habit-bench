@@ -99,6 +99,7 @@ class PriorityRetrievalTests(unittest.TestCase):
         self.assertTrue(mirix_params["bounded_memory_tool_schema"])
         self.assertTrue(mirix_params["required_tool_choice"])
         self.assertTrue(mirix_params["core_json_tool_bridge"])
+        self.assertEqual(mirix_params["json_tool_bridge_attempts"], 3)
         self.assertTrue(mirix_params["normalize_missing_update_ids"])
         self.assertEqual(mirix_params["memory_tool_max_items"], 2)
         self.assertEqual(mirix_params["memory_tool_max_string_chars"], 512)

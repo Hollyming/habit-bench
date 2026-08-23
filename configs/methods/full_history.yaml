@@ -1,10 +1,10 @@
-method_name: full_memory
-reporting_name: Full-Memory (online compact history)
+method_name: full_history
+reporting_name: Full-History (recency-truncated)
 kind: control
 source: HABIT-Bench
-revision: memory_context.v5
+revision: memory_context.v3
 history:
-  policy: query_independent_online_compaction_plus_recent_raw
+  policy: all_if_fit_else_recent_complete_sessions
   order_presented_to_model: chronological
   tokenizer_path: /plm-shared/zhangjunming/Workspace/models/Qwen3-8B
   context_window_tier: auto
@@ -16,23 +16,7 @@ history:
     40k: {max_input_tokens: 40000, reserved_prompt_tokens: 2000, history_token_budget: 38000}
     64k: {max_input_tokens: 64000, reserved_prompt_tokens: 4000, history_token_budget: 60000}
     128k: {max_input_tokens: 128000, reserved_prompt_tokens: 8000, history_token_budget: 120000}
-  custom_tier_supported: true
-  explicit_history_budget_override_supported: true
-  summary_max_tokens: 4096
-  recent_history_tokens: derived_as_history_budget_minus_summary_minus_1024
-  compactor_input_tokens: 30000
-  compactor:
-    name: Qwen3-8B
-    temperature: 0.0
-    seed: 42
-    thinking: false
-    sees_probe_query_or_choices: false
-    source_citations_required: true
-    output_policy:
-      completion_envelope_tokens: 4096
-      attempt_1: {target_tokens: 2048, max_bullets: 24, max_words_per_bullet: 45, max_citations_per_bullet: 4}
-      attempt_2: {target_tokens: 1024, max_bullets: 12, max_words_per_bullet: 35, max_citations_per_bullet: 3}
-      attempt_3: {target_tokens: 640, max_bullets: 6, max_words_per_bullet: 30, max_citations_per_bullet: 2}
+  partial_session_policy: only_if_newest_session_alone_exceeds_budget
 answer_model:
   name: Qwen3-8B
   max_input_tokens: resolved_from_context_window_tier

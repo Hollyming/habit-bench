@@ -11,6 +11,8 @@ AAAI 2027 补充实验、Oracle 对照、用户级统计和人工盲审协议见
 当前三域人工审计的文件路径、逐字段 rubric、双人评分和第三人裁决流程见
 [`HUMAN_AUDIT_GUIDE`](docs/human_audit/HUMAN_AUDIT_GUIDE.md)，v3 审计结论见
 [`HUMAN_AUDIT_RESULTS_V3`](docs/human_audit/HUMAN_AUDIT_RESULTS_V3.md)。
+H 集群单节点 4/8 卡 H200 的环境准备、RJob 三类任务和恢复流程见
+[`H 集群评测`](docs/h_cluster_evaluation.md)。
 
 本仓库的正式评测不是单纯的 embedding 相似度测试。每个 memory 方法只负责构建和
 检索 `memory_context`；固定的 base model 根据：
@@ -28,26 +30,19 @@ memory_context + current request + response choices
 
 | 数据集别名 | 领域 | 用户 | sessions | probes | 路径 |
 | --- | --- | ---: | ---: | ---: | --- |
-| `food` | food | 30 | 4,500 | 1,470 | `domain/food/food_habit_lifelines_stress_v4` |
-| `finance` | finance | 36 | 19,440 | 1,368 | `domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3` |
-| `software` | software | 18 | 9,720 | 680 | `domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3` |
-| `travel`（candidate） | travel | 6 | 808 | 128 | `domain/travel/taskmaster_planning_defaults_v0_5_candidate_r2` |
+| `food` | food | 30 | 4,500 | 1,470 | `domain/food/food_habit_lifelines_stress_v5` |
+| `finance` | finance | 36 | 19,440 | 1,368 | `domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4` |
+| `software` | software | 18 | 9,720 | 680 | `domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4` |
+| `travel` | travel | 30 | 4,092 | 857 | `domain/travel/release_candidate_v13` |
 
-Finance 和 Software 在 v1.3 中共用同一个物理数据包，但正式评测把它们视为两个独立
+Finance 和 Software 在 v1.4 中共用同一个物理数据包，但正式评测把它们视为两个独立
 dataset alias。`shard_plan.tsv` 分别写入 `domain_filter=finance` 和
 `domain_filter=software`；loader 在用户分片之前过滤 sessions、probes 和 private
 keys，合并时再次核验 domain filter。旧的 `finance_software` 无过滤别名仅为兼容已有
 plan 保留，不属于默认正式 suite。
 
-Travel v0.5 candidate r2 是基于 Taskmaster grounded source cards 构建的旅行规划偏好
-候选域。当前数据包包含 6 个用户、808 个 sessions 和 128 个 probes，覆盖 35 个习惯；
-probe 分为 `direct_use`（18）、`cross_context_transfer`（27）、
-`evidence_disambiguation`（29）、`conflict_resolution`（30）、`exception`（23）和
-`boundary`（1）。其 public/private 数据可通过统一 loader 和 validator，但尚未加入
-`create_shard_plan.py` 与 ClusterX launcher 的默认正式三域 suite；运行时需用
-`--dataset travel=domain/travel/taskmaster_planning_defaults_v0_5_candidate_r2`
-显式注册。生成溯源、质量审计、人工复核和当前模型评测交付物分别保存在 `sources/`、
-`reports/`、`review/` 和 `model_eval/`。
+Travel v13 已加入默认正式 suite，包含 30 个用户、4,092 个 sessions 和 857 个
+probes。四个 alias 都由同一 plan builder 固定到上述版本。
 
 每个数据包主要包含：
 
@@ -65,7 +60,7 @@ source/...                 # 数据来源与构建溯源（若该数据包提供
 session/probe contract。Gold answer、gold evidence、habit graph、persona profile 和
 policy label 不会进入 memory 方法输入。
 
-Food v4 是当前正式的 content-constraint 习惯域，包含 210 个受控习惯：
+Food v5 是当前主实验的 content-constraint 习惯域，包含 210 个受控习惯：
 
 | Probe type | 数量 | 设计目标 | 私有正向证据 |
 | --- | ---: | --- | --- |
@@ -79,7 +74,7 @@ Food 的正向检索 gold 是 `private/probe_key.jsonl` 中的
 `gold_evidence_session_ids`。所有 1,470 个 probe 都有有效、同用户、早于 cutoff 的
 证据链接。
 
-Finance/Software v1.3 更强调多证据链、漂移、scope 和 provenance：
+Finance/Software v1.4 更强调多证据链、漂移、scope 和 provenance：
 
 | Probe type | Finance | Software | 总数 | 设计目标 |
 | --- | ---: | ---: | ---: | --- |
@@ -127,8 +122,8 @@ secom
 no_memory, full_memory
 ```
 
-`full_history` 是 `full_memory` 的向后兼容别名。它们不会被默认加入 memory-method
-主实验，需要在 `--methods` 中显式选择。
+`full_memory` 是 query-independent 在线 compact-history 主实验控制；`full_history`
+保留原始 recent-session truncation 消融。H 集群默认主计划包含 `full_memory`。
 
 ## 2. 统一评测协议
 
@@ -274,10 +269,20 @@ current request + response choices
 不提供历史、不提供检索结果，也不调用 embedding model。它用于测量数据本身的
 history-free shortcut 和 base-model prior。
 
-### 3.5 `full_memory`：容量感知的长上下文对照
+### 3.5 `full_memory`：在线 compact-history 对照
 
-`full_memory` 不训练参数、不构建向量库、不做检索，也不使用额外摘要模型。它直接把
-probe cutoff 之前的 public lifelong history 交给相同的 answer model。
+`full_memory` 不训练参数、不构建向量库或 query-dependent 检索。它用相同的
+Qwen3-8B 在看不到 probe query、choices、gold 或 hidden state 的条件下，在线压缩
+旧历史，并保留最近完整 sessions 原文。
+
+这里采用的是经典的 **rolling/recursive summarization + recent verbatim
+buffer**：长输入先分块，再把“上一版摘要 + 下一段旧历史”逐级压缩。这是
+[SUMM^N](https://aclanthology.org/2022.acl-long.112/) 的 multi-stage
+split-then-summarize 思路在在线对话上的因果化版本，也对应
+[MemGPT](https://arxiv.org/abs/2310.08560) 所强调的有限工作上下文与层次化长期记忆。
+`full_memory` 是本仓库的主实验方法 ID；论文和结果表应写成
+**Full-Memory (rolling compact + recent raw)**，不能把它解释为无损、无限窗口的
+full history。原始最近历史截断另以 `full_history` 报告。
 
 窗口不再固定为 36k。`eval/context_windows.py` 提供以下档位：
 
@@ -311,19 +316,22 @@ history token budget:   38,000
 reserved prompt budget: 2,000
 ```
 
-history 选择算法：
+history 构建算法：
 
 1. 仅收集 `session_index <= probe cutoff` 的 sessions。
 2. 使用实际 base-model tokenizer 统计完整 history token 数。
-3. 如果完整 history 不超过所选档位的 history budget，输入全部 history。
-4. 如果超窗，从最新 session 向前选择尽可能多的完整 sessions。
-5. 选中的 suffix 仍按时间正序交给模型。
-6. 只有当最新一个 session 自身就超过全部 history budget 时，才在该 session
-   内部保留 header 和最新 token tail。
-7. answerer 仍执行一次最终 tokenizer hard-bound 检查。
+3. 如果完整 history 不超过所选档位的 history budget，输入全部 history 原文。
+4. 首次超窗后，把旧 sessions 与已有 compact state 递归合并；正常目标为最多
+   2,048 tokens，4,096 tokens 仅是 state/completion 安全上限。
+5. 若生成触及上限，固定重试档依次收紧为 1,024 tokens/12 bullets 和
+   640 tokens/6 bullets；若三次都触及生成上限，将输入按 session 边界递归二分后
+   继续按时间顺序滚动压缩。只有单个 session 仍无法结束时，才启用最多六条事实、
+   每条带合法 session ID 的严格 JSON-schema 兜底；不接受截断摘要或虚构引用。
+6. 每条摘要事实必须引用 `[SESSION_ID=...]`，并保留 scope、否定、例外、冲突和变化。
+7. 40k profile 为最近完整 sessions 保留约 32,880 tokens 原文。
+8. answerer 再执行一次最终 tokenizer hard-bound 检查。
 
-这是一种明确、可审计的 recency/session-boundary truncation。它不会引入另一个
-summary LLM，从而避免把“长上下文对照”变成新的 memory 方法。
+原始 recency/session-boundary truncation 现在以 `full_history` 独立运行。
 
 选择固定档位：
 
@@ -428,8 +436,13 @@ HABIT-bench/
 │   ├── merge_shard_plan.py
 │   ├── run_supplementary_analysis.py
 │   ├── submit_clusterx.sh
+│   ├── submit_h_cluster.sh
 │   └── cluster/
-│       └── env.example.sh
+│       ├── create_h_envs.sh
+│       ├── download_h_models.py
+│       ├── env.example.sh
+│       ├── env.h.example.sh
+│       └── run_h_eval.sh
 ├── tests/
 │   └── evaluation/
 │       └── test_supplementary.py
@@ -438,7 +451,9 @@ HABIT-bench/
 │   └── official-baselines/
 ├── docs/
 │   ├── evaluation_protocol.md
+│   ├── compact_context_baseline.md
 │   ├── multigpu_evaluation.md
+│   ├── h_cluster_evaluation.md
 │   ├── medmemorybench/
 │   ├── supplementary_exp/
 │   │   ├── AAAI27_supplementary_experiments.md
@@ -458,7 +473,8 @@ HABIT-bench/
 | `eval/medmemorybench_adapters/structured_memory.py` | 七个 MedMemoryBench-source 方法的统一增量 ingestion/retrieval 入口 |
 | `eval/official_adapters/secom.py` | SeCom 的官方源码薄适配层 |
 | `eval/unsupported_methods.json` | Graphiti、O-Mem 等暂不实现方法的问题和恢复条件 |
-| `eval/controls.py` | `no_memory`、`full_memory` 和 `full_history` |
+| `eval/compact_history.py` | query-independent 在线 compact `full_memory` |
+| `eval/controls.py` | `no_memory` 和原始 recency `full_history` |
 | `eval/context_windows.py` | 长上下文档位解析与验证 |
 | `eval/core/answering.py` | 固定 Qwen answer prompt、token hard bound、choice JSON 解析 |
 | `eval/run.py` | 单方法/单数据集/单分片端到端运行 |
@@ -477,6 +493,11 @@ HABIT-bench/
 | `scripts/merge_shard_plan.py` | 合并所有 method/domain group，生成总览 |
 | `scripts/run_supplementary_analysis.py` | 对完整 suite 批量生成三域单方法分析和全方法配对比较 |
 | `scripts/submit_clusterx.sh` | 唯一 ClusterX 提交入口 |
+| `scripts/submit_h_cluster.sh` | H 集群 4/8 卡每 Replica、支持多 Replica 的 RJob 提交入口 |
+| `scripts/cluster/create_h_envs.sh` | 用当前 Miniconda 在 GPFS 创建固定方法/vLLM 环境 |
+| `scripts/cluster/download_h_models.py` | 从官方 Hugging Face 断点下载 H 集群固定 revision 模型 |
+| `scripts/cluster/run_h_eval.sh` | H worker 的 H200/卡数预检、分片执行和合并入口 |
+| `docs/compact_context_baseline.md` | full-memory compact-history 的实现与对照规范 |
 | `docs/supplementary_exp/` | supplementary 设计、可执行范围、不可从当前数据可靠得到的指标 |
 | `docs/human_audit/` | 人工审计 rubric、盲法、裁决流程和 v3 最终审计结果 |
 
@@ -527,10 +548,12 @@ Torch/Triton 版本互相覆盖：
 环境变量模板位于 `scripts/cluster/env.example.sh`。模型 checkpoint 不属于
 Python requirements，也不会提交到 Git。
 
-MemRL 经由其原生 MemOS reader 使用 `chonkie==1.2.1` 和 GPT-2 tokenizer。正式
-launcher 会在启动 vLLM 和执行长任务之前检查该包版本，以及
+MemRL 经由其原生 MemOS reader 使用 `chonkie==1.2.1`、
+`prometheus-client==0.23.1` 和 GPT-2 tokenizer；MemOS 使用相同的固定 Prometheus
+依赖。正式 launcher 会在启动 vLLM 和执行长任务之前检查这些包版本，以及
 `TIKTOKEN_CACHE_DIR` 中 GPT-2 的 vocab/encoder 缓存；缺失时 preflight 立即失败，
-不会等到运行数小时后才在 MemRL shard 初始化时暴露。
+并用隔离子进程深层导入已选 adapter；不会等到运行数小时后才在 Memos/MemRL shard
+初始化时暴露依赖或 Python namespace 问题。
 
 Vendored Letta 和 MIRIX 的 Python import graph 会在创建本地数据库时加载一批即使
 文本评测路径不直接调用、但仍属于必需的运行时依赖。`requirements.txt` 已固定当前
@@ -547,6 +570,8 @@ Vendored Letta 和 MIRIX 的 Python import graph 会在创建本地数据库时�
 | `HABITBENCH_SERVED_MODEL` | OpenAI-compatible served name |
 | `HABITBENCH_MAX_MODEL_LEN` | vLLM 服务端实际支持的总窗口 |
 | `HABITBENCH_CONTEXT_WINDOW_TIER` | `full_memory` 的 `auto` 或显式档位 |
+| `HABITBENCH_COMPACT_SUMMARY_MAX_TOKENS` | compact state 上限，正式 profile 为 4,096 |
+| `HABITBENCH_COMPACTOR_INPUT_TOKENS` | 单次 compactor 输入上限，默认 30,000 |
 | `HABITBENCH_MAX_INPUT_TOKENS` | `custom` 档位的 answer 输入上限 |
 | `HABITBENCH_EMBED_MODEL` | BGE-M3 本地路径 |
 | `HABITBENCH_EMBED_DEVICE` | embedding 默认设备为 CPU；MIRIX/SeCom 按原生配置强制绑定其 worker GPU |
@@ -641,10 +666,34 @@ bash scripts/submit_clusterx.sh \
 真实端点 smoke 可在同一入口加 `--max-users N --max-probes N`。这两个参数会进入
 plan manifest 和 dataset subset，不能把此类结果混入正式全量表格。
 
-相同 `output-root` 可用于断点恢复；已有 `metrics.json` 的 shard 会跳过。
+相同 `output-root` 可用于断点恢复；只有原子成功标记与完整最终产物同时存在的 shard
+才会跳过，失败/中断半成品在重跑前删除。
 只有明确希望覆盖完整 shard 时才设置 `HABITBENCH_FORCE_RERUN=1`。
 
-### 6.4 三节点 v3 正式实验
+### 6.4 H 集群 4/8 卡 H200 评测
+
+H 集群使用独立 RJob 入口，不修改现有 ClusterX 命令。个人 User-AD 的 4 卡低优
+评测示例：
+
+```bash
+bash scripts/submit_h_cluster.sh \
+  --job-type managed-spot \
+  --creator-type user \
+  --creator-ad your-user-ad \
+  --gpus 4 \
+  --env-file scripts/cluster/env.h.local.sh \
+  --output-root "$PWD/results/habit-h200-4g-v1"
+```
+
+8 卡只需改为 `--gpus 8`；两个 8 卡节点使用 `--gpus 8 --replicas 2 --shards 16`。
+多节点评测不使用 DDP：16 个常驻 GPU worker 从 GPFS 全局动态队列领取 shard，快卡可
+跨 method/domain 边界继续工作，不再因静态奇偶分片而等待另一节点。
+高优 reserved 必须把任务类型改成 `reserved`，并由真实
+Group-AD 使用 `--creator-type group` 提交；idle 不带 priority、charged-group 或
+private-machine。环境、模型持久化、dry-run 和中断恢复见
+[`docs/h_cluster_evaluation.md`](docs/h_cluster_evaluation.md)。
+
+### 6.5 三节点 v3 正式实验
 
 固定的 v3 正式入口只写入 `results/habit_3domain_v3`，不会为单独方法创建其他
 `*v3*` 顶层目录：

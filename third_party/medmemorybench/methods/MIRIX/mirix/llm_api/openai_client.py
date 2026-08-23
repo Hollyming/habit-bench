@@ -21,7 +21,9 @@ from mirix.errors import (
 )
 from mirix.llm_api.helpers import convert_to_structured_output
 from mirix.llm_api.local_json_tool_bridge import (
+    MemoryJsonToolBridgeError,
     build_memory_json_tool_bridge,
+    build_memory_json_retry_request,
     convert_memory_json_tool_response,
     identify_memory_tool_family,
 )
@@ -328,6 +330,19 @@ class OpenAIClient(LLMClientBase):
         """
         request_data = dict(request_data)
         bridge_metadata = request_data.pop("_mirix_memory_json_tool_bridge", None)
+        if bridge_metadata is not None:
+            # The server-wide Qwen3 template default is not sufficient here:
+            # the reasoning parser consumes request-level template kwargs and
+            # can otherwise classify the entire constrained JSON object as
+            # ``reasoning``. Make non-thinking mode explicit on every bridge
+            # attempt so xgrammar output is returned in ``content`` intact.
+            extra_body = dict(request_data.get("extra_body") or {})
+            chat_template_kwargs = dict(
+                extra_body.get("chat_template_kwargs") or {}
+            )
+            chat_template_kwargs["enable_thinking"] = False
+            extra_body["chat_template_kwargs"] = chat_template_kwargs
+            request_data["extra_body"] = extra_body
         client_kwargs = await self._prepare_client_kwargs()
         logger.debug(
             "OpenAI Request - Making request to %s", client_kwargs.get("base_url")
@@ -344,19 +359,64 @@ class OpenAIClient(LLMClientBase):
                 len(client_kwargs["default_headers"]),
             )
         client = AsyncOpenAI(**client_kwargs)
-        response: ChatCompletion = await client.chat.completions.create(**request_data)
-        if not response.object:
-            response.object = "chat.completion"
-        response_data = response.model_dump()
+        bridge_attempts = 1
         if bridge_metadata is not None:
-            response_data = convert_memory_json_tool_response(
-                response_data, bridge_metadata
+            raw_attempts = os.environ.get("MIRIX_JSON_TOOL_BRIDGE_ATTEMPTS", "3")
+            try:
+                bridge_attempts = max(1, min(int(raw_attempts), 5))
+            except ValueError:
+                logger.warning(
+                    "Invalid MIRIX_JSON_TOOL_BRIDGE_ATTEMPTS=%r; using 3",
+                    raw_attempts,
+                )
+                bridge_attempts = 3
+
+        original_request_data = request_data
+        current_request_data = request_data
+        for attempt in range(1, bridge_attempts + 1):
+            response: ChatCompletion = await client.chat.completions.create(
+                **current_request_data
             )
+            if not response.object:
+                response.object = "chat.completion"
+            response_data = response.model_dump()
+            if bridge_metadata is None:
+                return response_data
+            try:
+                response_data = convert_memory_json_tool_response(
+                    response_data, bridge_metadata
+                )
+            except MemoryJsonToolBridgeError as exc:
+                if attempt >= bridge_attempts:
+                    raise
+                family = bridge_metadata.get("family", "unknown")
+                logger.warning(
+                    "Unusable %s-memory JSON tool response on attempt %d/%d: "
+                    "%s. Regenerating the complete response from scratch.",
+                    family,
+                    attempt,
+                    bridge_attempts,
+                    exc,
+                )
+                current_request_data = build_memory_json_retry_request(
+                    original_request_data,
+                    bridge_metadata,
+                    attempt=attempt + 1,
+                    error=exc,
+                )
+                continue
+
             family = bridge_metadata.get("family", "unknown")
             logger.info(
-                "Converted one schema-constrained %s-memory JSON tool call", family
+                "Converted one schema-constrained %s-memory JSON tool call "
+                "on attempt %d/%d",
+                family,
+                attempt,
+                bridge_attempts,
             )
-        return response_data
+            return response_data
+
+        raise AssertionError("memory JSON tool retry loop exited unexpectedly")
 
     def convert_response_to_chat_completion(
         self,
@@ -387,6 +447,12 @@ class OpenAIClient(LLMClientBase):
         """
         Maps OpenAI-specific errors to common LLMError types.
         """
+        # The bridge has already exhausted its bounded corrective generations.
+        # Preserve this non-retryable type so Agent._get_ai_reply does not wrap
+        # it as LLMError and repeat the same bridge loop three more times.
+        if isinstance(e, MemoryJsonToolBridgeError):
+            return e
+
         if isinstance(e, openai.APIConnectionError):
             logger.warning("[OpenAI] API connection error: %s", e)
             return LLMConnectionError(

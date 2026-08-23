@@ -57,6 +57,9 @@ class Mem0Agent(BaseAgent):
         self.storage_root = storage_root or os.environ.get("MEDMEMORYBENCH_STATE_ROOT")
         self.compact_local_prompts = bool(kwargs.get("compact_local_prompts", False))
         self.strict_json_schema = bool(kwargs.get("strict_json_schema", False))
+        self.fact_generation_attempts = int(
+            kwargs.get("fact_generation_attempts", 3)
+        )
         self.action_generation_attempts = int(
             kwargs.get("action_generation_attempts", 3)
         )
@@ -214,6 +217,7 @@ class Mem0Agent(BaseAgent):
             mem0_config["custom_fact_extraction_prompt"] = COMPACT_FACT_EXTRACTION_PROMPT
             mem0_config["custom_update_memory_prompt"] = COMPACT_UPDATE_MEMORY_PROMPT
         mem0_config["strict_json_schema"] = self.strict_json_schema
+        mem0_config["fact_generation_attempts"] = self.fact_generation_attempts
         mem0_config["action_generation_attempts"] = self.action_generation_attempts
         mem0_config["normalize_unknown_mutations"] = self.normalize_unknown_mutations
 

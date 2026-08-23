@@ -38,13 +38,13 @@ No answer, evidence, habit, capability, or policy label is copied.
 
 The local tokenizer enforces the answer context budget. Ranked retrieval output
 is truncated from the right, preserving its highest-ranked prefix.
-`full_memory` is different: it resolves an `auto`, 8k, 16k, 32k, 40k, 64k,
-128k or custom input-window tier from the configured model capacity. The tier
-reserves space for the system prompt, current probe and choices; the remainder
-is the history budget. It includes all visible sessions when they fit. On
-overflow it keeps the most recent complete sessions, then presents that suffix
-chronologically. Only when one session alone exceeds the budget may its oldest
-content be truncated. `full_history` is retained as a compatibility alias.
+`full_memory` resolves an `auto`, 8k, 16k, 32k, 40k, 64k, 128k or custom
+input-window tier. It keeps all visible sessions verbatim while they fit. On
+overflow, a query-independent Qwen3-8B compactor consolidates older sessions
+into a 4k structured state with source session IDs and preserves a raw recent
+suffix in the remaining history budget. The compactor runs before and without
+the probe query, choices, gold evidence, or hidden annotations. The former raw
+recency-truncation control remains available separately as `full_history`.
 
 ## Active methods
 
@@ -80,20 +80,20 @@ acceptance, while O-Mem exposes unbounded malformed-JSON retry loops and
 message-level runtime that exceeds the formal shard timeout. The machine-readable
 record is `eval/unsupported_methods.json`.
 
-Finance and Software share the v1.3 source package but are separate evaluation
+Finance and Software share the release-gated v1.4 source package but are separate evaluation
 views. The plan records `domain_filter=finance` or `domain_filter=software`;
 the loader applies that filter before user sharding and merge validates it
-again. Results must therefore be reported as three domains: Food, Finance, and
-Software, rather than one combined Finance–Software score.
+again. Results must report Food, Finance, Software, and Travel separately,
+rather than one combined Finance–Software score.
 
-`no_memory` and `full_memory` are evaluator controls, not memory methods.
-`full_memory` performs no training, learned summarization, retrieval, or
-embedding. The deterministic recent-session truncation makes the context-window
-constraint explicit without adding another model whose errors would confound
-the long-context baseline. This follows the full-history long-context control
-used by [LongMemEval](https://github.com/xiaowu0162/longmemeval), with an
-explicit recency fallback for HABIT lifelines that exceed the available
-window.
+`no_memory`, `full_memory`, and `full_history` are evaluator controls rather
+than trained memory systems. `full_memory` is the primary compact-history
+control; `full_history` is the deterministic raw recency control. Neither is an
+oracle or lossless. Legacy `memory_context.v3` runs written under the old
+`full_memory` ID must be reported as `40k Full-History (recency-truncated)`;
+new compact runs are identified by `memory_context.v5` and reported as
+`Full-Memory (online compact history)`. The exact design and comparison rules
+are in `docs/compact_context_baseline.md`.
 
 ## Fixed embedding profile
 

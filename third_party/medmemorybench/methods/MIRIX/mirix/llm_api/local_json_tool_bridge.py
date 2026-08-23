@@ -63,6 +63,10 @@ ALL_MEMORY_CHILD_TOOL_NAMES = frozenset().union(*MEMORY_TOOL_FAMILIES.values())
 MEMORY_CHILD_TERMINAL_TOOL_NAMES = frozenset({"finish_memory_update"})
 
 
+class MemoryJsonToolBridgeError(RuntimeError):
+    """A model response could not be converted into one memory tool call."""
+
+
 def identify_memory_tool_family(
     tools: list[dict[str, Any]] | None,
 ) -> str | None:
@@ -194,32 +198,27 @@ def convert_memory_json_tool_response(
     """Convert a schema-constrained content object to one native tool call."""
     choices = response_data.get("choices") or []
     if not choices:
-        raise ValueError("Memory JSON tool bridge received no choices")
+        raise MemoryJsonToolBridgeError(
+            "Memory JSON tool bridge received no choices"
+        )
     choice = choices[0]
     # Preserve a length finish so MIRIX's existing bounded retry handles it.
     if choice.get("finish_reason") == "length":
         return response_data
 
     message = choice.get("message") or {}
-    raw = message.get("content")
-    if not isinstance(raw, str) or not raw.strip():
-        raise ValueError("Memory JSON tool bridge received empty content")
-    # vLLM/xgrammar has occasionally returned a schema-valid string value with
-    # a literal control character after the OpenAI response round trip.  MIRIX
-    # already uses ``strict=False`` in its generic JSON helpers for this exact
-    # interoperability case.  Accept controls only at JSON decoding here; the
-    # bounded schema and the native MIRIX tool validator still validate the
-    # decoded object, and arguments are immediately re-serialized canonically.
-    payload = json.loads(raw, strict=False)
-    if not isinstance(payload, dict):
-        raise ValueError("Memory JSON tool bridge payload is not an object")
+    payload = _extract_memory_tool_payload(message, metadata)
     name = payload.get("name")
     arguments = payload.get("arguments")
     allowed = set(metadata.get("allowed_names") or [])
     if name not in allowed:
-        raise ValueError(f"Memory JSON tool bridge returned disallowed tool: {name}")
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON tool bridge returned disallowed tool: {name}"
+        )
     if not isinstance(arguments, dict):
-        raise ValueError("Memory JSON tool bridge arguments are not an object")
+        raise MemoryJsonToolBridgeError(
+            "Memory JSON tool bridge arguments are not an object"
+        )
 
     canonical_arguments = json.dumps(
         arguments, ensure_ascii=False, sort_keys=True, separators=(",", ":")
@@ -238,6 +237,123 @@ def convert_memory_json_tool_response(
     choice["message"] = message
     choice["finish_reason"] = "tool_calls"
     return response_data
+
+
+def _decode_memory_tool_payload(raw: str, source: str) -> dict[str, Any]:
+    """Decode one candidate without leaking model text into logs/errors."""
+    try:
+        # vLLM/xgrammar has occasionally returned a schema-valid string value
+        # with a literal control character after the OpenAI response round
+        # trip. MIRIX uses ``strict=False`` for the same interoperability case.
+        payload = json.loads(raw, strict=False)
+    except (TypeError, json.JSONDecodeError) as exc:
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON tool bridge received invalid JSON in {source}: "
+            f"{type(exc).__name__}"
+        ) from exc
+    if not isinstance(payload, dict):
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON tool bridge payload in {source} is not an object"
+        )
+    return payload
+
+
+def _extract_memory_tool_payload(
+    message: dict[str, Any], metadata: dict[str, Any]
+) -> dict[str, Any]:
+    """Recover a valid payload from common OpenAI-compatible response shapes."""
+    errors: list[str] = []
+    content = message.get("content")
+    if isinstance(content, str) and content.strip():
+        try:
+            return _decode_memory_tool_payload(content, "content")
+        except MemoryJsonToolBridgeError as exc:
+            errors.append(str(exc))
+
+    # Some local servers still parse a native tool call even when ``tools`` was
+    # replaced by ``response_format``. In that case content is legitimately
+    # empty; validate and canonicalize the existing call instead of discarding
+    # it as an empty answer.
+    tool_calls = message.get("tool_calls") or []
+    if tool_calls:
+        try:
+            if len(tool_calls) != 1 or not isinstance(tool_calls[0], dict):
+                raise MemoryJsonToolBridgeError(
+                    "Memory JSON tool bridge requires exactly one native tool call"
+                )
+            function = tool_calls[0].get("function") or {}
+            arguments = function.get("arguments")
+            if isinstance(arguments, str):
+                arguments = _decode_memory_tool_payload(
+                    arguments, "native tool arguments"
+                )
+            payload = {"name": function.get("name"), "arguments": arguments}
+            allowed = set(metadata.get("allowed_names") or [])
+            if payload["name"] not in allowed:
+                raise MemoryJsonToolBridgeError(
+                    "Memory JSON tool bridge received a disallowed native tool"
+                )
+            if not isinstance(payload["arguments"], dict):
+                raise MemoryJsonToolBridgeError(
+                    "Memory JSON tool bridge native arguments are not an object"
+                )
+            return payload
+        except MemoryJsonToolBridgeError as exc:
+            errors.append(str(exc))
+
+    # vLLM reasoning parsers may place the entire guided object in an auxiliary
+    # field. Only accept it when it is itself a complete JSON object; ordinary
+    # chain-of-thought text is ignored and never forwarded as a tool call.
+    for key in ("reasoning_content", "reasoning"):
+        candidate = message.get(key)
+        if not isinstance(candidate, str) or not candidate.strip():
+            continue
+        try:
+            payload = _decode_memory_tool_payload(candidate, key)
+            allowed = set(metadata.get("allowed_names") or [])
+            if payload.get("name") not in allowed or not isinstance(
+                payload.get("arguments"), dict
+            ):
+                raise MemoryJsonToolBridgeError(
+                    f"Memory JSON tool bridge found no valid call in {key}"
+                )
+            return payload
+        except MemoryJsonToolBridgeError as exc:
+            errors.append(str(exc))
+
+    if errors:
+        raise MemoryJsonToolBridgeError("; ".join(errors))
+    raise MemoryJsonToolBridgeError(
+        "Memory JSON tool bridge received empty content and no recoverable tool call"
+    )
+
+
+def build_memory_json_retry_request(
+    request_data: dict[str, Any],
+    metadata: dict[str, Any],
+    *,
+    attempt: int,
+    error: Exception,
+) -> dict[str, Any]:
+    """Build a fresh corrective request after an unusable guided generation."""
+    retry_data = deepcopy(request_data)
+    messages = list(retry_data.get("messages") or [])
+    allowed_names = ", ".join(metadata.get("allowed_names") or [])
+    messages.append(
+        {
+            "role": "user",
+            "content": (
+                "The previous generation was unusable "
+                f"({type(error).__name__}). Regenerate the complete answer from "
+                "scratch; do not continue or repair the previous text. Return "
+                "exactly one complete JSON object conforming to response_format, "
+                "with no prose or markdown. The tool name must be one of: "
+                f"{allowed_names}. Corrective generation attempt: {attempt}."
+            ),
+        }
+    )
+    retry_data["messages"] = messages
+    return retry_data
 
 
 def convert_core_json_tool_response(

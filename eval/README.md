@@ -24,11 +24,11 @@ The primary seven methods are `mem0`, `amem`, `memos`, `memrl`, `lightmem`,
 memory-build and retrieval lifecycle in `third_party/medmemorybench`.
 SeCom enters through a thin adapter in `official_adapters/`. Graphiti and
 O-Mem are explicitly excluded pending bounded, full-domain implementations;
-their blockers are recorded in `unsupported_methods.json`. `controls.py`
-implements `no_memory` and the
-capacity-aware, token-bounded `full_memory` long-context control;
-`context_windows.py` resolves its standard/custom window tier, and
-`full_history` is its compatibility alias.
+their blockers are recorded in `unsupported_methods.json`. `compact_history.py`
+implements the `memory_context.v5` query-independent online compact
+`full_memory` control. `controls.py` retains `no_memory` and the raw
+`full_history` recency control; `context_windows.py` resolves their shared
+standard/custom window tier.
 
 ## Memory method input
 
@@ -76,10 +76,12 @@ python -m eval.run --help
 python -m eval.score --help
 bash scripts/run_eval.sh METHOD DATASET_DIR OUTPUT_DIR [eval args]
 bash scripts/submit_clusterx.sh --help
+bash scripts/submit_h_cluster.sh --help
 python -m unittest discover -s tests/evaluation -p 'test_*.py'
 ```
 
 Formal method profiles pin local BGE-M3 at revision
 `5617a9f61b028005a4858fdac845db406aefb181` with 1024-dimensional dense
-embeddings. See `docs/multigpu_evaluation.md` for the single-node ClusterX
-launcher and the timing/provenance files produced by a run.
+embeddings. See `docs/multigpu_evaluation.md` for the shared single-node
+execution model and `docs/h_cluster_evaluation.md` for the 4/8-card H200 RJob
+launcher, including the timing/provenance files produced by a run.

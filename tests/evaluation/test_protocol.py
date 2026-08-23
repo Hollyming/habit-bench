@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -12,12 +13,33 @@ from eval.core.dataset import DatasetContractError
 from eval.run import validate_memory_contexts
 from scripts.run_multigpu_plan import (
     CUDA_REQUIRED_ADAPTER_METHODS,
+    COMPLETION_FILES,
+    _inspect_vllm_runtime,
+    _prepare_task_output,
     _validate_mirix_vllm_profile,
 )
+from scripts.create_shard_plan import _effective_method_config
 from scripts.create_v3_experiment_plans import SHARDS, _group_is_complete
 
 
 class ProtocolTest(unittest.TestCase):
+
+    def test_vllm_runtime_accepts_official_torch_cuda_local_tag(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            python_stub = Path(temp_dir) / "python"
+            python_stub.write_text(
+                "#!/usr/bin/env bash\n"
+                "printf '%s\\n' '{\"flashinfer-python\":\"0.6.4\","
+                "\"python\":\"3.10.20\",\"torch\":\"2.10.0+cu128\","
+                "\"torch_cuda\":\"12.8\",\"transformers\":\"4.57.6\","
+                "\"triton\":\"3.6.0\",\"vllm\":\"0.17.1\","
+                "\"xgrammar\":\"0.1.29\"}'\n",
+                encoding="utf-8",
+            )
+            python_stub.chmod(0o755)
+            versions = _inspect_vllm_runtime(python_stub, os.environ.copy())
+        self.assertEqual(versions["torch"], "2.10.0+cu128")
+
     METHODS = ("mem0", "amem", "memos", "memrl", "lightmem", "letta", "mirix")
     OFFICIAL_METHODS = {
         "secom": "eval/official_adapters/secom.py",
@@ -46,7 +68,9 @@ class ProtocolTest(unittest.TestCase):
         registry_path = Path(__file__).resolve().parents[2] / "eval" / "methods.json"
         registry = json.loads(registry_path.read_text(encoding="utf-8"))
         self.assertEqual(registry["full_memory"]["implementation_kind"], "control")
-        self.assertEqual(registry["full_memory"]["revision"], "memory_context.v3")
+        self.assertEqual(registry["full_memory"]["revision"], "memory_context.v5")
+        self.assertEqual(registry["full_memory"]["adapter"], "eval/compact_history.py")
+        self.assertEqual(registry["full_history"]["revision"], "memory_context.v3")
 
     def test_official_source_snapshots_are_plain_directories(self) -> None:
         project_root = Path(__file__).resolve().parents[2]
@@ -135,6 +159,220 @@ class ProtocolTest(unittest.TestCase):
             '\\"disable_any_whitespace\\":true',
             environment_profile,
         )
+
+    def test_h_cluster_launcher_keeps_rjob_classes_separate(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        launcher = (project_root / "scripts/submit_h_cluster.sh").read_text(
+            encoding="utf-8"
+        )
+        worker = (project_root / "scripts/cluster/run_h_eval.sh").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("--namespace ailab-llmarchitecture", launcher)
+        self.assertIn("--charged-group llmarchitecture_gpu", launcher)
+        self.assertIn("--private-machine group", launcher)
+        self.assertIn("--priority 1", launcher)
+        self.assertIn("--priority 5", launcher)
+        idle_branch = launcher.rsplit("  idle)\n", 1)[1].split("    ;;", 1)[0]
+        self.assertIn("--task-type idle", idle_branch)
+        self.assertIn("--restart-policy never", idle_branch)
+        self.assertNotIn("--priority", idle_branch)
+        self.assertNotIn("--charged-group", idle_branch)
+        self.assertNotIn("--private-machine", idle_branch)
+        self.assertIn('-P "$REPLICAS"', launcher)
+        self.assertIn("--host-network=true", launcher)
+        self.assertIn("-e DISTRIBUTED_JOB=true", launcher)
+        self.assertIn('[[ "$GPUS" != "4" && "$GPUS" != "8" ]]', launcher)
+        self.assertIn('[[ "$gpu_name" != *H200* ]]', worker)
+        self.assertIn('VLLM_ENV_LIB="$(dirname', worker)
+        self.assertIn('export LD_LIBRARY_PATH="$env_lib', worker)
+        self.assertIn("-c 'import sqlite3'", worker)
+
+    def test_qwen3_14b_scale_launcher_is_a_distinct_two_node_run(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        launcher = (
+            project_root / "scripts/cluster/submit_qwen3_14b_main.sh"
+        ).read_text(encoding="utf-8")
+        environment = (
+            project_root / "scripts/cluster/env.h.qwen3_14b.sh"
+        ).read_text(encoding="utf-8")
+        self.assertIn("--job-type reserved", launcher)
+        self.assertIn("--gpus 8", launcher)
+        self.assertIn("--replicas 2", launcher)
+        self.assertIn("--shards 16", launcher)
+        self.assertIn(
+            'HABITBENCH_RESULTS_ROOT:-$PROJECT_ROOT/results', launcher
+        )
+        self.assertNotIn("/mnt/shared-storage-gpfs2", launcher)
+        self.assertIn("habit-h200-main-qwen3-14b-v1", launcher)
+        self.assertIn('HABITBENCH_SERVED_MODEL="Qwen3-14B"', environment)
+        self.assertIn('HABITBENCH_LLM_MODEL_ID="Qwen/Qwen3-14B"', environment)
+
+    def test_qwen3_4b_and_32b_scale_launchers_are_distinct_two_node_runs(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        profiles = {
+            "4": (
+                "1cfa9a7208912126459214e8b04321603b3df60c",
+                "habit-h200-main-qwen3-4b-v1",
+            ),
+            "32": (
+                "9216db5781bf21249d130ec9da846c4624c16137",
+                "habit-h200-main-qwen3-32b-v1",
+            ),
+        }
+        for scale, (revision, output_name) in profiles.items():
+            with self.subTest(scale=scale):
+                launcher = (
+                    project_root
+                    / f"scripts/cluster/submit_qwen3_{scale}b_main.sh"
+                ).read_text(encoding="utf-8")
+                environment = (
+                    project_root / f"scripts/cluster/env.h.qwen3_{scale}b.sh"
+                ).read_text(encoding="utf-8")
+                self.assertIn("--job-type reserved", launcher)
+                self.assertIn("--gpus 8", launcher)
+                self.assertIn("--replicas 2", launcher)
+                self.assertIn("--shards 16", launcher)
+                self.assertIn(
+                    'HABITBENCH_RESULTS_ROOT:-$PROJECT_ROOT/results', launcher
+                )
+                self.assertNotIn("/mnt/shared-storage-gpfs2", launcher)
+                self.assertIn(output_name, launcher)
+                self.assertIn(
+                    f'HABITBENCH_SERVED_MODEL="Qwen3-{scale}B"',
+                    environment,
+                )
+                self.assertIn(
+                    f'HABITBENCH_LLM_MODEL_ID="Qwen/Qwen3-{scale}B"',
+                    environment,
+                )
+                self.assertIn(
+                    f'HABITBENCH_LLM_MODEL_REVISION="{revision}"',
+                    environment,
+                )
+
+    def test_plan_snapshot_can_record_h_cluster_embedding_path(self) -> None:
+        effective, overrides = _effective_method_config(
+            {
+                "embedding": {
+                    "provider": "local",
+                    "model": "BAAI/bge-m3",
+                    "model_path": "/plm-shared/legacy/bge-m3",
+                },
+                "history": {"tokenizer_path": "/plm-shared/legacy/qwen3"},
+                "memory": {
+                    "compressor_model_path": "/plm-shared/legacy/llmlingua2"
+                },
+                "agent_params": {
+                    "embedding_model_path": "/plm-shared/legacy/bge-m3",
+                    "topic_segmenter_model_path": "/plm-shared/legacy/llmlingua2",
+                },
+            },
+            embedding_model_path=Path("/mnt/shared-storage-gpfs2/models/bge-m3"),
+            llm_model_path=Path("/mnt/shared-storage-gpfs2/models/qwen3"),
+            compressor_model_path=Path(
+                "/mnt/shared-storage-gpfs2/models/llmlingua2"
+            ),
+        )
+        self.assertEqual(
+            effective["embedding"]["model_path"],
+            "/mnt/shared-storage-gpfs2/models/bge-m3",
+        )
+        self.assertEqual(
+            overrides["embedding.model_path"],
+            "/mnt/shared-storage-gpfs2/models/bge-m3",
+        )
+        self.assertEqual(
+            effective["agent_params"]["embedding_model_path"],
+            "/mnt/shared-storage-gpfs2/models/bge-m3",
+        )
+        self.assertEqual(
+            effective["history"]["tokenizer_path"],
+            "/mnt/shared-storage-gpfs2/models/qwen3",
+        )
+        self.assertEqual(
+            effective["memory"]["compressor_model_path"],
+            "/mnt/shared-storage-gpfs2/models/llmlingua2",
+        )
+        self.assertEqual(
+            effective["agent_params"]["topic_segmenter_model_path"],
+            "/mnt/shared-storage-gpfs2/models/llmlingua2",
+        )
+
+    def test_plan_snapshot_records_scale_ablation_model_identity(self) -> None:
+        effective, overrides = _effective_method_config(
+            {
+                "description": "HABIT profile: local Qwen3-8B",
+                "model": {"name": "Qwen3-8B"},
+                "answer_model": {"name": "Qwen3-8B"},
+                "history": {"compactor": {"name": "Qwen3-8B"}},
+                "agent_params": {
+                    "amem_model": "Qwen3-8B",
+                    "memos_model": "Qwen3-8B",
+                },
+            },
+            embedding_model_path=Path("/mnt/shared-storage-gpfs2/models/bge-m3"),
+            served_model_name="Qwen3-14B",
+        )
+        self.assertEqual(
+            effective["description"],
+            "HABIT profile: local Qwen3-14B",
+        )
+        self.assertEqual(
+            overrides["description"],
+            "HABIT profile: local Qwen3-14B",
+        )
+        self.assertEqual(effective["model"]["name"], "Qwen3-14B")
+        self.assertEqual(effective["answer_model"]["name"], "Qwen3-14B")
+        self.assertEqual(
+            effective["history"]["compactor"]["name"],
+            "Qwen3-14B",
+        )
+        self.assertEqual(
+            effective["agent_params"]["amem_model"],
+            "Qwen3-14B",
+        )
+        self.assertEqual(
+            overrides["agent_params.memos_model"],
+            "Qwen3-14B",
+        )
+
+    def test_interrupted_shard_state_is_removed_before_resume(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            output_dir = Path(directory) / "mem0" / "shard_000_of_004"
+            output_dir.mkdir(parents=True)
+            (output_dir / "partial-state.db").write_text(
+                "incomplete",
+                encoding="utf-8",
+            )
+            was_complete = _prepare_task_output(
+                output_dir,
+                force_rerun=False,
+            )
+            self.assertFalse(was_complete)
+            self.assertFalse((output_dir / "partial-state.db").exists())
+            self.assertTrue(output_dir.is_dir())
+            self.assertEqual(list(output_dir.iterdir()), [])
+
+            (output_dir / "metrics.json").write_text("{}\n", encoding="utf-8")
+            was_complete = _prepare_task_output(
+                output_dir,
+                force_rerun=False,
+            )
+            self.assertFalse(was_complete)
+
+            for name in COMPLETION_FILES:
+                path = output_dir / name
+                if name == "worker_runtime.json":
+                    payload = {"status": "succeeded"}
+                elif name == "run_manifest.json":
+                    payload = {"execution": {"status": "succeeded"}}
+                else:
+                    payload = {}
+                path.write_text(json.dumps(payload), encoding="utf-8")
+            self.assertTrue(
+                _prepare_task_output(output_dir, force_rerun=False)
+            )
 
     def test_mirix_preflight_requires_compact_xgrammar(self) -> None:
         profile = _validate_mirix_vllm_profile(

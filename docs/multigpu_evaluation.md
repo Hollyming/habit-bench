@@ -1,17 +1,21 @@
-# Multi-GPU evaluation with ClusterX
+# Multi-GPU evaluation with ClusterX or H RJob
 
 HABIT-Bench parallelizes by user. A shard owns complete user lifelines, so
 method state never crosses workers and DDP synchronization is unnecessary.
+The execution model is shared by ClusterX and H RJob; only the scheduler,
+persistent paths, image and resource declaration differ.
 
 ## Active execution model
 
-On one ClusterX node:
+On one single scheduler node:
 
 1. `create_shard_plan.py` creates deterministic user shards for every selected
    method/domain pair.
 2. `run_multigpu_plan.py` starts one persistent Qwen3-8B vLLM server per GPU.
-3. One method/domain group runs at a time; its user shards run concurrently
-   across the persistent GPU workers.
+3. Every persistent GPU worker repeatedly claims the next shard from one flat
+   task queue. On multi-Replica H jobs the queue lives on GPFS and atomically
+   creates one directory per task, so either node can claim any still-unassigned
+   shard but no task can have two owners.
 4. GPUs are primarily reserved for persistent vLLM processes. Most adapter
    processes receive `CUDA_VISIBLE_DEVICES=""` and run BGE-M3 on CPU; MIRIX
    and SeCom retain their native CUDA paths and are explicitly bound to the
@@ -23,8 +27,12 @@ On one ClusterX node:
 6. `merge_shard_plan.py` checks shard coverage and dataset/config consistency,
    merges predictions, rescoring the complete domain.
 
-Running groups sequentially makes method/domain wall-clock measurements
-interpretable and avoids repeatedly starting vLLM for every shard.
+There is no method/domain barrier: when one GPU finishes a fast shard it can
+start the next plan row while a slower shard from the previous group continues.
+This removes node-to-node straggler waits without introducing DDP/NCCL, because
+evaluation shards have no model gradients or shared method state. Group timing
+is therefore an observed first-claim-to-last-completion span, while per-shard
+timing remains the unit for method efficiency analysis.
 
 ## Environment
 
@@ -87,7 +95,7 @@ sample. The job records both rates and refuses to begin a
 method group when aggregate decode throughput is below
 `HABITBENCH_VLLM_MIN_TOKENS_PER_SEC` (60 by default).
 
-## Submit
+## Submit with ClusterX
 
 The single supported submit entry is:
 
@@ -95,8 +103,8 @@ The single supported submit entry is:
 cd /plm-shared/zhangjunming/Workspace/HABIT-bench
 
 bash scripts/submit_clusterx.sh \
-  --methods mem0,amem,memos,memrl,lightmem,letta,mirix,secom \
-  --datasets food,finance,software \
+  --methods full_memory,mem0,amem,memos,memrl,lightmem,letta,mirix,secom \
+  --datasets food,finance,software,travel \
   --shards 8 \
   --gpus 8 \
   --output-root results/habit_bge_m3_v1
@@ -118,8 +126,8 @@ bash scripts/submit_clusterx.sh \
   --output-root results/controls_bge_m3_v1
 ```
 
-`full_history` is accepted as a backward-compatible alias of `full_memory`.
-The long-context control defaults to
+`full_memory` is the online compact-history control; `full_history` is the
+separate raw recency-truncation control. Both default to
 `HABITBENCH_CONTEXT_WINDOW_TIER=auto`, which selects the largest standard
 8k/16k/32k/40k/64k/128k tier supported by `HABITBENCH_MAX_MODEL_LEN`. Each tier
 reserves prompt space and uses the remainder for history. Use
@@ -131,6 +139,11 @@ Prefix caching is enabled by default (`HABITBENCH_ENABLE_PREFIX_CACHING=1`) so
 repeated probes for the same user can reuse their identical history prefix.
 
 After preemption, resubmit the same output root. Completed shards are skipped.
+The checkpoint granularity is one complete user shard, not a session or probe:
+the runner writes one atomic `worker_runtime.json` only after the run manifest,
+contexts, predictions and metrics all succeed. An incomplete/failed shard is
+removed before rerun so partially written memory-backend state is never
+ingested twice and checkpoint writes stay infrequent.
 Use `--force-plan` only when intentionally replacing the plan and
 `HABITBENCH_FORCE_RERUN=1` only when intentionally replacing completed shard
 outputs.
@@ -176,3 +189,16 @@ Timing fields have distinct meanings:
 
 Only `merged/metrics.json` is a complete-domain score. Partial shard metrics
 must not be compared with complete-domain results.
+
+## Submit with H RJob
+
+The H launcher supports 4 or 8 H200 GPUs per Replica. Multi-Replica runs use
+`JOB_ID` to create one launch-scoped GPFS task queue; `NODE_RANK` identifies the
+claim owner but does not statically partition shard indices. Atomic GPFS
+directory creation serializes each task claim, and each plan row is issued once
+per launch. No DDP/NCCL synchronization is used. Per-Replica runtime/log files
+avoid shared writes, and an atomic merge-claim directory elects the Replica that
+performs the global merge. The launcher keeps managed spot/reserved/idle parameters separate and
+verifies GPU model names inside each worker before vLLM starts. See
+[`h_cluster_evaluation.md`](h_cluster_evaluation.md) for persistent environment
+layout, creator identity requirements, commands, and interruption recovery.

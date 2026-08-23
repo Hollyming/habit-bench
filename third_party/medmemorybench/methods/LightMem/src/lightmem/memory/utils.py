@@ -199,6 +199,73 @@ def resolve_tokenizer(tokenizer_or_name: Union[str, Any]) -> Union[tiktoken.Enco
     # --- Case: fallback ---
     return tiktoken.get_encoding("o200k_base")
 
+
+_SOURCE_ID_PREFIX = re.compile(r"^\s*([+-]?\d+)")
+
+
+def normalize_source_id(
+    value: Any,
+    *,
+    max_valid_sid: Optional[int] = None,
+    logger=None,
+    context: str = "",
+) -> int:
+    """Normalize an LLM-produced source id into a safe transcript index.
+
+    Exact integers are preferred. A leading integer is recoverable from common
+    decorated generations such as ``"0.医生"``; values without a usable integer
+    fall back to zero. The final value is clamped to the available source range.
+    """
+    original = value
+    repaired_prefix = False
+    invalid = False
+
+    if isinstance(value, bool):
+        invalid = True
+        source_id = 0
+    elif isinstance(value, int):
+        source_id = value
+    elif isinstance(value, float) and value.is_integer():
+        source_id = int(value)
+    elif isinstance(value, str):
+        try:
+            source_id = int(value.strip())
+        except ValueError:
+            match = _SOURCE_ID_PREFIX.match(value)
+            if match is None:
+                invalid = True
+                source_id = 0
+            else:
+                source_id = int(match.group(1))
+                repaired_prefix = True
+    else:
+        invalid = True
+        source_id = 0
+
+    if logger and (invalid or repaired_prefix):
+        action = "fell back to 0" if invalid else f"recovered leading integer {source_id}"
+        logger.warning(
+            "Normalized malformed LightMem source_id=%r: %s%s",
+            original,
+            action,
+            f" ({context})" if context else "",
+        )
+
+    unclamped = source_id
+    source_id = max(0, source_id)
+    if max_valid_sid is not None:
+        source_id = min(source_id, max(0, int(max_valid_sid)))
+    if logger and source_id != unclamped:
+        upper = max(0, int(max_valid_sid)) if max_valid_sid is not None else "unbounded"
+        logger.warning(
+            "Clamped LightMem source_id=%r to %d (valid range: [0, %s])%s",
+            original,
+            source_id,
+            upper,
+            f" ({context})" if context else "",
+        )
+    return source_id
+
 def convert_extraction_results_to_memory_entries(
     extracted_results: List[Optional[Dict]],
     timestamps_list: List,
@@ -241,27 +308,23 @@ def convert_extraction_results_to_memory_entries(
                 fact_list = [fact_list]
 
             for fact_entry in fact_list:
-                original_sid = int(fact_entry.get("source_id", 0))
-                sid = original_sid
-                
-                if max_valid_sid is not None and sid > max_valid_sid:
-                    sid = max_valid_sid  
-                    logger.warning(
-                        f"LLM returned invalid source_id={original_sid} "
-                        f"(valid range: [0, {max_valid_sid}]) in batch {batch_idx}. "
-                        f"Auto-corrected to source_id={sid}. "
-                        f"Fact: {fact_entry.get('fact', '')[:100]}..."
-                    )
+                sid = normalize_source_id(
+                    fact_entry.get("source_id", 0),
+                    max_valid_sid=max_valid_sid,
+                    logger=logger,
+                    context=f"batch={batch_idx}, topic={topic_idx}",
+                )
                 
                 seq_candidate = sid * 2
                 
                 if seq_candidate not in topic_id_map:
-                    logger.error(
-                        f"sequence {seq_candidate} (from corrected source_id={sid}) "
-                        f"not found in topic_id_map. "
-                        f"Available range: {min(topic_id_map.keys())}-{max(topic_id_map.keys())}. "
-                        f"Skipping this fact."
-                    )
+                    if logger:
+                        logger.error(
+                            f"sequence {seq_candidate} (from corrected source_id={sid}) "
+                            f"not found in topic_id_map. "
+                            f"Available range: {min(topic_id_map.keys())}-{max(topic_id_map.keys())}. "
+                            f"Skipping this fact."
+                        )
                     continue
                 
                 resolved_topic_id = topic_id_map[seq_candidate]
@@ -308,7 +371,11 @@ def _create_memory_entry_from_fact(
     Returns:
         MemoryEntry object or None if creation fails
     """
-    source_id = int(fact_entry.get("source_id", 0))
+    source_id = normalize_source_id(
+        fact_entry.get("source_id", 0),
+        logger=logger,
+        context="memory entry creation",
+    )
     sequence_n = source_id * 2
 
     try:

@@ -219,6 +219,44 @@ def default_med_repo() -> Path:
     return Path(__file__).resolve().parents[2] / "third_party" / "medmemorybench"
 
 
+def apply_runtime_model_paths(method_config: Any) -> dict[str, str]:
+    """Apply the selected scale model and cluster-specific physical paths."""
+    overrides: dict[str, str] = {}
+    served_model = os.environ.get("HABITBENCH_SERVED_MODEL")
+    if served_model:
+        model = getattr(method_config, "model", None)
+        if model is not None and getattr(model, "name", None) != served_model:
+            model.name = served_model
+            overrides["model.name"] = served_model
+        agent_params = getattr(method_config, "agent_params", {})
+        for key in ("amem_model", "memos_model"):
+            if key in agent_params and agent_params[key] != served_model:
+                agent_params[key] = served_model
+                overrides[f"agent_params.{key}"] = served_model
+
+    embedding_model = os.environ.get("HABITBENCH_EMBED_MODEL")
+    if embedding_model:
+        resolved = str(Path(embedding_model).expanduser().resolve())
+        embedding = getattr(method_config, "embedding", None)
+        if embedding is not None:
+            embedding.model_path = resolved
+            overrides["embedding.model_path"] = resolved
+        agent_params = getattr(method_config, "agent_params", {})
+        for key in ("amem_embedding_model", "embedding_model_path"):
+            if key in agent_params:
+                agent_params[key] = resolved
+                overrides[f"agent_params.{key}"] = resolved
+
+    lightmem_model = os.environ.get("HABITBENCH_LIGHTMEM_MODEL")
+    if lightmem_model:
+        resolved = str(Path(lightmem_model).expanduser().resolve())
+        agent_params = getattr(method_config, "agent_params", {})
+        if "topic_segmenter_model_path" in agent_params:
+            agent_params["topic_segmenter_model_path"] = resolved
+            overrides["agent_params.topic_segmenter_model_path"] = resolved
+    return overrides
+
+
 def load_med_components(med_repo: Path, config_name: str):
     if not (med_repo / "src" / "agent.py").is_file():
         raise FileNotFoundError(f"MedMemoryBench source tree not found: {med_repo}")
@@ -230,6 +268,7 @@ def load_med_components(med_repo: Path, config_name: str):
     from src.config import ConfigLoader, DatasetConfig
 
     method_config = ConfigLoader(project_root=med_repo).load_method_config(config_name)
+    apply_runtime_model_paths(method_config)
     dataset_config = DatasetConfig(dataset_name="habitbench", language="en")
     return AgentManager, method_config, dataset_config
 

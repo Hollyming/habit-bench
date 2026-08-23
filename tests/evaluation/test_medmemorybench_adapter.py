@@ -1,11 +1,14 @@
 import json
+import os
 import tempfile
 import textwrap
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
 from eval.medmemorybench_adapters.structured_memory import (
+    apply_runtime_model_paths,
     attribute_retrieved_sessions,
     default_med_repo,
     empty_contexts,
@@ -24,6 +27,49 @@ class MedMemoryBenchAdapterTest(unittest.TestCase):
         source_root = default_med_repo()
         self.assertEqual(source_root.name, "medmemorybench")
         self.assertTrue((source_root / "src" / "agent.py").is_file())
+
+    def test_runtime_model_paths_are_cluster_portable(self):
+        config = SimpleNamespace(
+            model=SimpleNamespace(name="Qwen3-8B"),
+            embedding=SimpleNamespace(model_path="/legacy/bge-m3"),
+            agent_params={
+                "amem_model": "Qwen3-8B",
+                "memos_model": "Qwen3-8B",
+                "amem_embedding_model": "/legacy/bge-m3",
+                "embedding_model_path": "/legacy/bge-m3",
+                "topic_segmenter_model_path": "/legacy/llmlingua2",
+            },
+        )
+        with patch.dict(
+            os.environ,
+            {
+                "HABITBENCH_SERVED_MODEL": "Qwen3-14B",
+                "HABITBENCH_EMBED_MODEL": "/h/models/bge-m3",
+                "HABITBENCH_LIGHTMEM_MODEL": "/h/models/llmlingua2",
+            },
+        ):
+            overrides = apply_runtime_model_paths(config)
+        self.assertEqual(config.model.name, "Qwen3-14B")
+        self.assertEqual(config.agent_params["amem_model"], "Qwen3-14B")
+        self.assertEqual(config.agent_params["memos_model"], "Qwen3-14B")
+        self.assertEqual(overrides["model.name"], "Qwen3-14B")
+        self.assertEqual(config.embedding.model_path, "/h/models/bge-m3")
+        self.assertEqual(
+            config.agent_params["amem_embedding_model"],
+            "/h/models/bge-m3",
+        )
+        self.assertEqual(
+            config.agent_params["embedding_model_path"],
+            "/h/models/bge-m3",
+        )
+        self.assertEqual(
+            config.agent_params["topic_segmenter_model_path"],
+            "/h/models/llmlingua2",
+        )
+        self.assertEqual(
+            overrides["agent_params.topic_segmenter_model_path"],
+            "/h/models/llmlingua2",
+        )
 
     def test_session_marker_round_trip(self):
         rendered = render_session(

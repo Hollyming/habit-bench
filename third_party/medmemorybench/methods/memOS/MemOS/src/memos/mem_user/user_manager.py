@@ -4,8 +4,10 @@ This module provides user authentication, authorization, and cube management
 functionality using SQLAlchemy and SQLite.
 """
 
+import threading
 import uuid
 
+from contextlib import contextmanager
 from datetime import datetime
 from enum import Enum
 from pathlib import Path
@@ -32,6 +34,30 @@ from memos.log import get_logger
 logger = get_logger(__name__)
 
 Base = declarative_base()
+_SCHEMA_INIT_THREAD_LOCK = threading.Lock()
+
+
+@contextmanager
+def _database_init_lock(db_path: str):
+    """Serialize SQLite schema/bootstrap work across threads and processes."""
+    with _SCHEMA_INIT_THREAD_LOCK:
+        if db_path == ":memory:":
+            yield
+            return
+
+        # H-cluster workers run on Linux and share GPFS.  flock is released by
+        # the kernel if a worker exits, so an interrupted RJob cannot leave a
+        # stale lock that blocks checkpoint recovery.
+        import fcntl
+
+        lock_path = Path(f"{db_path}.schema.lock")
+        lock_path.parent.mkdir(parents=True, exist_ok=True)
+        with lock_path.open("a+", encoding="utf-8") as lock_file:
+            fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
+            try:
+                yield
+            finally:
+                fcntl.flock(lock_file.fileno(), fcntl.LOCK_UN)
 
 
 class UserRole(Enum):
@@ -115,11 +141,13 @@ class UserManager:
         self.engine = create_engine(f"sqlite:///{db_path}", echo=False)
         self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
 
-        # Create tables
-        Base.metadata.create_all(bind=self.engine)
-
-        # Initialize with root user if no users exist
-        self._init_root_user(user_id)
+        # SQLAlchemy's check-then-create sequence is not atomic: simultaneous
+        # workers can both observe a missing table and one then fails with
+        # "table ... already exists".  Protect both schema creation and the
+        # initial root-user insert with the same cross-process lock.
+        with _database_init_lock(db_path):
+            Base.metadata.create_all(bind=self.engine)
+            self._init_root_user(user_id)
 
         logger.info(f"UserManager initialized with database at {db_path}")
 

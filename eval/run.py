@@ -10,6 +10,8 @@ import os
 import shlex
 import socket
 import subprocess
+import sys
+import threading
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -87,28 +89,60 @@ def _run_adapter(args: argparse.Namespace, input_path: Path, output_path: Path) 
     stdout_path = args.output_dir / "adapter.stdout.log"
     stderr_path = args.output_dir / "adapter.stderr.log"
     started = time.time()
-    with stdout_path.open("w", encoding="utf-8") as stdout, stderr_path.open(
-        "w", encoding="utf-8"
-    ) as stderr:
-        completed = subprocess.run(
-            command,
-            cwd=args.adapter_cwd,
-            stdout=stdout,
-            stderr=stderr,
-            text=True,
-            timeout=args.timeout_sec,
-            check=False,
-        )
+    process = subprocess.Popen(
+        command,
+        cwd=args.adapter_cwd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        bufsize=1,
+    )
+
+    def relay(source: Any, path: Path, console: Any) -> None:
+        with path.open("w", encoding="utf-8") as sink:
+            for line in iter(source.readline, ""):
+                sink.write(line)
+                sink.flush()
+                print(line, end="", file=console, flush=True)
+        source.close()
+
+    relay_threads = [
+        threading.Thread(
+            target=relay,
+            args=(process.stdout, stdout_path, sys.stdout),
+            daemon=True,
+        ),
+        threading.Thread(
+            target=relay,
+            args=(process.stderr, stderr_path, sys.stderr),
+            daemon=True,
+        ),
+    ]
+    for thread in relay_threads:
+        thread.start()
+    try:
+        returncode = process.wait(timeout=args.timeout_sec)
+    except subprocess.TimeoutExpired:
+        process.terminate()
+        try:
+            process.wait(timeout=30)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait(timeout=30)
+        raise
+    finally:
+        for thread in relay_threads:
+            thread.join()
     runtime = {
         "command": command,
         "elapsed_sec": round(time.time() - started, 3),
-        "returncode": completed.returncode,
+        "returncode": returncode,
         "stdout": str(stdout_path),
         "stderr": str(stderr_path),
     }
-    if completed.returncode != 0:
+    if returncode != 0:
         raise RuntimeError(
-            f"Memory adapter failed with code {completed.returncode}; see {stderr_path}"
+            f"Memory adapter failed with code {returncode}; see {stderr_path}"
         )
     if not output_path.is_file():
         raise RuntimeError(f"Memory adapter did not write {output_path}")

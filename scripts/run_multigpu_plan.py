@@ -9,13 +9,16 @@ import hashlib
 import importlib.util
 import json
 import os
-import queue
+import re
 import shlex
+import shutil
 import socket
 import subprocess
 import sys
+import threading
 import time
 import urllib.request
+from collections import deque
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from importlib.metadata import version as package_version
@@ -30,6 +33,7 @@ from eval.context_windows import resolve_context_window
 
 
 O200K_CACHE_KEY = "fb374d419588a4632f3f557e76b4b70aebbca790"
+CL100K_CACHE_KEY = "9b5ad71b2ce5302211f9c61530b329a4922fc6a4"
 GPT2_CACHE_KEYS = {
     "gpt2_vocab_bpe": "6d1cbeee0f20b3d9449abfede4726ed8212e3aee",
     "gpt2_encoder_json": "6c7ea1a7e38e3a7f062df639a5b80947f075ffe6",
@@ -58,10 +62,24 @@ MEDMEMORY_METHODS = {
 # is the normal CPU-isolation policy for the other methods.
 CUDA_REQUIRED_ADAPTER_METHODS = {"mirix", "secom"}
 ORACLE_METHODS = {"oracle_evidence", "oracle_habit_state"}
+SHARD_DIR_PATTERN = re.compile(r"^shard_\d{3}_of_\d{3}$")
+COMPLETION_FILES = (
+    "worker_runtime.json",
+    "run_manifest.json",
+    "memory_contexts.jsonl",
+    "predictions.jsonl",
+    "scored_predictions.jsonl",
+    "metrics.json",
+)
 
 
 def _utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def _log(event: str, **fields: Any) -> None:
+    rendered = " ".join(f"{name}={value}" for name, value in fields.items())
+    print(f"{_utc_now()} {event}{(' ' + rendered) if rendered else ''}", flush=True)
 
 
 def _split_csv(value: str) -> list[str]:
@@ -154,6 +172,9 @@ def _safe_config(env: dict[str, str]) -> dict[str, Any]:
         "HABITBENCH_LIGHTMEM_USER_WORKERS",
         "HABITBENCH_LETTA_USER_WORKERS",
         "HABITBENCH_MIRIX_USER_WORKERS",
+        "HABITBENCH_METHOD_IMPORT_TIMEOUT_SEC",
+        "HABITBENCH_VLLM_INTERNAL_PORT_BASE",
+        "HABITBENCH_VLLM_INTERNAL_PORT_STRIDE",
         "HABITBENCH_LIGHTMEM_MODEL",
         "HABITBENCH_SECOM_COMPRESSOR",
         "HABITBENCH_SECOM_REPO",
@@ -162,6 +183,12 @@ def _safe_config(env: dict[str, str]) -> dict[str, Any]:
         "HABITBENCH_MAX_INPUT_TOKENS",
         "HABITBENCH_FULL_MEMORY_RESERVED_TOKENS",
         "HABITBENCH_FULL_MEMORY_MAX_TOKENS",
+        "HABITBENCH_COMPACT_SUMMARY_MAX_TOKENS",
+        "HABITBENCH_COMPACT_RECENT_TOKENS",
+        "HABITBENCH_COMPACTOR_INPUT_TOKENS",
+        "HABITBENCH_COMPACTOR_TIMEOUT_SEC",
+        "HABITBENCH_COMPACTOR_MAX_RETRIES",
+        "HABITBENCH_COMPACTOR_SEED",
         "HABITBENCH_GPU_MEMORY_UTIL",
         "HABITBENCH_MAX_MODEL_LEN",
         "HABITBENCH_ENABLE_PREFIX_CACHING",
@@ -236,11 +263,22 @@ def _inspect_vllm_runtime(python_bin: Path, env: dict[str, str]) -> dict[str, st
         "flashinfer-python": "0.6.4",
         "xgrammar": "0.1.29",
     }
-    mismatches = {
-        name: {"expected": value, "actual": versions.get(name)}
-        for name, value in expected.items()
-        if versions.get(name) != value
-    }
+    mismatches = {}
+    for name, value in expected.items():
+        actual = versions.get(name)
+        # Official CUDA wheels use the PEP 440 local tag (for example
+        # 2.10.0+cu128), while PyPI may expose the same public Torch release as
+        # 2.10.0. CUDA compatibility is checked independently below through
+        # torch.version.cuda, so accept either spelling of the same public
+        # release without weakening any other package pin.
+        matches = (
+            isinstance(actual, str)
+            and actual.split("+", 1)[0] == value
+            if name == "torch"
+            else actual == value
+        )
+        if not matches:
+            mismatches[name] = {"expected": value, "actual": actual}
     if mismatches:
         raise ValueError(f"Dedicated vLLM runtime mismatch: {mismatches}")
     return versions
@@ -274,6 +312,102 @@ def _require_package_set(
         raise ValueError(
             f"{runtime_name} runtime dependency mismatch: {mismatches}"
         )
+
+
+def _preflight_method_imports(
+    python_bin: Path,
+    env: dict[str, str],
+    methods: set[str],
+) -> dict[str, Any]:
+    """Import every selected adapter in a fresh method-runtime process.
+
+    MemOS and MemRL load their vendored implementations lazily, so their smoke
+    imports deliberately traverse the same deep modules used by constructors.
+    Keeping methods isolated also catches namespace-package contamination.
+    """
+
+    med_root = Path(
+        env.get(
+            "HABITBENCH_MEDMEMORYBENCH_ROOT",
+            str(PROJECT_ROOT / "third_party/medmemorybench"),
+        )
+    ).expanduser().resolve()
+    script = r"""
+import importlib
+import json
+import sys
+from pathlib import Path
+
+root = Path(sys.argv[1]).resolve()
+method = sys.argv[2]
+sys.path.insert(0, str(root))
+importlib.import_module(f"methods.{method}_agent")
+loaded = [f"methods.{method}_agent"]
+
+if method in {"memos", "memrl"}:
+    methods_root = root / "methods"
+    memos_src = methods_root / "memOS" / "MemOS" / "src"
+    sys.path.insert(0, str(memos_src))
+    importlib.import_module("prometheus_client")
+    importlib.import_module("memos.utils")
+    importlib.import_module("memos.memories.factory")
+    importlib.import_module("memos.configs.memory")
+    loaded.extend([
+        "prometheus_client",
+        "memos.utils",
+        "memos.memories.factory",
+        "memos.configs.memory",
+    ])
+
+if method == "memrl":
+    memrl_root = root / "methods" / "MemRL"
+    sys.path.insert(0, str(memrl_root))
+    for module in (
+        "memos.mem_os.main",
+        "memrl.providers.embedding",
+        "memrl.service.memory_service",
+        "memrl.service.strategies",
+        "memrl.service.value_driven",
+    ):
+        importlib.import_module(module)
+        loaded.append(module)
+
+print(json.dumps({"status": "pass", "modules": loaded}, sort_keys=True))
+"""
+    timeout_sec = float(env.get("HABITBENCH_METHOD_IMPORT_TIMEOUT_SEC", "300"))
+    if timeout_sec <= 0:
+        raise ValueError("HABITBENCH_METHOD_IMPORT_TIMEOUT_SEC must be positive")
+    results: dict[str, Any] = {}
+    for method in sorted(methods & MEDMEMORY_METHODS):
+        try:
+            completed = subprocess.run(
+                [str(python_bin), "-c", script, str(med_root), method],
+                check=False,
+                cwd=PROJECT_ROOT,
+                env=env,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                timeout=timeout_sec,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise RuntimeError(
+                f"{method} adapter import preflight exceeded "
+                f"HABITBENCH_METHOD_IMPORT_TIMEOUT_SEC={timeout_sec:g}"
+            ) from exc
+        if completed.returncode != 0:
+            raise RuntimeError(
+                f"{method} adapter import preflight failed with code "
+                f"{completed.returncode}: {completed.stderr[-8000:]}"
+            )
+        try:
+            results[method] = json.loads(completed.stdout.strip().splitlines()[-1])
+        except (IndexError, json.JSONDecodeError) as exc:
+            raise RuntimeError(
+                f"{method} adapter import preflight returned invalid output: "
+                f"{completed.stdout[-2000:]}"
+            ) from exc
+    return results
 
 
 def _preflight_runtime(
@@ -375,7 +509,14 @@ def _preflight_runtime(
                 for name, cache_key in GPT2_CACHE_KEYS.items()
             }
         )
+    if methods and ({"memos", "memrl"} & methods):
+        _require_package_set(
+            packages,
+            {"prometheus-client": ("prometheus_client", "0.23.1")},
+            runtime_name="MemOS/MemRL",
+        )
     if methods and "letta" in methods:
+        required["tiktoken_cl100k"] = tiktoken_root / CL100K_CACHE_KEY
         _require_package_set(
             packages,
             {
@@ -477,6 +618,11 @@ def _preflight_runtime(
         if mismatches:
             raise ValueError(f"BGE-M3 runtime identity mismatch: {mismatches}")
     vllm_versions = _inspect_vllm_runtime(vllm_python, env)
+    method_imports = _preflight_method_imports(
+        python_bin,
+        env,
+        methods or set(),
+    )
     return {
         "status": "pass",
         "files": {
@@ -488,6 +634,7 @@ def _preflight_runtime(
         "vllm_runtime": vllm_versions,
         "mirix_vllm_profile": mirix_vllm_profile,
         "full_memory_window": full_memory_window,
+        "method_imports": method_imports,
     }
 
 
@@ -522,6 +669,190 @@ def _group_rows(rows: list[dict[str, str]]) -> list[list[dict[str, str]]]:
                 f"expected shards 0..{expected - 1}, got {indices}"
             )
     return groups
+
+
+class DistributedTaskCoordinator:
+    """A GPFS-backed queue using atomic per-task directory creation.
+
+    Mutable JSON cursors are intentionally avoided: their read/replace cycle
+    was observed to lose updates across H-cluster nodes even while guarded by
+    ``flock``. POSIX directory creation is a single metadata operation, so a
+    task claim has exactly one winner on the shared filesystem.
+    """
+
+    CONTRACT_VERSION = "habitbench.distributed_queue.v2"
+
+    def __init__(
+        self,
+        root: Path,
+        rows: list[dict[str, str]],
+        *,
+        coordinator_id: str,
+        plan_sha256: str,
+        replica_count: int,
+    ) -> None:
+        if replica_count < 1:
+            raise ValueError("replica_count must be positive")
+        if not re.fullmatch(r"[A-Za-z0-9._-]+", coordinator_id):
+            raise ValueError(f"Unsafe coordinator id: {coordinator_id!r}")
+        task_ids = [int(row["task_id"]) for row in rows]
+        if len(set(task_ids)) != len(task_ids):
+            raise ValueError("Plan contains duplicate task_id values")
+        self.rows = rows
+        self.coordinator_id = coordinator_id
+        self.plan_sha256 = plan_sha256
+        self.replica_count = replica_count
+        self.root = root.expanduser().resolve() / coordinator_id
+        self.contract_root = self.root / "contract"
+        self.contract_path = self.contract_root / "contract.json"
+        self.claim_root = self.root / "claims"
+        self.result_root = self.root / "results"
+        self._scan_lock = threading.Lock()
+        self._next_hint = 0
+        self.root.mkdir(parents=True, exist_ok=True)
+        try:
+            self.contract_root.mkdir()
+        except FileExistsError:
+            # The other Replica may still be publishing its immutable
+            # contract. _write_json makes the final pathname visible only
+            # after the complete payload has been written.
+            deadline = time.monotonic() + 30
+            while not self.contract_path.is_file():
+                if time.monotonic() >= deadline:
+                    raise TimeoutError(
+                        f"Distributed queue contract was not published: {self.contract_path}"
+                    )
+                time.sleep(0.1)
+        else:
+            _write_json(
+                self.contract_path,
+                {
+                    "contract_version": self.CONTRACT_VERSION,
+                    "claim_protocol": "atomic-mkdir-per-task",
+                    "coordinator_id": coordinator_id,
+                    "plan_sha256": plan_sha256,
+                    "replica_count": replica_count,
+                    "task_count": len(rows),
+                    "created_at": _utc_now(),
+                },
+            )
+        self._validate_contract(
+            json.loads(self.contract_path.read_text(encoding="utf-8"))
+        )
+        self.claim_root.mkdir(parents=True, exist_ok=True)
+        self.result_root.mkdir(parents=True, exist_ok=True)
+
+    def _validate_contract(self, contract: dict[str, Any]) -> None:
+        expected = {
+            "contract_version": self.CONTRACT_VERSION,
+            "claim_protocol": "atomic-mkdir-per-task",
+            "coordinator_id": self.coordinator_id,
+            "plan_sha256": self.plan_sha256,
+            "replica_count": self.replica_count,
+            "task_count": len(self.rows),
+        }
+        mismatches = {
+            key: {"expected": value, "actual": contract.get(key)}
+            for key, value in expected.items()
+            if contract.get(key) != value
+        }
+        if mismatches:
+            raise ValueError(
+                f"Distributed queue contract mismatch at {self.root}: {mismatches}"
+            )
+
+    def claim_next(
+        self,
+        *,
+        replica_index: int,
+        worker_index: int,
+        host: str,
+    ) -> tuple[dict[str, str], dict[str, Any]] | None:
+        # Serialize only this process's worker threads. Cross-process and
+        # cross-node exclusion comes solely from atomic mkdir below.
+        with self._scan_lock:
+            for ordinal in range(self._next_hint, len(self.rows)):
+                claim_dir = self.claim_root / f"task-{ordinal:06d}"
+                try:
+                    claim_dir.mkdir()
+                except FileExistsError:
+                    self._next_hint = ordinal + 1
+                    continue
+                self._next_hint = ordinal + 1
+                row = self.rows[ordinal]
+                claim = {
+                    "ordinal": ordinal,
+                    "task_id": int(row["task_id"]),
+                    "method": row["method"],
+                    "dataset_name": row["dataset_name"],
+                    "shard_index": int(row["shard_index"]),
+                    "shard_count": int(row["shard_count"]),
+                    "replica_index": replica_index,
+                    "worker_index": worker_index,
+                    "host": host,
+                    "claim_protocol": "atomic-mkdir-per-task",
+                    "claimed_at": _utc_now(),
+                }
+                _write_json(claim_dir / "claim.json", claim)
+                return row, claim
+        return None
+
+    def aggregate_state(self) -> dict[str, Any]:
+        claimed = sum(
+            1
+            for path in self.claim_root.glob("task-*")
+            if path.is_dir()
+        )
+        result_paths = list(self.result_root.glob("task-*.status-*.json"))
+        statuses = [
+            path.name.split(".status-", 1)[1].rsplit(".json", 1)[0]
+            for path in result_paths
+        ]
+        skipped = statuses.count("skipped_completed")
+        completed = statuses.count("succeeded") + skipped
+        failed = statuses.count("failed")
+        return {
+            "contract_version": self.CONTRACT_VERSION,
+            "claim_protocol": "atomic-mkdir-per-task",
+            "coordinator_id": self.coordinator_id,
+            "plan_sha256": self.plan_sha256,
+            "replica_count": self.replica_count,
+            "task_count": len(self.rows),
+            "claimed": claimed,
+            "finished": len(result_paths),
+            "succeeded": completed,
+            "failed": failed,
+            "skipped_completed": skipped,
+            "active": claimed - len(result_paths),
+            "unclaimed": len(self.rows) - claimed,
+            "observed_at": _utc_now(),
+        }
+
+    def finish(self, claim: dict[str, Any], record: dict[str, Any]) -> dict[str, Any]:
+        ordinal = int(claim["ordinal"])
+        status = str(record.get("status"))
+        if status not in {"succeeded", "skipped_completed", "failed"}:
+            status = "failed"
+        existing = list(
+            self.result_root.glob(f"task-{ordinal:06d}.status-*.json")
+        )
+        if existing:
+            raise RuntimeError(
+                f"Distributed task already finished: {existing[0]}"
+            )
+        result_path = (
+            self.result_root / f"task-{ordinal:06d}.status-{status}.json"
+        )
+        _write_json(
+            result_path,
+            {
+                "claim": claim,
+                "status": status,
+                "returncode": record.get("returncode"),
+                "finished_at": _utc_now(),
+            },
+        )
+        return self.aggregate_state()
 
 
 def _server_command(env: dict[str, str], port: int) -> list[str]:
@@ -706,6 +1037,30 @@ def _start_server(
 ) -> dict[str, Any]:
     worker_env = dict(env)
     worker_env["CUDA_VISIBLE_DEVICES"] = gpu
+    internal_port_base = int(
+        env.get("HABITBENCH_VLLM_INTERNAL_PORT_BASE", "20000")
+    )
+    internal_port_stride = int(
+        env.get("HABITBENCH_VLLM_INTERNAL_PORT_STRIDE", "64")
+    )
+    if internal_port_base <= 0 or internal_port_stride <= 0:
+        raise ValueError(
+            "HABITBENCH_VLLM_INTERNAL_PORT_BASE and "
+            "HABITBENCH_VLLM_INTERNAL_PORT_STRIDE must be positive"
+        )
+    internal_port = internal_port_base + worker_index * internal_port_stride
+    if internal_port + internal_port_stride - 1 > 65535:
+        raise ValueError(
+            "vLLM internal worker port range exceeds TCP port 65535: "
+            f"worker={worker_index} base={internal_port_base} "
+            f"stride={internal_port_stride}"
+        )
+    # vLLM otherwise probes an ephemeral port in every child process. Eight
+    # servers launched concurrently can observe the same free port and then
+    # race while binding it. Give every worker a disjoint deterministic range;
+    # vLLM starts at VLLM_PORT and increments only within that worker's range
+    # under ordinary transient conflicts.
+    worker_env["VLLM_PORT"] = str(internal_port)
     log_path = log_root / f"vllm_worker_{worker_index:02d}_gpu_{gpu}.log"
     log_path.parent.mkdir(parents=True, exist_ok=True)
     log_handle = log_path.open("w", encoding="utf-8")
@@ -743,6 +1098,7 @@ def _start_server(
         "worker_index": worker_index,
         "gpu": gpu,
         "port": port,
+        "internal_port": internal_port,
         "base_url": base_url,
         "process": process,
         "log_handle": log_handle,
@@ -774,23 +1130,134 @@ def _public_worker_record(worker: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _completed_task_record(output_dir: Path) -> dict[str, Any] | None:
+    """Return the atomic shard checkpoint only when every final artifact exists."""
+
+    runtime_path = output_dir / "worker_runtime.json"
+    if not runtime_path.is_file():
+        return None
+    try:
+        record = json.loads(runtime_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if record.get("status") != "succeeded":
+        return None
+    if any(not (output_dir / name).is_file() for name in COMPLETION_FILES):
+        return None
+    try:
+        run_manifest = json.loads(
+            (output_dir / "run_manifest.json").read_text(encoding="utf-8")
+        )
+    except (OSError, json.JSONDecodeError):
+        return None
+    if (run_manifest.get("execution") or {}).get("status") != "succeeded":
+        return None
+    return record
+
+
+def _prepare_task_output(output_dir: Path, *, force_rerun: bool) -> bool:
+    """Keep a verified checkpoint; remove failed/interrupted state before rerun."""
+
+    if not SHARD_DIR_PATTERN.fullmatch(output_dir.name):
+        raise ValueError(f"Refusing non-shard output directory: {output_dir}")
+    was_complete = not force_rerun and _completed_task_record(output_dir) is not None
+    if output_dir.exists() and not was_complete:
+        shutil.rmtree(output_dir)
+    if not was_complete:
+        output_dir.mkdir(parents=True, exist_ok=True)
+    return was_complete
+
+
+def _run_streamed_command(
+    command: list[str],
+    *,
+    cwd: Path,
+    env: dict[str, str],
+    stdout_path: Path,
+    stderr_path: Path,
+    label: str,
+) -> tuple[int, list[str]]:
+    """Persist child logs while relaying prefixed lines to RJob stdout/stderr."""
+
+    tail: deque[str] = deque(maxlen=40)
+    tail_lock = threading.Lock()
+    process = subprocess.Popen(
+        command,
+        cwd=cwd,
+        env=env,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        bufsize=1,
+    )
+
+    def relay(
+        source: Any,
+        path: Path,
+        stream_name: str,
+        console: Any,
+    ) -> None:
+        with path.open("a", encoding="utf-8") as sink:
+            for line in iter(source.readline, ""):
+                sink.write(line)
+                sink.flush()
+                clean = line.rstrip("\n")
+                with tail_lock:
+                    tail.append(f"{stream_name}: {clean}")
+                print(f"[{label} {stream_name}] {clean}", file=console, flush=True)
+        source.close()
+
+    threads = [
+        threading.Thread(
+            target=relay,
+            args=(process.stdout, stdout_path, "stdout", sys.stdout),
+            daemon=True,
+        ),
+        threading.Thread(
+            target=relay,
+            args=(process.stderr, stderr_path, "stderr", sys.stderr),
+            daemon=True,
+        ),
+    ]
+    for thread in threads:
+        thread.start()
+    returncode = process.wait()
+    for thread in threads:
+        thread.join()
+    return returncode, list(tail)
+
+
 def _run_task(
     row: dict[str, str],
-    worker_pool: queue.Queue[dict[str, Any]],
+    worker: dict[str, Any],
     base_env: dict[str, str],
 ) -> dict[str, Any]:
-    worker = worker_pool.get()
     shard_index = int(row["shard_index"])
     shard_count = int(row["shard_count"])
     shard_name = f"shard_{shard_index:03d}_of_{shard_count:03d}"
     output_dir = Path(row["method_output_root"]) / shard_name
-    output_dir.mkdir(parents=True, exist_ok=True)
-    was_complete = (
-        base_env.get("HABITBENCH_FORCE_RERUN", "0") != "1"
-        and (output_dir / "metrics.json").is_file()
+    was_complete = _prepare_task_output(
+        output_dir,
+        force_rerun=base_env.get("HABITBENCH_FORCE_RERUN", "0") == "1",
     )
+    label = f"{row['method']}/{row['dataset_name']}/{shard_name}"
+    if was_complete:
+        checkpoint = _completed_task_record(output_dir)
+        if checkpoint is None:
+            raise RuntimeError(f"Checkpoint disappeared while resuming: {output_dir}")
+        _log("task_skip_checkpoint", task=label)
+        resumed_at = _utc_now()
+        return {
+            **checkpoint,
+            "status": "skipped_completed",
+            "checkpoint_status": "succeeded",
+            "checkpoint_finished_at": checkpoint.get("finished_at"),
+            "resumed_at": resumed_at,
+            "finished_at": resumed_at,
+        }
 
     task_env = dict(base_env)
+    task_env["PYTHONUNBUFFERED"] = "1"
     method = row["method"]
     if method in CUDA_REQUIRED_ADAPTER_METHODS:
         adapter_cuda = worker["gpu"]
@@ -878,27 +1345,28 @@ def _run_task(
     started_at = _utc_now()
     started = time.perf_counter()
     returncode: int | None = None
+    log_tail: list[str] = []
+    _log(
+        "task_start",
+        task=label,
+        worker=worker["worker_index"],
+        gpu=worker["gpu"],
+    )
     try:
-        try:
-            with stdout_path.open("a", encoding="utf-8") as stdout, stderr_path.open(
-                "a", encoding="utf-8"
-            ) as stderr:
-                completed = subprocess.run(
-                    command,
-                    cwd=PROJECT_ROOT,
-                    env=task_env,
-                    stdout=stdout,
-                    stderr=stderr,
-                    text=True,
-                    check=False,
-                )
-            returncode = completed.returncode
-            error_type = None
-            error = None
-        except BaseException as exc:
-            error_type = type(exc).__name__
-            error = str(exc)
-        record = {
+        returncode, log_tail = _run_streamed_command(
+            command,
+            cwd=PROJECT_ROOT,
+            env=task_env,
+            stdout_path=stdout_path,
+            stderr_path=stderr_path,
+            label=label,
+        )
+        error_type = None
+        error = None
+    except BaseException as exc:
+        error_type = type(exc).__name__
+        error = str(exc)
+    record = {
             "contract_version": "habitbench.shard_worker.v1",
             "task_id": int(row["task_id"]),
             "method": row["method"],
@@ -908,6 +1376,7 @@ def _run_task(
             "max_users": int(row["max_users"]) if row.get("max_users") else None,
             "max_probes": int(row["max_probes"]) if row.get("max_probes") else None,
             "output_dir": str(output_dir),
+            "incomplete_output_policy": "remove_before_retry",
             "shard_index": shard_index,
             "shard_count": shard_count,
             "worker_index": worker["worker_index"],
@@ -920,32 +1389,42 @@ def _run_task(
             "started_at": started_at,
             "finished_at": _utc_now(),
             "wall_clock_sec": round(time.perf_counter() - started, 3),
-            "status": (
-                "skipped_completed"
-                if was_complete and returncode == 0
-                else "succeeded"
-                if returncode == 0
-                else "failed"
-            ),
+            "status": "succeeded" if returncode == 0 and error is None else "failed",
             "returncode": returncode,
             "error_type": error_type,
             "error": error,
+            "log_tail": log_tail,
             "command": command,
             "stdout": str(stdout_path),
             "stderr": str(stderr_path),
-        }
+    }
+    if record["status"] == "succeeded":
         _write_json(output_dir / "worker_runtime.json", record)
-        if error is not None:
-            raise RuntimeError(
-                f"Task {row['task_id']} could not run: {error}"
+        if _completed_task_record(output_dir) is None:
+            record.update(
+                {
+                    "status": "failed",
+                    "error_type": "IncompleteSuccessArtifacts",
+                    "error": "process exited zero but final checkpoint validation failed",
+                }
             )
-        if returncode != 0:
-            raise RuntimeError(
-                f"Task {row['task_id']} failed with code {returncode}; see {stderr_path}"
-            )
-        return record
-    finally:
-        worker_pool.put(worker)
+    if record["status"] == "failed":
+        _log(
+            "task_failed",
+            task=label,
+            returncode=returncode,
+            error=error or record.get("error"),
+        )
+        if output_dir.exists():
+            shutil.rmtree(output_dir)
+        record["failed_output_removed"] = True
+    else:
+        _log(
+            "task_succeeded",
+            task=label,
+            elapsed_sec=record["wall_clock_sec"],
+        )
+    return record
 
 
 def parse_args() -> argparse.Namespace:
@@ -960,12 +1439,24 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--env-file", type=Path)
     parser.add_argument("--port-base", type=int, default=8100)
     parser.add_argument("--runtime-output", type=Path)
+    parser.add_argument("--log-root", type=Path)
+    parser.add_argument("--replica-index", type=int, default=0)
+    parser.add_argument("--replica-count", type=int, default=1)
+    parser.add_argument(
+        "--coordination-root",
+        type=Path,
+        help="Persistent shared root for cross-Replica dynamic task claims.",
+    )
+    parser.add_argument(
+        "--coordinator-id",
+        help="Unique launch id below --coordination-root; defaults to JOB_ID.",
+    )
     parser.add_argument(
         "--continue-on-group-error",
         action="store_true",
         help=(
-            "Record a failed method/dataset group and continue with the remaining "
-            "groups. The suite still exits nonzero after every group has run."
+            "Compatibility flag. Dynamic scheduling always records task failures "
+            "and lets other GPUs continue so the final merge can report coverage."
         ),
     )
     return parser.parse_args()
@@ -977,8 +1468,16 @@ def main() -> None:
     gpus = _split_csv(args.gpus)
     if not gpus:
         raise ValueError("--gpus must contain at least one device")
-    rows = _load_plan(plan_path)
-    groups = _group_rows(rows)
+    global_rows = _load_plan(plan_path)
+    global_groups = _group_rows(global_rows)
+    if (
+        args.replica_count < 1
+        or args.replica_index < 0
+        or args.replica_index >= args.replica_count
+    ):
+        raise ValueError(
+            f"Invalid replica index/count: {args.replica_index}/{args.replica_count}"
+        )
     plan_sha256 = _sha256(plan_path)
     plan_manifest_path = (
         args.plan_manifest.expanduser().resolve()
@@ -995,20 +1494,45 @@ def main() -> None:
             raise ValueError(
                 f"Plan hash no longer matches {plan_manifest_path}: {plan_sha256}"
             )
-        if plan_manifest.get("task_count") != len(rows):
+        if plan_manifest.get("task_count") != len(global_rows):
             raise ValueError(
-                f"Plan task count no longer matches {plan_manifest_path}: {len(rows)}"
+                "Plan task count no longer matches "
+                f"{plan_manifest_path}: {len(global_rows)}"
             )
     base_env = os.environ.copy()
     if args.env_file:
         base_env = _source_env_file(args.env_file, base_env)
+
+    coordinator_id = args.coordinator_id or base_env.get("JOB_ID")
+    if not coordinator_id:
+        if args.replica_count > 1:
+            raise ValueError(
+                "Multi-Replica scheduling requires --coordinator-id or RJob JOB_ID"
+            )
+        coordinator_id = f"manual-{plan_sha256[:12]}-{os.getpid()}"
+    coordination_root = (
+        args.coordination_root.expanduser().resolve()
+        if args.coordination_root
+        else plan_path.parent / "distributed_queue"
+    )
+    coordinator = DistributedTaskCoordinator(
+        coordination_root,
+        global_rows,
+        coordinator_id=coordinator_id,
+        plan_sha256=plan_sha256,
+        replica_count=args.replica_count,
+    )
 
     runtime_path = (
         args.runtime_output.expanduser().resolve()
         if args.runtime_output
         else plan_path.parent / "suite_runtime.json"
     )
-    log_root = plan_path.parent / "vllm_logs"
+    log_root = (
+        args.log_root.expanduser().resolve()
+        if args.log_root
+        else plan_path.parent / "vllm_logs"
+    )
     suite_started = time.perf_counter()
     manifest: dict[str, Any] = {
         "contract_version": "habitbench.multigpu_suite.v1",
@@ -1022,23 +1546,58 @@ def main() -> None:
         "plan_manifest": (
             str(plan_manifest_path) if plan_manifest_path.is_file() else None
         ),
-        "launcher": (plan_manifest or {}).get("launcher"),
+        "launcher": {
+            **((plan_manifest or {}).get("launcher") or {}),
+            "runtime_job_id": base_env.get("JOB_ID"),
+            "replicas": str(args.replica_count),
+            "gpus_per_replica": str(len(gpus)),
+            "total_gpus": str(len(gpus) * args.replica_count),
+        },
         "gpu_count": len(gpus),
         "gpus": gpus,
-        "task_count": len(rows),
-        "group_count": len(groups),
+        "replica_index": args.replica_index,
+        "replica_count": args.replica_count,
+        "task_count": 0,
+        "global_task_count": len(global_rows),
+        "group_count": 0,
+        "distributed_queue": {
+            "contract_version": coordinator.CONTRACT_VERSION,
+            "coordinator_id": coordinator_id,
+            "root": str(coordinator.root),
+            "policy": "global-dynamic-shard-claims",
+        },
         "config": _safe_config(base_env),
         "preflight": None,
         "servers": [],
         "groups": [],
     }
     _write_json(runtime_path, manifest)
+    checkpoint_count = sum(
+        _completed_task_record(
+            Path(row["method_output_root"])
+            / f"shard_{int(row['shard_index']):03d}_of_{int(row['shard_count']):03d}"
+        )
+        is not None
+        for row in global_rows
+    )
+    _log(
+        "suite_start",
+        replica=f"{args.replica_index}/{args.replica_count}",
+        local_workers=len(gpus),
+        global_tasks=len(global_rows),
+        reusable_checkpoints=checkpoint_count,
+        pending_tasks=len(global_rows) - checkpoint_count,
+        coordinator=coordinator.root,
+        runtime=runtime_path,
+    )
 
     workers: list[dict[str, Any]] = []
+    task_failure_count = 0
     try:
         manifest["preflight"] = _preflight_runtime(
-            base_env, {row["method"] for row in rows}
+            base_env, {row["method"] for row in global_rows}
         )
+        _log("runtime_preflight_passed", replica=args.replica_index)
         manifest["status"] = "starting_servers"
         _write_json(runtime_path, manifest)
         with ThreadPoolExecutor(max_workers=len(gpus)) as executor:
@@ -1056,7 +1615,16 @@ def main() -> None:
             startup_errors: list[BaseException] = []
             for future in as_completed(futures):
                 try:
-                    workers.append(future.result())
+                    worker = future.result()
+                    workers.append(worker)
+                    _log(
+                        "vllm_server_ready",
+                        replica=args.replica_index,
+                        worker=worker["worker_index"],
+                        gpu=worker["gpu"],
+                        port=worker["port"],
+                        startup_sec=worker["startup_wall_clock_sec"],
+                    )
                 except BaseException as exc:
                     startup_errors.append(exc)
         if startup_errors:
@@ -1073,6 +1641,14 @@ def main() -> None:
             for future in as_completed(benchmark_futures):
                 worker = benchmark_futures[future]
                 worker["throughput_gate"] = future.result()
+                _log(
+                    "vllm_throughput_pass",
+                    replica=args.replica_index,
+                    worker=worker["worker_index"],
+                    tokens_per_sec=worker["throughput_gate"][
+                        "measured_aggregate_completion_tokens_per_sec"
+                    ],
+                )
         manifest["servers"] = [_public_worker_record(worker) for worker in workers]
         failed_gates = [
             worker
@@ -1096,82 +1672,167 @@ def main() -> None:
         manifest["status"] = "running"
         _write_json(runtime_path, manifest)
 
-        worker_pool: queue.Queue[dict[str, Any]] = queue.Queue()
-        for worker in workers:
-            worker_pool.put(worker)
+        manifest_lock = threading.Lock()
+        group_records: dict[tuple[str, str, str], dict[str, Any]] = {}
 
-        group_errors: list[str] = []
-        for group in groups:
-            first = group[0]
-            group_started = time.perf_counter()
-            group_record: dict[str, Any] = {
-                "method": first["method"],
-                "dataset_name": first["dataset_name"],
-                "dataset_dir": first["dataset_dir"],
-                "domain_filter": first.get("domain_filter") or None,
-                "max_users": (
-                    int(first["max_users"]) if first.get("max_users") else None
-                ),
-                "max_probes": (
-                    int(first["max_probes"]) if first.get("max_probes") else None
-                ),
-                "method_output_root": first["method_output_root"],
-                "shard_count": int(first["shard_count"]),
-                "started_at": _utc_now(),
-                "finished_at": None,
-                "wall_clock_sec": None,
-                "status": "running",
-                "tasks": [],
-            }
-            manifest["groups"].append(group_record)
-            _write_json(runtime_path, manifest)
-            try:
-                with ThreadPoolExecutor(max_workers=len(workers)) as executor:
-                    futures = [
-                        executor.submit(_run_task, row, worker_pool, base_env)
-                        for row in group
-                    ]
-                    task_errors: list[BaseException] = []
-                    for future in as_completed(futures):
-                        try:
-                            group_record["tasks"].append(future.result())
-                        except BaseException as exc:
-                            task_errors.append(exc)
-                group_record["tasks"].sort(key=lambda row: row["shard_index"])
-                if task_errors:
-                    group_record["errors"] = [
-                        f"{type(exc).__name__}: {exc}" for exc in task_errors
-                    ]
-                    raise task_errors[0]
-            except BaseException as exc:
-                group_record["status"] = "failed"
-                group_errors.append(
-                    f"{first['method']}/{first['dataset_name']}: "
-                    f"{type(exc).__name__}: {exc}"
-                )
-                if not args.continue_on_group_error:
-                    raise
-            else:
-                group_record["status"] = "succeeded"
-            finally:
-                group_record["finished_at"] = _utc_now()
-                group_record["wall_clock_sec"] = round(
-                    time.perf_counter() - group_started, 3
-                )
-                _write_json(runtime_path, manifest)
-        if group_errors:
-            manifest["group_errors"] = group_errors
-            raise RuntimeError(
-                f"{len(group_errors)} method/dataset group(s) failed after all "
-                "planned groups were attempted"
+        def group_key(row: dict[str, str]) -> tuple[str, str, str]:
+            return (
+                row["method"],
+                row["dataset_name"],
+                str(Path(row["method_output_root"]).resolve()),
             )
+
+        def register_claim(
+            row: dict[str, str], claim: dict[str, Any]
+        ) -> dict[str, Any]:
+            key = group_key(row)
+            with manifest_lock:
+                record = group_records.get(key)
+                if record is None:
+                    record = {
+                        "method": row["method"],
+                        "dataset_name": row["dataset_name"],
+                        "dataset_dir": row["dataset_dir"],
+                        "domain_filter": row.get("domain_filter") or None,
+                        "max_users": (
+                            int(row["max_users"]) if row.get("max_users") else None
+                        ),
+                        "max_probes": (
+                            int(row["max_probes"]) if row.get("max_probes") else None
+                        ),
+                        "method_output_root": row["method_output_root"],
+                        "shard_count": int(row["shard_count"]),
+                        "started_at": claim["claimed_at"],
+                        "finished_at": None,
+                        "wall_clock_sec": None,
+                        "status": "running",
+                        "tasks": [],
+                    }
+                    group_records[key] = record
+                    manifest["groups"].append(record)
+                return record
+
+        def record_completion(
+            row: dict[str, str],
+            task_record: dict[str, Any],
+            queue_state: dict[str, Any],
+        ) -> None:
+            key = group_key(row)
+            with manifest_lock:
+                group_record = group_records[key]
+                group_record["tasks"].append(task_record)
+                group_record["tasks"].sort(
+                    key=lambda item: int(item.get("shard_index", -1))
+                )
+                group_record["finished_at"] = task_record.get("finished_at") or _utc_now()
+                group_record["wall_clock_sec"] = round(
+                    (
+                        datetime.fromisoformat(group_record["finished_at"])
+                        - datetime.fromisoformat(group_record["started_at"])
+                    ).total_seconds(),
+                    3,
+                )
+                if task_record.get("status") == "failed":
+                    group_record["status"] = "failed"
+                manifest["task_count"] = sum(
+                    len(item["tasks"]) for item in manifest["groups"]
+                )
+                manifest["group_count"] = len(manifest["groups"])
+                manifest["queue_progress"] = queue_state
+                _write_json(runtime_path, manifest)
+
+        def run_worker(worker: dict[str, Any]) -> int:
+            local_failures = 0
+            while True:
+                claimed = coordinator.claim_next(
+                    replica_index=args.replica_index,
+                    worker_index=int(worker["worker_index"]),
+                    host=socket.gethostname(),
+                )
+                if claimed is None:
+                    return local_failures
+                row, claim = claimed
+                register_claim(row, claim)
+                _log(
+                    "queue_claim",
+                    replica=args.replica_index,
+                    worker=worker["worker_index"],
+                    ordinal=claim["ordinal"],
+                    task=claim["task_id"],
+                    method=row["method"],
+                    dataset=row["dataset_name"],
+                    shard=row["shard_index"],
+                )
+                try:
+                    task_record = _run_task(row, worker, base_env)
+                except BaseException as exc:
+                    task_record = {
+                        "contract_version": "habitbench.shard_worker.v1",
+                        "task_id": int(row["task_id"]),
+                        "method": row["method"],
+                        "dataset_name": row["dataset_name"],
+                        "output_dir": row["method_output_root"],
+                        "shard_index": int(row["shard_index"]),
+                        "shard_count": int(row["shard_count"]),
+                        "worker_index": worker["worker_index"],
+                        "gpu": worker["gpu"],
+                        "started_at": claim["claimed_at"],
+                        "finished_at": _utc_now(),
+                        "status": "failed",
+                        "returncode": None,
+                        "error_type": type(exc).__name__,
+                        "error": str(exc),
+                    }
+                    _log(
+                        "task_failed_unexpected",
+                        task=claim["task_id"],
+                        error_type=type(exc).__name__,
+                        error=exc,
+                    )
+                task_record["distributed_claim"] = claim
+                if task_record.get("status") == "failed":
+                    local_failures += 1
+                queue_state = coordinator.finish(claim, task_record)
+                record_completion(row, task_record, queue_state)
+                _log(
+                    "queue_progress",
+                    replica=args.replica_index,
+                    worker=worker["worker_index"],
+                    finished=queue_state["finished"],
+                    total=queue_state["task_count"],
+                    succeeded=queue_state["succeeded"],
+                    failed=queue_state["failed"],
+                    status=task_record.get("status"),
+                )
+
+        with ThreadPoolExecutor(max_workers=len(workers)) as executor:
+            futures = [executor.submit(run_worker, worker) for worker in workers]
+            task_failure_count = sum(future.result() for future in as_completed(futures))
+
+        with manifest_lock:
+            for group_record in manifest["groups"]:
+                if group_record["status"] == "running":
+                    group_record["status"] = "succeeded"
+            manifest["groups"].sort(
+                key=lambda item: (
+                    item["method"],
+                    item["dataset_name"],
+                    item["method_output_root"],
+                )
+            )
+            manifest["task_failure_count"] = task_failure_count
+            _write_json(runtime_path, manifest)
     except BaseException as exc:
         manifest["status"] = "failed"
         manifest["error_type"] = type(exc).__name__
         manifest["error"] = str(exc)
         raise
     else:
-        manifest["status"] = "succeeded"
+        manifest["status"] = (
+            "completed_with_task_failures"
+            if task_failure_count
+            else "succeeded"
+        )
     finally:
         manifest["servers"] = [_public_worker_record(worker) for worker in workers]
         for worker in workers:
@@ -1179,6 +1840,12 @@ def main() -> None:
         manifest["finished_at"] = _utc_now()
         manifest["wall_clock_sec"] = round(time.perf_counter() - suite_started, 3)
         _write_json(runtime_path, manifest)
+        _log(
+            "suite_finished",
+            replica=f"{args.replica_index}/{args.replica_count}",
+            status=manifest["status"],
+            elapsed_sec=manifest["wall_clock_sec"],
+        )
 
 
 if __name__ == "__main__":

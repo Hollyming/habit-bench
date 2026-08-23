@@ -23,6 +23,7 @@ from memos.mem_scheduler.schemas.task_schemas import (
     PREF_ADD_TASK_LABEL,
     QUERY_TASK_LABEL,
 )
+from memos.mem_user.factory import UserManagerFactory
 from memos.mem_user.user_manager import UserManager, UserRole
 from memos.memories.activation.item import ActivationMemoryItem
 from memos.memories.parametric.item import ParametricMemoryItem
@@ -59,7 +60,13 @@ class MOSCore:
         if user_manager is not None:
             self.user_manager = user_manager
         else:
-            self.user_manager = UserManager(user_id=self.user_id if self.user_id else "root")
+            # Honour the configured backend and database path.  Constructing a
+            # bare UserManager here silently routed every benchmark worker to
+            # the process-global MEMOS_DIR SQLite file, even when the caller
+            # supplied an isolated user_manager.db_path.
+            user_manager_config = config.user_manager.model_copy(deep=True)
+            user_manager_config.config.user_id = self.user_id or "root"
+            self.user_manager = UserManagerFactory.from_config(user_manager_config)
 
         # Validate user exists
         if not self.user_manager.validate_user(self.user_id):

@@ -11,14 +11,14 @@
     "source": "HABIT-Bench",
     "revision": "memory_context.v3",
     "adapter": "eval/controls.py",
-    "note": "Backward-compatible alias of full_memory: capacity-aware window tiers, all visible history if it fits, otherwise recent complete sessions."
+    "note": "Raw long-context control: all visible sessions when they fit, otherwise a recent complete-session suffix; report as Full-History (recency-truncated)."
   },
   "full_memory": {
     "implementation_kind": "control",
     "source": "HABIT-Bench",
-    "revision": "memory_context.v3",
-    "adapter": "eval/controls.py",
-    "note": "Capacity-aware long-context control with auto/8k/16k/32k/40k/64k/128k/custom tiers and recent-session truncation on overflow."
+    "revision": "memory_context.v5",
+    "adapter": "eval/compact_history.py",
+    "note": "Query-independent online structured compaction of older visible history plus raw recent sessions under the shared context budget."
   },
   "letta": {
     "implementation_kind": "benchmark_reproduction",

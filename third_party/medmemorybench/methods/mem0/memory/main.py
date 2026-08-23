@@ -64,6 +64,18 @@ class Memory(MemoryBase):
         self.collection_name = self.config.vector_store.config.collection_name
         self.api_version = self.config.version
         self._max_workers = int(os.environ.get("MEM0_MAX_WORKERS", "2"))
+        self._fact_generation_attempts = max(
+            1,
+            min(
+                5,
+                int(
+                    os.environ.get(
+                        "MEM0_FACT_GENERATION_ATTEMPTS",
+                        str(self.config.fact_generation_attempts),
+                    )
+                ),
+            ),
+        )
         # Local instruction-following models occasionally return syntactically
         # valid JSON with an invalid action schema (for example, a missing
         # event or two deletes for the same memory).  Validate the complete
@@ -218,6 +230,84 @@ class Memory(MemoryBase):
 
         return {"results": vector_store_result}
 
+    def _extract_facts(self, parsed_messages: str) -> list[str]:
+        """Generate and validate fact JSON with bounded full-response retries."""
+        if self.custom_fact_extraction_prompt:
+            system_prompt = self.custom_fact_extraction_prompt
+            user_prompt = f"Input:\n{parsed_messages}"
+        else:
+            system_prompt, user_prompt = get_fact_retrieval_messages(parsed_messages)
+
+        last_error: Exception | None = None
+        for attempt in range(1, self._fact_generation_attempts + 1):
+            attempt_prompt = user_prompt
+            if last_error is not None:
+                attempt_prompt += (
+                    "\n\nThe previous response was not one complete valid JSON "
+                    "object. Regenerate the complete answer from scratch and return "
+                    "only JSON with a top-level facts array."
+                )
+            response = None
+            try:
+                response = self.llm.generate_response(
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": attempt_prompt},
+                    ],
+                    response_format=self._fact_response_format(),
+                )
+                if not isinstance(response, str):
+                    raise TypeError(
+                        "Mem0 fact extraction response must be text, got "
+                        f"{type(response).__name__}"
+                    )
+                parsed = self._parse_json_response(remove_code_blocks(response))
+                facts = parsed.get("facts")
+                if not isinstance(facts, list):
+                    raise TypeError("Mem0 fact extraction JSON must contain a facts list")
+
+                original_count = len(facts)
+                normalized_facts = [
+                    fact for fact in facts if isinstance(fact, str) and fact.strip()
+                ]
+                if len(normalized_facts) < original_count:
+                    logging.warning(
+                        "Filtered out %d non-string or empty Mem0 facts",
+                        original_count - len(normalized_facts),
+                    )
+                if attempt > 1:
+                    logging.info(
+                        "Mem0 fact extraction passed JSON validation on attempt %d/%d",
+                        attempt,
+                        self._fact_generation_attempts,
+                    )
+                return normalized_facts
+            except Exception as exc:
+                last_error = exc
+                response_chars = len(response) if isinstance(response, str) else None
+                if attempt >= self._fact_generation_attempts:
+                    logging.error(
+                        "Mem0 fact extraction remained invalid after %d attempts "
+                        "(response_chars=%s): %s",
+                        attempt,
+                        response_chars,
+                        exc,
+                    )
+                    raise RuntimeError(
+                        "Mem0 fact extraction failed bounded JSON validation after "
+                        f"{attempt} attempts"
+                    ) from exc
+                logging.warning(
+                    "Mem0 fact extraction invalid on attempt %d/%d "
+                    "(response_chars=%s): %s; retrying",
+                    attempt,
+                    self._fact_generation_attempts,
+                    response_chars,
+                    exc,
+                )
+
+        raise AssertionError("unreachable fact-extraction retry state")
+
     def _add_to_vector_store(self, messages, metadata, filters, infer):
         if not infer:
             returned_memories = []
@@ -234,43 +324,7 @@ class Memory(MemoryBase):
         logging.debug(f"[DEBUG] === Raw messages structure ===")
         logging.debug(f"[DEBUG] Number of messages: {len(messages)}")
 
-        if self.custom_fact_extraction_prompt:
-            system_prompt = self.custom_fact_extraction_prompt
-            user_prompt = f"Input:\n{parsed_messages}"
-        else:
-            system_prompt, user_prompt = get_fact_retrieval_messages(parsed_messages)
-
-        response = self.llm.generate_response(
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt},
-            ],
-            response_format=self._fact_response_format(),
-        )
-
-        try:
-            if isinstance(response, str):
-                response = remove_code_blocks(response)
-                parsed = self._parse_json_response(response)
-                new_retrieved_facts = parsed.get("facts", [])
-            else:
-                new_retrieved_facts = []
-        except Exception as e:
-            logging.error(f"Error in new_retrieved_facts: {e}")
-            raise RuntimeError("Mem0 fact extraction returned invalid JSON") from e
-
-        if not isinstance(new_retrieved_facts, list):
-            logging.warning(f"new_retrieved_facts is not a list: {type(new_retrieved_facts)}")
-            new_retrieved_facts = []
-
-        # 过滤非字符串元素，确保 facts 都是有效的字符串
-        original_count = len(new_retrieved_facts)
-        new_retrieved_facts = [
-            fact for fact in new_retrieved_facts
-            if isinstance(fact, str) and fact.strip()
-        ]
-        if len(new_retrieved_facts) < original_count:
-            logging.warning(f"Filtered out {original_count - len(new_retrieved_facts)} non-string or empty facts")
+        new_retrieved_facts = self._extract_facts(parsed_messages)
 
         logging.info(f"Extracted {len(new_retrieved_facts)} facts from input")
 

@@ -249,6 +249,9 @@ class AgentManager:
                 "core_json_tool_bridge": agent_params.get(
                     "core_json_tool_bridge", False
                 ),
+                "json_tool_bridge_attempts": agent_params.get(
+                    "json_tool_bridge_attempts", 3
+                ),
                 "normalize_missing_update_ids": agent_params.get(
                     "normalize_missing_update_ids", False
                 ),

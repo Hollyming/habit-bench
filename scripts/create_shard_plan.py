@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import csv
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -21,19 +23,21 @@ from eval.core.io import sha256_file, write_json
 
 
 DEFAULT_DATASETS = {
-    "food": PROJECT_ROOT / "domain/food/food_habit_lifelines_stress_v4",
+    "food": PROJECT_ROOT / "domain/food/food_habit_lifelines_stress_v5",
     "finance": PROJECT_ROOT
-    / "domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3",
+    / "domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4",
     "software": PROJECT_ROOT
-    / "domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3",
+    / "domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4",
+    "travel": PROJECT_ROOT / "domain/travel/release_candidate_v13",
     # Backward-compatible combined view; no longer part of the default suite.
     "finance_software": PROJECT_ROOT
-    / "domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3",
+    / "domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4",
 }
 DEFAULT_DATASET_DOMAINS = {
     "food": None,
     "finance": "finance",
     "software": "software",
+    "travel": None,
     "finance_software": None,
 }
 METHOD_CONFIGS = {
@@ -42,13 +46,19 @@ METHOD_CONFIGS = {
 }
 LOCAL_METHOD_CONFIGS = {
     "full_memory": PROJECT_ROOT / "configs/methods/full_memory.yaml",
-    "full_history": PROJECT_ROOT / "configs/methods/full_memory.yaml",
+    "full_history": PROJECT_ROOT / "configs/methods/full_history.yaml",
     "secom": PROJECT_ROOT / "configs/methods/secom_bge_m3_qwen3.yaml",
 }
 BGE_M3_METHODS = set(METHOD_CONFIGS) | {"secom"}
 BGE_M3_ID = "BAAI/bge-m3"
 BGE_M3_REVISION = "5617a9f61b028005a4858fdac845db406aefb181"
-BGE_M3_PATH = Path("/plm-shared/zhangjunming/Workspace/models/bge-m3")
+DEFAULT_BGE_M3_PATH = Path("/plm-shared/zhangjunming/Workspace/models/bge-m3")
+DEFAULT_LLM_PATH = Path("/plm-shared/zhangjunming/Workspace/models/Qwen3-8B")
+DEFAULT_SERVED_MODEL = "Qwen3-8B"
+DEFAULT_COMPRESSOR_PATH = Path(
+    "/plm-shared/zhangjunming/Workspace/models/"
+    "llmlingua-2-xlm-roberta-large-meetingbank"
+)
 BGE_M3_DIM = 1024
 PLAN_FIELDS = (
     "task_id",
@@ -169,7 +179,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--datasets",
-        default="food,finance,software",
+        default="food,finance,software,travel",
         help="Comma-separated dataset aliases.",
     )
     parser.add_argument(
@@ -187,6 +197,53 @@ def parse_args() -> argparse.Namespace:
         help="Attach a public domain filter to a dataset alias; may be repeated.",
     )
     parser.add_argument("--shards", type=int, required=True)
+    parser.add_argument(
+        "--embedding-model-path",
+        type=Path,
+        default=Path(
+            os.environ.get("HABITBENCH_EMBED_MODEL", str(DEFAULT_BGE_M3_PATH))
+        ),
+        help=(
+            "Physical BGE-M3 snapshot used by this run. The model identity and "
+            "revision remain fixed; defaults to HABITBENCH_EMBED_MODEL or the "
+            "legacy ClusterX path."
+        ),
+    )
+    parser.add_argument(
+        "--llm-model-path",
+        type=Path,
+        default=Path(
+            os.environ.get("HABITBENCH_LLM_MODEL", str(DEFAULT_LLM_PATH))
+        ),
+        help="Physical Qwen snapshot recorded in the effective method config.",
+    )
+    parser.add_argument(
+        "--served-model-name",
+        default=os.environ.get("HABITBENCH_SERVED_MODEL", DEFAULT_SERVED_MODEL),
+        help="OpenAI-compatible served model identity recorded in method configs.",
+    )
+    parser.add_argument(
+        "--lightmem-model-path",
+        type=Path,
+        default=Path(
+            os.environ.get(
+                "HABITBENCH_LIGHTMEM_MODEL",
+                str(DEFAULT_COMPRESSOR_PATH),
+            )
+        ),
+        help="Physical LLMLingua2 snapshot used by LightMem.",
+    )
+    parser.add_argument(
+        "--secom-compressor-path",
+        type=Path,
+        default=Path(
+            os.environ.get(
+                "HABITBENCH_SECOM_COMPRESSOR",
+                str(DEFAULT_COMPRESSOR_PATH),
+            )
+        ),
+        help="Physical LLMLingua2 snapshot used by SeCom.",
+    )
     parser.add_argument(
         "--max-users",
         type=int,
@@ -238,13 +295,17 @@ def _git_state() -> dict[str, str | bool | None]:
     return {"revision": revision, "dirty": dirty}
 
 
-def _validate_bge_m3(config: dict, *, config_path: Path) -> None:
+def _validate_bge_m3(
+    config: dict,
+    *,
+    config_path: Path,
+    model_path: Path,
+) -> None:
     embedding = config.get("embedding")
     expected = {
         "provider": "local",
         "model": BGE_M3_ID,
         "revision": BGE_M3_REVISION,
-        "model_path": str(BGE_M3_PATH),
         "dim": BGE_M3_DIM,
     }
     if not isinstance(embedding, dict):
@@ -260,16 +321,17 @@ def _validate_bge_m3(config: dict, *, config_path: Path) -> None:
             f"{config_path}: {mismatches}"
         )
 
-    model_config_path = BGE_M3_PATH / "config.json"
-    identity_path = BGE_M3_PATH / "HABIT_MODEL_INFO.json"
-    weight_path = BGE_M3_PATH / "pytorch_model.bin"
+    model_path = model_path.expanduser().resolve()
+    model_config_path = model_path / "config.json"
+    identity_path = model_path / "HABIT_MODEL_INFO.json"
+    weight_path = model_path / "pytorch_model.bin"
     if (
         not model_config_path.is_file()
         or not identity_path.is_file()
         or not weight_path.is_file()
     ):
         raise FileNotFoundError(
-            f"Incomplete BGE-M3 snapshot at {BGE_M3_PATH}; "
+            f"Incomplete BGE-M3 snapshot at {model_path}; "
             "config.json, HABIT_MODEL_INFO.json and pytorch_model.bin are required"
         )
     model_config = json.loads(model_config_path.read_text(encoding="utf-8"))
@@ -287,7 +349,94 @@ def _validate_bge_m3(config: dict, *, config_path: Path) -> None:
         raise ValueError(f"BGE-M3 identity marker does not match the pinned profile: {identity}")
 
 
-def _method_configs(methods: list[str]) -> dict[str, dict | None]:
+def _effective_method_config(
+    config: dict,
+    *,
+    embedding_model_path: Path,
+    llm_model_path: Path | None = None,
+    served_model_name: str | None = None,
+    compressor_model_path: Path | None = None,
+) -> tuple[dict, dict[str, str]]:
+    """Apply the selected LLM identity and physical-path overrides."""
+    effective = copy.deepcopy(config)
+    overrides: dict[str, str] = {}
+    embedding = effective.get("embedding")
+    if isinstance(embedding, dict):
+        configured_path = embedding.get("model_path")
+        resolved_path = str(embedding_model_path.expanduser().resolve())
+        if configured_path != resolved_path:
+            overrides["embedding.model_path"] = resolved_path
+        embedding["model_path"] = resolved_path
+        agent_params = effective.get("agent_params")
+        if isinstance(agent_params, dict):
+            for key in ("amem_embedding_model", "embedding_model_path"):
+                if key in agent_params and agent_params[key] != resolved_path:
+                    agent_params[key] = resolved_path
+                    overrides[f"agent_params.{key}"] = resolved_path
+    if llm_model_path is not None:
+        history = effective.get("history")
+        resolved_llm_path = str(llm_model_path.expanduser().resolve())
+        if isinstance(history, dict) and "tokenizer_path" in history:
+            if history["tokenizer_path"] != resolved_llm_path:
+                overrides["history.tokenizer_path"] = resolved_llm_path
+            history["tokenizer_path"] = resolved_llm_path
+    if served_model_name is not None:
+        served_model_name = served_model_name.strip()
+        if not served_model_name:
+            raise ValueError("served_model_name cannot be empty")
+        description = effective.get("description")
+        if isinstance(description, str) and "Qwen3-8B" in description:
+            effective["description"] = description.replace(
+                "Qwen3-8B", served_model_name
+            )
+            overrides["description"] = effective["description"]
+        for section_name in ("model", "answer_model"):
+            section = effective.get(section_name)
+            if isinstance(section, dict) and section.get("name") != served_model_name:
+                section["name"] = served_model_name
+                overrides[f"{section_name}.name"] = served_model_name
+        history = effective.get("history")
+        compactor = history.get("compactor") if isinstance(history, dict) else None
+        if isinstance(compactor, dict) and compactor.get("name") != served_model_name:
+            compactor["name"] = served_model_name
+            overrides["history.compactor.name"] = served_model_name
+        agent_params = effective.get("agent_params")
+        if isinstance(agent_params, dict):
+            for key in ("amem_model", "memos_model"):
+                if key in agent_params and agent_params[key] != served_model_name:
+                    agent_params[key] = served_model_name
+                    overrides[f"agent_params.{key}"] = served_model_name
+    if compressor_model_path is not None:
+        resolved_compressor_path = str(
+            compressor_model_path.expanduser().resolve()
+        )
+        memory = effective.get("memory")
+        if isinstance(memory, dict) and "compressor_model_path" in memory:
+            if memory["compressor_model_path"] != resolved_compressor_path:
+                overrides["memory.compressor_model_path"] = resolved_compressor_path
+            memory["compressor_model_path"] = resolved_compressor_path
+        agent_params = effective.get("agent_params")
+        if (
+            isinstance(agent_params, dict)
+            and "topic_segmenter_model_path" in agent_params
+        ):
+            if agent_params["topic_segmenter_model_path"] != resolved_compressor_path:
+                overrides["agent_params.topic_segmenter_model_path"] = (
+                    resolved_compressor_path
+                )
+            agent_params["topic_segmenter_model_path"] = resolved_compressor_path
+    return effective, overrides
+
+
+def _method_configs(
+    methods: list[str],
+    *,
+    embedding_model_path: Path,
+    llm_model_path: Path,
+    lightmem_model_path: Path,
+    secom_compressor_path: Path,
+    served_model_name: str = DEFAULT_SERVED_MODEL,
+) -> dict[str, dict | None]:
     config_root = (
         PROJECT_ROOT / "third_party/medmemorybench/configs/method_config"
     )
@@ -308,20 +457,38 @@ def _method_configs(methods: list[str]) -> dict[str, dict | None]:
         if not isinstance(parsed, dict):
             raise ValueError(f"Method config must contain a YAML object: {path}")
         if method in BGE_M3_METHODS:
-            _validate_bge_m3(parsed, config_path=path)
+            _validate_bge_m3(
+                parsed,
+                config_path=path,
+                model_path=embedding_model_path,
+            )
+        compressor_model_path = None
+        if method == "lightmem":
+            compressor_model_path = lightmem_model_path
+        elif method == "secom":
+            compressor_model_path = secom_compressor_path
+        effective_config, path_overrides = _effective_method_config(
+            parsed,
+            embedding_model_path=embedding_model_path,
+            llm_model_path=llm_model_path,
+            served_model_name=served_model_name,
+            compressor_model_path=compressor_model_path,
+        )
         records[method] = {
             "name": config_name,
             "path": str(path.resolve()),
             "sha256": sha256_file(path),
-            "config": parsed,
+            "config": effective_config,
+            "path_overrides": path_overrides,
         }
     return records
 
 
-def _bge_m3_snapshot() -> dict:
-    identity_path = BGE_M3_PATH / "HABIT_MODEL_INFO.json"
-    config_path = BGE_M3_PATH / "config.json"
-    weight_path = BGE_M3_PATH / "pytorch_model.bin"
+def _bge_m3_snapshot(model_path: Path) -> dict:
+    model_path = model_path.expanduser().resolve()
+    identity_path = model_path / "HABIT_MODEL_INFO.json"
+    config_path = model_path / "config.json"
+    weight_path = model_path / "pytorch_model.bin"
     return {
         "identity": json.loads(identity_path.read_text(encoding="utf-8")),
         "identity_path": str(identity_path),
@@ -332,8 +499,31 @@ def _bge_m3_snapshot() -> dict:
     }
 
 
+def _portable_model_snapshot(model_path: Path) -> dict:
+    """Record H identity markers when present without breaking legacy paths."""
+    model_path = model_path.expanduser().resolve()
+    record: dict[str, object] = {"path": str(model_path)}
+    config_path = model_path / "config.json"
+    if config_path.is_file():
+        record["transformers_config_sha256"] = sha256_file(config_path)
+    identity_path = model_path / "HABIT_MODEL_INFO.json"
+    if identity_path.is_file():
+        record.update(
+            {
+                "identity": json.loads(identity_path.read_text(encoding="utf-8")),
+                "identity_path": str(identity_path),
+                "identity_sha256": sha256_file(identity_path),
+            }
+        )
+    return record
+
+
 def main() -> None:
     args = parse_args()
+    embedding_model_path = args.embedding_model_path.expanduser().resolve()
+    llm_model_path = args.llm_model_path.expanduser().resolve()
+    lightmem_model_path = args.lightmem_model_path.expanduser().resolve()
+    secom_compressor_path = args.secom_compressor_path.expanduser().resolve()
     if args.plan.exists() and not args.force:
         raise FileExistsError(f"Plan already exists; pass --force to replace it: {args.plan}")
     rows = create_plan(args)
@@ -354,7 +544,14 @@ def main() -> None:
         }
         for row in rows
     }
-    method_configs = _method_configs(methods)
+    method_configs = _method_configs(
+        methods,
+        embedding_model_path=embedding_model_path,
+        llm_model_path=llm_model_path,
+        lightmem_model_path=lightmem_model_path,
+        secom_compressor_path=secom_compressor_path,
+        served_model_name=args.served_model_name,
+    )
     manifest_path = args.manifest or args.plan.with_suffix(".manifest.json")
     manifest = {
         "contract_version": "habitbench.shard_plan.v2",
@@ -366,11 +563,22 @@ def main() -> None:
         "shard_count": args.shards,
         "methods": method_configs,
         "models": {
+            "llm": _portable_model_snapshot(llm_model_path),
             "embedding": (
-                _bge_m3_snapshot()
+                _bge_m3_snapshot(embedding_model_path)
                 if any(method in BGE_M3_METHODS for method in methods)
                 else None
-            )
+            ),
+            "lightmem_model": (
+                _portable_model_snapshot(lightmem_model_path)
+                if "lightmem" in methods
+                else None
+            ),
+            "secom_compressor": (
+                _portable_model_snapshot(secom_compressor_path)
+                if "secom" in methods
+                else None
+            ),
         },
         "datasets": {
             dataset_name: {
