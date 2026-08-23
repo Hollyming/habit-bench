@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import json
 import multiprocessing
+import queue
 import tempfile
 import threading
+import time
 import unittest
 from unittest import mock
 from concurrent.futures import ThreadPoolExecutor
@@ -44,6 +46,39 @@ def _consume_queue_in_process(
             {"status": "succeeded", "returncode": 0},
         )
     output_queue.put(claimed)
+
+
+def _hold_task_output_lock(
+    raw_root: str,
+    acquired: object,
+    release: object,
+) -> None:
+    output_dir = Path(raw_root) / "mirix" / "shard_000_of_016"
+    with runner._exclusive_task_output_lock(
+        output_dir,
+        label="mirix/finance/shard_000_of_016",
+        poll_sec=0.02,
+        log_every_sec=10,
+    ):
+        acquired.set()
+        release.wait(timeout=30)
+
+
+def _measure_task_output_lock_wait(
+    raw_root: str,
+    attempting: object,
+    output_queue: object,
+) -> None:
+    output_dir = Path(raw_root) / "mirix" / "shard_000_of_016"
+    started = time.monotonic()
+    attempting.set()
+    with runner._exclusive_task_output_lock(
+        output_dir,
+        label="mirix/finance/shard_000_of_016",
+        poll_sec=0.02,
+        log_every_sec=10,
+    ):
+        output_queue.put(time.monotonic() - started)
 
 
 class MultiGpuResumeTest(unittest.TestCase):
@@ -242,6 +277,35 @@ class MultiGpuResumeTest(unittest.TestCase):
             self.assertEqual(state["claimed"], 128)
             self.assertEqual(state["finished"], 128)
             self.assertEqual(state["active"], 0)
+
+    def test_output_lock_serializes_independent_rjobs(self):
+        context = multiprocessing.get_context("spawn")
+        with tempfile.TemporaryDirectory() as raw_root:
+            acquired = context.Event()
+            attempting = context.Event()
+            release = context.Event()
+            output_queue = context.Queue()
+            owner = context.Process(
+                target=_hold_task_output_lock,
+                args=(raw_root, acquired, release),
+            )
+            contender = context.Process(
+                target=_measure_task_output_lock_wait,
+                args=(raw_root, attempting, output_queue),
+            )
+            owner.start()
+            self.assertTrue(acquired.wait(timeout=10))
+            contender.start()
+            self.assertTrue(attempting.wait(timeout=10))
+            with self.assertRaises(queue.Empty):
+                output_queue.get(timeout=0.3)
+            release.set()
+            waited_sec = output_queue.get(timeout=10)
+            owner.join(timeout=10)
+            contender.join(timeout=10)
+            self.assertEqual(owner.exitcode, 0)
+            self.assertEqual(contender.exitcode, 0)
+            self.assertGreaterEqual(waited_sec, 0.25)
 
     def test_replica_runtime_merge_preserves_all_shard_records(self):
         with tempfile.TemporaryDirectory() as raw_root:

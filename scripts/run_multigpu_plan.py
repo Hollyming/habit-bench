@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import fcntl
 import hashlib
 import importlib.util
 import json
@@ -20,6 +21,7 @@ import time
 import urllib.request
 from collections import deque
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from importlib.metadata import version as package_version
 from pathlib import Path
@@ -215,6 +217,8 @@ def _safe_config(env: dict[str, str]) -> dict[str, Any]:
         "HABITBENCH_VLLM_BENCHMARK_TOKENS",
         "HABITBENCH_VLLM_BENCHMARK_TIMEOUT_SEC",
         "HABITBENCH_VLLM_BENCHMARK_CONCURRENCY",
+        "HABITBENCH_TASK_LOCK_POLL_SEC",
+        "HABITBENCH_TASK_LOCK_LOG_EVERY_SEC",
         "HABITBENCH_MEMORY_LLM_MAX_TOKENS",
         "HABITBENCH_MEMORY_LLM_TEMPERATURE",
         "HABITBENCH_MEMORY_LLM_SEED",
@@ -1194,6 +1198,96 @@ def _prepare_task_output(output_dir: Path, *, force_rerun: bool) -> bool:
     return was_complete
 
 
+def _task_output_lock_path(output_dir: Path) -> Path:
+    """Return a persistent lock file shared by every run of one shard."""
+
+    if not SHARD_DIR_PATTERN.fullmatch(output_dir.name):
+        raise ValueError(f"Refusing non-shard output directory: {output_dir}")
+    return (
+        output_dir.parent
+        / ".habitbench-shard-locks"
+        / f"{output_dir.name}.lock"
+    )
+
+
+@contextmanager
+def _exclusive_task_output_lock(
+    output_dir: Path,
+    *,
+    label: str,
+    poll_sec: float = 5.0,
+    log_every_sec: float = 60.0,
+):
+    """Serialize all writers to one persistent shard output directory.
+
+    Distributed queue claims are intentionally scoped to one coordinator. A
+    second RJob can therefore have a different queue while targeting the same
+    output shard.  Holding a POSIX lock across checkpoint validation, partial
+    output cleanup, execution, and final marker publication prevents those
+    independent jobs from deleting or mutating each other's state.  The kernel
+    releases the lock automatically if a worker or RJob is terminated.
+    """
+
+    if poll_sec <= 0:
+        raise ValueError(f"poll_sec must be positive: {poll_sec}")
+    if log_every_sec <= 0:
+        raise ValueError(f"log_every_sec must be positive: {log_every_sec}")
+
+    lock_path = _task_output_lock_path(output_dir)
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    handle = lock_path.open("a+", encoding="utf-8")
+    wait_started = time.monotonic()
+    next_log_at = wait_started
+    try:
+        while True:
+            try:
+                fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except BlockingIOError:
+                now = time.monotonic()
+                if now >= next_log_at:
+                    handle.seek(0)
+                    owner = handle.read().strip().replace("\n", " ") or "unknown"
+                    _log(
+                        "task_output_lock_wait",
+                        task=label,
+                        waited_sec=round(now - wait_started, 1),
+                        lock=lock_path,
+                        owner=owner,
+                    )
+                    next_log_at = now + log_every_sec
+                time.sleep(poll_sec)
+
+        acquired_at = _utc_now()
+        waited_sec = round(time.monotonic() - wait_started, 3)
+        owner = {
+            "acquired_at": acquired_at,
+            "host": socket.gethostname(),
+            "job_id": os.environ.get("JOB_ID"),
+            "pid": os.getpid(),
+            "task": label,
+        }
+        handle.seek(0)
+        handle.truncate()
+        json.dump(owner, handle, ensure_ascii=False, sort_keys=True)
+        handle.write("\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+        _log(
+            "task_output_lock_acquired",
+            task=label,
+            waited_sec=waited_sec,
+            lock=lock_path,
+        )
+        yield
+    finally:
+        try:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+        finally:
+            handle.close()
+        _log("task_output_lock_released", task=label, lock=lock_path)
+
+
 def _run_streamed_command(
     command: list[str],
     *,
@@ -1254,6 +1348,29 @@ def _run_streamed_command(
 
 
 def _run_task(
+    row: dict[str, str],
+    worker: dict[str, Any],
+    base_env: dict[str, str],
+) -> dict[str, Any]:
+    shard_index = int(row["shard_index"])
+    shard_count = int(row["shard_count"])
+    shard_name = f"shard_{shard_index:03d}_of_{shard_count:03d}"
+    output_dir = Path(row["method_output_root"]) / shard_name
+    label = f"{row['method']}/{row['dataset_name']}/{shard_name}"
+    poll_sec = float(base_env.get("HABITBENCH_TASK_LOCK_POLL_SEC", "5"))
+    log_every_sec = float(
+        base_env.get("HABITBENCH_TASK_LOCK_LOG_EVERY_SEC", "60")
+    )
+    with _exclusive_task_output_lock(
+        output_dir,
+        label=label,
+        poll_sec=poll_sec,
+        log_every_sec=log_every_sec,
+    ):
+        return _run_task_with_output_lock(row, worker, base_env)
+
+
+def _run_task_with_output_lock(
     row: dict[str, str],
     worker: dict[str, Any],
     base_env: dict[str, str],

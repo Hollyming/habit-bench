@@ -600,6 +600,8 @@ schema 严格校验。仅对已经由官方 parser 修复的截断对象，在�
 | `HABITBENCH_ENABLE_PREFIX_CACHING` | 默认 1；复用同用户长历史 prompt prefix |
 | `HABITBENCH_VLLM_MIN_TOKENS_PER_SEC` | 启动后并发聚合 decode 吞吐门槛，默认 60 |
 | `HABITBENCH_VLLM_BENCHMARK_CONCURRENCY` | 吞吐门禁的代表性并发数，默认 4 |
+| `HABITBENCH_TASK_LOCK_POLL_SEC` | 跨 RJob shard 输出锁轮询间隔，默认 5 秒 |
+| `HABITBENCH_TASK_LOCK_LOG_EVERY_SEC` | 输出锁等待日志间隔，默认 60 秒 |
 | `HABITBENCH_FORCE_RERUN` | 设为 1 时重跑已有完整 shard |
 
 ## 6. 运行方式
@@ -686,6 +688,10 @@ plan manifest 和 dataset subset，不能把此类结果混入正式全量表格
 
 相同 `output-root` 可用于断点恢复；只有原子成功标记与完整最终产物同时存在的 shard
 才会跳过，失败/中断半成品在重跑前删除。
+每个真实 shard 输出目录还由相邻的 `.habitbench-shard-locks/` POSIX 锁保护；锁覆盖
+断点检查、半成品清理、执行和最终标记发布。因此两个不同 `JOB_ID` 即使误用同一
+`output-root`，也只能串行处理同一 shard，后取得锁的任务会重新检查并复用完整结果。
+worker 或 RJob 被终止时内核自动释放锁，不会留下阻塞恢复的永久 claim。
 只有明确希望覆盖完整 shard 时才设置 `HABITBENCH_FORCE_RERUN=1`。
 
 ### 6.4 H 集群 4/8 卡 H200 评测

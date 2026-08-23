@@ -242,6 +242,12 @@ shard 只写一次，不按 session/probe 高频保存。失败或中断目录�
 ingestion 半成品 memory backend 状态。改变 methods/datasets/shards 时必须换 output
 root，或显式使用 `--force-plan`。不要把唯一输出或恢复点写到容器临时盘。
 
+launch 内的动态 task claim 以 `JOB_ID` 隔离；它不能阻止另一个 RJob 误用相同输出根。
+因此 runner 会在每个 method/domain 的 `.habitbench-shard-locks/` 下持有 shard 级 POSIX
+排他锁，并在取得锁后才检查 checkpoint 或删除半成品。锁一直持有到成功标记发布或失败
+清理结束，等待者会定期向云端日志输出 owner 与等待时间。进程终止时内核自动释放锁，
+所以中断恢复不依赖手工删除锁文件。
+
 两个 Replica 分别在 `replica_runtime/$JOB_ID/`、`h_rjob_logs/$JOB_ID/` 和
 `vllm_logs/$JOB_ID/` 写 launch-scoped runtime/log，避免续跑读取上一任务的元数据。每个 shard 的
 adapter stdout/stderr 会同时落盘并带 shard 前缀实时转发到 RJob 云端日志。每个 Replica

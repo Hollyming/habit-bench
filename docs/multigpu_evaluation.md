@@ -173,6 +173,14 @@ Use `--force-plan` only when intentionally replacing the plan and
 `HABITBENCH_FORCE_RERUN=1` only when intentionally replacing completed shard
 outputs.
 
+The launch queue is scoped to one coordinator, so a second RJob can still
+target the same output root. Before checkpoint inspection or partial-output
+cleanup, every worker therefore acquires the persistent shard lock in
+`.habitbench-shard-locks/` and holds it through final marker publication. A
+second coordinator waits, then revalidates the checkpoint after acquiring the
+lock. POSIX locks are released by the kernel when a worker is terminated, so a
+preemption cannot leave a permanent lock claim.
+
 For smoke plans, `--max-users` and `--max-probes` define one global ordered
 dataset prefix before users are split into shards. Therefore, the disjoint
 shard union is exactly the unsharded subset recorded in the plan manifest;
@@ -226,7 +234,8 @@ The H launcher supports 4 or 8 H200 GPUs per Replica. Multi-Replica runs use
 `JOB_ID` to create one launch-scoped GPFS task queue; `NODE_RANK` identifies the
 claim owner but does not statically partition shard indices. Atomic GPFS
 directory creation serializes each task claim, and each plan row is issued once
-per launch. No DDP/NCCL synchronization is used. Per-Replica runtime/log files
+per launch. The separate shard-output lock prevents different launches from
+mutating the same persistent shard concurrently. No DDP/NCCL synchronization is used. Per-Replica runtime/log files
 avoid shared writes, and an atomic merge-claim directory elects the Replica that
 performs the global merge. The launcher keeps managed spot/reserved/idle parameters separate and
 verifies GPU model names inside each worker before vLLM starts. See
