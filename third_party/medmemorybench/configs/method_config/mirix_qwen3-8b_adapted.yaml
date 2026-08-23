@@ -32,11 +32,11 @@ agent_params:
   # finish_memory_update option, then bridge it back into the vendored tool
   # executor. The historical option name is kept for config compatibility.
   core_json_tool_bridge: true
-  # Temperature-zero retries otherwise repeat the same empty/invalid output.
-  # Each bounded retry adds a corrective prompt and regenerates the complete
-  # schema object from the original request. Five attempts cover the observed
-  # three-generation Qwen3-4B invalid-JSON streak while remaining bounded and
-  # fail-closed when every corrective generation is unusable.
+  # The bridge first applies MIRIX's official tolerant JSON parser and then
+  # strict schema validation. If an object is still unusable, each bounded
+  # retry uses a deterministic new seed plus light sampling rather than
+  # repeating identical temperature-zero bytes. It remains fail-closed after
+  # five unsuccessful corrective generations.
   json_tool_bridge_attempts: 5
   # Local Qwen can occasionally emit a descriptive/name-like stale ID for an
   # update.  Preserve the new items but ignore nonexistent delete targets so an

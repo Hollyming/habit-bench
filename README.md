@@ -567,6 +567,12 @@ thinking，因此不启用 `--reasoning-parser`；否则 schema-constrained JSON
 `message.content`，与本地 JSON bridge 的传输约定冲突。正式 launcher 会在 MIRIX
 preflight 中拒绝这类不兼容配置。
 
+本地 serving 若仍提前结束 memory-tool JSON，bridge 会复用 MIRIX 官方的
+`json.loads` / `demjson3` / `json-repair` 容错解析链，并在执行前再次按原工具
+schema 严格校验；无法修复或违反 schema 的结果仍然失败关闭。后续纠错生成采用固定
+的逐次 seed 和轻量采样，避免温度为零时重复五次完全相同的畸形输出。该适配不改动
+MIRIX 的 validator、executor、storage 或多 memory-child 生命周期。
+
 常用环境变量：
 
 | 变量 | 默认值/用途 |

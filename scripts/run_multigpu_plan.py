@@ -216,6 +216,10 @@ def _safe_config(env: dict[str, str]) -> dict[str, Any]:
         "HABITBENCH_VLLM_BENCHMARK_TIMEOUT_SEC",
         "HABITBENCH_VLLM_BENCHMARK_CONCURRENCY",
         "HABITBENCH_MEMORY_LLM_MAX_TOKENS",
+        "HABITBENCH_MEMORY_LLM_TEMPERATURE",
+        "HABITBENCH_MEMORY_LLM_SEED",
+        "MIRIX_JSON_TOOL_BRIDGE_SEED",
+        "MIRIX_JSON_TOOL_BRIDGE_RETRY_TEMPERATURE",
         "HABITBENCH_GRAPHITI_LLM_MAX_TOKENS",
         "HABITBENCH_GRAPHITI_SCHEMA_MAX_ITEMS",
         "HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS",
@@ -375,6 +379,10 @@ if method in {"memos", "memrl"}:
         "memos.memories.factory",
         "memos.configs.memory",
     ])
+
+if method == "mirix":
+    importlib.import_module("json_repair")
+    loaded.append("json_repair")
 
 if method == "memrl":
     memrl_root = root / "methods" / "MemRL"
@@ -567,6 +575,7 @@ def _preflight_runtime(
             packages,
             {
                 "aiosqlite": ("aiosqlite", "0.22.1"),
+                "json-repair": ("json_repair", "0.53.0"),
                 "langfuse": ("langfuse", "3.15.0"),
                 "pydub": ("pydub", "0.25.1"),
                 "RapidFuzz": ("rapidfuzz", "3.14.5"),

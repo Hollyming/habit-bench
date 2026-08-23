@@ -158,7 +158,9 @@ def main() -> None:
     with args.plan.open("r", encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
 
-    groups: dict[tuple[str, str, str, str, str, int], None] = {}
+    groups: dict[
+        tuple[str, str, str, str, str, int, int | None, int | None], None
+    ] = {}
     for row in rows:
         key = (
             row["method"],
@@ -167,6 +169,8 @@ def main() -> None:
             row.get("domain_filter", ""),
             row["method_output_root"],
             int(row["shard_count"]),
+            int(row["max_users"]) if row.get("max_users") else None,
+            int(row["max_probes"]) if row.get("max_probes") else None,
         )
         groups[key] = None
 
@@ -225,6 +229,8 @@ def main() -> None:
         domain_filter,
         method_output_root,
         shard_count,
+        max_users,
+        max_probes,
     ) in groups:
         output_root = Path(method_output_root)
         if method in ORACLE_METHODS:
@@ -244,6 +250,8 @@ def main() -> None:
                 method,
                 shard_count,
                 domain_filter or None,
+                max_users,
+                max_probes,
             )
         observed = observed_groups.get(
             (method, dataset_name, str(output_root.resolve()))

@@ -10,7 +10,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from eval.core.dataset import DatasetContractError, load_dataset
+from eval.core.dataset import DatasetBundle, DatasetContractError, load_dataset
 from eval.core.io import read_jsonl, write_json, write_jsonl
 from eval.core.scoring import score_predictions, write_score_outputs
 from eval.run import validate_memory_contexts
@@ -70,6 +70,66 @@ def _discover_shards(shard_root: Path, expected_shards: int) -> list[tuple[int, 
     return [(index, found[index]) for index in range(expected_shards)]
 
 
+def _load_merged_dataset_view(
+    dataset_dir: Path,
+    *,
+    domain_filter: str | None,
+    max_users: int | None,
+    max_probes: int | None,
+    expected_shards: int,
+) -> DatasetBundle:
+    """Rebuild the exact union produced by the per-shard subset contract."""
+
+    base = load_dataset(
+        dataset_dir,
+        domain_filter=domain_filter,
+        max_users=max_users,
+    )
+    if max_probes is None:
+        return base
+
+    selected_probe_ids: set[str] = set()
+    for index in range(expected_shards):
+        shard = load_dataset(
+            dataset_dir,
+            domain_filter=domain_filter,
+            max_users=max_users,
+            max_probes=max_probes,
+            user_shard_index=index,
+            user_shard_count=expected_shards,
+        )
+        selected_probe_ids.update(probe["probe_id"] for probe in shard.probes)
+
+    probes = [
+        probe for probe in base.probes if probe["probe_id"] in selected_probe_ids
+    ]
+    selected_users = {probe["user_id"] for probe in probes}
+    sessions_by_user = {
+        user_id: sessions
+        for user_id, sessions in base.sessions_by_user.items()
+        if user_id in selected_users
+    }
+    manifest = {
+        **base.manifest,
+        "users": len(sessions_by_user),
+        "sessions": sum(len(rows) for rows in sessions_by_user.values()),
+        "probes": len(probes),
+        "subset": {
+            **(base.manifest.get("subset") or {}),
+            "max_probes": max_probes,
+            "user_shard_index": None,
+            "user_shard_count": None,
+        },
+    }
+    return DatasetBundle(
+        base.dataset_dir,
+        sessions_by_user,
+        probes,
+        {probe["probe_id"]: base.keys[probe["probe_id"]] for probe in probes},
+        manifest,
+    )
+
+
 def merge_shards(
     dataset_dir: Path,
     shard_root: Path,
@@ -77,11 +137,19 @@ def merge_shards(
     method_name: str,
     expected_shards: int,
     domain_filter: str | None = None,
+    max_users: int | None = None,
+    max_probes: int | None = None,
 ) -> dict[str, Any]:
     if expected_shards < 1:
         raise DatasetContractError("expected_shards must be positive")
 
-    bundle = load_dataset(dataset_dir, domain_filter=domain_filter)
+    bundle = _load_merged_dataset_view(
+        dataset_dir,
+        domain_filter=domain_filter,
+        max_users=max_users,
+        max_probes=max_probes,
+        expected_shards=expected_shards,
+    )
     shards = _discover_shards(shard_root, expected_shards)
     expected_hashes = {
         field: bundle.manifest[field]
@@ -124,9 +192,15 @@ def merge_shards(
             raise DatasetContractError(f"Shard index mismatch in {shard_dir}")
         if subset.get("user_shard_count") != expected_shards:
             raise DatasetContractError(f"Shard count mismatch in {shard_dir}")
-        if subset.get("max_users") is not None or subset.get("max_probes") is not None:
+        if subset.get("max_users") != max_users:
             raise DatasetContractError(
-                f"Cannot form a full merge from max-users/max-probes subset: {shard_dir}"
+                f"max-users mismatch in {shard_dir}: "
+                f"{subset.get('max_users')!r} != {max_users!r}"
+            )
+        if subset.get("max_probes") != max_probes:
+            raise DatasetContractError(
+                f"max-probes mismatch in {shard_dir}: "
+                f"{subset.get('max_probes')!r} != {max_probes!r}"
             )
 
         implementation = manifest.get("implementation") or {}
@@ -227,6 +301,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--method-name", required=True)
     parser.add_argument("--expected-shards", type=int, required=True)
     parser.add_argument("--domain-filter")
+    parser.add_argument("--max-users", type=int)
+    parser.add_argument("--max-probes", type=int)
     return parser.parse_args()
 
 
@@ -239,5 +315,7 @@ if __name__ == "__main__":
         args.method_name,
         args.expected_shards,
         args.domain_filter,
+        args.max_users,
+        args.max_probes,
     )
     print(json.dumps(result["result"], indent=2, sort_keys=True))

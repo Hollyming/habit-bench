@@ -96,9 +96,14 @@ tool's exact argument schema. The first option prevents unbounded whitespace
 from consuming the complete 8,192-token child budget; the second prevents an
 unsupported constraint from silently degrading to unconstrained text. Selector
 and arguments are sequential within one child call, while independent official
-MIRIX memory children remain concurrent. Tool validation, execution, storage,
-and child lifecycle remain unchanged. Requests without a structured response
-format are unaffected.
+MIRIX memory children remain concurrent. If local serving still ends a JSON
+object early, the bridge reuses MIRIX's official tolerant parser
+(`json.loads` / `demjson3` / `json-repair`) and then applies the same strict
+tool schema before execution. Objects that cannot be repaired or do not satisfy
+the schema remain hard failures. Corrective generations use deterministic
+per-attempt seeds and light sampling, so a retry does not replay identical
+malformed bytes. Tool validation, execution, storage, and child lifecycle
+remain unchanged. Requests without a structured response format are unaffected.
 
 `VLLM_BATCH_INVARIANT=1` and `--attention-backend FLASH_ATTN` keep outputs
 stable when several user workers share one endpoint. After startup, every

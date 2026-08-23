@@ -62,12 +62,16 @@ def _write_shard(
     index: int,
     count: int,
     domain_filter: str | None = None,
+    max_users: int | None = None,
+    max_probes: int | None = None,
 ) -> None:
     bundle = load_dataset(
         dataset,
         domain_filter=domain_filter,
         user_shard_index=index,
         user_shard_count=count,
+        max_users=max_users,
+        max_probes=max_probes,
     )
     shard_dir = shard_root / f"shard_{index:03d}_of_{count:03d}"
     implementation = {"kind": "control", "source": "test", "revision": "1"}
@@ -136,6 +140,43 @@ class MergeShardsTest(unittest.TestCase):
 
             with self.assertRaisesRegex(DatasetContractError, "Shard coverage mismatch"):
                 merge_shards(dataset, shard_root, root / "merged", "no_memory", 2)
+
+    def test_merge_rescores_declared_smoke_subset(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            dataset = _write_fixture(root)
+            shard_root = root / "shards"
+            for index in range(2):
+                _write_shard(
+                    dataset,
+                    shard_root,
+                    index,
+                    2,
+                    max_users=2,
+                    max_probes=1,
+                )
+
+            manifest = merge_shards(
+                dataset,
+                shard_root,
+                root / "merged",
+                "no_memory",
+                2,
+                max_users=2,
+                max_probes=1,
+            )
+            self.assertEqual(manifest["result"]["total"], 2)
+            self.assertEqual(manifest["dataset"]["subset"]["max_users"], 2)
+            self.assertEqual(manifest["dataset"]["subset"]["max_probes"], 1)
+
+            with self.assertRaisesRegex(DatasetContractError, "max-users mismatch"):
+                merge_shards(
+                    dataset,
+                    shard_root,
+                    root / "wrong-subset",
+                    "no_memory",
+                    2,
+                )
 
     def test_merge_validates_domain_filtered_view(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

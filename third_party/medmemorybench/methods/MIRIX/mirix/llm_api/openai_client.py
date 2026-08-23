@@ -61,6 +61,46 @@ logger = get_logger(__name__)
 _MEMORY_JSON_ENDPOINT_LOCKS = WeakKeyDictionary()
 
 
+def _memory_json_bridge_seed() -> int:
+    raw = os.environ.get(
+        "MIRIX_JSON_TOOL_BRIDGE_SEED",
+        os.environ.get("HABITBENCH_MEMORY_LLM_SEED", "42"),
+    )
+    try:
+        return max(0, min(int(raw), 2**31 - 1))
+    except ValueError:
+        logger.warning("Invalid MIRIX_JSON_TOOL_BRIDGE_SEED=%r; using 42", raw)
+        return 42
+
+
+def _memory_json_retry_temperature() -> float:
+    raw = os.environ.get("MIRIX_JSON_TOOL_BRIDGE_RETRY_TEMPERATURE", "0.2")
+    try:
+        return max(0.0, min(float(raw), 2.0))
+    except ValueError:
+        logger.warning(
+            "Invalid MIRIX_JSON_TOOL_BRIDGE_RETRY_TEMPERATURE=%r; using 0.2",
+            raw,
+        )
+        return 0.2
+
+
+def _diversify_memory_json_retry(
+    request_data: dict,
+    *,
+    attempt: int,
+) -> dict:
+    """Make bounded corrective generations reproducible but non-identical."""
+    retry_data = dict(request_data)
+    try:
+        base_seed = int(request_data.get("seed", _memory_json_bridge_seed()))
+    except (TypeError, ValueError):
+        base_seed = _memory_json_bridge_seed()
+    retry_data["seed"] = (base_seed + attempt - 1) % (2**31)
+    retry_data["temperature"] = _memory_json_retry_temperature()
+    return retry_data
+
+
 def _memory_json_endpoint_lock(endpoint: str) -> asyncio.Lock:
     loop = asyncio.get_running_loop()
     endpoint_locks = _MEMORY_JSON_ENDPOINT_LOCKS.setdefault(loop, {})
@@ -360,6 +400,7 @@ class OpenAIClient(LLMClientBase):
             chat_template_kwargs["enable_thinking"] = False
             extra_body["chat_template_kwargs"] = chat_template_kwargs
             request_data["extra_body"] = extra_body
+            request_data.setdefault("seed", _memory_json_bridge_seed())
         client_kwargs = await self._prepare_client_kwargs()
         logger.debug(
             "OpenAI Request - Making request to %s", client_kwargs.get("base_url")
@@ -452,6 +493,10 @@ class OpenAIClient(LLMClientBase):
                     error=exc,
                     stage="selector",
                 )
+                selector_request = _diversify_memory_json_retry(
+                    selector_request,
+                    attempt=attempt + 1,
+                )
 
         if selected_name is None:
             raise AssertionError("memory JSON selector loop exited unexpectedly")
@@ -488,6 +533,10 @@ class OpenAIClient(LLMClientBase):
                     error=exc,
                     stage="arguments",
                     selected_name=selected_name,
+                )
+                current_arguments_request = _diversify_memory_json_retry(
+                    current_arguments_request,
+                    attempt=attempt + 1,
                 )
                 continue
 

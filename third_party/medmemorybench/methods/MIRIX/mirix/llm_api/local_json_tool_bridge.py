@@ -15,6 +15,11 @@ import json
 from copy import deepcopy
 from typing import Any
 
+from mirix.log import get_logger
+
+
+logger = get_logger(__name__)
+
 
 MEMORY_TOOL_FAMILIES = {
     "core": frozenset({"core_memory_append", "core_memory_rewrite"}),
@@ -331,27 +336,60 @@ def _first_choice_and_message(
 
 
 def _decode_memory_tool_payload(raw: str, source: str) -> dict[str, Any]:
-    """Decode one candidate without leaking model text into logs/errors."""
+    """Decode one candidate without leaking model text into logs/errors.
+
+    MIRIX itself parses tool arguments with ``json.loads``, ``demjson3`` and
+    ``json_repair`` in that order.  Local vLLM can terminate a constrained
+    string token with EOS and return ``finish_reason=stop`` even though the
+    surrounding JSON object is not closed.  Reuse MIRIX's official tolerant
+    parser for that case, then let the bridge's strict schema validator decide
+    whether the repaired object is safe to execute.
+    """
+    standard_error: json.JSONDecodeError | None = None
     try:
         # vLLM/xgrammar has occasionally returned a schema-valid string value
         # with a literal control character after the OpenAI response round
         # trip. MIRIX uses ``strict=False`` for the same interoperability case.
         payload = json.loads(raw, strict=False)
     except json.JSONDecodeError as exc:
-        digest = hashlib.sha256(raw.encode("utf-8", errors="replace")).hexdigest()[:16]
-        raise MemoryJsonToolBridgeError(
-            f"Memory JSON tool bridge received invalid JSON in {source}: "
-            f"JSONDecodeError(line={exc.lineno},column={exc.colno},pos={exc.pos},"
-            f"chars={len(raw)},sha256={digest})"
-        ) from exc
+        standard_error = exc
+        try:
+            from mirix.helpers.json_helpers import parse_json
+
+            payload = parse_json(raw)
+        except Exception as repair_exc:
+            digest = hashlib.sha256(
+                raw.encode("utf-8", errors="replace")
+            ).hexdigest()[:16]
+            raise MemoryJsonToolBridgeError(
+                f"Memory JSON tool bridge received invalid JSON in {source}: "
+                f"JSONDecodeError(line={exc.lineno},column={exc.colno},"
+                f"pos={exc.pos},chars={len(raw)},sha256={digest}); "
+                f"MIRIXRepairError(type={type(repair_exc).__name__})"
+            ) from repair_exc
+        digest = hashlib.sha256(
+            raw.encode("utf-8", errors="replace")
+        ).hexdigest()[:16]
+        logger.warning(
+            "Recovered malformed memory JSON in %s with MIRIX's tolerant "
+            "parser: JSONDecodeError(line=%d,column=%d,pos=%d,chars=%d,"
+            "sha256=%s)",
+            source,
+            exc.lineno,
+            exc.colno,
+            exc.pos,
+            len(raw),
+            digest,
+        )
     except TypeError as exc:
         raise MemoryJsonToolBridgeError(
             f"Memory JSON tool bridge received non-string JSON in {source}: "
             f"{type(exc).__name__}"
         ) from exc
     if not isinstance(payload, dict):
+        suffix = " after MIRIX repair" if standard_error is not None else ""
         raise MemoryJsonToolBridgeError(
-            f"Memory JSON tool bridge payload in {source} is not an object"
+            f"Memory JSON tool bridge payload in {source}{suffix} is not an object"
         )
     return payload
 

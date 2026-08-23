@@ -140,6 +140,57 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
                 selected,
             )
 
+    def test_mirix_bridge_repairs_then_strictly_validates_arguments(self) -> None:
+        _, metadata = build_memory_json_tool_bridge(
+            [
+                _tool(
+                    "semantic_memory_insert",
+                    {
+                        "items": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {"type": "string", "maxLength": 8},
+                        }
+                    },
+                ),
+                _tool("finish_memory_update"),
+            ]
+        )
+        converted = convert_memory_json_arguments_response(
+            {
+                "id": "chatcmpl-repaired",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "message": {"content": '{"items":["fact"]'},
+                    }
+                ],
+            },
+            metadata,
+            "semantic_memory_insert",
+        )
+        arguments = json.loads(
+            converted["choices"][0]["message"]["tool_calls"][0]
+            ["function"]["arguments"]
+        )
+        self.assertEqual(arguments, {"items": ["fact"]})
+
+        with self.assertRaisesRegex(MemoryJsonToolBridgeError, "too long"):
+            convert_memory_json_arguments_response(
+                {
+                    "choices": [
+                        {
+                            "finish_reason": "stop",
+                            "message": {
+                                "content": '{"items":["far-too-long"]'
+                            },
+                        }
+                    ]
+                },
+                metadata,
+                "semantic_memory_insert",
+            )
+
     def test_mirix_bridge_recovers_native_call_when_content_is_empty(self) -> None:
         response = {
             "id": "chatcmpl-native",
@@ -326,7 +377,11 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
             ),
             patch.dict(
                 os.environ,
-                {"MIRIX_JSON_TOOL_BRIDGE_ATTEMPTS": "2"},
+                {
+                    "MIRIX_JSON_TOOL_BRIDGE_ATTEMPTS": "2",
+                    "MIRIX_JSON_TOOL_BRIDGE_SEED": "42",
+                    "MIRIX_JSON_TOOL_BRIDGE_RETRY_TEMPERATURE": "0.2",
+                },
                 clear=False,
             ),
         ):
@@ -337,6 +392,12 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
         self.assertEqual(len(requests[1]["messages"]), 2)
         self.assertEqual(len(requests[2]["messages"]), 3)
         self.assertEqual(len(requests[3]["messages"]), 4)
+        self.assertEqual(requests[0]["seed"], 42)
+        self.assertEqual(requests[1]["seed"], 43)
+        self.assertEqual(requests[1]["temperature"], 0.2)
+        self.assertEqual(requests[2]["seed"], 42)
+        self.assertEqual(requests[3]["seed"], 43)
+        self.assertEqual(requests[3]["temperature"], 0.2)
         self.assertEqual(
             requests[0]["extra_body"]["chat_template_kwargs"],
             {"enable_thinking": False},
