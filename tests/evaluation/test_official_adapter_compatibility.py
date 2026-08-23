@@ -61,8 +61,9 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
             {"episodic_memory_insert", "finish_memory_update"},
         )
         self.assertEqual(
-            metadata["argument_schemas"]["episodic_memory_insert"]
-            ["properties"]["items"]["type"],
+            metadata["argument_schemas"]["episodic_memory_insert"]["properties"][
+                "items"
+            ]["type"],
             "array",
         )
 
@@ -87,9 +88,7 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
                 "choices": [
                     {
                         "finish_reason": "stop",
-                        "message": {
-                            "content": '{"name":"episodic_memory_insert"}'
-                        },
+                        "message": {"content": '{"name":"episodic_memory_insert"}'},
                     }
                 ]
             },
@@ -122,8 +121,7 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
             selected,
         )
         self.assertEqual(
-            converted["choices"][0]["message"]["tool_calls"][0]
-            ["function"]["name"],
+            converted["choices"][0]["message"]["tool_calls"][0]["function"]["name"],
             selected,
         )
         with self.assertRaisesRegex(MemoryJsonToolBridgeError, "too many items"):
@@ -170,8 +168,7 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
             "semantic_memory_insert",
         )
         arguments = json.loads(
-            converted["choices"][0]["message"]["tool_calls"][0]
-            ["function"]["arguments"]
+            converted["choices"][0]["message"]["tool_calls"][0]["function"]["arguments"]
         )
         self.assertEqual(arguments, {"items": ["fact"]})
 
@@ -181,14 +178,110 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
                     "choices": [
                         {
                             "finish_reason": "stop",
-                            "message": {
-                                "content": '{"items":["far-too-long"]'
-                            },
+                            "message": {"content": '{"items":["far-too-long"]'},
                         }
                     ]
                 },
                 metadata,
                 "semantic_memory_insert",
+            )
+
+    def test_mirix_bridge_projects_repaired_arguments_to_declared_schema(self) -> None:
+        item_schema = {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string"},
+                "summary": {"type": "string"},
+                "details": {"type": "string"},
+                "source": {"type": "string"},
+            },
+            "required": ["name", "summary", "details", "source"],
+            "additionalProperties": False,
+        }
+        _, metadata = build_memory_json_tool_bridge(
+            [
+                _tool(
+                    "semantic_memory_update",
+                    {
+                        "old_semantic_item_ids": {
+                            "type": "array",
+                            "items": {"type": "string"},
+                        },
+                        "new_items": {
+                            "type": "array",
+                            "items": item_schema,
+                        },
+                    },
+                ),
+                _tool("finish_memory_update"),
+            ]
+        )
+        truncated = (
+            '{"old_semantic_item_ids":["sem_A"],"new_items":'
+            '[{"name":"n","summary":"s","details":"d","source":"x",'
+            '"tree_path":["hallucinated"]}]'
+        )
+        converted = convert_memory_json_arguments_response(
+            {
+                "id": "chatcmpl-repaired-extra",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "message": {"content": truncated},
+                    }
+                ],
+            },
+            metadata,
+            "semantic_memory_update",
+        )
+        arguments = json.loads(
+            converted["choices"][0]["message"]["tool_calls"][0]["function"]["arguments"]
+        )
+        self.assertEqual(
+            arguments,
+            {
+                "old_semantic_item_ids": ["sem_A"],
+                "new_items": [
+                    {
+                        "name": "n",
+                        "summary": "s",
+                        "details": "d",
+                        "source": "x",
+                    }
+                ],
+            },
+        )
+
+        complete_with_extra = truncated + "}"
+        with self.assertRaisesRegex(
+            MemoryJsonToolBridgeError, "unexpected keys tree_path"
+        ):
+            convert_memory_json_arguments_response(
+                {
+                    "choices": [
+                        {
+                            "finish_reason": "stop",
+                            "message": {"content": complete_with_extra},
+                        }
+                    ],
+                },
+                metadata,
+                "semantic_memory_update",
+            )
+
+        missing_required = truncated.replace(',"source":"x"', "")
+        with self.assertRaisesRegex(MemoryJsonToolBridgeError, "missing required"):
+            convert_memory_json_arguments_response(
+                {
+                    "choices": [
+                        {
+                            "finish_reason": "stop",
+                            "message": {"content": missing_required},
+                        }
+                    ],
+                },
+                metadata,
+                "semantic_memory_update",
             )
 
     def test_mirix_bridge_recovers_native_call_when_content_is_empty(self) -> None:
@@ -252,11 +345,10 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
             },
         )
         self.assertEqual(
-            converted["choices"][0]["message"]["tool_calls"][0]["function"][
-                "name"
-            ],
+            converted["choices"][0]["message"]["tool_calls"][0]["function"]["name"],
             "finish_memory_update",
         )
+
     def test_mirix_retry_is_a_fresh_corrective_generation(self) -> None:
         original = {
             "model": "Qwen3-4B",
@@ -407,8 +499,9 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
             {"enable_thinking": False},
         )
         self.assertEqual(
-            requests[2]["response_format"]["json_schema"]["schema"]
-            ["additionalProperties"],
+            requests[2]["response_format"]["json_schema"]["schema"][
+                "additionalProperties"
+            ],
             False,
         )
         self.assertIn(
@@ -416,9 +509,7 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
             requests[3]["messages"][-1]["content"],
         )
         self.assertEqual(
-            converted["choices"][0]["message"]["tool_calls"][0]["function"][
-                "name"
-            ],
+            converted["choices"][0]["message"]["tool_calls"][0]["function"]["name"],
             "finish_memory_update",
         )
         exhausted = MemoryJsonToolBridgeError("exhausted")
@@ -536,12 +627,12 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
 
         profile = yaml.safe_load(
             (
-                PROJECT_ROOT
-                / "third_party/medmemorybench/configs/method_config/"
+                PROJECT_ROOT / "third_party/medmemorybench/configs/method_config/"
                 "mirix_qwen3-8b_adapted.yaml"
             ).read_text(encoding="utf-8")
         )
         self.assertEqual(profile["agent_params"]["json_tool_bridge_attempts"], 5)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -17,7 +17,6 @@ from typing import Any
 
 from mirix.log import get_logger
 
-
 logger = get_logger(__name__)
 
 
@@ -31,13 +30,9 @@ MEMORY_TOOL_FAMILIES = {
             "check_episodic_memory",
         }
     ),
-    "procedural": frozenset(
-        {"procedural_memory_insert", "procedural_memory_update"}
-    ),
+    "procedural": frozenset({"procedural_memory_insert", "procedural_memory_update"}),
     "resource": frozenset({"resource_memory_insert", "resource_memory_update"}),
-    "knowledge": frozenset(
-        {"knowledge_vault_insert", "knowledge_vault_update"}
-    ),
+    "knowledge": frozenset({"knowledge_vault_insert", "knowledge_vault_update"}),
     "semantic": frozenset(
         {
             "semantic_memory_insert",
@@ -79,10 +74,7 @@ def identify_memory_tool_family(
     """Return the unique memory-child family represented by a request."""
     if not tools:
         return None
-    names = {
-        str(tool.get("function", {}).get("name", ""))
-        for tool in tools
-    }
+    names = {str(tool.get("function", {}).get("name", "")) for tool in tools}
     matched = [
         family
         for family, family_names in MEMORY_TOOL_FAMILIES.items()
@@ -203,9 +195,7 @@ def build_memory_json_arguments_request(
         [
             {
                 "role": "assistant",
-                "content": json.dumps(
-                    {"name": selected_name}, separators=(",", ":")
-                ),
+                "content": json.dumps({"name": selected_name}, separators=(",", ":")),
             },
             {
                 "role": "user",
@@ -274,13 +264,13 @@ def convert_memory_json_arguments_response(
 ) -> dict[str, Any]:
     """Validate stage-two arguments and restore one native MIRIX tool call."""
     choice, message = _first_choice_and_message(response_data, "arguments")
-    arguments = _extract_json_object(message, "arguments")
     schemas = metadata.get("argument_schemas") or {}
     schema = schemas.get(selected_name)
     if schema is None:
         raise MemoryJsonToolBridgeError(
             f"No argument schema is available for selected tool: {selected_name}"
         )
+    arguments = _extract_json_object(message, "arguments", repair_schema=schema)
     _validate_json_schema(arguments, schema)
     return _inject_native_tool_call(
         response_data, choice, message, selected_name, arguments
@@ -335,7 +325,12 @@ def _first_choice_and_message(
     return choice, message
 
 
-def _decode_memory_tool_payload(raw: str, source: str) -> dict[str, Any]:
+def _decode_memory_tool_payload(
+    raw: str,
+    source: str,
+    *,
+    repair_schema: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     """Decode one candidate without leaking model text into logs/errors.
 
     MIRIX itself parses tool arguments with ``json.loads``, ``demjson3`` and
@@ -358,18 +353,16 @@ def _decode_memory_tool_payload(raw: str, source: str) -> dict[str, Any]:
 
             payload = parse_json(raw)
         except Exception as repair_exc:
-            digest = hashlib.sha256(
-                raw.encode("utf-8", errors="replace")
-            ).hexdigest()[:16]
+            digest = hashlib.sha256(raw.encode("utf-8", errors="replace")).hexdigest()[
+                :16
+            ]
             raise MemoryJsonToolBridgeError(
                 f"Memory JSON tool bridge received invalid JSON in {source}: "
                 f"JSONDecodeError(line={exc.lineno},column={exc.colno},"
                 f"pos={exc.pos},chars={len(raw)},sha256={digest}); "
                 f"MIRIXRepairError(type={type(repair_exc).__name__})"
             ) from repair_exc
-        digest = hashlib.sha256(
-            raw.encode("utf-8", errors="replace")
-        ).hexdigest()[:16]
+        digest = hashlib.sha256(raw.encode("utf-8", errors="replace")).hexdigest()[:16]
         logger.warning(
             "Recovered malformed memory JSON in %s with MIRIX's tolerant "
             "parser: JSONDecodeError(line=%d,column=%d,pos=%d,chars=%d,"
@@ -391,18 +384,35 @@ def _decode_memory_tool_payload(raw: str, source: str) -> dict[str, Any]:
         raise MemoryJsonToolBridgeError(
             f"Memory JSON tool bridge payload in {source}{suffix} is not an object"
         )
+    if standard_error is not None and repair_schema is not None:
+        payload, removed_fields = _project_repaired_json_to_schema(
+            payload, repair_schema
+        )
+        if removed_fields:
+            logger.warning(
+                "Removed %d unsupported field(s) while projecting repaired "
+                "memory JSON back to its declared schema",
+                removed_fields,
+            )
     return payload
 
 
 def _extract_json_object(
-    message: dict[str, Any], stage: str
+    message: dict[str, Any],
+    stage: str,
+    *,
+    repair_schema: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Recover one JSON object without including model text in diagnostics."""
     errors: list[str] = []
     content = message.get("content")
     if isinstance(content, str) and content.strip():
         try:
-            return _decode_memory_tool_payload(content, f"{stage} content")
+            return _decode_memory_tool_payload(
+                content,
+                f"{stage} content",
+                repair_schema=repair_schema,
+            )
         except MemoryJsonToolBridgeError as exc:
             errors.append(str(exc))
 
@@ -413,7 +423,11 @@ def _extract_json_object(
         if not isinstance(candidate, str) or not candidate.strip():
             continue
         try:
-            return _decode_memory_tool_payload(candidate, f"{stage} {key}")
+            return _decode_memory_tool_payload(
+                candidate,
+                f"{stage} {key}",
+                repair_schema=repair_schema,
+            )
         except MemoryJsonToolBridgeError as exc:
             errors.append(str(exc))
 
@@ -424,9 +438,74 @@ def _extract_json_object(
     )
 
 
-def _validate_json_schema(
-    value: Any, schema: dict[str, Any], path: str = "$"
-) -> None:
+def _project_repaired_json_to_schema(
+    value: Any, schema: dict[str, Any]
+) -> tuple[Any, int]:
+    """Remove repair artifacts only from schema-anchored objects.
+
+    MIRIX's tolerant parser can recover a useful object when a local model
+    stops before closing its JSON. A truncated property can occasionally be
+    recovered as an additional object key (for example ``tree_path`` on a
+    semantic item). The official executor consumes only declared fields.
+
+    Projection is deliberately conservative: unknown fields are removed only
+    when ``additionalProperties`` is false, the object has at least one
+    required field, and every required field is already present. Complete JSON
+    is never projected, and repaired objects with missing required fields
+    still fail the normal strict validator.
+    """
+    if "anyOf" in schema:
+        for branch in schema["anyOf"]:
+            projected, removed = _project_repaired_json_to_schema(value, branch)
+            try:
+                _validate_json_schema(projected, branch)
+            except MemoryJsonToolBridgeError:
+                continue
+            return projected, removed
+        return deepcopy(value), 0
+
+    if isinstance(value, dict):
+        properties = schema.get("properties") or {}
+        required = set(schema.get("required") or [])
+        may_project = (
+            schema.get("additionalProperties") is False
+            and bool(required)
+            and required.issubset(value)
+        )
+        projected: dict[str, Any] = {}
+        removed = 0
+        for name, item in value.items():
+            child_schema = properties.get(name)
+            if child_schema is None:
+                if may_project:
+                    removed += 1
+                    continue
+                projected[name] = deepcopy(item)
+                continue
+            projected[name], child_removed = _project_repaired_json_to_schema(
+                item, child_schema
+            )
+            removed += child_removed
+        return projected, removed
+
+    if isinstance(value, list):
+        item_schema = schema.get("items")
+        if not isinstance(item_schema, dict):
+            return deepcopy(value), 0
+        projected_items = []
+        removed = 0
+        for item in value:
+            projected, child_removed = _project_repaired_json_to_schema(
+                item, item_schema
+            )
+            projected_items.append(projected)
+            removed += child_removed
+        return projected_items, removed
+
+    return deepcopy(value), 0
+
+
+def _validate_json_schema(value: Any, schema: dict[str, Any], path: str = "$") -> None:
     """Validate the strict JSON-schema subset emitted for MIRIX tools.
 
     vLLM is responsible for constrained decoding, but accepted benchmark state
