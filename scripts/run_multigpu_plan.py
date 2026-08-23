@@ -116,10 +116,12 @@ def _validate_mirix_vllm_profile(env: dict[str, str]) -> dict[str, Any]:
     if (
         profile.get("backend") != "xgrammar"
         or profile.get("disable_any_whitespace") is not True
+        or profile.get("disable_fallback") is not True
     ):
         raise ValueError(
             "MIRIX requires structured output backend=xgrammar and "
-            "disable_any_whitespace=true to keep bounded tool JSON finite"
+            "disable_any_whitespace=true, disable_fallback=true to keep "
+            "bounded tool JSON finite and fail closed"
         )
     if profile.get("reasoning_parser"):
         raise ValueError(

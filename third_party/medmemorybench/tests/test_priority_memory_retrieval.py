@@ -99,7 +99,7 @@ class PriorityRetrievalTests(unittest.TestCase):
         self.assertTrue(mirix_params["bounded_memory_tool_schema"])
         self.assertTrue(mirix_params["required_tool_choice"])
         self.assertTrue(mirix_params["core_json_tool_bridge"])
-        self.assertEqual(mirix_params["json_tool_bridge_attempts"], 3)
+        self.assertEqual(mirix_params["json_tool_bridge_attempts"], 5)
         self.assertTrue(mirix_params["normalize_missing_update_ids"])
         self.assertEqual(mirix_params["memory_tool_max_items"], 2)
         self.assertEqual(mirix_params["memory_tool_max_string_chars"], 512)
@@ -183,11 +183,6 @@ class PriorityRetrievalTests(unittest.TestCase):
         response_format, metadata = module.build_core_json_tool_bridge(tools)
         schema = response_format["json_schema"]["schema"]
         self.assertEqual(response_format["type"], "json_schema")
-        variants = schema["anyOf"]
-        variants_by_name = {
-            variant["properties"]["name"]["enum"][0]: variant
-            for variant in variants
-        }
         self.assertEqual(
             metadata["allowed_names"],
             [
@@ -197,9 +192,12 @@ class PriorityRetrievalTests(unittest.TestCase):
             ],
         )
         self.assertEqual(
-            variants_by_name["core_memory_append"]["properties"]["arguments"][
-                "properties"
-            ]["content"]["maxLength"],
+            schema["properties"]["name"]["enum"],
+            metadata["allowed_names"],
+        )
+        self.assertEqual(
+            metadata["argument_schemas"]["core_memory_append"]["properties"]
+            ["content"]["maxLength"],
             256,
         )
 
@@ -270,22 +268,13 @@ class PriorityRetrievalTests(unittest.TestCase):
         )
         self.assertEqual(episodic_metadata["family"], "episodic")
         self.assertEqual(
-            [
-                branch["properties"]["name"]["enum"][0]
-                for branch in episodic_format["json_schema"]["schema"]["anyOf"]
-            ],
+            episodic_format["json_schema"]["schema"]["properties"]["name"]
+            ["enum"],
             ["check_episodic_memory", "episodic_memory_insert"],
         )
-        insert_branch = next(
-            branch
-            for branch in episodic_format["json_schema"]["schema"]["anyOf"]
-            if branch["properties"]["name"]["enum"]
-            == ["episodic_memory_insert"]
-        )
         self.assertEqual(
-            insert_branch["properties"]["arguments"]["properties"]["items"][
-                "maxItems"
-            ],
+            episodic_metadata["argument_schemas"]["episodic_memory_insert"]
+            ["properties"]["items"]["maxItems"],
             2,
         )
         self.assertIsNone(

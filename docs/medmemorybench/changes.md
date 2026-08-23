@@ -25,7 +25,7 @@
   随机后缀，避免多 shard 的局部 context ID 在 7-worker 并发初始化时撞 SQLite
   唯一键。这两项只修复本地 backend 配置与身份隔离，不改变 proceduralization、
   retrieval 或 Q-learning 策略。
-- MIRIX：补充 SQLite cosine、embedding 维度处理、engine reset、bounded local JSON tool schema、canonical tool conversion、stale replace-ID 归一化，以及 bounded memory update 所需的 completion budget。JSON bridge 保留官方通用 `finish_memory_update` 工具，避免在无新 delta 时强迫子代理虚构写入。正式配置使用 WJR q8a20 的 `memory_agent_max_tokens=8192`，并对齐其 vLLM xgrammar `disable_any_whitespace=true` 启动模式；前者容纳合法 payload，后者禁止 bounded JSON 字段间的无界空白。vLLM 保留官方建议的 Hermes tool-call parser，但在 no-thinking 协议下不启用 reasoning parser，避免 constrained JSON 被移出 `message.content`。这些适配都不改变 MIRIX tool validator、executor 或 memory lifecycle。
+- MIRIX：补充 SQLite cosine、embedding 维度处理、engine reset、two-stage bounded local JSON tool bridge、canonical tool conversion、stale replace-ID 归一化，以及 bounded memory update 所需的 completion budget。JSON bridge 先用极小 schema 选择一个工具，再只生成该工具的精确参数 schema，并保留官方通用 `finish_memory_update`。正式配置使用 `memory_agent_max_tokens=8192`，vLLM xgrammar 同时设置 `disable_any_whitespace=true` 与 `disable_fallback=true`；前者禁止字段间的无界空白，后者禁止约束静默退化。vLLM 保留官方建议的 Hermes tool-call parser，但在 no-thinking 协议下不启用 reasoning parser，避免 constrained JSON 被移出 `message.content`。客户端会再次校验严格 schema，日志仅输出 finish reason、长度、token 数、哈希和解析位置，不泄露 memory 正文。每个 child 内的 selector/arguments 顺序执行，但官方 MIRIX 的多个 memory child 仍保持并发；这些适配不改变 tool validator、executor、storage 或 memory lifecycle。
 
 2026-07-27 的 Food-v2 定点回归复现了旧 profile 的第 38 条
 `apple butter spice cake`：旧 episodic child 运行 341 秒后

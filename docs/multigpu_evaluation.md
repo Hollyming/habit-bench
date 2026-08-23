@@ -90,10 +90,15 @@ move the constrained JSON away from `message.content`. MIRIX preflight rejects
 profiles that reintroduce one.
 
 The default structured-output backend is xgrammar with
-`disable_any_whitespace=true`. MIRIX's JSON-tool bridge already bounds fields
-and arrays; this matching WJR launch option prevents unbounded whitespace
-between those fields from consuming the complete 8,192-token child budget.
-Requests without a structured response format are unaffected.
+`disable_any_whitespace=true` and `disable_fallback=true`. MIRIX's local bridge
+first selects one memory tool with a tiny schema and then generates only that
+tool's exact argument schema. The first option prevents unbounded whitespace
+from consuming the complete 8,192-token child budget; the second prevents an
+unsupported constraint from silently degrading to unconstrained text. Selector
+and arguments are sequential within one child call, while independent official
+MIRIX memory children remain concurrent. Tool validation, execution, storage,
+and child lifecycle remain unchanged. Requests without a structured response
+format are unaffected.
 
 `VLLM_BATCH_INVARIANT=1` and `--attention-backend FLASH_ATTN` keep outputs
 stable when several user workers share one endpoint. After startup, every

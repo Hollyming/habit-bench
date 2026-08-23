@@ -1,10 +1,11 @@
-"""Deterministic JSON-schema bridge for fragile local memory tool calls.
+"""Deterministic two-stage JSON bridge for local memory tool calls.
 
 Some OpenAI-compatible servers parse native tool-call text before returning a
 response.  A malformed or truncated arguments string therefore becomes HTTP
 400 before MIRIX can validate it.  For adapted local memory children we instead
-request one schema-constrained JSON object and convert that object back to
-MIRIX's normal OpenAI tool-call shape.  Tool execution remains unchanged.
+first select one tool with a tiny schema, then request only that tool's exact
+argument schema.  The result is converted back to MIRIX's normal OpenAI
+tool-call shape.  Tool execution remains unchanged.
 """
 
 from __future__ import annotations
@@ -100,7 +101,7 @@ def is_core_memory_tool_request(tools: list[dict[str, Any]] | None) -> bool:
 def build_memory_json_tool_bridge(
     tools: list[dict[str, Any]], force_tool_call: str | None = None
 ) -> tuple[dict[str, Any], dict[str, Any]]:
-    """Build an OpenAI response_format plus private conversion metadata."""
+    """Build the stage-one selector format plus private stage-two metadata."""
     family = identify_memory_tool_family(tools)
     if family is None:
         raise ValueError("JSON tool bridge requires exactly one memory-tool family")
@@ -136,41 +137,17 @@ def build_memory_json_tool_bridge(
         )
         for function in functions
     }
-    encoded_parameters = {
-        json.dumps(parameters, sort_keys=True, separators=(",", ":"))
-        for parameters in parameters_by_name.values()
+    # Do not combine heterogeneous tool arguments in one ``anyOf`` grammar.
+    # Qwen3/vLLM intermittently emitted malformed content for that complex
+    # union.  Stage one is deliberately tiny; stage two (built below) exposes
+    # exactly one argument schema, so invalid name/argument cross-pairs are
+    # impossible without changing MIRIX's tool lifecycle.
+    schema = {
+        "type": "object",
+        "properties": {"name": {"type": "string", "enum": names}},
+        "required": ["name"],
+        "additionalProperties": False,
     }
-    if len(encoded_parameters) == 1:
-        # Core append/rewrite share one argument shape.  Keep the compact schema
-        # that has already been validated against the local vLLM grammar.
-        schema = {
-            "type": "object",
-            "properties": {
-                "name": {"type": "string", "enum": names},
-                "arguments": next(iter(parameters_by_name.values())),
-            },
-            "required": ["name", "arguments"],
-            "additionalProperties": False,
-        }
-    else:
-        # Different tools in one child often have incompatible signatures
-        # (e.g. insert(items) versus update(old_ids,new_items)).  A free-standing
-        # name enum plus arguments anyOf permits invalid cross-pairs.  Bind each
-        # name to its exact argument schema in a discriminated union instead.
-        schema = {
-            "anyOf": [
-                {
-                    "type": "object",
-                    "properties": {
-                        "name": {"type": "string", "enum": [name]},
-                        "arguments": parameters_by_name[name],
-                    },
-                    "required": ["name", "arguments"],
-                    "additionalProperties": False,
-                }
-                for name in names
-            ]
-        }
     response_format = {
         "type": "json_schema",
         "json_schema": {
@@ -179,8 +156,72 @@ def build_memory_json_tool_bridge(
             "schema": schema,
         },
     }
-    metadata = {"allowed_names": names, "family": family}
+    metadata = {
+        "allowed_names": names,
+        "argument_schemas": parameters_by_name,
+        "family": family,
+    }
     return response_format, metadata
+
+
+def select_memory_json_tool(
+    response_data: dict[str, Any], metadata: dict[str, Any]
+) -> str:
+    """Decode and validate the stage-one tool selector."""
+    _, message = _first_choice_and_message(response_data, "selector")
+    payload = _extract_json_object(message, "selector")
+    allowed = set(metadata.get("allowed_names") or [])
+    name = payload.get("name")
+    if set(payload) != {"name"} or name not in allowed:
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON tool selector returned an invalid tool: {name}"
+        )
+    return str(name)
+
+
+def build_memory_json_arguments_request(
+    request_data: dict[str, Any],
+    metadata: dict[str, Any],
+    selected_name: str,
+) -> dict[str, Any]:
+    """Build stage two with only the selected tool's argument schema."""
+    allowed = set(metadata.get("allowed_names") or [])
+    schemas = metadata.get("argument_schemas") or {}
+    if selected_name not in allowed or selected_name not in schemas:
+        raise MemoryJsonToolBridgeError(
+            f"No argument schema is available for selected tool: {selected_name}"
+        )
+
+    argument_request = deepcopy(request_data)
+    messages = list(argument_request.get("messages") or [])
+    messages.extend(
+        [
+            {
+                "role": "assistant",
+                "content": json.dumps(
+                    {"name": selected_name}, separators=(",", ":")
+                ),
+            },
+            {
+                "role": "user",
+                "content": (
+                    f"Now provide the arguments for {selected_name}. Return "
+                    "exactly one complete JSON object conforming to "
+                    "response_format, with no tool wrapper, prose, or markdown."
+                ),
+            },
+        ]
+    )
+    argument_request["messages"] = messages
+    argument_request["response_format"] = {
+        "type": "json_schema",
+        "json_schema": {
+            "name": f"mirix_{metadata.get('family', 'memory')}_{selected_name}_arguments",
+            "strict": True,
+            "schema": deepcopy(schemas[selected_name]),
+        },
+    }
+    return argument_request
 
 
 def build_core_json_tool_bridge(
@@ -195,18 +236,13 @@ def build_core_json_tool_bridge(
 def convert_memory_json_tool_response(
     response_data: dict[str, Any], metadata: dict[str, Any]
 ) -> dict[str, Any]:
-    """Convert a schema-constrained content object to one native tool call."""
-    choices = response_data.get("choices") or []
-    if not choices:
-        raise MemoryJsonToolBridgeError(
-            "Memory JSON tool bridge received no choices"
-        )
-    choice = choices[0]
-    # Preserve a length finish so MIRIX's existing bounded retry handles it.
-    if choice.get("finish_reason") == "length":
-        return response_data
+    """Convert the legacy wrapped payload to one native tool call.
 
-    message = choice.get("message") or {}
+    New runtime traffic uses :func:`select_memory_json_tool` followed by
+    :func:`convert_memory_json_arguments_response`.  This converter remains for
+    compatibility with preserved responses and callers of the original bridge.
+    """
+    choice, message = _first_choice_and_message(response_data, "tool call")
     payload = _extract_memory_tool_payload(message, metadata)
     name = payload.get("name")
     arguments = payload.get("arguments")
@@ -220,6 +256,39 @@ def convert_memory_json_tool_response(
             "Memory JSON tool bridge arguments are not an object"
         )
 
+    schema = (metadata.get("argument_schemas") or {}).get(name)
+    if schema is not None:
+        _validate_json_schema(arguments, schema)
+    return _inject_native_tool_call(response_data, choice, message, name, arguments)
+
+
+def convert_memory_json_arguments_response(
+    response_data: dict[str, Any],
+    metadata: dict[str, Any],
+    selected_name: str,
+) -> dict[str, Any]:
+    """Validate stage-two arguments and restore one native MIRIX tool call."""
+    choice, message = _first_choice_and_message(response_data, "arguments")
+    arguments = _extract_json_object(message, "arguments")
+    schemas = metadata.get("argument_schemas") or {}
+    schema = schemas.get(selected_name)
+    if schema is None:
+        raise MemoryJsonToolBridgeError(
+            f"No argument schema is available for selected tool: {selected_name}"
+        )
+    _validate_json_schema(arguments, schema)
+    return _inject_native_tool_call(
+        response_data, choice, message, selected_name, arguments
+    )
+
+
+def _inject_native_tool_call(
+    response_data: dict[str, Any],
+    choice: dict[str, Any],
+    message: dict[str, Any],
+    name: str,
+    arguments: dict[str, Any],
+) -> dict[str, Any]:
     canonical_arguments = json.dumps(
         arguments, ensure_ascii=False, sort_keys=True, separators=(",", ":")
     )
@@ -239,6 +308,28 @@ def convert_memory_json_tool_response(
     return response_data
 
 
+def _first_choice_and_message(
+    response_data: dict[str, Any], stage: str
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    choices = response_data.get("choices") or []
+    if not choices or not isinstance(choices[0], dict):
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON {stage} response received no choices"
+        )
+    choice = choices[0]
+    finish_reason = choice.get("finish_reason")
+    if finish_reason == "length":
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON {stage} response was truncated (finish_reason=length)"
+        )
+    message = choice.get("message") or {}
+    if not isinstance(message, dict):
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON {stage} response message is not an object"
+        )
+    return choice, message
+
+
 def _decode_memory_tool_payload(raw: str, source: str) -> dict[str, Any]:
     """Decode one candidate without leaking model text into logs/errors."""
     try:
@@ -246,9 +337,16 @@ def _decode_memory_tool_payload(raw: str, source: str) -> dict[str, Any]:
         # with a literal control character after the OpenAI response round
         # trip. MIRIX uses ``strict=False`` for the same interoperability case.
         payload = json.loads(raw, strict=False)
-    except (TypeError, json.JSONDecodeError) as exc:
+    except json.JSONDecodeError as exc:
+        digest = hashlib.sha256(raw.encode("utf-8", errors="replace")).hexdigest()[:16]
         raise MemoryJsonToolBridgeError(
             f"Memory JSON tool bridge received invalid JSON in {source}: "
+            f"JSONDecodeError(line={exc.lineno},column={exc.colno},pos={exc.pos},"
+            f"chars={len(raw)},sha256={digest})"
+        ) from exc
+    except TypeError as exc:
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON tool bridge received non-string JSON in {source}: "
             f"{type(exc).__name__}"
         ) from exc
     if not isinstance(payload, dict):
@@ -256,6 +354,142 @@ def _decode_memory_tool_payload(raw: str, source: str) -> dict[str, Any]:
             f"Memory JSON tool bridge payload in {source} is not an object"
         )
     return payload
+
+
+def _extract_json_object(
+    message: dict[str, Any], stage: str
+) -> dict[str, Any]:
+    """Recover one JSON object without including model text in diagnostics."""
+    errors: list[str] = []
+    content = message.get("content")
+    if isinstance(content, str) and content.strip():
+        try:
+            return _decode_memory_tool_payload(content, f"{stage} content")
+        except MemoryJsonToolBridgeError as exc:
+            errors.append(str(exc))
+
+    # Retain compatibility with servers that move constrained content into a
+    # reasoning field even though the evaluation explicitly disables thinking.
+    for key in ("reasoning_content", "reasoning"):
+        candidate = message.get(key)
+        if not isinstance(candidate, str) or not candidate.strip():
+            continue
+        try:
+            return _decode_memory_tool_payload(candidate, f"{stage} {key}")
+        except MemoryJsonToolBridgeError as exc:
+            errors.append(str(exc))
+
+    if errors:
+        raise MemoryJsonToolBridgeError("; ".join(errors))
+    raise MemoryJsonToolBridgeError(
+        f"Memory JSON {stage} response contained no JSON object"
+    )
+
+
+def _validate_json_schema(
+    value: Any, schema: dict[str, Any], path: str = "$"
+) -> None:
+    """Validate the strict JSON-schema subset emitted for MIRIX tools.
+
+    vLLM is responsible for constrained decoding, but accepted benchmark state
+    must not depend on the server silently falling back to unconstrained text.
+    MIRIX's converted tool schemas use this finite subset, so a small local
+    validator avoids adding another runtime dependency.
+    """
+    if "anyOf" in schema:
+        for branch in schema["anyOf"]:
+            try:
+                _validate_json_schema(value, branch, path)
+                return
+            except MemoryJsonToolBridgeError:
+                continue
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON schema mismatch at {path}: no anyOf branch matched"
+        )
+
+    expected = schema.get("type")
+    expected_types = expected if isinstance(expected, list) else [expected]
+    if expected is not None and not any(
+        _matches_json_type(value, item) for item in expected_types
+    ):
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON schema mismatch at {path}: expected {expected}"
+        )
+
+    if "enum" in schema and value not in schema["enum"]:
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON schema mismatch at {path}: value is outside enum"
+        )
+    if "const" in schema and value != schema["const"]:
+        raise MemoryJsonToolBridgeError(
+            f"Memory JSON schema mismatch at {path}: value differs from const"
+        )
+
+    if isinstance(value, dict):
+        properties = schema.get("properties") or {}
+        missing = [name for name in schema.get("required", []) if name not in value]
+        if missing:
+            raise MemoryJsonToolBridgeError(
+                f"Memory JSON schema mismatch at {path}: missing required keys "
+                f"{','.join(sorted(missing))}"
+            )
+        if schema.get("additionalProperties") is False:
+            extras = set(value) - set(properties)
+            if extras:
+                raise MemoryJsonToolBridgeError(
+                    f"Memory JSON schema mismatch at {path}: unexpected keys "
+                    f"{','.join(sorted(extras))}"
+                )
+        for name, item in value.items():
+            child_schema = properties.get(name)
+            if child_schema is not None:
+                _validate_json_schema(item, child_schema, f"{path}.{name}")
+
+    if isinstance(value, list):
+        if "minItems" in schema and len(value) < schema["minItems"]:
+            raise MemoryJsonToolBridgeError(
+                f"Memory JSON schema mismatch at {path}: too few items"
+            )
+        if "maxItems" in schema and len(value) > schema["maxItems"]:
+            raise MemoryJsonToolBridgeError(
+                f"Memory JSON schema mismatch at {path}: too many items"
+            )
+        item_schema = schema.get("items")
+        if isinstance(item_schema, dict):
+            for index, item in enumerate(value):
+                _validate_json_schema(item, item_schema, f"{path}[{index}]")
+
+    if isinstance(value, str):
+        if "minLength" in schema and len(value) < schema["minLength"]:
+            raise MemoryJsonToolBridgeError(
+                f"Memory JSON schema mismatch at {path}: string is too short"
+            )
+        if "maxLength" in schema and len(value) > schema["maxLength"]:
+            raise MemoryJsonToolBridgeError(
+                f"Memory JSON schema mismatch at {path}: string is too long"
+            )
+
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        if "minimum" in schema and value < schema["minimum"]:
+            raise MemoryJsonToolBridgeError(
+                f"Memory JSON schema mismatch at {path}: number is too small"
+            )
+        if "maximum" in schema and value > schema["maximum"]:
+            raise MemoryJsonToolBridgeError(
+                f"Memory JSON schema mismatch at {path}: number is too large"
+            )
+
+
+def _matches_json_type(value: Any, expected: str | None) -> bool:
+    return {
+        "object": isinstance(value, dict),
+        "array": isinstance(value, list),
+        "string": isinstance(value, str),
+        "integer": isinstance(value, int) and not isinstance(value, bool),
+        "number": isinstance(value, (int, float)) and not isinstance(value, bool),
+        "boolean": isinstance(value, bool),
+        "null": value is None,
+    }.get(expected, False)
 
 
 def _extract_memory_tool_payload(
@@ -334,11 +568,23 @@ def build_memory_json_retry_request(
     *,
     attempt: int,
     error: Exception,
+    stage: str = "selector",
+    selected_name: str | None = None,
 ) -> dict[str, Any]:
     """Build a fresh corrective request after an unusable guided generation."""
     retry_data = deepcopy(request_data)
     messages = list(retry_data.get("messages") or [])
     allowed_names = ", ".join(metadata.get("allowed_names") or [])
+    if stage == "arguments":
+        constraint = (
+            f"Return only the complete argument object for {selected_name}; "
+            "do not include a name/arguments wrapper."
+        )
+    else:
+        constraint = (
+            "Return only the complete selector object. The tool name must be "
+            f"one of: {allowed_names}."
+        )
     messages.append(
         {
             "role": "user",
@@ -347,13 +593,33 @@ def build_memory_json_retry_request(
                 f"({type(error).__name__}). Regenerate the complete answer from "
                 "scratch; do not continue or repair the previous text. Return "
                 "exactly one complete JSON object conforming to response_format, "
-                "with no prose or markdown. The tool name must be one of: "
-                f"{allowed_names}. Corrective generation attempt: {attempt}."
+                f"with no prose or markdown. {constraint} Corrective generation "
+                f"attempt: {attempt}."
             ),
         }
     )
     retry_data["messages"] = messages
     return retry_data
+
+
+def describe_memory_json_response(response_data: dict[str, Any]) -> str:
+    """Return privacy-safe diagnostics without logging generated memory text."""
+    choices = response_data.get("choices") or []
+    choice = choices[0] if choices and isinstance(choices[0], dict) else {}
+    message = choice.get("message") or {}
+    content = message.get("content")
+    raw = content if isinstance(content, str) else ""
+    stripped = raw.strip()
+    digest = hashlib.sha256(raw.encode("utf-8", errors="replace")).hexdigest()[:16]
+    usage = response_data.get("usage") or {}
+    return (
+        f"response_id={response_data.get('id', '')} "
+        f"finish_reason={choice.get('finish_reason')} "
+        f"completion_tokens={usage.get('completion_tokens')} "
+        f"content_chars={len(raw)} content_bytes={len(raw.encode('utf-8'))} "
+        f"content_sha256={digest} starts_object={stripped.startswith('{')} "
+        f"ends_object={stripped.endswith('}')}"
+    )
 
 
 def convert_core_json_tool_response(

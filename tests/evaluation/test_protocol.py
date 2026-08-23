@@ -156,7 +156,8 @@ class ProtocolTest(unittest.TestCase):
         self.assertIn("--structured-outputs-config", environment_profile)
         self.assertIn(
             '\\"backend\\":\\"xgrammar\\",'
-            '\\"disable_any_whitespace\\":true',
+            '\\"disable_any_whitespace\\":true,'
+            '\\"disable_fallback\\":true',
             environment_profile,
         )
 
@@ -379,7 +380,8 @@ class ProtocolTest(unittest.TestCase):
             {
                 "HABITBENCH_VLLM_EXTRA_ARGS": (
                     "--dtype bfloat16 --structured-outputs-config "
-                    '\'{"backend":"xgrammar","disable_any_whitespace":true}\''
+                    '\'{"backend":"xgrammar","disable_any_whitespace":true,'
+                    '"disable_fallback":true}\''
                 )
             }
         )
@@ -395,7 +397,8 @@ class ProtocolTest(unittest.TestCase):
                         "--reasoning-parser qwen3 "
                         "--structured-outputs-config "
                         "'{\"backend\":\"xgrammar\","
-                        "\"disable_any_whitespace\":true}'"
+                        "\"disable_any_whitespace\":true,"
+                        "\"disable_fallback\":true}'"
                     )
                 }
             )

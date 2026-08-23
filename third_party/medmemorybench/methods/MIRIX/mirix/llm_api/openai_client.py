@@ -1,6 +1,8 @@
 
+import asyncio
 import base64
 import os
+from weakref import WeakKeyDictionary
 from typing import List, Optional
 
 import openai
@@ -22,10 +24,13 @@ from mirix.errors import (
 from mirix.llm_api.helpers import convert_to_structured_output
 from mirix.llm_api.local_json_tool_bridge import (
     MemoryJsonToolBridgeError,
+    build_memory_json_arguments_request,
     build_memory_json_tool_bridge,
     build_memory_json_retry_request,
-    convert_memory_json_tool_response,
+    convert_memory_json_arguments_response,
+    describe_memory_json_response,
     identify_memory_tool_family,
+    select_memory_json_tool,
 )
 from mirix.llm_api.llm_client_base import LLMClientBase
 from mirix.log import get_logger
@@ -48,6 +53,18 @@ from mirix.services.provider_manager import ProviderManager
 from mirix.settings import model_settings
 
 logger = get_logger(__name__)
+
+# MIRIX intentionally launches independent memory children concurrently. The
+# bridge keeps that upstream default. An endpoint lock remains available as an
+# explicit diagnostic fallback for serving stacks that cannot isolate grammar
+# state across requests, but it is not enabled in formal evaluation profiles.
+_MEMORY_JSON_ENDPOINT_LOCKS = WeakKeyDictionary()
+
+
+def _memory_json_endpoint_lock(endpoint: str) -> asyncio.Lock:
+    loop = asyncio.get_running_loop()
+    endpoint_locks = _MEMORY_JSON_ENDPOINT_LOCKS.setdefault(loop, {})
+    return endpoint_locks.setdefault(endpoint, asyncio.Lock())
 
 
 def encode_image(image_path: str) -> str:
@@ -350,7 +367,8 @@ class OpenAIClient(LLMClientBase):
         logger.debug(
             "OpenAI Request - Model: %s, Max tokens: %s, Temperature: %s",
             request_data.get("model"),
-            request_data.get("max_completion_tokens"),
+            request_data.get("max_tokens")
+            or request_data.get("max_completion_tokens"),
             request_data.get("temperature"),
         )
         if "default_headers" in client_kwargs:
@@ -371,52 +389,119 @@ class OpenAIClient(LLMClientBase):
                 )
                 bridge_attempts = 3
 
-        original_request_data = request_data
-        current_request_data = request_data
-        for attempt in range(1, bridge_attempts + 1):
-            response: ChatCompletion = await client.chat.completions.create(
-                **current_request_data
+        if bridge_metadata is None:
+            return await self._create_chat_completion(client, request_data)
+
+        endpoint = str(client_kwargs.get("base_url") or "")
+        if os.environ.get("MIRIX_JSON_TOOL_BRIDGE_SERIALIZE", "0") != "1":
+            return await self._request_memory_json_tool(
+                client, request_data, bridge_metadata, bridge_attempts
             )
-            if not response.object:
-                response.object = "chat.completion"
-            response_data = response.model_dump()
-            if bridge_metadata is None:
-                return response_data
+
+        async with _memory_json_endpoint_lock(endpoint):
+            return await self._request_memory_json_tool(
+                client, request_data, bridge_metadata, bridge_attempts
+            )
+
+    async def _create_chat_completion(
+        self, client: AsyncOpenAI, request_data: dict
+    ) -> dict:
+        response: ChatCompletion = await client.chat.completions.create(
+            **request_data
+        )
+        if not response.object:
+            response.object = "chat.completion"
+        return response.model_dump()
+
+    async def _request_memory_json_tool(
+        self,
+        client: AsyncOpenAI,
+        request_data: dict,
+        bridge_metadata: dict,
+        bridge_attempts: int,
+    ) -> dict:
+        """Run selector and exact-arguments stages, both bounded and strict."""
+        family = bridge_metadata.get("family", "unknown")
+        selector_request = request_data
+        selected_name = None
+        for attempt in range(1, bridge_attempts + 1):
+            response_data = await self._create_chat_completion(
+                client, selector_request
+            )
             try:
-                response_data = convert_memory_json_tool_response(
+                selected_name = select_memory_json_tool(
                     response_data, bridge_metadata
                 )
+                break
             except MemoryJsonToolBridgeError as exc:
-                if attempt >= bridge_attempts:
-                    raise
-                family = bridge_metadata.get("family", "unknown")
                 logger.warning(
-                    "Unusable %s-memory JSON tool response on attempt %d/%d: "
-                    "%s. Regenerating the complete response from scratch.",
+                    "Unusable %s-memory JSON selector on attempt %d/%d: %s; "
+                    "%s",
                     family,
                     attempt,
                     bridge_attempts,
                     exc,
+                    describe_memory_json_response(response_data),
                 )
-                current_request_data = build_memory_json_retry_request(
-                    original_request_data,
+                if attempt >= bridge_attempts:
+                    raise
+                selector_request = build_memory_json_retry_request(
+                    request_data,
                     bridge_metadata,
                     attempt=attempt + 1,
                     error=exc,
+                    stage="selector",
+                )
+
+        if selected_name is None:
+            raise AssertionError("memory JSON selector loop exited unexpectedly")
+
+        arguments_request = build_memory_json_arguments_request(
+            request_data, bridge_metadata, selected_name
+        )
+        current_arguments_request = arguments_request
+        for attempt in range(1, bridge_attempts + 1):
+            response_data = await self._create_chat_completion(
+                client, current_arguments_request
+            )
+            try:
+                converted = convert_memory_json_arguments_response(
+                    response_data, bridge_metadata, selected_name
+                )
+            except MemoryJsonToolBridgeError as exc:
+                logger.warning(
+                    "Unusable %s-memory JSON arguments for %s on attempt "
+                    "%d/%d: %s; %s",
+                    family,
+                    selected_name,
+                    attempt,
+                    bridge_attempts,
+                    exc,
+                    describe_memory_json_response(response_data),
+                )
+                if attempt >= bridge_attempts:
+                    raise
+                current_arguments_request = build_memory_json_retry_request(
+                    arguments_request,
+                    bridge_metadata,
+                    attempt=attempt + 1,
+                    error=exc,
+                    stage="arguments",
+                    selected_name=selected_name,
                 )
                 continue
 
-            family = bridge_metadata.get("family", "unknown")
             logger.info(
-                "Converted one schema-constrained %s-memory JSON tool call "
-                "on attempt %d/%d",
+                "Converted one two-stage %s-memory JSON tool call (%s) on "
+                "arguments attempt %d/%d",
                 family,
+                selected_name,
                 attempt,
                 bridge_attempts,
             )
-            return response_data
+            return converted
 
-        raise AssertionError("memory JSON tool retry loop exited unexpectedly")
+        raise AssertionError("memory JSON arguments loop exited unexpectedly")
 
     def convert_response_to_chat_completion(
         self,
