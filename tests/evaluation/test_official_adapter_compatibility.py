@@ -284,6 +284,130 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
                 "semantic_memory_update",
             )
 
+    def test_mirix_bridge_discards_only_repaired_incomplete_array_tail(self) -> None:
+        item_schema = {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string"},
+                "summary": {"type": "string"},
+                "details": {"type": "string"},
+                "source": {"type": "string"},
+            },
+            "required": ["name", "summary", "details", "source"],
+            "additionalProperties": False,
+        }
+        _, metadata = build_memory_json_tool_bridge(
+            [
+                _tool(
+                    "semantic_memory_update",
+                    {
+                        "old_semantic_item_ids": {
+                            "type": "array",
+                            "items": {"type": "string"},
+                        },
+                        "new_items": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": item_schema,
+                        },
+                    },
+                ),
+                _tool("finish_memory_update"),
+            ]
+        )
+        complete_item = '{"name":"n","summary":"s","details":"d","source":"x"}'
+        converted = convert_memory_json_arguments_response(
+            {
+                "id": "chatcmpl-repaired-tail",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "message": {
+                            "content": (
+                                '{"old_semantic_item_ids":["sem_A"],"new_items":['
+                                f'{complete_item},{{"tree_path":'
+                            )
+                        },
+                    }
+                ],
+            },
+            metadata,
+            "semantic_memory_update",
+        )
+        arguments = json.loads(
+            converted["choices"][0]["message"]["tool_calls"][0]["function"]["arguments"]
+        )
+        self.assertEqual(
+            arguments,
+            {
+                "old_semantic_item_ids": ["sem_A"],
+                "new_items": [
+                    {"name": "n", "summary": "s", "details": "d", "source": "x"}
+                ],
+            },
+        )
+
+        partial_tail = (
+            '{"old_semantic_item_ids":["sem_A"],"new_items":['
+            f'{complete_item},{{"name":"partial"'
+        )
+        partial_converted = convert_memory_json_arguments_response(
+            {
+                "id": "chatcmpl-repaired-partial-tail",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "message": {"content": partial_tail},
+                    }
+                ],
+            },
+            metadata,
+            "semantic_memory_update",
+        )
+        partial_arguments = json.loads(
+            partial_converted["choices"][0]["message"]["tool_calls"][0]["function"][
+                "arguments"
+            ]
+        )
+        self.assertEqual(partial_arguments, arguments)
+
+        complete_with_empty_tail = (
+            '{"old_semantic_item_ids":["sem_A"],"new_items":['
+            f"{complete_item},{{}}]}}"
+        )
+        with self.assertRaisesRegex(MemoryJsonToolBridgeError, "missing required"):
+            convert_memory_json_arguments_response(
+                {
+                    "choices": [
+                        {
+                            "finish_reason": "stop",
+                            "message": {"content": complete_with_empty_tail},
+                        }
+                    ]
+                },
+                metadata,
+                "semantic_memory_update",
+            )
+
+        with self.assertRaisesRegex(MemoryJsonToolBridgeError, "too few items"):
+            convert_memory_json_arguments_response(
+                {
+                    "choices": [
+                        {
+                            "finish_reason": "stop",
+                            "message": {
+                                "content": (
+                                    '{"old_semantic_item_ids":["sem_A"],'
+                                    '"new_items":[{'
+                                )
+                            },
+                        }
+                    ]
+                },
+                metadata,
+                "semantic_memory_update",
+            )
+
     def test_mirix_bridge_recovers_native_call_when_content_is_empty(self) -> None:
         response = {
             "id": "chatcmpl-native",

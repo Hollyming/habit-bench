@@ -101,8 +101,11 @@ object early, the bridge reuses MIRIX's official tolerant parser
 (`json.loads` / `demjson3` / `json-repair`) and then applies the same strict
 tool schema before execution. For a parser-repaired truncated object only,
 unknown fields are projected away when every declared required field is already
-present; complete invalid JSON and repaired objects missing required data are
-still rejected. This covers the upstream `tree_path` drift documented in
+present. If truncation starts one more object in an array, the bridge keeps a
+schema-valid nonempty prefix and discards only that incomplete final item when
+the shortened array still satisfies its schema. Complete invalid JSON, a lone
+incomplete item, an invalid prefix, and declared-field type errors are still
+rejected. This covers the upstream `tree_path` drift documented in
 [MIRIX issue #103](https://github.com/Mirix-AI/MIRIX/issues/103) without changing
 its tool contract. Corrective generations use
 deterministic per-attempt seeds and light sampling, so a retry does not replay

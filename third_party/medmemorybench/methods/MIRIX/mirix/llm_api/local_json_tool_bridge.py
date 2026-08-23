@@ -388,11 +388,20 @@ def _decode_memory_tool_payload(
         payload, removed_fields = _project_repaired_json_to_schema(
             payload, repair_schema
         )
+        payload, discarded_items = _discard_repaired_incomplete_array_tail(
+            payload, repair_schema
+        )
         if removed_fields:
             logger.warning(
                 "Removed %d unsupported field(s) while projecting repaired "
                 "memory JSON back to its declared schema",
                 removed_fields,
+            )
+        if discarded_items:
+            logger.warning(
+                "Discarded %d incomplete trailing array item(s) while "
+                "preserving the schema-valid prefix of repaired memory JSON",
+                discarded_items,
             )
     return payload
 
@@ -503,6 +512,98 @@ def _project_repaired_json_to_schema(
         return projected_items, removed
 
     return deepcopy(value), 0
+
+
+def _discard_repaired_incomplete_array_tail(
+    value: Any, schema: dict[str, Any]
+) -> tuple[Any, int]:
+    """Preserve a complete array prefix when JSON repair invents a tail item.
+
+    A response can stop immediately after starting the next object in an array.
+    ``json-repair`` then closes that object as an empty or partially populated
+    final item.  Executing that fabricated item is unsafe, while rejecting the
+    preceding schema-valid items makes deterministic retries reproduce the same
+    truncation indefinitely.
+
+    Discard exactly one final item only when the response has already required
+    tolerant parsing, at least one earlier item fully satisfies the item schema,
+    and the final object is missing required fields. If it contains none of the
+    required fields, any parser-invented keys are part of that unusable tail as
+    well. Complete JSON never reaches this function. A lone incomplete item,
+    an invalid prefix, an otherwise complete object with unexpected fields, or
+    a wrong declared-field type remains a strict validation error.
+    """
+    if "anyOf" in schema:
+        for branch in schema["anyOf"]:
+            normalized, discarded = _discard_repaired_incomplete_array_tail(
+                value, branch
+            )
+            try:
+                _validate_json_schema(normalized, branch)
+            except MemoryJsonToolBridgeError:
+                continue
+            return normalized, discarded
+        return deepcopy(value), 0
+
+    if isinstance(value, dict):
+        properties = schema.get("properties") or {}
+        normalized: dict[str, Any] = {}
+        discarded = 0
+        for name, item in value.items():
+            child_schema = properties.get(name)
+            if not isinstance(child_schema, dict):
+                normalized[name] = deepcopy(item)
+                continue
+            normalized[name], child_discarded = _discard_repaired_incomplete_array_tail(
+                item, child_schema
+            )
+            discarded += child_discarded
+        return normalized, discarded
+
+    if isinstance(value, list):
+        item_schema = schema.get("items")
+        if not isinstance(item_schema, dict):
+            return deepcopy(value), 0
+        normalized_items: list[Any] = []
+        discarded = 0
+        for item in value:
+            normalized, child_discarded = _discard_repaired_incomplete_array_tail(
+                item, item_schema
+            )
+            normalized_items.append(normalized)
+            discarded += child_discarded
+
+        if len(normalized_items) < 2 or not _only_missing_required_object_fields(
+            normalized_items[-1], item_schema
+        ):
+            return normalized_items, discarded
+        try:
+            for prefix_item in normalized_items[:-1]:
+                _validate_json_schema(prefix_item, item_schema)
+            _validate_json_schema(normalized_items[:-1], schema)
+        except MemoryJsonToolBridgeError:
+            return normalized_items, discarded
+        return normalized_items[:-1], discarded + 1
+
+    return deepcopy(value), 0
+
+
+def _only_missing_required_object_fields(value: Any, schema: dict[str, Any]) -> bool:
+    """Return whether a repaired tail lacks required executable content."""
+    if not isinstance(value, dict) or schema.get("type") != "object":
+        return False
+    required = set(schema.get("required") or [])
+    if not required or required.issubset(value):
+        return False
+    if required.isdisjoint(value):
+        return True
+    relaxed_schema = deepcopy(schema)
+    relaxed_schema["required"] = []
+    try:
+        _validate_json_schema(value, relaxed_schema)
+    except MemoryJsonToolBridgeError:
+        return False
+    return True
 
 
 def _validate_json_schema(value: Any, schema: dict[str, Any], path: str = "$") -> None:
