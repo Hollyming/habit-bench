@@ -165,6 +165,11 @@ Use `--force-plan` only when intentionally replacing the plan and
 `HABITBENCH_FORCE_RERUN=1` only when intentionally replacing completed shard
 outputs.
 
+For smoke plans, `--max-users` and `--max-probes` define one global ordered
+dataset prefix before users are split into shards. Therefore, the disjoint
+shard union is exactly the unsharded subset recorded in the plan manifest;
+`max-probes` is not multiplied by the shard count.
+
 ## Output and timing
 
 ```text

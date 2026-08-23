@@ -76,57 +76,14 @@ def _load_merged_dataset_view(
     domain_filter: str | None,
     max_users: int | None,
     max_probes: int | None,
-    expected_shards: int,
 ) -> DatasetBundle:
-    """Rebuild the exact union produced by the per-shard subset contract."""
+    """Load the global subset whose disjoint user shards are being merged."""
 
-    base = load_dataset(
+    return load_dataset(
         dataset_dir,
         domain_filter=domain_filter,
         max_users=max_users,
-    )
-    if max_probes is None:
-        return base
-
-    selected_probe_ids: set[str] = set()
-    for index in range(expected_shards):
-        shard = load_dataset(
-            dataset_dir,
-            domain_filter=domain_filter,
-            max_users=max_users,
-            max_probes=max_probes,
-            user_shard_index=index,
-            user_shard_count=expected_shards,
-        )
-        selected_probe_ids.update(probe["probe_id"] for probe in shard.probes)
-
-    probes = [
-        probe for probe in base.probes if probe["probe_id"] in selected_probe_ids
-    ]
-    selected_users = {probe["user_id"] for probe in probes}
-    sessions_by_user = {
-        user_id: sessions
-        for user_id, sessions in base.sessions_by_user.items()
-        if user_id in selected_users
-    }
-    manifest = {
-        **base.manifest,
-        "users": len(sessions_by_user),
-        "sessions": sum(len(rows) for rows in sessions_by_user.values()),
-        "probes": len(probes),
-        "subset": {
-            **(base.manifest.get("subset") or {}),
-            "max_probes": max_probes,
-            "user_shard_index": None,
-            "user_shard_count": None,
-        },
-    }
-    return DatasetBundle(
-        base.dataset_dir,
-        sessions_by_user,
-        probes,
-        {probe["probe_id"]: base.keys[probe["probe_id"]] for probe in probes},
-        manifest,
+        max_probes=max_probes,
     )
 
 
@@ -148,7 +105,6 @@ def merge_shards(
         domain_filter=domain_filter,
         max_users=max_users,
         max_probes=max_probes,
-        expected_shards=expected_shards,
     )
     shards = _discover_shards(shard_root, expected_shards)
     expected_hashes = {

@@ -261,12 +261,20 @@ def _select_subset(
     selected_users = sorted({probe["user_id"] for probe in probes})
     if max_users is not None:
         selected_users = selected_users[:max_users]
-    if user_shard_count is not None:
-        selected_users = selected_users[user_shard_index::user_shard_count]
     selected_user_set = set(selected_users)
     selected_probes = [probe for probe in probes if probe["user_id"] in selected_user_set]
     if max_probes is not None:
         selected_probes = selected_probes[:max_probes]
+    # Smoke limits describe one global dataset prefix. Apply both limits before
+    # splitting users so the disjoint shard union is identical to the
+    # corresponding unsharded view recorded in the plan manifest.
+    selected_users = sorted({probe["user_id"] for probe in selected_probes})
+    if user_shard_count is not None:
+        selected_users = selected_users[user_shard_index::user_shard_count]
+        selected_user_set = set(selected_users)
+        selected_probes = [
+            probe for probe in selected_probes if probe["user_id"] in selected_user_set
+        ]
     selected_probe_ids = {probe["probe_id"] for probe in selected_probes}
     selected_user_set = {probe["user_id"] for probe in selected_probes}
     return (

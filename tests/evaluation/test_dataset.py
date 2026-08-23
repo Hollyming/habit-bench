@@ -154,6 +154,54 @@ class DatasetTest(unittest.TestCase):
             self.assertEqual(shard_users[0].union(shard_users[1]), set(users))
             self.assertEqual(shards[0].manifest["subset"]["user_shard_count"], 2)
 
+    def test_smoke_probe_prefix_is_global_before_user_sharding(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            users = [f"u{index}" for index in range(4)]
+            write_jsonl(
+                root / "public/lifelines.jsonl",
+                [session(user_id, 0) for user_id in users],
+            )
+            probes = [
+                {
+                    "probe_id": f"p-{user_id}",
+                    "user_id": user_id,
+                    "query": "Which response fits this user?",
+                    "choices": [
+                        {"choice_id": "A", "text": "first"},
+                        {"choice_id": "B", "text": "second"},
+                    ],
+                }
+                for user_id in users
+            ]
+            write_jsonl(root / "public/probes.jsonl", probes)
+            write_jsonl(
+                root / "private/probe_key.jsonl",
+                [
+                    {"probe_id": probe["probe_id"], "gold_choice_id": "A"}
+                    for probe in probes
+                ],
+            )
+
+            whole = load_dataset(root, max_users=4, max_probes=2)
+            shards = [
+                load_dataset(
+                    root,
+                    max_users=4,
+                    max_probes=2,
+                    user_shard_index=index,
+                    user_shard_count=2,
+                )
+                for index in range(2)
+            ]
+            whole_ids = {probe["probe_id"] for probe in whole.probes}
+            shard_ids = {
+                probe["probe_id"]
+                for shard in shards
+                for probe in shard.probes
+            }
+            self.assertEqual(shard_ids, whole_ids)
+
     def test_domain_filter_creates_disjoint_public_views(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

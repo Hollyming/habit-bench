@@ -153,7 +153,7 @@ class MergeShardsTest(unittest.TestCase):
                     index,
                     2,
                     max_users=2,
-                    max_probes=1,
+                    max_probes=2,
                 )
 
             manifest = merge_shards(
@@ -163,11 +163,11 @@ class MergeShardsTest(unittest.TestCase):
                 "no_memory",
                 2,
                 max_users=2,
-                max_probes=1,
+                max_probes=2,
             )
             self.assertEqual(manifest["result"]["total"], 2)
             self.assertEqual(manifest["dataset"]["subset"]["max_users"], 2)
-            self.assertEqual(manifest["dataset"]["subset"]["max_probes"], 1)
+            self.assertEqual(manifest["dataset"]["subset"]["max_probes"], 2)
 
             with self.assertRaisesRegex(DatasetContractError, "max-users mismatch"):
                 merge_shards(
