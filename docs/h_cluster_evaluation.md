@@ -152,7 +152,15 @@ cp scripts/cluster/env.h.example.sh scripts/cluster/env.h.local.sh
 提交器要求显式填写 `--creator-type` 和 `--creator-ad`。它会从 `ssh-init` 注入的
 BrainPP 凭据环境解析真实 creator，并要求它与 `--creator-ad` 完全一致；不会用 Job
 名称或开发机 `whoami` 代替身份校验。直接提交入口只接受 `user` 或 `group` 身份，
-不实现 autoolchain 代提交例外。
+不实现 autoolchain 代提交例外。新调度规则同时要求提交端设置：
+
+```bash
+export KUBEBRAIN_CLUSTER_ENTRY=http://wangyixiuan-cpu.linzhouhan.ailab-llmarchitecture.svc.pjlab.local:11451
+```
+
+`submit_h_cluster.sh` 会在第一次使用 `rjob` 前自动导出该固定值，并在最终提交前
+再次恢复和校验；调用者不需要额外手工设置。直接运行 `rjob list/logs/events/stop`
+等管理命令时仍需在当前 shell 手工导出。
 
 ## 3. 提交示例
 
@@ -285,6 +293,7 @@ merge 所有权，因此不会
 shard 会快速跳过，失败或中断 shard 会重新执行。
 
 ```bash
+export KUBEBRAIN_CLUSTER_ENTRY=http://wangyixiuan-cpu.linzhouhan.ailab-llmarchitecture.svc.pjlab.local:11451
 rjob list --namespace ailab-llmarchitecture
 rjob events JOB_ID --namespace ailab-llmarchitecture
 rjob logs job JOB_ID -n 500 --namespace ailab-llmarchitecture

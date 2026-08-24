@@ -6,6 +6,11 @@ set -euo pipefail
 
 LAUNCHER_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SPEC_PATH="/mnt/shared-storage-gpfs2/plm-gpfs/jmzhang/H集群architecture分区RJob任务提交规范.md"
+KUBEBRAIN_CLUSTER_ENTRY_REQUIRED="http://wangyixiuan-cpu.linzhouhan.ailab-llmarchitecture.svc.pjlab.local:11451"
+# New llmarchitecture jobs must go through the partition scheduler rather than
+# the legacy platform entry.  Pin it here so every wrapper using this launcher
+# has the same routing contract before its first rjob invocation.
+export KUBEBRAIN_CLUSTER_ENTRY="$KUBEBRAIN_CLUSTER_ENTRY_REQUIRED"
 ENV_FILE="${HABITBENCH_ENV_FILE:-$LAUNCHER_ROOT/scripts/cluster/env.h.example.sh}"
 METHODS="full_memory,mem0,amem,memos,memrl,lightmem,letta,mirix,secom"
 DATASETS="food,finance,software,travel"
@@ -534,6 +539,7 @@ PLAN_ARGS=(
   --metadata "memory_mib_per_replica=$MEMORY_MIB"
   --metadata "image=$IMAGE"
   --metadata "mount=$MOUNT_METADATA"
+  --metadata "kubebrain_cluster_entry=$KUBEBRAIN_CLUSTER_ENTRY"
   --metadata "llm_model=$HABITBENCH_LLM_MODEL"
   --metadata "llm_model_id=$HABITBENCH_LLM_MODEL_ID"
   --metadata "llm_model_revision=$HABITBENCH_LLM_MODEL_REVISION"
@@ -688,4 +694,11 @@ fi
 sed -n '1,$p' "$SPEC_PATH" >/dev/null
 # shellcheck disable=SC1091
 source /etc/profile.d/ssh-init.sh
+# ssh-init may refresh the BrainPP environment; restore and verify the required
+# llmarchitecture scheduler route immediately before invoking rjob.
+export KUBEBRAIN_CLUSTER_ENTRY="$KUBEBRAIN_CLUSTER_ENTRY_REQUIRED"
+if [[ "$KUBEBRAIN_CLUSTER_ENTRY" != "$KUBEBRAIN_CLUSTER_ENTRY_REQUIRED" ]]; then
+  echo "Invalid llmarchitecture KUBEBRAIN_CLUSTER_ENTRY: $KUBEBRAIN_CLUSTER_ENTRY" >&2
+  exit 1
+fi
 "${RJOB_COMMAND[@]}" 2>&1 | tee -a "$OUTPUT_ROOT/h_rjob_submit.log"

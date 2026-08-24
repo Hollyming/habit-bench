@@ -709,6 +709,10 @@ bash scripts/submit_h_cluster.sh \
   --output-root "$PWD/results/habit-h200-4g-v1"
 ```
 
+launcher 会在任何 `rjob` 调用前自动设置 llmarchitecture 新调度入口
+`KUBEBRAIN_CLUSTER_ENTRY=http://wangyixiuan-cpu.linzhouhan.ailab-llmarchitecture.svc.pjlab.local:11451`；
+直接运行 `rjob list/logs/events/stop` 时需在当前 shell 手工导出同一变量。
+
 H profile 默认复用
 `/mnt/shared-storage-gpfs2/plm-gpfs/jmzhang/{envs,models}` 的只读环境和模型，但会把
 结果及 HF/vLLM/Triton 等可写 cache 放到当前 clone 的 `results/`。其他用户在自己的

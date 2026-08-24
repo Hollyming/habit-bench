@@ -175,6 +175,24 @@ class ProtocolTest(unittest.TestCase):
         self.assertIn("--private-machine group", launcher)
         self.assertIn("--priority 1", launcher)
         self.assertIn("--priority 5", launcher)
+        cluster_entry = (
+            "http://wangyixiuan-cpu.linzhouhan.ailab-llmarchitecture."
+            "svc.pjlab.local:11451"
+        )
+        self.assertIn(
+            f'KUBEBRAIN_CLUSTER_ENTRY_REQUIRED="{cluster_entry}"', launcher
+        )
+        self.assertGreaterEqual(
+            launcher.count(
+                'export KUBEBRAIN_CLUSTER_ENTRY='
+                '"$KUBEBRAIN_CLUSTER_ENTRY_REQUIRED"'
+            ),
+            2,
+        )
+        self.assertIn(
+            '--metadata "kubebrain_cluster_entry=$KUBEBRAIN_CLUSTER_ENTRY"',
+            launcher,
+        )
         idle_branch = launcher.rsplit("  idle)\n", 1)[1].split("    ;;", 1)[0]
         self.assertIn("--task-type idle", idle_branch)
         self.assertIn("--restart-policy never", idle_branch)
