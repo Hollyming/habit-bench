@@ -73,6 +73,7 @@ COMPLETION_FILES = (
     "scored_predictions.jsonl",
     "metrics.json",
 )
+NO_EXPECTED_METHOD_CONFIG = object()
 
 
 def _utc_now() -> str:
@@ -1160,7 +1161,68 @@ def _public_worker_record(worker: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def _completed_task_record(output_dir: Path) -> dict[str, Any] | None:
+def _apply_config_overrides(
+    config: dict[str, Any], overrides: dict[str, Any]
+) -> dict[str, Any]:
+    """Return the raw method config with plan-declared runtime overrides."""
+
+    normalized = json.loads(json.dumps(config))
+    for dotted_name, value in overrides.items():
+        names = dotted_name.split(".")
+        target = normalized
+        for name in names[:-1]:
+            child = target.get(name)
+            if not isinstance(child, dict):
+                child = {}
+                target[name] = child
+            target = child
+        target[names[-1]] = value
+    return normalized
+
+
+def _method_config_matches_plan(observed: Any, expected: Any) -> bool:
+    """Validate checkpoint behavior against the plan's effective config.
+
+    The plan stores the effective config after model/path overrides, whereas a
+    shard manifest snapshots the raw YAML.  Reapply the recorded overrides and
+    compare parsed values.  The YAML byte hash is intentionally not compared:
+    comment-only edits must not invalidate a semantically identical result.
+    """
+
+    if expected is NO_EXPECTED_METHOD_CONFIG:
+        return True
+    if expected is None:
+        return observed is None
+    if not isinstance(expected, dict) or not isinstance(observed, dict):
+        return False
+    if observed.get("name") != expected.get("name"):
+        return False
+    observed_config = observed.get("config")
+    expected_config = expected.get("config")
+    overrides = expected.get("path_overrides") or {}
+    if (
+        not isinstance(observed_config, dict)
+        or not isinstance(expected_config, dict)
+        or not isinstance(overrides, dict)
+    ):
+        return False
+    return _apply_config_overrides(observed_config, overrides) == expected_config
+
+
+def _expected_method_config_for_row(
+    row: dict[str, str], plan_manifest: dict[str, Any] | None
+) -> Any:
+    methods = (plan_manifest or {}).get("methods")
+    if not isinstance(methods, dict) or row["method"] not in methods:
+        return NO_EXPECTED_METHOD_CONFIG
+    return methods[row["method"]]
+
+
+def _completed_task_record(
+    output_dir: Path,
+    *,
+    expected_method_config: Any = NO_EXPECTED_METHOD_CONFIG,
+) -> dict[str, Any] | None:
     """Return the atomic shard checkpoint only when every final artifact exists."""
 
     runtime_path = output_dir / "worker_runtime.json"
@@ -1182,15 +1244,30 @@ def _completed_task_record(output_dir: Path) -> dict[str, Any] | None:
         return None
     if (run_manifest.get("execution") or {}).get("status") != "succeeded":
         return None
+    if not _method_config_matches_plan(
+        run_manifest.get("method_config"), expected_method_config
+    ):
+        return None
     return record
 
 
-def _prepare_task_output(output_dir: Path, *, force_rerun: bool) -> bool:
+def _prepare_task_output(
+    output_dir: Path,
+    *,
+    force_rerun: bool,
+    expected_method_config: Any = NO_EXPECTED_METHOD_CONFIG,
+) -> bool:
     """Keep a verified checkpoint; remove failed/interrupted state before rerun."""
 
     if not SHARD_DIR_PATTERN.fullmatch(output_dir.name):
         raise ValueError(f"Refusing non-shard output directory: {output_dir}")
-    was_complete = not force_rerun and _completed_task_record(output_dir) is not None
+    was_complete = (
+        not force_rerun
+        and _completed_task_record(
+            output_dir, expected_method_config=expected_method_config
+        )
+        is not None
+    )
     if output_dir.exists() and not was_complete:
         shutil.rmtree(output_dir)
     if not was_complete:
@@ -1351,6 +1428,7 @@ def _run_task(
     row: dict[str, str],
     worker: dict[str, Any],
     base_env: dict[str, str],
+    expected_method_config: Any = NO_EXPECTED_METHOD_CONFIG,
 ) -> dict[str, Any]:
     shard_index = int(row["shard_index"])
     shard_count = int(row["shard_count"])
@@ -1367,13 +1445,20 @@ def _run_task(
         poll_sec=poll_sec,
         log_every_sec=log_every_sec,
     ):
-        return _run_task_with_output_lock(row, worker, base_env)
+        return _run_task_with_output_lock(
+            row,
+            worker,
+            base_env,
+            expected_method_config=expected_method_config,
+        )
 
 
 def _run_task_with_output_lock(
     row: dict[str, str],
     worker: dict[str, Any],
     base_env: dict[str, str],
+    *,
+    expected_method_config: Any = NO_EXPECTED_METHOD_CONFIG,
 ) -> dict[str, Any]:
     shard_index = int(row["shard_index"])
     shard_count = int(row["shard_count"])
@@ -1382,10 +1467,13 @@ def _run_task_with_output_lock(
     was_complete = _prepare_task_output(
         output_dir,
         force_rerun=base_env.get("HABITBENCH_FORCE_RERUN", "0") == "1",
+        expected_method_config=expected_method_config,
     )
     label = f"{row['method']}/{row['dataset_name']}/{shard_name}"
     if was_complete:
-        checkpoint = _completed_task_record(output_dir)
+        checkpoint = _completed_task_record(
+            output_dir, expected_method_config=expected_method_config
+        )
         if checkpoint is None:
             raise RuntimeError(f"Checkpoint disappeared while resuming: {output_dir}")
         _log("task_skip_checkpoint", task=label)
@@ -1543,7 +1631,12 @@ def _run_task_with_output_lock(
     }
     if record["status"] == "succeeded":
         _write_json(output_dir / "worker_runtime.json", record)
-        if _completed_task_record(output_dir) is None:
+        if (
+            _completed_task_record(
+                output_dir, expected_method_config=expected_method_config
+            )
+            is None
+        ):
             record.update(
                 {
                     "status": "failed",
@@ -1718,7 +1811,10 @@ def main() -> None:
     checkpoint_count = sum(
         _completed_task_record(
             Path(row["method_output_root"])
-            / f"shard_{int(row['shard_index']):03d}_of_{int(row['shard_count']):03d}"
+            / f"shard_{int(row['shard_index']):03d}_of_{int(row['shard_count']):03d}",
+            expected_method_config=_expected_method_config_for_row(
+                row, plan_manifest
+            ),
         )
         is not None
         for row in global_rows
@@ -1907,7 +2003,14 @@ def main() -> None:
                     shard=row["shard_index"],
                 )
                 try:
-                    task_record = _run_task(row, worker, base_env)
+                    task_record = _run_task(
+                        row,
+                        worker,
+                        base_env,
+                        expected_method_config=_expected_method_config_for_row(
+                            row, plan_manifest
+                        ),
+                    )
                 except BaseException as exc:
                     task_record = {
                         "contract_version": "habitbench.shard_worker.v1",

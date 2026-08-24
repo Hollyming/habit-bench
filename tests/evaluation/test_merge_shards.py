@@ -64,6 +64,7 @@ def _write_shard(
     domain_filter: str | None = None,
     max_users: int | None = None,
     max_probes: int | None = None,
+    method_config: object = None,
 ) -> None:
     bundle = load_dataset(
         dataset,
@@ -81,7 +82,7 @@ def _write_shard(
         {
             "method_name": "no_memory",
             "implementation": implementation,
-            "method_config": None,
+            "method_config": method_config,
             "base_model": base_model,
             "dataset": bundle.manifest,
             "adapter_runtime": {"elapsed_sec": 1},
@@ -139,6 +140,54 @@ class MergeShardsTest(unittest.TestCase):
             _write_shard(dataset, shard_root, 0, 2)
 
             with self.assertRaisesRegex(DatasetContractError, "Shard coverage mismatch"):
+                merge_shards(dataset, shard_root, root / "merged", "no_memory", 2)
+
+    def test_merge_ignores_comment_only_method_config_hash_changes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            dataset = _write_fixture(root)
+            shard_root = root / "shards"
+            for index, digest in enumerate(("old-hash", "new-hash")):
+                _write_shard(
+                    dataset,
+                    shard_root,
+                    index,
+                    2,
+                    method_config={
+                        "name": "mirix",
+                        "path": "/configs/mirix.yaml",
+                        "sha256": digest,
+                        "config": {"agent_params": {"attempts": 5}},
+                    },
+                )
+
+            manifest = merge_shards(
+                dataset, shard_root, root / "merged", "no_memory", 2
+            )
+            self.assertEqual(manifest["result"]["total"], 2)
+
+    def test_merge_rejects_behavioral_method_config_mismatch(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            dataset = _write_fixture(root)
+            shard_root = root / "shards"
+            for index, attempts in enumerate((4, 5)):
+                _write_shard(
+                    dataset,
+                    shard_root,
+                    index,
+                    2,
+                    method_config={
+                        "name": "mirix",
+                        "path": "/configs/mirix.yaml",
+                        "sha256": str(attempts),
+                        "config": {"agent_params": {"attempts": attempts}},
+                    },
+                )
+
+            with self.assertRaisesRegex(
+                DatasetContractError, "Method-config mismatch"
+            ):
                 merge_shards(dataset, shard_root, root / "merged", "no_memory", 2)
 
     def test_merge_rescores_declared_smoke_subset(self) -> None:

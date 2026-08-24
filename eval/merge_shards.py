@@ -29,6 +29,14 @@ def _comparable_base_model(config: dict[str, Any]) -> dict[str, Any]:
     return {key: value for key, value in config.items() if key != "base_url"}
 
 
+def _comparable_method_config(config: Any) -> Any:
+    """Compare parsed method behavior, not comment-only YAML byte changes."""
+
+    if not isinstance(config, dict):
+        return config
+    return {key: value for key, value in config.items() if key != "sha256"}
+
+
 def _sum_present(values: list[float | int | None]) -> float:
     return round(sum(float(value) for value in values if value is not None), 3)
 
@@ -170,7 +178,9 @@ def merge_shards(
             base_model
         ) != _comparable_base_model(reference_base_model or {}):
             raise DatasetContractError(f"Implementation/base-model mismatch in {shard_dir}")
-        elif method_config != reference_method_config:
+        elif _comparable_method_config(
+            method_config
+        ) != _comparable_method_config(reference_method_config):
             raise DatasetContractError(f"Method-config mismatch in {shard_dir}")
 
         shard_predictions = read_jsonl(shard_dir / "predictions.jsonl")

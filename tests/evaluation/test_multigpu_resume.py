@@ -121,7 +121,9 @@ class MultiGpuResumeTest(unittest.TestCase):
             for worker in workers:
                 worker["log_handle"].close()
 
-    def _complete_shard(self, output_dir: Path) -> None:
+    def _complete_shard(
+        self, output_dir: Path, *, method_config: object = None
+    ) -> None:
         output_dir.mkdir(parents=True)
         for name in runner.COMPLETION_FILES:
             path = output_dir / name
@@ -132,7 +134,12 @@ class MultiGpuResumeTest(unittest.TestCase):
                 )
             elif name == "run_manifest.json":
                 path.write_text(
-                    json.dumps({"execution": {"status": "succeeded"}}),
+                    json.dumps(
+                        {
+                            "execution": {"status": "succeeded"},
+                            "method_config": method_config,
+                        }
+                    ),
                     encoding="utf-8",
                 )
             else:
@@ -163,6 +170,72 @@ class MultiGpuResumeTest(unittest.TestCase):
             self.assertTrue(output_dir.is_dir())
             self.assertFalse((output_dir / "metrics.json").exists())
             self.assertFalse((output_dir / "partial-memory.db").exists())
+
+    def test_resume_reuses_semantically_equal_method_config(self):
+        with tempfile.TemporaryDirectory() as raw_root:
+            output_dir = Path(raw_root) / "shard_002_of_016"
+            self._complete_shard(
+                output_dir,
+                method_config={
+                    "name": "mirix",
+                    "sha256": "comment-only-old-hash",
+                    "config": {
+                        "model": {"name": "Qwen3-8B", "temperature": 0.0},
+                        "embedding": {"model_path": "/old/path"},
+                        "agent_params": {"json_tool_bridge_attempts": 5},
+                    },
+                },
+            )
+            expected = {
+                "name": "mirix",
+                "sha256": "comment-only-new-hash",
+                "config": {
+                    "model": {"name": "Qwen3-14B", "temperature": 0.0},
+                    "embedding": {"model_path": "/new/path"},
+                    "agent_params": {"json_tool_bridge_attempts": 5},
+                },
+                "path_overrides": {
+                    "model.name": "Qwen3-14B",
+                    "embedding.model_path": "/new/path",
+                },
+            }
+
+            self.assertTrue(
+                runner._prepare_task_output(
+                    output_dir,
+                    force_rerun=False,
+                    expected_method_config=expected,
+                )
+            )
+
+    def test_resume_discards_behaviorally_stale_method_config(self):
+        with tempfile.TemporaryDirectory() as raw_root:
+            output_dir = Path(raw_root) / "shard_003_of_016"
+            self._complete_shard(
+                output_dir,
+                method_config={
+                    "name": "mirix",
+                    "sha256": "old-hash",
+                    "config": {"agent_params": {}},
+                },
+            )
+            expected = {
+                "name": "mirix",
+                "sha256": "new-hash",
+                "config": {
+                    "agent_params": {"json_tool_bridge_attempts": 5}
+                },
+                "path_overrides": {},
+            }
+
+            self.assertFalse(
+                runner._prepare_task_output(
+                    output_dir,
+                    force_rerun=False,
+                    expected_method_config=expected,
+                )
+            )
+            self.assertEqual(list(output_dir.iterdir()), [])
 
     def test_two_replicas_dynamically_claim_each_shard_once(self):
         rows = [
