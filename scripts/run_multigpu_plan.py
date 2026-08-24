@@ -238,6 +238,7 @@ def _safe_config(env: dict[str, str]) -> dict[str, Any]:
         "HABITBENCH_OFFICIAL_TIMEOUT_SEC",
         "HABITBENCH_STRUCTURED_OUTPUT_MODE",
         "HF_HUB_OFFLINE",
+        "HF_HOME",
         "TRANSFORMERS_OFFLINE",
         "XDG_CACHE_HOME",
         "VLLM_CACHE_ROOT",

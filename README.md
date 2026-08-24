@@ -709,6 +709,12 @@ bash scripts/submit_h_cluster.sh \
   --output-root "$PWD/results/habit-h200-4g-v1"
 ```
 
+H profile 默认复用
+`/mnt/shared-storage-gpfs2/plm-gpfs/jmzhang/{envs,models}` 的只读环境和模型，但会把
+结果及 HF/vLLM/Triton 等可写 cache 放到当前 clone 的 `results/`。其他用户在自己的
+`plm-gpfs/<user>/...` 下 clone 后无需改共享模型路径；提交器会自动为共享资源根和该
+用户的项目/输出根生成并校验两个 mount。
+
 8 卡只需改为 `--gpus 8`；两个 8 卡节点使用 `--gpus 8 --replicas 2 --shards 16`。
 多节点评测不使用 DDP：16 个常驻 GPU worker 从 GPFS 全局动态队列领取 shard，快卡可
 跨 method/domain 边界继续工作，不再因静态奇偶分片而等待另一节点。

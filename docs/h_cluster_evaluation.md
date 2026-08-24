@@ -21,10 +21,10 @@ Replica 通过 `JOB_ID` 共享 GPFS 动态任务队列；`NODE_RANK/NODE_COUNT` 
 Food v5、Finance/Software v1.4 和 Travel v13。`full_history` 只作为原始 recency
 消融对照，不隐式加入主计划。
 
-## 1. 持久化环境和模型
+## 1. 共享资源与每个 clone 的可写目录
 
 H RJob 不继承开发机镜像或 PT 集群的 `/plm-shared`。先把两个固定 Python 环境和
-三个模型 snapshot 放到 H 集群持久化 GPFS。默认布局是：
+模型 snapshot 放到 H 集群持久化 GPFS。它们是所有评测者复用的只读输入；默认布局是：
 
 ```text
 /mnt/shared-storage-gpfs2/plm-gpfs/jmzhang/
@@ -37,6 +37,27 @@ H RJob 不继承开发机镜像或 PT 集群的 `/plm-shared`。先把两个固�
 │   └── llmlingua-2-xlm-roberta-large-meetingbank/
 └── .cache/tiktoken/
 ```
+
+`env.h.example.sh` 中的 `HABITBENCH_H_SHARED_ROOT` 因而有意默认指向上述
+`jmzhang` 目录；这不代表结果也写入该用户目录。仓库路径由模板自身自动定位，运行结果
+默认写到当前 clone 的 `results/`，可能写锁或编译产物的缓存也默认隔离在：
+
+```text
+<current-clone>/
+└── results/
+    ├── <experiment-name>/
+    └── .cache/habitbench/
+        ├── huggingface/
+        ├── vllm/
+        └── torch/
+```
+
+因此 Alice 将仓库 clone 到
+`/mnt/shared-storage-gpfs2/plm-gpfs/alice/workspace/habit-bench` 后，不需要修改模型或
+环境路径，输出和可写 cache 会自然归 Alice。旧私有 profile 中的
+`HABITBENCH_H_ROOT` 仍作为共享根的兼容别名；新配置应优先使用
+`HABITBENCH_H_SHARED_ROOT`。若共享资源位置不同才覆盖它，若只想另放可写缓存则覆盖
+`HABITBENCH_H_CACHE_ROOT`。
 
 `/root/miniconda3` 是当前开发容器里的 Conda 安装器，不是 RJob 会自动继承的持久化
 环境。用仓库脚本将两个环境创建到 GPFS；脚本固定 Python/依赖版本、避开 Anaconda
@@ -189,12 +210,12 @@ bash scripts/cluster/submit_qwen3_14b_main.sh
 bash scripts/cluster/submit_qwen3_32b_main.sh
 ```
 
-这些规模化入口默认写到 `$PROJECT_ROOT/results/<experiment-name>`，不包含开发者
-个人路径。可统一覆盖根目录，例如 `HABITBENCH_RESULTS_ROOT="$HOME/results"`；也可用
+这些规模化入口默认写到 `$PROJECT_ROOT/results/<experiment-name>`，即 clone 所有者
+自己的持久化目录。可统一覆盖为另一个属于自己的 GPFS 绝对路径，例如
+`HABITBENCH_RESULTS_ROOT=/mnt/shared-storage-gpfs2/plm-gpfs/<your-ad>/results`；也可用
 `HABITBENCH_Q4_OUTPUT_ROOT`、`HABITBENCH_Q14_OUTPUT_ROOT` 或
 `HABITBENCH_Q32_OUTPUT_ROOT` 单独覆盖某个规模。H 集群提交时，最终路径必须位于
-RJob 挂载覆盖的持久存储中；若 `$HOME` 不是持久挂载，请保留项目内默认目录或指定
-其他共享存储路径。
+RJob 挂载覆盖的持久存储中；不要使用容器内通常指向 `/root` 的 `$HOME`。
 
 该入口覆盖 `full_memory` 与八个 memory 方法、Food v5、Finance/Software v1.4、
 Travel v13，共 `9 × 4 × 16 = 576` 个 shard，并继承完整 shard 粒度的断点恢复。
@@ -228,8 +249,12 @@ bash scripts/submit_h_cluster.sh \
 ```
 
 默认 `--shards` 等于 `GPU/Replica × Replica`；也可显式设置更多用户 shard，由所有
-Replica 的常驻 worker 分批执行。默认镜像、namespace、quota group 和 GPFS mount 都是具体值，可通过
-`--image`、`--mount` 覆盖，但提交前预检拒绝空值和未替换的尖括号占位符。
+Replica 的常驻 worker 分批执行。提交器会从项目、共享环境/模型、可写 cache 和输出
+路径推导所需的最窄 owner 级 mount。例如 Alice 的 clone 复用 jmzhang 模型时，会同时
+生成 `jmzhang` 和 `alice` 两个 mount，并验证每条必需路径至少由其中一个覆盖。无需手写
+mount；特殊目录布局可重复传入 `--mount CONFIG`，或用空格分隔的
+`HABITBENCH_H_MOUNTS` 覆盖。默认镜像、namespace 和 quota group 都是具体值，可通过
+`--image` 覆盖；提交前预检拒绝空值、未替换的尖括号占位符和漏挂载路径。
 CPU 和内存只能向上覆盖，不能低于每卡 8 cores 和 65536 MiB。
 
 ## 4. 中断恢复和观察

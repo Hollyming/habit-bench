@@ -20,7 +20,8 @@ JOB_TYPE="managed-spot"
 CREATOR_TYPE="${HABITBENCH_CREATOR_TYPE:-}"
 CREATOR_AD="${HABITBENCH_CREATOR_AD:-}"
 IMAGE="${HABITBENCH_H_IMAGE:-registry.h.pjlab.org.cn/ailab/ml-base:22.04-pjlab-20251117}"
-MOUNT="${HABITBENCH_H_MOUNT:-gpfs://gpfs2/plm-gpfs/jmzhang:/mnt/shared-storage-gpfs2/plm-gpfs/jmzhang}"
+MOUNT_CONFIGS=()
+MOUNTS_FROM_CLI=0
 PORT_BASE=8100
 MAX_USERS=""
 MAX_PROBES=""
@@ -42,7 +43,7 @@ usage() {
   echo "  --job-name NAME      lowercase letters, digits, hyphens; at most 32 chars"
   echo "  --env-file PATH      default: scripts/cluster/env.h.example.sh"
   echo "  --image IMAGE        explicit H registry image"
-  echo "  --mount CONFIG       explicit GPFS mount"
+  echo "  --mount CONFIG       explicit GPFS mount; repeat for multiple user/shared roots"
   echo "  --cpus N             per Replica; minimum/default: 8 per GPU"
   echo "  --memory-mib N       per Replica; minimum/default: 65536 MiB per GPU"
   echo "  --max-users N        recorded smoke-test user prefix"
@@ -66,7 +67,11 @@ while [[ $# -gt 0 ]]; do
     --job-name) JOB_NAME="${2:?missing value for --job-name}"; shift 2 ;;
     --env-file) ENV_FILE="${2:?missing value for --env-file}"; shift 2 ;;
     --image) IMAGE="${2:?missing value for --image}"; shift 2 ;;
-    --mount) MOUNT="${2:?missing value for --mount}"; shift 2 ;;
+    --mount)
+      MOUNT_CONFIGS+=("${2:?missing value for --mount}")
+      MOUNTS_FROM_CLI=1
+      shift 2
+      ;;
     --cpus) CPUS="${2:?missing value for --cpus}"; shift 2 ;;
     --memory-mib) MEMORY_MIB="${2:?missing value for --memory-mib}"; shift 2 ;;
     --port-base) PORT_BASE="${2:?missing value for --port-base}"; shift 2 ;;
@@ -185,6 +190,12 @@ for required_name in \
   HABITBENCH_LIGHTMEM_MODEL \
   HABITBENCH_SECOM_COMPRESSOR \
   HABITBENCH_CHAT_TEMPLATE \
+  HF_HOME \
+  XDG_CACHE_HOME \
+  VLLM_CACHE_ROOT \
+  TORCH_HOME \
+  TORCHINDUCTOR_CACHE_DIR \
+  TRITON_CACHE_DIR \
   TIKTOKEN_CACHE_DIR \
   TRITON_PTXAS_PATH
 do
@@ -193,18 +204,13 @@ do
     exit 2
   fi
 done
-for field_name in IMAGE MOUNT PROJECT_ROOT ENV_FILE; do
+for field_name in IMAGE PROJECT_ROOT ENV_FILE; do
   field_value="${!field_name}"
   if [[ -z "$field_value" || "$field_value" == *'<'* || "$field_value" == *'>'* ]]; then
     echo "$field_name is empty or still contains a placeholder: $field_value" >&2
     exit 2
   fi
 done
-if [[ ! "$MOUNT" =~ ^gpfs://[^:]+:/mnt/shared-storage- ]]; then
-  echo "MOUNT must be an explicit GPFS-to-H-persistent-path mapping: $MOUNT" >&2
-  exit 2
-fi
-MOUNT_TARGET="${MOUNT##*:}"
 if ! command -v rjob >/dev/null 2>&1; then
   echo "rjob CLI is unavailable; install or activate brainpp before submission" >&2
   exit 1
@@ -226,6 +232,109 @@ if [[ "$OUTPUT_ROOT" != /mnt/shared-storage-* ]]; then
 fi
 PLAN="$OUTPUT_ROOT/shard_plan.tsv"
 
+# The immutable environments/models may live in a shared owner's tree while
+# the clone, writable caches and results belong to the actual evaluator.  The
+# RJob CLI accepts multiple configs after one --mount.  If the caller did not
+# specify mounts, infer the narrow per-owner GPFS2 roots needed by every path.
+if (( MOUNTS_FROM_CLI == 0 )); then
+  if [[ -n "${HABITBENCH_H_MOUNTS:-}" ]]; then
+    # Mount configs cannot contain whitespace; split the documented list.
+    read -r -a MOUNT_CONFIGS <<< "$HABITBENCH_H_MOUNTS"
+  elif [[ -n "${HABITBENCH_H_MOUNT:-}" ]]; then
+    MOUNT_CONFIGS=("$HABITBENCH_H_MOUNT")
+  fi
+fi
+
+REQUIRED_MOUNT_PATHS=(
+  "$PROJECT_ROOT"
+  "$ENV_FILE"
+  "$PYTHON_BIN"
+  "$HABITBENCH_VLLM_PYTHON"
+  "$HABITBENCH_LLM_MODEL"
+  "$HABITBENCH_EMBED_MODEL"
+  "$HABITBENCH_LIGHTMEM_MODEL"
+  "$HABITBENCH_SECOM_COMPRESSOR"
+  "$TRITON_PTXAS_PATH"
+  "$HABITBENCH_CHAT_TEMPLATE"
+  "$TIKTOKEN_CACHE_DIR"
+  "$HF_HOME"
+  "$XDG_CACHE_HOME"
+  "$VLLM_CACHE_ROOT"
+  "$TORCH_HOME"
+  "$TORCHINDUCTOR_CACHE_DIR"
+  "$TRITON_CACHE_DIR"
+  "$OUTPUT_ROOT"
+)
+
+append_unique_mount() {
+  local candidate="$1"
+  local existing
+  for existing in "${MOUNT_CONFIGS[@]}"; do
+    [[ "$existing" == "$candidate" ]] && return 0
+  done
+  MOUNT_CONFIGS+=("$candidate")
+}
+
+if (( ${#MOUNT_CONFIGS[@]} == 0 )); then
+  GPFS2_PLM_TARGET_PREFIX="/mnt/shared-storage-gpfs2/plm-gpfs"
+  for mounted_path in "${REQUIRED_MOUNT_PATHS[@]}"; do
+    if [[ "$mounted_path" != "$GPFS2_PLM_TARGET_PREFIX/"* ]]; then
+      echo "Cannot infer an H mount for required path: $mounted_path" >&2
+      echo "Pass one or more --mount configs explicitly" >&2
+      exit 2
+    fi
+    owner_relative="${mounted_path#"$GPFS2_PLM_TARGET_PREFIX/"}"
+    owner_name="${owner_relative%%/*}"
+    if [[ -z "$owner_name" ]]; then
+      echo "Cannot infer the GPFS owner root for: $mounted_path" >&2
+      exit 2
+    fi
+    append_unique_mount \
+      "gpfs://gpfs2/plm-gpfs/$owner_name:$GPFS2_PLM_TARGET_PREFIX/$owner_name"
+  done
+fi
+
+MOUNT_TARGETS=()
+for mount_config in "${MOUNT_CONFIGS[@]}"; do
+  if [[ ! "$mount_config" =~ ^gpfs://[^:]+:/mnt/shared-storage- ]]; then
+    echo "Invalid GPFS-to-H persistent mount config: $mount_config" >&2
+    exit 2
+  fi
+  MOUNT_TARGETS+=("${mount_config##*:}")
+done
+
+path_is_mounted() {
+  local candidate="$1"
+  local target
+  for target in "${MOUNT_TARGETS[@]}"; do
+    if [[ "$candidate" == "$target" || "$candidate" == "$target/"* ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+for mounted_path in "${REQUIRED_MOUNT_PATHS[@]}"; do
+  if ! path_is_mounted "$mounted_path"; then
+    echo "No RJob mount target covers required path: $mounted_path" >&2
+    printf 'mount_target=%s\n' "${MOUNT_TARGETS[@]}" >&2
+    exit 2
+  fi
+done
+
+MOUNT_METADATA="$(IFS=' '; echo "${MOUNT_CONFIGS[*]}")"
+
+# These locations are intentionally per clone/user and writable.  Tiktoken is
+# excluded because it is a verified immutable cache in the shared asset tree.
+mkdir -p \
+  "$OUTPUT_ROOT" \
+  "$HF_HOME" \
+  "$XDG_CACHE_HOME" \
+  "$VLLM_CACHE_ROOT" \
+  "$TORCH_HOME" \
+  "$TORCHINDUCTOR_CACHE_DIR" \
+  "$TRITON_CACHE_DIR"
+
 for required in \
   "$PYTHON_BIN" \
   "$HABITBENCH_VLLM_PYTHON" \
@@ -244,25 +353,6 @@ for python_path in "$PYTHON_BIN" "$HABITBENCH_VLLM_PYTHON"; do
   if [[ ! -x "$python_path" ]]; then
     echo "Required H Python is not executable: $python_path" >&2
     exit 1
-  fi
-done
-for mounted_path in \
-  "$PROJECT_ROOT" \
-  "$ENV_FILE" \
-  "$PYTHON_BIN" \
-  "$HABITBENCH_VLLM_PYTHON" \
-  "$HABITBENCH_LLM_MODEL" \
-  "$HABITBENCH_EMBED_MODEL" \
-  "$HABITBENCH_LIGHTMEM_MODEL" \
-  "$HABITBENCH_SECOM_COMPRESSOR" \
-  "$TRITON_PTXAS_PATH" \
-  "$HABITBENCH_CHAT_TEMPLATE" \
-  "$TIKTOKEN_CACHE_DIR" \
-  "$OUTPUT_ROOT"
-do
-  if [[ "$mounted_path" != "$MOUNT_TARGET" && "$mounted_path" != "$MOUNT_TARGET/"* ]]; then
-    echo "RJob mount target $MOUNT_TARGET does not cover required path: $mounted_path" >&2
-    exit 2
   fi
 done
 if [[ ! -x "$TRITON_PTXAS_PATH" ]]; then
@@ -443,7 +533,7 @@ PLAN_ARGS=(
   --metadata "cpus_per_replica=$CPUS"
   --metadata "memory_mib_per_replica=$MEMORY_MIB"
   --metadata "image=$IMAGE"
-  --metadata "mount=$MOUNT"
+  --metadata "mount=$MOUNT_METADATA"
   --metadata "llm_model=$HABITBENCH_LLM_MODEL"
   --metadata "llm_model_id=$HABITBENCH_LLM_MODEL_ID"
   --metadata "llm_model_revision=$HABITBENCH_LLM_MODEL_REVISION"
@@ -544,7 +634,7 @@ RJOB_COMMAND=(
   --image "$IMAGE"
   --image-pull-policy IfNotPresent
   --share-host-shm True
-  --mount "$MOUNT"
+  --mount "${MOUNT_CONFIGS[@]}"
 )
 if (( REPLICAS > 1 )); then
   RJOB_COMMAND+=(

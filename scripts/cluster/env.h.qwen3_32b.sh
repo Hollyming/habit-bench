@@ -4,8 +4,9 @@
 # on one 141-GB H200, so each GPU still hosts one independent vLLM worker.
 
 HABITBENCH_Q32_ENV_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export HABITBENCH_H_ROOT="${HABITBENCH_H_ROOT:-/mnt/shared-storage-gpfs2/plm-gpfs/jmzhang}"
-export HABITBENCH_H_MODEL_ROOT="${HABITBENCH_H_MODEL_ROOT:-$HABITBENCH_H_ROOT/models/habitbench}"
+export HABITBENCH_H_SHARED_ROOT="${HABITBENCH_H_SHARED_ROOT:-${HABITBENCH_H_ROOT:-/mnt/shared-storage-gpfs2/plm-gpfs/jmzhang}}"
+export HABITBENCH_H_ROOT="$HABITBENCH_H_SHARED_ROOT"
+export HABITBENCH_H_MODEL_ROOT="${HABITBENCH_H_MODEL_ROOT:-$HABITBENCH_H_SHARED_ROOT/models/habitbench}"
 export HABITBENCH_LLM_MODEL="$HABITBENCH_H_MODEL_ROOT/Qwen3-32B"
 export HABITBENCH_SERVED_MODEL="Qwen3-32B"
 export HABITBENCH_LLM_MODEL_ID="Qwen/Qwen3-32B"

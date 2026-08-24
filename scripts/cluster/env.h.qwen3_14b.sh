@@ -5,8 +5,9 @@
 # main run so model scale is the only intended experimental variable.
 
 HABITBENCH_Q14_ENV_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export HABITBENCH_H_ROOT="${HABITBENCH_H_ROOT:-/mnt/shared-storage-gpfs2/plm-gpfs/jmzhang}"
-export HABITBENCH_H_MODEL_ROOT="${HABITBENCH_H_MODEL_ROOT:-$HABITBENCH_H_ROOT/models/habitbench}"
+export HABITBENCH_H_SHARED_ROOT="${HABITBENCH_H_SHARED_ROOT:-${HABITBENCH_H_ROOT:-/mnt/shared-storage-gpfs2/plm-gpfs/jmzhang}}"
+export HABITBENCH_H_ROOT="$HABITBENCH_H_SHARED_ROOT"
+export HABITBENCH_H_MODEL_ROOT="${HABITBENCH_H_MODEL_ROOT:-$HABITBENCH_H_SHARED_ROOT/models/habitbench}"
 export HABITBENCH_LLM_MODEL="$HABITBENCH_H_MODEL_ROOT/Qwen3-14B"
 export HABITBENCH_SERVED_MODEL="Qwen3-14B"
 export HABITBENCH_LLM_MODEL_ID="Qwen/Qwen3-14B"

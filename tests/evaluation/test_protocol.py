@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -188,6 +189,63 @@ class ProtocolTest(unittest.TestCase):
         self.assertIn('VLLM_ENV_LIB="$(dirname', worker)
         self.assertIn('export LD_LIBRARY_PATH="$env_lib', worker)
         self.assertIn("-c 'import sqlite3'", worker)
+
+    def test_h_cluster_profile_separates_shared_assets_and_clone_state(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        profile = project_root / "scripts/cluster/env.h.example.sh"
+        clone_root = "/mnt/shared-storage-gpfs2/plm-gpfs/alice/workspace/habit-bench"
+        command = (
+            f'source "{profile}"\n'
+            "printf '%s\\n' "
+            '"$HABITBENCH_H_SHARED_ROOT" "$HABITBENCH_PROJECT_ROOT" '
+            '"$HABITBENCH_LLM_MODEL" "$HF_HOME" "$XDG_CACHE_HOME" '
+            '"$VLLM_CACHE_ROOT" "$TIKTOKEN_CACHE_DIR"\n'
+        )
+        completed = subprocess.run(
+            ["bash", "-c", command],
+            check=True,
+            capture_output=True,
+            text=True,
+            env={
+                "PATH": os.environ["PATH"],
+                "HABITBENCH_PROJECT_ROOT": clone_root,
+            },
+        )
+        values = completed.stdout.splitlines()
+        shared_root = "/mnt/shared-storage-gpfs2/plm-gpfs/jmzhang"
+        clone_cache = f"{clone_root}/results/.cache/habitbench"
+        self.assertEqual(
+            values,
+            [
+                shared_root,
+                clone_root,
+                f"{shared_root}/models/habitbench/Qwen3-8B",
+                f"{clone_cache}/huggingface",
+                clone_cache,
+                f"{clone_cache}/vllm",
+                f"{shared_root}/.cache/tiktoken",
+            ],
+        )
+
+    def test_h_cluster_launcher_supports_shared_and_user_mounts(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        launcher = (project_root / "scripts/submit_h_cluster.sh").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("MOUNT_CONFIGS=()", launcher)
+        self.assertIn('MOUNT_CONFIGS+=("${2:?missing value for --mount}")', launcher)
+        self.assertIn('gpfs://gpfs2/plm-gpfs/$owner_name:', launcher)
+        self.assertIn('path_is_mounted "$mounted_path"', launcher)
+        self.assertIn('--mount "${MOUNT_CONFIGS[@]}"', launcher)
+        for cache_name in (
+            "HF_HOME",
+            "XDG_CACHE_HOME",
+            "VLLM_CACHE_ROOT",
+            "TORCH_HOME",
+            "TORCHINDUCTOR_CACHE_DIR",
+            "TRITON_CACHE_DIR",
+        ):
+            self.assertIn(f'  "${cache_name}"', launcher)
 
     def test_qwen3_14b_scale_launcher_is_a_distinct_two_node_run(self) -> None:
         project_root = Path(__file__).resolve().parents[2]
