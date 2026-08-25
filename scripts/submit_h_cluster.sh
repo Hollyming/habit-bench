@@ -44,7 +44,7 @@ usage() {
   echo "  --replicas N         independent RJob Replicas, default: 1"
   echo "  --shards N           user shards per method/domain, default: GPU x Replicas"
   echo "  --methods CSV        default: compact full_memory plus eight memory methods"
-  echo "  --datasets CSV       default: food v5, finance/software v1.4, travel v13"
+  echo "  --datasets CSV       default: food v5, finance/software v1.4, travel v16"
   echo "  --output-root PATH   default: PROJECT_ROOT/results/h-...; must be persistent H storage"
   echo "  --plan PATH          persistent resume plan; defaults to OUTPUT_ROOT/shard_plan.tsv"
   echo "  --job-name NAME      lowercase letters, digits, hyphens; at most 32 chars"

@@ -28,7 +28,8 @@ DEFAULT_DATASETS = {
     / "domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4",
     "software": PROJECT_ROOT
     / "domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4",
-    "travel": PROJECT_ROOT / "domain/travel/release_candidate_v13",
+    "travel": PROJECT_ROOT
+    / "domain/travel/release_candidate_v16_postrepair_repaired_r4",
     # Backward-compatible combined view; no longer part of the default suite.
     "finance_software": PROJECT_ROOT
     / "domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4",

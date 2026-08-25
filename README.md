@@ -33,7 +33,7 @@ memory_context + current request + response choices
 | `food` | food | 30 | 4,500 | 1,470 | `domain/food/food_habit_lifelines_stress_v5` |
 | `finance` | finance | 36 | 19,440 | 1,368 | `domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4` |
 | `software` | software | 18 | 9,720 | 680 | `domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4` |
-| `travel` | travel | 30 | 4,092 | 857 | `domain/travel/release_candidate_v13` |
+| `travel` | travel | 30 | 4,092 | 650 | `domain/travel/release_candidate_v16_postrepair_repaired_r4` |
 
 Finance 和 Software 在 v1.4 中共用同一个物理数据包，但正式评测把它们视为两个独立
 dataset alias。`shard_plan.tsv` 分别写入 `domain_filter=finance` 和
@@ -41,8 +41,9 @@ dataset alias。`shard_plan.tsv` 分别写入 `domain_filter=finance` 和
 keys，合并时再次核验 domain filter。旧的 `finance_software` 无过滤别名仅为兼容已有
 plan 保留，不属于默认正式 suite。
 
-Travel v13 已加入默认正式 suite，包含 30 个用户、4,092 个 sessions 和 857 个
-probes。四个 alias 都由同一 plan builder 固定到上述版本。
+Travel v16 已加入默认正式 suite，包含 30 个用户、4,092 个 sessions 和 650 个
+probes。其 post-repair validation 状态为 pass；650 个 probes 都具有可加载的 oracle evidence
+和 oracle habit state。四个 alias 都由同一 plan builder 固定到上述版本。
 
 每个数据包主要包含：
 
