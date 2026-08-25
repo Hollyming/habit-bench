@@ -254,6 +254,7 @@ def convert_memory_json_tool_response(
     schema = (metadata.get("argument_schemas") or {}).get(name)
     if schema is not None:
         _validate_json_schema(arguments, schema)
+    _validate_official_tool_arguments(str(name), arguments)
     return _inject_native_tool_call(response_data, choice, message, name, arguments)
 
 
@@ -272,9 +273,37 @@ def convert_memory_json_arguments_response(
         )
     arguments = _extract_json_object(message, "arguments", repair_schema=schema)
     _validate_json_schema(arguments, schema)
+    _validate_official_tool_arguments(selected_name, arguments)
     return _inject_native_tool_call(
         response_data, choice, message, selected_name, arguments
     )
+
+
+def _validate_official_tool_arguments(
+    name: str, arguments: dict[str, Any]
+) -> None:
+    """Run MIRIX's own business validator before accepting a bridge result.
+
+    The OpenAI tool schema intentionally does not encode every semantic rule
+    enforced by MIRIX (for example, procedural ``steps`` must contain at least
+    one non-empty string).  Reject such arguments here so the bridge's bounded
+    corrective-generation loop can regenerate them instead of letting the
+    memory child fail after the bridge has already returned successfully.
+    """
+    try:
+        from mirix.agent.tool_validators import validate_tool_args
+
+        validation_error = validate_tool_args(name, arguments)
+    except Exception as exc:
+        raise MemoryJsonToolBridgeError(
+            "Official MIRIX tool validator raised "
+            f"{type(exc).__name__} for {name}"
+        ) from exc
+    if validation_error:
+        raise MemoryJsonToolBridgeError(
+            f"Official MIRIX tool validation failed for {name}: "
+            f"{validation_error}"
+        )
 
 
 def _inject_native_tool_call(
@@ -808,7 +837,8 @@ def build_memory_json_retry_request(
             "role": "user",
             "content": (
                 "The previous generation was unusable "
-                f"({type(error).__name__}). Regenerate the complete answer from "
+                f"({type(error).__name__}: {str(error)[:512]}). Regenerate the "
+                "complete answer from "
                 "scratch; do not continue or repair the previous text. Return "
                 "exactly one complete JSON object conforming to response_format, "
                 f"with no prose or markdown. {constraint} Corrective generation "

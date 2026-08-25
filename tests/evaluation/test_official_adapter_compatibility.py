@@ -40,6 +40,18 @@ def _tool(name: str, properties: dict | None = None) -> dict:
     }
 
 
+def _memory_item_schema(*fields: str, max_length: int | None = None) -> dict:
+    string_schema = {"type": "string"}
+    if max_length is not None:
+        string_schema["maxLength"] = max_length
+    return {
+        "type": "object",
+        "properties": {field: dict(string_schema) for field in fields},
+        "required": list(fields),
+        "additionalProperties": False,
+    }
+
+
 class OfficialAdapterCompatibilityTest(unittest.TestCase):
     def test_mirix_bridge_retains_native_finish_tool(self) -> None:
         response_format, metadata = build_memory_json_tool_bridge(
@@ -76,7 +88,9 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
                         "items": {
                             "type": "array",
                             "maxItems": 1,
-                            "items": {"type": "string", "maxLength": 8},
+                            "items": _memory_item_schema(
+                                "details", "summary", max_length=8
+                            ),
                         }
                     },
                 ),
@@ -113,7 +127,12 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
                 "choices": [
                     {
                         "finish_reason": "stop",
-                        "message": {"content": '{"items":["fact"]}'},
+                        "message": {
+                            "content": (
+                                '{"items":[{"details":"event",'
+                                '"summary":"fact"}]}'
+                            )
+                        },
                     }
                 ],
             },
@@ -130,7 +149,12 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
                     "choices": [
                         {
                             "finish_reason": "stop",
-                            "message": {"content": '{"items":["a","b"]}'},
+                            "message": {
+                                "content": (
+                                    '{"items":[{"details":"a","summary":"a"},'
+                                    '{"details":"b","summary":"b"}]}'
+                                )
+                            },
                         }
                     ]
                 },
@@ -147,7 +171,9 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
                         "items": {
                             "type": "array",
                             "minItems": 1,
-                            "items": {"type": "string", "maxLength": 8},
+                            "items": _memory_item_schema(
+                                "name", "summary", "details", max_length=8
+                            ),
                         }
                     },
                 ),
@@ -160,7 +186,12 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
                 "choices": [
                     {
                         "finish_reason": "stop",
-                        "message": {"content": '{"items":["fact"]'},
+                        "message": {
+                            "content": (
+                                '{"items":[{"name":"n","summary":"s",'
+                                '"details":"fact"}]'
+                            )
+                        },
                     }
                 ],
             },
@@ -170,7 +201,10 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
         arguments = json.loads(
             converted["choices"][0]["message"]["tool_calls"][0]["function"]["arguments"]
         )
-        self.assertEqual(arguments, {"items": ["fact"]})
+        self.assertEqual(
+            arguments,
+            {"items": [{"name": "n", "summary": "s", "details": "fact"}]},
+        )
 
         with self.assertRaisesRegex(MemoryJsonToolBridgeError, "too long"):
             convert_memory_json_arguments_response(
@@ -178,13 +212,145 @@ class OfficialAdapterCompatibilityTest(unittest.TestCase):
                     "choices": [
                         {
                             "finish_reason": "stop",
-                            "message": {"content": '{"items":["far-too-long"]'},
+                            "message": {
+                                "content": (
+                                    '{"items":[{"name":"n","summary":"s",'
+                                    '"details":"far-too-long"}]'
+                                )
+                            },
                         }
                     ]
                 },
                 metadata,
                 "semantic_memory_insert",
             )
+
+    def test_mirix_bridge_retries_official_business_validation(self) -> None:
+        from mirix.llm_api.openai_client import OpenAIClient
+
+        item_schema = {
+            "type": "object",
+            "properties": {
+                "entry_type": {"type": "string"},
+                "summary": {"type": "string"},
+                # Deliberately mirrors upstream: schema-valid [] is rejected
+                # only by MIRIX's official procedural-memory validator.
+                "steps": {"type": "array", "items": {"type": "string"}},
+            },
+            "required": ["entry_type", "summary", "steps"],
+            "additionalProperties": False,
+        }
+        _, metadata = build_memory_json_tool_bridge(
+            [
+                _tool(
+                    "procedural_memory_update",
+                    {
+                        "new_items": {"type": "array", "items": item_schema},
+                        "old_ids": {"type": "array", "items": {"type": "string"}},
+                    },
+                ),
+                _tool("finish_memory_update"),
+            ]
+        )
+        response_payloads = [
+            {
+                "id": "chatcmpl-selector",
+                "object": "chat.completion",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "message": {
+                            "content": '{"name":"procedural_memory_update"}'
+                        },
+                    }
+                ],
+            },
+            {
+                "id": "chatcmpl-empty-steps",
+                "object": "chat.completion",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "message": {
+                            "content": (
+                                '{"new_items":[{"entry_type":"guide",'
+                                '"summary":"do it","steps":[]}],'
+                                '"old_ids":["proc_WD59"]}'
+                            )
+                        },
+                    }
+                ],
+            },
+            {
+                "id": "chatcmpl-valid-steps",
+                "object": "chat.completion",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "message": {
+                            "content": (
+                                '{"new_items":[{"entry_type":"guide",'
+                                '"summary":"do it","steps":["first step"]}],'
+                                '"old_ids":["proc_WD59"]}'
+                            )
+                        },
+                    }
+                ],
+            },
+        ]
+        requests = []
+
+        class _Response:
+            object = "chat.completion"
+
+            def __init__(self, payload):
+                self.payload = payload
+
+            def model_dump(self):
+                return self.payload
+
+        class _Completions:
+            async def create(self, **kwargs):
+                requests.append(kwargs)
+                return _Response(response_payloads.pop(0))
+
+        class _FakeAsyncOpenAI:
+            def __init__(self, **kwargs):
+                self.chat = type("_Chat", (), {"completions": _Completions()})()
+
+        client = OpenAIClient.__new__(OpenAIClient)
+        client._prepare_client_kwargs = AsyncMock(
+            return_value={"api_key": "test", "base_url": "http://test/v1"}
+        )
+        request = {
+            "model": "Qwen3-32B",
+            "messages": [{"role": "user", "content": "remember this"}],
+            "response_format": {"type": "json_schema"},
+            "_mirix_memory_json_tool_bridge": metadata,
+        }
+        with (
+            patch("mirix.llm_api.openai_client.AsyncOpenAI", _FakeAsyncOpenAI),
+            patch.dict(
+                os.environ,
+                {
+                    "MIRIX_JSON_TOOL_BRIDGE_ATTEMPTS": "2",
+                    "MIRIX_JSON_TOOL_BRIDGE_SEED": "42",
+                    "MIRIX_JSON_TOOL_BRIDGE_RETRY_TEMPERATURE": "0.2",
+                },
+                clear=False,
+            ),
+        ):
+            converted = asyncio.run(client.request(request))
+
+        self.assertEqual(len(requests), 3)
+        self.assertIn("steps", requests[2]["messages"][-1]["content"])
+        self.assertIn("cannot be empty", requests[2]["messages"][-1]["content"])
+        arguments = json.loads(
+            converted["choices"][0]["message"]["tool_calls"][0]["function"][
+                "arguments"
+            ]
+        )
+        self.assertEqual(arguments["new_items"][0]["steps"], ["first step"])
 
     def test_mirix_bridge_projects_repaired_arguments_to_declared_schema(self) -> None:
         item_schema = {

@@ -99,7 +99,12 @@ and arguments are sequential within one child call, while independent official
 MIRIX memory children remain concurrent. If local serving still ends a JSON
 object early, the bridge reuses MIRIX's official tolerant parser
 (`json.loads` / `demjson3` / `json-repair`) and then applies the same strict
-tool schema before execution. For a parser-repaired truncated object only,
+tool schema before execution. The bridge also preflights the parsed arguments with MIRIX's official
+`validate_tool_args`. Business constraints omitted from the JSON schema, such
+as a procedural-memory update requiring at least one non-empty step, therefore
+enter the same bounded corrective-generation loop instead of failing the child
+after bridge acceptance. The field-level validation reason is included in the
+correction without logging memory content. For a parser-repaired truncated object only,
 unknown fields are projected away when every declared required field is already
 present. If truncation starts one more object in an array, the bridge keeps a
 schema-valid nonempty prefix and discards only that incomplete final item when
@@ -109,9 +114,9 @@ rejected. This covers the upstream `tree_path` drift documented in
 [MIRIX issue #103](https://github.com/Mirix-AI/MIRIX/issues/103) without changing
 its tool contract. Corrective generations use
 deterministic per-attempt seeds and light sampling, so a retry does not replay
-identical malformed bytes. Tool validation, execution, storage, and child
-lifecycle remain unchanged. Requests without a structured response format are
-unaffected.
+identical malformed bytes. The official validator is reused unchanged;
+execution, storage, and child lifecycle remain unchanged. Requests without a
+structured response format are unaffected.
 
 `VLLM_BATCH_INVARIANT=1` and `--attention-backend FLASH_ATTN` keep outputs
 stable when several user workers share one endpoint. After startup, every

@@ -569,15 +569,18 @@ preflight 中拒绝这类不兼容配置。
 
 本地 serving 若仍提前结束 memory-tool JSON，bridge 会复用 MIRIX 官方的
 `json.loads` / `demjson3` / `json-repair` 容错解析链，并在执行前再次按原工具
-schema 严格校验。仅对已经由官方 parser 修复的截断对象，在所有声明必填字段均已
+schema 严格校验；schema 通过后还会预先调用 MIRIX 官方 `validate_tool_args`，把
+`steps=[]` 等 schema 未表达、但官方运行时拒绝的业务约束纳入同一组有界纠错生成。
+纠错提示仅回传字段级校验原因，不包含 memory 正文。仅对已经由官方 parser
+修复的截断对象，在所有声明必填字段均已
 存在时，bridge 才会丢弃 schema 外的 repair artifact（例如
 [MIRIX issue #103](https://github.com/Mirix-AI/MIRIX/issues/103) 中 semantic item
 多出的 `tree_path`）。如果截断发生在对象数组的下一项中，则只在前缀至少包含一个
 完整合法项、尾项缺少必填字段且丢弃后仍满足数组 schema 时，丢弃 parser 补出的
 残缺尾项。完整 JSON、单独的残缺项、非法前缀或声明字段类型不符仍会拒绝。
 后续纠错生成采用固定的逐次 seed 和轻量采样，避免温度为零时重复五次完全相同的
-畸形输出。该适配不改动 MIRIX 的 validator、executor、storage 或多 memory-child
-生命周期。
+畸形输出。该适配复用而不改动 MIRIX 的 validator，也不改动 executor、storage
+或多 memory-child 生命周期。
 
 常用环境变量：
 
