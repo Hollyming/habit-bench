@@ -20,6 +20,7 @@ SHARDS=""
 CPUS=""
 MEMORY_MIB=""
 OUTPUT_ROOT=""
+PLAN_PATH=""
 JOB_NAME=""
 JOB_TYPE="managed-spot"
 CREATOR_TYPE="${HABITBENCH_CREATOR_TYPE:-}"
@@ -45,6 +46,7 @@ usage() {
   echo "  --methods CSV        default: compact full_memory plus eight memory methods"
   echo "  --datasets CSV       default: food v5, finance/software v1.4, travel v13"
   echo "  --output-root PATH   default: PROJECT_ROOT/results/h-...; must be persistent H storage"
+  echo "  --plan PATH          persistent resume plan; defaults to OUTPUT_ROOT/shard_plan.tsv"
   echo "  --job-name NAME      lowercase letters, digits, hyphens; at most 32 chars"
   echo "  --env-file PATH      default: scripts/cluster/env.h.example.sh"
   echo "  --image IMAGE        explicit H registry image"
@@ -69,6 +71,7 @@ while [[ $# -gt 0 ]]; do
     --methods) METHODS="${2:?missing value for --methods}"; shift 2 ;;
     --datasets) DATASETS="${2:?missing value for --datasets}"; shift 2 ;;
     --output-root) OUTPUT_ROOT="${2:?missing value for --output-root}"; shift 2 ;;
+    --plan) PLAN_PATH="${2:?missing value for --plan}"; shift 2 ;;
     --job-name) JOB_NAME="${2:?missing value for --job-name}"; shift 2 ;;
     --env-file) ENV_FILE="${2:?missing value for --env-file}"; shift 2 ;;
     --image) IMAGE="${2:?missing value for --image}"; shift 2 ;;
@@ -235,7 +238,14 @@ if [[ "$OUTPUT_ROOT" != /mnt/shared-storage-* ]]; then
   echo "--output-root must be persistent H storage under /mnt/shared-storage-*: $OUTPUT_ROOT" >&2
   exit 2
 fi
-PLAN="$OUTPUT_ROOT/shard_plan.tsv"
+PLAN="${PLAN_PATH:-$OUTPUT_ROOT/shard_plan.tsv}"
+if [[ "$PLAN" != /* ]]; then
+  PLAN="$PROJECT_ROOT/$PLAN"
+fi
+if [[ "$PLAN" != /mnt/shared-storage-* ]]; then
+  echo "--plan must be persistent H storage under /mnt/shared-storage-*: $PLAN" >&2
+  exit 2
+fi
 
 # The immutable environments/models may live in a shared owner's tree while
 # the clone, writable caches and results belong to the actual evaluator.  The
@@ -262,6 +272,7 @@ REQUIRED_MOUNT_PATHS=(
   "$TRITON_PTXAS_PATH"
   "$HABITBENCH_CHAT_TEMPLATE"
   "$TIKTOKEN_CACHE_DIR"
+  "$PLAN"
   "$HF_HOME"
   "$XDG_CACHE_HOME"
   "$VLLM_CACHE_ROOT"
