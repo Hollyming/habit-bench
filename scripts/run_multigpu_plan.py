@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Run a HABIT shard plan on one multi-GPU node with persistent vLLM workers."""
+"""Run a HABIT shard plan with local vLLM or external-API workers."""
 
 from __future__ import annotations
 
@@ -178,6 +178,8 @@ def _source_env_file(path: Path, base_env: dict[str, str]) -> dict[str, str]:
 
 def _safe_config(env: dict[str, str]) -> dict[str, Any]:
     names = (
+        "HABITBENCH_INFERENCE_BACKEND",
+        "HABITBENCH_EXTERNAL_API_PROVIDER",
         "HABITBENCH_LLM_MODEL",
         "HABITBENCH_SERVED_MODEL",
         "HABITBENCH_CHAT_TEMPLATE",
@@ -225,6 +227,12 @@ def _safe_config(env: dict[str, str]) -> dict[str, Any]:
         "HABITBENCH_MEMORY_LLM_MAX_TOKENS",
         "HABITBENCH_MEMORY_LLM_TEMPERATURE",
         "HABITBENCH_MEMORY_LLM_SEED",
+        "HABITBENCH_ANSWER_TEMPERATURE",
+        "HABITBENCH_ANSWER_MAX_TOKENS",
+        "HABITBENCH_ANSWER_TIMEOUT_SEC",
+        "HABITBENCH_ANSWER_MAX_RETRIES",
+        "HABITBENCH_ANSWER_SEED",
+        "HABITBENCH_ANSWER_RESPONSE_FORMAT",
         "MIRIX_JSON_TOOL_BRIDGE_SEED",
         "MIRIX_JSON_TOOL_BRIDGE_RETRY_TEMPERATURE",
         "MIRIX_NORMALIZE_MISSING_UPDATE_IDS",
@@ -445,8 +453,14 @@ print(json.dumps({"status": "pass", "modules": loaded}, sort_keys=True))
 
 
 def _preflight_runtime(
-    env: dict[str, str], methods: set[str] | None = None
+    env: dict[str, str],
+    methods: set[str] | None = None,
+    *,
+    inference_backend: str = "local-vllm",
 ) -> dict[str, Any]:
+    if inference_backend not in {"local-vllm", "external-openai-compatible"}:
+        raise ValueError(f"Unknown inference backend: {inference_backend}")
+    external_api = inference_backend == "external-openai-compatible"
     python_bin = Path(env.get("PYTHON_BIN") or sys.executable).expanduser().resolve()
     vllm_python = Path(
         env.get("HABITBENCH_VLLM_PYTHON") or python_bin
@@ -471,10 +485,11 @@ def _preflight_runtime(
     ).expanduser().resolve()
     required: dict[str, Path] = {
         "method_python": python_bin,
-        "vllm_python": vllm_python,
         "llm_config": llm_path / "config.json",
         "tiktoken_o200k": tiktoken_root / O200K_CACHE_KEY,
     }
+    if not external_api:
+        required["vllm_python"] = vllm_python
     packages: dict[str, str] = {}
     full_memory_window = None
     needs_embedding = methods is None or bool(EMBEDDING_METHODS & methods)
@@ -486,12 +501,13 @@ def _preflight_runtime(
                 "embedding_identity": embed_path / "HABIT_MODEL_INFO.json",
             }
         )
-    chat_template = env.get("HABITBENCH_CHAT_TEMPLATE")
-    if chat_template:
-        required["chat_template"] = Path(chat_template).expanduser().resolve()
-    triton_ptxas = env.get("TRITON_PTXAS_PATH")
-    if triton_ptxas:
-        required["triton_ptxas"] = Path(triton_ptxas).expanduser().resolve()
+    if not external_api:
+        chat_template = env.get("HABITBENCH_CHAT_TEMPLATE")
+        if chat_template:
+            required["chat_template"] = Path(chat_template).expanduser().resolve()
+        triton_ptxas = env.get("TRITON_PTXAS_PATH")
+        if triton_ptxas:
+            required["triton_ptxas"] = Path(triton_ptxas).expanduser().resolve()
     if methods and "lightmem" in methods:
         lightmem_path = Path(
             env.get(
@@ -597,7 +613,8 @@ def _preflight_runtime(
         )
     mirix_vllm_profile = None
     if methods and "mirix" in methods:
-        mirix_vllm_profile = _validate_mirix_vllm_profile(env)
+        if not external_api:
+            mirix_vllm_profile = _validate_mirix_vllm_profile(env)
         _require_package_set(
             packages,
             {
@@ -670,7 +687,7 @@ def _preflight_runtime(
             }
         if mismatches:
             raise ValueError(f"BGE-M3 runtime identity mismatch: {mismatches}")
-    vllm_versions = _inspect_vllm_runtime(vllm_python, env)
+    vllm_versions = None if external_api else _inspect_vllm_runtime(vllm_python, env)
     method_imports = _preflight_method_imports(
         python_bin,
         env,
@@ -678,6 +695,7 @@ def _preflight_runtime(
     )
     return {
         "status": "pass",
+        "inference_backend": inference_backend,
         "files": {
             name: {"path": str(path), "size_bytes": path.stat().st_size}
             for name, path in required.items()
@@ -1148,6 +1166,7 @@ def _start_server(
         log_handle.close()
         raise
     return {
+        "server_kind": "local-vllm",
         "worker_index": worker_index,
         "gpu": gpu,
         "port": port,
@@ -1163,8 +1182,50 @@ def _start_server(
     }
 
 
+def _wait_for_external_gateway(base_url: str) -> dict[str, Any]:
+    normalized = base_url.rstrip("/")
+    health_url = (
+        normalized[:-3] + "/healthz"
+        if normalized.endswith("/v1")
+        else normalized + "/healthz"
+    )
+    last_error: Exception | None = None
+    for _ in range(60):
+        try:
+            with urllib.request.urlopen(health_url, timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            if payload.get("status") != "ok":
+                raise RuntimeError(f"External API gateway is unhealthy: {payload}")
+            return payload
+        except Exception as exc:
+            last_error = exc
+            time.sleep(1)
+    raise TimeoutError(
+        f"External API gateway did not become ready at {health_url}: {last_error}"
+    )
+
+
+def _external_worker(worker_index: int, gpu: str, base_url: str) -> dict[str, Any]:
+    return {
+        "server_kind": "external-openai-compatible",
+        "worker_index": worker_index,
+        "gpu": gpu,
+        "port": None,
+        "internal_port": None,
+        "base_url": base_url.rstrip("/"),
+        "log": None,
+        "command": None,
+        "started_at": _utc_now(),
+        "ready_at": _utc_now(),
+        "startup_wall_clock_sec": 0.0,
+        "throughput_gate": {"status": "not_applicable_external_api"},
+    }
+
+
 def _stop_server(worker: dict[str, Any]) -> None:
-    process: subprocess.Popen[str] = worker["process"]
+    process: subprocess.Popen[str] | None = worker.get("process")
+    if process is None:
+        return
     if process.poll() is None:
         process.terminate()
         try:
@@ -1172,7 +1233,9 @@ def _stop_server(worker: dict[str, Any]) -> None:
         except subprocess.TimeoutExpired:
             process.kill()
             process.wait(timeout=30)
-    worker["log_handle"].close()
+    log_handle = worker.get("log_handle")
+    if log_handle is not None:
+        log_handle.close()
 
 
 def _public_worker_record(worker: dict[str, Any]) -> dict[str, Any]:
@@ -1637,8 +1700,12 @@ def _run_task_with_output_lock(
             "adapter_cuda_visible_devices": adapter_cuda,
             "adapter_cpu_threads": int(cpu_threads),
             "med_user_workers": method_workers,
-            "vllm_port": worker["port"],
-            "vllm_log": worker["log"],
+            "inference_backend": worker.get("server_kind", "local-vllm"),
+            "inference_port": worker.get("port"),
+            "inference_log": worker.get("log"),
+            # Compatibility fields retained for existing result readers.
+            "vllm_port": worker.get("port"),
+            "vllm_log": worker.get("log"),
             "started_at": started_at,
             "finished_at": _utc_now(),
             "wall_clock_sec": round(time.perf_counter() - started, 3),
@@ -1696,6 +1763,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--gpus", required=True, help="CUDA device ids, for example 0,1,2,3")
     parser.add_argument("--env-file", type=Path)
     parser.add_argument("--port-base", type=int, default=8100)
+    parser.add_argument(
+        "--external-base-url",
+        help=(
+            "Use an already-running rate-limited OpenAI-compatible gateway "
+            "instead of starting one local vLLM server per worker."
+        ),
+    )
     parser.add_argument("--runtime-output", type=Path)
     parser.add_argument("--log-root", type=Path)
     parser.add_argument("--replica-index", type=int, default=0)
@@ -1757,9 +1831,29 @@ def main() -> None:
                 "Plan task count no longer matches "
                 f"{plan_manifest_path}: {len(global_rows)}"
             )
+        planned_provider = (
+            ((plan_manifest.get("models") or {}).get("llm") or {}).get("provider")
+        )
+        expected_provider = (
+            "external-openai-compatible" if args.external_base_url else "local-vllm"
+        )
+        if planned_provider is not None and planned_provider != expected_provider:
+            raise ValueError(
+                "Plan inference provider does not match launcher mode: "
+                f"planned={planned_provider}, runtime={expected_provider}"
+            )
     base_env = os.environ.copy()
     if args.env_file:
         base_env = _source_env_file(args.env_file, base_env)
+    inference_backend = (
+        "external-openai-compatible" if args.external_base_url else "local-vllm"
+    )
+    base_env["HABITBENCH_INFERENCE_BACKEND"] = inference_backend
+    if args.external_base_url:
+        # Only the local gateway owns the real upstream credential. Adapter
+        # subprocesses authenticate to localhost with a non-secret sentinel.
+        base_env["OPENAI_API_KEY"] = "dummy"
+        base_env["OPENAI_BASE_URL"] = args.external_base_url.rstrip("/")
 
     coordinator_id = args.coordinator_id or base_env.get("JOB_ID")
     if not coordinator_id:
@@ -1825,6 +1919,7 @@ def main() -> None:
             "policy": "global-dynamic-shard-claims",
         },
         "config": _safe_config(base_env),
+        "inference_backend": inference_backend,
         "preflight": None,
         "servers": [],
         "groups": [],
@@ -1856,65 +1951,84 @@ def main() -> None:
     task_failure_count = 0
     try:
         manifest["preflight"] = _preflight_runtime(
-            base_env, {row["method"] for row in global_rows}
+            base_env,
+            {row["method"] for row in global_rows},
+            inference_backend=inference_backend,
         )
         _log("runtime_preflight_passed", replica=args.replica_index)
         manifest["status"] = "starting_servers"
         _write_json(runtime_path, manifest)
-        with ThreadPoolExecutor(max_workers=len(gpus)) as executor:
-            futures = [
-                executor.submit(
-                    _start_server,
-                    index,
-                    gpu,
-                    args.port_base + index,
-                    base_env,
-                    log_root,
-                )
+        if args.external_base_url:
+            gateway_health = _wait_for_external_gateway(args.external_base_url)
+            manifest["external_gateway_health"] = gateway_health
+            workers = [
+                _external_worker(index, gpu, args.external_base_url)
                 for index, gpu in enumerate(gpus)
             ]
-            startup_errors: list[BaseException] = []
-            for future in as_completed(futures):
-                try:
-                    worker = future.result()
-                    workers.append(worker)
+            _log(
+                "external_api_gateway_ready",
+                replica=args.replica_index,
+                workers=len(workers),
+                base_url=args.external_base_url,
+            )
+        else:
+            with ThreadPoolExecutor(max_workers=len(gpus)) as executor:
+                futures = [
+                    executor.submit(
+                        _start_server,
+                        index,
+                        gpu,
+                        args.port_base + index,
+                        base_env,
+                        log_root,
+                    )
+                    for index, gpu in enumerate(gpus)
+                ]
+                startup_errors: list[BaseException] = []
+                for future in as_completed(futures):
+                    try:
+                        worker = future.result()
+                        workers.append(worker)
+                        _log(
+                            "vllm_server_ready",
+                            replica=args.replica_index,
+                            worker=worker["worker_index"],
+                            gpu=worker["gpu"],
+                            port=worker["port"],
+                            startup_sec=worker["startup_wall_clock_sec"],
+                        )
+                    except BaseException as exc:
+                        startup_errors.append(exc)
+            if startup_errors:
+                raise startup_errors[0]
+        workers.sort(key=lambda row: row["worker_index"])
+        manifest["servers"] = [_public_worker_record(worker) for worker in workers]
+        if not args.external_base_url:
+            manifest["status"] = "benchmarking_servers"
+            _write_json(runtime_path, manifest)
+            with ThreadPoolExecutor(max_workers=len(workers)) as executor:
+                benchmark_futures = {
+                    executor.submit(_benchmark_server, worker, base_env): worker
+                    for worker in workers
+                }
+                for future in as_completed(benchmark_futures):
+                    worker = benchmark_futures[future]
+                    worker["throughput_gate"] = future.result()
                     _log(
-                        "vllm_server_ready",
+                        "vllm_throughput_pass",
                         replica=args.replica_index,
                         worker=worker["worker_index"],
                         gpu=worker["gpu"],
-                        port=worker["port"],
-                        startup_sec=worker["startup_wall_clock_sec"],
+                        tokens_per_sec=worker["throughput_gate"][
+                            "measured_aggregate_completion_tokens_per_sec"
+                        ],
                     )
-                except BaseException as exc:
-                    startup_errors.append(exc)
-        if startup_errors:
-            raise startup_errors[0]
-        workers.sort(key=lambda row: row["worker_index"])
-        manifest["servers"] = [_public_worker_record(worker) for worker in workers]
-        manifest["status"] = "benchmarking_servers"
-        _write_json(runtime_path, manifest)
-        with ThreadPoolExecutor(max_workers=len(workers)) as executor:
-            benchmark_futures = {
-                executor.submit(_benchmark_server, worker, base_env): worker
-                for worker in workers
-            }
-            for future in as_completed(benchmark_futures):
-                worker = benchmark_futures[future]
-                worker["throughput_gate"] = future.result()
-                _log(
-                    "vllm_throughput_pass",
-                    replica=args.replica_index,
-                    worker=worker["worker_index"],
-                    tokens_per_sec=worker["throughput_gate"][
-                        "measured_aggregate_completion_tokens_per_sec"
-                    ],
-                )
         manifest["servers"] = [_public_worker_record(worker) for worker in workers]
         failed_gates = [
             worker
             for worker in workers
-            if worker["throughput_gate"]["status"] != "pass"
+            if worker["throughput_gate"]["status"]
+            not in {"pass", "not_applicable_external_api"}
         ]
         _write_json(runtime_path, manifest)
         if failed_gates:

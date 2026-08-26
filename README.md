@@ -499,6 +499,7 @@ HABIT-bench/
 | `eval/compact_history.py` | query-independent 在线 compact `full_memory` |
 | `eval/controls.py` | `no_memory` 和原始 recency `full_history` |
 | `eval/retrieval_baselines.py` | Recency-k、BM25-RAG、Dense-RAG 和 Temporal Hybrid-RAG 完整 session 检索 |
+| `eval/api_gateway.py` | 外部 OpenAI-compatible API 的全局 RPM/TPM 限流、429/5xx/网络重试与脱敏运行统计 |
 | `eval/context_windows.py` | 长上下文档位解析与验证 |
 | `eval/core/answering.py` | 固定 Qwen answer prompt、token hard bound、choice JSON 解析 |
 | `eval/run.py` | 单方法/单数据集/单分片端到端运行 |
@@ -518,6 +519,7 @@ HABIT-bench/
 | `scripts/run_supplementary_analysis.py` | 对完整 suite 批量生成四域单方法分析和全方法配对比较 |
 | `scripts/submit_clusterx.sh` | 唯一 ClusterX 提交入口 |
 | `scripts/submit_h_cluster.sh` | H 集群 4/8 卡每 Replica、支持多 Replica 的 RJob 提交入口 |
+| `scripts/submit_h_api_suite.sh` | 三个外部 API 模型、全部 16 方法和当前四域的单节点 8-H200 提交入口 |
 | `scripts/cluster/create_h_envs.sh` | 用当前 Miniconda 在 GPFS 创建固定方法/vLLM 环境 |
 | `scripts/cluster/download_h_models.py` | 从官方 Hugging Face 断点下载 H 集群固定 revision 模型 |
 | `scripts/cluster/run_h_eval.sh` | H worker 的 H200/卡数预检、分片执行和合并入口 |
@@ -755,6 +757,26 @@ H profile 默认复用
 Group-AD 使用 `--creator-type group` 提交；idle 不带 priority、charged-group 或
 private-machine。环境、模型持久化、dry-run 和中断恢复见
 [`docs/h_cluster_evaluation.md`](docs/h_cluster_evaluation.md)。
+
+#### 外部 API 主实验
+
+外部 OpenAI-compatible 模型复用同一评测协议、当前四域数据和全部 16 个主方法；一个
+本地网关对所有 worker 统一实施 RPM/TPM 限制，并在日志中隐藏 credential 和 prompt。
+默认三模型为 `deepseek-v4-pro-0813`、`glm-5.2`、`kimi-k3`，单 Replica 的 8 张 H200
+按 `3/3/2` 分配给三个模型轨道。H200 只承担 BGE-M3、MIRIX、SeCom 等本地组件，LLM
+生成由远端 API 完成，因此不能用 GPU utilization 衡量 API suite 的有效吞吐。
+
+```bash
+bash scripts/submit_h_api_suite.sh \
+  --job-type managed-spot \
+  --creator-type user \
+  --creator-ad your-user-ad \
+  --credential-file /absolute/private/path/api.env \
+  --output-root "$PWD/results/api-main-v1"
+```
+
+credential 文件必须是 `600` 权限且位于 Git 仓库外；格式、限流语义、断点恢复与输出
+结构见 [`docs/external_api_evaluation.md`](docs/external_api_evaluation.md)。
 
 ### 6.5 当前四域 Qwen3-8B supplementary
 

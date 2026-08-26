@@ -70,14 +70,40 @@ def add_answer_args(parser: argparse.ArgumentParser) -> None:
         default=os.getenv("OPENAI_BASE_URL", "http://127.0.0.1:8000/v1"),
     )
     parser.add_argument("--api-key", default=os.getenv("OPENAI_API_KEY", "dummy"))
-    parser.add_argument("--temperature", type=float, default=0.0)
-    parser.add_argument("--answer-max-tokens", type=int, default=64)
-    parser.add_argument("--max-input-tokens", type=int, default=40_000)
-    parser.add_argument("--answer-timeout-sec", type=float, default=180.0)
-    parser.add_argument("--answer-max-retries", type=int, default=3)
-    parser.add_argument("--answer-seed", type=int, default=42)
     parser.add_argument(
-        "--answer-response-format", choices=["json_object", "none"], default="json_object"
+        "--temperature",
+        type=float,
+        default=float(os.getenv("HABITBENCH_ANSWER_TEMPERATURE", "0.0")),
+    )
+    parser.add_argument(
+        "--answer-max-tokens",
+        type=int,
+        default=int(os.getenv("HABITBENCH_ANSWER_MAX_TOKENS", "64")),
+    )
+    parser.add_argument(
+        "--max-input-tokens",
+        type=int,
+        default=int(os.getenv("HABITBENCH_MAX_INPUT_TOKENS", "40000")),
+    )
+    parser.add_argument(
+        "--answer-timeout-sec",
+        type=float,
+        default=float(os.getenv("HABITBENCH_ANSWER_TIMEOUT_SEC", "180.0")),
+    )
+    parser.add_argument(
+        "--answer-max-retries",
+        type=int,
+        default=int(os.getenv("HABITBENCH_ANSWER_MAX_RETRIES", "3")),
+    )
+    parser.add_argument(
+        "--answer-seed",
+        type=int,
+        default=int(os.getenv("HABITBENCH_ANSWER_SEED", "42")),
+    )
+    parser.add_argument(
+        "--answer-response-format",
+        choices=["json_object", "none"],
+        default=os.getenv("HABITBENCH_ANSWER_RESPONSE_FORMAT", "json_object"),
     )
     parser.add_argument("--enable-thinking", action="store_true")
 

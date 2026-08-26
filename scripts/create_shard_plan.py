@@ -247,6 +247,16 @@ def parse_args() -> argparse.Namespace:
         help="OpenAI-compatible served model identity recorded in method configs.",
     )
     parser.add_argument(
+        "--llm-provider",
+        choices=["local-vllm", "external-openai-compatible"],
+        default=os.environ.get("HABITBENCH_INFERENCE_BACKEND", "local-vllm"),
+        help=(
+            "Inference backend recorded in the immutable plan. For external API "
+            "runs, --llm-model-path remains the frozen local tokenizer used to "
+            "enforce a common HABIT context budget."
+        ),
+    )
+    parser.add_argument(
         "--lightmem-model-path",
         type=Path,
         default=Path(
@@ -599,7 +609,16 @@ def main() -> None:
             ),
         },
         "models": {
-            "llm": _portable_model_snapshot(llm_model_path),
+            "llm": {
+                **_portable_model_snapshot(llm_model_path),
+                "provider": args.llm_provider,
+                "served_model_name": args.served_model_name,
+                "local_path_role": (
+                    "model_and_tokenizer"
+                    if args.llm_provider == "local-vllm"
+                    else "tokenizer_only_for_shared_context_budget"
+                ),
+            },
             "embedding": (
                 _bge_m3_snapshot(embedding_model_path)
                 if any(method in BGE_M3_METHODS for method in methods)

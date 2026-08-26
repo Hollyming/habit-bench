@@ -249,6 +249,41 @@ class ProtocolTest(unittest.TestCase):
         self.assertIn('export LD_LIBRARY_PATH="$env_lib', worker)
         self.assertIn("-c 'import sqlite3'", worker)
 
+    def test_h_external_api_launcher_is_globally_limited_and_h_compliant(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        launcher = (project_root / "scripts/submit_h_api_suite.sh").read_text(
+            encoding="utf-8"
+        )
+        worker = (
+            project_root / "scripts/cluster/run_h_api_suite.sh"
+        ).read_text(encoding="utf-8")
+        cluster_entry = (
+            "http://wangyixiuan-cpu.linzhouhan.ailab-llmarchitecture."
+            "svc.pjlab.local:11451"
+        )
+        self.assertIn(
+            f'KUBEBRAIN_CLUSTER_ENTRY_REQUIRED="{cluster_entry}"', launcher
+        )
+        self.assertIn("--namespace ailab-llmarchitecture", launcher)
+        self.assertIn("--gpu 8", launcher)
+        self.assertIn("-P 1", launcher)
+        self.assertIn("--priority 1", launcher)
+        self.assertIn("--priority 5", launcher)
+        self.assertIn("--charged-group llmarchitecture_gpu", launcher)
+        self.assertIn("--private-machine group", launcher)
+        idle_branch = launcher.rsplit("  idle)\n", 1)[1].split("    ;;", 1)[0]
+        self.assertIn("--task-type idle", idle_branch)
+        self.assertNotIn("--priority", idle_branch)
+        self.assertNotIn("--charged-group", idle_branch)
+        self.assertNotIn("--private-machine", idle_branch)
+        self.assertIn('CREDENTIAL_FILE="${HABITBENCH_API_CREDENTIAL_FILE:-}"', launcher)
+        self.assertNotIn("OPENAI_API_KEY=sk-", launcher)
+        self.assertIn('MODELS="deepseek-v4-pro-0813,glm-5.2,kimi-k3"', launcher)
+        self.assertIn('GPU_ALLOCATIONS="3,3,2"', launcher)
+        self.assertIn("--rpm \"$RPM\"", worker)
+        self.assertIn("--tpm \"$TPM\"", worker)
+        self.assertEqual(worker.count("-m eval.api_gateway"), 1)
+
     def test_h_cluster_profile_separates_shared_assets_and_clone_state(self) -> None:
         project_root = Path(__file__).resolve().parents[2]
         profile = project_root / "scripts/cluster/env.h.example.sh"
