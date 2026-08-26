@@ -289,6 +289,26 @@ class ProtocolTest(unittest.TestCase):
             worker,
         )
 
+    def test_h_launcher_default_job_names_use_zjm_prefix(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        paths = [
+            project_root / "scripts/submit_h_cluster.sh",
+            project_root / "scripts/submit_h_api_suite.sh",
+            project_root / "scripts/cluster/submit_qwen3_4b_main.sh",
+            project_root / "scripts/cluster/submit_qwen3_14b_main.sh",
+            project_root / "scripts/cluster/submit_qwen3_32b_main.sh",
+            project_root / "scripts/cluster/submit_qwen3_8b_supplementary.sh",
+        ]
+        for path in paths:
+            assignments = [
+                line
+                for line in path.read_text(encoding="utf-8").splitlines()
+                if line.startswith("JOB_NAME=")
+                and ("JOB_NAME:-" in line or "_JOB_NAME:-" in line)
+            ]
+            self.assertEqual(len(assignments), 1, path)
+            self.assertIn(":-zjm-", assignments[0], path)
+
     def test_h_cluster_profile_separates_shared_assets_and_clone_state(self) -> None:
         project_root = Path(__file__).resolve().parents[2]
         profile = project_root / "scripts/cluster/env.h.example.sh"

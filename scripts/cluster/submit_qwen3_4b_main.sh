@@ -4,7 +4,7 @@ set -euo pipefail
 PROJECT_ROOT="${HABITBENCH_PROJECT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
 RESULTS_ROOT="${HABITBENCH_RESULTS_ROOT:-$PROJECT_ROOT/results}"
 OUTPUT_ROOT="${HABITBENCH_Q4_OUTPUT_ROOT:-$RESULTS_ROOT/habit-h200-main-qwen3-4b-v1}"
-JOB_NAME="${HABITBENCH_Q4_JOB_NAME:-habit-main-q4b-2x8-v1}"
+JOB_NAME="${HABITBENCH_Q4_JOB_NAME:-zjm-main-q4b-2x8-v1}"
 
 exec bash "$PROJECT_ROOT/scripts/submit_h_cluster.sh" \
   --job-type reserved \

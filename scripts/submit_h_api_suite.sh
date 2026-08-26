@@ -178,7 +178,7 @@ PROJECT_ROOT="${HABITBENCH_PROJECT_ROOT:-$LAUNCHER_ROOT}"
 PYTHON_BIN="${PYTHON_BIN:?PYTHON_BIN must be set by the H environment file}"
 
 STAMP="$(date -u +%m%d-%H%M%S)"
-JOB_NAME="${JOB_NAME:-hb-api-main-$STAMP}"
+JOB_NAME="${JOB_NAME:-zjm-api-main-$STAMP}"
 if (( ${#JOB_NAME} > 32 )) || [[ ! "$JOB_NAME" =~ ^[a-z0-9]([a-z0-9-]*[a-z0-9])?$ ]]; then
   echo "--job-name must be <=32 lowercase letters/digits/hyphens: $JOB_NAME" >&2
   exit 2

@@ -235,7 +235,7 @@ if ! command -v rjob >/dev/null 2>&1; then
 fi
 
 STAMP="$(date -u +%m%d-%H%M%S)"
-JOB_NAME="${JOB_NAME:-habit-h200-${GPUS}g-$STAMP}"
+JOB_NAME="${JOB_NAME:-zjm-h200-${GPUS}g-$STAMP}"
 if (( ${#JOB_NAME} > 32 )) || [[ ! "$JOB_NAME" =~ ^[a-z0-9]([a-z0-9-]*[a-z0-9])?$ ]]; then
   echo "--job-name must be at most 32 lowercase letters/digits/hyphens: $JOB_NAME" >&2
   exit 2

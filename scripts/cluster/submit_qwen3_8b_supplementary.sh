@@ -10,7 +10,7 @@ set -euo pipefail
 PROJECT_ROOT="${HABITBENCH_PROJECT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
 CREATOR_AD="${HABITBENCH_CREATOR_AD:?Set HABITBENCH_CREATOR_AD to the actual authenticated Group-AD}"
 OUTPUT_ROOT="${HABITBENCH_SUPPLEMENTARY_OUTPUT_ROOT:-$PROJECT_ROOT/results/habit-h200-supplementary-qwen3-8b-v1}"
-JOB_NAME="${HABITBENCH_SUPPLEMENTARY_JOB_NAME:-hb-q8b-supp-oracle-v16}"
+JOB_NAME="${HABITBENCH_SUPPLEMENTARY_JOB_NAME:-zjm-q8b-supp-oracle-v16}"
 
 exec bash "$PROJECT_ROOT/scripts/submit_h_cluster.sh" \
   --job-type reserved \
