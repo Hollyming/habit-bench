@@ -283,6 +283,11 @@ class ProtocolTest(unittest.TestCase):
         self.assertIn("--rpm \"$RPM\"", worker)
         self.assertIn("--tpm \"$TPM\"", worker)
         self.assertEqual(worker.count("-m eval.api_gateway"), 1)
+        self.assertIn('cd "$PROJECT_ROOT"', worker)
+        self.assertIn(
+            'export PYTHONPATH="$PROJECT_ROOT${PYTHONPATH:+:$PYTHONPATH}"',
+            worker,
+        )
 
     def test_h_cluster_profile_separates_shared_assets_and_clone_state(self) -> None:
         project_root = Path(__file__).resolve().parents[2]

@@ -71,6 +71,15 @@ set +a
 PROJECT_ROOT="${HABITBENCH_PROJECT_ROOT:-$PROJECT_ROOT}"
 PYTHON_BIN="${PYTHON_BIN:?PYTHON_BIN must be set by the H environment file}"
 [[ -x "$PYTHON_BIN" ]] || { echo "Method Python is not executable: $PYTHON_BIN" >&2; exit 1; }
+[[ -f "$PROJECT_ROOT/eval/api_gateway.py" ]] || {
+  echo "HABIT-Bench project root is incomplete: $PROJECT_ROOT" >&2
+  exit 1
+}
+# RJob does not promise that the container starts in the repository.  The
+# gateway uses Python module mode, so make the package root explicit before
+# any Python module or relative project path is used.
+cd "$PROJECT_ROOT"
+export PYTHONPATH="$PROJECT_ROOT${PYTHONPATH:+:$PYTHONPATH}"
 
 IFS=',' read -r -a MODEL_LIST <<< "$MODELS"
 IFS=',' read -r -a ALLOCATION_LIST <<< "$GPU_ALLOCATIONS"
