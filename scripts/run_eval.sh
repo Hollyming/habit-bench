@@ -82,6 +82,38 @@ case "$METHOD" in
       --method-config-path "$CONFIG_PATH"
     )
     ;;
+  recency_5|recency_10|bm25_rag|dense_rag|temporal_hybrid_rag)
+    KIND="retrieval_baseline"
+    SOURCE="HABIT-Bench"
+    REVISION="session_retrieval.v1"
+    CONFIG_PATH="$PROJECT_ROOT/configs/methods/$METHOD.yaml"
+    if [[ ! -f "$CONFIG_PATH" ]]; then
+      echo "Method config not found: $CONFIG_PATH" >&2
+      exit 1
+    fi
+    COMMAND="$PYTHON_BIN -m eval.retrieval_baselines --input {input} --output {output} --mode $METHOD --method-config $CONFIG_PATH --embedding-model-path ${HABITBENCH_EMBED_MODEL:-/plm-shared/zhangjunming/Workspace/models/bge-m3} --embedding-device ${HABITBENCH_EMBED_DEVICE:-cpu} --progress-every ${HABITBENCH_PROGRESS_EVERY:-25}"
+    CONFIG_ARGS=(
+      --method-config-name "$METHOD"
+      --method-config-path "$CONFIG_PATH"
+    )
+    case "$METHOD" in
+      recency_5)
+        NOTE="Non-agentic control returning the five most recent complete visible sessions."
+        ;;
+      recency_10)
+        NOTE="Non-agentic control returning the ten most recent complete visible sessions."
+        ;;
+      bm25_rag)
+        NOTE="Pure lexical BM25 retrieval over complete visible sessions; returns ranked top-5 raw sessions."
+        ;;
+      dense_rag)
+        NOTE="Pure semantic BGE-M3 cosine retrieval over independently encoded complete visible sessions; returns ranked top-5 raw sessions."
+        ;;
+      temporal_hybrid_rag)
+        NOTE="BM25/BGE-M3 reciprocal-rank fusion plus an as-of-aware temporal prior over complete visible sessions; returns ranked top-5 raw sessions."
+        ;;
+    esac
+    ;;
   mem0|amem|memos|memrl|lightmem|letta|mirix)
     case "$METHOD" in
       mem0) MED_CONFIG="mem0_qwen3-8b_adapted" ;;
@@ -122,7 +154,7 @@ case "$METHOD" in
     ;;
   *)
     echo "Unknown method: $METHOD" >&2
-    echo "Available: no_memory full_memory full_history mem0 amem memos memrl lightmem letta mirix secom" >&2
+    echo "Available: no_memory full_memory full_history recency_5 recency_10 bm25_rag dense_rag temporal_hybrid_rag mem0 amem memos memrl lightmem letta mirix secom" >&2
     echo "Graphiti and O-Mem are recorded in eval/unsupported_methods.json and are not currently implemented." >&2
     exit 2
     ;;

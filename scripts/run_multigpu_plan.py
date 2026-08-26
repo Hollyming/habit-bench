@@ -48,6 +48,8 @@ EMBEDDING_METHODS = {
     "lightmem",
     "letta",
     "mirix",
+    "dense_rag",
+    "temporal_hybrid_rag",
     "secom",
 }
 MEDMEMORY_METHODS = {
@@ -225,6 +227,7 @@ def _safe_config(env: dict[str, str]) -> dict[str, Any]:
         "HABITBENCH_MEMORY_LLM_SEED",
         "MIRIX_JSON_TOOL_BRIDGE_SEED",
         "MIRIX_JSON_TOOL_BRIDGE_RETRY_TEMPERATURE",
+        "MIRIX_NORMALIZE_MISSING_UPDATE_IDS",
         "HABITBENCH_GRAPHITI_LLM_MAX_TOKENS",
         "HABITBENCH_GRAPHITI_SCHEMA_MAX_ITEMS",
         "HABITBENCH_GRAPHITI_SCHEMA_MAX_STRING_CHARS",
@@ -573,6 +576,24 @@ def _preflight_runtime(
                 "sqlmodel": ("sqlmodel", "0.0.16"),
             },
             runtime_name="Letta",
+        )
+    if methods and (
+        {"recency_5", "recency_10", "bm25_rag", "dense_rag", "temporal_hybrid_rag"}
+        & methods
+    ):
+        _require_package_set(
+            packages,
+            {
+                "python-dateutil": ("dateutil", "2.9.0.post0"),
+                "rank-bm25": ("rank_bm25", "0.2.2"),
+            },
+            runtime_name="session retrieval baselines",
+        )
+    if methods and ({"dense_rag", "temporal_hybrid_rag"} & methods):
+        _require_package_set(
+            packages,
+            {"sentence-transformers": ("sentence_transformers", "5.1.1")},
+            runtime_name="dense session retrieval baselines",
         )
     mirix_vllm_profile = None
     if methods and "mirix" in methods:

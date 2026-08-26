@@ -178,14 +178,41 @@ async def episodic_memory_merge(
         Optional[str]: None is always returned as this function does not produce a response.
     """
 
-    episodic_memory = await self.episodic_memory_manager.update_event(
-        event_id=event_id,
-        new_summary=combined_summary,
-        new_details=combined_details,
-        actor=self.actor,
-        agent_state=self.agent_state,
-        update_mode="replace",
-    )
+    try:
+        episodic_memory = await self.episodic_memory_manager.update_event(
+            event_id=event_id,
+            new_summary=combined_summary,
+            new_details=combined_details,
+            actor=self.actor,
+            agent_state=self.agent_state,
+            update_mode="replace",
+        )
+    except NoResultFound:
+        if os.environ.get("MIRIX_NORMALIZE_MISSING_UPDATE_IDS") != "1":
+            raise
+        occurred_at = getattr(self, "occurred_at", None)
+        if occurred_at is None:
+            # The generic MIRIX API cannot invent event time. HABIT-Bench sets
+            # this field for every session, so only an unsupported caller gets
+            # the original referential-integrity failure.
+            raise
+        logger.warning(
+            "Episodic merge target %s is absent; preserving the generated "
+            "combined event as a new user_message",
+            event_id,
+        )
+        return await episodic_memory_insert(
+            self,
+            [
+                {
+                    "occurred_at": occurred_at,
+                    "event_type": "user_message",
+                    "actor": "user",
+                    "summary": combined_summary,
+                    "details": combined_details,
+                }
+            ],
+        )
     response = (
         "These are the `summary` and the `details` of the updated event:\n",
         str(
@@ -1119,7 +1146,19 @@ async def trigger_memory_update(self: "Agent", user_message: object, memory_type
 
             # Extract topics and retrieved_memories from parent agent to pass to sub-agents
             # This ensures sub-agents use the same keywords for memory retrieval
-            retrieved_memories = user_message.get("retrieved_memories", None)
+            # Every child refreshes the IDs for the memory type it owns.  The
+            # official parallel dispatcher passes one mutable dictionary to
+            # all children, which allows (for example) a semantic ID to leak
+            # into the episodic prompt while both coroutines build it.  Give
+            # each child an isolated snapshot before any retrieval mutates it.
+            parent_retrieved_memories = user_message.get(
+                "retrieved_memories", None
+            )
+            retrieved_memories = (
+                deepcopy(parent_retrieved_memories)
+                if parent_retrieved_memories is not None
+                else None
+            )
             if memory_type == "core" and os.environ.get(
                 "MIRIX_BOUNDED_MEMORY_TOOL_SCHEMA"
             ) == "1":

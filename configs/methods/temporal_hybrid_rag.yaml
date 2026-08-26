@@ -1,0 +1,32 @@
+method_name: temporal_hybrid_rag
+reporting_name: Temporal Hybrid-RAG
+kind: retrieval_baseline
+source: HABIT-Bench
+revision: session_retrieval.v1
+retrieval:
+  strategy: rrf_bm25_dense_plus_temporal_prior
+  unit: complete_session
+  indexed_text: role_tagged_message_text
+  query_text: public_probe_query_only
+  topk: 5
+embedding:
+  provider: local
+  model: BAAI/bge-m3
+  revision: 5617a9f61b028005a4858fdac845db406aefb181
+  model_path: /plm-shared/zhangjunming/Workspace/models/bge-m3
+  dim: 1024
+fusion:
+  formula: RRF(rank_bm25,rank_dense)+temporal_lambda*time_scale*time_score
+  rrf_constant: 60
+  temporal_lambda: 0.02
+  no_explicit_time_scale: 0.25
+temporal:
+  explicit_target_source: query_as_of
+  default_target_source: probe_timestamp_or_latest_visible_session
+  explicit_half_life_days: 90
+  recency_half_life_days: 180
+  recency_half_life_sessions: 20
+  after_explicit_target_penalty: 0.05
+answer_model:
+  name: Qwen3-8B
+  thinking: false

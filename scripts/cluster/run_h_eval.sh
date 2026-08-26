@@ -7,6 +7,7 @@ GPUS=""
 ENV_FILE=""
 PORT_BASE=8100
 CONTINUE_ON_GROUP_ERROR=0
+POST_SUPPLEMENTARY_ANALYSIS=0
 EXPECTED_REPLICAS=""
 
 usage() {
@@ -14,6 +15,7 @@ usage() {
   echo "  --port-base N"
   echo "  --expected-replicas N"
   echo "  --continue-on-group-error"
+  echo "  --post-supplementary-analysis"
 }
 
 while [[ $# -gt 0 ]]; do
@@ -24,6 +26,7 @@ while [[ $# -gt 0 ]]; do
     --port-base) PORT_BASE="${2:?missing value for --port-base}"; shift 2 ;;
     --expected-replicas) EXPECTED_REPLICAS="${2:?missing value for --expected-replicas}"; shift 2 ;;
     --continue-on-group-error) CONTINUE_ON_GROUP_ERROR=1; shift ;;
+    --post-supplementary-analysis) POST_SUPPLEMENTARY_ANALYSIS=1; shift ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unknown option: $1" >&2; usage >&2; exit 2 ;;
   esac
@@ -223,6 +226,25 @@ if (( terminal_count == REPLICA_COUNT && success_count == REPLICA_COUNT )); then
       --plan "$PLAN" \
       --replica-runtime-root "$RUNTIME_ROOT"
     merge_status=$?
+    if (( merge_status == 0 )) && [[ "$POST_SUPPLEMENTARY_ANALYSIS" == "1" ]]; then
+      SUPPLEMENTARY_SUITE_ROOT="$($PYTHON_BIN - "$PLAN" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+plan = Path(sys.argv[1]).resolve()
+manifest = json.loads(plan.with_suffix(".manifest.json").read_text(encoding="utf-8"))
+print(Path(manifest["output_root"]).resolve())
+PY
+)"
+      echo "global_merge_succeeded; starting non-human supplementary analysis suite=$SUPPLEMENTARY_SUITE_ROOT"
+      "$PYTHON_BIN" "$PROJECT_ROOT/scripts/run_supplementary_analysis.py" \
+        --suite-root "$SUPPLEMENTARY_SUITE_ROOT" \
+        --output-root "$SUPPLEMENTARY_SUITE_ROOT/supplementary" \
+        --bootstrap-samples 10000 \
+        --seed 42
+      merge_status=$?
+    fi
     set -e
     if (( merge_status == 0 )); then
       "$PYTHON_BIN" - "$STATUS_ROOT/merge.succeeded.json" <<'PY'

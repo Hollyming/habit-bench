@@ -123,14 +123,29 @@ def build_oracle_evidence_context(
     }
 
 
-def _food_habit_state(key: dict[str, Any]) -> dict[str, Any]:
+def _controlled_habit_graph_state(key: dict[str, Any]) -> dict[str, Any]:
+    """Render one controlled latent habit graph used by Food and Travel.
+
+    Travel v16 reuses the single-habit graph contract for part of its probes,
+    but has many more probe-type names than the original Food-only control.
+    Select boundary/exception rules by semantic probe-type markers and expose
+    the private required action consistently with the multi-habit signature
+    branch.  No choice id or choice position is included.
+    """
+
     graph = key.get("hidden_habit_graph") or {}
     probe_type = str(key.get("probe_type", "unknown"))
-    target_field = {
-        "boundary": "boundary_action",
-        "exception": "exception_action",
-    }.get(probe_type, "default_action")
-    required_action = graph.get(target_field) or key.get("gold_action")
+    if "exception" in probe_type:
+        target_field = "exception_action"
+    elif "boundary" in probe_type:
+        target_field = "boundary_action"
+    else:
+        target_field = "default_action"
+    required_action = (
+        key.get("gold_action_text")
+        or key.get("gold_action")
+        or graph.get(target_field)
+    )
     return {
         "habit_id": key.get("habit_id") or graph.get("habit_id"),
         "habit_name": graph.get("name"),
@@ -191,8 +206,8 @@ def build_oracle_habit_state_context(
     probe: dict[str, Any], key: dict[str, Any]
 ) -> dict[str, Any]:
     if key.get("hidden_habit_graph"):
-        state = _food_habit_state(key)
-        schema = "food_controlled_habit_graph"
+        state = _controlled_habit_graph_state(key)
+        schema = "controlled_habit_graph"
     else:
         state = _finance_software_habit_state(key)
         schema = "finance_software_policy_signature"

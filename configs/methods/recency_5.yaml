@@ -1,0 +1,14 @@
+method_name: recency_5
+reporting_name: Recency-5
+kind: retrieval_baseline
+source: HABIT-Bench
+revision: session_retrieval.v1
+retrieval:
+  strategy: fixed_recent_complete_sessions
+  unit: complete_session
+  session_k: 5
+  ranking: newest_session_first
+  cutoff_safe: true
+answer_model:
+  name: Qwen3-8B
+  thinking: false

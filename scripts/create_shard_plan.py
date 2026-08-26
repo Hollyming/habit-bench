@@ -48,9 +48,24 @@ METHOD_CONFIGS = {
 LOCAL_METHOD_CONFIGS = {
     "full_memory": PROJECT_ROOT / "configs/methods/full_memory.yaml",
     "full_history": PROJECT_ROOT / "configs/methods/full_history.yaml",
+    "recency_5": PROJECT_ROOT / "configs/methods/recency_5.yaml",
+    "recency_10": PROJECT_ROOT / "configs/methods/recency_10.yaml",
+    "bm25_rag": PROJECT_ROOT / "configs/methods/bm25_rag.yaml",
+    "dense_rag": PROJECT_ROOT / "configs/methods/dense_rag.yaml",
+    "temporal_hybrid_rag": (
+        PROJECT_ROOT / "configs/methods/temporal_hybrid_rag.yaml"
+    ),
     "secom": PROJECT_ROOT / "configs/methods/secom_bge_m3_qwen3.yaml",
 }
-BGE_M3_METHODS = set(METHOD_CONFIGS) | {"secom"}
+SUPPLEMENTARY_DIAGNOSTIC_METHODS = {
+    "oracle_evidence",
+    "oracle_habit_state",
+}
+BGE_M3_METHODS = set(METHOD_CONFIGS) | {
+    "dense_rag",
+    "temporal_hybrid_rag",
+    "secom",
+}
 BGE_M3_ID = "BAAI/bge-m3"
 BGE_M3_REVISION = "5617a9f61b028005a4858fdac845db406aefb181"
 DEFAULT_BGE_M3_PATH = Path("/plm-shared/zhangjunming/Workspace/models/bge-m3")
@@ -116,7 +131,12 @@ def _metadata(values: list[str]) -> dict[str, str]:
 def create_plan(args: argparse.Namespace) -> list[dict[str, str | int]]:
     registry = json.loads((PROJECT_ROOT / "eval/methods.json").read_text(encoding="utf-8"))
     methods = _split_csv(args.methods)
-    unknown_methods = set(methods) - set(registry)
+    # Oracle controls deliberately remain outside eval/methods.json because
+    # they read private annotations and must never look like deployable memory
+    # systems.  The shard planner accepts them only when explicitly named.
+    unknown_methods = set(methods) - (
+        set(registry) | SUPPLEMENTARY_DIAGNOSTIC_METHODS
+    )
     if not methods or unknown_methods:
         raise ValueError(f"Unknown or empty methods: {sorted(unknown_methods)}")
 
@@ -176,7 +196,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--methods",
         required=True,
-        help="Comma-separated methods. Controls run only when explicitly listed.",
+        help=(
+            "Comma-separated methods. Private-label Oracle controls remain "
+            "outside the normal registry and run only when explicitly listed."
+        ),
     )
     parser.add_argument(
         "--datasets",
@@ -563,6 +586,18 @@ def main() -> None:
         "task_count": len(rows),
         "shard_count": args.shards,
         "methods": method_configs,
+        "supplementary_diagnostics": {
+            "methods": [
+                method
+                for method in methods
+                if method in SUPPLEMENTARY_DIAGNOSTIC_METHODS
+            ],
+            "experiment_role": "diagnostic_upper_bound",
+            "private_annotations_used": any(
+                method in SUPPLEMENTARY_DIAGNOSTIC_METHODS
+                for method in methods
+            ),
+        },
         "models": {
             "llm": _portable_model_snapshot(llm_model_path),
             "embedding": (

@@ -287,7 +287,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--timeout-sec", type=int, default=172_800)
     parser.add_argument(
         "--implementation-kind",
-        choices=["benchmark_reproduction", "official_adapted", "control"],
+        choices=[
+            "benchmark_reproduction",
+            "official_adapted",
+            "retrieval_baseline",
+            "control",
+        ],
         required=True,
     )
     parser.add_argument("--implementation-source", required=True)

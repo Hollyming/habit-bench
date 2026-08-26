@@ -6,6 +6,20 @@
     "adapter": "eval/medmemorybench_adapters/structured_memory.py",
     "note": "MedMemoryBench vendored A-MEM source via add_note/find_related_memories; retrieval-only output is passed to the shared HABIT answerer."
   },
+  "bm25_rag": {
+    "implementation_kind": "retrieval_baseline",
+    "source": "HABIT-Bench",
+    "revision": "session_retrieval.v1",
+    "adapter": "eval/retrieval_baselines.py",
+    "note": "Pure lexical BM25 over cutoff-visible complete sessions; returns ranked top-5 raw sessions with timestamps and source IDs."
+  },
+  "dense_rag": {
+    "implementation_kind": "retrieval_baseline",
+    "source": "HABIT-Bench",
+    "revision": "session_retrieval.v1",
+    "adapter": "eval/retrieval_baselines.py",
+    "note": "Pure semantic cosine retrieval with the pinned local BGE-M3 over independently encoded complete sessions; no memory extraction or summarization."
+  },
   "full_history": {
     "implementation_kind": "control",
     "source": "HABIT-Bench",
@@ -69,11 +83,32 @@
     "adapter": "eval/controls.py",
     "note": "Qwen3-8B receives only the current request and choices; not a learned memory method."
   },
+  "recency_10": {
+    "implementation_kind": "retrieval_baseline",
+    "source": "HABIT-Bench",
+    "revision": "session_retrieval.v1",
+    "adapter": "eval/retrieval_baselines.py",
+    "note": "Returns exactly the ten most recent complete cutoff-visible sessions when available, ranked newest first."
+  },
+  "recency_5": {
+    "implementation_kind": "retrieval_baseline",
+    "source": "HABIT-Bench",
+    "revision": "session_retrieval.v1",
+    "adapter": "eval/retrieval_baselines.py",
+    "note": "Returns exactly the five most recent complete cutoff-visible sessions when available, ranked newest first."
+  },
   "secom": {
     "implementation_kind": "official_adapted",
     "source": "https://github.com/microsoft/SeCom",
     "revision": "1738e563b5dc7c51df762247e3d0379f1132ad23",
     "adapter": "eval/official_adapters/secom.py",
     "note": "Official segmentation, LLMLingua compression and FAISS retrieval adapted to chronological online session ingestion."
+  },
+  "temporal_hybrid_rag": {
+    "implementation_kind": "retrieval_baseline",
+    "source": "HABIT-Bench",
+    "revision": "session_retrieval.v1",
+    "adapter": "eval/retrieval_baselines.py",
+    "note": "Reciprocal-rank fusion of BM25 and BGE-M3 plus an as-of-aware temporal score; explicit historical targets replace unconditional recency, otherwise a weak cutoff-recency prior is used."
   }
 }

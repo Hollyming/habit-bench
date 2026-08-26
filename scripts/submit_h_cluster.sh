@@ -12,7 +12,7 @@ KUBEBRAIN_CLUSTER_ENTRY_REQUIRED="http://wangyixiuan-cpu.linzhouhan.ailab-llmarc
 # has the same routing contract before its first rjob invocation.
 export KUBEBRAIN_CLUSTER_ENTRY="$KUBEBRAIN_CLUSTER_ENTRY_REQUIRED"
 ENV_FILE="${HABITBENCH_ENV_FILE:-$LAUNCHER_ROOT/scripts/cluster/env.h.example.sh}"
-METHODS="full_memory,mem0,amem,memos,memrl,lightmem,letta,mirix,secom"
+METHODS="full_memory,recency_5,recency_10,bm25_rag,dense_rag,temporal_hybrid_rag,mem0,amem,memos,memrl,lightmem,letta,mirix,secom"
 DATASETS="food,finance,software,travel"
 GPUS=8
 REPLICAS=1
@@ -34,6 +34,7 @@ MAX_PROBES=""
 DRY_RUN=0
 FORCE_PLAN=0
 CONTINUE_ON_GROUP_ERROR=0
+POST_SUPPLEMENTARY_ANALYSIS=0
 
 usage() {
   echo "Usage: scripts/submit_h_cluster.sh [options]"
@@ -43,7 +44,7 @@ usage() {
   echo "  --gpus N             4 or 8 H200 GPUs per Replica, default: 8"
   echo "  --replicas N         independent RJob Replicas, default: 1"
   echo "  --shards N           user shards per method/domain, default: GPU x Replicas"
-  echo "  --methods CSV        default: compact full_memory plus eight memory methods"
+  echo "  --methods CSV        default: full_memory, five retrieval baselines, and eight memory methods"
   echo "  --datasets CSV       default: food v5, finance/software v1.4, travel v16"
   echo "  --output-root PATH   default: PROJECT_ROOT/results/h-...; must be persistent H storage"
   echo "  --plan PATH          persistent resume plan; defaults to OUTPUT_ROOT/shard_plan.tsv"
@@ -56,6 +57,7 @@ usage() {
   echo "  --max-users N        recorded smoke-test user prefix"
   echo "  --max-probes N       recorded smoke-test probe prefix"
   echo "  --continue-on-group-error"
+  echo "  --post-supplementary-analysis  after merge, run non-human supplementary sidecars"
   echo "  --force-plan         replace an existing shard plan intentionally"
   echo "  --dry-run            ask rjob to render only; no RJob is created"
 }
@@ -86,6 +88,7 @@ while [[ $# -gt 0 ]]; do
     --max-users) MAX_USERS="${2:?missing value for --max-users}"; shift 2 ;;
     --max-probes) MAX_PROBES="${2:?missing value for --max-probes}"; shift 2 ;;
     --continue-on-group-error) CONTINUE_ON_GROUP_ERROR=1; shift ;;
+    --post-supplementary-analysis) POST_SUPPLEMENTARY_ANALYSIS=1; shift ;;
     --force-plan) FORCE_PLAN=1; shift ;;
     --dry-run) DRY_RUN=1; shift ;;
     -h|--help) usage; exit 0 ;;
@@ -156,6 +159,13 @@ fi
 # BrainPP itself derives the effective user from the workspace FQDN.
 # shellcheck disable=SC1091
 source /etc/profile.d/ssh-init.sh
+# ssh-init may restore the legacy platform entry.  Pin the partition scheduler
+# again before recording plan metadata as well as before the final rjob call.
+export KUBEBRAIN_CLUSTER_ENTRY="$KUBEBRAIN_CLUSTER_ENTRY_REQUIRED"
+if [[ "$KUBEBRAIN_CLUSTER_ENTRY" != "$KUBEBRAIN_CLUSTER_ENTRY_REQUIRED" ]]; then
+  echo "Invalid llmarchitecture KUBEBRAIN_CLUSTER_ENTRY: $KUBEBRAIN_CLUSTER_ENTRY" >&2
+  exit 1
+fi
 ACTUAL_CREATOR_AD="${BRAIN_USERNAME:-}"
 if [[ -z "$ACTUAL_CREATOR_AD" || "$ACTUAL_CREATOR_AD" == "brainpp" ]]; then
   WORKSPACE_FQDN="$(hostname -f)"
@@ -399,7 +409,7 @@ NEEDS_CL100K_CACHE=0
 IFS=',' read -r -a METHOD_LIST <<< "$METHODS"
 for method in "${METHOD_LIST[@]}"; do
   case "$method" in
-    mem0|amem|memos|memrl|lightmem|letta|mirix|secom) NEEDS_EMBED=1 ;;
+    mem0|amem|memos|memrl|lightmem|letta|mirix|dense_rag|temporal_hybrid_rag|secom) NEEDS_EMBED=1 ;;
   esac
   case "$method" in
     lightmem) NEEDS_LIGHTMEM=1 ;;
@@ -560,6 +570,12 @@ PLAN_ARGS=(
   --metadata "secom_compressor=$HABITBENCH_SECOM_COMPRESSOR"
   --metadata "h_cluster_spec_sha256=$SPEC_SHA256"
 )
+if [[ "$POST_SUPPLEMENTARY_ANALYSIS" == "1" ]]; then
+  PLAN_ARGS+=(
+    --metadata "post_supplementary_analysis=true"
+    --metadata "human_audit=excluded"
+  )
+fi
 if [[ "$FORCE_PLAN" == "1" ]]; then
   PLAN_ARGS+=(--force)
 fi
@@ -638,6 +654,9 @@ WORKER_COMMAND=(
 )
 if [[ "$CONTINUE_ON_GROUP_ERROR" == "1" ]]; then
   WORKER_COMMAND+=(--continue-on-group-error)
+fi
+if [[ "$POST_SUPPLEMENTARY_ANALYSIS" == "1" ]]; then
+  WORKER_COMMAND+=(--post-supplementary-analysis)
 fi
 
 RJOB_COMMAND=(

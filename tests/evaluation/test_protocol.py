@@ -19,8 +19,11 @@ from scripts.run_multigpu_plan import (
     _prepare_task_output,
     _validate_mirix_vllm_profile,
 )
-from scripts.create_shard_plan import _effective_method_config
-from scripts.create_v3_experiment_plans import SHARDS, _group_is_complete
+from scripts.create_shard_plan import (
+    DEFAULT_DATASETS,
+    SUPPLEMENTARY_DIAGNOSTIC_METHODS,
+    _effective_method_config,
+)
 
 
 class ProtocolTest(unittest.TestCase):
@@ -73,6 +76,32 @@ class ProtocolTest(unittest.TestCase):
         self.assertEqual(registry["full_memory"]["adapter"], "eval/compact_history.py")
         self.assertEqual(registry["full_history"]["revision"], "memory_context.v3")
 
+    def test_non_agentic_retrieval_baselines_are_registered(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        registry = json.loads(
+            (project_root / "eval/methods.json").read_text(encoding="utf-8")
+        )
+        expected = {
+            "recency_5",
+            "recency_10",
+            "bm25_rag",
+            "dense_rag",
+            "temporal_hybrid_rag",
+        }
+        for method in expected:
+            with self.subTest(method=method):
+                self.assertEqual(
+                    registry[method]["implementation_kind"],
+                    "retrieval_baseline",
+                )
+                self.assertEqual(
+                    registry[method]["adapter"],
+                    "eval/retrieval_baselines.py",
+                )
+                self.assertTrue(
+                    (project_root / f"configs/methods/{method}.yaml").is_file()
+                )
+
     def test_official_source_snapshots_are_plain_directories(self) -> None:
         project_root = Path(__file__).resolve().parents[2]
         vendor_root = project_root / "third_party/official-baselines/vendor"
@@ -97,19 +126,31 @@ class ProtocolTest(unittest.TestCase):
             self.assertEqual(unsupported[method]["status"], "not_implemented")
             self.assertIn("reason", unsupported[method])
 
-    def test_v3_resume_requires_all_shards_to_be_complete(self) -> None:
-        with tempfile.TemporaryDirectory() as temporary:
-            suite_root = Path(temporary)
-            method_root = suite_root / "food" / "mem0"
-            for index in range(SHARDS - 1):
-                shard = method_root / f"shard_{index:03d}_of_{SHARDS:03d}"
-                shard.mkdir(parents=True)
-                (shard / "metrics.json").write_text("{}\n", encoding="utf-8")
-            self.assertFalse(_group_is_complete(suite_root, "mem0", "food"))
-            last = method_root / f"shard_{SHARDS - 1:03d}_of_{SHARDS:03d}"
-            last.mkdir(parents=True)
-            (last / "metrics.json").write_text("{}\n", encoding="utf-8")
-            self.assertTrue(_group_is_complete(suite_root, "mem0", "food"))
+    def test_supplementary_planner_is_current_four_domain(self) -> None:
+        self.assertEqual(
+            set(DEFAULT_DATASETS) - {"finance_software"},
+            {"food", "finance", "software", "travel"},
+        )
+        self.assertIn("food_habit_lifelines_stress_v5", str(DEFAULT_DATASETS["food"]))
+        self.assertIn("release_gated_v1_4", str(DEFAULT_DATASETS["finance"]))
+        self.assertIn("release_candidate_v16", str(DEFAULT_DATASETS["travel"]))
+        self.assertEqual(
+            SUPPLEMENTARY_DIAGNOSTIC_METHODS,
+            {"oracle_evidence", "oracle_habit_state"},
+        )
+
+    def test_qwen3_8b_supplementary_launcher_excludes_human_audit(self) -> None:
+        project_root = Path(__file__).resolve().parents[2]
+        launcher = (
+            project_root / "scripts/cluster/submit_qwen3_8b_supplementary.sh"
+        ).read_text(encoding="utf-8")
+        self.assertIn("--replicas 2", launcher)
+        self.assertIn("--gpus 8", launcher)
+        self.assertIn("--shards 16", launcher)
+        self.assertIn("no_memory,oracle_evidence,oracle_habit_state", launcher)
+        self.assertIn("food,finance,software,travel", launcher)
+        self.assertIn("--post-supplementary-analysis", launcher)
+        self.assertNotIn("human_audit.py", launcher)
 
     def test_active_method_configs_pin_bge_m3(self) -> None:
         project_root = Path(__file__).resolve().parents[2]

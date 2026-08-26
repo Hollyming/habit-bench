@@ -1,0 +1,15 @@
+method_name: bm25_rag
+reporting_name: BM25-RAG
+kind: retrieval_baseline
+source: HABIT-Bench
+revision: session_retrieval.v1
+retrieval:
+  strategy: bm25
+  unit: complete_session
+  indexed_text: role_tagged_message_text
+  tokenizer: deterministic_unicode_words_casefolded
+  topk: 5
+  cutoff_safe_idf_corpus: true
+answer_model:
+  name: Qwen3-8B
+  thinking: false

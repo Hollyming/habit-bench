@@ -6,9 +6,9 @@ HABIT-Bench 用于评估 memory agent 能否从超长用户—助手交互历史
 核心假设是：在显式用户记忆基准上表现较好的方法，不一定能够处理需要跨多次弱证据
 归纳的习惯，也可能在边界、异常、漂移或证据不足时产生错误个性化。
 
-AAAI 2027 补充实验、Oracle 对照、用户级统计和人工盲审协议见
-[`docs/supplementary_exp/AAAI27_supplementary_experiments.md`](docs/supplementary_exp/AAAI27_supplementary_experiments.md)。
-当前三域人工审计的文件路径、逐字段 rubric、双人评分和第三人裁决流程见
+ICLR 2027 补充实验、Oracle 对照、用户级统计和人工盲审协议见
+[`docs/supplementary_exp/ICLR27_supplementary_experiments.md`](docs/supplementary_exp/ICLR27_supplementary_experiments.md)。
+人工审计的逐字段 rubric、双人评分和第三人裁决流程见
 [`HUMAN_AUDIT_GUIDE`](docs/human_audit/HUMAN_AUDIT_GUIDE.md)，v3 审计结论见
 [`HUMAN_AUDIT_RESULTS_V3`](docs/human_audit/HUMAN_AUDIT_RESULTS_V3.md)。
 H 集群单节点 4/8 卡 H200 的环境准备、RJob 三类任务和恢复流程见
@@ -125,6 +125,17 @@ no_memory, full_memory
 
 `full_memory` 是 query-independent 在线 compact-history 主实验控制；`full_history`
 保留原始 recent-session truncation 消融。H 集群默认主计划包含 `full_memory`。
+
+第四组是没有 agentic memory lifecycle 的标准 session-retrieval baselines：
+
+```text
+recency_5, recency_10, bm25_rag, dense_rag, temporal_hybrid_rag
+```
+
+它们分别测固定近期窗口、纯 lexical BM25、统一 BGE-M3 semantic retrieval，以及
+BM25/BGE-M3 RRF + as-of-aware temporal prior。详细公式、时间语义和公平性边界见
+[`docs/retrieval_baselines.md`](docs/retrieval_baselines.md)。新的 H 通用默认主计划包含
+这五项；已存在的持久化计划不会被自动改写。
 
 ## 2. 统一评测协议
 
@@ -255,7 +266,7 @@ third_party/official-baselines/vendor/SeCom
 Graphiti 与 O-Mem 当前标记为 `not_implemented`，不在正式 registry、默认计划、
 运行脚本或依赖中，也不应报告实验结果。Graphiti 的本地 Kuzu/API 适配尚未通过
 ultra-long lifeline 的稳定性和效率验收；O-Mem 的官方 lifecycle 会在 router JSON
-不完整时无界重试，并且逐消息调用 LLM，在 Food-v4 上运行 6 小时仅完成约 11.6%。
+不完整时无界重试，并且逐消息调用 LLM，早期长历史 smoke 中未通过稳定性与效率验收。
 问题和恢复条件记录在 `eval/unsupported_methods.json`。在实现有界、可复现且不改变
 方法语义的适配前，二者暂不实现。
 
@@ -391,14 +402,19 @@ HABIT-bench/
 │   │   └── qwen3_no_thinking.jinja
 │   └── methods/
 │       ├── full_memory.yaml
+│       ├── recency_5.yaml
+│       ├── recency_10.yaml
+│       ├── bm25_rag.yaml
+│       ├── dense_rag.yaml
+│       ├── temporal_hybrid_rag.yaml
 │       └── secom_bge_m3_qwen3.yaml
 ├── domain/
 │   ├── food/
-│   │   └── food_habit_lifelines_stress_v4/
+│   │   └── food_habit_lifelines_stress_v5/
 │   ├── finance-software/
-│   │   └── habit_bench_multidogo_finance_software_scope_consistent_v1.3/
+│   │   └── habit_bench_multidogo_finance_software_release_gated_v1_4/
 │   └── travel/
-│       └── taskmaster_planning_defaults_v0_5_candidate_r2/
+│       └── release_candidate_v16_postrepair_repaired_r4/
 ├── eval/
 │   ├── context_windows.py
 │   ├── controls.py
@@ -443,22 +459,28 @@ HABIT-bench/
 │       ├── download_h_models.py
 │       ├── env.example.sh
 │       ├── env.h.example.sh
+│       ├── submit_qwen3_8b_supplementary.sh
 │       └── run_h_eval.sh
 ├── tests/
 │   └── evaluation/
-│       └── test_supplementary.py
+│       ├── test_supplementary.py
+│       ├── test_supplementary_runner.py
+│       └── test_retrieval_baselines.py
 ├── third_party/
 │   ├── medmemorybench/
 │   └── official-baselines/
 ├── docs/
 │   ├── evaluation_protocol.md
 │   ├── compact_context_baseline.md
+│   ├── retrieval_baselines.md
+│   ├── main_experiment_results_current.md
+│   ├── supplementary_results_current.md
 │   ├── multigpu_evaluation.md
 │   ├── h_cluster_evaluation.md
 │   ├── medmemorybench/
 │   ├── supplementary_exp/
-│   │   ├── AAAI27_supplementary_experiments.md
-│   │   └── HABIT-Bench_AAAI27_experiment_analysis.md
+│   │   ├── ICLR27_supplementary_experiments.md
+│   │   └── HABIT-Bench_ICLR27_experiment_analysis.md
 │   └── human_audit/
 │       ├── HUMAN_AUDIT_GUIDE.md
 │       └── HUMAN_AUDIT_RESULTS_V3.md
@@ -476,6 +498,7 @@ HABIT-bench/
 | `eval/unsupported_methods.json` | Graphiti、O-Mem 等暂不实现方法的问题和恢复条件 |
 | `eval/compact_history.py` | query-independent 在线 compact `full_memory` |
 | `eval/controls.py` | `no_memory` 和原始 recency `full_history` |
+| `eval/retrieval_baselines.py` | Recency-k、BM25-RAG、Dense-RAG 和 Temporal Hybrid-RAG 完整 session 检索 |
 | `eval/context_windows.py` | 长上下文档位解析与验证 |
 | `eval/core/answering.py` | 固定 Qwen answer prompt、token hard bound、choice JSON 解析 |
 | `eval/run.py` | 单方法/单数据集/单分片端到端运行 |
@@ -492,13 +515,14 @@ HABIT-bench/
 | `scripts/create_shard_plan.py` | 生成确定性 method × dataset × shard 任务表及配置快照 |
 | `scripts/run_multigpu_plan.py` | 每 GPU 一个持久 vLLM worker，调度分片任务并记录 wall-clock |
 | `scripts/merge_shard_plan.py` | 合并所有 method/domain group，生成总览 |
-| `scripts/run_supplementary_analysis.py` | 对完整 suite 批量生成三域单方法分析和全方法配对比较 |
+| `scripts/run_supplementary_analysis.py` | 对完整 suite 批量生成四域单方法分析和全方法配对比较 |
 | `scripts/submit_clusterx.sh` | 唯一 ClusterX 提交入口 |
 | `scripts/submit_h_cluster.sh` | H 集群 4/8 卡每 Replica、支持多 Replica 的 RJob 提交入口 |
 | `scripts/cluster/create_h_envs.sh` | 用当前 Miniconda 在 GPFS 创建固定方法/vLLM 环境 |
 | `scripts/cluster/download_h_models.py` | 从官方 Hugging Face 断点下载 H 集群固定 revision 模型 |
 | `scripts/cluster/run_h_eval.sh` | H worker 的 H200/卡数预检、分片执行和合并入口 |
 | `docs/compact_context_baseline.md` | full-memory compact-history 的实现与对照规范 |
+| `docs/retrieval_baselines.md` | 非 agentic session retrieval baselines 的公式、参数和运行规范 |
 | `docs/supplementary_exp/` | supplementary 设计、可执行范围、不可从当前数据可靠得到的指标 |
 | `docs/human_audit/` | 人工审计 rubric、盲法、裁决流程和 v3 最终审计结果 |
 
@@ -615,13 +639,14 @@ schema 严格校验；schema 通过后还会预先调用 MIRIX 官方 `validate_
 ```bash
 cd /plm-shared/zhangjunming/Workspace/HABIT-bench
 
-/plm-shared/zhangjunming/miniconda3/envs/habitbenchmark/bin/python \
+python \
   -m eval.validate \
-  domain/food/food_habit_lifelines_stress_v4 \
-  domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3
+  domain/food/food_habit_lifelines_stress_v5 \
+  domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4 \
+  domain/travel/release_candidate_v16_postrepair_repaired_r4
 
 PYTHONDONTWRITEBYTECODE=1 \
-/plm-shared/zhangjunming/miniconda3/envs/habitbenchmark/bin/python \
+python \
   -m unittest discover -s tests/evaluation -p 'test_*.py'
 ```
 
@@ -631,8 +656,8 @@ Prepare-only 验证数据加载、配置 snapshot 和 manifest，不调用 memor
 
 ```bash
 bash scripts/run_eval.sh mem0 \
-  domain/food/food_habit_lifelines_stress_v4 \
-  /plm-shared/zhangjunming/tmp/habit_mem0_prepare \
+  domain/food/food_habit_lifelines_stress_v5 \
+  ./results/habit_mem0_prepare \
   --max-users 1 --max-probes 4 --prepare-only
 ```
 
@@ -642,7 +667,7 @@ bash scripts/run_eval.sh mem0 \
 
 ```bash
 bash scripts/submit_clusterx.sh \
-  --datasets food,finance,software \
+  --datasets food,finance,software,travel \
   --shards 8 \
   --gpus 8 \
   --output-root results/habit_all_methods_v1
@@ -653,7 +678,7 @@ bash scripts/submit_clusterx.sh \
 ```bash
 bash scripts/submit_clusterx.sh \
   --methods mem0,amem,memos,memrl,lightmem,letta,mirix \
-  --datasets food,finance,software \
+  --datasets food,finance,software,travel \
   --shards 8 --gpus 8 \
   --output-root results/habit_medmemorybench_v1
 ```
@@ -663,7 +688,7 @@ bash scripts/submit_clusterx.sh \
 ```bash
 bash scripts/submit_clusterx.sh \
   --methods no_memory,full_memory \
-  --datasets food,finance,software \
+  --datasets food,finance,software,travel \
   --shards 8 --gpus 8 \
   --output-root results/habit_controls_v1
 ```
@@ -673,7 +698,7 @@ bash scripts/submit_clusterx.sh \
 ```bash
 bash scripts/submit_clusterx.sh \
   --methods secom \
-  --datasets food,finance,software \
+  --datasets food,finance,software,travel \
   --shards 8 --gpus 8 \
   --output-root results/habit_official_extra_v1
 ```
@@ -731,310 +756,107 @@ Group-AD 使用 `--creator-type group` 提交；idle 不带 priority、charged-g
 private-machine。环境、模型持久化、dry-run 和中断恢复见
 [`docs/h_cluster_evaluation.md`](docs/h_cluster_evaluation.md)。
 
-### 6.5 三节点 v3 正式实验
+### 6.5 当前四域 Qwen3-8B supplementary
 
-固定的 v3 正式入口只写入 `results/habit_3domain_v3`，不会为单独方法创建其他
-`*v3*` 顶层目录：
-
-```bash
-bash scripts/cluster/submit_v3_three_nodes.sh
-```
-
-在相同 v3 结果根续跑时使用：
+当前入口覆盖 Food v5、Finance/Software v1.4 和 Travel v16，提交一个
+`2 Replicas × 8 H200 = 16 H200` 的 reserved H 集群 RJob：
 
 ```bash
-bash scripts/cluster/submit_v3_three_nodes.sh --resume-existing
+export HABITBENCH_CREATOR_AD=<实际 Group-AD>
+bash scripts/cluster/submit_qwen3_8b_supplementary.sh
 ```
 
-续跑计划仍覆盖全部正式 method/domain group，以便最终统一 merge；已有八个完整分片的
-group 调度权重为零并快速跳过，只实际重算缺失或失败分片。
+任务执行 `no_memory`、`oracle_evidence` 和 `oracle_habit_state`，补齐主实验已有方法之外
+仍需 Qwen3-8B 推理的诊断对照。全部分片严格合并后，会自动运行用户级 bootstrap、配对
+显著性、难度切片、policy-component、效率和 answer–retrieval sidecar；不准备、不执行
+人审。结果默认写入当前 clone 的
+`results/habit-h200-supplementary-qwen3-8b-v1`。每个完整用户分片都是持久化 checkpoint，
+同一路径重提会校验并跳过成功分片。
 
-该入口创建三个 8×A800 ClusterX 任务。36 个 method/domain 组覆盖八个已实现的 memory
-方法、`no_memory`、`full_memory`、`oracle_evidence` 和
-`oracle_habit_state`；组间使用 LPT 估时均衡，每个节点内部按短任务到长任务排序。
-三个节点全部成功合并后，最后完成的节点会对统一结果根运行用户级 bootstrap、配对
-显著性、难度切片、policy-component、效率和 answer–retrieval supplementary
-分析。分层人工盲审只自动准备盲态模板，不会自动生成语义标注；标注、评分、盲态
-裁决和解盲发布决策是独立流程，见第 8.4 节。
+旧 `submit_v3_three_nodes.sh` 和 `create_v3_experiment_plans.py` 只保留兼容转发，不再包含
+三域、旧数据版本、ClusterX 或 A800 调度逻辑。
 
-## 7. v3 正式实验结果
+## 7. 当前四域实验结果
 
-### 7.1 完成状态与口径
+当前正式口径为 Food v5、Finance/Software v1.4、Travel v16，回答模型为同规模
+Qwen3。完整的 4B/8B/14B/32B 主实验大表、Wilson 95% CI、证据指标和结果来源见
+[docs/main_experiment_results_current.md](docs/main_experiment_results_current.md)。
+以下只保留最常用的 Qwen3-8B Accuracy 摘要；README 不再汇报旧 v3/Food v4 结果。
 
-`results/habit_3domain_v3` 已于 2026-07-29 完成：
+### 7.1 Qwen3-8B memory-agent 主实验
 
-- `experiment_manifest.status=complete`；
-- 3/3 个 node 成功，36/36 个 method/domain group 完成 strict merge；
-- 288/288 个 shard 的 `run_manifest.execution.status=succeeded`；
-- 每个 merged group 的 predictions、scores 和 memory contexts 都完整覆盖该领域全部
-  probes；
-- supplementary analysis 已生成
-  `results/habit_3domain_v3/supplementary/supplementary_manifest.json`。
+| Method | Food | Finance | Software | Travel v16 | Macro | Pooled |
+|---|---:|---:|---:|---:|---:|---:|
+| Full-Memory | 53.20 | 20.76 | 23.24 | 27.23 | 31.11 | 33.61 |
+| Mem0 | 37.21 | 23.10 | 26.76 | 26.62 | 28.42 | 29.22 |
+| A-MEM | 50.48 | 22.59 | 26.47 | 32.77 | 33.08 | **34.64** |
+| MemOS | 47.96 | 22.15 | 26.32 | 31.38 | 31.95 | 33.37 |
+| MemRL | 51.09 | 21.86 | 25.00 | 32.46 | 32.60 | 34.33 |
+| LightMem | 35.85 | 22.51 | 25.44 | 28.00 | 27.95 | 28.55 |
+| Letta | 51.63 | 21.71 | 25.29 | **33.23** | 32.97 | **34.64** |
+| MIRIX | 33.67 | 22.51 | **27.50** | 27.69 | 27.85 | 28.07 |
+| SeCom | 48.23 | 23.03 | 24.85 | 32.92 | 32.26 | 33.76 |
 
-后续人工审计于 2026-07-30 完成，共覆盖 851 题。当前协议准确表述为 A/B 独立标注
-加 blind AI adjudication，不是三位人类标注员，也不是 fully human-verified。
+4B、8B 和 14B 的 36/36 method×domain groups 均完整；32B 为 34/36，尚缺 Mem0
+Finance/Software。各规模完整方法中的最高 pooled Accuracy 分别为 4B Letta 34.81%、
+8B Letta/A-MEM 34.64%、14B Letta 36.13% 和 32B SeCom 37.72%。
 
-以下所有数字来自各 method/domain 的 `merged/metrics.json`，均为百分比。Accuracy
-方括号内为 Wilson 95% CI；Pooled 是按三个领域共 3,518 个 probes 加权的精确计数，
-不是额外训练或调参指标。`oracle_*` 只作为诊断上界，不参与 memory 方法排名。
+### 7.2 Qwen3-8B 简单 session-retrieval 基线
 
-> **有效性警告：** 人工审计发现 Food v4 的 latent probes 存在系统性
-> `gold_choice_id` 映射缺陷：抽样的 150 个 latent probes 中有 112 个 dataset gold
-> 与其自身 `hidden_habit_graph` 不一致。因此下方 Food 及包含 Food 的 Pooled 数字
-> 只保留为 v3 原始运行记录，不能进入论文主结论，也不能用于证明核心假设。必须生成
-> 修正后的新数据版本并重跑。Finance/Software 结果不受该 gold 映射缺陷影响，但仍应
-> 按人工审计清单处理需修改或排除的题目。
+这些方法不做 LLM 记忆抽取、摘要或 agentic memory lifecycle；实现与公平性边界见
+[docs/retrieval_baselines.md](docs/retrieval_baselines.md)。
 
-### 7.2 Answer Accuracy
+| Method | Food | Finance | Software | Travel v16 | Macro | Pooled |
+|---|---:|---:|---:|---:|---:|---:|
+| Recency-5 | 33.74 | 23.03 | 25.88 | 26.15 | 27.20 | 27.76 |
+| Recency-10 | 35.99 | 22.81 | 26.32 | 29.08 | 28.55 | 29.01 |
+| BM25-RAG | 49.25 | 22.95 | 24.41 | 32.46 | 32.27 | 33.95 |
+| Dense-RAG | **51.16** | 22.73 | 25.44 | **32.46** | **32.95** | **34.72** |
+| Temporal Hybrid-RAG | 49.46 | 21.05 | **26.32** | 32.31 | 32.28 | 33.69 |
 
-| 角色 | 方法 | Food | Finance | Software | Pooled |
-| --- | --- | ---: | ---: | ---: | ---: |
-| control | `no_memory` | 26.94 [24.73, 29.26] | 23.46 [21.30, 25.78] | 27.21 [24.00, 30.67] | 25.64 (902/3518) |
-| control | `full_memory` | 34.35 [31.97, 36.82] | 20.61 [18.55, 22.84] | 20.88 [18.00, 24.10] | 26.41 (929/3518) |
-| memory | `mem0` | 28.50 [26.25, 30.86] | 22.30 [20.17, 24.58] | 26.47 [23.29, 29.91] | 25.70 (904/3518) |
-| memory | `amem` | 26.73 [24.54, 29.06] | 21.49 [19.40, 23.75] | 24.41 [21.33, 27.78] | 24.25 (853/3518) |
-| memory | `memos` | 26.33 [24.14, 28.64] | 21.93 [19.82, 24.20] | 27.06 [23.86, 30.52] | 24.76 (871/3518) |
-| memory | `memrl` | 24.56 [22.43, 26.82] | 21.78 [19.68, 24.05] | 26.76 [23.57, 30.22] | 23.91 (841/3518) |
-| memory | `lightmem` | 26.53 [24.34, 28.85] | 22.73 [20.59, 25.03] | 24.56 [21.47, 27.93] | 24.67 (868/3518) |
-| memory | `letta` | 25.65 [23.48, 27.94] | 21.56 [19.47, 23.82] | 25.44 [22.31, 28.85] | 24.02 (845/3518) |
-| memory | `mirix` | 26.53 [24.34, 28.85] | 21.34 [19.26, 23.59] | 25.74 [22.59, 29.15] | 24.36 (857/3518) |
-| memory | `secom` | 25.99 [23.81, 28.29] | 22.95 [20.80, 25.26] | 25.15 [22.03, 28.54] | 24.64 (867/3518) |
-| diagnostic oracle | `oracle_evidence` | 36.60 [34.17, 39.09] | 29.75 [27.39, 32.23] | 31.62 [28.23, 35.21] | 32.97 (1160/3518) |
-| diagnostic oracle | `oracle_habit_state` | 33.27 [30.90, 35.71] | 93.79 [92.38, 94.95] | 94.56 [92.59, 96.03] | 68.65 (2415/3518) |
-
-### 7.3 可部署 memory 方法的端到端证据指标
-
-`R@5` 是宏平均决定性证据 Recall@5，`Hit@5` 表示至少命中一条决定性证据，
-`Joint` 表示答案正确且命中决定性证据，`Src` 是合法 source-session attribution
-覆盖率。`Avg tokens` 是实际交给共享 answer model 的平均 memory-context token 数，
-不是方法内部存储总量。
-
-| 领域 | 方法 | Accuracy | R@5 | Hit@5 | Joint | Src | Avg tokens |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| food | `mem0` | 28.50 | 13.16 | 70.95 | 20.68 | 100.00 | 79.9 |
-| food | `amem` | 26.73 | 17.57 | 82.93 | 23.95 | 100.00 | 3654.4 |
-| food | `memos` | 26.33 | 15.48 | 77.01 | 20.88 | 100.00 | 382.3 |
-| food | `memrl` | 24.56 | 16.16 | 80.82 | 20.00 | 100.00 | 1717.2 |
-| food | `lightmem` | 26.53 | 0.00 | 0.00 | 0.00 | 0.00 | 261.8 |
-| food | `letta` | 25.65 | 16.44 | 81.36 | 21.56 | 100.00 | 3105.9 |
-| food | `mirix` | 26.53 | 0.00 | 0.00 | 0.00 | 0.00 | 349.5 |
-| food | `secom` | 25.99 | 16.79 | 80.61 | 21.97 | 100.00 | 2866.5 |
-| finance | `mem0` | 22.30 | 6.35 | 25.80 | 5.92 | 100.00 | 103.4 |
-| finance | `amem` | 21.49 | 7.54 | 29.09 | 7.24 | 100.00 | 1883.5 |
-| finance | `memos` | 21.93 | 5.56 | 23.98 | 6.14 | 100.00 | 424.9 |
-| finance | `memrl` | 21.78 | 6.41 | 24.20 | 5.92 | 100.00 | 1752.7 |
-| finance | `lightmem` | 22.73 | 0.00 | 0.00 | 0.00 | 0.00 | 316.9 |
-| finance | `letta` | 21.56 | 6.67 | 25.22 | 6.51 | 100.00 | 1113.0 |
-| finance | `mirix` | 21.34 | 0.00 | 0.00 | 0.00 | 0.07 | 370.3 |
-| finance | `secom` | 22.95 | 6.10 | 23.76 | 6.51 | 100.00 | 895.5 |
-| software | `mem0` | 26.47 | 5.18 | 23.24 | 7.21 | 100.00 | 105.2 |
-| software | `amem` | 24.41 | 8.49 | 30.74 | 8.53 | 100.00 | 1988.6 |
-| software | `memos` | 27.06 | 6.75 | 27.21 | 7.79 | 100.00 | 458.0 |
-| software | `memrl` | 26.76 | 6.66 | 24.71 | 7.50 | 100.00 | 1707.6 |
-| software | `lightmem` | 24.56 | 0.00 | 0.00 | 0.00 | 0.00 | 327.7 |
-| software | `letta` | 25.44 | 6.74 | 24.56 | 6.76 | 100.00 | 1073.6 |
-| software | `mirix` | 25.74 | 0.00 | 0.00 | 0.00 | 0.00 | 324.6 |
-| software | `secom` | 25.15 | 6.01 | 22.06 | 6.47 | 100.00 | 862.4 |
-
-LightMem 和 MIRIX 的原生压缩/多存储检索结果没有稳定保留 source-session lineage；
-因此这些方法即使返回了 memory text，也会按正式可审计协议得到接近 0 的 Src、
-R@5 和 Joint。这里的 0 表示“无法验证证据来源”，不能重解释为“方法没有返回文本”。
-
-### 7.4 Food：习惯归纳、边界、异常和未见表达（provisional）
-
-这里的 `Boundary failure proxy = 1 - Boundary Accuracy`，不能重解释为严格的
-false-personalization cost；后者需要 matched no-habit probes 和 option-level action
-taxonomy。`Exception failure = 1 - Exception Accuracy`。整张表受上述 Food v4
-gold-label 缺陷影响，只用于定位原始运行，不作为有效实验结论。
-
-| 方法 | Habit Accuracy | Boundary Accuracy | Boundary failure proxy | Exception Accuracy | Exception failure | Explicit Accuracy | Unseen Accuracy |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `no_memory` | 24.76 | 27.14 | 72.86 | 23.10 | 76.90 | 38.57 | 24.76 |
-| `full_memory` | 25.95 | 25.24 | 74.76 | 28.81 | 71.19 | 80.48 | 25.87 |
-| `mem0` | 24.29 | 31.19 | 68.81 | 23.57 | 76.43 | 41.43 | 24.92 |
-| `amem` | 26.19 | 24.52 | 75.48 | 25.95 | 74.05 | 33.81 | 24.29 |
-| `memos` | 25.24 | 25.48 | 74.52 | 26.43 | 73.57 | 30.00 | 25.40 |
-| `memrl` | 26.67 | 23.57 | 76.43 | 24.52 | 75.48 | 22.38 | 23.97 |
-| `lightmem` | 25.48 | 27.62 | 72.38 | 23.57 | 76.43 | 32.38 | 25.40 |
-| `letta` | 26.43 | 24.76 | 75.24 | 25.24 | 74.76 | 26.67 | 23.97 |
-| `mirix` | 25.95 | 25.71 | 74.29 | 25.95 | 74.05 | 30.48 | 25.08 |
-| `secom` | 26.67 | 24.52 | 75.48 | 25.48 | 74.52 | 28.57 | 24.44 |
-
-### 7.5 Finance/Software：多组件证据链和干扰抑制
-
-`DU` 表示 decision-unit macro，`Comp hit/full` 是组件命中/完整覆盖率，`Chain`
-是整条多习惯证据链完整率，`Intrusion` 是 nonbinding 证据侵入率，`Clean joint`
-要求答案正确、命中决定性证据且 Top5 无 nonbinding 干扰。
-
-| 领域 | 方法 | DU Accuracy | R@5 | DU R@5 | Comp hit | Comp full | Chain | Intrusion | Clean joint |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| finance | `mem0` | 22.27 | 6.35 | 5.78 | 11.54 | 1.46 | 0.00 | 7.35 | 3.80 |
-| finance | `amem` | 21.54 | 7.54 | 6.34 | 12.93 | 4.04 | 0.00 | 5.28 | 5.26 |
-| finance | `memos` | 22.09 | 5.56 | 4.99 | 10.05 | 1.77 | 0.00 | 9.49 | 4.39 |
-| finance | `memrl` | 22.22 | 6.41 | 4.21 | 10.95 | 4.56 | 0.00 | 4.63 | 4.39 |
-| finance | `lightmem` | 22.76 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
-| finance | `letta` | 21.70 | 6.67 | 4.38 | 11.39 | 4.82 | 0.00 | 4.71 | 5.04 |
-| finance | `mirix` | 21.52 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
-| finance | `secom` | 22.84 | 6.10 | 3.93 | 10.55 | 4.45 | 0.00 | 4.40 | 5.04 |
-| software | `mem0` | 25.17 | 5.18 | 4.43 | 9.83 | 0.93 | 0.00 | 8.18 | 4.41 |
-| software | `amem` | 23.83 | 8.49 | 6.82 | 14.14 | 4.31 | 0.00 | 9.62 | 5.44 |
-| software | `memos` | 26.26 | 6.75 | 5.85 | 11.99 | 1.91 | 0.00 | 8.47 | 4.56 |
-| software | `memrl` | 25.95 | 6.66 | 4.71 | 11.18 | 4.34 | 0.00 | 6.12 | 5.44 |
-| software | `lightmem` | 22.99 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
-| software | `letta` | 23.98 | 6.74 | 4.77 | 11.32 | 4.44 | 0.00 | 6.09 | 4.85 |
-| software | `mirix` | 24.27 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
-| software | `secom` | 23.81 | 6.01 | 3.69 | 10.02 | 4.44 | 0.00 | 4.68 | 4.41 |
-
-### 7.6 Control 和 Oracle 诊断
-
-`full_memory` 使用 40k 档位；`Context full` 表示窗口是否保留全部正向证据。
-
-| 领域 | Full-memory Accuracy | Context Recall | Context full | Joint context | Avg tokens | No-memory Accuracy |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| food | 34.35 | 58.72 | 0.00 | 34.35 | 37692.8 | 26.94 |
-| finance | 20.61 | 20.78 | 0.00 | 14.91 | 37890.8 | 23.46 |
-| software | 20.88 | 29.81 | 0.00 | 17.21 | 37907.1 | 27.21 |
-
-| 领域 | Evidence-oracle Accuracy | Evidence R@5 | Comp full | Chain | Clean joint | Habit-state-oracle Accuracy |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| food | 36.60 | 49.78 | — | — | — | 33.27 |
-| finance | 29.75 | 94.83 | 89.67 | 69.01 | 29.75 | 93.79 |
-| software | 31.62 | 94.71 | 89.41 | 68.24 | 31.62 | 94.56 |
-
-### 7.7 主要观察
-
-- 原始输出中没有一个可部署 memory 方法同时超过三域 `no_memory`；但由于 Food v4
-  标签受污染，这只能描述当前文件，不能作为三域统计结论。Finance 和 Software 的
-  最佳 memory Accuracy 分别为 `secom` 22.95 和 `memos` 27.06，仍未超过对应
-  `no_memory` 的 23.46 和 27.21。
-- Food 上机械计算出的 explicit-to-habit gap 和能力切片不能作为科学证据。人工审计
-  已将低 latent Accuracy 的首要原因定位到 gold-choice 映射缺陷；修正数据并重跑前，
-  不得据此宣称“显式记忆能力不等于弱证据习惯归纳”已经被 Food v4 验证。
-- Finance/Software 中，能保留 provenance 的 memory 方法 R@5 也只有
-  5.18–8.49，所有八个可部署方法的完整证据链率均为 0。即使偶尔答对，也很少同时
-  满足决定性证据覆盖和无干扰的端到端条件。
-- Finance/Software 的 `oracle_habit_state` 达到 93.79/94.56，说明在直接提供正确
-  潜在 policy state 时任务可解；当前失败主要发生在从超长、重复弱证据中归纳并保留
-  该 state，而不是 choice reader 完全无法执行目标 policy。
-- `full_memory` 平均使用约 37.7k–37.9k tokens，仍无法在 Finance/Software 超过
-  `no_memory`，说明单纯扩大上下文并不能替代受边界、漂移、异常和 provenance 约束的
-  习惯归纳。
+五种基线已完成 320/320 shards 和 20/20 strict merges。Dense-RAG 的 pooled
+Accuracy 为 34.72%，因此简单语义检索是复杂 memory lifecycle 必须面对的关键对照。
 
 ## 8. Supplementary 实验
 
-Supplementary 分析不修改主 scorer，也不覆盖 `merged/metrics.json`。它只读取已经
-strict merge 的 `scored_predictions.jsonl` 和运行 artifact，把用户级统计、方法间
-推断和诊断结果写入独立的 `supplementary/` 目录。完整设计和指标边界见
-`docs/supplementary_exp/AAAI27_supplementary_experiments.md`。
+当前 Qwen3-8B 四域 supplementary 结果以
+[docs/supplementary_results_current.md](docs/supplementary_results_current.md) 为准；
+完整设计、统计假设和指标边界见
+[docs/supplementary_exp/ICLR27_supplementary_experiments.md](docs/supplementary_exp/ICLR27_supplementary_experiments.md)。
 
-### 8.1 已实现的实验和当前可用性
+Supplementary 分析不修改主 scorer，也不覆盖 merged/metrics.json。它只读取 strict
+merge 后的预测与运行 artifacts，把用户级统计、配对推断、难度切片、效率和诊断结果
+写入独立的 supplementary/ 目录。
 
-| 实验 | 实现内容 | v3 当前状态 |
-| --- | --- | --- |
-| Explicit-to-Habit transfer | explicit/latent Accuracy、用户配对 gap、user-cluster bootstrap CI | Food 12/12 个方法已机械计算；Finance/Software 没有同数据 explicit probes |
-| 四级诊断对照 | No Memory、40k Full Memory、Oracle Evidence、Oracle Habit State | 三域全部完成；结果见第 7.6 节 |
-| 用户级统计 | micro、user-macro、per-user 分布、10,000 次 user-cluster bootstrap CI | 3 域 × 12 方法全部完成 |
-| 方法配对推断 | paired user-cluster delta/CI、probe-level exact McNemar、全表 Holm family-wise correction | 每域 66 对，三域共 198 对 |
-| Policy component | 组件 Accuracy、平均错误组件数、0/1/多组件错误率、surface-decoy rate、per-habit Accuracy | Finance/Software 12/12；Food 缺少 choice-policy signature |
-| 观察性难度切片 | support count、history length、distractor ratio、evidence position/bands、probe type | 36/36 个 run 已生成；不是 matched causal intervention |
-| 效率 | answer/retrieval latency mean/P50/P95、prompt/completion/total/memory tokens、ingestion sessions、artifact bytes/user | 36/36 个 run 已生成；尚未自动绘制 Pareto frontier |
-| Answer–retrieval 耦合 | correct/wrong × evidence hit/miss、complete evidence、nonbinding intrusion、非法 attribution | 每域 9/12，共 27/36；无 ranked hit 的三个 control/oracle 不适用 |
-| 概率校准 | Brier、NLL、ECE、AURC | 代码已实现；当前 hard-choice 输出无完整 choice probabilities，36/36 均为 `unavailable` |
-| 严格 false-personalization | false/missed/stale personalization 和不同 λ 的 utility | 代码已实现；当前数据缺少 `personalization_applicable` 和 `choice_action_taxonomy`，36/36 均为 `unavailable` |
-| 分层盲审 | domain × probe type 分层抽样、A/B 独立评分、raw agreement、κ、盲态 C 裁决、解盲 disposition | 851 题已完成；C 是 AI adjudicator，不是第三位人类标注员 |
+### 8.1 当前可用性
 
-当前没有实现或没有运行的项目包括：matched causal stress curves、外部
-LongMemEval/LoCoMo 同配置对照、matched no-habit/ask-act 数据、概率性行为标签、
-8k/16k/32k full-memory 和统一 retrieved-token budget ablation、更强 answer head
-复核、非确定性多 seed、mixed-domain interference 以及 open-ended/interactive track。
-这些项目不能由当前 v3 sidecar 统计近似替代。
+| 实验 | 当前四域状态 | 说明 |
+|---|---:|---|
+| 主方法离线 sidecar | 36/36 | 9 方法 × Food/Finance/Software/Travel |
+| No Memory / Oracle diagnostics | 12/12 | 3 diagnostics × 4 域，192/192 shards |
+| 用户级统计与 user-cluster CI | 36/36 | 10,000 次 bootstrap，seed 42 |
+| 域内方法配对 | 4 × 36 pairs | exact McNemar、user-cluster bootstrap、Holm 校正 |
+| Explicit-to-Habit transfer | Food 9/9 | 其余域没有同数据生成机制下的 explicit probes |
+| Policy-component Accuracy | 27/27 | Finance、Software、Travel，Food taxonomy 不适用 |
+| 难度切片、效率、错误耦合 | 36/36 | 缺少 lineage 的方法按不可归因解释 |
+| 概率校准 / 严格 FPC | unavailable | 当前输出或标签不足，不用近似指标冒充 |
+| 人工盲审 | 本轮排除 | 协议保留，但不计入当前自动 supplementary 结果 |
 
-### 8.2 v3 supplementary 当前结果
+### 8.2 当前关键诊断
 
-`results/habit_3domain_v3/supplementary/supplementary_manifest.json` 记录了固定
-seed 42、10,000 次 bootstrap 和 36 个完整 run。每个域的 comparison 都验证 12 个
-方法具有完全相同的 probe coverage 后才生成 66 个 pair。
+下表为 Qwen3-8B exact-choice micro Accuracy（%），Pooled 覆盖四域 4,168 probes。
+Oracle 读取 private annotations，只是诊断上界，不属于可部署 memory system。
 
-各模块的实际 availability：
+| Diagnostic | Food | Finance | Software | Travel v16 | Pooled | Correct / Total |
+|---|---:|---:|---:|---:|---:|---:|
+| No Memory | 26.26 | 23.32 | 27.21 | 26.46 | 25.48 | 1,062 / 4,168 |
+| Oracle Evidence | **78.78** | 29.82 | 31.91 | 42.15 | 49.35 | 2,057 / 4,168 |
+| Oracle Habit State | 59.86 | **93.71** | **94.56** | **98.31** | **82.63** | 3,444 / 4,168 |
 
-| 领域 | Transfer | Policy component | Difficulty/Efficiency | Answer–retrieval | Calibration | Strict FPC |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Food | 12/12* | 0/12 | 12/12 | 9/12 | 0/12 | 0/12 |
-| Finance | 0/12 | 12/12 | 12/12 | 9/12 | 0/12 | 0/12 |
-| Software | 0/12 | 12/12 | 12/12 | 9/12 | 0/12 | 0/12 |
-
-`*` Food transfer 数字受 Food v4 gold-label 缺陷影响，不可用于论文结论。
-`no_memory`、`full_memory` 和 `oracle_habit_state` 没有 ranked
-`evidence_hit_at_5`，所以不进入 answer–retrieval 四象限；`full_memory` 的
-context recall 仍由主 scorer 单独报告。
-
-八个可部署方法相对 `no_memory` 的 paired user Accuracy 差值如下，单位为百分点：
-
-| 方法 | Food delta* | Finance delta | Software delta |
-| --- | ---: | ---: | ---: |
-| `mem0` | +1.56 | -1.17 | -0.73 |
-| `amem` | -0.20 | -1.97 | -2.78 |
-| `memos` | -0.61 | -1.54 | -0.12 |
-| `memrl` | -2.38 | -1.68 | -0.43 |
-| `lightmem` | -0.41 | -0.73 | -2.63 |
-| `letta` | -1.29 | -1.90 | -1.75 |
-| `mirix` | -0.41 | -2.12 | -1.45 |
-| `secom` | -0.95 | -0.51 | -2.04 |
-
-`*` Food delta 仅记录受污染数据上的机械输出。对上述 24 个 memory-versus-no-memory
-比较执行全表 Holm 校正后，没有一项达到 0.05 显著性；最小 adjusted user-bootstrap
-`p` 为 0.094。不能把未校正的单个 CI 或 p-value 当作通过多重比较后的结论。
-
-Finance/Software 的 policy-component Accuracy：
-
-| 方法 | Finance | Software |
-| --- | ---: | ---: |
-| `no_memory` | 49.81 | 52.28 |
-| `full_memory` | 46.58 | 45.88 |
-| `mem0` | 48.73 | 51.27 |
-| `amem` | 47.47 | 49.30 |
-| `memos` | 47.97 | 51.59 |
-| `memrl` | 47.28 | 51.52 |
-| `lightmem` | 49.11 | 50.25 |
-| `letta` | 47.63 | 50.57 |
-| `mirix` | 47.69 | 50.38 |
-| `secom` | 48.54 | 50.76 |
-| `oracle_evidence` | 56.52 | 57.42 |
-| `oracle_habit_state` | 97.15 | 97.59 |
-
-可部署方法的组件分数仍未超过 `no_memory`，而 `oracle_habit_state` 接近 98%，与
-exact-choice 和 chain 结果共同说明 Finance/Software 的主要困难位于潜在 policy
-state 的恢复，而不是已知正确 state 后的 choice 映射。
-
-观察性切片和效率结果体量较大，不在 README 重复所有行。它们位于：
-
-```text
-results/habit_3domain_v3/supplementary/<domain>/<method>/
-├── supplementary_metrics.json
-├── supplementary_metrics_by_slice.csv
-├── supplementary_metrics_by_user.csv
-└── supplementary_probe_diagnostics.jsonl
-
-results/habit_3domain_v3/supplementary/<domain>/comparison/
-├── supplementary_comparison.json
-├── supplementary_comparison_methods.csv
-└── supplementary_comparison_pairs.csv
-```
-
-人工审计的 adjudicated release disposition：
-
-| 领域 | N | Keep | Modify | Exclude | 有效 choice 与当前 gold 一致率 |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Food | 200 | 83 | 114 | 3 | 44.16% |
-| Finance | 340 | 310 | 22 | 8 | 100.00% |
-| Software | 311 | 307 | 4 | 0 | 100.00% |
-| 合计 | 851 | 700 | 140 | 11 | — |
-
-Food 的 150 个 sampled latent probes 中，112 个当前 dataset gold 与源
-`hidden_habit_graph` 不一致；147 个有唯一 adjudicated choice 的题则 147/147 与
-hidden graph 动作一致。这是数据 gold 映射缺陷，不是模型失败证据。完整逐字段
-agreement、κ、自然度、修改/排除原因和冻结哈希见
-`docs/human_audit/HUMAN_AUDIT_RESULTS_V3.md`。
+Finance、Software 和 Travel 在给定最终 Oracle Habit State 后接近饱和，说明主要瓶颈
+是从长期历史恢复正确状态；Food 的 Oracle Evidence 更强，符合显式历史证据可直接
+支持部分题目的构造。用户等权 Accuracy、transfer gap、policy component、错误耦合、
+效率、配对显著性和完整结果路径见 current supplementary 文档。
 
 ### 8.3 如何运行 supplementary 分析
 
@@ -1043,15 +865,15 @@ agreement、κ、自然度、修改/排除原因和冻结哈希见
 memory 方法或 answer model：
 
 ```bash
-cd /plm-shared/zhangjunming/Workspace/habit-bench
+cd /path/to/your/habit-bench
 
-PYTHON=/plm-shared/zhangjunming/miniconda3/envs/habitbenchmark/bin/python
-SUITE_ROOT=/plm-shared/zhangjunming/Workspace/habit-bench/results/habit_3domain_v3
+PYTHON=/mnt/shared-storage-gpfs2/plm-gpfs/jmzhang/envs/habitbenchmark/bin/python
+SUITE_ROOT="$PWD/results/<current-four-domain-suite>"
 
 "$PYTHON" scripts/run_supplementary_analysis.py \
   --suite-root "$SUITE_ROOT" \
   --output-root "$SUITE_ROOT/supplementary" \
-  --domains food,finance,software \
+  --domains food,finance,software,travel \
   --bootstrap-samples 10000 \
   --seed 42
 ```
@@ -1061,7 +883,7 @@ merged 结果都会报错，不会静默跳过。对单个方法排障可直接�
 
 ```bash
 "$PYTHON" -m eval.supplementary.analyze \
-  --dataset-dir domain/food/food_habit_lifelines_stress_v4 \
+  --dataset-dir domain/food/food_habit_lifelines_stress_v5 \
   --scored-predictions \
     "$SUITE_ROOT/food/memos/merged/scored_predictions.jsonl" \
   --artifact-root "$SUITE_ROOT/food/memos/merged" \
@@ -1073,13 +895,13 @@ merged 结果都会报错，不会静默跳过。对单个方法排障可直接�
 批处理器会自动运行 `compare.py`。手工比较时，应传入同一领域、probe coverage 完全
 相同的多个 `--run METHOD=PATH`；默认拒绝 partial coverage。
 
-Oracle 需要固定的 OpenAI-compatible answer endpoint。v3 三节点入口已自动包含两个
-Oracle；新数据可先只检查上下文和 private-label contract：
+Oracle 需要固定的 OpenAI-compatible answer endpoint。当前四域 H 启动器自动包含两个
+Oracle；也可先只检查上下文和 private-label contract：
 
 ```bash
 "$PYTHON" -m eval.supplementary.oracle_controls \
-  --dataset-dir domain/food/food_habit_lifelines_stress_v4 \
-  --output-dir /plm-shared/zhangjunming/tmp/oracle_food_smoke \
+  --dataset-dir domain/food/food_habit_lifelines_stress_v5 \
+  --output-dir ./results/oracle_food_smoke \
   --mode oracle_evidence \
   --max-users 1 \
   --max-probes 8 \
@@ -1093,30 +915,35 @@ Oracle；新数据可先只检查上下文和 private-label contract：
 ### 8.4 如何生成和完成人工审计
 
 人工审计必须把盲态 annotation 与 private audit key 隔离。以下命令生成新的固定
-seed、按 probe type 分层的三域样本；不要在已经开始标注的同一目录上重新运行：
+seed、按 probe type 分层的四域样本；不要在已经开始标注的同一目录上重新运行：
 
 ```bash
-cd /plm-shared/zhangjunming/Workspace/habit-bench
+cd /path/to/your/habit-bench
 
-PYTHON=/plm-shared/zhangjunming/miniconda3/envs/habitbenchmark/bin/python
-REPO=/plm-shared/zhangjunming/Workspace/habit-bench
+PYTHON=${PYTHON:-python}
+REPO="$PWD"
 AUDIT_ROOT="$REPO/results/<new_suite>/supplementary/human_audit"
 
 "$PYTHON" -m eval.supplementary.human_audit prepare \
-  --dataset-dir "$REPO/domain/food/food_habit_lifelines_stress_v4" \
+  --dataset-dir "$REPO/domain/food/food_habit_lifelines_stress_v5" \
   --output-dir "$AUDIT_ROOT/food" \
   --per-stratum 50 --seed 42
 
 "$PYTHON" -m eval.supplementary.human_audit prepare \
-  --dataset-dir "$REPO/domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3" \
+  --dataset-dir "$REPO/domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4" \
   --domain-filter finance \
   --output-dir "$AUDIT_ROOT/finance" \
   --per-stratum 50 --seed 42
 
 "$PYTHON" -m eval.supplementary.human_audit prepare \
-  --dataset-dir "$REPO/domain/finance-software/habit_bench_multidogo_finance_software_scope_consistent_v1.3" \
+  --dataset-dir "$REPO/domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4" \
   --domain-filter software \
   --output-dir "$AUDIT_ROOT/software" \
+  --per-stratum 50 --seed 42
+
+"$PYTHON" -m eval.supplementary.human_audit prepare \
+  --dataset-dir "$REPO/domain/travel/release_candidate_v16_postrepair_repaired_r4" \
+  --output-dir "$AUDIT_ROOT/travel" \
   --per-stratum 50 --seed 42
 ```
 
@@ -1131,7 +958,7 @@ audit_manifest.json          # dataset hash、seed、strata 和 sample
 数据管理员为至少两名标注员复制独立文件；不能让标注员共享一份 CSV：
 
 ```bash
-for domain in food finance software; do
+for domain in food finance software travel; do
   mkdir -p "$AUDIT_ROOT/$domain/annotations"
   cp -n "$AUDIT_ROOT/$domain/annotation_template.csv" \
     "$AUDIT_ROOT/$domain/annotations/annotator_a.csv"
@@ -1143,7 +970,7 @@ done
 收回完整 A/B 文件后，由持有 private key 的数据管理员运行 pre-adjudication 评分：
 
 ```bash
-for domain in food finance software; do
+for domain in food finance software travel; do
   DOMAIN_ROOT="$AUDIT_ROOT/$domain"
   "$PYTHON" -m eval.supplementary.human_audit score \
     --audit-key "$DOMAIN_ROOT/audit_key.private.jsonl" \
@@ -1179,14 +1006,14 @@ DOMAIN_ROOT="$AUDIT_ROOT/food"
   --domain-root "$AUDIT_ROOT/food" \
   --audit-key "$AUDIT_ROOT/food/audit_key.private.jsonl" \
   --source-probe-key \
-    "$REPO/domain/food/food_habit_lifelines_stress_v4/private/probe_key.jsonl"
+    "$REPO/domain/food/food_habit_lifelines_stress_v5/private/probe_key.jsonl"
 
 "$PYTHON" -m eval.supplementary.human_audit_data_manager \
   --domain-root "$AUDIT_ROOT/finance" \
   --audit-key "$AUDIT_ROOT/finance/audit_key.private.jsonl"
 ```
 
-Software 与 Finance 相同，只需替换 domain。最终输出包括 pre-adjudication agreement、
+Software 和 Travel 与 Finance 相同，只需替换 domain。最终输出包括 pre-adjudication agreement、
 C 后的质量指标、逐 probe-type 汇总、逐题 disposition，以及验证 private inputs 和
 scored outputs 的 unblinding manifest。完整 rubric、字段定义、盲法和发布规则见
 `docs/human_audit/HUMAN_AUDIT_GUIDE.md`。
@@ -1216,7 +1043,12 @@ results/<run_name>/
 │       ├── shard_000_of_008/
 │       ├── ...
 │       └── merged/
-└── software/
+├── software/
+│   └── <method>/
+│       ├── shard_000_of_008/
+│       ├── ...
+│       └── merged/
+└── travel/
     └── <method>/
         ├── shard_000_of_008/
         ├── ...
@@ -1335,7 +1167,7 @@ Joint Answer-Evidence Hit@5
   = 1[answer correct ∧ Top5 至少命中一条 positive gold]
 ```
 
-其中 Food 的 positive gold 是 `gold_evidence_session_ids`，Finance/Software 的
+其中 Food 的 positive gold 是 `gold_evidence_session_ids`，Finance/Software/Travel 的
 positive gold 是 `decision_evidence_session_ids`。还统一报告：
 
 | 指标 | 解决的问题 |
@@ -1359,7 +1191,7 @@ provenance，不改变方法的 memory 写入、检索排序或传给 answer mod
 `attribution_conditional_evidence_recall_at_5`，避免把“无法归因”和“归因后检索错误”
 混为一谈。
 
-Food v4 的能力 panel：
+Food v5 的能力 panel：
 
 | Panel | 主要指标 |
 | --- | --- |
@@ -1369,7 +1201,7 @@ Food v4 的能力 panel：
 | `exception_retention` | Accuracy、`exception_failure_rate`、exception evidence Hit@5 |
 | `unseen_paraphrase_robustness` | 未见表达下的 Accuracy 与 evidence metrics |
 
-Finance/Software v1.3 额外报告：
+Finance/Software v1.4 与 Travel v16 额外报告：
 
 | 指标 | 含义 |
 | --- | --- |
@@ -1381,11 +1213,11 @@ Finance/Software v1.3 额外报告：
 | `nonbinding_intrusion_rate_at_5` | Top5 被局部例外/未采纳建议占据的比例，越低越好 |
 | `decisive_decoy_discrimination_at_5` | 决定性 Precision 减 nonbinding intrusion |
 | `clean_grounded_answer_rate_at_5` | 答案正确、命中决定性证据且 Top5 无 nonbinding 干扰 |
-| `decision_unit_macro_accuracy` | 449 个潜在决策等权的答案准确率 |
-| `decision_unit_macro_evidence_recall_at_5` | 449 个潜在决策等权的组件证据 Recall@5 |
+| `decision_unit_macro_accuracy` | 潜在决策等权的答案准确率 |
+| `decision_unit_macro_evidence_recall_at_5` | 潜在决策等权的组件证据 Recall@5 |
 | `decision_bundle_macro_*` | 多习惯 decision bundle 等权结果 |
 
-Finance 的 640 个 probe 有 6 条决定性证据，因此原始 Recall@5 理论上限为 5/6；
+当单题决定性证据多于 5 条时，原始 Recall@5 存在结构性上限；
 `Coverage Efficiency@5` 用于比较有限五个槽位是否全部有效，但不会替换原始 Recall@5。
 两者必须同时报告。
 

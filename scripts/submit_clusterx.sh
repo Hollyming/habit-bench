@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Build a deterministic three-domain shard plan and submit one multi-GPU
+# Build a deterministic four-domain shard plan and submit one multi-GPU
 # HABIT-Bench evaluation job through ClusterX.
 
 PROJECT_ROOT="${HABITBENCH_PROJECT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
@@ -9,7 +9,7 @@ PYTHON_BIN="${PYTHON_BIN:-/plm-shared/zhangjunming/miniconda3/envs/habitbenchmar
 CLUSTERX_BIN="${CLUSTERX_BIN:-/plm-shared/zhangjunming/miniconda3/envs/clusterx/bin/clusterx}"
 ENV_FILE="${HABITBENCH_ENV_FILE:-$PROJECT_ROOT/scripts/cluster/env.example.sh}"
 METHODS="mem0,amem,memos,memrl,lightmem,letta,mirix,secom"
-DATASETS="food,finance,software"
+DATASETS="food,finance,software,travel"
 SHARDS=8
 GPUS=8
 OUTPUT_ROOT=""
@@ -31,7 +31,7 @@ CONTINUE_ON_GROUP_ERROR=0
 usage() {
   echo "Usage: scripts/submit_clusterx.sh [options]"
   echo "  --methods CSV       default: all eight implemented memory methods; controls are explicit"
-  echo "  --datasets CSV      default: food,finance,software"
+  echo "  --datasets CSV      default: food,finance,software,travel"
   echo "  --shards N          user shards per method/domain, default: 8"
   echo "  --gpus N            GPUs on one ClusterX node, default: 8"
   echo "  --output-root PATH  default: results/bge_m3_<UTC timestamp>"

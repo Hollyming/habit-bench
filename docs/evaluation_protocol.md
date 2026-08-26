@@ -95,6 +95,14 @@ new compact runs are identified by `memory_context.v5` and reported as
 `Full-Memory (online compact history)`. The exact design and comparison rules
 are in `docs/compact_context_baseline.md`.
 
+The main protocol also registers five non-agentic, complete-session retrieval
+baselines: `recency_5`, `recency_10`, `bm25_rag`, `dense_rag`, and
+`temporal_hybrid_rag`. They use the same public cutoff and shared answer head as
+the memory systems. Dense retrieval uses the pinned BGE-M3 profile; the hybrid
+combines BM25 and dense ranks by RRF and uses an explicit query `as-of` target
+when present instead of always preferring the newest session. See
+`docs/retrieval_baselines.md` for the fixed parameters.
+
 ## Fixed embedding profile
 
 Every active `*_qwen3-8b_adapted.yaml` method profile uses the same local

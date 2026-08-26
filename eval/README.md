@@ -28,7 +28,9 @@ their blockers are recorded in `unsupported_methods.json`. `compact_history.py`
 implements the `memory_context.v5` query-independent online compact
 `full_memory` control. `controls.py` retains `no_memory` and the raw
 `full_history` recency control; `context_windows.py` resolves their shared
-standard/custom window tier.
+standard/custom window tier. `retrieval_baselines.py` provides fixed-session
+Recency-5/10, lexical BM25-RAG, BGE-M3 Dense-RAG, and as-of-aware Temporal
+Hybrid-RAG without memory extraction, summarization, or an agentic lifecycle.
 
 ## Memory method input
 
