@@ -1,7 +1,7 @@
 # HABIT-Bench ICLR 2027 补充实验方案
 
-本文把 `docs/supplementary_exp/HABIT-Bench_ICLR27_experiment_analysis.md` 中可以可靠落地的建议，
-转换为当前仓库的可执行实验。原则是：
+本文记录当前四域版本可执行的补充实验。此前的历史分析已移除，
+不应作为当前实验口径或结果来源。原则是：
 
 1. 不修改现有 `eval/core/scoring.py`、retrieval scorer、主指标定义和正式运行入口。
 2. 已跑出的 `metrics.json`、`retrieval_metrics.json` 仍是论文主结果的唯一来源。

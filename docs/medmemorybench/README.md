@@ -97,6 +97,6 @@ method-native retrieval 比较，不是等 evidence-token ablation。
 - 失败扫描和资源记录；
 - 对本地模型兼容修改的明确说明。
 
-历史 v0.5 实验结果保留在 `experiment_notes.md`，但不属于当前
-finance-software v1.2.1 和扩充版 food active dataset 的正式结果，不能与
-新运行直接合并。
+早期原型结果和预发布数据集摘要不再随当前仓库分发，也不能与正式运行直接合并；
+当前四域结果请以 `docs/main_experiment_results_current.md` 和
+`docs/supplementary_results_current.md` 为准。

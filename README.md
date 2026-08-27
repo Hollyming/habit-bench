@@ -6,11 +6,8 @@ HABIT-Bench 用于评估 memory agent 能否从超长用户—助手交互历史
 核心假设是：在显式用户记忆基准上表现较好的方法，不一定能够处理需要跨多次弱证据
 归纳的习惯，也可能在边界、异常、漂移或证据不足时产生错误个性化。
 
-ICLR 2027 补充实验、Oracle 对照、用户级统计和人工盲审协议见
+ICLR 2027 补充实验、Oracle 对照、用户级统计和（可选）人工盲审协议见
 [`docs/supplementary_exp/ICLR27_supplementary_experiments.md`](docs/supplementary_exp/ICLR27_supplementary_experiments.md)。
-人工审计的逐字段 rubric、双人评分和第三人裁决流程见
-[`HUMAN_AUDIT_GUIDE`](docs/human_audit/HUMAN_AUDIT_GUIDE.md)，v3 审计结论见
-[`HUMAN_AUDIT_RESULTS_V3`](docs/human_audit/HUMAN_AUDIT_RESULTS_V3.md)。
 H 集群单节点 4/8 卡 H200 的环境准备、RJob 三类任务和恢复流程见
 [`H 集群评测`](docs/h_cluster_evaluation.md)。
 
@@ -478,13 +475,8 @@ HABIT-bench/
 │   ├── multigpu_evaluation.md
 │   ├── h_cluster_evaluation.md
 │   ├── medmemorybench/
-│   ├── supplementary_exp/
-│   │   ├── ICLR27_supplementary_experiments.md
-│   │   └── HABIT-Bench_ICLR27_experiment_analysis.md
-│   └── human_audit/
-│       ├── HUMAN_AUDIT_GUIDE.md
-│       └── HUMAN_AUDIT_RESULTS_V3.md
-├── research/
+│   └── supplementary_exp/
+│       └── ICLR27_supplementary_experiments.md
 └── results/                         # 运行生成，Git ignored
 ```
 
@@ -526,7 +518,7 @@ HABIT-bench/
 | `docs/compact_context_baseline.md` | full-memory compact-history 的实现与对照规范 |
 | `docs/retrieval_baselines.md` | 非 agentic session retrieval baselines 的公式、参数和运行规范 |
 | `docs/supplementary_exp/` | supplementary 设计、可执行范围、不可从当前数据可靠得到的指标 |
-| `docs/human_audit/` | 人工审计 rubric、盲法、裁决流程和 v3 最终审计结果 |
+| `eval/supplementary/human_audit*.py` | 可选人工审计的采样、评分和裁决实现（不属于主实验） |
 
 ## 5. 环境
 
@@ -795,15 +787,16 @@ bash scripts/cluster/submit_qwen3_8b_supplementary.sh
 `results/habit-h200-supplementary-qwen3-8b-v1`。每个完整用户分片都是持久化 checkpoint，
 同一路径重提会校验并跳过成功分片。
 
-旧 `submit_v3_three_nodes.sh` 和 `create_v3_experiment_plans.py` 只保留兼容转发，不再包含
-三域、旧数据版本、ClusterX 或 A800 调度逻辑。
+历史兼容构建脚本与研究记录已从仓库移除。
+当前正式范围仅为 Food v5、Finance/Software v1.4 和 Travel v16；H 集群入口见
+`scripts/cluster/` 下的当前脚本。
 
 ## 7. 当前四域实验结果
 
 当前正式口径为 Food v5、Finance/Software v1.4、Travel v16，回答模型为同规模
 Qwen3。完整的 4B/8B/14B/32B 主实验大表、Wilson 95% CI、证据指标和结果来源见
 [docs/main_experiment_results_current.md](docs/main_experiment_results_current.md)。
-以下只保留最常用的 Qwen3-8B Accuracy 摘要；README 不再汇报旧 v3/Food v4 结果。
+以下只保留最常用的 Qwen3-8B Accuracy 摘要；README 不再汇报已退役数据版本的结果。
 
 ### 7.1 Qwen3-8B memory-agent 主实验
 
@@ -1037,8 +1030,8 @@ DOMAIN_ROOT="$AUDIT_ROOT/food"
 
 Software 和 Travel 与 Finance 相同，只需替换 domain。最终输出包括 pre-adjudication agreement、
 C 后的质量指标、逐 probe-type 汇总、逐题 disposition，以及验证 private inputs 和
-scored outputs 的 unblinding manifest。完整 rubric、字段定义、盲法和发布规则见
-`docs/human_audit/HUMAN_AUDIT_GUIDE.md`。
+scored outputs 的 unblinding manifest。完整 rubric、字段定义、盲法和发布规则见当前补充实验
+方案中的人工盲审章节；该流程是可选补充评测，不属于当前主实验结果。
 
 ## 9. 结果目录结构
 
