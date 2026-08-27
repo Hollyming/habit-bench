@@ -650,7 +650,7 @@ def personalization_metrics(
             "reason": (
                 "Requires private choice_action_taxonomy and boolean "
                 "personalization_applicable for every probe. They are not "
-                "present in current Food v4 or Finance/Software v1.3."
+                "present in the current four-domain private annotations."
             ),
             "annotated_probes": len(selected),
             "total_probes": len(rows),
