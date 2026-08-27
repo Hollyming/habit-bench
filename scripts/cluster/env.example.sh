@@ -46,7 +46,11 @@ export HABITBENCH_SECOM_COMPRESSOR="${HABITBENCH_SECOM_COMPRESSOR:-$HABITBENCH_L
 # HABITBENCH_MAX_INPUT_TOKENS. Optional RESERVED/MAX variables override the
 # tier's history budget and normally should remain unset.
 export HABITBENCH_CONTEXT_WINDOW_TIER="${HABITBENCH_CONTEXT_WINDOW_TIER:-auto}"
-export HABITBENCH_COMPACT_SUMMARY_MAX_TOKENS="${HABITBENCH_COMPACT_SUMMARY_MAX_TOKENS:-4096}"
+# Long lifelines can require more than the former 4096-token heuristic.  This
+# is a bounded context allocation, not a truncation trigger: non-empty
+# length-limited completions are retained and the final history-window check
+# remains the hard safety boundary.
+export HABITBENCH_COMPACT_SUMMARY_MAX_TOKENS="${HABITBENCH_COMPACT_SUMMARY_MAX_TOKENS:-8192}"
 export HABITBENCH_COMPACTOR_INPUT_TOKENS="${HABITBENCH_COMPACTOR_INPUT_TOKENS:-30000}"
 export HABITBENCH_COMPACTOR_TIMEOUT_SEC="${HABITBENCH_COMPACTOR_TIMEOUT_SEC:-300}"
 export HABITBENCH_COMPACTOR_MAX_RETRIES="${HABITBENCH_COMPACTOR_MAX_RETRIES:-3}"

@@ -48,7 +48,8 @@ Preserve scope, negation, exceptions, temporal changes, conflicts, uncertainty, 
 attribution. Never promote an assistant suggestion to a user preference without later user evidence.
 Every factual bullet must cite one or more exact source markers such as [SESSION_ID=abc]. Drop
 incidental narrative detail before behavioral constraints. Keep the complete response below the
-requested target token budget."""
+requested target when possible, but preserve material longitudinal evidence until the bounded
+context budget is reached."""
 
 
 def compaction_limits(
@@ -105,8 +106,27 @@ def extract_summary_session_ids(summary: str) -> list[str]:
     return list(dict.fromkeys(SESSION_ID_PATTERN.findall(summary)))
 
 
+def _completion_text(message: Any) -> tuple[str, str]:
+    """Read canonical content, with a provider reasoning-field fallback."""
+
+    content = getattr(message, "content", None)
+    if isinstance(content, str) and content.strip():
+        return content, "content"
+    reasoning = getattr(message, "reasoning_content", None)
+    if isinstance(reasoning, str) and reasoning.strip():
+        return reasoning, "reasoning_content_recovery"
+    return "", "empty"
+
+
 class CompactorLengthError(RuntimeError):
-    """The compactor exhausted every normal retry at its output envelope."""
+    """The compactor exhausted every retry without producing usable text.
+
+    A provider's ``finish_reason=length`` is not itself an error for this
+    control: long lifelines legitimately produce a completion larger than the
+    old 4096-token heuristic.  This exception is retained for callers/tests
+    that need to signal an actually unusable response and trigger the bounded
+    fallback.
+    """
 
 
 def render_bounded_compact_payload(
@@ -233,7 +253,7 @@ class OpenAIHistoryCompactor:
             else ""
         )
         user_prompt = (
-            "Hard output limits: "
+            "Target output guidance: "
             f"at most {limits['target_tokens']} tokenizer tokens; "
             f"at most {limits['max_bullets']} bullets total across all headings; "
             f"at most {limits['max_words_per_bullet']} words and "
@@ -303,18 +323,17 @@ class OpenAIHistoryCompactor:
                     },
                 )
                 choice = response.choices[0]
-                summary = (choice.message.content or "").strip()
+                summary, summary_source = _completion_text(choice.message)
+                summary = summary.strip()
                 summary_tokens = len(_encode(self.tokenizer, summary))
                 finish_reason = getattr(choice, "finish_reason", None)
                 if not summary:
                     raise ValueError("compactor returned an empty summary")
-                if finish_reason == "length":
-                    raise ValueError("compactor response hit the completion length limit")
-                if summary_tokens > self.summary_max_tokens:
-                    raise ValueError(
-                        f"compactor emitted {summary_tokens} tokens; max is "
-                        f"{self.summary_max_tokens}"
-                    )
+                # ``finish_reason=length`` and a tokenizer-count mismatch are
+                # expected on long longitudinal inputs.  Keep the non-empty
+                # text (the context window check below remains the final hard
+                # safety boundary) and record the condition for diagnostics
+                # instead of recursively discarding half of the history.
                 usage = getattr(response, "usage", None)
                 record = {
                     "user_id": user_id,
@@ -330,6 +349,11 @@ class OpenAIHistoryCompactor:
                     "total_tokens": getattr(usage, "total_tokens", None),
                     "latency_sec": round(time.time() - started, 3),
                     "finish_reason": finish_reason,
+                    "summary_source": summary_source,
+                    "completion_length_limited": finish_reason == "length",
+                    "summary_budget_overflow_tokens": max(
+                        0, summary_tokens - self.summary_max_tokens
+                    ),
                     "prompt_sha256": prompt_sha256,
                     "target_summary_tokens": limits["target_tokens"],
                     "max_bullets": limits["max_bullets"],
@@ -443,7 +467,8 @@ class OpenAIHistoryCompactor:
         finish_reason = getattr(choice, "finish_reason", None)
         if finish_reason == "length":
             raise RuntimeError("bounded compactor hit its completion length limit")
-        raw = (choice.message.content or "").strip()
+        raw, _ = _completion_text(choice.message)
+        raw = raw.strip()
         payload = json.loads(raw)
         allowed_ids = set(extract_summary_session_ids(previous_summary))
         allowed_ids.update(str(session["session_id"]) for session in sessions)
@@ -804,7 +829,7 @@ def main() -> None:
     parser.add_argument(
         "--summary-max-tokens",
         type=int,
-        default=int(os.getenv("HABITBENCH_COMPACT_SUMMARY_MAX_TOKENS", "4096")),
+        default=int(os.getenv("HABITBENCH_COMPACT_SUMMARY_MAX_TOKENS", "8192")),
     )
     parser.add_argument(
         "--recent-history-tokens",

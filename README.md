@@ -334,13 +334,13 @@ history 构建算法：
 2. 使用实际 base-model tokenizer 统计完整 history token 数。
 3. 如果完整 history 不超过所选档位的 history budget，输入全部 history 原文。
 4. 首次超窗后，把旧 sessions 与已有 compact state 递归合并；正常目标为最多
-   2,048 tokens，4,096 tokens 仅是 state/completion 安全上限。
-5. 若生成触及上限，固定重试档依次收紧为 1,024 tokens/12 bullets 和
-   640 tokens/6 bullets；若三次都触及生成上限，将输入按 session 边界递归二分后
-   继续按时间顺序滚动压缩。只有单个 session 仍无法结束时，才启用最多六条事实、
-   每条带合法 session ID 的严格 JSON-schema 兜底；不接受截断摘要或虚构引用。
+   2,048 tokens，当前 8,192 tokens 是 bounded state/completion 外层预算，长程
+   数据产生的非空 length-limited 输出会保留并记录，而不是被 4,096 硬截断。
+5. 只有空响应或不可用输出才按 session 边界递归二分并重试；单个 session 仍无法
+   结束时，才启用最多六条事实、每条带合法 session ID 的严格 JSON-schema 兜底。
 6. 每条摘要事实必须引用 `[SESSION_ID=...]`，并保留 scope、否定、例外、冲突和变化。
-7. 40k profile 为最近完整 sessions 保留约 32,880 tokens 原文。
+7. 40k profile 为最近完整 sessions 保留约 28,784 tokens 原文（38,000 history
+   budget − 8,192 summary − 1,024 wrapper reserve）。
 8. answerer 再执行一次最终 tokenizer hard-bound 检查。
 
 原始 recency/session-boundary truncation 现在以 `full_history` 独立运行。
@@ -618,7 +618,7 @@ schema 严格校验；schema 通过后还会预先调用 MIRIX 官方 `validate_
 | `HABITBENCH_SERVED_MODEL` | OpenAI-compatible served name |
 | `HABITBENCH_MAX_MODEL_LEN` | vLLM 服务端实际支持的总窗口 |
 | `HABITBENCH_CONTEXT_WINDOW_TIER` | `full_memory` 的 `auto` 或显式档位 |
-| `HABITBENCH_COMPACT_SUMMARY_MAX_TOKENS` | compact state 上限，正式 profile 为 4,096 |
+| `HABITBENCH_COMPACT_SUMMARY_MAX_TOKENS` | compact state 上限，当前正式 profile 为 8,192；非空 length-limited 输出会记录并保留 |
 | `HABITBENCH_COMPACTOR_INPUT_TOKENS` | 单次 compactor 输入上限，默认 30,000 |
 | `HABITBENCH_MAX_INPUT_TOKENS` | `custom` 档位的 answer 输入上限 |
 | `HABITBENCH_EMBED_MODEL` | BGE-M3 本地路径 |

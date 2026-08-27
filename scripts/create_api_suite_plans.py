@@ -73,6 +73,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--api-origin", required=True)
     parser.add_argument("--rpm", type=int, required=True)
     parser.add_argument("--tpm", type=int, required=True)
+    parser.add_argument("--credential-slots", type=int, required=True)
     parser.add_argument("--metadata", action="append", default=[])
     parser.add_argument("--force", action="store_true")
     return parser.parse_args()
@@ -88,8 +89,8 @@ def main() -> None:
         raise ValueError("models and gpu allocations must have equal nonzero lengths")
     if sum(allocations) != 8 or min(allocations) < 1:
         raise ValueError("API suite GPU allocations must be positive and sum to 8")
-    if args.shards < 1:
-        raise ValueError("shards must be positive")
+    if args.shards < 1 or args.credential_slots < 1:
+        raise ValueError("shards and credential slots must be positive")
     expected_tasks = len(methods) * len(datasets) * args.shards
     args.output_root.mkdir(parents=True, exist_ok=True)
 
@@ -135,6 +136,12 @@ def main() -> None:
                 "api_rpm=" + str(args.rpm),
                 "--metadata",
                 "api_tpm=" + str(args.tpm),
+                "--metadata",
+                "api_credential_slots=" + str(args.credential_slots),
+                "--metadata",
+                "api_aggregate_rpm=" + str(args.rpm * args.credential_slots),
+                "--metadata",
+                "api_aggregate_tpm=" + str(args.tpm * args.credential_slots),
                 "--metadata",
                 "api_key=redacted-external-file",
             ]
@@ -187,9 +194,12 @@ def main() -> None:
         "resources": {"gpus_per_replica": 8, "replicas": 1, "total_gpus": 8},
         "api": {
             "origin": args.api_origin,
-            "rpm": args.rpm,
-            "tpm": args.tpm,
-            "credential": "external-mode-600-file",
+            "credential_slots": args.credential_slots,
+            "per_credential_rpm": args.rpm,
+            "per_credential_tpm": args.tpm,
+            "aggregate_rpm": args.rpm * args.credential_slots,
+            "aggregate_tpm": args.tpm * args.credential_slots,
+            "credential": "external-mode-600-file-pool",
         },
         "shared_context_tokenizer": str(args.tokenizer_model_path.resolve()),
         "git": {"revision": revision, "dirty": dirty},

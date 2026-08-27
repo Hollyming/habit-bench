@@ -3,7 +3,8 @@ set -euo pipefail
 
 # Run three external-API model tracks inside one single-node 8-H200 RJob.
 # The GPUs remain assigned to local embedding/compression adapters; all LLM
-# traffic passes through one credential-owning, globally rate-limited gateway.
+# traffic passes through one credential-pool-owning, globally rate-limited
+# gateway. RPM/TPM are per credential slot; the gateway aggregates the slots.
 
 PROJECT_ROOT="${HABITBENCH_PROJECT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
 SUITE_ROOT=""
@@ -20,8 +21,8 @@ usage() {
   echo "  --models CSV            default: deepseek-v4-pro-0813,glm-5.2,kimi-k3"
   echo "  --gpu-allocations CSV   default: 3,3,2; must sum to 8"
   echo "  --gateway-port N        default: 8090"
-  echo "  --rpm N                 shared upstream limit, default: 60"
-  echo "  --tpm N                 shared upstream limit, default: 50000000"
+  echo "  --rpm N                 per-key upstream limit, default: 60"
+  echo "  --tpm N                 per-key upstream limit, default: 50000000"
 }
 
 while [[ $# -gt 0 ]]; do
@@ -118,32 +119,67 @@ for gpu_name in "${GPU_NAMES[@]}"; do
 done
 
 mkdir -p "$SUITE_ROOT/api_gateway" "$SUITE_ROOT/api_runner_logs" "$SUITE_ROOT/api_runtime"
+command -v flock >/dev/null 2>&1 || {
+  echo "flock is required to protect one API suite output root" >&2
+  exit 1
+}
+exec 9>"$SUITE_ROOT/api_runtime/active-suite.lock"
+if ! flock -n 9; then
+  echo "Another API suite is already writing this output root: $SUITE_ROOT" >&2
+  exit 1
+fi
 MASTER_LOG="$SUITE_ROOT/h_api_suite.log"
 exec > >(tee -a "$MASTER_LOG") 2>&1
-echo "H external API suite start: models=$MODELS allocations=$GPU_ALLOCATIONS rpm=$RPM tpm=$TPM"
 echo "H200 preflight passed: names=${GPU_NAMES[*]}"
 
-credential_mode="$($PYTHON_BIN - "$CREDENTIAL_FILE" <<'PY'
+credential_summary="$($PYTHON_BIN - "$CREDENTIAL_FILE" <<'PY'
 import stat
 import sys
 from pathlib import Path
+
+from eval.api_gateway import load_credentials
 
 path = Path(sys.argv[1])
 mode = stat.S_IMODE(path.stat().st_mode)
 if mode & 0o077:
     raise SystemExit(f"credential file must not be group/world readable: mode={mode:o}")
-names = set()
-for raw in path.read_text(encoding="utf-8").splitlines():
-    line = raw.strip()
-    if line and not line.startswith("#") and "=" in line:
-        names.add(line.split("=", 1)[0].strip())
-required = {"OPENAI_API_KEY", "HABITBENCH_EXTERNAL_API_BASE_URL"}
-if not required <= names:
-    raise SystemExit(f"credential file is missing required names: {sorted(required - names)}")
-print(f"{mode:o}")
+keys, _ = load_credentials(path)
+print(f"{mode:o}:{len(keys)}")
 PY
 )"
-echo "credential preflight passed: path=$CREDENTIAL_FILE mode=$credential_mode values=redacted"
+credential_mode="${credential_summary%%:*}"
+credential_slots="${credential_summary##*:}"
+aggregate_rpm=$((RPM * credential_slots))
+aggregate_tpm=$((TPM * credential_slots))
+echo "H external API suite start: models=$MODELS allocations=$GPU_ALLOCATIONS per_key_rpm=$RPM per_key_tpm=$TPM credential_slots=$credential_slots aggregate_rpm=$aggregate_rpm aggregate_tpm=$aggregate_tpm"
+echo "credential preflight passed: path=$CREDENTIAL_FILE mode=$credential_mode slots=$credential_slots values=redacted"
+
+# Claims are durable checkpoints, but a killed process can leave a claim with
+# no terminal result. Failed tasks also need to be claimable after a fix. The
+# suite-root lock above guarantees that no live writer can own these claims.
+"$PYTHON_BIN" - "$SUITE_ROOT" <<'PY'
+import shutil
+import sys
+from pathlib import Path
+
+root = Path(sys.argv[1])
+released = 0
+for queue in root.glob("*/distributed_queue/*"):
+    claim_root = queue / "claims"
+    result_root = queue / "results"
+    for claim_dir in claim_root.glob("task-*"):
+        ordinal = claim_dir.name.removeprefix("task-")
+        results = list(result_root.glob(f"task-{ordinal}.status-*.json"))
+        retry = not results
+        if any(".status-failed.json" in result.name for result in results):
+            retry = True
+            for result in results:
+                result.unlink()
+        if retry:
+            shutil.rmtree(claim_dir)
+            released += 1
+print(f"recoverable queue claims released={released}")
+PY
 
 GATEWAY_BASE_URL="http://127.0.0.1:$GATEWAY_PORT/v1"
 GATEWAY_LOG="$SUITE_ROOT/api_gateway/gateway.log"
@@ -155,6 +191,7 @@ GATEWAY_METRICS="$SUITE_ROOT/api_gateway/metrics.json"
   --rpm "$RPM" \
   --tpm "$TPM" \
   --max-upstream-retries 120 \
+  --max-empty-response-retries 2 \
   --metrics-path "$GATEWAY_METRICS" \
   --metrics-every 25 \
   > >(sed -u 's/^/[api-gateway] /' | tee -a "$GATEWAY_LOG") 2>&1 &
@@ -216,13 +253,17 @@ run_model() {
   mkdir -p "$model_root/api_runtime"
   echo "[$model] runner start: gpus=$gpu_list plan=$plan"
   set -o pipefail
+    # Reasoning-capable external models can consume a large completion budget
+    # before emitting final content, especially on long-context probes. Keep
+    # this configurable and use a bounded 4096-token default so Kimi/DeepSeek
+    # can finish their JSON answer instead of returning an empty message.
   env \
     OPENAI_API_KEY=dummy \
     OPENAI_BASE_URL="$GATEWAY_BASE_URL" \
     HABITBENCH_INFERENCE_BACKEND=external-openai-compatible \
     HABITBENCH_EXTERNAL_API_PROVIDER=pjlab-token \
     HABITBENCH_SERVED_MODEL="$model" \
-    HABITBENCH_ANSWER_MAX_TOKENS=256 \
+    HABITBENCH_ANSWER_MAX_TOKENS="${HABITBENCH_ANSWER_MAX_TOKENS:-4096}" \
     HABITBENCH_ANSWER_TIMEOUT_SEC=900 \
     HABITBENCH_ANSWER_MAX_RETRIES=5 \
     HABITBENCH_MED_USER_WORKERS=2 \

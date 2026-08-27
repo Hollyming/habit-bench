@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from types import SimpleNamespace
 
 from eval.compact_history import (
     CompactCall,
@@ -187,6 +188,51 @@ class CompactFullMemoryControlTest(unittest.TestCase):
         self.assertIn("at most 640 tokenizer tokens", final_prompt)
         self.assertIn("at most 6 bullets", final_prompt)
         self.assertIn("never enumerate every session", final_prompt)
+
+    def test_nonempty_length_limited_compaction_is_retained(self):
+        class LengthResponseCompactor(OpenAIHistoryCompactor):
+            def __init__(self):
+                self.tokenizer = CharacterTokenizer()
+                self.summary_max_tokens = 4
+                self.input_token_budget = 100
+                self.max_retries = 1
+                self.seed = 42
+                self.model = "test-model"
+                self.client = SimpleNamespace(
+                    chat=SimpleNamespace(
+                        completions=SimpleNamespace(
+                            create=lambda **kwargs: SimpleNamespace(
+                                choices=[
+                                    SimpleNamespace(
+                                        message=SimpleNamespace(
+                                            content="",
+                                            reasoning_content=(
+                                                "## stable_defaults\\n- [SESSION_ID=s1]"
+                                            ),
+                                        ),
+                                        finish_reason="length",
+                                    )
+                                ],
+                                usage=None,
+                            )
+                        )
+                    )
+                )
+
+            def _messages(self, previous_summary, sessions, *, attempt=1):
+                del previous_summary, sessions, attempt
+                return [{"role": "user", "content": "short"}]
+
+            def _chat_tokens(self, messages):
+                del messages
+                return 1
+
+        summary, record = LengthResponseCompactor()._request(
+            "", [session(1)], user_id="u1", cutoff=1
+        )
+        self.assertIn("[SESSION_ID=s1]", summary)
+        self.assertTrue(record["completion_length_limited"])
+        self.assertEqual(record["summary_source"], "reasoning_content_recovery")
 
     def test_compactor_is_query_independent_and_retains_recent_raw_history(self):
         tokenizer = CharacterTokenizer()

@@ -81,29 +81,34 @@ uncertainty before incidental narrative details.
 
 - Compactor and answer model: the same fixed Qwen3-8B checkpoint.
 - Generation: temperature 0, thinking disabled, versioned prompt and schema.
-- Summary state budget: 4,096 tokens for the formal main profile.
+- Summary state budget: 8,192 tokens for the current formal H/API profile. The
+  former 4,096 value was an accidental implementation envelope, not a dataset
+  or model limit.
 - Normal compaction targets at most 2,048 tokens, 24 bullets, 45 words per
-  bullet, and four representative citations per bullet. The 4,096-token state
+  bullet, and four representative citations per bullet. The 8,192-token state
   budget is an outer safety envelope, not a generation target.
-- If a response reaches the completion envelope, deterministic retries tighten
-  those limits to 1,024/12/35/3 and finally 640/6/30/2. This makes overflow
-  handling bounded while keeping the final state auditable.
-- If all three normal retries still end at `finish_reason=length`, recursively
-  split that input on complete-session boundaries and compact the halves in
-  chronological order. This is the operational bug fix for pathological 30k
-  compactor inputs and preserves the original successful v5 path.
+- The target limits are prompt guidance, while the 8,192-token completion
+  allowance is the bounded outer envelope. A non-empty response with
+  `finish_reason=length` or a small tokenizer-count mismatch is retained and
+  recorded; the final history-window check remains the hard safety boundary.
+  This prevents long lifelines from being incorrectly discarded at 4,096.
+- Empty or otherwise unusable responses still use deterministic retries and,
+  only at a single-session leaf, the strict JSON fallback below. Recursive
+  session splitting remains available for genuine unusable responses, not for
+  ordinary long-context completions.
 - If recursive splitting reaches one session and the model still ignores every
   soft limit, use a strict JSON schema with at most one fact in each of the six
   sections, at most 240 characters and two supplied session IDs per fact.
   Unknown IDs, invalid JSON, an empty state, or another length stop hard-fails;
-  truncated generated text is never accepted.
+  this strict fallback remains conservative even though non-empty Markdown from
+  the normal path may be length-limited.
 - Raw recent buffer: complete sessions using the rest of the 38k history
-  budget minus a 1,024-token wrapper reserve (32,880 tokens by default).
+  budget minus a 1,024-token wrapper reserve (28,784 tokens by default).
 - Histories at or below 38k remain entirely raw; compaction starts only after
   the complete visible history overflows.
-- On summary overflow: recursively compact old summary plus newly evicted
-  sessions and apply the bounded recovery above; hard-fail rather than accept a
-  truncated generated state.
+- On a non-empty summary overflow, retain the bounded text and record
+  `completion_length_limited`/`summary_budget_overflow_tokens` in
+  `control_runtime.json`; hard-fail only when no usable text can be produced.
 - Advance state chronologically per user and cache each distinct cutoff so
   repeated cutoffs do not regenerate or leak across users.
 - Record compactor calls, input/output tokens, prompt hash, state hash, source

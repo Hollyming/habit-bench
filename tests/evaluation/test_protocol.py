@@ -282,6 +282,12 @@ class ProtocolTest(unittest.TestCase):
         self.assertIn('GPU_ALLOCATIONS="3,3,2"', launcher)
         self.assertIn("--rpm \"$RPM\"", worker)
         self.assertIn("--tpm \"$TPM\"", worker)
+        self.assertIn('--credential-slots "$API_KEY_COUNT"', launcher)
+        self.assertIn(
+            'HABITBENCH_ANSWER_MAX_TOKENS="${HABITBENCH_ANSWER_MAX_TOKENS:-4096}"',
+            worker,
+        )
+        self.assertIn('flock -n 9', worker)
         self.assertEqual(worker.count("-m eval.api_gateway"), 1)
         self.assertIn('cd "$PROJECT_ROOT"', worker)
         self.assertIn(

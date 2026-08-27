@@ -77,6 +77,54 @@ rank 从 1 开始。时间部分有两种语义：
 只有 current/无时间 query 才加入较弱的 recency prior。每个返回结果的 BM25 score/rank、
 dense cosine/rank、RRF、time score、time relation 和 final score 都写入 `debug`，便于审计。
 
+## Qwen3-8B 四域实验结果
+
+以下是 2026-08-26 完成的正式实验结果。五种方法共享同一个 Qwen3-8B answer model，
+覆盖 Food v5、Finance/Software v1.4 和 Travel v16。每个“方法 × 域”使用 16 个 user
+shards，共 320 个任务；所有任务均已完成，没有失败或缺失 shard。
+
+- RJob：`hb-q8b-retrieval-v1-10959712`；
+- 资源：2 replicas × 8 H200，共 16 卡；
+- RJob 状态：`Succeeded`，2/2 replicas 成功；
+- 运行时间：4376.365 秒（约 72 分 56 秒）；
+- 原始汇总：`results/habit-h200-retrieval-baselines-qwen3-8b-v1/evaluation_summary.json`。
+
+### Answer accuracy
+
+`Overall` 是四域全部 4168 个 probes 的 micro accuracy，而不是四个域准确率的简单平均。
+
+| Method | Food v5 (n=1470) | Finance v1.4 (n=1368) | Software v1.4 (n=680) | Travel v16 (n=650) | Overall (n=4168) | Correct |
+|---|---:|---:|---:|---:|---:|---:|
+| Recency-5 | 33.74% | **23.03%** | 25.88% | 26.15% | 27.76% | 1157/4168 |
+| Recency-10 | 35.99% | 22.81% | 26.32% | 29.08% | 29.01% | 1209/4168 |
+| BM25-RAG | 49.25% | 22.95% | 24.41% | **32.46%** | 33.95% | 1415/4168 |
+| Dense-RAG | **51.16%** | 22.73% | 25.44% | **32.46%** | **34.72%** | **1447/4168** |
+| Temporal Hybrid-RAG | 49.46% | 21.05% | **26.32%** | 32.31% | 33.69% | 1404/4168 |
+
+### Retrieval and grounding metrics
+
+下表按四域 retrieval-evaluable probes 加权汇总。所有指标均在 top-5 上计算；
+`Joint answer + hit` 要求 answer 正确且至少命中一个 oracle evidence session。
+
+| Method | Evidence hit | Evidence recall (macro) | Precision | MRR | NDCG | Full evidence | Joint answer + hit |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Recency-5 | 24.42% | 6.37% | 7.80% | 10.45% | 7.42% | 0.02% | 6.96% |
+| Recency-10 | 24.42% | 6.37% | 7.80% | 10.45% | 7.42% | 0.02% | 7.25% |
+| BM25-RAG | 61.95% | 17.28% | 20.76% | 41.14% | 24.45% | 1.80% | 25.41% |
+| Dense-RAG | 47.36% | 13.39% | 16.12% | 31.58% | 19.52% | **2.64%** | 22.77% |
+| Temporal Hybrid-RAG | **64.32%** | **17.71%** | **21.43%** | **46.20%** | **26.00%** | 1.87% | **25.89%** |
+
+### 结果解读
+
+- Dense-RAG 的总体 answer accuracy 最高（34.72%），比 BM25-RAG 高 0.77 个百分点；
+- Temporal Hybrid-RAG 在 Evidence Hit、Recall、Precision、MRR、NDCG 和 joint 指标上最好，
+  但 answer accuracy 并未同步超过 Dense-RAG，说明更强的 oracle-evidence 排名未被 answer
+  model 完全转化为最终答题收益；
+- Recency-10 比 Recency-5 的总体 accuracy 高 1.25 个百分点，表明额外近期上下文有一定价值；
+- Recency-5 与 Recency-10 的 top-5 retrieval 指标相同是预期行为：两者前五个 session
+  完全相同，统一 scorer 会把 Recency-10 的 ranked attribution 截到前五，但 answer model
+  实际分别读取 5 和 10 个完整 sessions。
+
 ## 运行
 
 单个方法可复用统一入口：

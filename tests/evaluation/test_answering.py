@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from eval.core.answering import build_user_prompt, parse_choice_id
+from eval.core.answering import _message_text, build_user_prompt, parse_choice_id
 
 
 PROBE = {
@@ -25,6 +25,15 @@ class AnsweringTest(unittest.TestCase):
     def test_parse_qwen_json(self) -> None:
         self.assertEqual(parse_choice_id('{"choice_id":"B"}', ["A", "B"]), "B")
         self.assertEqual(parse_choice_id("```json\n{\"choice_id\": \"A\"}\n```", ["A", "B"]), "A")
+
+    def test_reasoning_content_is_a_recovery_source_when_content_is_empty(self) -> None:
+        class Message:
+            content = ""
+            reasoning_content = 'I will answer with {"choice_id":"A"}.'
+
+        text, source = _message_text(Message())
+        self.assertEqual(source, "reasoning_content_recovery")
+        self.assertIn('"choice_id":"A"', text)
 
 
 if __name__ == "__main__":

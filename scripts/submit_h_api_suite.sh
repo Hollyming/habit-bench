@@ -46,8 +46,8 @@ usage() {
   echo "  --methods CSV         default: all 16 registered methods"
   echo "  --datasets CSV        default: current four domains"
   echo "  --shards N            per method/domain/model, default: 8"
-  echo "  --rpm N               shared API RPM, default: 60"
-  echo "  --tpm N               shared API TPM, default: 50000000"
+  echo "  --rpm N               per-key API RPM, default: 60"
+  echo "  --tpm N               per-key API TPM, default: 50000000"
   echo "  --cpus N              per Replica, default: 64"
   echo "  --memory-mib N        per Replica, default: 524288"
   echo "  --image IMAGE         explicit H image"
@@ -215,8 +215,9 @@ if [[ ! -f "$HABITBENCH_LLM_MODEL/tokenizer.json" && ! -f "$HABITBENCH_LLM_MODEL
   exit 1
 fi
 
-API_ORIGIN="$($PYTHON_BIN - "$CREDENTIAL_FILE" "${MODEL_LIST[@]}" <<'PY'
+API_PREFLIGHT="$($PYTHON_BIN - "$CREDENTIAL_FILE" "${MODEL_LIST[@]}" <<'PY'
 import json
+import re
 import stat
 import sys
 import urllib.request
@@ -235,27 +236,49 @@ for raw in path.read_text(encoding="utf-8").splitlines():
             raise SystemExit("credential file contains a malformed line")
         name, value = line.split("=", 1)
         values[name.strip()] = value
-key = values.get("OPENAI_API_KEY")
+key_slots = []
+for name, value in values.items():
+    match = re.fullmatch(r"OPENAI_API_KEY(?:_([2-9][0-9]*))?", name)
+    if match:
+        key_slots.append((int(match.group(1) or 1), value))
+key_slots.sort(key=lambda item: item[0])
 base = values.get("HABITBENCH_EXTERNAL_API_BASE_URL", "").rstrip("/")
-if not key or urlsplit(base).scheme != "https":
+if not key_slots or key_slots[0][0] != 1 or urlsplit(base).scheme != "https":
     raise SystemExit("credential file has no usable key/HTTPS base URL")
-request = urllib.request.Request(
-    base + "/models", headers={"Authorization": "Bearer " + key}
-)
-with urllib.request.urlopen(request, timeout=30) as response:
-    payload = json.loads(response.read())
-available = {
-    str(item.get("id"))
-    for item in payload.get("data", [])
-    if isinstance(item, dict)
-}
-missing = [model for model in sys.argv[2:] if model not in available]
-if missing:
-    raise SystemExit(f"external endpoint is missing requested models: {missing}")
-print(urlsplit(base).netloc)
+keys = [value for _, value in key_slots]
+if len(keys) != len(set(keys)):
+    raise SystemExit("credential slots must contain distinct keys")
+for slot, key in enumerate(keys, start=1):
+    request = urllib.request.Request(
+        base + "/models", headers={"Authorization": "Bearer " + key}
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            payload = json.loads(response.read())
+    except Exception as exc:
+        raise SystemExit(
+            f"external credential slot {slot} failed model-list preflight: "
+            f"{type(exc).__name__}"
+        ) from exc
+    available = {
+        str(item.get("id"))
+        for item in payload.get("data", [])
+        if isinstance(item, dict)
+    }
+    missing = [model for model in sys.argv[2:] if model not in available]
+    if missing:
+        raise SystemExit(
+            f"external credential slot {slot} is missing requested models: {missing}"
+        )
+print(f"{urlsplit(base).netloc}\t{len(keys)}")
 PY
 )"
-echo "external API preflight passed: origin=$API_ORIGIN models=$MODELS credential=redacted"
+IFS=$'\t' read -r API_ORIGIN API_KEY_COUNT <<< "$API_PREFLIGHT"
+if [[ -z "$API_ORIGIN" || ! "$API_KEY_COUNT" =~ ^[1-9][0-9]*$ ]]; then
+  echo "external API preflight returned an invalid credential summary" >&2
+  exit 1
+fi
+echo "external API preflight passed: origin=$API_ORIGIN models=$MODELS credential_slots=$API_KEY_COUNT values=redacted"
 
 if (( MOUNTS_FROM_CLI == 0 )); then
   if [[ -n "${HABITBENCH_H_MOUNTS:-}" ]]; then
@@ -352,6 +375,7 @@ PLAN_ARGS=(
   --api-origin "$API_ORIGIN"
   --rpm "$RPM"
   --tpm "$TPM"
+  --credential-slots "$API_KEY_COUNT"
   --metadata "launcher=h-api-rjob"
   --metadata "namespace=ailab-llmarchitecture"
   --metadata "creator_type=$CREATOR_TYPE"
@@ -428,7 +452,7 @@ fi
 RJOB_COMMAND+=(-- "${WORKER_COMMAND[@]}")
 
 echo "RJob type=$JOB_TYPE creator=$ACTUAL_CREATOR_AD/$CREATOR_TYPE resources=8 H200 x 1 Replica = 8 total GPUs; cpu=$CPUS memory_mib=$MEMORY_MIB"
-echo "API allocation models=$MODELS gpu_allocations=$GPU_ALLOCATIONS shared_limit=${RPM}RPM/${TPM}TPM"
+echo "API allocation models=$MODELS gpu_allocations=$GPU_ALLOCATIONS credential_slots=$API_KEY_COUNT per_key_limit=${RPM}RPM/${TPM}TPM aggregate_limit=$((RPM * API_KEY_COUNT))RPM/$((TPM * API_KEY_COUNT))TPM"
 printf 'RJob command: '
 printf '%q ' "${RJOB_COMMAND[@]}"
 printf '\n'

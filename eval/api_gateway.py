@@ -1,10 +1,11 @@
 """Rate-limited OpenAI-compatible gateway for external HABIT-Bench runs.
 
 The gateway is intentionally model agnostic: callers retain the exact model
-name stored in each experiment plan.  It owns the upstream credential, applies
-one shared RPM/TPM budget across all local workers, disables provider thinking
-through the PJLab-compatible chat-template extension, and absorbs transient
-429/5xx responses without exposing prompts or credentials in its logs.
+name stored in each experiment plan.  It owns a pool of upstream credentials,
+applies an independent RPM/TPM budget to every credential across all local
+workers, disables provider thinking through the PJLab-compatible chat-template
+extension, and absorbs transient 429/5xx responses without exposing prompts or
+credentials in its logs.
 """
 
 from __future__ import annotations
@@ -14,6 +15,7 @@ import json
 import math
 import os
 import random
+import re
 import signal
 import threading
 import time
@@ -46,7 +48,7 @@ def _log(event: str, **fields: Any) -> None:
     )
 
 
-def load_credentials(path: Path) -> tuple[str, str]:
+def load_credentials(path: Path) -> tuple[tuple[str, ...], str]:
     """Read a shell-style KEY=VALUE file without evaluating shell code."""
 
     values: dict[str, str] = {}
@@ -63,17 +65,34 @@ def load_credentials(path: Path) -> tuple[str, str]:
         if not name or not value:
             raise ValueError(f"Empty credential field on line {line_number} in {path}")
         values[name] = value
-    api_key = values.get("OPENAI_API_KEY", "")
+    api_keys: list[tuple[int, str]] = []
+    for name, value in values.items():
+        match = re.fullmatch(r"OPENAI_API_KEY(?:_([2-9][0-9]*))?", name)
+        if match:
+            api_keys.append((int(match.group(1) or 1), value))
+    api_keys.sort(key=lambda item: item[0])
     base_url = values.get("HABITBENCH_EXTERNAL_API_BASE_URL", "")
-    if not api_key or not base_url:
+    if not api_keys or api_keys[0][0] != 1 or not base_url:
         raise ValueError(
             "Credential file must define OPENAI_API_KEY and "
             "HABITBENCH_EXTERNAL_API_BASE_URL"
         )
+    slot_numbers = [slot for slot, _ in api_keys]
+    if slot_numbers != list(range(1, len(slot_numbers) + 1)):
+        raise ValueError(
+            "Numbered API key slots must be contiguous: OPENAI_API_KEY, "
+            "OPENAI_API_KEY_2, ..."
+        )
+    key_values = tuple(value for _, value in api_keys)
+    if len(key_values) != len(set(key_values)):
+        raise ValueError(
+            "Credential slots must contain distinct keys; duplicate keys do not "
+            "provide independent rate limits"
+        )
     parsed = urlsplit(base_url)
     if parsed.scheme != "https" or not parsed.netloc:
         raise ValueError("External API base URL must be an absolute HTTPS URL")
-    return api_key, base_url.rstrip("/")
+    return key_values, base_url.rstrip("/")
 
 
 def estimate_request_tokens(payload: dict[str, Any]) -> int:
@@ -198,16 +217,23 @@ def _retry_after(response: httpx.Response, attempt: int) -> float:
 @dataclass(frozen=True)
 class GatewayConfig:
     upstream_base_url: str
-    api_key: str
+    api_keys: tuple[str, ...]
     max_upstream_retries: int
+    max_empty_response_retries: int
     metrics_path: Path | None
     metrics_every: int
 
 
 class GatewayState:
-    def __init__(self, config: GatewayConfig, limiter: SlidingWindowLimiter) -> None:
+    def __init__(
+        self,
+        config: GatewayConfig,
+        limiters: list[SlidingWindowLimiter],
+    ) -> None:
+        if not config.api_keys or len(config.api_keys) != len(limiters):
+            raise ValueError("Every API credential must have exactly one limiter")
         self.config = config
-        self.limiter = limiter
+        self.limiters = limiters
         self.client = httpx.Client(
             timeout=httpx.Timeout(connect=30.0, read=1800.0, write=120.0, pool=120.0),
             limits=httpx.Limits(max_connections=128, max_keepalive_connections=64),
@@ -223,6 +249,10 @@ class GatewayState:
         self._retries = 0
         self._status_counts: dict[str, int] = {}
         self._model_counts: dict[str, int] = {}
+        self._slot_attempts = [0 for _ in config.api_keys]
+        self._next_slot = 0
+        self._empty_response_retries = 0
+        self._terminal_empty_responses = 0
         self._usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
         self.started_at = _utc_now()
 
@@ -268,11 +298,92 @@ class GatewayState:
                 "retries": self._retries,
                 "status_counts": dict(sorted(self._status_counts.items())),
                 "model_counts": dict(sorted(self._model_counts.items())),
+                "empty_response_retries": self._empty_response_retries,
+                "terminal_empty_responses": self._terminal_empty_responses,
                 "usage": dict(self._usage),
             }
-        values["limiter"] = self.limiter.snapshot()
+            slot_attempts = list(self._slot_attempts)
+        slot_snapshots = [limiter.snapshot() for limiter in self.limiters]
+        values["credential_pool"] = {
+            "slots": len(self.config.api_keys),
+            "aggregate_rpm_limit": sum(
+                int(snapshot["rpm_limit"]) for snapshot in slot_snapshots
+            ),
+            "aggregate_tpm_limit": sum(
+                int(snapshot["tpm_limit"]) for snapshot in slot_snapshots
+            ),
+            "slot_metrics": [
+                {
+                    "slot": index + 1,
+                    "upstream_attempts": slot_attempts[index],
+                    "limiter": snapshot,
+                }
+                for index, snapshot in enumerate(slot_snapshots)
+            ],
+        }
+        # Keep the aggregate limiter field for existing health/status readers.
+        values["limiter"] = {
+            "credential_slots": len(slot_snapshots),
+            "rpm_limit": values["credential_pool"]["aggregate_rpm_limit"],
+            "tpm_limit": values["credential_pool"]["aggregate_tpm_limit"],
+            "window_sec": slot_snapshots[0]["window_sec"],
+            "requests_in_window": sum(
+                int(snapshot["requests_in_window"]) for snapshot in slot_snapshots
+            ),
+            "reserved_tokens_in_window": sum(
+                int(snapshot["reserved_tokens_in_window"])
+                for snapshot in slot_snapshots
+            ),
+            "cooldown_remaining_sec": max(
+                float(snapshot["cooldown_remaining_sec"])
+                for snapshot in slot_snapshots
+            ),
+        }
         values["upstream_origin"] = urlsplit(self.config.upstream_base_url).netloc
         return values
+
+    def _claim_credential_slot(self) -> int:
+        with self._lock:
+            slot = self._next_slot
+            self._next_slot = (self._next_slot + 1) % len(self.config.api_keys)
+            self._slot_attempts[slot] += 1
+            return slot
+
+    @staticmethod
+    def _has_empty_chat_content(response: httpx.Response, path: str) -> bool:
+        if response.status_code != 200 or not path.split("?", 1)[0].endswith(
+            "/chat/completions"
+        ):
+            return False
+        try:
+            payload = response.json()
+        except (ValueError, json.JSONDecodeError):
+            return False
+        if not isinstance(payload, dict):
+            return False
+        choices = payload.get("choices")
+        if not isinstance(choices, list) or not choices:
+            return True
+        first = choices[0]
+        if not isinstance(first, dict):
+            return True
+        message = first.get("message")
+        if not isinstance(message, dict):
+            return True
+        tool_calls = message.get("tool_calls")
+        if isinstance(tool_calls, list) and tool_calls:
+            return False
+        content = message.get("content")
+        if isinstance(content, str) and content.strip():
+            return False
+        # Reasoning-capable providers may place a usable final JSON answer in
+        # reasoning_content while leaving content empty. Let the answerer
+        # perform its explicit recovery parse instead of burning gateway
+        # retries on an otherwise valid 200 response.
+        reasoning = message.get("reasoning_content")
+        if isinstance(reasoning, str) and reasoning.strip():
+            return False
+        return True
 
     def write_metrics(self, *, force: bool = False) -> None:
         path = self.config.metrics_path
@@ -330,10 +441,13 @@ class GatewayState:
         estimate = estimate_request_tokens(payload) if payload is not None else 1
         response: httpx.Response | None = None
         attempts = 0
+        empty_response_retries = 0
         total_wait = 0.0
         for attempt in range(self.config.max_upstream_retries + 1):
             attempts += 1
-            waited = self.limiter.acquire(estimate)
+            credential_slot = self._claim_credential_slot()
+            limiter = self.limiters[credential_slot]
+            waited = limiter.acquire(estimate)
             total_wait += waited
             try:
                 response = self.client.request(
@@ -341,7 +455,9 @@ class GatewayState:
                     self.upstream_url(path),
                     content=body or None,
                     headers={
-                        "Authorization": f"Bearer {self.config.api_key}",
+                        "Authorization": (
+                            f"Bearer {self.config.api_keys[credential_slot]}"
+                        ),
                         "Content-Type": content_type or "application/json",
                         "Accept": "application/json",
                     },
@@ -355,26 +471,51 @@ class GatewayState:
                 delay = min(60.0, 2.0 ** min(attempt, 5)) + random.uniform(
                     0.05, 0.35
                 )
-                self.limiter.defer(delay)
+                limiter.defer(delay)
                 _log(
                     "upstream_transport_retry",
                     model=model,
                     error_type=type(exc).__name__,
                     attempt=attempt + 1,
+                    credential_slot=credential_slot + 1,
                     retry_after_sec=round(delay, 3),
                 )
                 continue
-            if response.status_code not in RETRYABLE_STATUS_CODES:
+            empty_chat_content = self._has_empty_chat_content(response, path)
+            if (
+                response.status_code not in RETRYABLE_STATUS_CODES
+                and not empty_chat_content
+            ):
                 break
+            if empty_chat_content:
+                if empty_response_retries >= self.config.max_empty_response_retries:
+                    with self._lock:
+                        self._terminal_empty_responses += 1
+                    break
+                empty_response_retries += 1
+                with self._lock:
+                    self._empty_response_retries += 1
+                delay = 0.25 + random.uniform(0.05, 0.35)
+                _log(
+                    "upstream_empty_response_retry",
+                    model=model,
+                    attempt=attempt + 1,
+                    credential_slot=credential_slot + 1,
+                    retry_after_sec=round(delay, 3),
+                    request_id=response.headers.get("x-request-id"),
+                )
+                time.sleep(delay)
+                continue
             if attempt >= self.config.max_upstream_retries:
                 break
             delay = _retry_after(response, attempt) + random.uniform(0.05, 0.35)
-            self.limiter.defer(delay)
+            limiter.defer(delay)
             _log(
                 "upstream_retry",
                 model=model,
                 status=response.status_code,
                 attempt=attempt + 1,
+                credential_slot=credential_slot + 1,
                 retry_after_sec=round(delay, 3),
                 request_id=response.headers.get("x-request-id"),
             )
@@ -483,6 +624,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--rpm", type=int, default=60)
     parser.add_argument("--tpm", type=int, default=50_000_000)
     parser.add_argument("--max-upstream-retries", type=int, default=120)
+    parser.add_argument("--max-empty-response-retries", type=int, default=2)
     parser.add_argument("--metrics-path", type=Path)
     parser.add_argument("--metrics-every", type=int, default=25)
     return parser.parse_args()
@@ -492,18 +634,23 @@ def main() -> None:
     args = parse_args()
     if not 0 < args.port < 65536:
         raise ValueError("port must be between 1 and 65535")
-    if args.max_upstream_retries < 0 or args.metrics_every <= 0:
+    if (
+        args.max_upstream_retries < 0
+        or args.max_empty_response_retries < 0
+        or args.metrics_every <= 0
+    ):
         raise ValueError("retry and metrics settings are invalid")
-    api_key, upstream_base_url = load_credentials(args.credential_file)
+    api_keys, upstream_base_url = load_credentials(args.credential_file)
     state = GatewayState(
         GatewayConfig(
             upstream_base_url=upstream_base_url,
-            api_key=api_key,
+            api_keys=api_keys,
             max_upstream_retries=args.max_upstream_retries,
+            max_empty_response_retries=args.max_empty_response_retries,
             metrics_path=args.metrics_path,
             metrics_every=args.metrics_every,
         ),
-        SlidingWindowLimiter(args.rpm, args.tpm),
+        [SlidingWindowLimiter(args.rpm, args.tpm) for _ in api_keys],
     )
     server = GatewayServer((args.host, args.port), state)
 
@@ -519,6 +666,9 @@ def main() -> None:
         port=args.port,
         rpm=args.rpm,
         tpm=args.tpm,
+        credential_slots=len(api_keys),
+        aggregate_rpm=args.rpm * len(api_keys),
+        aggregate_tpm=args.tpm * len(api_keys),
         upstream_origin=urlsplit(upstream_base_url).netloc,
     )
     try:

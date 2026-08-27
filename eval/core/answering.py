@@ -189,6 +189,25 @@ def _usage_dict(response: Any) -> dict[str, int | None]:
     }
 
 
+def _message_text(message: Any) -> tuple[str, str]:
+    """Return answer text and its source for provider-compatible messages.
+
+    Some reasoning-capable OpenAI-compatible endpoints put the final short
+    answer in ``reasoning_content`` when the normal ``content`` field is
+    empty (usually after a long-context budget boundary).  Treat that field
+    as a recovery source only when content is genuinely empty; normal runs
+    continue to parse the canonical content field.
+    """
+
+    content = getattr(message, "content", None)
+    if isinstance(content, str) and content.strip():
+        return content, "content"
+    reasoning = getattr(message, "reasoning_content", None)
+    if isinstance(reasoning, str) and reasoning.strip():
+        return reasoning, "reasoning_content_recovery"
+    return "", "empty"
+
+
 class QwenChoiceAnswerer:
     def __init__(self, config: AnswerConfig):
         from openai import OpenAI
@@ -272,11 +291,12 @@ class QwenChoiceAnswerer:
                 kwargs["response_format"] = {"type": "json_object"}
             try:
                 response = self.client.chat.completions.create(**kwargs)
-                answer_text = response.choices[0].message.content or ""
+                answer_text, answer_source = _message_text(response.choices[0].message)
                 choice_id = parse_choice_id(answer_text, valid_choice_ids)
                 return {
                     "choice_id": choice_id,
                     "answer_text": answer_text,
+                    "answer_source": answer_source,
                     "model": self.config.model,
                     "prompt_sha256": prompt_sha256,
                     "latency_sec": round(time.time() - started, 3),
