@@ -237,6 +237,60 @@ class MultiGpuResumeTest(unittest.TestCase):
             )
             self.assertEqual(list(output_dir.iterdir()), [])
 
+    def test_food_oracle_checkpoint_is_invalidated_after_context_contract_fix(self):
+        with tempfile.TemporaryDirectory() as raw_root:
+            output_dir = Path(raw_root) / "shard_004_of_016"
+            self._complete_shard(
+                output_dir,
+                method_config=None,
+            )
+            manifest_path = output_dir / "run_manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["implementation"] = {
+                "revision": "v1",
+            }
+            manifest_path.write_text(
+                json.dumps(manifest), encoding="utf-8"
+            )
+            row = {
+                "method": "oracle_habit_state",
+                "dataset_name": "food",
+            }
+            expected_revision = runner._expected_implementation_revision_for_row(
+                row
+            )
+            self.assertFalse(
+                runner._prepare_task_output(
+                    output_dir,
+                    force_rerun=False,
+                    expected_implementation_revision=expected_revision,
+                )
+            )
+            self.assertEqual(list(output_dir.iterdir()), [])
+
+    def test_non_food_oracle_checkpoint_remains_resumable(self):
+        with tempfile.TemporaryDirectory() as raw_root:
+            output_dir = Path(raw_root) / "shard_005_of_016"
+            self._complete_shard(output_dir, method_config=None)
+            row = {
+                "method": "oracle_habit_state",
+                "dataset_name": "travel",
+            }
+            expected_revision = runner._expected_implementation_revision_for_row(
+                row
+            )
+            self.assertIs(
+                runner.NO_EXPECTED_IMPLEMENTATION_REVISION,
+                expected_revision,
+            )
+            self.assertTrue(
+                runner._prepare_task_output(
+                    output_dir,
+                    force_rerun=False,
+                    expected_implementation_revision=expected_revision,
+                )
+            )
+
     def test_two_replicas_dynamically_claim_each_shard_once(self):
         rows = [
             {

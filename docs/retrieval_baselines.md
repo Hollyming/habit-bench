@@ -79,27 +79,27 @@ dense cosine/rank、RRF、time score、time relation 和 final score 都写入 `
 
 ## Qwen3-8B 四域实验结果
 
-以下是 2026-08-26 完成的正式实验结果。五种方法共享同一个 Qwen3-8B answer model，
-覆盖 Food v5、Finance/Software v1.4 和 Travel v16。每个“方法 × 域”使用 16 个 user
-shards，共 320 个任务；所有任务均已完成，没有失败或缺失 shard。
+以下是当前正式结果。五种方法共享同一个 Qwen3-8B answer model；Food 使用
+`food_habit_lifelines_final_check`（630 probes），Finance/Software 仍为 v1.4，Travel 为
+v16。每个“方法 × 域”使用 16 个 user shards；Food final 的 80 个 shard 已全部完成。
 
 - RJob：`hb-q8b-retrieval-v1-10959712`；
 - 资源：2 replicas × 8 H200，共 16 卡；
 - RJob 状态：`Succeeded`，2/2 replicas 成功；
 - 运行时间：4376.365 秒（约 72 分 56 秒）；
-- 原始汇总：`results/habit-h200-retrieval-baselines-qwen3-8b-v1/evaluation_summary.json`。
+- Food final 原始汇总：`results/habit-h200-main-food-final-qwen3-8b-v1/evaluation_summary.json`；其余域沿用 `results/habit-h200-retrieval-baselines-qwen3-8b-v1`。
 
 ### Answer accuracy
 
-`Overall` 是四域全部 4168 个 probes 的 micro accuracy，而不是四个域准确率的简单平均。
+`Overall` 是四域当前合计 3,328 个 probes 的 micro accuracy，而不是四个域准确率的简单平均。
 
-| Method | Food v5 (n=1470) | Finance v1.4 (n=1368) | Software v1.4 (n=680) | Travel v16 (n=650) | Overall (n=4168) | Correct |
+| Method | Food final (n=630) | Finance v1.4 (n=1368) | Software v1.4 (n=680) | Travel v16 (n=650) | Overall (n=3328) | Correct |
 |---|---:|---:|---:|---:|---:|---:|
-| Recency-5 | 33.74% | **23.03%** | 25.88% | 26.15% | 27.76% | 1157/4168 |
-| Recency-10 | 35.99% | 22.81% | 26.32% | 29.08% | 29.01% | 1209/4168 |
-| BM25-RAG | 49.25% | 22.95% | 24.41% | **32.46%** | 33.95% | 1415/4168 |
-| Dense-RAG | **51.16%** | 22.73% | 25.44% | **32.46%** | **34.72%** | **1447/4168** |
-| Temporal Hybrid-RAG | 49.46% | 21.05% | **26.32%** | 32.31% | 33.69% | 1404/4168 |
+| Recency-5 | 21.27% | **23.03%** | 25.88% | 26.15% | 23.89% | 795/3328 |
+| Recency-10 | 21.90% | 22.81% | 26.32% | 29.08% | 24.58% | 818/3328 |
+| BM25-RAG | 42.70% | 22.95% | 24.41% | **32.46%** | 28.85% | 960/3328 |
+| Dense-RAG | **39.84%** | 22.73% | 25.44% | **32.46%** | **28.43%** | **946/3328** |
+| Temporal Hybrid-RAG | 41.75% | 21.05% | **26.32%** | 32.31% | 28.25% | 940/3328 |
 
 ### Retrieval and grounding metrics
 
@@ -108,11 +108,11 @@ shards，共 320 个任务；所有任务均已完成，没有失败或缺失 sh
 
 | Method | Evidence hit | Evidence recall (macro) | Precision | MRR | NDCG | Full evidence | Joint answer + hit |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Recency-5 | 24.42% | 6.37% | 7.80% | 10.45% | 7.42% | 0.02% | 6.96% |
-| Recency-10 | 24.42% | 6.37% | 7.80% | 10.45% | 7.42% | 0.02% | 7.25% |
-| BM25-RAG | 61.95% | 17.28% | 20.76% | 41.14% | 24.45% | 1.80% | 25.41% |
-| Dense-RAG | 47.36% | 13.39% | 16.12% | 31.58% | 19.52% | **2.64%** | 22.77% |
-| Temporal Hybrid-RAG | **64.32%** | **17.71%** | **21.43%** | **46.20%** | **26.00%** | 1.87% | **25.89%** |
+| Recency-5 | 35.37% | 7.05% | 7.48% | 11.81% | 6.62% | 0.03% | 8.11% |
+| Recency-10 | 35.37% | 7.05% | 7.48% | 11.81% | 6.62% | 0.03% | 8.14% |
+| BM25-RAG | 59.65% | 18.66% | 18.56% | 36.34% | 21.52% | 2.25% | 19.41% |
+| Dense-RAG | 38.55% | 13.25% | 11.73% | 25.58% | 15.62% | **3.31%** | 14.33% |
+| Temporal Hybrid-RAG | **60.97%** | **18.98%** | **18.85%** | **43.24%** | **23.74%** | 2.34% | **19.23%** |
 
 ### 结果解读
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -150,6 +151,55 @@ class SupplementaryTest(unittest.TestCase):
         self.assertIn("active-2", row["memory_context"])
         self.assertNotIn("choice_id", row["memory_context"])
         self.assertEqual(row["evidence_session_ids"], [])
+
+    def test_food_oracle_uses_graph_action_and_condition_without_changing_travel_contract(
+        self,
+    ) -> None:
+        food_probe = {
+            "probe_id": "food-p",
+            "probe_type": "direct_use",
+        }
+        food_key = {
+            "habit_family": "content_constraints",
+            "gold_action": "apply_split_decision_stable_habit",
+            "hidden_habit_graph": {
+                "family": "content_constraints",
+                "condition": "salad or bowl with raw vegetables",
+                "default_action": "cut vegetables into diagonal slivers",
+            },
+        }
+        food_row = build_oracle_habit_state_context(food_probe, food_key)
+        self.assertIn(
+            "cut vegetables into diagonal slivers", food_row["memory_context"]
+        )
+        self.assertNotIn(
+            "apply_split_decision_stable_habit", food_row["memory_context"]
+        )
+        self.assertIn(
+            "salad or bowl with raw vegetables", food_row["memory_context"]
+        )
+
+        travel_probe = {
+            "probe_id": "travel-p",
+            "probe_type": "cross_context_transfer",
+        }
+        travel_key = {
+            "habit_family": "trip_context_flight_policy",
+            "gold_action": "specific-choice-opcode",
+            "gold_action_text": "Business via New York for $1,540 total.",
+            "hidden_habit_graph": {
+                "family": "trip_context_flight_policy",
+                "condition": "when comparing flight cabin options",
+                "default_action": "prefer business-class options first",
+            },
+        }
+        travel_row = build_oracle_habit_state_context(travel_probe, travel_key)
+        travel_state = json.loads(travel_row["memory_context"].split("\n\n", 1)[1])
+        self.assertEqual(
+            travel_state["current_state"]["required_action"],
+            "Business via New York for $1,540 total.",
+        )
+        self.assertIsNone(travel_state["default_policy"]["condition"])
 
     def test_oracle_habit_state_does_not_manufacture_retrieval_scores(self) -> None:
         bundle = fixture_bundle()

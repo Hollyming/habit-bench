@@ -23,7 +23,7 @@ from eval.supplementary.compare import compare_runs
 
 DEFAULT_DATASETS = {
     "food": (
-        PROJECT_ROOT / "domain/food/food_habit_lifelines_stress_v5",
+        PROJECT_ROOT / "domain/food/food_habit_lifelines_final_check",
         None,
     ),
     "finance": (

@@ -74,6 +74,60 @@ class MeanPoolingEmbeddings(BaseLocalEmbeddings):
         return sum_embeddings / sum_mask
 
 
+try:
+    # LangChain's FAISS wrapper dispatches to ``embed_query`` only when the
+    # object implements its Embeddings interface.  Older versions accepted any
+    # object exposing the two methods, while the H-cluster-pinned version falls
+    # back to calling the object directly.  Subclassing the interface keeps the
+    # adapter compatible with both behaviours and prevents the LoCoMo
+    # embedding baseline from failing at the first query.
+    from langchain_core.embeddings import Embeddings as _LangChainEmbeddings
+except (ImportError, ModuleNotFoundError):  # pragma: no cover - optional dep
+    class _LangChainEmbeddings:  # type: ignore[no-redef]
+        """Minimal fallback when LangChain is not installed."""
+
+        pass
+
+
+class SentenceTransformerEmbeddings(_LangChainEmbeddings):
+    """Small LangChain-compatible wrapper around sentence-transformers.
+
+    BGE-M3 is distributed as a sentence-transformers checkpoint (with its
+    pooling/normalization modules). Loading it through ``AutoModel`` alone
+    would silently omit those modules, so the optional LangChain integration
+    fallback uses the native sentence-transformers implementation instead.
+    """
+
+    def __init__(self, model_name: str):
+        from sentence_transformers import SentenceTransformer
+
+        logger.info("[Embedding] Loading sentence-transformers model: %s", model_name)
+        self.model = SentenceTransformer(model_name, device="cpu")
+
+    def embed_documents(self, texts: List[str]) -> List[List[float]]:
+        embeddings = self.model.encode(
+            texts,
+            batch_size=8,
+            convert_to_numpy=True,
+            normalize_embeddings=True,
+            show_progress_bar=False,
+        )
+        return embeddings.tolist()
+
+    def embed_query(self, text: str) -> List[float]:
+        embedding = self.model.encode(
+            text,
+            convert_to_numpy=True,
+            normalize_embeddings=True,
+            show_progress_bar=False,
+        )
+        return embedding.tolist()
+
+    def __call__(self, text: str) -> List[float]:
+        """Support LangChain releases that treat the embedder as a callable."""
+        return self.embed_query(text)
+
+
 class Qwen3EmbeddingEmbeddings(MeanPoolingEmbeddings):
     """Qwen3-Embedding model wrapper."""
 
@@ -181,12 +235,26 @@ class EmbeddingRAGAgent(BaseAgent):
                 kwargs["base_url"] = self._base_url
             self._embedding_model_instance = OpenAIEmbeddings(**kwargs)
         elif provider_lower in ("local", "huggingface"):
-            from langchain_huggingface import HuggingFaceEmbeddings
-            self._embedding_model_instance = HuggingFaceEmbeddings(
-                model_name=model_path,
-                model_kwargs={"device": "cpu"},
-                encode_kwargs={"normalize_embeddings": True},
-            )
+            # ``langchain_huggingface`` is an optional integration and is not
+            # present in the pinned H-cluster method environment.  The agent
+            # already ships an equivalent mean-pooling implementation, so use
+            # it as a dependency-free fallback instead of failing every
+            # embedding-RAG task during the first memory chunk.
+            try:
+                from langchain_huggingface import HuggingFaceEmbeddings
+            except (ImportError, ModuleNotFoundError):
+                logger.warning(
+                    "[Embedding] langchain_huggingface is unavailable; "
+                    "using the built-in Transformer mean-pooling encoder for %s",
+                    model_path,
+                )
+                self._embedding_model_instance = SentenceTransformerEmbeddings(model_path)
+            else:
+                self._embedding_model_instance = HuggingFaceEmbeddings(
+                    model_name=model_path,
+                    model_kwargs={"device": "cpu"},
+                    encode_kwargs={"normalize_embeddings": True},
+                )
         else:
             raise ValueError(f"Unsupported embedding provider: {self.embedding_provider}")
 

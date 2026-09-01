@@ -18,7 +18,7 @@ Replica 通过 `JOB_ID` 共享 GPFS 动态任务队列；`NODE_RANK/NODE_COUNT` 
 产生可误认为 H200 的评测结果。
 
 默认主实验方法是 compact `full_memory` 加八个已实现 memory 方法；默认数据是
-Food v5、Finance/Software v1.4 和 Travel v16。`full_history` 只作为原始 recency
+Food final、Finance/Software v1.4 和 Travel v16。`full_history` 只作为原始 recency
 消融对照，不隐式加入主计划。
 
 ## 1. 共享资源与每个 clone 的可写目录
@@ -225,7 +225,7 @@ bash scripts/cluster/submit_qwen3_32b_main.sh
 `HABITBENCH_Q32_OUTPUT_ROOT` 单独覆盖某个规模。H 集群提交时，最终路径必须位于
 RJob 挂载覆盖的持久存储中；不要使用容器内通常指向 `/root` 的 `$HOME`。
 
-该入口覆盖 `full_memory` 与八个 memory 方法、Food v5、Finance/Software v1.4、
+该入口覆盖 `full_memory` 与八个 memory 方法、Food final、Finance/Software v1.4、
 Travel v16，共 `9 × 4 × 16 = 576` 个 shard，并继承完整 shard 粒度的断点恢复。
 
 平台 idle 示例：

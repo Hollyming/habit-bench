@@ -120,6 +120,17 @@ marker, Transformer-config hash, weight filename and byte size. The plan
 builder fails before submission if an active profile no longer matches this
 pinned BGE-M3 identity or if the local model snapshot is incomplete.
 
+## LoCoMo cross-benchmark
+
+The repository also exposes a Qwen3-8B LoCoMo comparison through the vendored
+MedMemoryBench evaluator. `scripts/create_locomo_plan.py` decomposes the ten
+official conversations into independent method/sample tasks, while
+`scripts/run_locomo_plan.py` provides a GPFS-resumable queue for a 2 × 8-H200
+RJob. The active seven memory-agent integrations and the long-context, BM25 and
+BGE-M3 controls use the same Qwen3-8B model identity; official LoCoMo F1 is
+recomputed from persisted query answers. See `docs/locomo_results_current.md` for
+the submission command and artifact layout.
+
 ## Metrics
 
 Primary:

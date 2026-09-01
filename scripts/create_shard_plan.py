@@ -23,7 +23,7 @@ from eval.core.io import sha256_file, write_json
 
 
 DEFAULT_DATASETS = {
-    "food": PROJECT_ROOT / "domain/food/food_habit_lifelines_stress_v5",
+    "food": PROJECT_ROOT / "domain/food/food_habit_lifelines_final_check",
     "finance": PROJECT_ROOT
     / "domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4",
     "software": PROJECT_ROOT

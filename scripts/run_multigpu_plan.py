@@ -76,6 +76,12 @@ COMPLETION_FILES = (
     "metrics.json",
 )
 NO_EXPECTED_METHOD_CONFIG = object()
+NO_EXPECTED_IMPLEMENTATION_REVISION = object()
+# Food final changed the private controlled-graph contract: the graph's
+# natural-language action/condition must be exposed instead of the opaque
+# top-level action opcode.  Keep this invalidation narrowly scoped so old
+# checkpoints for Travel, Finance, and Software remain reusable.
+FOOD_ORACLE_HABIT_STATE_REVISION = "v2-food-graph-action-condition"
 
 
 def _utc_now() -> str:
@@ -1303,10 +1309,22 @@ def _expected_method_config_for_row(
     return methods[row["method"]]
 
 
+def _expected_implementation_revision_for_row(row: dict[str, str]) -> Any:
+    """Return a revision gate only for checkpoints affected by a code fix."""
+
+    if (
+        row.get("method") == "oracle_habit_state"
+        and row.get("dataset_name") == "food"
+    ):
+        return FOOD_ORACLE_HABIT_STATE_REVISION
+    return NO_EXPECTED_IMPLEMENTATION_REVISION
+
+
 def _completed_task_record(
     output_dir: Path,
     *,
     expected_method_config: Any = NO_EXPECTED_METHOD_CONFIG,
+    expected_implementation_revision: Any = NO_EXPECTED_IMPLEMENTATION_REVISION,
 ) -> dict[str, Any] | None:
     """Return the atomic shard checkpoint only when every final artifact exists."""
 
@@ -1329,6 +1347,12 @@ def _completed_task_record(
         return None
     if (run_manifest.get("execution") or {}).get("status") != "succeeded":
         return None
+    if expected_implementation_revision is not NO_EXPECTED_IMPLEMENTATION_REVISION:
+        observed_revision = (run_manifest.get("implementation") or {}).get(
+            "revision"
+        )
+        if observed_revision != expected_implementation_revision:
+            return None
     if not _method_config_matches_plan(
         run_manifest.get("method_config"), expected_method_config
     ):
@@ -1341,6 +1365,7 @@ def _prepare_task_output(
     *,
     force_rerun: bool,
     expected_method_config: Any = NO_EXPECTED_METHOD_CONFIG,
+    expected_implementation_revision: Any = NO_EXPECTED_IMPLEMENTATION_REVISION,
 ) -> bool:
     """Keep a verified checkpoint; remove failed/interrupted state before rerun."""
 
@@ -1349,7 +1374,9 @@ def _prepare_task_output(
     was_complete = (
         not force_rerun
         and _completed_task_record(
-            output_dir, expected_method_config=expected_method_config
+            output_dir,
+            expected_method_config=expected_method_config,
+            expected_implementation_revision=expected_implementation_revision,
         )
         is not None
     )
@@ -1553,11 +1580,18 @@ def _run_task_with_output_lock(
         output_dir,
         force_rerun=base_env.get("HABITBENCH_FORCE_RERUN", "0") == "1",
         expected_method_config=expected_method_config,
+        expected_implementation_revision=_expected_implementation_revision_for_row(
+            row
+        ),
     )
     label = f"{row['method']}/{row['dataset_name']}/{shard_name}"
     if was_complete:
         checkpoint = _completed_task_record(
-            output_dir, expected_method_config=expected_method_config
+            output_dir,
+            expected_method_config=expected_method_config,
+            expected_implementation_revision=_expected_implementation_revision_for_row(
+                row
+            ),
         )
         if checkpoint is None:
             raise RuntimeError(f"Checkpoint disappeared while resuming: {output_dir}")
@@ -1722,7 +1756,11 @@ def _run_task_with_output_lock(
         _write_json(output_dir / "worker_runtime.json", record)
         if (
             _completed_task_record(
-                output_dir, expected_method_config=expected_method_config
+                output_dir,
+                expected_method_config=expected_method_config,
+                expected_implementation_revision=_expected_implementation_revision_for_row(
+                    row
+                ),
             )
             is None
         ):
@@ -1931,6 +1969,9 @@ def main() -> None:
             / f"shard_{int(row['shard_index']):03d}_of_{int(row['shard_count']):03d}",
             expected_method_config=_expected_method_config_for_row(
                 row, plan_manifest
+            ),
+            expected_implementation_revision=(
+                _expected_implementation_revision_for_row(row)
             ),
         )
         is not None

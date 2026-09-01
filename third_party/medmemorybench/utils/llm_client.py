@@ -336,12 +336,27 @@ class OpenAIClient(BaseLLMClient):
         import httpx
         import socket
 
-        # Extended timeout for long-text generation (e.g. gist extraction)
+        # Extended timeout for long-text generation (e.g. gist extraction).
+        # H200 LoCoMo samples can legitimately produce long structured
+        # responses (especially Mem0/MIRIX); keep the historical 180-second
+        # default overridable so a slow request is not mistaken for a failed
+        # method. The H environment sets this to 300 seconds, matching the
+        # vendored Mem0 client timeout.
+        try:
+            request_timeout = float(
+                os.environ.get("HABITBENCH_LLM_REQUEST_TIMEOUT_SEC", "300")
+            )
+        except ValueError as exc:
+            raise ValueError(
+                "HABITBENCH_LLM_REQUEST_TIMEOUT_SEC must be numeric"
+            ) from exc
+        if request_timeout <= 0:
+            raise ValueError("HABITBENCH_LLM_REQUEST_TIMEOUT_SEC must be positive")
         timeout = httpx.Timeout(
-            timeout=180.0,
-            connect=30.0,
-            read=180.0,
-            write=30.0,
+            timeout=request_timeout,
+            connect=min(30.0, request_timeout),
+            read=request_timeout,
+            write=min(30.0, request_timeout),
         )
 
         # Minimal connection pooling - proxy connections are unreliable for keepalive

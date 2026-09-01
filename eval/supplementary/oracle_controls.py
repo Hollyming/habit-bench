@@ -29,6 +29,11 @@ from eval.core.scoring import score_predictions, write_score_outputs
 
 
 ORACLE_MODES = ("oracle_evidence", "oracle_habit_state")
+# Bumped when the private Food annotation-to-context contract changes.  The
+# shard runner uses this marker to invalidate only stale Food Oracle Habit
+# State checkpoints; results for the other domains remain resumable.
+ORACLE_EVIDENCE_IMPLEMENTATION_REVISION = "v1"
+ORACLE_HABIT_STATE_IMPLEMENTATION_REVISION = "v2-food-graph-action-condition"
 
 
 def _utc_now() -> str:
@@ -134,6 +139,15 @@ def _controlled_habit_graph_state(key: dict[str, Any]) -> dict[str, Any]:
     """
 
     graph = key.get("hidden_habit_graph") or {}
+    habit_family = key.get("habit_family") or graph.get("family")
+    # Food final stores the canonical natural-language action in the private
+    # graph.  Its top-level ``gold_action`` is only an internal opcode (for
+    # example ``apply_split_decision_stable_habit``), so exposing that value as
+    # the current state deprives the answer model of the actual latent policy.
+    # Travel's graph contract is different: ``gold_action_text`` is the
+    # choice-level realization and must remain preferred there.  Keep this
+    # branch domain-specific so fixing Food cannot change the other domains.
+    is_food_controlled_graph = habit_family == "content_constraints"
     probe_type = str(key.get("probe_type", "unknown"))
     if "exception" in probe_type:
         target_field = "exception_action"
@@ -141,17 +155,29 @@ def _controlled_habit_graph_state(key: dict[str, Any]) -> dict[str, Any]:
         target_field = "boundary_action"
     else:
         target_field = "default_action"
-    required_action = (
-        key.get("gold_action_text")
-        or key.get("gold_action")
-        or graph.get(target_field)
-    )
+    if is_food_controlled_graph:
+        required_action = (
+            graph.get(target_field)
+            or key.get("gold_action_text")
+            or key.get("gold_action")
+        )
+        default_condition = graph.get("condition") or graph.get(
+            "default_condition"
+        )
+    else:
+        required_action = (
+            key.get("gold_action_text")
+            or key.get("gold_action")
+            or graph.get(target_field)
+        )
+        # Preserve the pre-existing non-Food contract exactly.
+        default_condition = graph.get("default_condition")
     return {
         "habit_id": key.get("habit_id") or graph.get("habit_id"),
         "habit_name": graph.get("name"),
         "habit_family": key.get("habit_family") or graph.get("family"),
         "default_policy": {
-            "condition": graph.get("default_condition"),
+            "condition": default_condition,
             "action": graph.get("default_action"),
         },
         "boundary_policy": {
@@ -310,7 +336,11 @@ def run(args: argparse.Namespace) -> None:
         "implementation": {
             "kind": "control",
             "source": "eval.supplementary.oracle_controls",
-            "revision": "v1",
+            "revision": (
+                ORACLE_HABIT_STATE_IMPLEMENTATION_REVISION
+                if args.mode == "oracle_habit_state"
+                else ORACLE_EVIDENCE_IMPLEMENTATION_REVISION
+            ),
             "note": "Private-label diagnostic upper bound; not a deployable memory method.",
         },
         "method_config": None,

@@ -27,7 +27,7 @@ memory_context + current request + response choices
 
 | 数据集别名 | 领域 | 用户 | sessions | probes | 路径 |
 | --- | --- | ---: | ---: | ---: | --- |
-| `food` | food | 30 | 4,500 | 1,470 | `domain/food/food_habit_lifelines_stress_v5` |
+| `food` | food | 30 | 3,900 | 630 | `domain/food/food_habit_lifelines_final_check` |
 | `finance` | finance | 36 | 19,440 | 1,368 | `domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4` |
 | `software` | software | 18 | 9,720 | 680 | `domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4` |
 | `travel` | travel | 30 | 4,092 | 650 | `domain/travel/release_candidate_v16_postrepair_repaired_r4` |
@@ -58,18 +58,16 @@ source/...                 # 数据来源与构建溯源（若该数据包提供
 session/probe contract。Gold answer、gold evidence、habit graph、persona profile 和
 policy label 不会进入 memory 方法输入。
 
-Food v5 是当前主实验的 content-constraint 习惯域，包含 210 个受控习惯：
+Food final 是当前主实验的 content-constraint 习惯域，包含 210 个受控习惯：
 
 | Probe type | 数量 | 设计目标 | 私有正向证据 |
 | --- | ---: | --- | --- |
-| `direct_use` | 420 | 从重复弱证据归纳习惯并应用 | 5 个 sessions |
-| `explicit_retrieval` | 210 | 显式询问历史行为，测基础检索能力 | 5 个 sessions |
-| `boundary` | 420 | 情境超出习惯适用范围时避免错误套用 | 1 个 boundary session |
-| `exception` | 420 | 保留并应用用户明确给出的局部例外 | 1 个 exception session |
+| `direct_use` | 210 | 从重复弱证据归纳习惯并应用 | final private evidence |
+| `boundary` | 210 | 情境超出习惯适用范围时避免错误套用 | 1 个 boundary session |
+| `exception` | 210 | 保留并应用用户明确给出的局部例外 | 1 个 exception session |
 
-其中 630 个 probe 使用 `unseen_paraphrase`，用于区分真正的习惯归纳和表面模板匹配。
 Food 的正向检索 gold 是 `private/probe_key.jsonl` 中的
-`gold_evidence_session_ids`。所有 1,470 个 probe 都有有效、同用户、早于 cutoff 的
+`gold_evidence_session_ids`。所有 630 个 probe 都有有效、同用户、早于 cutoff 的
 证据链接。
 
 Finance/Software v1.4 更强调多证据链、漂移、scope 和 provenance：
@@ -407,7 +405,7 @@ HABIT-bench/
 │       └── secom_bge_m3_qwen3.yaml
 ├── domain/
 │   ├── food/
-│   │   └── food_habit_lifelines_stress_v5/
+│   │   └── food_habit_lifelines_final_check/
 │   ├── finance-software/
 │   │   └── habit_bench_multidogo_finance_software_release_gated_v1_4/
 │   └── travel/
@@ -635,7 +633,7 @@ cd /plm-shared/zhangjunming/Workspace/HABIT-bench
 
 python \
   -m eval.validate \
-  domain/food/food_habit_lifelines_stress_v5 \
+  domain/food/food_habit_lifelines_final_check \
   domain/finance-software/habit_bench_multidogo_finance_software_release_gated_v1_4 \
   domain/travel/release_candidate_v16_postrepair_repaired_r4
 
@@ -650,7 +648,7 @@ Prepare-only 验证数据加载、配置 snapshot 和 manifest，不调用 memor
 
 ```bash
 bash scripts/run_eval.sh mem0 \
-  domain/food/food_habit_lifelines_stress_v5 \
+  domain/food/food_habit_lifelines_final_check \
   ./results/habit_mem0_prepare \
   --max-users 1 --max-probes 4 --prepare-only
 ```
@@ -772,7 +770,7 @@ credential 文件必须是 `600` 权限且位于 Git 仓库外；格式、限流
 
 ### 6.5 当前四域 Qwen3-8B supplementary
 
-当前入口覆盖 Food v5、Finance/Software v1.4 和 Travel v16，提交一个
+当前入口覆盖 Food final、Finance/Software v1.4 和 Travel v16，提交一个
 `2 Replicas × 8 H200 = 16 H200` 的 reserved H 集群 RJob：
 
 ```bash
@@ -784,16 +782,17 @@ bash scripts/cluster/submit_qwen3_8b_supplementary.sh
 仍需 Qwen3-8B 推理的诊断对照。全部分片严格合并后，会自动运行用户级 bootstrap、配对
 显著性、难度切片、policy-component、效率和 answer–retrieval sidecar；不准备、不执行
 人审。结果默认写入当前 clone 的
-`results/habit-h200-supplementary-qwen3-8b-v1`。每个完整用户分片都是持久化 checkpoint，
+`results/habit-h200-supplementary-qwen3-8b-v1`；Food final 的最新控制结果位于
+`results/habit-h200-supplementary-food-final-qwen3-8b-v1`。每个完整用户分片都是持久化 checkpoint，
 同一路径重提会校验并跳过成功分片。
 
 历史兼容构建脚本与研究记录已从仓库移除。
-当前正式范围仅为 Food v5、Finance/Software v1.4 和 Travel v16；H 集群入口见
+当前正式范围仅为 Food final、Finance/Software v1.4 和 Travel v16；H 集群入口见
 `scripts/cluster/` 下的当前脚本。
 
 ## 7. 当前四域实验结果
 
-当前正式口径为 Food v5、Finance/Software v1.4、Travel v16，回答模型为同规模
+当前正式口径为 Food final、Finance/Software v1.4、Travel v16，回答模型为同规模
 Qwen3。完整的 4B/8B/14B/32B 主实验大表、Wilson 95% CI、证据指标和结果来源见
 [docs/main_experiment_results_current.md](docs/main_experiment_results_current.md)。
 以下只保留最常用的 Qwen3-8B Accuracy 摘要；README 不再汇报已退役数据版本的结果。
@@ -802,19 +801,20 @@ Qwen3。完整的 4B/8B/14B/32B 主实验大表、Wilson 95% CI、证据指标�
 
 | Method | Food | Finance | Software | Travel v16 | Macro | Pooled |
 |---|---:|---:|---:|---:|---:|---:|
-| Full-Memory | 53.20 | 20.76 | 23.24 | 27.23 | 31.11 | 33.61 |
-| Mem0 | 37.21 | 23.10 | 26.76 | 26.62 | 28.42 | 29.22 |
-| A-MEM | 50.48 | 22.59 | 26.47 | 32.77 | 33.08 | **34.64** |
-| MemOS | 47.96 | 22.15 | 26.32 | 31.38 | 31.95 | 33.37 |
-| MemRL | 51.09 | 21.86 | 25.00 | 32.46 | 32.60 | 34.33 |
-| LightMem | 35.85 | 22.51 | 25.44 | 28.00 | 27.95 | 28.55 |
-| Letta | 51.63 | 21.71 | 25.29 | **33.23** | 32.97 | **34.64** |
-| MIRIX | 33.67 | 22.51 | **27.50** | 27.69 | 27.85 | 28.07 |
-| SeCom | 48.23 | 23.03 | 24.85 | 32.92 | 32.26 | 33.76 |
+| Full-Memory | 41.11 | 20.76 | 23.24 | 27.23 | 28.08 | 26.38 |
+| Mem0 | 29.84 | 23.10 | 26.76 | 26.62 | 26.58 | 25.81 |
+| A-MEM | 39.52 | 22.59 | 26.47 | 32.77 | 30.34 | 28.58 |
+| MemOS | 38.10 | 22.15 | 26.32 | 31.38 | 29.49 | 27.82 |
+| MemRL | 37.62 | 21.86 | 25.00 | 32.46 | 29.23 | 27.55 |
+| LightMem | 32.70 | 22.51 | 25.44 | 28.00 | 27.16 | 26.11 |
+| Letta | 38.57 | 21.71 | 25.29 | **33.23** | 29.70 | **27.88** |
+| MIRIX | 28.73 | 22.51 | **27.50** | 27.69 | 26.61 | 25.72 |
+| SeCom | 38.57 | 23.03 | 24.85 | 32.92 | 29.84 | 28.28 |
 
-4B、8B 和 14B 的 36/36 method×domain groups 均完整；32B 为 34/36，尚缺 Mem0
-Finance/Software。各规模完整方法中的最高 pooled Accuracy 分别为 4B Letta 34.81%、
-8B Letta/A-MEM 34.64%、14B Letta 36.13% 和 32B SeCom 37.72%。
+Food final 四个规模的完整结果与新 probe 数已合并到
+[docs/main_experiment_results_current.md](docs/main_experiment_results_current.md)。4B、8B 和 14B 的 36/36 method×domain groups 均完整；32B 为 34/36，尚缺 Mem0
+Finance/Software。当前四域完整方法中的最高 pooled Accuracy 分别为 4B Letta 28.37%、
+8B A-MEM 28.58%、14B Letta 29.36% 和 32B SeCom 30.47%。
 
 ### 7.2 Qwen3-8B 简单 session-retrieval 基线
 
@@ -823,19 +823,20 @@ Finance/Software。各规模完整方法中的最高 pooled Accuracy 分别为 4
 
 | Method | Food | Finance | Software | Travel v16 | Macro | Pooled |
 |---|---:|---:|---:|---:|---:|---:|
-| Recency-5 | 33.74 | 23.03 | 25.88 | 26.15 | 27.20 | 27.76 |
-| Recency-10 | 35.99 | 22.81 | 26.32 | 29.08 | 28.55 | 29.01 |
-| BM25-RAG | 49.25 | 22.95 | 24.41 | 32.46 | 32.27 | 33.95 |
-| Dense-RAG | **51.16** | 22.73 | 25.44 | **32.46** | **32.95** | **34.72** |
-| Temporal Hybrid-RAG | 49.46 | 21.05 | **26.32** | 32.31 | 32.28 | 33.69 |
+| Recency-5 | 21.27 | 23.03 | 25.88 | 26.15 | 24.08 | 23.89 |
+| Recency-10 | 21.90 | 22.81 | 26.32 | 29.08 | 25.03 | 24.58 |
+| BM25-RAG | 42.70 | 22.95 | 24.41 | 32.46 | 30.63 | 28.85 |
+| Dense-RAG | **39.84** | 22.73 | 25.44 | **32.46** | **30.12** | **28.43** |
+| Temporal Hybrid-RAG | 41.75 | 21.05 | **26.32** | 32.31 | 30.36 | 28.25 |
 
-五种基线已完成 320/320 shards 和 20/20 strict merges。Dense-RAG 的 pooled
-Accuracy 为 34.72%，因此简单语义检索是复杂 memory lifecycle 必须面对的关键对照。
+五种基线在 Food final 上已完成 80/80 shards，并与既有 Finance/Software v1.4、Travel v16 结果组成 20/20 strict method×domain 对照；当前四域合计 3,328 probes。Dense-RAG 的 pooled
+Accuracy 为 28.43%，因此简单语义检索是复杂 memory lifecycle 必须面对的关键对照。
 
 ## 8. Supplementary 实验
 
-当前 Qwen3-8B 四域 supplementary 结果以
-[docs/supplementary_results_current.md](docs/supplementary_results_current.md) 为准；
+当前 Qwen3-8B supplementary 结果（覆盖 Food final、Finance/Software v1.4、Travel v16）以
+[docs/supplementary_results_current.md](docs/supplementary_results_current.md) 为准；Food final 的
+630-probe 控制结果已合并在同一文档中。
 完整设计、统计假设和指标边界见
 [docs/supplementary_exp/ICLR27_supplementary_experiments.md](docs/supplementary_exp/ICLR27_supplementary_experiments.md)。
 
@@ -848,10 +849,10 @@ merge 后的预测与运行 artifacts，把用户级统计、配对推断、难�
 | 实验 | 当前四域状态 | 说明 |
 |---|---:|---|
 | 主方法离线 sidecar | 36/36 | 9 方法 × Food/Finance/Software/Travel |
-| No Memory / Oracle diagnostics | 12/12 | 3 diagnostics × 4 域，192/192 shards |
+| No Memory / Oracle diagnostics | 12/12 | 3 diagnostics × 4 域；Food final 48/48，Finance/Software/Travel 144/144 shards |
 | 用户级统计与 user-cluster CI | 36/36 | 10,000 次 bootstrap，seed 42 |
 | 域内方法配对 | 4 × 36 pairs | exact McNemar、user-cluster bootstrap、Holm 校正 |
-| Explicit-to-Habit transfer | Food 9/9 | 其余域没有同数据生成机制下的 explicit probes |
+| Explicit-to-Habit transfer | Food final unavailable | final 数据不含 explicit_retrieval probes |
 | Policy-component Accuracy | 27/27 | Finance、Software、Travel，Food taxonomy 不适用 |
 | 难度切片、效率、错误耦合 | 36/36 | 缺少 lineage 的方法按不可归因解释 |
 | 概率校准 / 严格 FPC | unavailable | 当前输出或标签不足，不用近似指标冒充 |
@@ -859,19 +860,27 @@ merge 后的预测与运行 artifacts，把用户级统计、配对推断、难�
 
 ### 8.2 当前关键诊断
 
-下表为 Qwen3-8B exact-choice micro Accuracy（%），Pooled 覆盖四域 4,168 probes。
+下表为 Qwen3-8B exact-choice micro Accuracy（%）；Food 列已更新为 Food final（630 probes），
+完整四域 supplementary 控制结果见
+[docs/supplementary_results_current.md](docs/supplementary_results_current.md)。
 Oracle 读取 private annotations，只是诊断上界，不属于可部署 memory system。
+
+> Food final 的 Oracle Habit State 已按 graph-action/condition contract 修复并重跑，
+> 16/16 shards 成功，结果已覆盖原 merged 产物；下表为当前 authoritative 结果。
 
 | Diagnostic | Food | Finance | Software | Travel v16 | Pooled | Correct / Total |
 |---|---:|---:|---:|---:|---:|---:|
-| No Memory | 26.26 | 23.32 | 27.21 | 26.46 | 25.48 | 1,062 / 4,168 |
-| Oracle Evidence | **78.78** | 29.82 | 31.91 | 42.15 | 49.35 | 2,057 / 4,168 |
-| Oracle Habit State | 59.86 | **93.71** | **94.56** | **98.31** | **82.63** | 3,444 / 4,168 |
+| No Memory | 20.79 | 23.32 | 27.21 | 26.46 | 24.25 | 807 / 3,328 |
+| Oracle Evidence | **53.33** | 29.82 | 31.91 | 42.15 | 37.11 | 1,235 / 3,328 |
+| Oracle Habit State | **92.54** | **93.71** | **94.56** | **98.31** | **94.56** | **3,147 / 3,328** |
 
 Finance、Software 和 Travel 在给定最终 Oracle Habit State 后接近饱和，说明主要瓶颈
-是从长期历史恢复正确状态；Food 的 Oracle Evidence 更强，符合显式历史证据可直接
+是从长期历史恢复正确状态；Food final 的 Oracle Evidence 仍更强，符合显式历史证据可直接
 支持部分题目的构造。用户等权 Accuracy、transfer gap、policy component、错误耦合、
 效率、配对显著性和完整结果路径见 current supplementary 文档。
+
+Food final Oracle Habit State 为 583/630（user-cluster 95% CI 90.63–94.44%）；
+Finance/Software/Travel 的已有 control 数值不受本次 Food-only 修复影响。
 
 ### 8.3 如何运行 supplementary 分析
 
@@ -898,7 +907,7 @@ merged 结果都会报错，不会静默跳过。对单个方法排障可直接�
 
 ```bash
 "$PYTHON" -m eval.supplementary.analyze \
-  --dataset-dir domain/food/food_habit_lifelines_stress_v5 \
+  --dataset-dir domain/food/food_habit_lifelines_final_check \
   --scored-predictions \
     "$SUITE_ROOT/food/memos/merged/scored_predictions.jsonl" \
   --artifact-root "$SUITE_ROOT/food/memos/merged" \
@@ -915,7 +924,7 @@ Oracle；也可先只检查上下文和 private-label contract：
 
 ```bash
 "$PYTHON" -m eval.supplementary.oracle_controls \
-  --dataset-dir domain/food/food_habit_lifelines_stress_v5 \
+  --dataset-dir domain/food/food_habit_lifelines_final_check \
   --output-dir ./results/oracle_food_smoke \
   --mode oracle_evidence \
   --max-users 1 \
@@ -940,7 +949,7 @@ REPO="$PWD"
 AUDIT_ROOT="$REPO/results/<new_suite>/supplementary/human_audit"
 
 "$PYTHON" -m eval.supplementary.human_audit prepare \
-  --dataset-dir "$REPO/domain/food/food_habit_lifelines_stress_v5" \
+  --dataset-dir "$REPO/domain/food/food_habit_lifelines_final_check" \
   --output-dir "$AUDIT_ROOT/food" \
   --per-stratum 50 --seed 42
 
@@ -1021,7 +1030,7 @@ DOMAIN_ROOT="$AUDIT_ROOT/food"
   --domain-root "$AUDIT_ROOT/food" \
   --audit-key "$AUDIT_ROOT/food/audit_key.private.jsonl" \
   --source-probe-key \
-    "$REPO/domain/food/food_habit_lifelines_stress_v5/private/probe_key.jsonl"
+    "$REPO/domain/food/food_habit_lifelines_final_check/private/probe_key.jsonl"
 
 "$PYTHON" -m eval.supplementary.human_audit_data_manager \
   --domain-root "$AUDIT_ROOT/finance" \
@@ -1206,15 +1215,15 @@ provenance，不改变方法的 memory 写入、检索排序或传给 answer mod
 `attribution_conditional_evidence_recall_at_5`，避免把“无法归因”和“归因后检索错误”
 混为一谈。
 
-Food v5 的能力 panel：
+Food final 的能力 panel：
 
 | Panel | 主要指标 |
 | --- | --- |
-| `habit_induction` | `direct_use` Accuracy、5 条弱证据 Recall/nDCG、grounded joint success |
-| `explicit_history_retrieval` | 显式检索 Accuracy 和 evidence Recall@5 |
-| `boundary_calibration` | Accuracy、`false_personalization_cost = 1 - Accuracy`、boundary evidence Hit@5 |
-| `exception_retention` | Accuracy、`exception_failure_rate`、exception evidence Hit@5 |
-| `unseen_paraphrase_robustness` | 未见表达下的 Accuracy 与 evidence metrics |
+| `habit_induction` | `direct_use` Accuracy、gold-evidence Recall/nDCG、grounded joint success |
+| `boundary_calibration` | Accuracy、`false_personalization_cost = 1 - Accuracy`、boundary evidence metrics |
+| `exception_retention` | Accuracy、`exception_failure_rate`、exception evidence metrics |
+| `explicit_history_retrieval` | final 数据不含 `explicit_retrieval` probes，按 contract 标记 unavailable |
+| `unseen_paraphrase_robustness` | final 数据不含 `unseen_paraphrase` 标签，按 contract 标记 unavailable |
 
 Finance/Software v1.4 与 Travel v16 额外报告：
 

@@ -101,22 +101,31 @@ if (( allocation_total != 8 )); then
   exit 2
 fi
 
-if ! command -v nvidia-smi >/dev/null 2>&1; then
-  echo "nvidia-smi is unavailable inside the RJob container" >&2
-  exit 1
+if [[ "${HABITBENCH_SKIP_GPU_PREFLIGHT:-0}" == "1" ]]; then
+  # External-API evaluation does not load a local vLLM model.  This mode is
+  # used only when the runner is deliberately colocated with an already
+  # allocated debug node, so the eight logical worker slots remain 4+4 while
+  # no additional H200 is requested by the sidecar RJob.
+  GPU_NAMES=("external-api-cpu-sidecar")
+  echo "H200 preflight skipped: external API mode; logical worker slots=$GPU_ALLOCATIONS"
+else
+  if ! command -v nvidia-smi >/dev/null 2>&1; then
+    echo "nvidia-smi is unavailable inside the RJob container" >&2
+    exit 1
+  fi
+  mapfile -t GPU_NAMES < <(
+    nvidia-smi --query-gpu=name --format=csv,noheader \
+      | sed 's/[[:space:]]*$//' \
+      | sed '/^$/d'
+  )
+  if (( ${#GPU_NAMES[@]} != 8 )); then
+    echo "RJob exposed ${#GPU_NAMES[@]} GPUs; expected exactly 8" >&2
+    exit 1
+  fi
+  for gpu_name in "${GPU_NAMES[@]}"; do
+    [[ "$gpu_name" == *H200* ]] || { echo "Expected H200, found: $gpu_name" >&2; exit 1; }
+  done
 fi
-mapfile -t GPU_NAMES < <(
-  nvidia-smi --query-gpu=name --format=csv,noheader \
-    | sed 's/[[:space:]]*$//' \
-    | sed '/^$/d'
-)
-if (( ${#GPU_NAMES[@]} != 8 )); then
-  echo "RJob exposed ${#GPU_NAMES[@]} GPUs; expected exactly 8" >&2
-  exit 1
-fi
-for gpu_name in "${GPU_NAMES[@]}"; do
-  [[ "$gpu_name" == *H200* ]] || { echo "Expected H200, found: $gpu_name" >&2; exit 1; }
-done
 
 mkdir -p "$SUITE_ROOT/api_gateway" "$SUITE_ROOT/api_runner_logs" "$SUITE_ROOT/api_runtime"
 command -v flock >/dev/null 2>&1 || {

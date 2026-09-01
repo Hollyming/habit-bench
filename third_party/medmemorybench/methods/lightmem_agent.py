@@ -482,10 +482,27 @@ class LightMemAgent(BaseAgent):
             # Note: Don't use device_map to avoid accelerate dependency
             # NOTE: buffer_len is limited by BERT's max_position_embeddings (512)
             # Long messages must be handled at the adapter level before sending to LightMem
+            topic_segmenter_path = self.topic_segmenter_model_path
+            # Configs created on the old ClusterX layout may contain an
+            # absolute /plm-shared path. Prefer the explicit H-cluster model
+            # environment when that path is no longer mounted. Keeping this
+            # resolution in the adapter also protects non-LoCoMo entrypoints.
+            h_lightmem_path = os.environ.get("HABITBENCH_LIGHTMEM_MODEL")
+            if h_lightmem_path and (
+                not topic_segmenter_path
+                or not Path(topic_segmenter_path).is_dir()
+            ) and Path(h_lightmem_path).is_dir():
+                if topic_segmenter_path and topic_segmenter_path != h_lightmem_path:
+                    print(
+                        "[LightMem] replacing unavailable topic segmenter path "
+                        f"{topic_segmenter_path} with {h_lightmem_path}",
+                        flush=True,
+                    )
+                topic_segmenter_path = h_lightmem_path
             config["topic_segmenter"] = {
                 "model_name": "llmlingua-2",
                 "configs": {
-                    "model_name": self.topic_segmenter_model_path
+                    "model_name": topic_segmenter_path
                     or "microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank",
                     "buffer_len": 512,  # Keep at 512 due to BERT model limit
                     # Don't set device_map - let PyTorch handle device placement

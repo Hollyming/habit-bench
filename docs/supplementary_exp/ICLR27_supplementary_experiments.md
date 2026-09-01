@@ -8,6 +8,12 @@
 3. 所有新增统计写入单独的 `supplementary_*` 文件，不与主结果混写。
 4. 当前标注不足以支持的指标明确返回 `unavailable`，不使用近似标签制造结论。
 
+**数据版本说明（2026-08-31）**：当前正式 Food 数据为
+`domain/food/food_habit_lifelines_final_check`，只包含 `direct_use`、`boundary`、
+`exception` 三类 probes。本文中涉及 `explicit_retrieval` 或
+`unseen_paraphrase` 的段落是历史 Food v5 设计说明；在 Food final 上必须按 contract
+标记为 `unavailable`，不能从旧数据复制数值。
+
 新增代码全部位于：
 
 ```text
@@ -26,7 +32,7 @@ scripts/run_supplementary_analysis.py  # 完整 suite 的批量离线分析
 
 问题：一个方法能否检索显式历史事实，并不等价于它能从重复弱证据中归纳潜在习惯。
 
-Food v5 同时具有：
+历史 Food v5 同时具有：
 
 - `explicit_retrieval`：显式记忆任务；
 - `direct_use`、`boundary`、`exception`：潜在习惯任务。
@@ -95,7 +101,7 @@ answer-head gap     = 1.0 - Oracle Habit State
 
 ```bash
 conda run -n habitbenchmark python -m eval.supplementary.oracle_controls \
-  --dataset-dir domain/food/food_habit_lifelines_stress_v5 \
+  --dataset-dir domain/food/food_habit_lifelines_final_check \
   --output-dir results/supplementary_oracle/food/oracle_evidence \
   --mode oracle_evidence \
   --base-model Qwen3-8B \
@@ -115,7 +121,7 @@ conda run -n habitbenchmark python -m eval.supplementary.oracle_controls \
 
 ```bash
 conda run -n habitbenchmark python -m eval.supplementary.oracle_controls \
-  --dataset-dir domain/food/food_habit_lifelines_stress_v5 \
+  --dataset-dir domain/food/food_habit_lifelines_final_check \
   --output-dir /plm-shared/zhangjunming/tmp/oracle_food_smoke \
   --mode oracle_evidence --max-users 1 --max-probes 8 --prepare-only
 ```
@@ -125,7 +131,7 @@ Oracle 支持与正式方法一致的 `--user-shard-index/--user-shard-count`。
 
 ```bash
 conda run -n habitbenchmark python -m eval.supplementary.merge_oracle \
-  --dataset-dir domain/food/food_habit_lifelines_stress_v5 \
+  --dataset-dir domain/food/food_habit_lifelines_final_check \
   --shard-root results/supplementary_oracle/food/oracle_evidence \
   --output-dir results/supplementary_oracle/food/oracle_evidence/merged \
   --mode oracle_evidence --expected-shards 8
@@ -152,7 +158,7 @@ conda run -n habitbenchmark python -m eval.supplementary.merge_oracle \
 
 ```bash
 conda run -n habitbenchmark python -m eval.supplementary.analyze \
-  --dataset-dir domain/food/food_habit_lifelines_stress_v5 \
+  --dataset-dir domain/food/food_habit_lifelines_final_check \
   --scored-predictions \
     results/<suite>/food/mem0/merged/scored_predictions.jsonl \
   --artifact-root results/<suite>/food/mem0/merged \
@@ -176,7 +182,7 @@ conda run -n habitbenchmark python -m eval.supplementary.analyze \
 
 ```bash
 conda run -n habitbenchmark python -m eval.supplementary.compare \
-  --dataset-dir domain/food/food_habit_lifelines_stress_v5 \
+  --dataset-dir domain/food/food_habit_lifelines_final_check \
   --output-dir results/<suite>/food/supplementary_comparison \
   --run mem0=results/<suite>/food/mem0/merged/scored_predictions.jsonl \
   --run amem=results/<suite>/food/amem/merged/scored_predictions.jsonl \
@@ -222,7 +228,7 @@ exact-choice Accuracy 保持不变，仍是更严格的主指标。组件准确�
 - component accuracy 也低：单个潜在习惯状态本身未被正确恢复；
 - surface-decoy rate 高：方法偏向表面相似而非用户采纳/provenance。
 
-Food v5 没有精确的 per-choice action taxonomy。不能使用字符串相似度把 Food choices
+Food final 没有精确的 per-choice action taxonomy。不能使用字符串相似度把 Food choices
 反推为 default/boundary/exception/wrong action；该数据的组件指标会返回
 `unavailable`。
 
@@ -308,7 +314,7 @@ answer-head failure。
 
 ```bash
 conda run -n habitbenchmark python -m eval.supplementary.human_audit prepare \
-  --dataset-dir domain/food/food_habit_lifelines_stress_v5 \
+  --dataset-dir domain/food/food_habit_lifelines_final_check \
   --output-dir results/human_audit/food \
   --per-stratum 50 --seed 42
 ```
@@ -468,7 +474,7 @@ distractor ratio: 0x / 10x / 50x / 100x
 ```
 
 同一 matched family 使用相同 `counterfactual_group_id`，分析时以 group 为 cluster。
-这属于数据扩展，不应在现有 Food v5 或 Finance/Software v1.4 标签上做代码近似。
+这属于数据扩展，不应在现有 Food final 或 Finance/Software v1.4 标签上做代码近似。
 
 ### 3.4 外部显式记忆基准
 
@@ -541,11 +547,11 @@ Cohen's kappa 和 adjudication 后修改/排除数量。
 
 ## 5. 推荐执行顺序
 
-1. 固定当前 Food v5、Finance/Software v1.4 和 Travel v16 四域主实验口径。
+1. 固定当前 Food final、Finance/Software v1.4 和 Travel v16 四域主实验口径。
 2. 对每个 merged `scored_predictions.jsonl` 运行 `analyze.py`。
 3. 每个域用 `compare.py` 生成统一配对统计。
 4. 运行两个 Oracle control，先做 `--prepare-only` smoke test。
 5. 做双人分层盲审并冻结排除规则。
 6. 根据 Oracle gap 决定是否值得增加 stronger answer-head ablation。
 7. 最后再生成 matched no-habit、概率标签和 causal stress split；它们应使用新 dataset
-   version，不能静默修改当前 Food v5 或 Finance/Software v1.4。
+   version，不能静默修改当前 Food final 或 Finance/Software v1.4。

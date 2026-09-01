@@ -1,6 +1,6 @@
 method_name: "embedding_rag"
 method_type: "rag"
-description: "LoCoMo adapted baseline: local Qwen3-8B and BGE-small, top-k 5"
+description: "LoCoMo adapted baseline: local Qwen3-8B and the pinned BGE-M3 encoder, top-k 5"
 
 model:
   provider: "openai"
@@ -10,9 +10,10 @@ model:
 
 embedding:
   provider: "local"
-  model: "BAAI/bge-small-zh-v1.5"
-  model_path: "/plm-dhw/wangjiarui/models/bge-small-zh-v1.5"
-  dim: 512
+  model: "BAAI/bge-m3"
+  model_path: "/mnt/shared-storage-gpfs2/plm-gpfs/jmzhang/models/habitbench/bge-m3"
+  revision: "5617a9f61b028005a4858fdac845db406aefb181"
+  dim: 1024
 
 agent_params:
   top_k: 5

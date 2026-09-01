@@ -4,7 +4,7 @@
 把本地 Qwen serving 替换成 OpenAI-compatible 外部模型。默认正式 suite 同时评测：
 
 - 模型：`deepseek-v4-pro-0813`、`glm-5.2`、`kimi-k3`；
-- 数据：Food v5、Finance v1.4、Software v1.4、Travel v16；
+- 数据：Food final、Finance v1.4、Software v1.4、Travel v16；
 - 方法：`no_memory`、`full_memory`、`full_history`、`recency_5`、`recency_10`、
   `bm25_rag`、`dense_rag`、`temporal_hybrid_rag`、`mem0`、`amem`、`memos`、
   `memrl`、`lightmem`、`letta`、`mirix`、`secom`；

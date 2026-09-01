@@ -131,7 +131,7 @@ class ProtocolTest(unittest.TestCase):
             set(DEFAULT_DATASETS) - {"finance_software"},
             {"food", "finance", "software", "travel"},
         )
-        self.assertIn("food_habit_lifelines_stress_v5", str(DEFAULT_DATASETS["food"]))
+        self.assertIn("food_habit_lifelines_final_check", str(DEFAULT_DATASETS["food"]))
         self.assertIn("release_gated_v1_4", str(DEFAULT_DATASETS["finance"]))
         self.assertIn("release_candidate_v16", str(DEFAULT_DATASETS["travel"]))
         self.assertEqual(
