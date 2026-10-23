@@ -1,0 +1,744 @@
+
+import asyncio
+import base64
+import json
+import os
+from weakref import WeakKeyDictionary
+from typing import List, Optional
+
+import openai
+from openai import AsyncOpenAI, AsyncStream
+from openai.types.chat.chat_completion import ChatCompletion
+from openai.types.chat.chat_completion_chunk import ChatCompletionChunk
+
+from mirix.errors import (
+    ErrorCode,
+    LLMAuthenticationError,
+    LLMBadRequestError,
+    LLMConnectionError,
+    LLMNotFoundError,
+    LLMPermissionDeniedError,
+    LLMRateLimitError,
+    LLMServerError,
+    LLMUnprocessableEntityError,
+)
+from mirix.llm_api.helpers import convert_to_structured_output
+from mirix.llm_api.local_json_tool_bridge import (
+    MemoryJsonToolBridgeError,
+    build_memory_json_arguments_request,
+    build_memory_json_tool_bridge,
+    build_memory_json_retry_request,
+    build_memory_json_field_repair_request,
+    build_memory_json_structure_repair_request,
+    apply_memory_json_field_repair,
+    convert_memory_json_arguments_response,
+    describe_memory_json_response,
+    identify_memory_tool_family,
+    prepare_formal_memory_json_request,
+    select_memory_json_tool,
+)
+from mirix.llm_api.llm_client_base import LLMClientBase
+from mirix.log import get_logger
+from mirix.memory_text_policy import uses_native_memory_text_fields
+from mirix.schemas.llm_config import LLMConfig
+from mirix.schemas.message import Message as PydanticMessage
+from mirix.schemas.openai.chat_completion_request import (
+    ChatCompletionRequest,
+)
+from mirix.schemas.openai.chat_completion_request import FunctionCall as ToolFunctionChoiceFunctionCall
+from mirix.schemas.openai.chat_completion_request import (
+    FunctionSchema,
+)
+from mirix.schemas.openai.chat_completion_request import Tool as OpenAITool
+from mirix.schemas.openai.chat_completion_request import (
+    ToolFunctionChoice,
+    cast_message_to_subtype,
+)
+from mirix.schemas.openai.chat_completion_response import ChatCompletionResponse
+from mirix.services.provider_manager import ProviderManager
+from mirix.settings import model_settings
+
+logger = get_logger(__name__)
+
+# MIRIX intentionally launches independent memory children concurrently. The
+# bridge keeps that upstream default. An endpoint lock remains available as an
+# explicit diagnostic fallback for serving stacks that cannot isolate grammar
+# state across requests, but it is not enabled in formal evaluation profiles.
+_MEMORY_JSON_ENDPOINT_LOCKS = WeakKeyDictionary()
+
+
+def _memory_json_bridge_seed() -> int:
+    raw = os.environ.get(
+        "MIRIX_JSON_TOOL_BRIDGE_SEED",
+        os.environ.get("HABITBENCH_MEMORY_LLM_SEED", "42"),
+    )
+    try:
+        return max(0, min(int(raw), 2**31 - 1))
+    except ValueError:
+        logger.warning("Invalid MIRIX_JSON_TOOL_BRIDGE_SEED=%r; using 42", raw)
+        return 42
+
+
+def _memory_json_retry_temperature() -> float:
+    raw = os.environ.get("MIRIX_JSON_TOOL_BRIDGE_RETRY_TEMPERATURE", "0.2")
+    try:
+        return max(0.0, min(float(raw), 2.0))
+    except ValueError:
+        logger.warning(
+            "Invalid MIRIX_JSON_TOOL_BRIDGE_RETRY_TEMPERATURE=%r; using 0.2",
+            raw,
+        )
+        return 0.2
+
+
+def _diversify_memory_json_retry(
+    request_data: dict,
+    *,
+    attempt: int,
+) -> dict:
+    """Make bounded corrective generations reproducible but non-identical."""
+    retry_data = dict(request_data)
+    try:
+        base_seed = int(request_data.get("seed", _memory_json_bridge_seed()))
+    except (TypeError, ValueError):
+        base_seed = _memory_json_bridge_seed()
+    retry_data["seed"] = (base_seed + attempt - 1) % (2**31)
+    retry_data["temperature"] = _memory_json_retry_temperature()
+    return retry_data
+
+
+def _memory_json_endpoint_lock(endpoint: str) -> asyncio.Lock:
+    loop = asyncio.get_running_loop()
+    endpoint_locks = _MEMORY_JSON_ENDPOINT_LOCKS.setdefault(loop, {})
+    return endpoint_locks.setdefault(endpoint, asyncio.Lock())
+
+
+def encode_image(image_path: str) -> str:
+    """
+    Encode an image file to base64 format with data URL prefix.
+
+    Args:
+        image_path: Path to the image file
+
+    Returns:
+        Base64 encoded image with data URL prefix (e.g., "data:image/jpeg;base64,...")
+    """
+    import mimetypes
+
+    # Get the MIME type of the image
+    mime_type, _ = mimetypes.guess_type(image_path)
+    if mime_type is None or not mime_type.startswith("image/"):
+        # Default to jpeg if we can't determine the type
+        mime_type = "image/jpeg"
+
+    with open(image_path, "rb") as img_file:
+        base64_string = base64.b64encode(img_file.read()).decode("utf-8")
+        return f"data:{mime_type};base64,{base64_string}"
+
+
+class OpenAIClient(LLMClientBase):
+    async def _prepare_client_kwargs(self) -> dict:
+        # Check for custom API key in LLMConfig first (for custom models)
+        custom_api_key = getattr(self.llm_config, "api_key", None)
+        if custom_api_key:
+            api_key = custom_api_key
+        else:
+            # Check for database-stored API key first, fall back to model_settings and environment
+            override_key = await ProviderManager().get_openai_override_key()
+            api_key = override_key or model_settings.openai_api_key or os.environ.get("OPENAI_API_KEY")
+            # supposedly the openai python client requires a dummy API key
+            api_key = api_key or "DUMMY_API_KEY"
+
+        kwargs = {"api_key": api_key, "base_url": self.llm_config.model_endpoint}
+
+        headers = {}
+        # Add auth provider headers
+        if hasattr(self.llm_config, "auth_provider") and self.llm_config.auth_provider:
+            from mirix.llm_api.auth_provider import get_auth_provider
+
+            auth_provider = get_auth_provider(self.llm_config.auth_provider)
+            if auth_provider:
+                try:
+                    auth_headers = auth_provider.get_auth_headers()  # Sync call
+                    logger.debug(
+                        f"OpenAI Client - Using auth provider '{self.llm_config.auth_provider}' "
+                        f"to inject {len(auth_headers)} header(s)"
+                    )
+                    headers.update(auth_headers)
+                except Exception as e:
+                    logger.error(f"Failed to get auth headers from provider '{self.llm_config.auth_provider}': {e}")
+                    # Continue without auth headers rather than failing the request
+            else:
+                logger.warning(
+                    f"Auth provider '{self.llm_config.auth_provider}' not found in registry. "
+                    "Make sure to register it before using."
+                )
+
+        # Set headers if any were collected
+        if headers:
+            kwargs["default_headers"] = headers
+
+        return kwargs
+
+    async def build_request_data(
+        self,
+        messages: List[PydanticMessage],
+        llm_config: LLMConfig,
+        tools: Optional[List[dict]] = None,  # Keep as dict for now as per base class
+        force_tool_call: Optional[str] = None,
+        existing_file_uris: Optional[List[str]] = None,
+    ) -> dict:
+        """
+        Constructs a request object in the expected data format for the OpenAI API.
+        """
+
+        use_developer_message = llm_config.model.startswith("o1") or llm_config.model.startswith(
+            "o3"
+        )  # o-series models
+
+        openai_message_list = [
+            cast_message_to_subtype(
+                m.to_openai_dict(
+                    use_developer_message=use_developer_message,
+                )
+            )
+            for m in messages
+        ]
+
+        if llm_config.model:
+            model = llm_config.model
+        else:
+            logger.warning(f"Model type not set in llm_config: {llm_config.model_dump_json(indent=4)}")
+            model = None
+
+        # force function calling for reliability, see https://platform.openai.com/docs/api-reference/chat/create#chat-create-tool_choice
+        # TODO(matt) move into LLMConfig
+        # TODO: This vllm checking is very brittle and is a patch at most
+        tool_choice = None
+        if llm_config.handle and "vllm" in self.llm_config.handle:
+            tool_choice = (
+                "required"
+                if os.environ.get("MIRIX_REQUIRED_TOOL_CHOICE") == "1"
+                else "auto"
+            )
+        elif tools:
+            # only set if tools is non-Null
+            tool_choice = "required"
+
+        if force_tool_call is not None:
+            tool_choice = ToolFunctionChoice(
+                type="function",
+                function=ToolFunctionChoiceFunctionCall(name=force_tool_call),
+            )
+
+        data = ChatCompletionRequest(
+            model=model,
+            messages=await self.fill_image_content_in_messages(openai_message_list),
+            tools=([OpenAITool(type="function", function=f) for f in tools] if tools else None),
+            tool_choice=tool_choice,
+            user=str(),
+            # ChatCompletionRequest defines ``max_tokens``. Passing the newer
+            # alias here was silently ignored by Pydantic, leaving local vLLM
+            # generations unbounded (including pathological tool-call lists).
+            max_tokens=llm_config.max_tokens,
+            temperature=llm_config.temperature,
+        )
+
+        if data.tools is not None and len(data.tools) > 0:
+            # Convert to structured output style (which has 'strict' and no optionals)
+            for tool in data.tools:
+                try:
+                    structured_output_version = convert_to_structured_output(tool.function.model_dump())
+                    tool.function = FunctionSchema(**structured_output_version)
+                except ValueError as e:
+                    logger.warning(f"Failed to convert tool function to structured output, tool={tool}, error={e}")
+
+        else:
+            # When there are no tools, delete tool_choice entirely from the request
+            delattr(data, "tool_choice")
+
+        request_data = data.model_dump(exclude_unset=True)
+        if tools:
+            # Keep local OpenAI-compatible servers to a single tool call per
+            # turn. Qwen otherwise sometimes emits a very large parallel call
+            # list whose final arguments are truncated and rejected as JSON.
+            request_data["parallel_tool_calls"] = False
+        memory_tool_family = identify_memory_tool_family(request_data.get("tools"))
+        if (
+            os.environ.get("MIRIX_CORE_JSON_TOOL_BRIDGE") == "1"
+            and memory_tool_family is not None
+        ):
+            response_format, bridge_metadata = build_memory_json_tool_bridge(
+                request_data["tools"], force_tool_call=force_tool_call
+            )
+            external_api = os.environ.get("HABITBENCH_INFERENCE_BACKEND") == "external-openai-compatible"
+            if external_api:
+                bridge_metadata["allow_reasoning_fallback"] = False
+                bridge_metadata["api_response_format"] = os.environ.get("MIRIX_API_JSON_RESPONSE_FORMAT", "json_object")
+                if uses_native_memory_text_fields():
+                    bridge_metadata["native_text_fields"] = True
+                    # Forced-thinking API completions include reasoning tokens;
+                    # the local core's 1024-token cap is not a storage budget.
+                    request_data["max_tokens"] = max(int(request_data.get("max_tokens") or 0), 8192)
+                request_data["messages"].append({
+                    "role": "user",
+                    "content": "Select the appropriate tool using these exact definitions; "
+                    "finish_memory_update remains available when no update is needed:\n"
+                    + json.dumps(request_data["tools"], ensure_ascii=False, separators=(",", ":")),
+                })
+            # Native vLLM tool parsing can reject malformed JSON before MIRIX
+            # sees it. Guided JSON constrains one compact call, then request()
+            # restores the ordinary OpenAI tool-call response shape.
+            request_data.pop("tools", None)
+            request_data.pop("tool_choice", None)
+            request_data.pop("parallel_tool_calls", None)
+            request_data["response_format"] = response_format
+            # Keep the selector schema privately for stage two; this helper
+            # may replace the wire-level format with portable JSON mode.
+            if external_api:
+                request_data = prepare_formal_memory_json_request(request_data, bridge_metadata)
+            request_data["_mirix_memory_json_tool_bridge"] = bridge_metadata
+        return request_data
+
+    async def fill_image_content_in_messages(self, openai_message_list):
+        """
+        Converts image URIs in the message to base64 format.
+        """
+
+        from mirix.constants import LOAD_IMAGE_CONTENT_FOR_LAST_MESSAGE_ONLY
+
+        global_image_idx = 0
+        new_message_list = []
+
+        image_content_loaded = False  # it will always be false if `LOAD_IMAGE_CONTENT_FOR_LAST_MESSAGE_ONLY` is False
+
+        for message_idx, message in enumerate(openai_message_list[::-1]):
+            if message.role != "user":
+                new_message_list.append(message)
+                continue
+
+            # It it is not a list, then it is not a message with image.
+            # TODO: (yu) Single image as message should be the list, this probably needs to be warned in the beginning.
+            if not isinstance(message.content, list):
+                new_message_list.append(message)
+                continue
+
+            has_image = False
+
+            message_content = []
+            for m in message.content:
+                if m["type"] == "image_url":
+                    if LOAD_IMAGE_CONTENT_FOR_LAST_MESSAGE_ONLY and image_content_loaded:
+                        message_content.append(
+                            {
+                                "type": "text",
+                                "text": "[System Message] There was an image here but now the image has been deleted to save space.",
+                            }
+                        )
+
+                    else:
+                        message_content.append(
+                            {
+                                "type": "text",
+                                "text": f"<image {global_image_idx}>",
+                            }
+                        )
+                        file = await self.file_manager.get_file_metadata_by_id(m["image_id"])
+                        if file.source_url is not None:
+                            message_content.append(
+                                {
+                                    "type": "image_url",
+                                    "image_url": {
+                                        "url": file.source_url,
+                                        "detail": m["detail"],
+                                    },
+                                }
+                            )
+                        elif file.file_path is not None:
+                            message_content.append(
+                                {
+                                    "type": "image_url",
+                                    "image_url": {
+                                        "url": encode_image(file.file_path),
+                                        "detail": m["detail"],
+                                    },
+                                }
+                            )
+                        else:
+                            raise ValueError(f"File {file.file_path} has no source_url or file_path")
+                        global_image_idx += 1
+                        has_image = True
+                elif m["type"] == "google_cloud_file_uri":
+                    file = await self.file_manager.get_file_metadata_by_id(m["cloud_file_uri"])
+                    try:
+                        local_path = await self.cloud_file_mapping_manager.get_local_file(file.google_cloud_url)
+                    except Exception:
+                        local_path = None
+
+                    if local_path is not None and os.path.exists(local_path):
+                        message_content.append(
+                            {
+                                "type": "image_url",
+                                "image_url": {"url": encode_image(local_path)},
+                            }
+                        )
+                    else:
+                        message_content.append(
+                            {
+                                "type": "text",
+                                "text": "[System Message] There was an image here but now the image has been deleted to save space.",
+                            }
+                        )
+
+                elif m["type"] == "file_uri":
+                    raise NotImplementedError("File URI is currently not supported for OpenAI")
+                else:
+                    message_content.append(m)
+            message.content = message_content
+            new_message_list.append(message)
+
+            if has_image:
+                if LOAD_IMAGE_CONTENT_FOR_LAST_MESSAGE_ONLY:
+                    # Load image content for the last message only.
+                    image_content_loaded = True
+
+        new_message_list = new_message_list[::-1]
+
+        return new_message_list
+
+    async def request(self, request_data: dict) -> dict:
+        """
+        Performs underlying asynchronous request to OpenAI API and returns raw response dict.
+        """
+        request_data = dict(request_data)
+        bridge_metadata = request_data.pop("_mirix_memory_json_tool_bridge", None)
+        if bridge_metadata is not None:
+            # The server-wide Qwen3 template default is not sufficient here:
+            # the reasoning parser consumes request-level template kwargs and
+            # can otherwise classify the entire constrained JSON object as
+            # ``reasoning``. Make non-thinking mode explicit on every bridge
+            # attempt so xgrammar output is returned in ``content`` intact.
+            extra_body = dict(request_data.get("extra_body") or {})
+            chat_template_kwargs = dict(
+                extra_body.get("chat_template_kwargs") or {}
+            )
+            chat_template_kwargs["enable_thinking"] = False
+            extra_body["chat_template_kwargs"] = chat_template_kwargs
+            request_data["extra_body"] = extra_body
+            request_data.setdefault("seed", _memory_json_bridge_seed())
+        client_kwargs = await self._prepare_client_kwargs()
+        logger.debug(
+            "OpenAI Request - Making request to %s", client_kwargs.get("base_url")
+        )
+        logger.debug(
+            "OpenAI Request - Model: %s, Max tokens: %s, Temperature: %s",
+            request_data.get("model"),
+            request_data.get("max_tokens")
+            or request_data.get("max_completion_tokens"),
+            request_data.get("temperature"),
+        )
+        if "default_headers" in client_kwargs:
+            logger.debug(
+                "OpenAI Request - Custom headers will be included in request (count: %s)",
+                len(client_kwargs["default_headers"]),
+            )
+        client = AsyncOpenAI(**client_kwargs)
+        bridge_attempts = 1
+        if bridge_metadata is not None:
+            raw_attempts = os.environ.get("MIRIX_JSON_TOOL_BRIDGE_ATTEMPTS", "3")
+            try:
+                bridge_attempts = max(1, min(int(raw_attempts), 5))
+            except ValueError:
+                logger.warning(
+                    "Invalid MIRIX_JSON_TOOL_BRIDGE_ATTEMPTS=%r; using 3",
+                    raw_attempts,
+                )
+                bridge_attempts = 3
+
+        if bridge_metadata is None:
+            return await self._create_chat_completion(client, request_data)
+
+        endpoint = str(client_kwargs.get("base_url") or "")
+        if os.environ.get("MIRIX_JSON_TOOL_BRIDGE_SERIALIZE", "0") != "1":
+            return await self._request_memory_json_tool(
+                client, request_data, bridge_metadata, bridge_attempts
+            )
+
+        async with _memory_json_endpoint_lock(endpoint):
+            return await self._request_memory_json_tool(
+                client, request_data, bridge_metadata, bridge_attempts
+            )
+
+    async def _create_chat_completion(
+        self, client: AsyncOpenAI, request_data: dict
+    ) -> dict:
+        response: ChatCompletion = await client.chat.completions.create(
+            **request_data
+        )
+        if not response.object:
+            response.object = "chat.completion"
+        return response.model_dump()
+
+    async def _request_memory_json_tool(
+        self,
+        client: AsyncOpenAI,
+        request_data: dict,
+        bridge_metadata: dict,
+        bridge_attempts: int,
+    ) -> dict:
+        """Run selector and exact-arguments stages, both bounded and strict."""
+        family = bridge_metadata.get("family", "unknown")
+        selector_request = request_data
+        selected_name = None
+        for attempt in range(1, bridge_attempts + 1):
+            response_data = await self._create_chat_completion(
+                client, selector_request
+            )
+            try:
+                selected_name = select_memory_json_tool(
+                    response_data, bridge_metadata
+                )
+                break
+            except MemoryJsonToolBridgeError as exc:
+                logger.warning(
+                    "Unusable %s-memory JSON selector on attempt %d/%d: %s; "
+                    "%s",
+                    family,
+                    attempt,
+                    bridge_attempts,
+                    exc,
+                    describe_memory_json_response(response_data),
+                )
+                if attempt >= bridge_attempts:
+                    raise
+                selector_request = build_memory_json_retry_request(
+                    request_data,
+                    bridge_metadata,
+                    attempt=attempt + 1,
+                    error=exc,
+                    stage="selector",
+                    previous_response=response_data,
+                )
+                selector_request = _diversify_memory_json_retry(
+                    selector_request,
+                    attempt=attempt + 1,
+                )
+
+        if selected_name is None:
+            raise AssertionError("memory JSON selector loop exited unexpectedly")
+
+        arguments_request = build_memory_json_arguments_request(
+            request_data, bridge_metadata, selected_name
+        )
+        current_arguments_request = arguments_request
+        field_repair = None
+        structure_repair = None
+        for attempt in range(1, bridge_attempts + 1):
+            response_data = await self._create_chat_completion(
+                client, current_arguments_request
+            )
+            try:
+                if field_repair is not None:
+                    response_data = apply_memory_json_field_repair(response_data, field_repair)
+                converted = convert_memory_json_arguments_response(
+                    response_data, bridge_metadata, selected_name
+                )
+            except MemoryJsonToolBridgeError as exc:
+                logger.warning(
+                    "Unusable %s-memory JSON arguments for %s on attempt "
+                    "%d/%d: %s; %s",
+                    family,
+                    selected_name,
+                    attempt,
+                    bridge_attempts,
+                    exc,
+                    describe_memory_json_response(response_data),
+                )
+                if attempt >= bridge_attempts:
+                    raise
+                repair_plan = build_memory_json_field_repair_request(
+                    arguments_request, bridge_metadata, selected_name, response_data, exc, attempt=attempt + 1
+                )
+                if repair_plan is not None:
+                    current_arguments_request, field_repair = repair_plan
+                elif field_repair is not None:
+                    # A malformed field-only response must not reopen sibling
+                    # arguments or the selected tool for generation.
+                    current_arguments_request = {**current_arguments_request,
+                        "messages": current_arguments_request["messages"][:2] + [{
+                            "role": "user", "content": (
+                                f"Field repair attempt {attempt + 1}: previous response was invalid: {str(exc)[:512]}. "
+                                'Return only {"value":"the shortened field text"} in formal content; '
+                                'do not return full arguments or any other keys.'
+                            )}]}
+                else:
+                    field_repair = None
+                    plan = build_memory_json_structure_repair_request(
+                        arguments_request, bridge_metadata, selected_name,
+                        response_data, exc, attempt=attempt + 1,
+                    )
+                    if plan is not None:
+                        structure_repair = plan
+                        current_arguments_request = plan
+                    else:
+                        current_arguments_request = build_memory_json_retry_request(
+                            structure_repair or arguments_request,
+                            bridge_metadata,
+                            attempt=attempt + 1,
+                            error=exc,
+                            stage="arguments",
+                            selected_name=selected_name,
+                            previous_response=response_data,
+                        )
+                current_arguments_request = _diversify_memory_json_retry(
+                    current_arguments_request,
+                    attempt=attempt + 1,
+                )
+                continue
+
+            logger.info(
+                "Converted one two-stage %s-memory JSON tool call (%s) on "
+                "arguments attempt %d/%d",
+                family,
+                selected_name,
+                attempt,
+                bridge_attempts,
+            )
+            return converted
+
+        raise AssertionError("memory JSON arguments loop exited unexpectedly")
+
+    def convert_response_to_chat_completion(
+        self,
+        response_data: dict,
+        input_messages: List[PydanticMessage],  # Included for consistency, maybe used later
+    ) -> ChatCompletionResponse:
+        """
+        Converts raw OpenAI response dict into the ChatCompletionResponse Pydantic model.
+        Handles potential extraction of inner thoughts if they were added via kwargs.
+        """
+        # OpenAI's response structure directly maps to ChatCompletionResponse
+        # We just need to instantiate the Pydantic model for validation and type safety.
+        chat_completion_response = ChatCompletionResponse(**response_data)
+        return chat_completion_response
+
+    async def stream(self, request_data: dict) -> AsyncStream[ChatCompletionChunk]:
+        """
+        Performs underlying asynchronous streaming request to OpenAI and returns the async stream iterator.
+        """
+        client_kwargs = await self._prepare_client_kwargs()
+        client = AsyncOpenAI(**client_kwargs)
+        response_stream: AsyncStream[ChatCompletionChunk] = await client.chat.completions.create(
+            **request_data, stream=True
+        )
+        return response_stream
+
+    def handle_llm_error(self, e: Exception) -> Exception:
+        """
+        Maps OpenAI-specific errors to common LLMError types.
+        """
+        # The bridge has already exhausted its bounded corrective generations.
+        # Preserve this non-retryable type so Agent._get_ai_reply does not wrap
+        # it as LLMError and repeat the same bridge loop three more times.
+        if isinstance(e, MemoryJsonToolBridgeError):
+            return e
+
+        if isinstance(e, openai.APIConnectionError):
+            logger.warning("[OpenAI] API connection error: %s", e)
+            return LLMConnectionError(
+                message=f"Failed to connect to OpenAI: {str(e)}",
+                code=ErrorCode.INTERNAL_SERVER_ERROR,
+                details={"cause": str(e.__cause__) if e.__cause__ else None},
+            )
+
+        if isinstance(e, openai.RateLimitError):
+            logger.warning("[OpenAI] Rate limited (429). Consider backoff. Error: %s", e)
+            return LLMRateLimitError(
+                message=f"Rate limited by OpenAI: {str(e)}",
+                code=ErrorCode.RATE_LIMIT_EXCEEDED,
+                details=e.body,  # Include body which often has rate limit details
+            )
+
+        if isinstance(e, openai.BadRequestError):
+            logger.warning("[OpenAI] Bad request (400): %s", str(e))
+            # BadRequestError can signify different issues (e.g., invalid args, context length)
+            # Check message content if finer-grained errors are needed
+            # Example: if "context_length_exceeded" in str(e): return LLMContextLengthExceededError(...)
+            return LLMBadRequestError(
+                message=f"Bad request to OpenAI: {str(e)}",
+                code=ErrorCode.INVALID_ARGUMENT,  # Or more specific if detectable
+                details=e.body,
+            )
+
+        if isinstance(e, openai.AuthenticationError):
+            logger.error(f"[OpenAI] Authentication error (401): {str(e)}")  # More severe log level
+            return LLMAuthenticationError(
+                message=f"Authentication failed with OpenAI: {str(e)}",
+                code=ErrorCode.UNAUTHENTICATED,
+                details=e.body,
+            )
+
+        if isinstance(e, openai.PermissionDeniedError):
+            logger.error(f"[OpenAI] Permission denied (403): {str(e)}")  # More severe log level
+            return LLMPermissionDeniedError(
+                message=f"Permission denied by OpenAI: {str(e)}",
+                code=ErrorCode.PERMISSION_DENIED,
+                details=e.body,
+            )
+
+        if isinstance(e, openai.NotFoundError):
+            logger.warning("[OpenAI] Resource not found (404): %s", str(e))
+            # Could be invalid model name, etc.
+            return LLMNotFoundError(
+                message=f"Resource not found in OpenAI: {str(e)}",
+                code=ErrorCode.NOT_FOUND,
+                details=e.body,
+            )
+
+        if isinstance(e, openai.UnprocessableEntityError):
+            logger.warning("[OpenAI] Unprocessable entity (422): %s", str(e))
+            return LLMUnprocessableEntityError(
+                message=f"Invalid request content for OpenAI: {str(e)}",
+                code=ErrorCode.INVALID_ARGUMENT,  # Usually validation errors
+                details=e.body,
+            )
+
+        # 424 Failed Dependency - external service timeout (e.g., model couldn't respond in time)
+        # Note: OpenAI SDK doesn't have a specific exception class for 424, so we check status_code
+        # This is a somewhat non-standard error code, but some openai compatible wrapper endpoints use
+        # it.
+        if isinstance(e, openai.APIStatusError) and e.status_code == 424:
+            logger.warning("[OpenAI] Dependency timeout. Consider backoff. (424): %s", str(e))
+            return LLMServerError(
+                message=f"External service dependency timeout: {str(e)}",
+                code=ErrorCode.DEPENDENCY_TIMEOUT,
+                details={
+                    "status_code": e.status_code,
+                    "response": str(e.response),
+                    "body": e.body,
+                },
+            )
+
+        # General API error catch-all for other status codes
+        if isinstance(e, openai.APIStatusError):
+            logger.warning("[OpenAI] API status error (%s): %s", e.status_code, str(e))
+            if e.status_code >= 500:
+                error_cls = LLMServerError
+                error_code = ErrorCode.INTERNAL_SERVER_ERROR
+            else:
+                # Treat other 4xx as bad requests if not caught above
+                error_cls = LLMBadRequestError
+                error_code = ErrorCode.INVALID_ARGUMENT
+
+            return error_cls(
+                message=f"OpenAI API error: {str(e)}",
+                code=error_code,
+                details={
+                    "status_code": e.status_code,
+                    "response": str(e.response),
+                    "body": e.body,
+                },
+            )
+
+        # Fallback for unexpected errors
+        return super().handle_llm_error(e)

@@ -1,0 +1,504 @@
+from typing import List, Optional, Tuple
+
+from sqlalchemy import select
+
+from mirix.log import get_logger
+from mirix.orm.errors import NoResultFound
+from mirix.orm.organization import Organization as OrganizationModel
+from mirix.orm.user import User as UserModel
+from mirix.schemas.user import User as PydanticUser
+from mirix.schemas.user import UserUpdate
+from mirix.services.organization_manager import OrganizationManager
+from mirix.utils import enforce_types
+
+logger = get_logger(__name__)
+
+
+class UserManager:
+    """Manager class to handle business logic related to Users."""
+
+    ADMIN_USER_NAME = "admin_user"
+    ADMIN_USER_ID = "user-00000000-0000-4000-8000-000000000000"
+    DEFAULT_USER_NAME = "default_user"  # Organization-specific default user for block templates
+    DEFAULT_TIME_ZONE = "UTC (UTC+00:00)"
+
+    def __init__(self):
+        # Fetching the db_context similarly as in OrganizationManager
+        from mirix.server.server import db_context
+
+        self.session_maker = db_context
+
+    @enforce_types
+    async def create_admin_user(self, org_id: str = OrganizationManager.DEFAULT_ORG_ID) -> PydanticUser:
+        """Create the admin user (async)."""
+        async with self.session_maker() as session:
+            try:
+                await OrganizationModel.read(db_session=session, identifier=org_id)
+            except NoResultFound:
+                raise ValueError(f"No organization with {org_id} exists in the organization table.") from None
+
+            try:
+                user = await UserModel.read(db_session=session, identifier=self.ADMIN_USER_ID)
+            except NoResultFound:
+                user = UserModel(
+                    id=self.ADMIN_USER_ID,
+                    name=self.ADMIN_USER_NAME,
+                    status="active",
+                    timezone=self.DEFAULT_TIME_ZONE,
+                    organization_id=org_id,
+                    is_admin=True,
+                )
+                await user.create(session)
+
+            return user.to_pydantic()
+
+    @enforce_types
+    async def create_user(self, pydantic_user: PydanticUser) -> PydanticUser:
+        """Create a new user if it doesn't already exist (with Redis caching).
+
+        Args:
+            pydantic_user: The user data
+        """
+        async with self.session_maker() as session:
+            user_data = pydantic_user.model_dump()
+            new_user = UserModel(**user_data)
+            await new_user.create_with_redis(session, actor=None)
+            return new_user.to_pydantic()
+
+    @enforce_types
+    async def update_user(self, user_update: UserUpdate) -> PydanticUser:
+        """Update user details (with cache invalidation)."""
+        async with self.session_maker() as session:
+            existing_user = await UserModel.read(
+                db_session=session, identifier=user_update.id
+            )
+            update_data = user_update.model_dump(
+                exclude_unset=True, exclude_none=True
+            )
+            for key, value in update_data.items():
+                setattr(existing_user, key, value)
+            await existing_user.update_with_redis(session, actor=None)
+            return existing_user.to_pydantic()
+
+    @enforce_types
+    async def update_user_timezone(
+        self, timezone_str: str, user_id: str
+    ) -> PydanticUser:
+        """Update the timezone of a user (with cache invalidation)."""
+        async with self.session_maker() as session:
+            existing_user = await UserModel.read(
+                db_session=session, identifier=user_id
+            )
+            existing_user.timezone = timezone_str
+            await existing_user.update_with_redis(session, actor=None)
+            return existing_user.to_pydantic()
+
+    @enforce_types
+    async def update_user_status(
+        self, user_id: str, status: str
+    ) -> PydanticUser:
+        """Update the status of a user (with cache invalidation)."""
+        async with self.session_maker() as session:
+            existing_user = await UserModel.read(
+                db_session=session, identifier=user_id
+            )
+            existing_user.status = status
+            await existing_user.update_with_redis(session, actor=None)
+            return existing_user.to_pydantic()
+
+    @enforce_types
+    async def delete_user_by_id(self, user_id: str):
+        """
+        Soft delete a user and cascade soft delete to all associated records using memory managers.
+
+        Cleanup workflow:
+        1. Soft delete all memory records using memory managers:
+           - Episodic memories
+           - Semantic memories
+           - Procedural memories
+           - Resource memories
+           - Knowledge vault items
+           - Messages
+           - Blocks
+
+        2. Database (PostgreSQL):
+           - Set user.is_deleted = True
+
+        3. Redis Cache:
+           - Update user hash with is_deleted=true
+           - Memory cache entries updated by managers with is_deleted=true
+
+        Args:
+            user_id: ID of the user to soft delete
+        """
+        from mirix.database.redis_client import get_redis_client
+        from mirix.log import get_logger
+
+        logger = get_logger(__name__)
+        logger.info("Soft deleting user %s and all associated records using memory managers...", user_id)
+
+        # Import memory managers
+        from mirix.services.block_manager import BlockManager
+        from mirix.services.episodic_memory_manager import EpisodicMemoryManager
+        from mirix.services.knowledge_vault_manager import KnowledgeVaultManager
+        from mirix.services.message_manager import MessageManager
+        from mirix.services.procedural_memory_manager import ProceduralMemoryManager
+        from mirix.services.resource_memory_manager import ResourceMemoryManager
+        from mirix.services.semantic_memory_manager import SemanticMemoryManager
+
+        # 1. Soft delete all memory records using memory managers
+        episodic_manager = EpisodicMemoryManager()
+        semantic_manager = SemanticMemoryManager()
+        procedural_manager = ProceduralMemoryManager()
+        resource_manager = ResourceMemoryManager()
+        knowledge_manager = KnowledgeVaultManager()
+        message_manager = MessageManager()
+        block_manager = BlockManager()
+
+        episodic_count = await episodic_manager.soft_delete_by_user_id(user_id=user_id)
+        logger.debug("Soft deleted %d episodic memories for user %s", episodic_count, user_id)
+
+        semantic_count = await semantic_manager.soft_delete_by_user_id(user_id=user_id)
+        logger.debug("Soft deleted %d semantic memories for user %s", semantic_count, user_id)
+
+        procedural_count = await procedural_manager.soft_delete_by_user_id(user_id=user_id)
+        logger.debug("Soft deleted %d procedural memories for user %s", procedural_count, user_id)
+
+        resource_count = await resource_manager.soft_delete_by_user_id(user_id=user_id)
+        logger.debug("Soft deleted %d resource memories for user %s", resource_count, user_id)
+
+        knowledge_count = await knowledge_manager.soft_delete_by_user_id(user_id=user_id)
+        logger.debug("Soft deleted %d knowledge vault items for user %s", knowledge_count, user_id)
+
+        message_count = await message_manager.soft_delete_by_user_id(user_id=user_id)
+        logger.debug("Soft deleted %d messages for user %s", message_count, user_id)
+
+        block_count = await block_manager.soft_delete_by_user_id(user_id=user_id)
+        logger.debug("Soft deleted %d blocks for user %s", block_count, user_id)
+
+        # 2. Soft delete user
+        async with self.session_maker() as session:
+            # Find user
+            user = await UserModel.read(db_session=session, identifier=user_id)
+            if not user:
+                logger.warning("User %s not found", user_id)
+                return
+
+            # Soft delete user (set is_deleted = True directly, don't call user.delete())
+            user.is_deleted = True
+            user.set_updated_at()
+            await session.commit()
+            logger.info("Soft deleted user %s from database", user_id)
+
+            # 3. Invalidate Redis cache (remove key so soft-deleted user is not served from cache)
+            try:
+                redis_client = get_redis_client()
+                if redis_client:
+                    user_key = f"{redis_client.USER_PREFIX}{user_id}"
+                    await redis_client.delete(user_key)
+                    logger.debug("Removed soft-deleted user %s from cache", user_id)
+
+                    logger.info(
+                        "User %s and all associated records soft deleted: "
+                        "%d episodic, %d semantic, %d procedural, %d resource, %d knowledge_vault, %d messages, %d blocks",
+                        user_id,
+                        episodic_count,
+                        semantic_count,
+                        procedural_count,
+                        resource_count,
+                        knowledge_count,
+                        message_count,
+                        block_count,
+                    )
+            except Exception as e:
+                logger.warning("Failed to update cache for user %s: %s", user_id, e)
+
+    async def delete_memories_by_user_id(self, user_id: str):
+        """
+        Hard delete memories, messages, and blocks for a user using memory managers' bulk delete.
+
+        This permanently removes data records while preserving the user record.
+        Uses optimized bulk delete methods in each manager for efficient deletion.
+
+        Cleanup workflow:
+        1. Call each memory manager's delete_by_user_id() method
+           - EpisodicMemoryManager.delete_by_user_id()
+           - SemanticMemoryManager.delete_by_user_id()
+           - ProceduralMemoryManager.delete_by_user_id()
+           - ResourceMemoryManager.delete_by_user_id()
+           - KnowledgeVaultManager.delete_by_user_id()
+           - MessageManager.delete_by_user_id()
+           - BlockManager.delete_by_user_id()
+        2. Each manager handles:
+           - Bulk database deletion
+           - Redis cache cleanup
+           - Business logic
+        3. PRESERVE: user record
+
+        Args:
+            user_id: ID of the user whose memories to delete
+        """
+        from mirix.log import get_logger
+
+        logger = get_logger(__name__)
+        logger.info("Bulk deleting memories for user %s using memory managers (preserving user record)...", user_id)
+
+        # Import managers
+        from mirix.services.block_manager import BlockManager
+        from mirix.services.episodic_memory_manager import EpisodicMemoryManager
+        from mirix.services.knowledge_vault_manager import KnowledgeVaultManager
+        from mirix.services.message_manager import MessageManager
+        from mirix.services.procedural_memory_manager import ProceduralMemoryManager
+        from mirix.services.resource_memory_manager import ResourceMemoryManager
+        from mirix.services.semantic_memory_manager import SemanticMemoryManager
+
+        # Initialize managers
+        episodic_manager = EpisodicMemoryManager()
+        semantic_manager = SemanticMemoryManager()
+        procedural_manager = ProceduralMemoryManager()
+        resource_manager = ResourceMemoryManager()
+        knowledge_manager = KnowledgeVaultManager()
+        message_manager = MessageManager()
+        block_manager = BlockManager()
+
+        # Use managers' bulk delete methods
+        try:
+            # Bulk delete memories using manager methods
+            episodic_count = await episodic_manager.delete_by_user_id(user_id=user_id)
+            logger.debug("Bulk deleted %d episodic memories", episodic_count)
+
+            semantic_count = await semantic_manager.delete_by_user_id(user_id=user_id)
+            logger.debug("Bulk deleted %d semantic memories", semantic_count)
+
+            procedural_count = await procedural_manager.delete_by_user_id(user_id=user_id)
+            logger.debug("Bulk deleted %d procedural memories", procedural_count)
+
+            resource_count = await resource_manager.delete_by_user_id(user_id=user_id)
+            logger.debug("Bulk deleted %d resource memories", resource_count)
+
+            knowledge_count = await knowledge_manager.delete_by_user_id(user_id=user_id)
+            logger.debug("Bulk deleted %d knowledge vault items", knowledge_count)
+
+            message_count = await message_manager.delete_by_user_id(user_id=user_id)
+            logger.debug("Bulk deleted %d messages", message_count)
+
+            block_count = await block_manager.delete_by_user_id(user_id=user_id)
+            logger.debug("Bulk deleted %d blocks", block_count)
+
+            # Clear message_ids from ALL agents in PostgreSQL (messages are user-scoped, agents are client-scoped)
+            # IMPORTANT: Keep the first message (system message) as agents need it to function
+            # We need to clear message_ids from all agents that might have cached this user's messages
+            async with self.session_maker() as session:
+                from mirix.orm.agent import Agent as AgentModel
+
+                # Update ALL agents to keep only system messages
+                # (We can't know which agents have which user's messages, so clean all)
+                stmt = select(AgentModel)
+                result = await session.execute(stmt)
+                agents = result.scalars().all()
+
+                for agent in agents:
+                    if agent.message_ids and len(agent.message_ids) > 1:  # Has conversation messages
+                        agent.message_ids = [agent.message_ids[0]]  # Keep system message only
+
+                await session.commit()
+                logger.debug(
+                    "Cleared conversation message_ids from %d agents in PostgreSQL (kept system messages)", len(agents)
+                )
+
+            # Invalidate agent caches that might reference deleted messages for this user
+            from mirix.database.redis_client import get_redis_client
+
+            redis_client = get_redis_client()
+            if redis_client:
+                # Use SCAN to find all agent keys and delete them
+                cursor = 0
+                invalidated_count = 0
+                while True:
+                    cursor, keys = await redis_client.client.scan(
+                        cursor=cursor, match=f"{redis_client.AGENT_PREFIX}*", count=100
+                    )
+                    if keys:
+                        await redis_client.client.delete(*keys)
+                        invalidated_count += len(keys)
+                    if cursor == 0:
+                        break
+                if invalidated_count > 0:
+                    logger.debug("Invalidated %d agent caches due to user deletion", invalidated_count)
+
+            logger.info(
+                "Bulk deleted all memories for user %s: "
+                "%d episodic, %d semantic, %d procedural, %d resource, %d knowledge_vault, %d messages, %d blocks "
+                "(user record preserved)",
+                user_id,
+                episodic_count,
+                semantic_count,
+                procedural_count,
+                resource_count,
+                knowledge_count,
+                message_count,
+                block_count,
+            )
+        except Exception as e:
+            logger.error("Failed to bulk delete memories for user %s: %s", user_id, e)
+            raise
+
+    @enforce_types
+    async def get_user_by_id(self, user_id: str) -> PydanticUser:
+        """Fetch a user by ID (with cache - Redis or IPS Cache)."""
+        from mirix.log import get_logger
+
+        logger = get_logger(__name__)
+        cache_provider = None
+        try:
+            from mirix.database.cache_provider import get_cache_provider
+
+            cache_provider = get_cache_provider()
+
+            if cache_provider:
+                cache_key = f"{cache_provider.USER_PREFIX}{user_id}"
+                cached_data = await cache_provider.get_hash(cache_key)
+                if cached_data:
+                    logger.debug("Cache HIT for user %s", user_id)
+                    return PydanticUser(**cached_data)
+        except Exception as e:
+            logger.warning("Cache read failed for user %s: %s", user_id, e)
+
+        async with self.session_maker() as session:
+            user = await UserModel.read(db_session=session, identifier=user_id)
+            pydantic_user = user.to_pydantic()
+
+            try:
+                if cache_provider:
+                    from mirix.settings import settings
+
+                    cache_key = f"{cache_provider.USER_PREFIX}{user_id}"
+                    data = pydantic_user.model_dump(mode="json")
+                    await cache_provider.set_hash(cache_key, data, ttl=settings.redis_ttl_users)
+                    logger.debug("Populated cache for user %s", user_id)
+            except Exception as e:
+                logger.warning("Failed to populate cache for user %s: %s", user_id, e)
+
+            return pydantic_user
+
+    @enforce_types
+    async def get_admin_user(self) -> PydanticUser:
+        """Fetch the admin user, creating it if it doesn't exist."""
+        try:
+            return await self.get_user_by_id(self.ADMIN_USER_ID)
+        except NoResultFound:
+            # Admin user doesn't exist, create it
+            # First ensure the default organization exists
+            from mirix.services.organization_manager import OrganizationManager
+
+            org_mgr = OrganizationManager()
+            await org_mgr.get_default_organization()  # Auto-creates if missing
+            return await self.create_admin_user(org_id=OrganizationManager.DEFAULT_ORG_ID)
+
+    @enforce_types
+    async def get_or_create_org_default_user(self, org_id: str) -> PydanticUser:
+        """
+        Get or create the default template user for an organization.
+        This user serves as the template for copying blocks to new users.
+
+        Args:
+            org_id: Organization ID
+
+        Returns:
+            PydanticUser: The default user for this organization
+        """
+        # Try to find existing default user for this org
+        async with self.session_maker() as session:
+            try:
+                stmt = (
+                    select(UserModel)
+                    .where(
+                        UserModel.name == self.DEFAULT_USER_NAME,
+                        UserModel.organization_id == org_id,
+                        UserModel.is_deleted == False,
+                    )
+                    .limit(1)
+                )
+                result = await session.execute(stmt)
+                user = result.scalar_one_or_none()
+
+                if user:
+                    logger.debug("Found existing default user %s for organization %s", user.id, org_id)
+                    return user.to_pydantic()
+            except Exception as e:
+                logger.debug("Error finding default user: %s", e)
+
+        # Default user doesn't exist, create it
+        logger.info("Creating default template user for organization %s", org_id)
+
+        # Generate a deterministic user_id for the default user
+        default_user_id = f"user-default-{org_id}"
+
+        try:
+            # Try to get by ID first (in case it exists with that ID)
+            return await self.get_user_by_id(default_user_id)
+        except NoResultFound:
+            pass
+
+        # Create the default user (handle race condition from concurrent requests)
+        try:
+            async with self.session_maker() as session:
+                user = UserModel(
+                    id=default_user_id,
+                    name=self.DEFAULT_USER_NAME,
+                    status="active",
+                    timezone=self.DEFAULT_TIME_ZONE,
+                    organization_id=org_id,
+                )
+                await user.create(session)
+                logger.info("Created default template user %s for organization %s", default_user_id, org_id)
+                return user.to_pydantic()
+        except Exception as create_err:
+            error_msg = str(create_err).lower()
+            if "unique" in error_msg or "duplicate" in error_msg or "already exists" in error_msg:
+                logger.debug("Default user creation race condition, retrying lookup: %s", create_err)
+                return await self.get_user_by_id(default_user_id)
+            raise
+
+    @enforce_types
+    async def get_user_or_admin(self, user_id: Optional[str] = None):
+        """Fetch the user or admin user."""
+        if not user_id:
+            return await self.get_admin_user()
+
+        try:
+            return await self.get_user_by_id(user_id=user_id)
+        except NoResultFound:
+            return await self.get_admin_user()
+
+    @enforce_types
+    async def list_users(
+        self,
+        cursor: Optional[str] = None,
+        limit: Optional[int] = 50,
+        organization_id: Optional[str] = None,
+    ) -> List[PydanticUser]:
+        """List users with pagination using cursor (id) and limit.
+
+        Args:
+            cursor: Cursor for pagination
+            limit: Maximum number of users to return
+            organization_id: Filter by organization ID
+        """
+        async with self.session_maker() as session:
+            stmt = select(UserModel).where(UserModel.is_deleted == False)
+
+            if organization_id:
+                stmt = stmt.where(UserModel.organization_id == organization_id)
+
+            stmt = stmt.order_by(UserModel.created_at.desc())
+
+            if cursor:
+                stmt = stmt.where(UserModel.id < cursor)
+
+            if limit:
+                stmt = stmt.limit(limit)
+
+            result = await session.execute(stmt)
+            results = result.scalars().all()
+            return [user.to_pydantic() for user in results]
