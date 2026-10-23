@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="assets/overview.svg" alt="HABIT-Bench: latent habit induction from longitudinal weak evidence" width="100%">
-</p>
+<h1 align="center">HABIT-Bench</h1>
 
 <p align="center">
   <strong>Evaluating Habit Induction from Longitudinal Weak Evidence in Agent Memory</strong>
@@ -11,9 +9,11 @@
   <img src="https://img.shields.io/badge/sessions-37%2C152-0f766e?style=flat-square" alt="37,152 sessions">
   <img src="https://img.shields.io/badge/probes-3%2C328-7c3aed?style=flat-square" alt="3,328 probes">
   <img src="https://img.shields.io/badge/Python-3.11-3776ab?style=flat-square" alt="Python 3.11">
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=Hollyming.habit-bench" alt="Visitors">
 </p>
 
 <p align="center">
+  <a href="https://arxiv.org/pdf/2610.24520">Paper</a> ·
   <a href="#overview">Overview</a> ·
   <a href="#datasets">Datasets</a> ·
   <a href="#quick-start">Quick start</a> ·
@@ -30,16 +30,13 @@ HABIT-Bench studies this question through longitudinal synthetic user histories 
 
 The benchmark examines habit induction, applicability boundaries, exception retention, temporal drift, and rejection of nonbinding evidence. These distinctions help identify why an agent chooses the wrong action, including when it makes an unsupported personalization.
 
-```mermaid
-flowchart LR
-    A[History up to the probe cutoff] --> B[Memory method]
-    B --> C[Retrieved or compacted context]
-    C --> D[Answer model]
-    Q[Query + four choices] --> D
-    Q --> B
-    D --> E[Choice + evidence scoring]
-    K[Evaluator-only labels] -.-> E
-```
+<p align="center">
+  <img src="assets/framework.png" alt="Figure 1 from the HABIT-Bench paper: habit induction, lifeline construction, and controlled evaluation" width="100%">
+</p>
+
+<p align="center">
+  <sub>Figure 1. HABIT-Bench framework. Original figure from <a href="https://arxiv.org/pdf/2610.24520">the paper</a>.</sub>
+</p>
 
 This repository provides the shared evaluator, memory-method implementations and adapters, and main experiment configurations.
 
